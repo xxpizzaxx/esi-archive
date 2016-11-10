@@ -7732,6 +7732,26 @@
                             "type": "object"
                         }
                     },
+                    "404": {
+                        "description": "Structure not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_universe_structures_structure_id_not_found_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_structures_structure_id_not_found",
+                            "type": "object"
+                        }
+                    },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
