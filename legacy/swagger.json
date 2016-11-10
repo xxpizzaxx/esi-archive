@@ -1927,12 +1927,12 @@
                         "examples": {
                             "application/json": [
                                 {
-                                    "killmail_hash": "b41ccb498ece33d64019f64c0db392aa3aa701fb",
-                                    "killmail_id": 1
-                                },
-                                {
                                     "killmail_hash": "8eef5e8fb6b88fe3407c489df33822b2e3b57a5e",
                                     "killmail_id": 2
+                                },
+                                {
+                                    "killmail_hash": "b41ccb498ece33d64019f64c0db392aa3aa701fb",
+                                    "killmail_id": 1
                                 }
                             ]
                         },
