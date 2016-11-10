@@ -7106,7 +7106,7 @@
         },
         "/universe/names/": {
             "post": {
-                "description": "Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types.\n\n---\n\nAlternate route: `/v1/universe/names/`\n\nAlternate route: `/latest/universe/names/`\n\nAlternate route: `/dev/universe/names/`\n",
+                "description": "Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types.\n\n---\n\nAlternate route: `/v1/universe/names/`\n\nAlternate route: `/latest/universe/names/`\n",
                 "operationId": "post_universe_names",
                 "parameters": [
                     {
@@ -7208,6 +7208,26 @@
                             },
                             "title": "post_universe_names_ok",
                             "type": "array"
+                        }
+                    },
+                    "404": {
+                        "description": "no valid IDs found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "post_universe_names_not_found_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_universe_names_not_found",
+                            "type": "object"
                         }
                     },
                     "500": {
