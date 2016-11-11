@@ -4960,9 +4960,11 @@
                         "description": "Public data about a corporation",
                         "examples": {
                             "application/json": {
-                                "corporation_name": "Republic University",
-                                "member_count": 191303,
-                                "ticker": "[RUN]"
+                                "alliance_id": 434243723,
+                                "ceo_id": 180548812,
+                                "corporation_name": "C C P",
+                                "member_count": 656,
+                                "ticker": "-CCP-"
                             }
                         },
                         "schema": {
@@ -4972,6 +4974,12 @@
                                     "description": "id of alliance that corporation is a member of, if any",
                                     "format": "int32",
                                     "title": "get_corporations_corporation_id_alliance_id",
+                                    "type": "integer"
+                                },
+                                "ceo_id": {
+                                    "description": "ceo_id integer",
+                                    "format": "int32",
+                                    "title": "get_corporations_corporation_id_ceo_id",
                                     "type": "integer"
                                 },
                                 "corporation_name": {
@@ -4994,7 +5002,8 @@
                             "required": [
                                 "corporation_name",
                                 "ticker",
-                                "member_count"
+                                "member_count",
+                                "ceo_id"
                             ],
                             "title": "get_corporations_corporation_id_ok",
                             "type": "object"
