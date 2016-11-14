@@ -576,10 +576,24 @@
                                 }
                             ]
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object array",
+                            "description": "200 ok array",
                             "items": {
-                                "description": "200 ok object object",
+                                "description": "200 ok object",
                                 "properties": {
                                     "character_id": {
                                         "description": "character_id integer",
@@ -597,7 +611,7 @@
                                     "character_id",
                                     "character_name"
                                 ],
-                                "title": "get_characters_names_200_ok_object",
+                                "title": "get_characters_names_200_ok",
                                 "type": "object"
                             },
                             "title": "get_characters_names_ok",
@@ -616,7 +630,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_names_internal_server_error_error",
+                                    "title": "get_characters_names_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -672,8 +686,22 @@
                                 "race_id": 2
                             }
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object object",
+                            "description": "200 ok object",
                             "properties": {
                                 "ancestry_id": {
                                     "description": "ancestry_id integer",
@@ -779,7 +807,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_internal_server_error_error",
+                                    "title": "get_characters_character_id_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -798,7 +826,7 @@
         "/characters/{character_id}/bookmarks/": {
             "get": {
                 "description": "List your character's personal bookmarks\n\n---\n\nAlternate route: `/v1/characters/{character_id}/bookmarks/`\n\nAlternate route: `/legacy/characters/{character_id}/bookmarks/`\n\nAlternate route: `/dev/characters/{character_id}/bookmarks/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_characters_character_id_bookmarks_",
+                "operationId": "get_characters_character_id_bookmarks",
                 "parameters": [
                     {
                         "description": "An EVE character ID",
@@ -843,49 +871,63 @@
                                 }
                             ]
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object array",
+                            "description": "200 ok array",
                             "items": {
-                                "description": "200 ok object object",
+                                "description": "200 ok object",
                                 "properties": {
                                     "bookmark_id": {
                                         "description": "bookmark_id integer",
                                         "format": "int64",
-                                        "title": "get_characters_character_id_bookmarks__bookmark_id",
+                                        "title": "get_characters_character_id_bookmarks_bookmark_id",
                                         "type": "integer"
                                     },
                                     "create_date": {
                                         "description": "create_date string",
                                         "format": "date-time",
-                                        "title": "get_characters_character_id_bookmarks__create_date",
+                                        "title": "get_characters_character_id_bookmarks_create_date",
                                         "type": "string"
                                     },
                                     "creator_id": {
                                         "description": "creator_id integer",
                                         "format": "int32",
-                                        "title": "get_characters_character_id_bookmarks__creator_id",
+                                        "title": "get_characters_character_id_bookmarks_creator_id",
                                         "type": "integer"
                                     },
                                     "folder_id": {
                                         "description": "folder_id integer",
                                         "format": "int32",
-                                        "title": "get_characters_character_id_bookmarks__folder_id",
+                                        "title": "get_characters_character_id_bookmarks_folder_id",
                                         "type": "integer"
                                     },
                                     "memo": {
                                         "description": "memo string",
-                                        "title": "get_characters_character_id_bookmarks__memo",
+                                        "title": "get_characters_character_id_bookmarks_memo",
                                         "type": "string"
                                     },
                                     "note": {
                                         "description": "note string",
-                                        "title": "get_characters_character_id_bookmarks__note",
+                                        "title": "get_characters_character_id_bookmarks_note",
                                         "type": "string"
                                     },
                                     "owner_id": {
                                         "description": "owner_id integer",
                                         "format": "int32",
-                                        "title": "get_characters_character_id_bookmarks__owner_id",
+                                        "title": "get_characters_character_id_bookmarks_owner_id",
                                         "type": "integer"
                                     },
                                     "target": {
@@ -897,19 +939,19 @@
                                                     "x": {
                                                         "description": "x number",
                                                         "format": "double",
-                                                        "title": "get_characters_character_id_bookmarks__x",
+                                                        "title": "get_characters_character_id_bookmarks_x",
                                                         "type": "number"
                                                     },
                                                     "y": {
                                                         "description": "y number",
                                                         "format": "double",
-                                                        "title": "get_characters_character_id_bookmarks__y",
+                                                        "title": "get_characters_character_id_bookmarks_y",
                                                         "type": "number"
                                                     },
                                                     "z": {
                                                         "description": "z number",
                                                         "format": "double",
-                                                        "title": "get_characters_character_id_bookmarks__z",
+                                                        "title": "get_characters_character_id_bookmarks_z",
                                                         "type": "number"
                                                     }
                                                 },
@@ -918,7 +960,7 @@
                                                     "y",
                                                     "z"
                                                 ],
-                                                "title": "get_characters_character_id_bookmarks__coordinates",
+                                                "title": "get_characters_character_id_bookmarks_coordinates",
                                                 "type": "object"
                                             },
                                             "item": {
@@ -927,13 +969,13 @@
                                                     "item_id": {
                                                         "description": "item_id integer",
                                                         "format": "int64",
-                                                        "title": "get_characters_character_id_bookmarks__item_id",
+                                                        "title": "get_characters_character_id_bookmarks_item_id",
                                                         "type": "integer"
                                                     },
                                                     "type_id": {
                                                         "description": "type_id integer",
                                                         "format": "int32",
-                                                        "title": "get_characters_character_id_bookmarks__type_id",
+                                                        "title": "get_characters_character_id_bookmarks_type_id",
                                                         "type": "integer"
                                                     }
                                                 },
@@ -941,20 +983,20 @@
                                                     "item_id",
                                                     "type_id"
                                                 ],
-                                                "title": "get_characters_character_id_bookmarks__item",
+                                                "title": "get_characters_character_id_bookmarks_item",
                                                 "type": "object"
                                             },
                                             "location_id": {
                                                 "description": "location_id integer",
                                                 "format": "int64",
-                                                "title": "get_characters_character_id_bookmarks__location_id",
+                                                "title": "get_characters_character_id_bookmarks_location_id",
                                                 "type": "integer"
                                             }
                                         },
                                         "required": [
                                             "location_id"
                                         ],
-                                        "title": "get_characters_character_id_bookmarks__target",
+                                        "title": "get_characters_character_id_bookmarks_target",
                                         "type": "object"
                                     }
                                 },
@@ -967,10 +1009,10 @@
                                     "note",
                                     "target"
                                 ],
-                                "title": "get_characters_character_id_bookmarks__200_ok_object",
+                                "title": "get_characters_character_id_bookmarks_200_ok",
                                 "type": "object"
                             },
-                            "title": "get_characters_character_id_bookmarks__ok",
+                            "title": "get_characters_character_id_bookmarks_ok",
                             "type": "array"
                         }
                     },
@@ -986,11 +1028,11 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_bookmarks__forbidden_error",
+                                    "title": "get_characters_character_id_bookmarks_forbidden",
                                     "type": "string"
                                 }
                             },
-                            "title": "get_characters_character_id_bookmarks__forbidden",
+                            "title": "get_characters_character_id_bookmarks_forbidden",
                             "type": "object"
                         }
                     },
@@ -1006,11 +1048,11 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_bookmarks__internal_server_error_error",
+                                    "title": "get_characters_character_id_bookmarks_internal_server_error",
                                     "type": "string"
                                 }
                             },
-                            "title": "get_characters_character_id_bookmarks__internal_server_error",
+                            "title": "get_characters_character_id_bookmarks_internal_server_error",
                             "type": "object"
                         }
                     }
@@ -1032,7 +1074,7 @@
         "/characters/{character_id}/bookmarks/folders/": {
             "get": {
                 "description": "List your character's personal bookmark folders\n\n---\n\nAlternate route: `/v1/characters/{character_id}/bookmarks/folders/`\n\nAlternate route: `/legacy/characters/{character_id}/bookmarks/folders/`\n\nAlternate route: `/dev/characters/{character_id}/bookmarks/folders/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_characters_character_id_bookmarks_folders_",
+                "operationId": "get_characters_character_id_bookmarks_folders",
                 "parameters": [
                     {
                         "description": "An EVE character ID",
@@ -1066,33 +1108,47 @@
                                 }
                             ]
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object array",
+                            "description": "200 ok array",
                             "items": {
-                                "description": "200 ok object object",
+                                "description": "200 ok object",
                                 "properties": {
                                     "folder_id": {
                                         "description": "folder_id integer",
                                         "format": "int32",
-                                        "title": "get_characters_character_id_bookmarks_folders__folder_id",
+                                        "title": "get_characters_character_id_bookmarks_folders_folder_id",
                                         "type": "integer"
                                     },
                                     "name": {
                                         "description": "name string",
-                                        "title": "get_characters_character_id_bookmarks_folders__name",
+                                        "title": "get_characters_character_id_bookmarks_folders_name",
                                         "type": "string"
                                     },
                                     "owner_id": {
                                         "description": "owner_id integer",
                                         "format": "int32",
-                                        "title": "get_characters_character_id_bookmarks_folders__owner_id",
+                                        "title": "get_characters_character_id_bookmarks_folders_owner_id",
                                         "type": "integer"
                                     }
                                 },
-                                "title": "get_characters_character_id_bookmarks_folders__200_ok_object",
+                                "title": "get_characters_character_id_bookmarks_folders_200_ok",
                                 "type": "object"
                             },
-                            "title": "get_characters_character_id_bookmarks_folders__ok",
+                            "title": "get_characters_character_id_bookmarks_folders_ok",
                             "type": "array"
                         }
                     },
@@ -1108,11 +1164,11 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_bookmarks_folders__forbidden_error",
+                                    "title": "get_characters_character_id_bookmarks_folders_forbidden",
                                     "type": "string"
                                 }
                             },
-                            "title": "get_characters_character_id_bookmarks_folders__forbidden",
+                            "title": "get_characters_character_id_bookmarks_folders_forbidden",
                             "type": "object"
                         }
                     },
@@ -1128,11 +1184,11 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_bookmarks_folders__internal_server_error_error",
+                                    "title": "get_characters_character_id_bookmarks_folders_internal_server_error",
                                     "type": "string"
                                 }
                             },
-                            "title": "get_characters_character_id_bookmarks_folders__internal_server_error",
+                            "title": "get_characters_character_id_bookmarks_folders_internal_server_error",
                             "type": "object"
                         }
                     }
@@ -1198,6 +1254,20 @@
                                 }
                             ]
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
                             "description": "Up to 50 events from now or the event you requested\n",
                             "items": {
@@ -1238,7 +1308,7 @@
                                         "type": "string"
                                     }
                                 },
-                                "title": "get_characters_character_id_calendar_200_ok_object",
+                                "title": "get_characters_character_id_calendar_200_ok",
                                 "type": "object"
                             },
                             "title": "get_characters_character_id_calendar_ok",
@@ -1257,7 +1327,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_calendar_forbidden_error",
+                                    "title": "get_characters_character_id_calendar_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -1277,7 +1347,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_calendar_internal_server_error_error",
+                                    "title": "get_characters_character_id_calendar_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -1348,6 +1418,20 @@
                                 "response": "Undecided",
                                 "text": "o7: The EVE Online Show features latest developer news, fast paced action, community overviews and a lot more with CCP Guard and CCP Mimic. Join the thrilling o7 live broadcast at 20:00 EVE time (=UTC) on <a href=\"http://www.twitch.tv/ccp\">EVE TV</a>. Don't miss it!",
                                 "title": "o7 The EVE Online Show"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
                             }
                         },
                         "schema": {
@@ -1444,7 +1528,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_calendar_event_id_forbidden_error",
+                                    "title": "get_characters_character_id_calendar_event_id_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -1464,7 +1548,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_calendar_event_id_internal_server_error_error",
+                                    "title": "get_characters_character_id_calendar_event_id_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -1559,7 +1643,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "put_characters_character_id_calendar_event_id_forbidden_error",
+                                    "title": "put_characters_character_id_calendar_event_id_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -1579,7 +1663,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "put_characters_character_id_calendar_event_id_internal_server_error_error",
+                                    "title": "put_characters_character_id_calendar_event_id_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -1652,8 +1736,22 @@
                                 ]
                             }
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object object",
+                            "description": "200 ok object",
                             "properties": {
                                 "home_location": {
                                     "description": "home_location object",
@@ -1741,7 +1839,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_clones_forbidden_error",
+                                    "title": "get_characters_character_id_clones_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -1761,7 +1859,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_clones_internal_server_error_error",
+                                    "title": "get_characters_character_id_clones_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -1828,10 +1926,24 @@
                                 }
                             ]
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object array",
+                            "description": "200 ok array",
                             "items": {
-                                "description": "200 ok object object",
+                                "description": "200 ok object",
                                 "properties": {
                                     "corporation_id": {
                                         "description": "corporation_id integer",
@@ -1857,7 +1969,7 @@
                                         "type": "string"
                                     }
                                 },
-                                "title": "get_characters_character_id_corporationhistory_200_ok_object",
+                                "title": "get_characters_character_id_corporationhistory_200_ok",
                                 "type": "object"
                             },
                             "title": "get_characters_character_id_corporationhistory_ok",
@@ -1876,7 +1988,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_corporationhistory_internal_server_error_error",
+                                    "title": "get_characters_character_id_corporationhistory_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -1954,7 +2066,7 @@
                             }
                         },
                         "schema": {
-                            "description": "201 created object object",
+                            "description": "201 created object",
                             "properties": {
                                 "cost": {
                                     "description": "cost integer",
@@ -1979,7 +2091,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "post_characters_character_id_cspa_forbidden_error",
+                                    "title": "post_characters_character_id_cspa_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -1999,7 +2111,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "post_characters_character_id_cspa_internal_server_error_error",
+                                    "title": "post_characters_character_id_cspa_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -3577,8 +3689,22 @@
                                 "px64x64": "https://imageserver.eveonline.com/Character/95465499_64.jpg"
                             }
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object object",
+                            "description": "200 ok object",
                             "properties": {
                                 "px128x128": {
                                     "description": "px128x128 string",
@@ -3637,7 +3763,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_portrait_internal_server_error_error",
+                                    "title": "get_characters_character_id_portrait_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -4944,10 +5070,24 @@
                                 }
                             ]
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object array",
+                            "description": "200 ok array",
                             "items": {
-                                "description": "200 ok object object",
+                                "description": "200 ok object",
                                 "properties": {
                                     "corporation_id": {
                                         "description": "corporation_id integer",
@@ -4965,7 +5105,7 @@
                                     "corporation_id",
                                     "corporation_name"
                                 ],
-                                "title": "get_corporations_names_200_ok_object",
+                                "title": "get_corporations_names_200_ok",
                                 "type": "object"
                             },
                             "title": "get_corporations_names_ok",
@@ -4984,7 +5124,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_names_internal_server_error_error",
+                                    "title": "get_corporations_names_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -5037,8 +5177,22 @@
                                 "ticker": "-CCP-"
                             }
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object object",
+                            "description": "200 ok object",
                             "properties": {
                                 "alliance_id": {
                                     "description": "id of alliance that corporation is a member of, if any",
@@ -5091,7 +5245,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Not found message",
-                                    "title": "get_corporations_corporation_id_not_found_error",
+                                    "title": "get_corporations_corporation_id_not_found",
                                     "type": "string"
                                 }
                             },
@@ -5111,7 +5265,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_internal_server_error_error",
+                                    "title": "get_corporations_corporation_id_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -5130,7 +5284,7 @@
         "/corporations/{corporation_id}/alliancehistory/": {
             "get": {
                 "description": "Get a list of all the alliances a corporation has been a member of\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/alliancehistory/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/alliancehistory/`\n\nAlternate route: `/dev/corporations/{corporation_id}/alliancehistory/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_corporations_corporation_id_alliancehistory_",
+                "operationId": "get_corporations_corporation_id_alliancehistory",
                 "parameters": [
                     {
                         "description": "An EVE corporation ID",
@@ -5171,10 +5325,24 @@
                                 }
                             ]
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object array",
+                            "description": "200 ok array",
                             "items": {
-                                "description": "200 ok object object",
+                                "description": "200 ok object",
                                 "properties": {
                                     "alliance": {
                                         "description": "alliance object",
@@ -5182,12 +5350,12 @@
                                             "alliance_id": {
                                                 "description": "alliance_id integer",
                                                 "format": "int32",
-                                                "title": "get_corporations_corporation_id_alliancehistory__alliance_id",
+                                                "title": "get_corporations_corporation_id_alliancehistory_alliance_id",
                                                 "type": "integer"
                                             },
                                             "is_deleted": {
                                                 "description": "True if the alliance has been deleted",
-                                                "title": "get_corporations_corporation_id_alliancehistory__is_deleted",
+                                                "title": "get_corporations_corporation_id_alliancehistory_is_deleted",
                                                 "type": "boolean"
                                             }
                                         },
@@ -5195,19 +5363,19 @@
                                             "alliance_id",
                                             "is_deleted"
                                         ],
-                                        "title": "get_corporations_corporation_id_alliancehistory__alliance",
+                                        "title": "get_corporations_corporation_id_alliancehistory_alliance",
                                         "type": "object"
                                     },
                                     "record_id": {
                                         "description": "An incrementing ID that can be used to canonically establish order of records in cases where dates may be ambiguous",
                                         "format": "int32",
-                                        "title": "get_corporations_corporation_id_alliancehistory__record_id",
+                                        "title": "get_corporations_corporation_id_alliancehistory_record_id",
                                         "type": "integer"
                                     },
                                     "start_date": {
                                         "description": "start_date string",
                                         "format": "date-time",
-                                        "title": "get_corporations_corporation_id_alliancehistory__start_date",
+                                        "title": "get_corporations_corporation_id_alliancehistory_start_date",
                                         "type": "string"
                                     }
                                 },
@@ -5215,10 +5383,10 @@
                                     "start_date",
                                     "record_id"
                                 ],
-                                "title": "get_corporations_corporation_id_alliancehistory__200_ok_object",
+                                "title": "get_corporations_corporation_id_alliancehistory_200_ok",
                                 "type": "object"
                             },
-                            "title": "get_corporations_corporation_id_alliancehistory__ok",
+                            "title": "get_corporations_corporation_id_alliancehistory_ok",
                             "type": "array"
                         }
                     },
@@ -5234,11 +5402,11 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_alliancehistory__internal_server_error_error",
+                                    "title": "get_corporations_corporation_id_alliancehistory_internal_server_error",
                                     "type": "string"
                                 }
                             },
-                            "title": "get_corporations_corporation_id_alliancehistory__internal_server_error",
+                            "title": "get_corporations_corporation_id_alliancehistory_internal_server_error",
                             "type": "object"
                         }
                     }
@@ -5253,7 +5421,7 @@
         "/corporations/{corporation_id}/bookmarks/": {
             "get": {
                 "description": "Dummy\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/bookmarks/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/bookmarks/`\n\nAlternate route: `/dev/corporations/{corporation_id}/bookmarks/`\n",
-                "operationId": "get_corporations_corporation_id_bookmarks_",
+                "operationId": "get_corporations_corporation_id_bookmarks",
                 "parameters": [
                     {
                         "description": "An EVE corporation ID",
@@ -5291,11 +5459,11 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_bookmarks__internal_server_error_error",
+                                    "title": "get_corporations_corporation_id_bookmarks_internal_server_error",
                                     "type": "string"
                                 }
                             },
-                            "title": "get_corporations_corporation_id_bookmarks__internal_server_error",
+                            "title": "get_corporations_corporation_id_bookmarks_internal_server_error",
                             "type": "object"
                         }
                     }
@@ -5310,7 +5478,7 @@
         "/corporations/{corporation_id}/bookmarks/folders/": {
             "get": {
                 "description": "Dummy\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/bookmarks/folders/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/bookmarks/folders/`\n\nAlternate route: `/dev/corporations/{corporation_id}/bookmarks/folders/`\n",
-                "operationId": "get_corporations_corporation_id_bookmarks_folders_",
+                "operationId": "get_corporations_corporation_id_bookmarks_folders",
                 "parameters": [
                     {
                         "description": "An EVE corporation ID",
@@ -5348,11 +5516,11 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_bookmarks_folders__internal_server_error_error",
+                                    "title": "get_corporations_corporation_id_bookmarks_folders_internal_server_error",
                                     "type": "string"
                                 }
                             },
-                            "title": "get_corporations_corporation_id_bookmarks_folders__internal_server_error",
+                            "title": "get_corporations_corporation_id_bookmarks_folders_internal_server_error",
                             "type": "object"
                         }
                     }
@@ -5399,8 +5567,22 @@
                                 "px64x64": "https://imageserver.eveonline.com/Corporation/1000010_64.png"
                             }
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object object",
+                            "description": "200 ok object",
                             "properties": {
                                 "px128x128": {
                                     "description": "px128x128 string",
@@ -5454,7 +5636,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_icons_internal_server_error_error",
+                                    "title": "get_corporations_corporation_id_icons_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -5473,7 +5655,7 @@
         "/corporations/{corporation_id}/members/": {
             "get": {
                 "description": "Read the current list of members if the calling character is a member.\n\n---\n\nAlternate route: `/v2/corporations/{corporation_id}/members/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/members/`\n\nAlternate route: `/dev/corporations/{corporation_id}/members/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_corporations_corporation_id_members_",
+                "operationId": "get_corporations_corporation_id_members",
                 "parameters": [
                     {
                         "description": "A corporation ID",
@@ -5508,25 +5690,39 @@
                                 }
                             ]
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object array",
+                            "description": "200 ok array",
                             "items": {
-                                "description": "200 ok object object",
+                                "description": "200 ok object",
                                 "properties": {
                                     "character_id": {
                                         "description": "character_id integer",
                                         "format": "int32",
-                                        "title": "get_corporations_corporation_id_members__character_id",
+                                        "title": "get_corporations_corporation_id_members_character_id",
                                         "type": "integer"
                                     }
                                 },
                                 "required": [
                                     "character_id"
                                 ],
-                                "title": "get_corporations_corporation_id_members__200_ok_object",
+                                "title": "get_corporations_corporation_id_members_200_ok",
                                 "type": "object"
                             },
-                            "title": "get_corporations_corporation_id_members__ok",
+                            "title": "get_corporations_corporation_id_members_ok",
                             "type": "array"
                         }
                     },
@@ -5542,11 +5738,11 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_corporations_corporation_id_members__forbidden_error",
+                                    "title": "get_corporations_corporation_id_members_forbidden",
                                     "type": "string"
                                 }
                             },
-                            "title": "get_corporations_corporation_id_members__forbidden",
+                            "title": "get_corporations_corporation_id_members_forbidden",
                             "type": "object"
                         }
                     },
@@ -5562,11 +5758,11 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_members__internal_server_error_error",
+                                    "title": "get_corporations_corporation_id_members_internal_server_error",
                                     "type": "string"
                                 }
                             },
-                            "title": "get_corporations_corporation_id_members__internal_server_error",
+                            "title": "get_corporations_corporation_id_members_internal_server_error",
                             "type": "object"
                         }
                     }
@@ -5588,7 +5784,7 @@
         "/corporations/{corporation_id}/roles/": {
             "get": {
                 "description": "Return the roles of all members if the character has the personnel manager role or any grantable role.\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/roles/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/roles/`\n\nAlternate route: `/dev/corporations/{corporation_id}/roles/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_corporations_corporation_id_roles_",
+                "operationId": "get_corporations_corporation_id_roles",
                 "parameters": [
                     {
                         "description": "A corporation ID",
@@ -5624,15 +5820,29 @@
                                 }
                             ]
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object array",
+                            "description": "200 ok array",
                             "items": {
-                                "description": "200 ok object object",
+                                "description": "200 ok object",
                                 "properties": {
                                     "character_id": {
                                         "description": "character_id integer",
                                         "format": "int32",
-                                        "title": "get_corporations_corporation_id_roles__character_id",
+                                        "title": "get_corporations_corporation_id_roles_character_id",
                                         "type": "integer"
                                     },
                                     "grantable_roles": {
@@ -5691,11 +5901,11 @@
                                                 "Terrestrial_Combat_Officer",
                                                 "Terrestrial_Logistics_Officer"
                                             ],
-                                            "title": "get_corporations_corporation_id_roles__grantable_role",
+                                            "title": "get_corporations_corporation_id_roles_grantable_role",
                                             "type": "string",
                                             "uniqueItems": true
                                         },
-                                        "title": "get_corporations_corporation_id_roles__grantable_roles",
+                                        "title": "get_corporations_corporation_id_roles_grantable_roles",
                                         "type": "array"
                                     },
                                     "grantable_roles_at_base": {
@@ -5754,11 +5964,11 @@
                                                 "Terrestrial_Combat_Officer",
                                                 "Terrestrial_Logistics_Officer"
                                             ],
-                                            "title": "get_corporations_corporation_id_roles__grantable_roles_at_base",
+                                            "title": "get_corporations_corporation_id_roles_grantable_roles_at_base",
                                             "type": "string",
                                             "uniqueItems": true
                                         },
-                                        "title": "get_corporations_corporation_id_roles__grantable_roles_at_base",
+                                        "title": "get_corporations_corporation_id_roles_grantable_roles_at_base",
                                         "type": "array"
                                     },
                                     "grantable_roles_at_hq": {
@@ -5817,11 +6027,11 @@
                                                 "Terrestrial_Combat_Officer",
                                                 "Terrestrial_Logistics_Officer"
                                             ],
-                                            "title": "get_corporations_corporation_id_roles__grantable_roles_at_hq",
+                                            "title": "get_corporations_corporation_id_roles_grantable_roles_at_hq",
                                             "type": "string",
                                             "uniqueItems": true
                                         },
-                                        "title": "get_corporations_corporation_id_roles__grantable_roles_at_hq",
+                                        "title": "get_corporations_corporation_id_roles_grantable_roles_at_hq",
                                         "type": "array"
                                     },
                                     "grantable_roles_at_other": {
@@ -5880,11 +6090,11 @@
                                                 "Terrestrial_Combat_Officer",
                                                 "Terrestrial_Logistics_Officer"
                                             ],
-                                            "title": "get_corporations_corporation_id_roles__grantable_roles_at_other",
+                                            "title": "get_corporations_corporation_id_roles_grantable_roles_at_other",
                                             "type": "string",
                                             "uniqueItems": true
                                         },
-                                        "title": "get_corporations_corporation_id_roles__grantable_roles_at_other",
+                                        "title": "get_corporations_corporation_id_roles_grantable_roles_at_other",
                                         "type": "array"
                                     },
                                     "roles": {
@@ -5943,11 +6153,11 @@
                                                 "Terrestrial_Combat_Officer",
                                                 "Terrestrial_Logistics_Officer"
                                             ],
-                                            "title": "get_corporations_corporation_id_roles__role",
+                                            "title": "get_corporations_corporation_id_roles_role",
                                             "type": "string",
                                             "uniqueItems": true
                                         },
-                                        "title": "get_corporations_corporation_id_roles__roles",
+                                        "title": "get_corporations_corporation_id_roles_roles",
                                         "type": "array"
                                     },
                                     "roles_at_base": {
@@ -6006,11 +6216,11 @@
                                                 "Terrestrial_Combat_Officer",
                                                 "Terrestrial_Logistics_Officer"
                                             ],
-                                            "title": "get_corporations_corporation_id_roles__roles_at_base",
+                                            "title": "get_corporations_corporation_id_roles_roles_at_base",
                                             "type": "string",
                                             "uniqueItems": true
                                         },
-                                        "title": "get_corporations_corporation_id_roles__roles_at_base",
+                                        "title": "get_corporations_corporation_id_roles_roles_at_base",
                                         "type": "array"
                                     },
                                     "roles_at_hq": {
@@ -6069,11 +6279,11 @@
                                                 "Terrestrial_Combat_Officer",
                                                 "Terrestrial_Logistics_Officer"
                                             ],
-                                            "title": "get_corporations_corporation_id_roles__roles_at_hq",
+                                            "title": "get_corporations_corporation_id_roles_roles_at_hq",
                                             "type": "string",
                                             "uniqueItems": true
                                         },
-                                        "title": "get_corporations_corporation_id_roles__roles_at_hq",
+                                        "title": "get_corporations_corporation_id_roles_roles_at_hq",
                                         "type": "array"
                                     },
                                     "roles_at_other": {
@@ -6132,21 +6342,21 @@
                                                 "Terrestrial_Combat_Officer",
                                                 "Terrestrial_Logistics_Officer"
                                             ],
-                                            "title": "get_corporations_corporation_id_roles__roles_at_other",
+                                            "title": "get_corporations_corporation_id_roles_roles_at_other",
                                             "type": "string",
                                             "uniqueItems": true
                                         },
-                                        "title": "get_corporations_corporation_id_roles__roles_at_other",
+                                        "title": "get_corporations_corporation_id_roles_roles_at_other",
                                         "type": "array"
                                     }
                                 },
                                 "required": [
                                     "character_id"
                                 ],
-                                "title": "get_corporations_corporation_id_roles__200_ok_object",
+                                "title": "get_corporations_corporation_id_roles_200_ok",
                                 "type": "object"
                             },
-                            "title": "get_corporations_corporation_id_roles__ok",
+                            "title": "get_corporations_corporation_id_roles_ok",
                             "type": "array"
                         }
                     },
@@ -6162,11 +6372,11 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_corporations_corporation_id_roles__forbidden_error",
+                                    "title": "get_corporations_corporation_id_roles_forbidden",
                                     "type": "string"
                                 }
                             },
-                            "title": "get_corporations_corporation_id_roles__forbidden",
+                            "title": "get_corporations_corporation_id_roles_forbidden",
                             "type": "object"
                         }
                     },
@@ -6182,11 +6392,11 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_roles__internal_server_error_error",
+                                    "title": "get_corporations_corporation_id_roles_internal_server_error",
                                     "type": "string"
                                 }
                             },
-                            "title": "get_corporations_corporation_id_roles__internal_server_error",
+                            "title": "get_corporations_corporation_id_roles_internal_server_error",
                             "type": "object"
                         }
                     }
