@@ -2141,7 +2141,7 @@
                 "parameters": [
                     {
                         "description": "An EVE character ID",
-                        "format": "int64",
+                        "format": "int32",
                         "in": "path",
                         "name": "character_id",
                         "required": true,
@@ -2159,7 +2159,7 @@
                     },
                     {
                         "description": "Only return killmails with ID smaller than this.\n",
-                        "format": "int64",
+                        "format": "int32",
                         "in": "query",
                         "name": "max_kill_id",
                         "required": false,
@@ -2192,10 +2192,24 @@
                                 }
                             ]
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object array",
+                            "description": "200 ok array",
                             "items": {
-                                "description": "200 ok object object",
+                                "description": "200 ok object",
                                 "properties": {
                                     "killmail_hash": {
                                         "description": "A hash of this killmail",
@@ -2204,7 +2218,7 @@
                                     },
                                     "killmail_id": {
                                         "description": "ID of this killmail",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_characters_character_id_killmails_recent_killmail_id",
                                         "type": "integer"
                                     }
@@ -2213,7 +2227,7 @@
                                     "killmail_id",
                                     "killmail_hash"
                                 ],
-                                "title": "get_characters_character_id_killmails_recent_200_ok_object",
+                                "title": "get_characters_character_id_killmails_recent_200_ok",
                                 "type": "object"
                             },
                             "title": "get_characters_character_id_killmails_recent_ok",
@@ -2232,7 +2246,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_killmails_recent_forbidden_error",
+                                    "title": "get_characters_character_id_killmails_recent_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -2252,7 +2266,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_killmails_recent_internal_server_error_error",
+                                    "title": "get_characters_character_id_killmails_recent_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -2309,8 +2323,22 @@
                                 "structure_id": 1000000016989
                             }
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object object",
+                            "description": "200 ok object",
                             "properties": {
                                 "solar_system_id": {
                                     "description": "solar_system_id integer",
@@ -2350,7 +2378,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_location_forbidden_error",
+                                    "title": "get_characters_character_id_location_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -2370,7 +2398,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_location_internal_server_error_error",
+                                    "title": "get_characters_character_id_location_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -2462,10 +2490,24 @@
                                 }
                             ]
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object array",
+                            "description": "200 ok array",
                             "items": {
-                                "description": "200 ok object object",
+                                "description": "200 ok object",
                                 "properties": {
                                     "from": {
                                         "description": "From whom the mail was sent",
@@ -2546,7 +2588,7 @@
                                         "type": "string"
                                     }
                                 },
-                                "title": "get_characters_character_id_mail_200_ok_object",
+                                "title": "get_characters_character_id_mail_200_ok",
                                 "type": "object"
                             },
                             "title": "get_characters_character_id_mail_ok",
@@ -2565,7 +2607,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_mail_forbidden_error",
+                                    "title": "get_characters_character_id_mail_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -2585,7 +2627,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_mail_internal_server_error_error",
+                                    "title": "get_characters_character_id_mail_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -2725,7 +2767,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Bad request message",
-                                    "title": "post_characters_character_id_mail_bad_request_error",
+                                    "title": "post_characters_character_id_mail_bad_request",
                                     "type": "string"
                                 }
                             },
@@ -2745,7 +2787,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "post_characters_character_id_mail_forbidden_error",
+                                    "title": "post_characters_character_id_mail_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -2765,7 +2807,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "post_characters_character_id_mail_internal_server_error_error",
+                                    "title": "post_characters_character_id_mail_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -2835,8 +2877,22 @@
                                 "total_unread_count": 5
                             }
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object object",
+                            "description": "200 ok object",
                             "properties": {
                                 "labels": {
                                     "description": "labels array",
@@ -2920,7 +2976,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_mail_labels_forbidden_error",
+                                    "title": "get_characters_character_id_mail_labels_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -2940,7 +2996,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_mail_labels_internal_server_error_error",
+                                    "title": "get_characters_character_id_mail_labels_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -3059,7 +3115,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "post_characters_character_id_mail_labels_forbidden_error",
+                                    "title": "post_characters_character_id_mail_labels_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -3079,7 +3135,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "post_characters_character_id_mail_labels_internal_server_error_error",
+                                    "title": "post_characters_character_id_mail_labels_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -3137,10 +3193,24 @@
                                 }
                             ]
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object array",
+                            "description": "200 ok array",
                             "items": {
-                                "description": "200 ok object object",
+                                "description": "200 ok object",
                                 "properties": {
                                     "mailing_list_id": {
                                         "description": "Mailing list ID",
@@ -3152,7 +3222,7 @@
                                 "required": [
                                     "mailing_list_id"
                                 ],
-                                "title": "get_characters_character_id_mail_lists_200_ok_object",
+                                "title": "get_characters_character_id_mail_lists_200_ok",
                                 "type": "object"
                             },
                             "title": "get_characters_character_id_mail_lists_ok",
@@ -3171,7 +3241,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_mail_lists_forbidden_error",
+                                    "title": "get_characters_character_id_mail_lists_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -3191,7 +3261,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_mail_lists_internal_server_error_error",
+                                    "title": "get_characters_character_id_mail_lists_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -3263,7 +3333,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "delete_characters_character_id_mail_mail_id_forbidden_error",
+                                    "title": "delete_characters_character_id_mail_mail_id_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -3283,7 +3353,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "delete_characters_character_id_mail_mail_id_internal_server_error_error",
+                                    "title": "delete_characters_character_id_mail_mail_id_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -3353,8 +3423,22 @@
                                 "timestamp": "2015-09-30T16:07:00Z"
                             }
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object object",
+                            "description": "200 ok object",
                             "properties": {
                                 "body": {
                                     "description": "Mail's body",
@@ -3449,7 +3533,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_mail_mail_id_forbidden_error",
+                                    "title": "get_characters_character_id_mail_mail_id_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -3469,7 +3553,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Not found message",
-                                    "title": "get_characters_character_id_mail_mail_id_not_found_error",
+                                    "title": "get_characters_character_id_mail_mail_id_not_found",
                                     "type": "string"
                                 }
                             },
@@ -3489,7 +3573,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_mail_mail_id_internal_server_error_error",
+                                    "title": "get_characters_character_id_mail_mail_id_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -3590,7 +3674,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Bad request message",
-                                    "title": "put_characters_character_id_mail_mail_id_bad_request_error",
+                                    "title": "put_characters_character_id_mail_mail_id_bad_request",
                                     "type": "string"
                                 }
                             },
@@ -3610,7 +3694,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "put_characters_character_id_mail_mail_id_forbidden_error",
+                                    "title": "put_characters_character_id_mail_mail_id_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -3630,7 +3714,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "put_characters_character_id_mail_mail_id_internal_server_error_error",
+                                    "title": "put_characters_character_id_mail_mail_id_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -4109,8 +4193,22 @@
                                 "ship_type_id": 1233
                             }
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object object",
+                            "description": "200 ok object",
                             "properties": {
                                 "ship_item_id": {
                                     "description": "Item id's are unique to a ship and persist until it is repackaged. This value can be used to track repeated uses of a ship, or detect when a pilot changes into a different instance of the same ship type.",
@@ -4151,7 +4249,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_ship_forbidden_error",
+                                    "title": "get_characters_character_id_ship_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -4171,7 +4269,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_ship_internal_server_error_error",
+                                    "title": "get_characters_character_id_ship_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -6609,7 +6707,7 @@
                 "parameters": [
                     {
                         "description": "The killmail ID to be queried",
-                        "format": "int64",
+                        "format": "int32",
                         "in": "path",
                         "name": "killmail_id",
                         "required": true,
@@ -6676,8 +6774,22 @@
                                 }
                             }
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object object",
+                            "description": "200 ok object",
                             "properties": {
                                 "attackers": {
                                     "description": "attackers array",
@@ -6686,31 +6798,31 @@
                                         "properties": {
                                             "alliance_id": {
                                                 "description": "alliance_id integer",
-                                                "format": "int64",
+                                                "format": "int32",
                                                 "title": "get_killmails_killmail_id_killmail_hash_alliance_id",
                                                 "type": "integer"
                                             },
                                             "character_id": {
                                                 "description": "character_id integer",
-                                                "format": "int64",
+                                                "format": "int32",
                                                 "title": "get_killmails_killmail_id_killmail_hash_character_id",
                                                 "type": "integer"
                                             },
                                             "corporation_id": {
                                                 "description": "corporation_id integer",
-                                                "format": "int64",
+                                                "format": "int32",
                                                 "title": "get_killmails_killmail_id_killmail_hash_corporation_id",
                                                 "type": "integer"
                                             },
                                             "damage_done": {
                                                 "description": "damage_done integer",
-                                                "format": "int64",
+                                                "format": "int32",
                                                 "title": "get_killmails_killmail_id_killmail_hash_damage_done",
                                                 "type": "integer"
                                             },
                                             "faction_id": {
                                                 "description": "faction_id integer",
-                                                "format": "int64",
+                                                "format": "int32",
                                                 "title": "get_killmails_killmail_id_killmail_hash_faction_id",
                                                 "type": "integer"
                                             },
@@ -6727,13 +6839,13 @@
                                             },
                                             "ship_type_id": {
                                                 "description": "What ship was the attacker flying\n",
-                                                "format": "int64",
+                                                "format": "int32",
                                                 "title": "get_killmails_killmail_id_killmail_hash_ship_type_id",
                                                 "type": "integer"
                                             },
                                             "weapon_type_id": {
                                                 "description": "What weapon was used by the attacker for the kill\n",
-                                                "format": "int64",
+                                                "format": "int32",
                                                 "title": "get_killmails_killmail_id_killmail_hash_weapon_type_id",
                                                 "type": "integer"
                                             }
@@ -6751,7 +6863,7 @@
                                 },
                                 "killmail_id": {
                                     "description": "ID of the killmail",
-                                    "format": "int64",
+                                    "format": "int32",
                                     "title": "get_killmails_killmail_id_killmail_hash_killmail_id",
                                     "type": "integer"
                                 },
@@ -6763,13 +6875,13 @@
                                 },
                                 "moon_id": {
                                     "description": "Moon if the kill took place at one",
-                                    "format": "int64",
+                                    "format": "int32",
                                     "title": "get_killmails_killmail_id_killmail_hash_moon_id",
                                     "type": "integer"
                                 },
                                 "solar_system_id": {
                                     "description": "Solar system that the kill took place in\n",
-                                    "format": "int64",
+                                    "format": "int32",
                                     "title": "get_killmails_killmail_id_killmail_hash_solar_system_id",
                                     "type": "integer"
                                 },
@@ -6778,31 +6890,31 @@
                                     "properties": {
                                         "alliance_id": {
                                             "description": "alliance_id integer",
-                                            "format": "int64",
+                                            "format": "int32",
                                             "title": "get_killmails_killmail_id_killmail_hash_alliance_id",
                                             "type": "integer"
                                         },
                                         "character_id": {
                                             "description": "character_id integer",
-                                            "format": "int64",
+                                            "format": "int32",
                                             "title": "get_killmails_killmail_id_killmail_hash_character_id",
                                             "type": "integer"
                                         },
                                         "corporation_id": {
                                             "description": "corporation_id integer",
-                                            "format": "int64",
+                                            "format": "int32",
                                             "title": "get_killmails_killmail_id_killmail_hash_corporation_id",
                                             "type": "integer"
                                         },
                                         "damage_taken": {
                                             "description": "How much total damage was taken by the victim\n",
-                                            "format": "int64",
+                                            "format": "int32",
                                             "title": "get_killmails_killmail_id_killmail_hash_damage_taken",
                                             "type": "integer"
                                         },
                                         "faction_id": {
                                             "description": "faction_id integer",
-                                            "format": "int64",
+                                            "format": "int32",
                                             "title": "get_killmails_killmail_id_killmail_hash_faction_id",
                                             "type": "integer"
                                         },
@@ -6813,13 +6925,13 @@
                                                 "properties": {
                                                     "flag": {
                                                         "description": "Flag for the location of the item\n",
-                                                        "format": "int64",
+                                                        "format": "int32",
                                                         "title": "get_killmails_killmail_id_killmail_hash_flag",
                                                         "type": "integer"
                                                     },
                                                     "item_type_id": {
                                                         "description": "item_type_id integer",
-                                                        "format": "int64",
+                                                        "format": "int32",
                                                         "title": "get_killmails_killmail_id_killmail_hash_item_type_id",
                                                         "type": "integer"
                                                     },
@@ -6830,13 +6942,13 @@
                                                             "properties": {
                                                                 "flag": {
                                                                     "description": "flag integer",
-                                                                    "format": "int64",
+                                                                    "format": "int32",
                                                                     "title": "get_killmails_killmail_id_killmail_hash_flag",
                                                                     "type": "integer"
                                                                 },
                                                                 "item_type_id": {
                                                                     "description": "item_type_id integer",
-                                                                    "format": "int64",
+                                                                    "format": "int32",
                                                                     "title": "get_killmails_killmail_id_killmail_hash_item_type_id",
                                                                     "type": "integer"
                                                                 },
@@ -6854,7 +6966,7 @@
                                                                 },
                                                                 "singleton": {
                                                                     "description": "singleton integer",
-                                                                    "format": "int64",
+                                                                    "format": "int32",
                                                                     "title": "get_killmails_killmail_id_killmail_hash_singleton",
                                                                     "type": "integer"
                                                                 }
@@ -6884,7 +6996,7 @@
                                                     },
                                                     "singleton": {
                                                         "description": "singleton integer",
-                                                        "format": "int64",
+                                                        "format": "int32",
                                                         "title": "get_killmails_killmail_id_killmail_hash_singleton",
                                                         "type": "integer"
                                                     }
@@ -6932,7 +7044,7 @@
                                         },
                                         "ship_type_id": {
                                             "description": "The ship that the victim was piloting and was destroyed\n",
-                                            "format": "int64",
+                                            "format": "int32",
                                             "title": "get_killmails_killmail_id_killmail_hash_ship_type_id",
                                             "type": "integer"
                                         }
@@ -6946,7 +7058,7 @@
                                 },
                                 "war_id": {
                                     "description": "War if the killmail is generated in relation to an official war\n",
-                                    "format": "int64",
+                                    "format": "int32",
                                     "title": "get_killmails_killmail_id_killmail_hash_war_id",
                                     "type": "integer"
                                 }
@@ -6994,7 +7106,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_killmails_killmail_id_killmail_hash_internal_server_error_error",
+                                    "title": "get_killmails_killmail_id_killmail_hash_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -7039,10 +7151,24 @@
                                 }
                             ]
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object array",
+                            "description": "200 ok array",
                             "items": {
-                                "description": "200 ok object object",
+                                "description": "200 ok object",
                                 "properties": {
                                     "adjusted_price": {
                                         "description": "adjusted_price number",
@@ -7066,7 +7192,7 @@
                                 "required": [
                                     "type_id"
                                 ],
-                                "title": "get_markets_prices_200_ok_object",
+                                "title": "get_markets_prices_200_ok",
                                 "type": "object"
                             },
                             "title": "get_markets_prices_ok",
@@ -7085,7 +7211,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_markets_prices_internal_server_error_error",
+                                    "title": "get_markets_prices_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -7149,10 +7275,24 @@
                                 }
                             ]
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object array",
+                            "description": "200 ok array",
                             "items": {
-                                "description": "200 ok object object",
+                                "description": "200 ok object",
                                 "properties": {
                                     "average": {
                                         "description": "average number",
@@ -7199,7 +7339,7 @@
                                     "average",
                                     "lowest"
                                 ],
-                                "title": "get_markets_region_id_history_200_ok_object",
+                                "title": "get_markets_region_id_history_200_ok",
                                 "type": "object"
                             },
                             "title": "get_markets_region_id_history_ok",
@@ -7238,7 +7378,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_markets_region_id_history_internal_server_error_error",
+                                    "title": "get_markets_region_id_history_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -7329,10 +7469,24 @@
                                 }
                             ]
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
-                            "description": "200 ok object array",
+                            "description": "200 ok array",
                             "items": {
-                                "description": "200 ok object object",
+                                "description": "200 ok object",
                                 "properties": {
                                     "duration": {
                                         "description": "duration integer",
@@ -7426,7 +7580,7 @@
                                     "issued",
                                     "range"
                                 ],
-                                "title": "get_markets_region_id_orders_200_ok_object",
+                                "title": "get_markets_region_id_orders_200_ok",
                                 "type": "object"
                             },
                             "title": "get_markets_region_id_orders_ok",
@@ -7465,7 +7619,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_markets_region_id_orders_internal_server_error_error",
+                                    "title": "get_markets_region_id_orders_internal_server_error",
                                     "type": "string"
                                 }
                             },
