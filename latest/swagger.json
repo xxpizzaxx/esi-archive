@@ -4,7 +4,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.2.4.dev5"
+        "version": "0.2.4"
     },
     "paths": {
         "/alliances/": {
@@ -7253,7 +7253,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_markets_prices_internal_server_error",
+                                    "title": "get_markets_prices_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -7420,7 +7420,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_markets_region_id_history_internal_server_error",
+                                    "title": "get_markets_region_id_history_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -7661,7 +7661,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_markets_region_id_orders_internal_server_error",
+                                    "title": "get_markets_region_id_orders_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
