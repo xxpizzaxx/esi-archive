@@ -2678,6 +2678,7 @@
                                 },
                                 "body": {
                                     "description": "body string",
+                                    "maxLength": 10000,
                                     "title": "post_characters_character_id_mail_body",
                                     "type": "string"
                                 },
@@ -2718,6 +2719,7 @@
                                 },
                                 "subject": {
                                     "description": "subject string",
+                                    "maxLength": 1000,
                                     "title": "post_characters_character_id_mail_subject",
                                     "type": "string"
                                 }
