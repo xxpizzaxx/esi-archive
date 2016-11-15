@@ -73,7 +73,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_alliances_internal_server_error",
+                                    "title": "get_alliances_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -183,7 +183,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_alliances_names_internal_server_error",
+                                    "title": "get_alliances_names_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -317,7 +317,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_alliances_alliance_id_internal_server_error",
+                                    "title": "get_alliances_alliance_id_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -406,7 +406,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_alliances_alliance_id_corporations_internal_server_error",
+                                    "title": "get_alliances_alliance_id_corporations_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -520,7 +520,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_alliances_alliance_id_icons_internal_server_error",
+                                    "title": "get_alliances_alliance_id_icons_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -630,7 +630,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_names_internal_server_error",
+                                    "title": "get_characters_names_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -807,7 +807,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_internal_server_error",
+                                    "title": "get_characters_character_id_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -1028,7 +1028,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_bookmarks_forbidden",
+                                    "title": "get_characters_character_id_bookmarks_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -1048,7 +1048,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_bookmarks_internal_server_error",
+                                    "title": "get_characters_character_id_bookmarks_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -1164,7 +1164,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_bookmarks_folders_forbidden",
+                                    "title": "get_characters_character_id_bookmarks_folders_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -1184,7 +1184,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_bookmarks_folders_internal_server_error",
+                                    "title": "get_characters_character_id_bookmarks_folders_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -1327,7 +1327,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_calendar_forbidden",
+                                    "title": "get_characters_character_id_calendar_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -1347,7 +1347,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_calendar_internal_server_error",
+                                    "title": "get_characters_character_id_calendar_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -1528,7 +1528,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_calendar_event_id_forbidden",
+                                    "title": "get_characters_character_id_calendar_event_id_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -1548,7 +1548,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_calendar_event_id_internal_server_error",
+                                    "title": "get_characters_character_id_calendar_event_id_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -1643,7 +1643,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "put_characters_character_id_calendar_event_id_forbidden",
+                                    "title": "put_characters_character_id_calendar_event_id_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -1663,7 +1663,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "put_characters_character_id_calendar_event_id_internal_server_error",
+                                    "title": "put_characters_character_id_calendar_event_id_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -1839,7 +1839,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_clones_forbidden",
+                                    "title": "get_characters_character_id_clones_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -1859,7 +1859,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_clones_internal_server_error",
+                                    "title": "get_characters_character_id_clones_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -1988,7 +1988,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_corporationhistory_internal_server_error",
+                                    "title": "get_characters_character_id_corporationhistory_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -2091,7 +2091,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "post_characters_character_id_cspa_forbidden",
+                                    "title": "post_characters_character_id_cspa_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -2111,7 +2111,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "post_characters_character_id_cspa_internal_server_error",
+                                    "title": "post_characters_character_id_cspa_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -2246,7 +2246,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_killmails_recent_forbidden",
+                                    "title": "get_characters_character_id_killmails_recent_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -2266,7 +2266,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_killmails_recent_internal_server_error",
+                                    "title": "get_characters_character_id_killmails_recent_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -2378,7 +2378,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_location_forbidden",
+                                    "title": "get_characters_character_id_location_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -2398,7 +2398,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_location_internal_server_error",
+                                    "title": "get_characters_character_id_location_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -2607,7 +2607,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_mail_forbidden",
+                                    "title": "get_characters_character_id_mail_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -2627,7 +2627,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_mail_internal_server_error",
+                                    "title": "get_characters_character_id_mail_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -2767,7 +2767,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Bad request message",
-                                    "title": "post_characters_character_id_mail_bad_request",
+                                    "title": "post_characters_character_id_mail_400_bad_request",
                                     "type": "string"
                                 }
                             },
@@ -2787,7 +2787,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "post_characters_character_id_mail_forbidden",
+                                    "title": "post_characters_character_id_mail_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -2807,7 +2807,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "post_characters_character_id_mail_internal_server_error",
+                                    "title": "post_characters_character_id_mail_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -2976,7 +2976,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_mail_labels_forbidden",
+                                    "title": "get_characters_character_id_mail_labels_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -2996,7 +2996,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_mail_labels_internal_server_error",
+                                    "title": "get_characters_character_id_mail_labels_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -3115,7 +3115,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "post_characters_character_id_mail_labels_forbidden",
+                                    "title": "post_characters_character_id_mail_labels_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -3135,7 +3135,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "post_characters_character_id_mail_labels_internal_server_error",
+                                    "title": "post_characters_character_id_mail_labels_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -3241,7 +3241,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_mail_lists_forbidden",
+                                    "title": "get_characters_character_id_mail_lists_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -3261,7 +3261,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_mail_lists_internal_server_error",
+                                    "title": "get_characters_character_id_mail_lists_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -3333,7 +3333,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "delete_characters_character_id_mail_mail_id_forbidden",
+                                    "title": "delete_characters_character_id_mail_mail_id_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -3353,7 +3353,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "delete_characters_character_id_mail_mail_id_internal_server_error",
+                                    "title": "delete_characters_character_id_mail_mail_id_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -3533,7 +3533,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_mail_mail_id_forbidden",
+                                    "title": "get_characters_character_id_mail_mail_id_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -3553,7 +3553,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Not found message",
-                                    "title": "get_characters_character_id_mail_mail_id_not_found",
+                                    "title": "get_characters_character_id_mail_mail_id_404_not_found",
                                     "type": "string"
                                 }
                             },
@@ -3573,7 +3573,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_mail_mail_id_internal_server_error",
+                                    "title": "get_characters_character_id_mail_mail_id_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -3674,7 +3674,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Bad request message",
-                                    "title": "put_characters_character_id_mail_mail_id_bad_request",
+                                    "title": "put_characters_character_id_mail_mail_id_400_bad_request",
                                     "type": "string"
                                 }
                             },
@@ -3694,7 +3694,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "put_characters_character_id_mail_mail_id_forbidden",
+                                    "title": "put_characters_character_id_mail_mail_id_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -3714,7 +3714,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "put_characters_character_id_mail_mail_id_internal_server_error",
+                                    "title": "put_characters_character_id_mail_mail_id_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -3847,7 +3847,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_portrait_internal_server_error",
+                                    "title": "get_characters_character_id_portrait_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -4115,7 +4115,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_search_forbidden",
+                                    "title": "get_characters_character_id_search_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -4135,7 +4135,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_search_internal_server_error",
+                                    "title": "get_characters_character_id_search_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -4249,7 +4249,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_ship_forbidden",
+                                    "title": "get_characters_character_id_ship_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -4269,7 +4269,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_ship_internal_server_error",
+                                    "title": "get_characters_character_id_ship_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -4439,7 +4439,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_skillqueue_forbidden",
+                                    "title": "get_characters_character_id_skillqueue_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -4459,7 +4459,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_skillqueue_internal_server_error",
+                                    "title": "get_characters_character_id_skillqueue_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -4597,7 +4597,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_skills_forbidden",
+                                    "title": "get_characters_character_id_skills_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -4617,7 +4617,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_skills_internal_server_error",
+                                    "title": "get_characters_character_id_skills_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -4727,7 +4727,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_wallets_forbidden",
+                                    "title": "get_characters_character_id_wallets_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -4747,7 +4747,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_wallets_internal_server_error",
+                                    "title": "get_characters_character_id_wallets_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -4934,7 +4934,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_wallets_journal_forbidden",
+                                    "title": "get_characters_character_id_wallets_journal_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -4954,7 +4954,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_wallets_journal_internal_server_error",
+                                    "title": "get_characters_character_id_wallets_journal_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -5127,7 +5127,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_wallets_transactions_forbidden",
+                                    "title": "get_characters_character_id_wallets_transactions_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -5147,7 +5147,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_wallets_transactions_internal_server_error",
+                                    "title": "get_characters_character_id_wallets_transactions_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -5264,7 +5264,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_names_internal_server_error",
+                                    "title": "get_corporations_names_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -5385,7 +5385,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Not found message",
-                                    "title": "get_corporations_corporation_id_not_found",
+                                    "title": "get_corporations_corporation_id_404_not_found",
                                     "type": "string"
                                 }
                             },
@@ -5405,7 +5405,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_internal_server_error",
+                                    "title": "get_corporations_corporation_id_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -5542,7 +5542,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_alliancehistory_internal_server_error",
+                                    "title": "get_corporations_corporation_id_alliancehistory_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -5599,7 +5599,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_bookmarks_internal_server_error",
+                                    "title": "get_corporations_corporation_id_bookmarks_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -5656,7 +5656,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_bookmarks_folders_internal_server_error",
+                                    "title": "get_corporations_corporation_id_bookmarks_folders_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -5776,7 +5776,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_icons_internal_server_error",
+                                    "title": "get_corporations_corporation_id_icons_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -5878,7 +5878,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_corporations_corporation_id_members_forbidden",
+                                    "title": "get_corporations_corporation_id_members_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -5898,7 +5898,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_members_internal_server_error",
+                                    "title": "get_corporations_corporation_id_members_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -6512,7 +6512,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_corporations_corporation_id_roles_forbidden",
+                                    "title": "get_corporations_corporation_id_roles_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -6532,7 +6532,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_roles_internal_server_error",
+                                    "title": "get_corporations_corporation_id_roles_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -6596,7 +6596,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_wallets_internal_server_error",
+                                    "title": "get_corporations_corporation_id_wallets_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -6661,7 +6661,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_wallets_wallet_id_journal_internal_server_error",
+                                    "title": "get_corporations_corporation_id_wallets_wallet_id_journal_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -6726,7 +6726,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_wallets_wallet_id_transactions_internal_server_error",
+                                    "title": "get_corporations_corporation_id_wallets_wallet_id_transactions_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -7148,7 +7148,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_killmails_killmail_id_killmail_hash_internal_server_error",
+                                    "title": "get_killmails_killmail_id_killmail_hash_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -7909,7 +7909,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_search_internal_server_error",
+                                    "title": "get_search_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -8094,7 +8094,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_sovereignty_campaigns_internal_server_error",
+                                    "title": "get_sovereignty_campaigns_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -8230,7 +8230,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_sovereignty_structures_internal_server_error",
+                                    "title": "get_sovereignty_structures_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -8364,7 +8364,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Not found message",
-                                    "title": "post_universe_names_not_found",
+                                    "title": "post_universe_names_404_not_found",
                                     "type": "string"
                                 }
                             },
@@ -8384,7 +8384,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "post_universe_names_internal_server_error",
+                                    "title": "post_universe_names_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -8458,7 +8458,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_universe_planets_planet_id_internal_server_error",
+                                    "title": "get_universe_planets_planet_id_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -8553,7 +8553,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_universe_stations_station_id_internal_server_error",
+                                    "title": "get_universe_stations_station_id_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -8635,7 +8635,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_universe_structures_internal_server_error",
+                                    "title": "get_universe_structures_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -8756,7 +8756,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_universe_structures_structure_id_forbidden",
+                                    "title": "get_universe_structures_structure_id_403_forbidden",
                                     "type": "string"
                                 }
                             },
@@ -8776,7 +8776,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Not found message",
-                                    "title": "get_universe_structures_structure_id_not_found",
+                                    "title": "get_universe_structures_structure_id_404_not_found",
                                     "type": "string"
                                 }
                             },
@@ -8796,7 +8796,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_universe_structures_structure_id_internal_server_error",
+                                    "title": "get_universe_structures_structure_id_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -8911,7 +8911,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_universe_systems_system_id_internal_server_error",
+                                    "title": "get_universe_systems_system_id_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
@@ -9058,7 +9058,7 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_universe_types_type_id_internal_server_error",
+                                    "title": "get_universe_types_type_id_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
