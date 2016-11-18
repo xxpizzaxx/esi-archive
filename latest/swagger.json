@@ -3867,7 +3867,7 @@
         },
         "/characters/{character_id}/search/": {
             "get": {
-                "description": "Search for entities that match a given sub-string.\n\n---\n\nAlternate route: `/v2/characters/{character_id}/search/`\n\nAlternate route: `/dev/characters/{character_id}/search/`\n",
+                "description": "Search for entities that match a given sub-string.\n\n---\n\nAlternate route: `/v2/characters/{character_id}/search/`\n\nAlternate route: `/dev/characters/{character_id}/search/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_search",
                 "parameters": [
                     {
@@ -3965,6 +3965,20 @@
                                 ]
                             }
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
                             "description": "200 ok object",
                             "properties": {
@@ -3972,7 +3986,7 @@
                                     "description": "agent array",
                                     "items": {
                                         "description": "agent integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_characters_character_id_search_agent",
                                         "type": "integer"
                                     },
@@ -3983,7 +3997,7 @@
                                     "description": "alliance array",
                                     "items": {
                                         "description": "alliance integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_characters_character_id_search_alliance",
                                         "type": "integer"
                                     },
@@ -3994,7 +4008,7 @@
                                     "description": "character array",
                                     "items": {
                                         "description": "character integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_characters_character_id_search_character",
                                         "type": "integer"
                                     },
@@ -4005,7 +4019,7 @@
                                     "description": "constellation array",
                                     "items": {
                                         "description": "constellation integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_characters_character_id_search_constellation",
                                         "type": "integer"
                                     },
@@ -4016,7 +4030,7 @@
                                     "description": "corporation array",
                                     "items": {
                                         "description": "corporation integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_characters_character_id_search_corporation",
                                         "type": "integer"
                                     },
@@ -4027,7 +4041,7 @@
                                     "description": "faction array",
                                     "items": {
                                         "description": "faction integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_characters_character_id_search_faction",
                                         "type": "integer"
                                     },
@@ -4038,7 +4052,7 @@
                                     "description": "inventorytype array",
                                     "items": {
                                         "description": "inventorytype integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_characters_character_id_search_inventorytype",
                                         "type": "integer"
                                     },
@@ -4049,7 +4063,7 @@
                                     "description": "region array",
                                     "items": {
                                         "description": "region integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_characters_character_id_search_region",
                                         "type": "integer"
                                     },
@@ -4060,7 +4074,7 @@
                                     "description": "solarsystem array",
                                     "items": {
                                         "description": "solarsystem integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_characters_character_id_search_solarsystem",
                                         "type": "integer"
                                     },
@@ -4071,7 +4085,7 @@
                                     "description": "station array",
                                     "items": {
                                         "description": "station integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_characters_character_id_search_station",
                                         "type": "integer"
                                     },
@@ -4093,7 +4107,7 @@
                                     "description": "wormhole array",
                                     "items": {
                                         "description": "wormhole integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_characters_character_id_search_wormhole",
                                         "type": "integer"
                                     },
@@ -7843,7 +7857,7 @@
         },
         "/search/": {
             "get": {
-                "description": "Search for entities that match a given sub-string.\n\n---\n\nAlternate route: `/v1/search/`\n\nAlternate route: `/legacy/search/`\n\nAlternate route: `/dev/search/`\n",
+                "description": "Search for entities that match a given sub-string.\n\n---\n\nAlternate route: `/v1/search/`\n\nAlternate route: `/legacy/search/`\n\nAlternate route: `/dev/search/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_search",
                 "parameters": [
                     {
@@ -7932,6 +7946,20 @@
                                 ]
                             }
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
                             "description": "200 ok object",
                             "properties": {
@@ -7939,7 +7967,7 @@
                                     "description": "agent array",
                                     "items": {
                                         "description": "agent integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_search_agent",
                                         "type": "integer"
                                     },
@@ -7950,7 +7978,7 @@
                                     "description": "alliance array",
                                     "items": {
                                         "description": "alliance integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_search_alliance",
                                         "type": "integer"
                                     },
@@ -7961,7 +7989,7 @@
                                     "description": "character array",
                                     "items": {
                                         "description": "character integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_search_character",
                                         "type": "integer"
                                     },
@@ -7972,7 +8000,7 @@
                                     "description": "constellation array",
                                     "items": {
                                         "description": "constellation integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_search_constellation",
                                         "type": "integer"
                                     },
@@ -7983,7 +8011,7 @@
                                     "description": "corporation array",
                                     "items": {
                                         "description": "corporation integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_search_corporation",
                                         "type": "integer"
                                     },
@@ -7994,7 +8022,7 @@
                                     "description": "faction array",
                                     "items": {
                                         "description": "faction integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_search_faction",
                                         "type": "integer"
                                     },
@@ -8005,7 +8033,7 @@
                                     "description": "inventorytype array",
                                     "items": {
                                         "description": "inventorytype integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_search_inventorytype",
                                         "type": "integer"
                                     },
@@ -8016,7 +8044,7 @@
                                     "description": "region array",
                                     "items": {
                                         "description": "region integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_search_region",
                                         "type": "integer"
                                     },
@@ -8027,7 +8055,7 @@
                                     "description": "solarsystem array",
                                     "items": {
                                         "description": "solarsystem integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_search_solarsystem",
                                         "type": "integer"
                                     },
@@ -8038,7 +8066,7 @@
                                     "description": "station array",
                                     "items": {
                                         "description": "station integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_search_station",
                                         "type": "integer"
                                     },
@@ -8049,7 +8077,7 @@
                                     "description": "wormhole array",
                                     "items": {
                                         "description": "wormhole integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_search_wormhole",
                                         "type": "integer"
                                     },
