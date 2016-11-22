@@ -823,6 +823,390 @@
                 ]
             }
         },
+        "/characters/{character_id}/bookmarks/": {
+            "get": {
+                "description": "List your character's personal bookmarks\n\n---\n\nAlternate route: `/v1/characters/{character_id}/bookmarks/`\n\nAlternate route: `/legacy/characters/{character_id}/bookmarks/`\n\nAlternate route: `/dev/characters/{character_id}/bookmarks/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_bookmarks",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of bookmarks",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "bookmark_id": 32,
+                                    "create_date": "2016-08-09T11:57:47Z",
+                                    "creator_id": 90000001,
+                                    "folder_id": 5,
+                                    "memo": "aoeu ( Citadel )",
+                                    "note": "",
+                                    "owner_id": 90000001,
+                                    "target": {
+                                        "item": {
+                                            "item_id": 1000000012668,
+                                            "type_id": 35832
+                                        },
+                                        "location_id": 30000005
+                                    }
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "bookmark_id": {
+                                        "description": "bookmark_id integer",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_bookmarks_bookmark_id",
+                                        "type": "integer"
+                                    },
+                                    "create_date": {
+                                        "description": "create_date string",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_bookmarks_create_date",
+                                        "type": "string"
+                                    },
+                                    "creator_id": {
+                                        "description": "creator_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_bookmarks_creator_id",
+                                        "type": "integer"
+                                    },
+                                    "folder_id": {
+                                        "description": "folder_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_bookmarks_folder_id",
+                                        "type": "integer"
+                                    },
+                                    "memo": {
+                                        "description": "memo string",
+                                        "title": "get_characters_character_id_bookmarks_memo",
+                                        "type": "string"
+                                    },
+                                    "note": {
+                                        "description": "note string",
+                                        "title": "get_characters_character_id_bookmarks_note",
+                                        "type": "string"
+                                    },
+                                    "owner_id": {
+                                        "description": "owner_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_bookmarks_owner_id",
+                                        "type": "integer"
+                                    },
+                                    "target": {
+                                        "description": "target object",
+                                        "properties": {
+                                            "coordinates": {
+                                                "description": "coordinates object",
+                                                "properties": {
+                                                    "x": {
+                                                        "description": "x number",
+                                                        "format": "double",
+                                                        "title": "get_characters_character_id_bookmarks_x",
+                                                        "type": "number"
+                                                    },
+                                                    "y": {
+                                                        "description": "y number",
+                                                        "format": "double",
+                                                        "title": "get_characters_character_id_bookmarks_y",
+                                                        "type": "number"
+                                                    },
+                                                    "z": {
+                                                        "description": "z number",
+                                                        "format": "double",
+                                                        "title": "get_characters_character_id_bookmarks_z",
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "x",
+                                                    "y",
+                                                    "z"
+                                                ],
+                                                "title": "get_characters_character_id_bookmarks_coordinates",
+                                                "type": "object"
+                                            },
+                                            "item": {
+                                                "description": "item object",
+                                                "properties": {
+                                                    "item_id": {
+                                                        "description": "item_id integer",
+                                                        "format": "int64",
+                                                        "title": "get_characters_character_id_bookmarks_item_id",
+                                                        "type": "integer"
+                                                    },
+                                                    "type_id": {
+                                                        "description": "type_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_characters_character_id_bookmarks_type_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "item_id",
+                                                    "type_id"
+                                                ],
+                                                "title": "get_characters_character_id_bookmarks_item",
+                                                "type": "object"
+                                            },
+                                            "location_id": {
+                                                "description": "location_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_bookmarks_location_id",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "location_id"
+                                        ],
+                                        "title": "get_characters_character_id_bookmarks_target",
+                                        "type": "object"
+                                    }
+                                },
+                                "required": [
+                                    "bookmark_id",
+                                    "creator_id",
+                                    "owner_id",
+                                    "create_date",
+                                    "memo",
+                                    "note",
+                                    "target"
+                                ],
+                                "title": "get_characters_character_id_bookmarks_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_characters_character_id_bookmarks_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-bookmarks.read_character_bookmarks.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_bookmarks_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_bookmarks_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_bookmarks_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_bookmarks_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-bookmarks.read_character_bookmarks.v1"
+                        ]
+                    }
+                ],
+                "summary": "List bookmarks",
+                "tags": [
+                    "Bookmarks",
+                    "Live"
+                ]
+            }
+        },
+        "/characters/{character_id}/bookmarks/folders/": {
+            "get": {
+                "description": "List your character's personal bookmark folders\n\n---\n\nAlternate route: `/v1/characters/{character_id}/bookmarks/folders/`\n\nAlternate route: `/legacy/characters/{character_id}/bookmarks/folders/`\n\nAlternate route: `/dev/characters/{character_id}/bookmarks/folders/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_bookmarks_folders",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of bookmark folders",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "folder_id": 5,
+                                    "name": "Icecream",
+                                    "owner_id": 90000001
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "folder_id": {
+                                        "description": "folder_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_bookmarks_folders_folder_id",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "description": "name string",
+                                        "title": "get_characters_character_id_bookmarks_folders_name",
+                                        "type": "string"
+                                    },
+                                    "owner_id": {
+                                        "description": "owner_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_bookmarks_folders_owner_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "title": "get_characters_character_id_bookmarks_folders_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_characters_character_id_bookmarks_folders_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-bookmarks.read_character_bookmarks.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_bookmarks_folders_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_bookmarks_folders_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_bookmarks_folders_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_bookmarks_folders_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-bookmarks.read_character_bookmarks.v1"
+                        ]
+                    }
+                ],
+                "summary": "List bookmark folders",
+                "tags": [
+                    "Bookmarks",
+                    "Live"
+                ]
+            }
+        },
         "/characters/{character_id}/calendar/": {
             "get": {
                 "description": "Get 50 event summaries from the calendar. If no event ID is given,\nthe resource will return the next 50 chronological event summaries\nfrom now. If an event ID is specified, it will return the next 50\nchronological event summaries from after that event.\n\n\n---\n\nAlternate route: `/v1/characters/{character_id}/calendar/`\n\nAlternate route: `/legacy/characters/{character_id}/calendar/`\n\nAlternate route: `/dev/characters/{character_id}/calendar/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
@@ -5190,6 +5574,120 @@
                 ]
             }
         },
+        "/corporations/{corporation_id}/bookmarks/": {
+            "get": {
+                "description": "Dummy\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/bookmarks/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/bookmarks/`\n\nAlternate route: `/dev/corporations/{corporation_id}/bookmarks/`\n",
+                "operationId": "get_corporations_corporation_id_bookmarks",
+                "parameters": [
+                    {
+                        "description": "An EVE corporation ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "corporation_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Nice Dummy"
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_corporations_corporation_id_bookmarks_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_bookmarks_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Dummy Endpoint, Please Ignore",
+                "tags": [
+                    "Bookmarks",
+                    "Dummy"
+                ]
+            }
+        },
+        "/corporations/{corporation_id}/bookmarks/folders/": {
+            "get": {
+                "description": "Dummy\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/bookmarks/folders/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/bookmarks/folders/`\n\nAlternate route: `/dev/corporations/{corporation_id}/bookmarks/folders/`\n",
+                "operationId": "get_corporations_corporation_id_bookmarks_folders",
+                "parameters": [
+                    {
+                        "description": "An EVE corporation ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "corporation_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Nice Dummy"
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_corporations_corporation_id_bookmarks_folders_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_bookmarks_folders_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Dummy Endpoint, Please Ignore",
+                "tags": [
+                    "Bookmarks",
+                    "Dummy"
+                ]
+            }
+        },
         "/corporations/{corporation_id}/icons/": {
             "get": {
                 "description": "Get the icon urls for a corporation\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/icons/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/icons/`\n\nAlternate route: `/dev/corporations/{corporation_id}/icons/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -8618,6 +9116,7 @@
             "authorizationUrl": "https://login.eveonline.com/oauth/authorize",
             "flow": "implicit",
             "scopes": {
+                "esi-bookmarks.read_character_bookmarks.v1": "EVE SSO scope esi-bookmarks.read_character_bookmarks.v1",
                 "esi-calendar.read_calendar_events.v1": "EVE SSO scope esi-calendar.read_calendar_events.v1",
                 "esi-calendar.respond_calendar_events.v1": "EVE SSO scope esi-calendar.respond_calendar_events.v1",
                 "esi-characters.read_contacts.v1": "EVE SSO scope esi-characters.read_contacts.v1",
