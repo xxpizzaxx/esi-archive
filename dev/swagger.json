@@ -823,6 +823,63 @@
                 ]
             }
         },
+        "/characters/{character_id}/assets/": {
+            "get": {
+                "description": "Dummy\n\n---\n\nAlternate route: `/v1/characters/{character_id}/assets/`\n\nAlternate route: `/legacy/characters/{character_id}/assets/`\n\nAlternate route: `/latest/characters/{character_id}/assets/`\n",
+                "operationId": "get_characters_character_id_assets",
+                "parameters": [
+                    {
+                        "description": "Character id of the target character",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Nice Dummy"
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_assets_internal_server_error_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_assets_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Dummy Endpoint, Please Ignore",
+                "tags": [
+                    "Assets",
+                    "Dummy"
+                ]
+            }
+        },
         "/characters/{character_id}/bookmarks/": {
             "get": {
                 "description": "List your character's personal bookmarks\n\n---\n\nAlternate route: `/v1/characters/{character_id}/bookmarks/`\n\nAlternate route: `/legacy/characters/{character_id}/bookmarks/`\n\nAlternate route: `/latest/characters/{character_id}/bookmarks/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -5578,6 +5635,128 @@
                 "tags": [
                     "Live",
                     "Corporation"
+                ]
+            }
+        },
+        "/corporations/{corporation_id}/assets/": {
+            "get": {
+                "description": "Dummy\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/assets/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/assets/`\n\nAlternate route: `/latest/corporations/{corporation_id}/assets/`\n",
+                "operationId": "get_corporations_corporation_id_assets",
+                "parameters": [
+                    {
+                        "description": "Corporation id of the target corporation",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "corporation_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Nice Dummy"
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_corporations_corporation_id_assets_internal_server_error_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_assets_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Dummy Endpoint, Please Ignore",
+                "tags": [
+                    "Assets",
+                    "Dummy"
+                ]
+            }
+        },
+        "/corporations/{corporation_id}/assets/{asset_id}/logs/": {
+            "get": {
+                "description": "Dummy\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/assets/{asset_id}/logs/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/assets/{asset_id}/logs/`\n\nAlternate route: `/latest/corporations/{corporation_id}/assets/{asset_id}/logs/`\n",
+                "operationId": "get_corporations_corporation_id_assets_asset_id_logs",
+                "parameters": [
+                    {
+                        "description": "Corporation id of the target corporation",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "corporation_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Asset id",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "asset_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Nice Dummy"
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_corporations_corporation_id_assets_asset_id_logs_internal_server_error_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_assets_asset_id_logs_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Dummy Endpoint, Please Ignore",
+                "tags": [
+                    "Assets",
+                    "Dummy"
                 ]
             }
         },
