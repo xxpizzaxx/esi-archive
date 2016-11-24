@@ -3191,7 +3191,8 @@
                         "examples": {
                             "application/json": [
                                 {
-                                    "mailing_list_id": 1
+                                    "mailing_list_id": 1,
+                                    "name": "test_mailing_list"
                                 }
                             ]
                         },
@@ -3219,10 +3220,16 @@
                                         "format": "int32",
                                         "title": "get_characters_character_id_mail_lists_mailing_list_id",
                                         "type": "integer"
+                                    },
+                                    "name": {
+                                        "description": "name string",
+                                        "title": "get_characters_character_id_mail_lists_name",
+                                        "type": "string"
                                     }
                                 },
                                 "required": [
-                                    "mailing_list_id"
+                                    "mailing_list_id",
+                                    "name"
                                 ],
                                 "title": "get_characters_character_id_mail_lists_200_ok",
                                 "type": "object"
