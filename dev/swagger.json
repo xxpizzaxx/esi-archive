@@ -6571,7 +6571,7 @@
                         ]
                     }
                 ],
-                "summary": "Get corporation members",
+                "summary": "Get corporation member roles",
                 "tags": [
                     "Live",
                     "Corporation"
