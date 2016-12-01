@@ -7,798 +7,6 @@
         "version": "0.2.7.dev1"
     },
     "paths": {
-        "/alliances/": {
-            "get": {
-                "description": "List all active player alliances\n\n---\n\nAlternate route: `/v1/alliances/`\n\nAlternate route: `/latest/alliances/`\n\nAlternate route: `/dev/alliances/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_alliances",
-                "parameters": [
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of Alliance IDs",
-                        "examples": {
-                            "application/json": [
-                                99000001,
-                                99000002
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok integer",
-                                "format": "int32",
-                                "minimum": 0,
-                                "title": "get_alliances_200_ok",
-                                "type": "integer",
-                                "uniqueItems": true
-                            },
-                            "title": "get_alliances_ok",
-                            "type": "array"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_alliances_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_alliances_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "summary": "List all alliances",
-                "tags": [
-                    "Alliance"
-                ]
-            }
-        },
-        "/alliances/names/": {
-            "get": {
-                "description": "Resolve a set of alliance IDs to alliance names\n\n---\n\nAlternate route: `/v1/alliances/names/`\n\nAlternate route: `/latest/alliances/names/`\n\nAlternate route: `/dev/alliances/names/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_alliances_names",
-                "parameters": [
-                    {
-                        "description": "A comma separated list of alliance IDs",
-                        "in": "query",
-                        "items": {
-                            "format": "int64",
-                            "type": "integer"
-                        },
-                        "minItems": 1,
-                        "name": "alliance_ids",
-                        "required": true,
-                        "type": "array"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of id/name associations",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "alliance_id": 1000171,
-                                    "alliance_name": "Republic University"
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "alliance_id": {
-                                        "description": "alliance_id integer",
-                                        "format": "int32",
-                                        "title": "get_alliances_names_alliance_id",
-                                        "type": "integer"
-                                    },
-                                    "alliance_name": {
-                                        "description": "alliance_name string",
-                                        "title": "get_alliances_names_alliance_name",
-                                        "type": "string"
-                                    }
-                                },
-                                "required": [
-                                    "alliance_id",
-                                    "alliance_name"
-                                ],
-                                "title": "get_alliances_names_200_ok",
-                                "type": "object"
-                            },
-                            "title": "get_alliances_names_ok",
-                            "type": "array"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_alliances_names_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_alliances_names_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "summary": "Get alliance names",
-                "tags": [
-                    "Alliance"
-                ]
-            }
-        },
-        "/alliances/{alliance_id}/": {
-            "get": {
-                "deprecated": true,
-                "description": "Public information about an alliance\n\n---\n\nAlternate route: `/v1/alliances/{alliance_id}/`\n",
-                "operationId": "get_alliances_alliance_id",
-                "parameters": [
-                    {
-                        "description": "An EVE alliance ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "alliance_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Public data about an alliance",
-                        "examples": {
-                            "application/json": {
-                                "alliance_name": "C C P Alliance",
-                                "date_founded": "2016-06-26T21:00:00Z",
-                                "executor_corp": 98356193,
-                                "ticker": "<C C P>"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok object",
-                            "properties": {
-                                "alliance_name": {
-                                    "description": "the full name of the alliance",
-                                    "title": "get_alliances_alliance_id_alliance_name",
-                                    "type": "string"
-                                },
-                                "date_founded": {
-                                    "description": "date_founded string",
-                                    "format": "date-time",
-                                    "title": "get_alliances_alliance_id_date_founded",
-                                    "type": "string"
-                                },
-                                "executor_corp": {
-                                    "description": "executor_corp integer",
-                                    "format": "int32",
-                                    "title": "get_alliances_alliance_id_executor_corp",
-                                    "type": "integer"
-                                },
-                                "logo_urls": {
-                                    "description": "logo_urls object",
-                                    "properties": {
-                                        "128x128": {
-                                            "description": "128x128 string",
-                                            "title": "get_alliances_alliance_id_128x128",
-                                            "type": "string"
-                                        },
-                                        "64x64": {
-                                            "description": "64x64 string",
-                                            "title": "get_alliances_alliance_id_64x64",
-                                            "type": "string"
-                                        }
-                                    },
-                                    "title": "get_alliances_alliance_id_logo_urls",
-                                    "type": "object"
-                                },
-                                "ticker": {
-                                    "description": "the short name of the alliance",
-                                    "title": "get_alliances_alliance_id_ticker",
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "alliance_name",
-                                "ticker",
-                                "executor_corp",
-                                "date_founded"
-                            ],
-                            "title": "get_alliances_alliance_id_ok",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_alliances_alliance_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_alliances_alliance_id_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "summary": "Get alliance information",
-                "tags": [
-                    "Alliance"
-                ]
-            }
-        },
-        "/alliances/{alliance_id}/corporations/": {
-            "get": {
-                "description": "List all current member corporations of an alliance\n\n---\n\nAlternate route: `/v1/alliances/{alliance_id}/corporations/`\n\nAlternate route: `/latest/alliances/{alliance_id}/corporations/`\n\nAlternate route: `/dev/alliances/{alliance_id}/corporations/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_alliances_alliance_id_corporations",
-                "parameters": [
-                    {
-                        "description": "An EVE alliance ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "alliance_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of corporation IDs",
-                        "examples": {
-                            "application/json": [
-                                98000001
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok integer",
-                                "format": "int32",
-                                "minimum": 0,
-                                "title": "get_alliances_alliance_id_corporations_200_ok",
-                                "type": "integer",
-                                "uniqueItems": true
-                            },
-                            "title": "get_alliances_alliance_id_corporations_ok",
-                            "type": "array"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_alliances_alliance_id_corporations_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_alliances_alliance_id_corporations_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "summary": "List alliance's corporations",
-                "tags": [
-                    "Alliance"
-                ]
-            }
-        },
-        "/alliances/{alliance_id}/icons/": {
-            "get": {
-                "description": "Get the icon urls for a alliance\n\n---\n\nAlternate route: `/v1/alliances/{alliance_id}/icons/`\n\nAlternate route: `/latest/alliances/{alliance_id}/icons/`\n\nAlternate route: `/dev/alliances/{alliance_id}/icons/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_alliances_alliance_id_icons",
-                "parameters": [
-                    {
-                        "description": "An EVE alliance ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "alliance_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Urls for icons for the given alliance id and server",
-                        "examples": {
-                            "application/json": {
-                                "px128x128": "https://imageserver.eveonline.com/Alliance/503818424_128.png",
-                                "px64x64": "https://imageserver.eveonline.com/Alliance/503818424_64.png"
-                            }
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok object",
-                            "properties": {
-                                "px128x128": {
-                                    "description": "px128x128 string",
-                                    "title": "get_alliances_alliance_id_icons_px128x128",
-                                    "type": "string"
-                                },
-                                "px64x64": {
-                                    "description": "px64x64 string",
-                                    "title": "get_alliances_alliance_id_icons_px64x64",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_alliances_alliance_id_icons_ok",
-                            "type": "object"
-                        }
-                    },
-                    "404": {
-                        "description": "No image server for this datasource",
-                        "examples": {
-                            "application/json": {
-                                "error": "No image server for this datasource"
-                            }
-                        },
-                        "schema": {
-                            "description": "No image server for this datasource",
-                            "properties": {
-                                "error": {
-                                    "description": "error message",
-                                    "title": "get_alliances_alliance_id_icons_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_alliances_alliance_id_icons_not_found",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_alliances_alliance_id_icons_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_alliances_alliance_id_icons_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "summary": "Get alliance icon",
-                "tags": [
-                    "Alliance"
-                ]
-            }
-        },
-        "/characters/names/": {
-            "get": {
-                "description": "Resolve a set of character IDs to character names\n\n---\n\nAlternate route: `/v1/characters/names/`\n\nAlternate route: `/latest/characters/names/`\n\nAlternate route: `/dev/characters/names/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_characters_names",
-                "parameters": [
-                    {
-                        "description": "A comma separated list of character IDs",
-                        "in": "query",
-                        "items": {
-                            "format": "int64",
-                            "type": "integer"
-                        },
-                        "minItems": 1,
-                        "name": "character_ids",
-                        "required": true,
-                        "type": "array"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of id/name associations",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "character_id": 95465499,
-                                    "character_name": "CCP Bartender"
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "character_id": {
-                                        "description": "character_id integer",
-                                        "format": "int64",
-                                        "title": "get_characters_names_character_id",
-                                        "type": "integer"
-                                    },
-                                    "character_name": {
-                                        "description": "character_name string",
-                                        "title": "get_characters_names_character_name",
-                                        "type": "string"
-                                    }
-                                },
-                                "required": [
-                                    "character_id",
-                                    "character_name"
-                                ],
-                                "title": "get_characters_names_200_ok",
-                                "type": "object"
-                            },
-                            "title": "get_characters_names_ok",
-                            "type": "array"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_names_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_names_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "summary": "Get character names",
-                "tags": [
-                    "Character"
-                ]
-            }
-        },
-        "/characters/{character_id}/": {
-            "get": {
-                "description": "Public information about a character\n\n---\n\nAlternate route: `/v3/characters/{character_id}/`\n\nAlternate route: `/latest/characters/{character_id}/`\n\nAlternate route: `/dev/characters/{character_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_characters_character_id",
-                "parameters": [
-                    {
-                        "description": "An EVE character ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Public data for the given character",
-                        "examples": {
-                            "application/json": {
-                                "ancestry_id": 19,
-                                "birthday": "2015-03-24T11:37:00Z",
-                                "bloodline_id": 3,
-                                "corporation_id": 109299958,
-                                "description": "",
-                                "gender": "male",
-                                "name": "CCP Bartender",
-                                "race_id": 2
-                            }
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok object",
-                            "properties": {
-                                "ancestry_id": {
-                                    "description": "ancestry_id integer",
-                                    "format": "int32",
-                                    "title": "get_characters_character_id_ancestry_id",
-                                    "type": "integer"
-                                },
-                                "birthday": {
-                                    "description": "Creation date of the character",
-                                    "format": "date-time",
-                                    "title": "get_characters_character_id_birthday",
-                                    "type": "string"
-                                },
-                                "bloodline_id": {
-                                    "description": "bloodline_id integer",
-                                    "format": "int32",
-                                    "title": "get_characters_character_id_bloodline_id",
-                                    "type": "integer"
-                                },
-                                "corporation_id": {
-                                    "description": "The character's corporation ID",
-                                    "format": "int32",
-                                    "title": "get_characters_character_id_corporation_id",
-                                    "type": "integer"
-                                },
-                                "description": {
-                                    "description": "description string",
-                                    "title": "get_characters_character_id_description",
-                                    "type": "string"
-                                },
-                                "gender": {
-                                    "description": "gender string",
-                                    "enum": [
-                                        "female",
-                                        "male"
-                                    ],
-                                    "title": "get_characters_character_id_gender",
-                                    "type": "string"
-                                },
-                                "name": {
-                                    "description": "The name of the character",
-                                    "title": "get_characters_character_id_name",
-                                    "type": "string"
-                                },
-                                "race_id": {
-                                    "description": "race_id integer",
-                                    "format": "int32",
-                                    "title": "get_characters_character_id_race_id",
-                                    "type": "integer"
-                                },
-                                "security_status": {
-                                    "description": "security_status number",
-                                    "format": "float",
-                                    "maximum": 10,
-                                    "minimum": -10,
-                                    "title": "get_characters_character_id_security_status",
-                                    "type": "number"
-                                }
-                            },
-                            "required": [
-                                "corporation_id",
-                                "birthday",
-                                "name",
-                                "gender",
-                                "race_id",
-                                "description",
-                                "bloodline_id"
-                            ],
-                            "title": "get_characters_character_id_ok",
-                            "type": "object"
-                        }
-                    },
-                    "422": {
-                        "description": "Is not a character ID",
-                        "examples": {
-                            "application/json": {
-                                "error": "98000001 is not a character ID"
-                            }
-                        },
-                        "schema": {
-                            "description": "Is not a character ID",
-                            "properties": {
-                                "error": {
-                                    "description": "error message",
-                                    "title": "get_characters_character_id_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_unprocessable_entity",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "summary": "Get character's public information",
-                "tags": [
-                    "Character"
-                ]
-            }
-        },
         "/characters/{character_id}/assets/": {
             "get": {
                 "description": "Return a list of the characters assets\n\n---\n\nAlternate route: `/v1/characters/{character_id}/assets/`\n\nAlternate route: `/latest/characters/{character_id}/assets/`\n\nAlternate route: `/dev/characters/{character_id}/assets/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -1429,855 +637,6 @@
                 ]
             }
         },
-        "/characters/{character_id}/calendar/": {
-            "get": {
-                "description": "Get 50 event summaries from the calendar. If no event ID is given,\nthe resource will return the next 50 chronological event summaries\nfrom now. If an event ID is specified, it will return the next 50\nchronological event summaries from after that event.\n\n\n---\n\nAlternate route: `/v1/characters/{character_id}/calendar/`\n\nAlternate route: `/latest/characters/{character_id}/calendar/`\n\nAlternate route: `/dev/characters/{character_id}/calendar/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
-                "operationId": "get_characters_character_id_calendar",
-                "parameters": [
-                    {
-                        "description": "The character to retrieve events from",
-                        "format": "int64",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "The event ID to retrieve events from",
-                        "format": "int32",
-                        "in": "query",
-                        "name": "from_event",
-                        "required": false,
-                        "type": "integer"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A collection of event summaries",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "event_date": "2016-06-26T20:00:00Z",
-                                    "event_id": 1386435,
-                                    "event_response": "accepted",
-                                    "importance": 0,
-                                    "title": "o7 The EVE Online Show"
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "Up to 50 events from now or the event you requested\n",
-                            "items": {
-                                "description": "event",
-                                "properties": {
-                                    "event_date": {
-                                        "description": "event_date string",
-                                        "format": "date-time",
-                                        "title": "get_characters_character_id_calendar_event_date",
-                                        "type": "string"
-                                    },
-                                    "event_id": {
-                                        "description": "event_id integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_calendar_event_id",
-                                        "type": "integer"
-                                    },
-                                    "event_response": {
-                                        "description": "event_response string",
-                                        "enum": [
-                                            "declined",
-                                            "not_responded",
-                                            "accepted",
-                                            "tentative"
-                                        ],
-                                        "title": "get_characters_character_id_calendar_event_response",
-                                        "type": "string"
-                                    },
-                                    "importance": {
-                                        "description": "importance integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_calendar_importance",
-                                        "type": "integer"
-                                    },
-                                    "title": {
-                                        "description": "title string",
-                                        "title": "get_characters_character_id_calendar_title",
-                                        "type": "string"
-                                    }
-                                },
-                                "title": "get_characters_character_id_calendar_200_ok",
-                                "type": "object"
-                            },
-                            "title": "get_characters_character_id_calendar_ok",
-                            "type": "array"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Token is not valid for scope(s): esi-calendar.read_calendar_events.v1"
-                            }
-                        },
-                        "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_calendar_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_calendar_forbidden",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_calendar_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_calendar_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-calendar.read_calendar_events.v1"
-                        ]
-                    }
-                ],
-                "summary": "List calendar event summaries",
-                "tags": [
-                    "Calendar"
-                ]
-            }
-        },
-        "/characters/{character_id}/calendar/{event_id}/": {
-            "get": {
-                "deprecated": true,
-                "description": "Get all the information for a specific event\n\n---\n\nAlternate route: `/v2/characters/{character_id}/calendar/{event_id}/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
-                "operationId": "get_characters_character_id_calendar_event_id",
-                "parameters": [
-                    {
-                        "description": "The character id requesting the event",
-                        "format": "int64",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "The id of the event requested",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "event_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Full details of a specific event",
-                        "examples": {
-                            "application/json": {
-                                "duration_in_minutes": 60,
-                                "event_date": "2016-06-26T21:00:00Z",
-                                "event_id": 1386435,
-                                "event_response": "Undecided",
-                                "event_text": "o7: The EVE Online Show features latest developer news, fast paced action, community overviews and a lot more with CCP Guard and CCP Mimic. Join the thrilling o7 live broadcast at 20:00 EVE time (=UTC) on <a href=\"http://www.twitch.tv/ccp\">EVE TV</a>. Don't miss it!",
-                                "importance": 1,
-                                "owner_id": 1,
-                                "owner_name": "EVE System",
-                                "owner_type_id": 0,
-                                "title": "o7 The EVE Online Show"
-                            }
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "Full details of a specific event",
-                            "properties": {
-                                "duration_in_minutes": {
-                                    "description": "duration_in_minutes integer",
-                                    "format": "int64",
-                                    "title": "get_characters_character_id_calendar_event_id_duration_in_minutes",
-                                    "type": "integer"
-                                },
-                                "event_date": {
-                                    "description": "event_date string",
-                                    "format": "date-time",
-                                    "title": "get_characters_character_id_calendar_event_id_event_date",
-                                    "type": "string"
-                                },
-                                "event_id": {
-                                    "description": "event_id integer",
-                                    "format": "int32",
-                                    "title": "get_characters_character_id_calendar_event_id_event_id",
-                                    "type": "integer"
-                                },
-                                "event_response": {
-                                    "description": "event_response string",
-                                    "title": "get_characters_character_id_calendar_event_id_event_response",
-                                    "type": "string"
-                                },
-                                "event_text": {
-                                    "description": "event_text string",
-                                    "title": "get_characters_character_id_calendar_event_id_event_text",
-                                    "type": "string"
-                                },
-                                "importance": {
-                                    "description": "importance integer",
-                                    "format": "int32",
-                                    "title": "get_characters_character_id_calendar_event_id_importance",
-                                    "type": "integer"
-                                },
-                                "owner_id": {
-                                    "description": "owner_id integer",
-                                    "format": "int64",
-                                    "title": "get_characters_character_id_calendar_event_id_owner_id",
-                                    "type": "integer"
-                                },
-                                "owner_name": {
-                                    "description": "owner_name string",
-                                    "title": "get_characters_character_id_calendar_event_id_owner_name",
-                                    "type": "string"
-                                },
-                                "owner_type_id": {
-                                    "description": "owner_type_id integer",
-                                    "format": "int32",
-                                    "title": "get_characters_character_id_calendar_event_id_owner_type_id",
-                                    "type": "integer"
-                                },
-                                "title": {
-                                    "description": "title string",
-                                    "title": "get_characters_character_id_calendar_event_id_title",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_calendar_event_id_ok",
-                            "type": "object"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Token is not valid for scope(s): esi-calendar.read_calendar_events.v1"
-                            }
-                        },
-                        "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_calendar_event_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_calendar_event_id_forbidden",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_calendar_event_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_calendar_event_id_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-calendar.read_calendar_events.v1"
-                        ]
-                    }
-                ],
-                "summary": "Get an event",
-                "tags": [
-                    "Calendar"
-                ]
-            },
-            "put": {
-                "deprecated": true,
-                "description": "Set your response status to an event\n\n---\n\nAlternate route: `/v2/characters/{character_id}/calendar/{event_id}/`\n",
-                "operationId": "put_characters_character_id_calendar_event_id",
-                "parameters": [
-                    {
-                        "description": "The character ID requesting the event",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "The ID of the event requested",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "event_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "The response value to set, overriding current value.",
-                        "enum": [
-                            "accepted",
-                            "declined",
-                            "tentative"
-                        ],
-                        "in": "query",
-                        "name": "response",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "Event updated"
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Token is not valid for scope(s): esi-calendar.respond_calendar_events.v1"
-                            }
-                        },
-                        "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "put_characters_character_id_calendar_event_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_characters_character_id_calendar_event_id_forbidden",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "put_characters_character_id_calendar_event_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_characters_character_id_calendar_event_id_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-calendar.respond_calendar_events.v1"
-                        ]
-                    }
-                ],
-                "summary": "Respond to an event",
-                "tags": [
-                    "Calendar"
-                ]
-            }
-        },
-        "/characters/{character_id}/clones/": {
-            "get": {
-                "deprecated": true,
-                "description": "A list of the character's clones\n\n---\n\nAlternate route: `/v1/characters/{character_id}/clones/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_characters_character_id_clones",
-                "parameters": [
-                    {
-                        "description": "An EVE character ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Jump clones for the given character",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "implants": [
-                                        22118
-                                    ],
-                                    "location_id": 60003463,
-                                    "location_type": "station"
-                                },
-                                {
-                                    "implants": [],
-                                    "location_id": 1021348135816,
-                                    "location_type": "structure"
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "implants": {
-                                        "description": "implants array",
-                                        "items": {
-                                            "description": "implant integer",
-                                            "format": "int32",
-                                            "title": "get_characters_character_id_clones_implant",
-                                            "type": "integer"
-                                        },
-                                        "title": "get_characters_character_id_clones_implants",
-                                        "type": "array"
-                                    },
-                                    "location_id": {
-                                        "description": "location_id integer",
-                                        "format": "int64",
-                                        "title": "get_characters_character_id_clones_location_id",
-                                        "type": "integer"
-                                    },
-                                    "location_type": {
-                                        "description": "location_type string",
-                                        "enum": [
-                                            "station",
-                                            "structure"
-                                        ],
-                                        "title": "get_characters_character_id_clones_location_type",
-                                        "type": "string"
-                                    }
-                                },
-                                "title": "get_characters_character_id_clones_200_ok",
-                                "type": "object"
-                            },
-                            "title": "get_characters_character_id_clones_ok",
-                            "type": "array"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Token is not valid for scope(s): esi-clones.read_clones.v1"
-                            }
-                        },
-                        "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_clones_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_clones_forbidden",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_clones_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_clones_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-clones.read_clones.v1"
-                        ]
-                    }
-                ],
-                "summary": "Get clones",
-                "tags": [
-                    "Clones"
-                ]
-            }
-        },
-        "/characters/{character_id}/corporationhistory/": {
-            "get": {
-                "description": "Get a list of all the corporations a character has been a member of\n\n---\n\nAlternate route: `/v1/characters/{character_id}/corporationhistory/`\n\nAlternate route: `/latest/characters/{character_id}/corporationhistory/`\n\nAlternate route: `/dev/characters/{character_id}/corporationhistory/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_characters_character_id_corporationhistory",
-                "parameters": [
-                    {
-                        "description": "An EVE character ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Corporation history for the given character",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "corporation_id": 90000001,
-                                    "is_deleted": false,
-                                    "record_id": 500,
-                                    "start_date": "2016-06-26T20:00:00Z"
-                                },
-                                {
-                                    "corporation_id": 90000002,
-                                    "is_deleted": false,
-                                    "record_id": 501,
-                                    "start_date": "2016-07-26T20:00:00Z"
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "corporation_id": {
-                                        "description": "corporation_id integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_corporationhistory_corporation_id",
-                                        "type": "integer"
-                                    },
-                                    "is_deleted": {
-                                        "description": "True if the corporation has been deleted",
-                                        "title": "get_characters_character_id_corporationhistory_is_deleted",
-                                        "type": "boolean"
-                                    },
-                                    "record_id": {
-                                        "description": "An incrementing ID that can be used to canonically establish order of records in cases where dates may be ambiguous",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_corporationhistory_record_id",
-                                        "type": "integer"
-                                    },
-                                    "start_date": {
-                                        "description": "start_date string",
-                                        "format": "date-time",
-                                        "title": "get_characters_character_id_corporationhistory_start_date",
-                                        "type": "string"
-                                    }
-                                },
-                                "title": "get_characters_character_id_corporationhistory_200_ok",
-                                "type": "object"
-                            },
-                            "title": "get_characters_character_id_corporationhistory_ok",
-                            "type": "array"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_corporationhistory_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_corporationhistory_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "summary": "Get corporation history",
-                "tags": [
-                    "Character"
-                ]
-            }
-        },
-        "/characters/{character_id}/cspa/": {
-            "post": {
-                "description": "Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost\n\n---\n\nAlternate route: `/v3/characters/{character_id}/cspa/`\n\nAlternate route: `/latest/characters/{character_id}/cspa/`\n\nAlternate route: `/dev/characters/{character_id}/cspa/`\n",
-                "operationId": "post_characters_character_id_cspa",
-                "parameters": [
-                    {
-                        "description": "An EVE character ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "The target characters to calculate the charge for",
-                        "in": "body",
-                        "name": "characters",
-                        "required": true,
-                        "schema": {
-                            "description": "characters schema",
-                            "properties": {
-                                "characters": {
-                                    "description": "characters array",
-                                    "items": {
-                                        "description": "character integer",
-                                        "format": "int32",
-                                        "title": "post_characters_character_id_cspa_character",
-                                        "type": "integer"
-                                    },
-                                    "minItems": 1,
-                                    "title": "post_characters_character_id_cspa_characters",
-                                    "type": "array",
-                                    "uniqueItems": true
-                                }
-                            },
-                            "required": [
-                                "characters"
-                            ],
-                            "title": "post_characters_character_id_cspa_characters"
-                        }
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Aggregate cost of sending a mail from the source character to the target characters, in ISK hundredths",
-                        "examples": {
-                            "application/json": {
-                                "cost": 295000
-                            }
-                        },
-                        "schema": {
-                            "description": "201 created object",
-                            "properties": {
-                                "cost": {
-                                    "description": "cost integer",
-                                    "format": "int64",
-                                    "title": "post_characters_character_id_cspa_cost",
-                                    "type": "integer"
-                                }
-                            },
-                            "title": "post_characters_character_id_cspa_created",
-                            "type": "object"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Token is not valid for scope(s): esi-characters.read_contacts.v1"
-                            }
-                        },
-                        "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "post_characters_character_id_cspa_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_characters_character_id_cspa_forbidden",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "post_characters_character_id_cspa_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_characters_character_id_cspa_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-characters.read_contacts.v1"
-                        ]
-                    }
-                ],
-                "summary": "Calculate a CSPA charge cost",
-                "tags": [
-                    "Character"
-                ]
-            }
-        },
         "/characters/{character_id}/killmails/recent/": {
             "get": {
                 "description": "Return a list of character's recent kills and losses\n\n---\n\nAlternate route: `/v1/characters/{character_id}/killmails/recent/`\n\nAlternate route: `/latest/characters/{character_id}/killmails/recent/`\n\nAlternate route: `/dev/characters/{character_id}/killmails/recent/`\n\n\n---\n\nThis route is cached for up to 120 seconds",
@@ -2432,420 +791,10 @@
                 ]
             }
         },
-        "/characters/{character_id}/mail/": {
+        "/characters/{character_id}/location/": {
             "get": {
-                "description": "Return the 50 most recent mail headers belonging to the character that match the query criteria. Queries can be filtered by label, and last_mail_id can be used to paginate backwards.\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/`\n\nAlternate route: `/latest/characters/{character_id}/mail/`\n\nAlternate route: `/dev/characters/{character_id}/mail/`\n\n\n---\n\nThis route is cached for up to 30 seconds",
-                "operationId": "get_characters_character_id_mail",
-                "parameters": [
-                    {
-                        "description": "An EVE character ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "Fetch only mails that match one or more of the given labels",
-                        "in": "query",
-                        "items": {
-                            "format": "int64",
-                            "minimum": 0,
-                            "type": "integer"
-                        },
-                        "minItems": 1,
-                        "name": "labels",
-                        "required": false,
-                        "type": "array",
-                        "uniqueItems": true
-                    },
-                    {
-                        "description": "List only mail with an ID lower than the given ID, if present",
-                        "format": "int32",
-                        "in": "query",
-                        "name": "last_mail_id",
-                        "type": "integer"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "The requested mail",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "from": 90000001,
-                                    "is_read": true,
-                                    "labels": [
-                                        3
-                                    ],
-                                    "mail_id": 7,
-                                    "recipients": [
-                                        {
-                                            "recipient_id": 90000002,
-                                            "recipient_type": "character"
-                                        }
-                                    ],
-                                    "subject": "Title for EVE Mail",
-                                    "timestamp": "2015-09-30T16:07:00Z"
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "from": {
-                                        "description": "From whom the mail was sent",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_mail_from",
-                                        "type": "integer"
-                                    },
-                                    "is_read": {
-                                        "description": "is_read boolean",
-                                        "title": "get_characters_character_id_mail_is_read",
-                                        "type": "boolean"
-                                    },
-                                    "labels": {
-                                        "description": "labels array",
-                                        "items": {
-                                            "description": "label integer",
-                                            "format": "int64",
-                                            "title": "get_characters_character_id_mail_label",
-                                            "type": "integer"
-                                        },
-                                        "maxItems": 25,
-                                        "minimum": 0,
-                                        "title": "get_characters_character_id_mail_labels",
-                                        "type": "array",
-                                        "uniqueItems": true
-                                    },
-                                    "mail_id": {
-                                        "description": "mail_id integer",
-                                        "format": "int64",
-                                        "title": "get_characters_character_id_mail_mail_id",
-                                        "type": "integer"
-                                    },
-                                    "recipients": {
-                                        "description": "Recipients of the mail",
-                                        "items": {
-                                            "description": "recipient object",
-                                            "properties": {
-                                                "recipient_id": {
-                                                    "description": "recipient_id integer",
-                                                    "format": "int32",
-                                                    "title": "get_characters_character_id_mail_recipient_id",
-                                                    "type": "integer"
-                                                },
-                                                "recipient_type": {
-                                                    "description": "recipient_type string",
-                                                    "enum": [
-                                                        "alliance",
-                                                        "character",
-                                                        "corporation",
-                                                        "mailing_list"
-                                                    ],
-                                                    "title": "get_characters_character_id_mail_recipient_type",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "recipient_type",
-                                                "recipient_id"
-                                            ],
-                                            "title": "get_characters_character_id_mail_recipient",
-                                            "type": "object"
-                                        },
-                                        "maxItems": 50,
-                                        "minItems": 1,
-                                        "title": "get_characters_character_id_mail_recipients",
-                                        "type": "array",
-                                        "uniqueItems": true
-                                    },
-                                    "subject": {
-                                        "description": "Mail subject",
-                                        "title": "get_characters_character_id_mail_subject",
-                                        "type": "string"
-                                    },
-                                    "timestamp": {
-                                        "description": "When the mail was sent",
-                                        "format": "date-time",
-                                        "title": "get_characters_character_id_mail_timestamp",
-                                        "type": "string"
-                                    }
-                                },
-                                "title": "get_characters_character_id_mail_200_ok",
-                                "type": "object"
-                            },
-                            "title": "get_characters_character_id_mail_ok",
-                            "type": "array"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.read_mail.v1"
-                            }
-                        },
-                        "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_mail_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_mail_forbidden",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_mail_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_mail_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-mail.read_mail.v1"
-                        ]
-                    }
-                ],
-                "summary": "Return mail headers",
-                "tags": [
-                    "Mail"
-                ]
-            },
-            "post": {
-                "description": "Create and send a new mail\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/`\n\nAlternate route: `/latest/characters/{character_id}/mail/`\n\nAlternate route: `/dev/characters/{character_id}/mail/`\n",
-                "operationId": "post_characters_character_id_mail",
-                "parameters": [
-                    {
-                        "description": "The sender's character ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "The mail to send",
-                        "in": "body",
-                        "name": "mail",
-                        "required": true,
-                        "schema": {
-                            "description": "mail schema",
-                            "properties": {
-                                "approved_cost": {
-                                    "default": 0,
-                                    "description": "approved_cost integer",
-                                    "format": "int64",
-                                    "title": "post_characters_character_id_mail_approved_cost",
-                                    "type": "integer"
-                                },
-                                "body": {
-                                    "description": "body string",
-                                    "maxLength": 10000,
-                                    "title": "post_characters_character_id_mail_body",
-                                    "type": "string"
-                                },
-                                "recipients": {
-                                    "description": "recipients array",
-                                    "items": {
-                                        "description": "recipient object",
-                                        "properties": {
-                                            "recipient_id": {
-                                                "description": "recipient_id integer",
-                                                "format": "int32",
-                                                "title": "post_characters_character_id_mail_recipient_id",
-                                                "type": "integer"
-                                            },
-                                            "recipient_type": {
-                                                "description": "recipient_type string",
-                                                "enum": [
-                                                    "alliance",
-                                                    "character",
-                                                    "corporation",
-                                                    "mailing_list"
-                                                ],
-                                                "title": "post_characters_character_id_mail_recipient_type",
-                                                "type": "string"
-                                            }
-                                        },
-                                        "required": [
-                                            "recipient_type",
-                                            "recipient_id"
-                                        ],
-                                        "title": "post_characters_character_id_mail_recipient",
-                                        "type": "object"
-                                    },
-                                    "maxItems": 50,
-                                    "minItems": 1,
-                                    "title": "post_characters_character_id_mail_recipients",
-                                    "type": "array"
-                                },
-                                "subject": {
-                                    "description": "subject string",
-                                    "maxLength": 1000,
-                                    "title": "post_characters_character_id_mail_subject",
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "recipients",
-                                "subject",
-                                "body"
-                            ],
-                            "title": "post_characters_character_id_mail_mail"
-                        }
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Mail created",
-                        "examples": {
-                            "application/json": 13
-                        },
-                        "schema": {
-                            "description": "Mail ID",
-                            "format": "int32",
-                            "title": "post_characters_character_id_mail_created",
-                            "type": "integer"
-                        }
-                    },
-                    "400": {
-                        "description": "Only one corporation, alliance, or mailing list can be the\nrecipient of a mail\n",
-                        "examples": {
-                            "application/json": {
-                                "error": "Bad request message"
-                            }
-                        },
-                        "schema": {
-                            "description": "Bad request",
-                            "properties": {
-                                "error": {
-                                    "description": "Bad request message",
-                                    "title": "post_characters_character_id_mail_400_bad_request",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_characters_character_id_mail_bad_request",
-                            "type": "object"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.send_mail.v1"
-                            }
-                        },
-                        "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "post_characters_character_id_mail_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_characters_character_id_mail_forbidden",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "post_characters_character_id_mail_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_characters_character_id_mail_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-mail.send_mail.v1"
-                        ]
-                    }
-                ],
-                "summary": "Send a new mail",
-                "tags": [
-                    "Mail"
-                ]
-            }
-        },
-        "/characters/{character_id}/mail/labels/": {
-            "get": {
-                "deprecated": true,
-                "description": "Return a list of the users mail labels\n\n---\n\nAlternate route: `/v2/characters/{character_id}/mail/labels/`\n\n\n---\n\nThis route is cached for up to 30 seconds",
-                "operationId": "get_characters_character_id_mail_labels",
+                "description": "Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable.\n\n---\n\nAlternate route: `/v1/characters/{character_id}/location/`\n\nAlternate route: `/latest/characters/{character_id}/location/`\n\nAlternate route: `/dev/characters/{character_id}/location/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
+                "operationId": "get_characters_character_id_location",
                 "parameters": [
                     {
                         "description": "An EVE character ID",
@@ -2869,650 +818,11 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "A list of mail labels",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "color": "#660066",
-                                    "label_id": 16,
-                                    "name": "PINK"
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "color": {
-                                        "default": "#ffffff",
-                                        "description": "color string",
-                                        "enum": [
-                                            "#ffffff",
-                                            "#ffff01",
-                                            "#ff6600",
-                                            "#fe0000",
-                                            "#9a0000",
-                                            "#660066",
-                                            "#0000fe",
-                                            "#0099ff",
-                                            "#01ffff",
-                                            "#00ff33",
-                                            "#349800",
-                                            "#006634",
-                                            "#666666",
-                                            "#999999",
-                                            "#e6e6e6",
-                                            "#ffffcd",
-                                            "#99ffff",
-                                            "#ccff9a"
-                                        ],
-                                        "title": "get_characters_character_id_mail_labels_color",
-                                        "type": "string"
-                                    },
-                                    "label_id": {
-                                        "description": "label_id integer",
-                                        "format": "int32",
-                                        "minimum": 0,
-                                        "title": "get_characters_character_id_mail_labels_label_id",
-                                        "type": "integer"
-                                    },
-                                    "name": {
-                                        "description": "name string",
-                                        "maxLength": 40,
-                                        "title": "get_characters_character_id_mail_labels_name",
-                                        "type": "string"
-                                    }
-                                },
-                                "title": "get_characters_character_id_mail_labels_200_ok",
-                                "type": "object"
-                            },
-                            "title": "get_characters_character_id_mail_labels_ok",
-                            "type": "array"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
+                        "description": "Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable.",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.read_mail.v1"
-                            }
-                        },
-                        "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_mail_labels_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_mail_labels_forbidden",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_mail_labels_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_mail_labels_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-mail.read_mail.v1"
-                        ]
-                    }
-                ],
-                "summary": "Get mail labels",
-                "tags": [
-                    "Mail"
-                ]
-            },
-            "post": {
-                "description": "Create a mail label\n\n---\n\nAlternate route: `/v2/characters/{character_id}/mail/labels/`\n\nAlternate route: `/latest/characters/{character_id}/mail/labels/`\n\nAlternate route: `/dev/characters/{character_id}/mail/labels/`\n",
-                "operationId": "post_characters_character_id_mail_labels",
-                "parameters": [
-                    {
-                        "description": "An EVE character ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "Label to create",
-                        "in": "body",
-                        "name": "label",
-                        "schema": {
-                            "description": "label object",
-                            "properties": {
-                                "color": {
-                                    "default": "#ffffff",
-                                    "description": "Hexadecimal string representing label color,\nin RGB format\n",
-                                    "enum": [
-                                        "#ffffff",
-                                        "#ffff01",
-                                        "#ff6600",
-                                        "#fe0000",
-                                        "#9a0000",
-                                        "#660066",
-                                        "#0000fe",
-                                        "#0099ff",
-                                        "#01ffff",
-                                        "#00ff33",
-                                        "#349800",
-                                        "#006634",
-                                        "#666666",
-                                        "#999999",
-                                        "#e6e6e6",
-                                        "#ffffcd",
-                                        "#99ffff",
-                                        "#ccff9a"
-                                    ],
-                                    "title": "post_characters_character_id_mail_labels_color",
-                                    "type": "string"
-                                },
-                                "name": {
-                                    "description": "name string",
-                                    "maxLength": 40,
-                                    "minLength": 1,
-                                    "title": "post_characters_character_id_mail_labels_name",
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "name"
-                            ],
-                            "title": "post_characters_character_id_mail_labels_label",
-                            "type": "object"
-                        }
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Label created",
-                        "examples": {
-                            "application/json": 128
-                        },
-                        "schema": {
-                            "description": "Label ID",
-                            "format": "int64",
-                            "title": "post_characters_character_id_mail_labels_created",
-                            "type": "integer"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.organize_mail.v1"
-                            }
-                        },
-                        "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "post_characters_character_id_mail_labels_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_characters_character_id_mail_labels_forbidden",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "post_characters_character_id_mail_labels_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_characters_character_id_mail_labels_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-mail.organize_mail.v1"
-                        ]
-                    }
-                ],
-                "summary": "Create a mail label",
-                "tags": [
-                    "Mail"
-                ]
-            }
-        },
-        "/characters/{character_id}/mail/lists/": {
-            "get": {
-                "description": "Return all mailing lists that the character is subscribed to\n\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/lists/`\n\nAlternate route: `/latest/characters/{character_id}/mail/lists/`\n\nAlternate route: `/dev/characters/{character_id}/mail/lists/`\n\n\n---\n\nThis route is cached for up to 120 seconds",
-                "operationId": "get_characters_character_id_mail_lists",
-                "parameters": [
-                    {
-                        "description": "An EVE character ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Mailing lists",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "mailing_list_id": 1,
-                                    "name": "test_mailing_list"
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "mailing_list_id": {
-                                        "description": "Mailing list ID",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_mail_lists_mailing_list_id",
-                                        "type": "integer"
-                                    },
-                                    "name": {
-                                        "description": "name string",
-                                        "title": "get_characters_character_id_mail_lists_name",
-                                        "type": "string"
-                                    }
-                                },
-                                "required": [
-                                    "mailing_list_id",
-                                    "name"
-                                ],
-                                "title": "get_characters_character_id_mail_lists_200_ok",
-                                "type": "object"
-                            },
-                            "title": "get_characters_character_id_mail_lists_ok",
-                            "type": "array"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.read_mail.v1"
-                            }
-                        },
-                        "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_mail_lists_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_mail_lists_forbidden",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_mail_lists_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_mail_lists_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-mail.read_mail.v1"
-                        ]
-                    }
-                ],
-                "summary": "Return mailing list subscriptions",
-                "tags": [
-                    "Mail"
-                ]
-            }
-        },
-        "/characters/{character_id}/mail/unread/": {
-            "get": {
-                "deprecated": true,
-                "description": "Return the number of unread mails for the character\n\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/unread/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
-                "operationId": "get_characters_character_id_mail_unread",
-                "parameters": [
-                    {
-                        "description": "An EVE character ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Unread mail count",
-                        "examples": {
-                            "application/json": 5
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok integer",
-                            "format": "int32",
-                            "minimum": 0,
-                            "title": "get_characters_character_id_mail_unread_ok",
-                            "type": "integer"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.read_mail.v1"
-                            }
-                        },
-                        "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_mail_unread_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_mail_unread_forbidden",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_mail_unread_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_mail_unread_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-mail.read_mail.v1"
-                        ]
-                    }
-                ],
-                "summary": "Return the number of unread mails",
-                "tags": [
-                    "Mail"
-                ]
-            }
-        },
-        "/characters/{character_id}/mail/{mail_id}/": {
-            "delete": {
-                "description": "Delete a mail\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/{mail_id}/`\n\nAlternate route: `/latest/characters/{character_id}/mail/{mail_id}/`\n\nAlternate route: `/dev/characters/{character_id}/mail/{mail_id}/`\n",
-                "operationId": "delete_characters_character_id_mail_mail_id",
-                "parameters": [
-                    {
-                        "description": "An EVE character ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "An EVE mail ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "mail_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "Mail deleted"
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.organize_mail.v1"
-                            }
-                        },
-                        "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "delete_characters_character_id_mail_mail_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "delete_characters_character_id_mail_mail_id_forbidden",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "delete_characters_character_id_mail_mail_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "delete_characters_character_id_mail_mail_id_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-mail.organize_mail.v1"
-                        ]
-                    }
-                ],
-                "summary": "Delete a mail",
-                "tags": [
-                    "Mail"
-                ]
-            },
-            "get": {
-                "description": "Return the contents of an EVE mail\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/{mail_id}/`\n\nAlternate route: `/latest/characters/{character_id}/mail/{mail_id}/`\n\nAlternate route: `/dev/characters/{character_id}/mail/{mail_id}/`\n\n\n---\n\nThis route is cached for up to 30 seconds",
-                "operationId": "get_characters_character_id_mail_mail_id",
-                "parameters": [
-                    {
-                        "description": "An EVE character ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "An EVE mail ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "mail_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Contents of a mail",
-                        "examples": {
-                            "application/json": {
-                                "body": "blah blah blah",
-                                "from": 90000001,
-                                "labels": [
-                                    2,
-                                    32
-                                ],
-                                "read": false,
-                                "subject": "test",
-                                "timestamp": "2015-09-30T16:07:00Z"
+                                "solar_system_id": 30002505,
+                                "structure_id": 1000000016989
                             }
                         },
                         "headers": {
@@ -3532,84 +842,29 @@
                         "schema": {
                             "description": "200 ok object",
                             "properties": {
-                                "body": {
-                                    "description": "Mail's body",
-                                    "title": "get_characters_character_id_mail_mail_id_body",
-                                    "type": "string"
-                                },
-                                "from": {
-                                    "description": "From whom the mail was sent",
+                                "solar_system_id": {
+                                    "description": "solar_system_id integer",
                                     "format": "int32",
-                                    "title": "get_characters_character_id_mail_mail_id_from",
+                                    "title": "get_characters_character_id_location_solar_system_id",
                                     "type": "integer"
                                 },
-                                "labels": {
-                                    "description": "Labels attached to the mail",
-                                    "items": {
-                                        "description": "label integer",
-                                        "format": "int64",
-                                        "minimum": 0,
-                                        "title": "get_characters_character_id_mail_mail_id_label",
-                                        "type": "integer",
-                                        "uniqueItems": true
-                                    },
-                                    "title": "get_characters_character_id_mail_mail_id_labels",
-                                    "type": "array"
+                                "station_id": {
+                                    "description": "station_id integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_location_station_id",
+                                    "type": "integer"
                                 },
-                                "read": {
-                                    "description": "Whether the mail is flagged as read",
-                                    "title": "get_characters_character_id_mail_mail_id_read",
-                                    "type": "boolean"
-                                },
-                                "recipients": {
-                                    "description": "Recipients of the mail",
-                                    "items": {
-                                        "description": "recipient object",
-                                        "properties": {
-                                            "recipient_id": {
-                                                "description": "recipient_id integer",
-                                                "format": "int32",
-                                                "title": "get_characters_character_id_mail_mail_id_recipient_id",
-                                                "type": "integer"
-                                            },
-                                            "recipient_type": {
-                                                "description": "recipient_type string",
-                                                "enum": [
-                                                    "alliance",
-                                                    "character",
-                                                    "corporation",
-                                                    "mailing_list"
-                                                ],
-                                                "title": "get_characters_character_id_mail_mail_id_recipient_type",
-                                                "type": "string"
-                                            }
-                                        },
-                                        "required": [
-                                            "recipient_type",
-                                            "recipient_id"
-                                        ],
-                                        "title": "get_characters_character_id_mail_mail_id_recipient",
-                                        "type": "object"
-                                    },
-                                    "maxItems": 50,
-                                    "minItems": 1,
-                                    "title": "get_characters_character_id_mail_mail_id_recipients",
-                                    "type": "array",
-                                    "uniqueItems": true
-                                },
-                                "subject": {
-                                    "description": "Mail subject",
-                                    "title": "get_characters_character_id_mail_mail_id_subject",
-                                    "type": "string"
-                                },
-                                "timestamp": {
-                                    "description": "When the mail was sent",
-                                    "format": "date-time",
-                                    "title": "get_characters_character_id_mail_mail_id_timestamp",
-                                    "type": "string"
+                                "structure_id": {
+                                    "description": "structure_id integer",
+                                    "format": "int64",
+                                    "title": "get_characters_character_id_location_structure_id",
+                                    "type": "integer"
                                 }
                             },
-                            "title": "get_characters_character_id_mail_mail_id_ok",
+                            "required": [
+                                "solar_system_id"
+                            ],
+                            "title": "get_characters_character_id_location_ok",
                             "type": "object"
                         }
                     },
@@ -3617,7 +872,7 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.read_mail.v1"
+                                "error": "Token is not valid for scope(s): esi-location.read_location.v1"
                             }
                         },
                         "schema": {
@@ -3625,31 +880,11 @@
                             "properties": {
                                 "error": {
                                     "description": "Forbidden message",
-                                    "title": "get_characters_character_id_mail_mail_id_403_forbidden",
+                                    "title": "get_characters_character_id_location_403_forbidden",
                                     "type": "string"
                                 }
                             },
-                            "title": "get_characters_character_id_mail_mail_id_forbidden",
-                            "type": "object"
-                        }
-                    },
-                    "404": {
-                        "description": "Mail not found",
-                        "examples": {
-                            "application/json": {
-                                "error": "Not found message"
-                            }
-                        },
-                        "schema": {
-                            "description": "Not found",
-                            "properties": {
-                                "error": {
-                                    "description": "Not found message",
-                                    "title": "get_characters_character_id_mail_mail_id_404_not_found",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_mail_mail_id_not_found",
+                            "title": "get_characters_character_id_location_forbidden",
                             "type": "object"
                         }
                     },
@@ -3665,11 +900,11 @@
                             "properties": {
                                 "error": {
                                     "description": "Internal server error message",
-                                    "title": "get_characters_character_id_mail_mail_id_500_internal_server_error",
+                                    "title": "get_characters_character_id_location_500_internal_server_error",
                                     "type": "string"
                                 }
                             },
-                            "title": "get_characters_character_id_mail_mail_id_internal_server_error",
+                            "title": "get_characters_character_id_location_internal_server_error",
                             "type": "object"
                         }
                     }
@@ -3677,153 +912,13 @@
                 "security": [
                     {
                         "evesso": [
-                            "esi-mail.read_mail.v1"
+                            "esi-location.read_location.v1"
                         ]
                     }
                 ],
-                "summary": "Return a mail",
+                "summary": "Get character location",
                 "tags": [
-                    "Mail"
-                ]
-            },
-            "put": {
-                "description": "Update metadata about a mail\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/{mail_id}/`\n\nAlternate route: `/latest/characters/{character_id}/mail/{mail_id}/`\n\nAlternate route: `/dev/characters/{character_id}/mail/{mail_id}/`\n",
-                "operationId": "put_characters_character_id_mail_mail_id",
-                "parameters": [
-                    {
-                        "description": "An EVE character ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "An EVE mail ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "mail_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "Data used to update the mail",
-                        "in": "body",
-                        "name": "contents",
-                        "required": true,
-                        "schema": {
-                            "description": "contents object",
-                            "properties": {
-                                "labels": {
-                                    "description": "Labels to assign to the mail. Pre-existing labels are unassigned.",
-                                    "items": {
-                                        "description": "label integer",
-                                        "format": "int64",
-                                        "minimum": 0,
-                                        "title": "put_characters_character_id_mail_mail_id_label",
-                                        "type": "integer",
-                                        "uniqueItems": true
-                                    },
-                                    "title": "put_characters_character_id_mail_mail_id_labels",
-                                    "type": "array"
-                                },
-                                "read": {
-                                    "description": "Whether the mail is flagged as read",
-                                    "title": "put_characters_character_id_mail_mail_id_read",
-                                    "type": "boolean"
-                                }
-                            },
-                            "title": "put_characters_character_id_mail_mail_id_contents",
-                            "type": "object"
-                        }
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "Mail updated"
-                    },
-                    "400": {
-                        "description": "Invalid label ID; or No parameters in body -- nothing to do",
-                        "examples": {
-                            "application/json": {
-                                "error": "Bad request message"
-                            }
-                        },
-                        "schema": {
-                            "description": "Bad request",
-                            "properties": {
-                                "error": {
-                                    "description": "Bad request message",
-                                    "title": "put_characters_character_id_mail_mail_id_400_bad_request",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_characters_character_id_mail_mail_id_bad_request",
-                            "type": "object"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.organize_mail.v1"
-                            }
-                        },
-                        "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "put_characters_character_id_mail_mail_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_characters_character_id_mail_mail_id_forbidden",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "put_characters_character_id_mail_mail_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_characters_character_id_mail_mail_id_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-mail.organize_mail.v1"
-                        ]
-                    }
-                ],
-                "summary": "Update metadata about a mail",
-                "tags": [
-                    "Mail"
+                    "Location"
                 ]
             }
         },
@@ -4120,6 +1215,139 @@
                 "summary": "Search on a string",
                 "tags": [
                     "Search"
+                ]
+            }
+        },
+        "/characters/{character_id}/ship/": {
+            "get": {
+                "description": "Get the current ship type, name and id\n\n---\n\nAlternate route: `/v1/characters/{character_id}/ship/`\n\nAlternate route: `/latest/characters/{character_id}/ship/`\n\nAlternate route: `/dev/characters/{character_id}/ship/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
+                "operationId": "get_characters_character_id_ship",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get the current ship type, name and id",
+                        "examples": {
+                            "application/json": {
+                                "ship_item_id": 1000000016991,
+                                "ship_name": "SPACESHIPS!!!",
+                                "ship_type_id": 1233
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "ship_item_id": {
+                                    "description": "Item id's are unique to a ship and persist until it is repackaged. This value can be used to track repeated uses of a ship, or detect when a pilot changes into a different instance of the same ship type.",
+                                    "format": "int64",
+                                    "title": "get_characters_character_id_ship_ship_item_id",
+                                    "type": "integer"
+                                },
+                                "ship_name": {
+                                    "description": "ship_name string",
+                                    "title": "get_characters_character_id_ship_ship_name",
+                                    "type": "string"
+                                },
+                                "ship_type_id": {
+                                    "description": "ship_type_id integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_ship_ship_type_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "ship_type_id",
+                                "ship_item_id",
+                                "ship_name"
+                            ],
+                            "title": "get_characters_character_id_ship_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-location.read_ship_type.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_ship_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_ship_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_ship_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_ship_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-location.read_ship_type.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get current ship",
+                "tags": [
+                    "Location"
                 ]
             }
         },
@@ -5839,6 +3067,167 @@
                 "summary": "Get corporation member roles",
                 "tags": [
                     "Corporation"
+                ]
+            }
+        },
+        "/incursions/": {
+            "get": {
+                "description": "Return a list of current incursions\n\n---\n\nAlternate route: `/v1/incursions/`\n\nAlternate route: `/latest/incursions/`\n\nAlternate route: `/dev/incursions/`\n\n\n---\n\nThis route is cached for up to 300 seconds",
+                "operationId": "get_incursions",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of incursions",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "constellation_id": 20000607,
+                                    "faction_id": 500019,
+                                    "has_boss": true,
+                                    "infested_solar_systems": [
+                                        30004148,
+                                        30004149,
+                                        30004150,
+                                        30004151,
+                                        30004152,
+                                        30004153,
+                                        30004154
+                                    ],
+                                    "influence": 1.0,
+                                    "staging_solar_system_id": 30004154,
+                                    "state": "mobilizing",
+                                    "type": "Incursion"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "constellation_id": {
+                                        "description": "The constellation id in which this incursion takes place",
+                                        "format": "int64",
+                                        "title": "get_incursions_constellation_id",
+                                        "type": "integer"
+                                    },
+                                    "faction_id": {
+                                        "description": "The attacking faction's id",
+                                        "format": "int64",
+                                        "title": "get_incursions_faction_id",
+                                        "type": "integer"
+                                    },
+                                    "has_boss": {
+                                        "description": "Whether the final encounter has boss or not",
+                                        "title": "get_incursions_has_boss",
+                                        "type": "boolean"
+                                    },
+                                    "infested_solar_systems": {
+                                        "description": "A list of infested solar system ids that are a part of this incursion",
+                                        "items": {
+                                            "description": "infested_solar_system integer",
+                                            "format": "int64",
+                                            "title": "get_incursions_infested_solar_system",
+                                            "type": "integer"
+                                        },
+                                        "title": "get_incursions_infested_solar_systems",
+                                        "type": "array"
+                                    },
+                                    "influence": {
+                                        "description": "Influence of this incursion as a float from 0 to 1",
+                                        "format": "float",
+                                        "title": "get_incursions_influence",
+                                        "type": "number"
+                                    },
+                                    "staging_solar_system_id": {
+                                        "description": "Staging solar system for this incursion",
+                                        "format": "int64",
+                                        "title": "get_incursions_staging_solar_system_id",
+                                        "type": "integer"
+                                    },
+                                    "state": {
+                                        "description": "The state of this incursion",
+                                        "enum": [
+                                            "withdrawing",
+                                            "mobilizing",
+                                            "established"
+                                        ],
+                                        "title": "get_incursions_state",
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "description": "The type of this incursion",
+                                        "title": "get_incursions_type",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "type",
+                                    "state",
+                                    "influence",
+                                    "has_boss",
+                                    "faction_id",
+                                    "constellation_id",
+                                    "staging_solar_system_id",
+                                    "infested_solar_systems"
+                                ],
+                                "title": "get_incursions_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_incursions_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_incursions_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_incursions_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "List incursions",
+                "tags": [
+                    "Incursions"
                 ]
             }
         },
@@ -8115,15 +5504,10 @@
             "scopes": {
                 "esi-assets.read_assets.v1": "EVE SSO scope esi-assets.read_assets.v1",
                 "esi-bookmarks.read_character_bookmarks.v1": "EVE SSO scope esi-bookmarks.read_character_bookmarks.v1",
-                "esi-calendar.read_calendar_events.v1": "EVE SSO scope esi-calendar.read_calendar_events.v1",
-                "esi-calendar.respond_calendar_events.v1": "EVE SSO scope esi-calendar.respond_calendar_events.v1",
-                "esi-characters.read_contacts.v1": "EVE SSO scope esi-characters.read_contacts.v1",
-                "esi-clones.read_clones.v1": "EVE SSO scope esi-clones.read_clones.v1",
                 "esi-corporations.read_corporation_membership.v1": "EVE SSO scope esi-corporations.read_corporation_membership.v1",
                 "esi-killmails.read_killmails.v1": "EVE SSO scope esi-killmails.read_killmails.v1",
-                "esi-mail.organize_mail.v1": "EVE SSO scope esi-mail.organize_mail.v1",
-                "esi-mail.read_mail.v1": "EVE SSO scope esi-mail.read_mail.v1",
-                "esi-mail.send_mail.v1": "EVE SSO scope esi-mail.send_mail.v1",
+                "esi-location.read_location.v1": "EVE SSO scope esi-location.read_location.v1",
+                "esi-location.read_ship_type.v1": "EVE SSO scope esi-location.read_ship_type.v1",
                 "esi-search.search_structures.v1": "EVE SSO scope esi-search.search_structures.v1",
                 "esi-skills.read_skillqueue.v1": "EVE SSO scope esi-skills.read_skillqueue.v1",
                 "esi-skills.read_skills.v1": "EVE SSO scope esi-skills.read_skills.v1",
