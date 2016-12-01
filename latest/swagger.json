@@ -1067,8 +1067,7 @@
                 ],
                 "summary": "Get character assets",
                 "tags": [
-                    "Assets",
-                    "Live"
+                    "Assets"
                 ]
             }
         },
@@ -1315,8 +1314,7 @@
                 ],
                 "summary": "List bookmarks",
                 "tags": [
-                    "Bookmarks",
-                    "Live"
+                    "Bookmarks"
                 ]
             }
         },
@@ -1451,8 +1449,7 @@
                 ],
                 "summary": "List bookmark folders",
                 "tags": [
-                    "Bookmarks",
-                    "Live"
+                    "Bookmarks"
                 ]
             }
         },
@@ -2126,7 +2123,6 @@
                 ],
                 "summary": "Get clones",
                 "tags": [
-                    "Live",
                     "Clones"
                 ]
             }
@@ -2533,8 +2529,7 @@
                 ],
                 "summary": "List kills and losses",
                 "tags": [
-                    "Killmails",
-                    "Live"
+                    "Killmails"
                 ]
             }
         },
@@ -5547,7 +5542,6 @@
                 },
                 "summary": "Get corporation names",
                 "tags": [
-                    "Live",
                     "Corporation"
                 ]
             }
@@ -5688,7 +5682,6 @@
                 },
                 "summary": "Get corporation information",
                 "tags": [
-                    "Live",
                     "Corporation"
                 ]
             }
@@ -5825,7 +5818,6 @@
                 },
                 "summary": "Get alliance history",
                 "tags": [
-                    "Live",
                     "Corporation"
                 ]
             }
@@ -6181,7 +6173,6 @@
                 },
                 "summary": "Get corporation icon",
                 "tags": [
-                    "Live",
                     "Corporation"
                 ]
             }
@@ -6310,7 +6301,6 @@
                 ],
                 "summary": "Get corporation members",
                 "tags": [
-                    "Live",
                     "Corporation"
                 ]
             }
@@ -6347,9 +6337,9 @@
                             "application/json": [
                                 {
                                     "character_id": 1000171,
-                                    "character_roles": [
+                                    "roles": [
                                         "Director",
-                                        "Starbase Manager"
+                                        "Station_Manager"
                                     ]
                                 }
                             ]
@@ -6944,7 +6934,6 @@
                 ],
                 "summary": "Get corporation member roles",
                 "tags": [
-                    "Live",
                     "Corporation"
                 ]
             }
@@ -7293,8 +7282,7 @@
                 },
                 "summary": "List incursions",
                 "tags": [
-                    "Incursions",
-                    "Live"
+                    "Incursions"
                 ]
             }
         },
@@ -7715,8 +7703,7 @@
                 },
                 "summary": "Get a single killmail",
                 "tags": [
-                    "Killmails",
-                    "Live"
+                    "Killmails"
                 ]
             }
         },
