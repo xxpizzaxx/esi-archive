@@ -1051,8 +1051,7 @@
                 ],
                 "summary": "Get character assets",
                 "tags": [
-                    "Assets",
-                    "Live"
+                    "Assets"
                 ]
             }
         },
@@ -1299,8 +1298,7 @@
                 ],
                 "summary": "List bookmarks",
                 "tags": [
-                    "Bookmarks",
-                    "Live"
+                    "Bookmarks"
                 ]
             }
         },
@@ -1435,8 +1433,7 @@
                 ],
                 "summary": "List bookmark folders",
                 "tags": [
-                    "Bookmarks",
-                    "Live"
+                    "Bookmarks"
                 ]
             }
         },
@@ -2038,7 +2035,6 @@
                 ],
                 "summary": "Get clones",
                 "tags": [
-                    "Live",
                     "Clones"
                 ]
             }
@@ -7126,8 +7122,7 @@
                 },
                 "summary": "List incursions",
                 "tags": [
-                    "Incursions",
-                    "Live"
+                    "Incursions"
                 ]
             }
         },
