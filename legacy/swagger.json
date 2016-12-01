@@ -7459,6 +7459,325 @@
                 ]
             }
         },
+        "/sovereignty/campaigns/": {
+            "get": {
+                "description": "Shows sovereignty data for campaigns.\n\n---\n\nAlternate route: `/v1/sovereignty/campaigns/`\n\nAlternate route: `/latest/sovereignty/campaigns/`\n\nAlternate route: `/dev/sovereignty/campaigns/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
+                "operationId": "get_sovereignty_campaigns",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of sovereignty campaigns",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "attackers_score": 0.4,
+                                    "campaign_id": 32833,
+                                    "constellation_id": 20000125,
+                                    "defender_id": 1695357456,
+                                    "defender_score": 0.6,
+                                    "event_type": "station_defense",
+                                    "solar_system_id": 30000856,
+                                    "start_time": "2016-10-29T14:34:40Z",
+                                    "structure_id": 61001096
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "attackers_score": {
+                                        "description": "Score for all attacking parties, only present in Defense Events.\n",
+                                        "format": "float",
+                                        "title": "get_sovereignty_campaigns_attackers_score",
+                                        "type": "number"
+                                    },
+                                    "campaign_id": {
+                                        "description": "Unique ID for this campaign.",
+                                        "format": "int64",
+                                        "title": "get_sovereignty_campaigns_campaign_id",
+                                        "type": "integer"
+                                    },
+                                    "constellation_id": {
+                                        "description": "The constellation in which the campaign will take place.\n",
+                                        "format": "int64",
+                                        "title": "get_sovereignty_campaigns_constellation_id",
+                                        "type": "integer"
+                                    },
+                                    "defender_id": {
+                                        "description": "Defending alliance, only present in Defense Events\n",
+                                        "format": "int64",
+                                        "title": "get_sovereignty_campaigns_defender_id",
+                                        "type": "integer"
+                                    },
+                                    "defender_score": {
+                                        "description": "Score for the defending alliance, only present in Defense Events.\n",
+                                        "format": "float",
+                                        "title": "get_sovereignty_campaigns_defender_score",
+                                        "type": "number"
+                                    },
+                                    "event_type": {
+                                        "description": "Type of event this campaign is for. tcu_defense, ihub_defense and station_defense are referred to as \"Defense Events\", station_freeport as \"Freeport Events\".\n",
+                                        "enum": [
+                                            "tcu_defense",
+                                            "ihub_defense",
+                                            "station_defense",
+                                            "station_freeport"
+                                        ],
+                                        "title": "get_sovereignty_campaigns_event_type",
+                                        "type": "string"
+                                    },
+                                    "participants": {
+                                        "description": "Alliance participating and their respective scores, only present in Freeport Events.\n",
+                                        "items": {
+                                            "description": "participant object",
+                                            "properties": {
+                                                "alliance_id": {
+                                                    "description": "alliance_id integer",
+                                                    "format": "int64",
+                                                    "title": "get_sovereignty_campaigns_alliance_id",
+                                                    "type": "integer"
+                                                },
+                                                "score": {
+                                                    "description": "score number",
+                                                    "format": "float",
+                                                    "title": "get_sovereignty_campaigns_score",
+                                                    "type": "number"
+                                                }
+                                            },
+                                            "required": [
+                                                "alliance_id",
+                                                "score"
+                                            ],
+                                            "title": "get_sovereignty_campaigns_participant",
+                                            "type": "object"
+                                        },
+                                        "title": "get_sovereignty_campaigns_participants",
+                                        "type": "array"
+                                    },
+                                    "solar_system_id": {
+                                        "description": "The solar system the structure is located in.\n",
+                                        "format": "int64",
+                                        "title": "get_sovereignty_campaigns_solar_system_id",
+                                        "type": "integer"
+                                    },
+                                    "start_time": {
+                                        "description": "Time the event is scheduled to start.\n",
+                                        "format": "date-time",
+                                        "title": "get_sovereignty_campaigns_start_time",
+                                        "type": "string"
+                                    },
+                                    "structure_id": {
+                                        "description": "The structure item ID that is related to this campaign.\n",
+                                        "format": "int64",
+                                        "title": "get_sovereignty_campaigns_structure_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "campaign_id",
+                                    "structure_id",
+                                    "solar_system_id",
+                                    "constellation_id",
+                                    "event_type",
+                                    "start_time"
+                                ],
+                                "title": "get_sovereignty_campaigns_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_sovereignty_campaigns_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_sovereignty_campaigns_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_sovereignty_campaigns_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "List sovereignty campaigns",
+                "tags": [
+                    "Sovereignty"
+                ]
+            }
+        },
+        "/sovereignty/structures/": {
+            "get": {
+                "description": "Shows sovereignty data for structures.\n\n---\n\nAlternate route: `/v1/sovereignty/structures/`\n\nAlternate route: `/latest/sovereignty/structures/`\n\nAlternate route: `/dev/sovereignty/structures/`\n\n\n---\n\nThis route is cached for up to 120 seconds",
+                "operationId": "get_sovereignty_structures",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of sovereignty structures",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "alliance_id": 498125261,
+                                    "solar_system_id": 30000570,
+                                    "structure_id": 1018253388776,
+                                    "structure_type_id": 32226,
+                                    "vulnerability_occupancy_level": 2,
+                                    "vulnerable_end_time": "2016-10-29T05:30:00Z",
+                                    "vulnerable_start_time": "2016-10-28T20:30:00Z"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "alliance_id": {
+                                        "description": "The alliance that owns the structure.\n",
+                                        "format": "int64",
+                                        "title": "get_sovereignty_structures_alliance_id",
+                                        "type": "integer"
+                                    },
+                                    "solar_system_id": {
+                                        "description": "Solar system in which the structure is located.\n",
+                                        "format": "int64",
+                                        "title": "get_sovereignty_structures_solar_system_id",
+                                        "type": "integer"
+                                    },
+                                    "structure_id": {
+                                        "description": "Unique item ID for this structure.",
+                                        "format": "int64",
+                                        "title": "get_sovereignty_structures_structure_id",
+                                        "type": "integer"
+                                    },
+                                    "structure_type_id": {
+                                        "description": "A reference to the type of structure this is.\n",
+                                        "format": "int64",
+                                        "title": "get_sovereignty_structures_structure_type_id",
+                                        "type": "integer"
+                                    },
+                                    "vulnerability_occupancy_level": {
+                                        "description": "The occupancy level for the next or current vulnerability window. This takes into account all development indexes and capital system bonuses. Also known as Activity Defense Multiplier from in the client. It increases the time that attackers must spend using their entosis links on the structure.\n",
+                                        "format": "float",
+                                        "title": "get_sovereignty_structures_vulnerability_occupancy_level",
+                                        "type": "number"
+                                    },
+                                    "vulnerable_end_time": {
+                                        "description": "The time at which the next or current vulnerability window ends. At the end of a vulnerability window the next window is recalculated and locked in along with the vulnerabilityOccupancyLevel. If the structure is not in 100% entosis control of the defender, it will go in to 'overtime' and stay vulnerable for as long as that situation persists. Only once the defenders have 100% entosis control and has the vulnerableEndTime passed does the vulnerability interval expire and a new one is calculated.\n",
+                                        "format": "date-time",
+                                        "title": "get_sovereignty_structures_vulnerable_end_time",
+                                        "type": "string"
+                                    },
+                                    "vulnerable_start_time": {
+                                        "description": "The next time at which the structure will become vulnerable. Or the start time of the current window if current time is between this and vulnerableEndTime.\n",
+                                        "format": "date-time",
+                                        "title": "get_sovereignty_structures_vulnerable_start_time",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "alliance_id",
+                                    "solar_system_id",
+                                    "structure_id",
+                                    "structure_type_id"
+                                ],
+                                "title": "get_sovereignty_structures_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_sovereignty_structures_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_sovereignty_structures_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_sovereignty_structures_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "List sovereignty structures",
+                "tags": [
+                    "Sovereignty"
+                ]
+            }
+        },
         "/universe/names/": {
             "post": {
                 "description": "Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types.\n\n---\n\nAlternate route: `/v1/universe/names/`\n\nAlternate route: `/latest/universe/names/`\n",
