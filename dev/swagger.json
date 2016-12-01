@@ -84,7 +84,6 @@
                 },
                 "summary": "List all alliances",
                 "tags": [
-                    "Live",
                     "Alliance"
                 ]
             }
@@ -194,7 +193,6 @@
                 },
                 "summary": "Get alliance names",
                 "tags": [
-                    "Live",
                     "Alliance"
                 ]
             }
@@ -328,7 +326,6 @@
                 },
                 "summary": "Get alliance information",
                 "tags": [
-                    "Live",
                     "Alliance"
                 ]
             }
@@ -417,7 +414,6 @@
                 },
                 "summary": "List alliance's corporations",
                 "tags": [
-                    "Live",
                     "Alliance"
                 ]
             }
@@ -531,7 +527,6 @@
                 },
                 "summary": "Get alliance icon",
                 "tags": [
-                    "Live",
                     "Alliance"
                 ]
             }
@@ -641,7 +636,6 @@
                 },
                 "summary": "Get character names",
                 "tags": [
-                    "Live",
                     "Character"
                 ]
             }
@@ -768,8 +762,7 @@
                                 "gender",
                                 "race_id",
                                 "description",
-                                "bloodline_id",
-                                "ancestry_id"
+                                "bloodline_id"
                             ],
                             "title": "get_characters_character_id_ok",
                             "type": "object"
@@ -818,7 +811,6 @@
                 },
                 "summary": "Get character's public information",
                 "tags": [
-                    "Live",
                     "Character"
                 ]
             }
@@ -2241,7 +2233,6 @@
                 },
                 "summary": "Get corporation history",
                 "tags": [
-                    "Live",
                     "Character"
                 ]
             }
@@ -2371,7 +2362,6 @@
                 ],
                 "summary": "Calculate a CSPA charge cost",
                 "tags": [
-                    "Live",
                     "Character"
                 ]
             }
@@ -2526,8 +2516,7 @@
                 ],
                 "summary": "List kills and losses",
                 "tags": [
-                    "Killmails",
-                    "Live"
+                    "Killmails"
                 ]
             }
         },
@@ -2658,8 +2647,7 @@
                 ],
                 "summary": "Get character location",
                 "tags": [
-                    "Location",
-                    "Live"
+                    "Location"
                 ]
             }
         },
@@ -2887,7 +2875,6 @@
                 ],
                 "summary": "Return mail headers",
                 "tags": [
-                    "Live",
                     "Mail"
                 ]
             },
@@ -3069,7 +3056,6 @@
                 ],
                 "summary": "Send a new mail",
                 "tags": [
-                    "Live",
                     "Mail"
                 ]
             }
@@ -3258,7 +3244,6 @@
                 ],
                 "summary": "Get mail labels and unread counts",
                 "tags": [
-                    "Live",
                     "Mail"
                 ]
             },
@@ -3397,7 +3382,6 @@
                 ],
                 "summary": "Create a mail label",
                 "tags": [
-                    "Live",
                     "Mail"
                 ]
             }
@@ -3530,7 +3514,6 @@
                 ],
                 "summary": "Return mailing list subscriptions",
                 "tags": [
-                    "Live",
                     "Mail"
                 ]
             }
@@ -3622,7 +3605,6 @@
                 ],
                 "summary": "Delete a mail",
                 "tags": [
-                    "Live",
                     "Mail"
                 ]
             },
@@ -3665,11 +3647,11 @@
                             "application/json": {
                                 "body": "blah blah blah",
                                 "from": 90000001,
-                                "is_read": false,
                                 "labels": [
                                     2,
                                     32
                                 ],
+                                "read": false,
                                 "subject": "test",
                                 "timestamp": "2015-09-30T16:07:00Z"
                             }
@@ -3842,7 +3824,6 @@
                 ],
                 "summary": "Return a mail",
                 "tags": [
-                    "Live",
                     "Mail"
                 ]
             },
@@ -3983,7 +3964,6 @@
                 ],
                 "summary": "Update metadata about a mail",
                 "tags": [
-                    "Live",
                     "Mail"
                 ]
             }
@@ -4109,7 +4089,6 @@
                 },
                 "summary": "Get character portraits",
                 "tags": [
-                    "Live",
                     "Character"
                 ]
             }
@@ -4418,7 +4397,6 @@
                 ],
                 "summary": "Search on a string",
                 "tags": [
-                    "Live",
                     "Search"
                 ]
             }
@@ -4552,8 +4530,7 @@
                 ],
                 "summary": "Get current ship",
                 "tags": [
-                    "Location",
-                    "Live"
+                    "Location"
                 ]
             }
         },
@@ -4742,7 +4719,6 @@
                 ],
                 "summary": "Get character's skill queue",
                 "tags": [
-                    "Live",
                     "Skills"
                 ]
             }
@@ -4900,7 +4876,6 @@
                 ],
                 "summary": "Get character skills",
                 "tags": [
-                    "Live",
                     "Skills"
                 ]
             }
@@ -5030,7 +5005,6 @@
                 ],
                 "summary": "List wallets and balances",
                 "tags": [
-                    "Live",
                     "Wallet"
                 ]
             }
@@ -5540,7 +5514,6 @@
                 },
                 "summary": "Get corporation names",
                 "tags": [
-                    "Live",
                     "Corporation"
                 ]
             }
@@ -5681,7 +5654,6 @@
                 },
                 "summary": "Get corporation information",
                 "tags": [
-                    "Live",
                     "Corporation"
                 ]
             }
@@ -5818,7 +5790,6 @@
                 },
                 "summary": "Get alliance history",
                 "tags": [
-                    "Live",
                     "Corporation"
                 ]
             }
@@ -6174,7 +6145,6 @@
                 },
                 "summary": "Get corporation icon",
                 "tags": [
-                    "Live",
                     "Corporation"
                 ]
             }
@@ -6303,7 +6273,6 @@
                 ],
                 "summary": "Get corporation members",
                 "tags": [
-                    "Live",
                     "Corporation"
                 ]
             }
@@ -6340,9 +6309,9 @@
                             "application/json": [
                                 {
                                     "character_id": 1000171,
-                                    "character_roles": [
+                                    "roles": [
                                         "Director",
-                                        "Starbase Manager"
+                                        "Station_Manager"
                                     ]
                                 }
                             ]
@@ -6937,7 +6906,6 @@
                 ],
                 "summary": "Get corporation member roles",
                 "tags": [
-                    "Live",
                     "Corporation"
                 ]
             }
@@ -7707,8 +7675,7 @@
                 },
                 "summary": "Get a single killmail",
                 "tags": [
-                    "Killmails",
-                    "Live"
+                    "Killmails"
                 ]
             }
         },
@@ -7812,8 +7779,7 @@
                 },
                 "summary": "List market prices",
                 "tags": [
-                    "Market",
-                    "Live"
+                    "Market"
                 ]
             }
         },
@@ -7979,8 +7945,7 @@
                 },
                 "summary": "List historical market statistics in a region",
                 "tags": [
-                    "Market",
-                    "Live"
+                    "Market"
                 ]
             }
         },
@@ -8220,8 +8185,7 @@
                 },
                 "summary": "List orders in a region",
                 "tags": [
-                    "Market",
-                    "Live"
+                    "Market"
                 ]
             }
         },
@@ -8482,7 +8446,6 @@
                 },
                 "summary": "Search on a string",
                 "tags": [
-                    "Live",
                     "Search"
                 ]
             }
@@ -8667,8 +8630,7 @@
                 },
                 "summary": "List sovereignty campaigns",
                 "tags": [
-                    "Sovereignty",
-                    "Live"
+                    "Sovereignty"
                 ]
             }
         },
@@ -8803,8 +8765,7 @@
                 },
                 "summary": "List sovereignty structures",
                 "tags": [
-                    "Sovereignty",
-                    "Live"
+                    "Sovereignty"
                 ]
             }
         },
@@ -8953,7 +8914,6 @@
                 },
                 "summary": "Get names and categories for a set of ID's",
                 "tags": [
-                    "Live",
                     "Universe"
                 ]
             }
@@ -9122,7 +9082,6 @@
                 },
                 "summary": "Get station information",
                 "tags": [
-                    "Live",
                     "Universe"
                 ]
             }
@@ -9204,7 +9163,6 @@
                 },
                 "summary": "List all public structures",
                 "tags": [
-                    "Live",
                     "Universe"
                 ]
             }
@@ -9372,7 +9330,6 @@
                 ],
                 "summary": "Get structure information",
                 "tags": [
-                    "Live",
                     "Universe"
                 ]
             }
@@ -9480,7 +9437,6 @@
                 },
                 "summary": "Get solar system information",
                 "tags": [
-                    "Live",
                     "Universe"
                 ]
             }
@@ -9627,7 +9583,6 @@
                 },
                 "summary": "Get type information",
                 "tags": [
-                    "Live",
                     "Universe"
                 ]
             }
