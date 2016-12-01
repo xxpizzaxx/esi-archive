@@ -1067,8 +1067,7 @@
                 ],
                 "summary": "Get character assets",
                 "tags": [
-                    "Assets",
-                    "Live"
+                    "Assets"
                 ]
             }
         },
@@ -1315,8 +1314,7 @@
                 ],
                 "summary": "List bookmarks",
                 "tags": [
-                    "Bookmarks",
-                    "Live"
+                    "Bookmarks"
                 ]
             }
         },
@@ -1451,8 +1449,7 @@
                 ],
                 "summary": "List bookmark folders",
                 "tags": [
-                    "Bookmarks",
-                    "Live"
+                    "Bookmarks"
                 ]
             }
         },
@@ -1614,7 +1611,6 @@
                 ],
                 "summary": "List calendar event summaries",
                 "tags": [
-                    "Live",
                     "Calendar"
                 ]
             }
@@ -1815,7 +1811,6 @@
                 ],
                 "summary": "Get an event",
                 "tags": [
-                    "Live",
                     "Calendar"
                 ]
             },
@@ -1930,7 +1925,6 @@
                 ],
                 "summary": "Respond to an event",
                 "tags": [
-                    "Live",
                     "Calendar"
                 ]
             }
@@ -2126,7 +2120,6 @@
                 ],
                 "summary": "Get clones",
                 "tags": [
-                    "Live",
                     "Clones"
                 ]
             }
@@ -7293,8 +7286,7 @@
                 },
                 "summary": "List incursions",
                 "tags": [
-                    "Incursions",
-                    "Live"
+                    "Incursions"
                 ]
             }
         },
