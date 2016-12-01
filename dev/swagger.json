@@ -9115,7 +9115,7 @@
         },
         "/wars/": {
             "get": {
-                "description": "Return a list of kills related to a war\n\n---\n\nAlternate route: `/v1/wars/`\n\nAlternate route: `/legacy/wars/`\n\nAlternate route: `/latest/wars/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return a list of wars\n\n---\n\nAlternate route: `/v1/wars/`\n\nAlternate route: `/legacy/wars/`\n\nAlternate route: `/latest/wars/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_wars",
                 "parameters": [
                     {
@@ -9196,7 +9196,7 @@
                         }
                     }
                 },
-                "summary": "List kills for a war",
+                "summary": "List wars",
                 "tags": [
                     "Wars"
                 ]
