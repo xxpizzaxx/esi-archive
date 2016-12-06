@@ -4148,8 +4148,7 @@
                 ],
                 "summary": "Get colonies",
                 "tags": [
-                    "Planetary Interaction",
-                    "Live"
+                    "Planetary Interaction"
                 ]
             }
         },
@@ -4623,8 +4622,7 @@
                 ],
                 "summary": "Get colony layout",
                 "tags": [
-                    "Planetary Interaction",
-                    "Live"
+                    "Planetary Interaction"
                 ]
             }
         },
@@ -9138,8 +9136,7 @@
                 },
                 "summary": "Get schematic information",
                 "tags": [
-                    "Live",
-                    "Planets"
+                    "Planetary Interaction"
                 ]
             }
         },
