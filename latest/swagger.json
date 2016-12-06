@@ -6699,6 +6699,165 @@
                 ]
             }
         },
+        "/insurance/prices/": {
+            "get": {
+                "description": "Return available insurance levels for all ship types\n\n---\n\nAlternate route: `/v1/insurance/prices/`\n\nAlternate route: `/legacy/insurance/prices/`\n\nAlternate route: `/dev/insurance/prices/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_insurance_prices",
+                "parameters": [
+                    {
+                        "default": "en",
+                        "description": "Language to use in the response",
+                        "enum": [
+                            "de",
+                            "en",
+                            "fr",
+                            "ja",
+                            "ru",
+                            "zh"
+                        ],
+                        "in": "header",
+                        "name": "Accept-Language",
+                        "type": "string"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of insurance levels for all ship types",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "levels": [
+                                        {
+                                            "cost": 10.0,
+                                            "name": "Basic",
+                                            "payout": 20.0
+                                        }
+                                    ],
+                                    "type_id": 1
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "levels": {
+                                        "description": "A list of a available insurance levels for this ship type",
+                                        "items": {
+                                            "description": "level object",
+                                            "properties": {
+                                                "cost": {
+                                                    "description": "cost number",
+                                                    "format": "float",
+                                                    "title": "get_insurance_prices_cost",
+                                                    "type": "number"
+                                                },
+                                                "name": {
+                                                    "description": "Localized insurance level",
+                                                    "title": "get_insurance_prices_name",
+                                                    "type": "string"
+                                                },
+                                                "payout": {
+                                                    "description": "payout number",
+                                                    "format": "float",
+                                                    "title": "get_insurance_prices_payout",
+                                                    "type": "number"
+                                                }
+                                            },
+                                            "required": [
+                                                "cost",
+                                                "payout",
+                                                "name"
+                                            ],
+                                            "title": "get_insurance_prices_level",
+                                            "type": "object"
+                                        },
+                                        "title": "get_insurance_prices_levels",
+                                        "type": "array"
+                                    },
+                                    "type_id": {
+                                        "description": "type_id integer",
+                                        "format": "int32",
+                                        "title": "get_insurance_prices_type_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "type_id",
+                                    "levels"
+                                ],
+                                "title": "get_insurance_prices_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_insurance_prices_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_insurance_prices_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_insurance_prices_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "List insurance levels",
+                "tags": [
+                    "Insurance"
+                ]
+            }
+        },
         "/killmails/{killmail_id}/{killmail_hash}/": {
             "get": {
                 "description": "Return a single killmail from its ID and hash\n\n---\n\nAlternate route: `/v1/killmails/{killmail_id}/{killmail_hash}/`\n\nAlternate route: `/legacy/killmails/{killmail_id}/{killmail_hash}/`\n\nAlternate route: `/dev/killmails/{killmail_id}/{killmail_hash}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
