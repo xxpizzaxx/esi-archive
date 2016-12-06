@@ -1445,6 +1445,482 @@
                 ]
             }
         },
+        "/characters/{character_id}/calendar/": {
+            "get": {
+                "description": "Get 50 event summaries from the calendar. If no event ID is given,\nthe resource will return the next 50 chronological event summaries\nfrom now. If an event ID is specified, it will return the next 50\nchronological event summaries from after that event.\n\n\n---\n\nAlternate route: `/v1/characters/{character_id}/calendar/`\n\nAlternate route: `/legacy/characters/{character_id}/calendar/`\n\nAlternate route: `/latest/characters/{character_id}/calendar/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
+                "operationId": "get_characters_character_id_calendar",
+                "parameters": [
+                    {
+                        "description": "The character to retrieve events from",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "The event ID to retrieve events from",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "from_event",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A collection of event summaries",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "event_date": "2016-06-26T20:00:00Z",
+                                    "event_id": 1386435,
+                                    "event_response": "accepted",
+                                    "importance": 0,
+                                    "title": "o7 The EVE Online Show"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "Up to 50 events from now or the event you requested\n",
+                            "items": {
+                                "description": "event",
+                                "properties": {
+                                    "event_date": {
+                                        "description": "event_date string",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_calendar_event_date",
+                                        "type": "string"
+                                    },
+                                    "event_id": {
+                                        "description": "event_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_calendar_event_id",
+                                        "type": "integer"
+                                    },
+                                    "event_response": {
+                                        "description": "event_response string",
+                                        "enum": [
+                                            "declined",
+                                            "not_responded",
+                                            "accepted",
+                                            "tentative"
+                                        ],
+                                        "title": "get_characters_character_id_calendar_event_response",
+                                        "type": "string"
+                                    },
+                                    "importance": {
+                                        "description": "importance integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_calendar_importance",
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "description": "title string",
+                                        "title": "get_characters_character_id_calendar_title",
+                                        "type": "string"
+                                    }
+                                },
+                                "title": "get_characters_character_id_calendar_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_characters_character_id_calendar_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-calendar.read_calendar_events.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_calendar_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_calendar_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_calendar_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_calendar_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-calendar.read_calendar_events.v1"
+                        ]
+                    }
+                ],
+                "summary": "List calendar event summaries",
+                "tags": [
+                    "Calendar"
+                ]
+            }
+        },
+        "/characters/{character_id}/calendar/{event_id}/": {
+            "get": {
+                "description": "Get all the information for a specific event\n\n---\n\nAlternate route: `/v3/characters/{character_id}/calendar/{event_id}/`\n\nAlternate route: `/latest/characters/{character_id}/calendar/{event_id}/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
+                "operationId": "get_characters_character_id_calendar_event_id",
+                "parameters": [
+                    {
+                        "description": "The character id requesting the event",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "The id of the event requested",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "event_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Full details of a specific event",
+                        "examples": {
+                            "application/json": {
+                                "date": "2016-06-26T21:00:00Z",
+                                "duration": 60,
+                                "event_id": 1386435,
+                                "importance": 1,
+                                "owner_id": 1,
+                                "owner_name": "EVE System",
+                                "owner_type": "eve_server",
+                                "response": "Undecided",
+                                "text": "o7: The EVE Online Show features latest developer news, fast paced action, community overviews and a lot more with CCP Guard and CCP Mimic. Join the thrilling o7 live broadcast at 20:00 EVE time (=UTC) on <a href=\"http://www.twitch.tv/ccp\">EVE TV</a>. Don't miss it!",
+                                "title": "o7 The EVE Online Show"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "Full details of a specific event",
+                            "properties": {
+                                "date": {
+                                    "description": "date string",
+                                    "format": "date-time",
+                                    "title": "get_characters_character_id_calendar_event_id_date",
+                                    "type": "string"
+                                },
+                                "duration": {
+                                    "description": "Length in minutes",
+                                    "format": "int64",
+                                    "title": "get_characters_character_id_calendar_event_id_duration",
+                                    "type": "integer"
+                                },
+                                "event_id": {
+                                    "description": "event_id integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_calendar_event_id_event_id",
+                                    "type": "integer"
+                                },
+                                "importance": {
+                                    "description": "importance integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_calendar_event_id_importance",
+                                    "type": "integer"
+                                },
+                                "owner_id": {
+                                    "description": "owner_id integer",
+                                    "format": "int64",
+                                    "title": "get_characters_character_id_calendar_event_id_owner_id",
+                                    "type": "integer"
+                                },
+                                "owner_name": {
+                                    "description": "owner_name string",
+                                    "title": "get_characters_character_id_calendar_event_id_owner_name",
+                                    "type": "string"
+                                },
+                                "owner_type": {
+                                    "description": "owner_type string",
+                                    "enum": [
+                                        "eve_server",
+                                        "corporation",
+                                        "faction",
+                                        "character",
+                                        "alliance"
+                                    ],
+                                    "title": "get_characters_character_id_calendar_event_id_owner_type",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "response string",
+                                    "title": "get_characters_character_id_calendar_event_id_response",
+                                    "type": "string"
+                                },
+                                "text": {
+                                    "description": "text string",
+                                    "title": "get_characters_character_id_calendar_event_id_text",
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "description": "title string",
+                                    "title": "get_characters_character_id_calendar_event_id_title",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "event_id",
+                                "owner_id",
+                                "owner_name",
+                                "date",
+                                "title",
+                                "duration",
+                                "importance",
+                                "response",
+                                "text",
+                                "owner_type"
+                            ],
+                            "title": "get_characters_character_id_calendar_event_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-calendar.read_calendar_events.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_calendar_event_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_calendar_event_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_calendar_event_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_calendar_event_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-calendar.read_calendar_events.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get an event",
+                "tags": [
+                    "Calendar"
+                ]
+            },
+            "put": {
+                "description": "Set your response status to an event\n\n---\n\nAlternate route: `/v3/characters/{character_id}/calendar/{event_id}/`\n\nAlternate route: `/latest/characters/{character_id}/calendar/{event_id}/`\n",
+                "operationId": "put_characters_character_id_calendar_event_id",
+                "parameters": [
+                    {
+                        "description": "The character ID requesting the event",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "The ID of the event requested",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "event_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "The response value to set, overriding current value.",
+                        "in": "body",
+                        "name": "response",
+                        "required": true,
+                        "schema": {
+                            "description": "response schema",
+                            "properties": {
+                                "response": {
+                                    "description": "response string",
+                                    "enum": [
+                                        "accepted",
+                                        "declined",
+                                        "tentative"
+                                    ],
+                                    "title": "put_characters_character_id_calendar_event_id_response",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "response"
+                            ],
+                            "title": "put_characters_character_id_calendar_event_id_response"
+                        }
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Event updated"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-calendar.respond_calendar_events.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "put_characters_character_id_calendar_event_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_characters_character_id_calendar_event_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "put_characters_character_id_calendar_event_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_characters_character_id_calendar_event_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-calendar.respond_calendar_events.v1"
+                        ]
+                    }
+                ],
+                "summary": "Respond to an event",
+                "tags": [
+                    "Calendar"
+                ]
+            }
+        },
         "/characters/{character_id}/clones/": {
             "get": {
                 "description": "A list of the character's clones\n\n---\n\nAlternate route: `/v2/characters/{character_id}/clones/`\n\nAlternate route: `/latest/characters/{character_id}/clones/`\n\n\n---\n\nThis route is cached for up to 120 seconds",
@@ -6223,165 +6699,6 @@
                 ]
             }
         },
-        "/insurance/prices/": {
-            "get": {
-                "description": "Return available insurance levels for all ship types\n\n---\n\nAlternate route: `/v1/insurance/prices/`\n\nAlternate route: `/legacy/insurance/prices/`\n\nAlternate route: `/latest/insurance/prices/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_insurance_prices",
-                "parameters": [
-                    {
-                        "default": "en",
-                        "description": "Language to use in the response",
-                        "enum": [
-                            "de",
-                            "en",
-                            "fr",
-                            "ja",
-                            "ru",
-                            "zh"
-                        ],
-                        "in": "header",
-                        "name": "Accept-Language",
-                        "type": "string"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of insurance levels for all ship types",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "levels": [
-                                        {
-                                            "cost": 10.0,
-                                            "name": "Basic",
-                                            "payout": 20.0
-                                        }
-                                    ],
-                                    "type_id": 1
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Content-Language": {
-                                "description": "The language used in the response",
-                                "enum": [
-                                    "de",
-                                    "en",
-                                    "fr",
-                                    "ja",
-                                    "ru",
-                                    "zh"
-                                ],
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "levels": {
-                                        "description": "A list of a available insurance levels for this ship type",
-                                        "items": {
-                                            "description": "level object",
-                                            "properties": {
-                                                "cost": {
-                                                    "description": "cost number",
-                                                    "format": "float",
-                                                    "title": "get_insurance_prices_cost",
-                                                    "type": "number"
-                                                },
-                                                "name": {
-                                                    "description": "Localized insurance level",
-                                                    "title": "get_insurance_prices_name",
-                                                    "type": "string"
-                                                },
-                                                "payout": {
-                                                    "description": "payout number",
-                                                    "format": "float",
-                                                    "title": "get_insurance_prices_payout",
-                                                    "type": "number"
-                                                }
-                                            },
-                                            "required": [
-                                                "cost",
-                                                "payout",
-                                                "name"
-                                            ],
-                                            "title": "get_insurance_prices_level",
-                                            "type": "object"
-                                        },
-                                        "title": "get_insurance_prices_levels",
-                                        "type": "array"
-                                    },
-                                    "type_id": {
-                                        "description": "type_id integer",
-                                        "format": "int32",
-                                        "title": "get_insurance_prices_type_id",
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "type_id",
-                                    "levels"
-                                ],
-                                "title": "get_insurance_prices_200_ok",
-                                "type": "object"
-                            },
-                            "title": "get_insurance_prices_ok",
-                            "type": "array"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_insurance_prices_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_insurance_prices_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "summary": "List insurance levels",
-                "tags": [
-                    "Insurance"
-                ]
-            }
-        },
         "/killmails/{killmail_id}/{killmail_hash}/": {
             "get": {
                 "description": "Return a single killmail from its ID and hash\n\n---\n\nAlternate route: `/v1/killmails/{killmail_id}/{killmail_hash}/`\n\nAlternate route: `/legacy/killmails/{killmail_id}/{killmail_hash}/`\n\nAlternate route: `/latest/killmails/{killmail_id}/{killmail_hash}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -9135,6 +9452,8 @@
             "scopes": {
                 "esi-assets.read_assets.v1": "EVE SSO scope esi-assets.read_assets.v1",
                 "esi-bookmarks.read_character_bookmarks.v1": "EVE SSO scope esi-bookmarks.read_character_bookmarks.v1",
+                "esi-calendar.read_calendar_events.v1": "EVE SSO scope esi-calendar.read_calendar_events.v1",
+                "esi-calendar.respond_calendar_events.v1": "EVE SSO scope esi-calendar.respond_calendar_events.v1",
                 "esi-characters.read_contacts.v1": "EVE SSO scope esi-characters.read_contacts.v1",
                 "esi-clones.read_clones.v1": "EVE SSO scope esi-clones.read_clones.v1",
                 "esi-corporations.read_corporation_membership.v1": "EVE SSO scope esi-corporations.read_corporation_membership.v1",
