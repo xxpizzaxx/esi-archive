@@ -4718,135 +4718,6 @@
                 ]
             }
         },
-        "/characters/{character_id}/wallets/": {
-            "get": {
-                "description": "List your wallets and their balances. Characters typically have only one wallet, with wallet_id 1000 being the master wallet.\n\n---\n\nAlternate route: `/v1/characters/{character_id}/wallets/`\n\nAlternate route: `/latest/characters/{character_id}/wallets/`\n\nAlternate route: `/dev/characters/{character_id}/wallets/`\n\n\n---\n\nThis route is cached for up to 120 seconds",
-                "operationId": "get_characters_character_id_wallets",
-                "parameters": [
-                    {
-                        "description": "An EVE character ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Wallet data for selected user",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "balance": 295000,
-                                    "wallet_id": 1000
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "balance": {
-                                        "description": "Wallet's balance in ISK hundredths.",
-                                        "format": "int64",
-                                        "title": "get_characters_character_id_wallets_balance",
-                                        "type": "integer"
-                                    },
-                                    "wallet_id": {
-                                        "description": "wallet_id integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_wallets_wallet_id",
-                                        "type": "integer"
-                                    }
-                                },
-                                "title": "get_characters_character_id_wallets_200_ok",
-                                "type": "object"
-                            },
-                            "title": "get_characters_character_id_wallets_ok",
-                            "type": "array"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Token is not valid for scope(s): esi-wallet.read_character_wallet.v1"
-                            }
-                        },
-                        "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_wallets_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_wallets_forbidden",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_wallets_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_wallets_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-wallet.read_character_wallet.v1"
-                        ]
-                    }
-                ],
-                "summary": "List wallets and balances",
-                "tags": [
-                    "Wallet"
-                ]
-            }
-        },
         "/corporations/names/": {
             "get": {
                 "description": "Resolve a set of corporation IDs to corporation names\n\n---\n\nAlternate route: `/v1/corporations/names/`\n\nAlternate route: `/latest/corporations/names/`\n\nAlternate route: `/dev/corporations/names/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -9197,8 +9068,7 @@
                 "esi-search.search_structures.v1": "EVE SSO scope esi-search.search_structures.v1",
                 "esi-skills.read_skillqueue.v1": "EVE SSO scope esi-skills.read_skillqueue.v1",
                 "esi-skills.read_skills.v1": "EVE SSO scope esi-skills.read_skills.v1",
-                "esi-universe.read_structures.v1": "EVE SSO scope esi-universe.read_structures.v1",
-                "esi-wallet.read_character_wallet.v1": "EVE SSO scope esi-wallet.read_character_wallet.v1"
+                "esi-universe.read_structures.v1": "EVE SSO scope esi-universe.read_structures.v1"
             },
             "type": "oauth2"
         }
