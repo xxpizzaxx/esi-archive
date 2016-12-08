@@ -4092,314 +4092,6 @@
                 ]
             }
         },
-        "/characters/{character_id}/search/": {
-            "get": {
-                "description": "Search for entities that match a given sub-string.\n\n---\n\nAlternate route: `/v2/characters/{character_id}/search/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_characters_character_id_search",
-                "parameters": [
-                    {
-                        "description": "An EVE character ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "The string to search on",
-                        "in": "query",
-                        "minLength": 3,
-                        "name": "search",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "description": "Type of entities to search for",
-                        "in": "query",
-                        "items": {
-                            "enum": [
-                                "agent",
-                                "alliance",
-                                "character",
-                                "constellation",
-                                "corporation",
-                                "faction",
-                                "inventorytype",
-                                "region",
-                                "solarsystem",
-                                "station",
-                                "structure",
-                                "wormhole"
-                            ],
-                            "type": "string"
-                        },
-                        "minItems": 1,
-                        "name": "categories",
-                        "required": true,
-                        "type": "array",
-                        "uniqueItems": true
-                    },
-                    {
-                        "default": "en-us",
-                        "description": "Search locale",
-                        "enum": [
-                            "en-us",
-                            "de",
-                            "fr",
-                            "ru",
-                            "ja",
-                            "zh"
-                        ],
-                        "in": "query",
-                        "name": "language",
-                        "type": "string"
-                    },
-                    {
-                        "default": false,
-                        "description": "Whether the search should be a strict match",
-                        "in": "query",
-                        "name": "strict",
-                        "type": "boolean"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of search results",
-                        "examples": {
-                            "application/json": {
-                                "solarsystem": [
-                                    30002510
-                                ],
-                                "station": [
-                                    60004588,
-                                    60004594,
-                                    60005725,
-                                    60009106,
-                                    60012721,
-                                    60012724,
-                                    60012727
-                                ]
-                            }
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok object",
-                            "properties": {
-                                "agent": {
-                                    "description": "agent array",
-                                    "items": {
-                                        "description": "agent integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_agent",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_characters_character_id_search_agent",
-                                    "type": "array"
-                                },
-                                "alliance": {
-                                    "description": "alliance array",
-                                    "items": {
-                                        "description": "alliance integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_alliance",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_characters_character_id_search_alliance",
-                                    "type": "array"
-                                },
-                                "character": {
-                                    "description": "character array",
-                                    "items": {
-                                        "description": "character integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_character",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_characters_character_id_search_character",
-                                    "type": "array"
-                                },
-                                "constellation": {
-                                    "description": "constellation array",
-                                    "items": {
-                                        "description": "constellation integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_constellation",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_characters_character_id_search_constellation",
-                                    "type": "array"
-                                },
-                                "corporation": {
-                                    "description": "corporation array",
-                                    "items": {
-                                        "description": "corporation integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_corporation",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_characters_character_id_search_corporation",
-                                    "type": "array"
-                                },
-                                "faction": {
-                                    "description": "faction array",
-                                    "items": {
-                                        "description": "faction integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_faction",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_characters_character_id_search_faction",
-                                    "type": "array"
-                                },
-                                "inventorytype": {
-                                    "description": "inventorytype array",
-                                    "items": {
-                                        "description": "inventorytype integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_inventorytype",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_characters_character_id_search_inventorytype",
-                                    "type": "array"
-                                },
-                                "region": {
-                                    "description": "region array",
-                                    "items": {
-                                        "description": "region integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_region",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_characters_character_id_search_region",
-                                    "type": "array"
-                                },
-                                "solarsystem": {
-                                    "description": "solarsystem array",
-                                    "items": {
-                                        "description": "solarsystem integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_solarsystem",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_characters_character_id_search_solarsystem",
-                                    "type": "array"
-                                },
-                                "station": {
-                                    "description": "station array",
-                                    "items": {
-                                        "description": "station integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_station",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_characters_character_id_search_station",
-                                    "type": "array"
-                                },
-                                "structure": {
-                                    "description": "structure array",
-                                    "items": {
-                                        "description": "structure integer",
-                                        "format": "int64",
-                                        "title": "get_characters_character_id_search_structure",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_characters_character_id_search_structure",
-                                    "type": "array"
-                                },
-                                "wormhole": {
-                                    "description": "wormhole array",
-                                    "items": {
-                                        "description": "wormhole integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_wormhole",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_characters_character_id_search_wormhole",
-                                    "type": "array"
-                                }
-                            },
-                            "title": "get_characters_character_id_search_ok",
-                            "type": "object"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Token is not valid for scope(s): esi-search.search_structures.v1"
-                            }
-                        },
-                        "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_search_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_search_forbidden",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_search_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_search_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-search.search_structures.v1"
-                        ]
-                    }
-                ],
-                "summary": "Search on a string",
-                "tags": [
-                    "Search"
-                ]
-            }
-        },
         "/characters/{character_id}/ship/": {
             "get": {
                 "description": "Get the current ship type, name and id\n\n---\n\nAlternate route: `/v1/characters/{character_id}/ship/`\n\nAlternate route: `/legacy/characters/{character_id}/ship/`\n\nAlternate route: `/dev/characters/{character_id}/ship/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
@@ -6273,6 +5965,270 @@
                 ]
             }
         },
+        "/industry/facilities/": {
+            "get": {
+                "description": "Return a list of industry facilities\n\n---\n\nAlternate route: `/v1/industry/facilities/`\n\nAlternate route: `/legacy/industry/facilities/`\n\nAlternate route: `/dev/industry/facilities/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_industry_facilities",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of prices",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "facility_id": 60012544,
+                                    "owner_id": 1000126,
+                                    "region_id": 10000001,
+                                    "solar_system_id": 30000032,
+                                    "tax": 0.1,
+                                    "type_id": 2502
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "facility_id": {
+                                        "description": "ID of the facility",
+                                        "format": "int64",
+                                        "title": "get_industry_facilities_facility_id",
+                                        "type": "integer"
+                                    },
+                                    "owner_id": {
+                                        "description": "Owner of the facility",
+                                        "format": "int32",
+                                        "title": "get_industry_facilities_owner_id",
+                                        "type": "integer"
+                                    },
+                                    "region_id": {
+                                        "description": "Region ID where the facility is",
+                                        "format": "int32",
+                                        "title": "get_industry_facilities_region_id",
+                                        "type": "integer"
+                                    },
+                                    "solar_system_id": {
+                                        "description": "Solar system ID where the facility is",
+                                        "format": "int32",
+                                        "title": "get_industry_facilities_solar_system_id",
+                                        "type": "integer"
+                                    },
+                                    "tax": {
+                                        "description": "Tax imposed by the facility",
+                                        "format": "float",
+                                        "title": "get_industry_facilities_tax",
+                                        "type": "number"
+                                    },
+                                    "type_id": {
+                                        "description": "Type ID of the facility",
+                                        "format": "int32",
+                                        "title": "get_industry_facilities_type_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "facility_id",
+                                    "owner_id",
+                                    "type_id",
+                                    "solar_system_id",
+                                    "region_id"
+                                ],
+                                "title": "get_industry_facilities_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_industry_facilities_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_industry_facilities_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_industry_facilities_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "List industry facilities",
+                "tags": [
+                    "Industry"
+                ]
+            }
+        },
+        "/industry/systems/": {
+            "get": {
+                "description": "Return cost indices for solar systems\n\n---\n\nAlternate route: `/v1/industry/systems/`\n\nAlternate route: `/legacy/industry/systems/`\n\nAlternate route: `/dev/industry/systems/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_industry_systems",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of cost indicies",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "cost_indices": [
+                                        {
+                                            "activity": "invention",
+                                            "cost_index": 0.00480411064973412
+                                        }
+                                    ],
+                                    "solar_system_id": 30011392
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "cost_indices": {
+                                        "description": "cost_indices array",
+                                        "items": {
+                                            "description": "cost_indice object",
+                                            "properties": {
+                                                "activity": {
+                                                    "description": "activity string",
+                                                    "enum": [
+                                                        "none",
+                                                        "manufacturing",
+                                                        "researching_technology",
+                                                        "researching_time_efficiency",
+                                                        "researching_material_efficiency",
+                                                        "copying",
+                                                        "duplicating",
+                                                        "invention",
+                                                        "reverse_engineering"
+                                                    ],
+                                                    "title": "get_industry_systems_activity",
+                                                    "type": "string"
+                                                },
+                                                "cost_index": {
+                                                    "description": "cost_index number",
+                                                    "format": "float",
+                                                    "title": "get_industry_systems_cost_index",
+                                                    "type": "number"
+                                                }
+                                            },
+                                            "required": [
+                                                "activity",
+                                                "cost_index"
+                                            ],
+                                            "title": "get_industry_systems_cost_indice",
+                                            "type": "object"
+                                        },
+                                        "title": "get_industry_systems_cost_indices",
+                                        "type": "array"
+                                    },
+                                    "solar_system_id": {
+                                        "description": "solar_system_id integer",
+                                        "format": "int32",
+                                        "title": "get_industry_systems_solar_system_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "solar_system_id",
+                                    "cost_indices"
+                                ],
+                                "title": "get_industry_systems_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_industry_systems_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_industry_systems_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_industry_systems_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "List solar system cost indices",
+                "tags": [
+                    "Industry"
+                ]
+            }
+        },
         "/insurance/prices/": {
             "get": {
                 "description": "Return available insurance levels for all ship types\n\n---\n\nAlternate route: `/v1/insurance/prices/`\n\nAlternate route: `/legacy/insurance/prices/`\n\nAlternate route: `/dev/insurance/prices/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -7360,267 +7316,6 @@
                 "summary": "List orders in a region",
                 "tags": [
                     "Market"
-                ]
-            }
-        },
-        "/search/": {
-            "get": {
-                "description": "Search for entities that match a given sub-string.\n\n---\n\nAlternate route: `/v1/search/`\n\nAlternate route: `/legacy/search/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_search",
-                "parameters": [
-                    {
-                        "description": "The string to search on",
-                        "in": "query",
-                        "minLength": 3,
-                        "name": "search",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "description": "Type of entities to search for",
-                        "in": "query",
-                        "items": {
-                            "enum": [
-                                "agent",
-                                "alliance",
-                                "character",
-                                "constellation",
-                                "corporation",
-                                "faction",
-                                "inventorytype",
-                                "region",
-                                "solarsystem",
-                                "station",
-                                "wormhole"
-                            ],
-                            "type": "string"
-                        },
-                        "minItems": 1,
-                        "name": "categories",
-                        "required": true,
-                        "type": "array",
-                        "uniqueItems": true
-                    },
-                    {
-                        "default": "en-us",
-                        "description": "Search locale",
-                        "enum": [
-                            "en-us",
-                            "de",
-                            "fr",
-                            "ru",
-                            "ja",
-                            "zh"
-                        ],
-                        "in": "query",
-                        "name": "language",
-                        "type": "string"
-                    },
-                    {
-                        "default": false,
-                        "description": "Whether the search should be a strict match",
-                        "in": "query",
-                        "name": "strict",
-                        "type": "boolean"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of search results",
-                        "examples": {
-                            "application/json": {
-                                "solarsystem": [
-                                    30002510
-                                ],
-                                "station": [
-                                    60004588,
-                                    60004594,
-                                    60005725,
-                                    60009106,
-                                    60012721,
-                                    60012724,
-                                    60012727
-                                ]
-                            }
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok object",
-                            "properties": {
-                                "agent": {
-                                    "description": "agent array",
-                                    "items": {
-                                        "description": "agent integer",
-                                        "format": "int32",
-                                        "title": "get_search_agent",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_search_agent",
-                                    "type": "array"
-                                },
-                                "alliance": {
-                                    "description": "alliance array",
-                                    "items": {
-                                        "description": "alliance integer",
-                                        "format": "int32",
-                                        "title": "get_search_alliance",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_search_alliance",
-                                    "type": "array"
-                                },
-                                "character": {
-                                    "description": "character array",
-                                    "items": {
-                                        "description": "character integer",
-                                        "format": "int32",
-                                        "title": "get_search_character",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_search_character",
-                                    "type": "array"
-                                },
-                                "constellation": {
-                                    "description": "constellation array",
-                                    "items": {
-                                        "description": "constellation integer",
-                                        "format": "int32",
-                                        "title": "get_search_constellation",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_search_constellation",
-                                    "type": "array"
-                                },
-                                "corporation": {
-                                    "description": "corporation array",
-                                    "items": {
-                                        "description": "corporation integer",
-                                        "format": "int32",
-                                        "title": "get_search_corporation",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_search_corporation",
-                                    "type": "array"
-                                },
-                                "faction": {
-                                    "description": "faction array",
-                                    "items": {
-                                        "description": "faction integer",
-                                        "format": "int32",
-                                        "title": "get_search_faction",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_search_faction",
-                                    "type": "array"
-                                },
-                                "inventorytype": {
-                                    "description": "inventorytype array",
-                                    "items": {
-                                        "description": "inventorytype integer",
-                                        "format": "int32",
-                                        "title": "get_search_inventorytype",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_search_inventorytype",
-                                    "type": "array"
-                                },
-                                "region": {
-                                    "description": "region array",
-                                    "items": {
-                                        "description": "region integer",
-                                        "format": "int32",
-                                        "title": "get_search_region",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_search_region",
-                                    "type": "array"
-                                },
-                                "solarsystem": {
-                                    "description": "solarsystem array",
-                                    "items": {
-                                        "description": "solarsystem integer",
-                                        "format": "int32",
-                                        "title": "get_search_solarsystem",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_search_solarsystem",
-                                    "type": "array"
-                                },
-                                "station": {
-                                    "description": "station array",
-                                    "items": {
-                                        "description": "station integer",
-                                        "format": "int32",
-                                        "title": "get_search_station",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_search_station",
-                                    "type": "array"
-                                },
-                                "wormhole": {
-                                    "description": "wormhole array",
-                                    "items": {
-                                        "description": "wormhole integer",
-                                        "format": "int32",
-                                        "title": "get_search_wormhole",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_search_wormhole",
-                                    "type": "array"
-                                }
-                            },
-                            "title": "get_search_ok",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_search_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_search_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "summary": "Search on a string",
-                "tags": [
-                    "Search"
                 ]
             }
         },
@@ -9200,7 +8895,6 @@
                 "esi-mail.organize_mail.v1": "EVE SSO scope esi-mail.organize_mail.v1",
                 "esi-mail.read_mail.v1": "EVE SSO scope esi-mail.read_mail.v1",
                 "esi-mail.send_mail.v1": "EVE SSO scope esi-mail.send_mail.v1",
-                "esi-search.search_structures.v1": "EVE SSO scope esi-search.search_structures.v1",
                 "esi-skills.read_skillqueue.v1": "EVE SSO scope esi-skills.read_skillqueue.v1",
                 "esi-skills.read_skills.v1": "EVE SSO scope esi-skills.read_skills.v1",
                 "esi-universe.read_structures.v1": "EVE SSO scope esi-universe.read_structures.v1",
