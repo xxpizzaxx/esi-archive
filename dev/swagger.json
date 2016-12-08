@@ -4,7 +4,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.3.1.dev2"
+        "version": "0.3.1"
     },
     "paths": {
         "/alliances/": {
@@ -7032,13 +7032,13 @@
                                 "properties": {
                                     "constellation_id": {
                                         "description": "The constellation id in which this incursion takes place",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_incursions_constellation_id",
                                         "type": "integer"
                                     },
                                     "faction_id": {
                                         "description": "The attacking faction's id",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_incursions_faction_id",
                                         "type": "integer"
                                     },
@@ -7051,7 +7051,7 @@
                                         "description": "A list of infested solar system ids that are a part of this incursion",
                                         "items": {
                                             "description": "infested_solar_system integer",
-                                            "format": "int64",
+                                            "format": "int32",
                                             "title": "get_incursions_infested_solar_system",
                                             "type": "integer"
                                         },
@@ -7066,7 +7066,7 @@
                                     },
                                     "staging_solar_system_id": {
                                         "description": "Staging solar system for this incursion",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_incursions_staging_solar_system_id",
                                         "type": "integer"
                                     },
@@ -8036,7 +8036,7 @@
                                     },
                                     "type_id": {
                                         "description": "type_id integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_markets_prices_type_id",
                                         "type": "integer"
                                     }
@@ -8085,7 +8085,7 @@
                 "parameters": [
                     {
                         "description": "Return statistics in this region",
-                        "format": "int64",
+                        "format": "int32",
                         "in": "path",
                         "name": "region_id",
                         "required": true,
@@ -8093,7 +8093,7 @@
                     },
                     {
                         "description": "Return statistics for this type",
-                        "format": "int64",
+                        "format": "int32",
                         "in": "query",
                         "name": "type_id",
                         "required": true,
@@ -8251,7 +8251,7 @@
                 "parameters": [
                     {
                         "description": "Return orders in this region",
-                        "format": "int64",
+                        "format": "int32",
                         "in": "path",
                         "name": "region_id",
                         "required": true,
@@ -8259,7 +8259,7 @@
                     },
                     {
                         "description": "Return orders only for this type",
-                        "format": "int64",
+                        "format": "int32",
                         "in": "query",
                         "name": "type_id",
                         "required": false,
@@ -8363,7 +8363,7 @@
                                     },
                                     "min_volume": {
                                         "description": "min_volume integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_markets_region_id_orders_min_volume",
                                         "type": "integer"
                                     },
@@ -8400,19 +8400,19 @@
                                     },
                                     "type_id": {
                                         "description": "type_id integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_markets_region_id_orders_type_id",
                                         "type": "integer"
                                     },
                                     "volume_remain": {
                                         "description": "volume_remain integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_markets_region_id_orders_volume_remain",
                                         "type": "integer"
                                     },
                                     "volume_total": {
                                         "description": "volume_total integer",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_markets_region_id_orders_volume_total",
                                         "type": "integer"
                                     }
@@ -8795,19 +8795,19 @@
                                     },
                                     "campaign_id": {
                                         "description": "Unique ID for this campaign.",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_sovereignty_campaigns_campaign_id",
                                         "type": "integer"
                                     },
                                     "constellation_id": {
                                         "description": "The constellation in which the campaign will take place.\n",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_sovereignty_campaigns_constellation_id",
                                         "type": "integer"
                                     },
                                     "defender_id": {
                                         "description": "Defending alliance, only present in Defense Events\n",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_sovereignty_campaigns_defender_id",
                                         "type": "integer"
                                     },
@@ -8835,7 +8835,7 @@
                                             "properties": {
                                                 "alliance_id": {
                                                     "description": "alliance_id integer",
-                                                    "format": "int64",
+                                                    "format": "int32",
                                                     "title": "get_sovereignty_campaigns_alliance_id",
                                                     "type": "integer"
                                                 },
@@ -8858,7 +8858,7 @@
                                     },
                                     "solar_system_id": {
                                         "description": "The solar system the structure is located in.\n",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_sovereignty_campaigns_solar_system_id",
                                         "type": "integer"
                                     },
@@ -8971,13 +8971,13 @@
                                 "properties": {
                                     "alliance_id": {
                                         "description": "The alliance that owns the structure.\n",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_sovereignty_structures_alliance_id",
                                         "type": "integer"
                                     },
                                     "solar_system_id": {
                                         "description": "Solar system in which the structure is located.\n",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_sovereignty_structures_solar_system_id",
                                         "type": "integer"
                                     },
@@ -8989,7 +8989,7 @@
                                     },
                                     "structure_type_id": {
                                         "description": "A reference to the type of structure this is.\n",
-                                        "format": "int64",
+                                        "format": "int32",
                                         "title": "get_sovereignty_structures_structure_type_id",
                                         "type": "integer"
                                     },
