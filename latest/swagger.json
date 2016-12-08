@@ -6941,6 +6941,1955 @@
                 ]
             }
         },
+        "/fleets/{fleet_id}/": {
+            "get": {
+                "description": "Return details about a fleet\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/`\n\nAlternate route: `/dev/fleets/{fleet_id}/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
+                "operationId": "get_fleets_fleet_id",
+                "parameters": [
+                    {
+                        "description": "ID for a fleet",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "fleet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a fleet",
+                        "examples": {
+                            "application/json": {
+                                "is_free_move": false,
+                                "is_registered": false,
+                                "is_voice_enabled": false,
+                                "motd": "This is an <b>awesome</b> fleet!"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "is_free_move": {
+                                    "description": "Is free-move enabled",
+                                    "title": "get_fleets_fleet_id_is_free_move",
+                                    "type": "boolean"
+                                },
+                                "is_registered": {
+                                    "description": "Does the fleet have an active fleet advertisement",
+                                    "title": "get_fleets_fleet_id_is_registered",
+                                    "type": "boolean"
+                                },
+                                "is_voice_enabled": {
+                                    "description": "Is EVE Voice enabled",
+                                    "title": "get_fleets_fleet_id_is_voice_enabled",
+                                    "type": "boolean"
+                                },
+                                "motd": {
+                                    "description": "Fleet MOTD in CCP flavoured HTML",
+                                    "title": "get_fleets_fleet_id_motd",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "motd",
+                                "is_free_move",
+                                "is_registered",
+                                "is_voice_enabled"
+                            ],
+                            "title": "get_fleets_fleet_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-fleets.read_fleet.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_fleets_fleet_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_fleets_fleet_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "The fleet does not exist or you don't have access to it",
+                        "examples": {
+                            "application/json": {
+                                "error": "fleet 123 not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "404 not found object",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_fleets_fleet_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_fleets_fleet_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_fleets_fleet_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_fleets_fleet_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-fleets.read_fleet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get fleet information",
+                "tags": [
+                    "Fleets"
+                ]
+            },
+            "put": {
+                "description": "Update settings about a fleet\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/`\n\nAlternate route: `/dev/fleets/{fleet_id}/`\n",
+                "operationId": "put_fleets_fleet_id",
+                "parameters": [
+                    {
+                        "description": "ID for a fleet",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "fleet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "What to update for this fleet",
+                        "in": "body",
+                        "name": "new_settings",
+                        "required": true,
+                        "schema": {
+                            "description": "new_settings object",
+                            "properties": {
+                                "is_free_move": {
+                                    "description": "Should free-move be enabled in the fleet",
+                                    "title": "put_fleets_fleet_id_is_free_move",
+                                    "type": "boolean"
+                                },
+                                "motd": {
+                                    "description": "New fleet MOTD in CCP flavoured HTML",
+                                    "title": "put_fleets_fleet_id_motd",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_fleets_fleet_id_new_settings",
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Fleet updated"
+                    },
+                    "400": {
+                        "description": "Invalid request body",
+                        "examples": {
+                            "application/json": {
+                                "error": "Bad request message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Bad request",
+                            "properties": {
+                                "error": {
+                                    "description": "Bad request message",
+                                    "title": "put_fleets_fleet_id_400_bad_request",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_fleets_fleet_id_bad_request",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "put_fleets_fleet_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_fleets_fleet_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "The fleet does not exist or you don't have access to it",
+                        "examples": {
+                            "application/json": {
+                                "error": "fleet 123 not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "404 not found object",
+                            "properties": {
+                                "error": {
+                                    "description": "Error message",
+                                    "title": "put_fleets_fleet_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_fleets_fleet_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "put_fleets_fleet_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_fleets_fleet_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-fleets.write_fleet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Update fleet",
+                "tags": [
+                    "Fleets"
+                ]
+            }
+        },
+        "/fleets/{fleet_id}/members/": {
+            "get": {
+                "description": "Return information about fleet members\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/members/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/members/`\n\nAlternate route: `/dev/fleets/{fleet_id}/members/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
+                "operationId": "get_fleets_fleet_id_members",
+                "parameters": [
+                    {
+                        "description": "ID for a fleet",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "fleet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "en",
+                        "description": "Language to use in the response",
+                        "enum": [
+                            "de",
+                            "en",
+                            "fr",
+                            "ja",
+                            "ru",
+                            "zh"
+                        ],
+                        "in": "header",
+                        "name": "Accept-Language",
+                        "type": "string"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of fleet members",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "character_id": 93265215,
+                                    "join_time": "2016-04-29T12:34:56Z",
+                                    "role": "squad_commander",
+                                    "role_name": "Squad Commander (Boss)",
+                                    "ship_type_id": 33328,
+                                    "solar_system_id": 30003729,
+                                    "squad_id": 3129411261968,
+                                    "station_id": 61000180,
+                                    "takes_fleet_warp": true,
+                                    "wing_id": 2073711261968
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "character_id": {
+                                        "description": "character_id integer",
+                                        "format": "int32",
+                                        "title": "get_fleets_fleet_id_members_character_id",
+                                        "type": "integer"
+                                    },
+                                    "join_time": {
+                                        "description": "join_time string",
+                                        "format": "date-time",
+                                        "title": "get_fleets_fleet_id_members_join_time",
+                                        "type": "string"
+                                    },
+                                    "role": {
+                                        "description": "Member\u2019s role in fleet",
+                                        "enum": [
+                                            "fleet_commander",
+                                            "wing_commander",
+                                            "squad_commander",
+                                            "squad_member"
+                                        ],
+                                        "title": "get_fleets_fleet_id_members_role",
+                                        "type": "string"
+                                    },
+                                    "role_name": {
+                                        "description": "Localized role names",
+                                        "title": "get_fleets_fleet_id_members_role_name",
+                                        "type": "string"
+                                    },
+                                    "ship_type_id": {
+                                        "description": "ship_type_id integer",
+                                        "format": "int32",
+                                        "title": "get_fleets_fleet_id_members_ship_type_id",
+                                        "type": "integer"
+                                    },
+                                    "solar_system_id": {
+                                        "description": "Solar system the member is located in",
+                                        "format": "int32",
+                                        "title": "get_fleets_fleet_id_members_solar_system_id",
+                                        "type": "integer"
+                                    },
+                                    "squad_id": {
+                                        "description": "ID of the squad the member is in. If not applicable, will be set to -1",
+                                        "format": "int64",
+                                        "title": "get_fleets_fleet_id_members_squad_id",
+                                        "type": "integer"
+                                    },
+                                    "station_id": {
+                                        "description": "Station in which the member is docked in, if applicable",
+                                        "format": "int64",
+                                        "title": "get_fleets_fleet_id_members_station_id",
+                                        "type": "integer"
+                                    },
+                                    "takes_fleet_warp": {
+                                        "description": "Whether the member take fleet warps",
+                                        "title": "get_fleets_fleet_id_members_takes_fleet_warp",
+                                        "type": "boolean"
+                                    },
+                                    "wing_id": {
+                                        "description": "ID of the wing the member is in. If not applicable, will be set to -1",
+                                        "format": "int64",
+                                        "title": "get_fleets_fleet_id_members_wing_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "character_id",
+                                    "ship_type_id",
+                                    "wing_id",
+                                    "squad_id",
+                                    "role",
+                                    "role_name",
+                                    "join_time",
+                                    "takes_fleet_warp",
+                                    "solar_system_id"
+                                ],
+                                "title": "get_fleets_fleet_id_members_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_fleets_fleet_id_members_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-fleets.read_fleet.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_fleets_fleet_id_members_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_fleets_fleet_id_members_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "The fleet does not exist or you don't have access to it",
+                        "examples": {
+                            "application/json": {
+                                "error": "fleet 123 not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "404 not found object",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_fleets_fleet_id_members_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_fleets_fleet_id_members_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_fleets_fleet_id_members_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_fleets_fleet_id_members_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-fleets.read_fleet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get fleet members",
+                "tags": [
+                    "Fleets"
+                ]
+            },
+            "post": {
+                "description": "Invite a character into the fleet, if a character has a CSPA charge set, it is not possible to invite them to the fleet using ESI\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/members/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/members/`\n\nAlternate route: `/dev/fleets/{fleet_id}/members/`\n",
+                "operationId": "post_fleets_fleet_id_members",
+                "parameters": [
+                    {
+                        "description": "ID for a fleet",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "fleet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Details of the invitation",
+                        "in": "body",
+                        "name": "invitation",
+                        "required": true,
+                        "schema": {
+                            "description": "invitation object",
+                            "properties": {
+                                "character_id": {
+                                    "description": "The character you want to invite",
+                                    "format": "int32",
+                                    "title": "post_fleets_fleet_id_members_character_id",
+                                    "type": "integer"
+                                },
+                                "role": {
+                                    "description": "- If a character is invited with the `fleet_commander` role, neither `wing_id` or `squad_id` should be specified - If a character is invited with the `wing_commander` role, only `wing_id` should be specified - If a character is invited with the `squad_commander` role, both `wing_id` and `squad_id` should be specified - If a character is invited with the `squad_member` role, `wing_id` and `squad_id` should either both be specified or not specified at all. If they aren\u2019t specified, the invited character will join any squad with available positions\n",
+                                    "enum": [
+                                        "fleet_commander",
+                                        "wing_commander",
+                                        "squad_commander",
+                                        "squad_member"
+                                    ],
+                                    "title": "post_fleets_fleet_id_members_role",
+                                    "type": "string"
+                                },
+                                "squad_id": {
+                                    "description": "squad_id integer",
+                                    "format": "int64",
+                                    "minimum": 0,
+                                    "title": "post_fleets_fleet_id_members_squad_id",
+                                    "type": "integer"
+                                },
+                                "wing_id": {
+                                    "description": "wing_id integer",
+                                    "format": "int64",
+                                    "minimum": 0,
+                                    "title": "post_fleets_fleet_id_members_wing_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "character_id",
+                                "role"
+                            ],
+                            "title": "post_fleets_fleet_id_members_invitation",
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Fleet invitation sent"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "post_fleets_fleet_id_members_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_fleets_fleet_id_members_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "The fleet does not exist or you don't have access to it",
+                        "examples": {
+                            "application/json": {
+                                "error": "fleet 123 not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "404 not found object",
+                            "properties": {
+                                "error": {
+                                    "description": "Error message",
+                                    "title": "post_fleets_fleet_id_members_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_fleets_fleet_id_members_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "422": {
+                        "description": "Errors in invitation",
+                        "examples": {
+                            "application/json": {
+                                "error": "missing wing_id"
+                            }
+                        },
+                        "schema": {
+                            "description": "422 unprocessable entity object",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "post_fleets_fleet_id_members_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_fleets_fleet_id_members_unprocessable_entity",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "post_fleets_fleet_id_members_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_fleets_fleet_id_members_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-fleets.write_fleet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Create fleet invitation",
+                "tags": [
+                    "Fleets"
+                ]
+            }
+        },
+        "/fleets/{fleet_id}/members/{member_id}/": {
+            "delete": {
+                "description": "Kick a fleet member\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/members/{member_id}/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/members/{member_id}/`\n\nAlternate route: `/dev/fleets/{fleet_id}/members/{member_id}/`\n",
+                "operationId": "delete_fleets_fleet_id_members_member_id",
+                "parameters": [
+                    {
+                        "description": "ID for a fleet",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "fleet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "The character ID of a member in this fleet",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "member_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Fleet member kicked"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "delete_fleets_fleet_id_members_member_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "delete_fleets_fleet_id_members_member_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "The fleet does not exist or you don't have access to it",
+                        "examples": {
+                            "application/json": {
+                                "error": "fleet 123 not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "404 not found object",
+                            "properties": {
+                                "error": {
+                                    "description": "Error message",
+                                    "title": "delete_fleets_fleet_id_members_member_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "delete_fleets_fleet_id_members_member_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "delete_fleets_fleet_id_members_member_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "delete_fleets_fleet_id_members_member_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-fleets.write_fleet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Kick fleet member",
+                "tags": [
+                    "Fleets"
+                ]
+            },
+            "put": {
+                "description": "Move a fleet member around\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/members/{member_id}/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/members/{member_id}/`\n\nAlternate route: `/dev/fleets/{fleet_id}/members/{member_id}/`\n",
+                "operationId": "put_fleets_fleet_id_members_member_id",
+                "parameters": [
+                    {
+                        "description": "ID for a fleet",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "fleet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "The character ID of a member in this fleet",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "member_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Details of the invitation",
+                        "in": "body",
+                        "name": "movement",
+                        "required": true,
+                        "schema": {
+                            "description": "movement object",
+                            "properties": {
+                                "role": {
+                                    "description": "- If a character is moved to the `fleet_commander` role, neither `wing_id` or `squad_id` should be specified - If a character is moved to the `wing_commander` role, only `wing_id` should be specified - If a character is moved to the `squad_commander` role, both `wing_id` and `squad_id` should be specified - If a character is moved to the `squad_member` role, both `wing_id` and `squad_id` should be specified\n",
+                                    "enum": [
+                                        "fleet_commander",
+                                        "wing_commander",
+                                        "squad_commander",
+                                        "squad_member"
+                                    ],
+                                    "title": "put_fleets_fleet_id_members_member_id_role",
+                                    "type": "string"
+                                },
+                                "squad_id": {
+                                    "description": "squad_id integer",
+                                    "format": "int64",
+                                    "minimum": 0,
+                                    "title": "put_fleets_fleet_id_members_member_id_squad_id",
+                                    "type": "integer"
+                                },
+                                "wing_id": {
+                                    "description": "wing_id integer",
+                                    "format": "int64",
+                                    "minimum": 0,
+                                    "title": "put_fleets_fleet_id_members_member_id_wing_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "role"
+                            ],
+                            "title": "put_fleets_fleet_id_members_member_id_movement",
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Fleet invitation sent"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "put_fleets_fleet_id_members_member_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_fleets_fleet_id_members_member_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "The fleet does not exist or you don't have access to it",
+                        "examples": {
+                            "application/json": {
+                                "error": "fleet 123 not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "404 not found object",
+                            "properties": {
+                                "error": {
+                                    "description": "Error message",
+                                    "title": "put_fleets_fleet_id_members_member_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_fleets_fleet_id_members_member_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "422": {
+                        "description": "Errors in invitation",
+                        "examples": {
+                            "application/json": {
+                                "error": "missing wing_id"
+                            }
+                        },
+                        "schema": {
+                            "description": "422 unprocessable entity object",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "put_fleets_fleet_id_members_member_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_fleets_fleet_id_members_member_id_unprocessable_entity",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "put_fleets_fleet_id_members_member_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_fleets_fleet_id_members_member_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-fleets.write_fleet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Move fleet member",
+                "tags": [
+                    "Fleets"
+                ]
+            }
+        },
+        "/fleets/{fleet_id}/squads/{squad_id}/": {
+            "delete": {
+                "description": "Delete a fleet squad, only empty squads can be deleted\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/squads/{squad_id}/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/squads/{squad_id}/`\n\nAlternate route: `/dev/fleets/{fleet_id}/squads/{squad_id}/`\n",
+                "operationId": "delete_fleets_fleet_id_squads_squad_id",
+                "parameters": [
+                    {
+                        "description": "ID for a fleet",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "fleet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "The squad to delete",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "squad_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Squad deleted"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "delete_fleets_fleet_id_squads_squad_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "delete_fleets_fleet_id_squads_squad_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "The fleet does not exist or you don't have access to it",
+                        "examples": {
+                            "application/json": {
+                                "error": "fleet 123 not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "404 not found object",
+                            "properties": {
+                                "error": {
+                                    "description": "Error message",
+                                    "title": "delete_fleets_fleet_id_squads_squad_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "delete_fleets_fleet_id_squads_squad_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "delete_fleets_fleet_id_squads_squad_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "delete_fleets_fleet_id_squads_squad_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-fleets.write_fleet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Delete fleet squad",
+                "tags": [
+                    "Fleets"
+                ]
+            },
+            "put": {
+                "description": "Rename a fleet wing\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/squads/{squad_id}/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/squads/{squad_id}/`\n\nAlternate route: `/dev/fleets/{fleet_id}/squads/{squad_id}/`\n",
+                "operationId": "put_fleets_fleet_id_squads_squad_id",
+                "parameters": [
+                    {
+                        "description": "ID for a fleet",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "fleet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "The squad to rename",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "squad_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "New name of the wing",
+                        "in": "body",
+                        "name": "naming",
+                        "required": true,
+                        "schema": {
+                            "description": "naming object",
+                            "properties": {
+                                "name": {
+                                    "description": "name string",
+                                    "maxLength": 10,
+                                    "title": "put_fleets_fleet_id_squads_squad_id_name",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "name"
+                            ],
+                            "title": "put_fleets_fleet_id_squads_squad_id_naming",
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Squad renamed"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "put_fleets_fleet_id_squads_squad_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_fleets_fleet_id_squads_squad_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "The fleet does not exist or you don't have access to it",
+                        "examples": {
+                            "application/json": {
+                                "error": "fleet 123 not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "404 not found object",
+                            "properties": {
+                                "error": {
+                                    "description": "Error message",
+                                    "title": "put_fleets_fleet_id_squads_squad_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_fleets_fleet_id_squads_squad_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "put_fleets_fleet_id_squads_squad_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_fleets_fleet_id_squads_squad_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-fleets.write_fleet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Rename fleet wing",
+                "tags": [
+                    "Fleets"
+                ]
+            }
+        },
+        "/fleets/{fleet_id}/wings/": {
+            "get": {
+                "description": "Return information about wings in a fleet\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/wings/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/wings/`\n\nAlternate route: `/dev/fleets/{fleet_id}/wings/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
+                "operationId": "get_fleets_fleet_id_wings",
+                "parameters": [
+                    {
+                        "description": "ID for a fleet",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "fleet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "en",
+                        "description": "Language to use in the response",
+                        "enum": [
+                            "de",
+                            "en",
+                            "fr",
+                            "ja",
+                            "ru",
+                            "zh"
+                        ],
+                        "in": "header",
+                        "name": "Accept-Language",
+                        "type": "string"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of fleet wings",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 2073711261968,
+                                    "name": "Wing 1",
+                                    "squads": [
+                                        {
+                                            "id": 3129411261968,
+                                            "name": "Squad 1"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "id": {
+                                        "description": "id integer",
+                                        "format": "int64",
+                                        "title": "get_fleets_fleet_id_wings_id",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "description": "name string",
+                                        "title": "get_fleets_fleet_id_wings_name",
+                                        "type": "string"
+                                    },
+                                    "squads": {
+                                        "description": "squads array",
+                                        "items": {
+                                            "description": "squad object",
+                                            "properties": {
+                                                "id": {
+                                                    "description": "id integer",
+                                                    "format": "int64",
+                                                    "title": "get_fleets_fleet_id_wings_id",
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "description": "name string",
+                                                    "title": "get_fleets_fleet_id_wings_name",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "name",
+                                                "id"
+                                            ],
+                                            "title": "get_fleets_fleet_id_wings_squad",
+                                            "type": "object"
+                                        },
+                                        "title": "get_fleets_fleet_id_wings_squads",
+                                        "type": "array"
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "id",
+                                    "squads"
+                                ],
+                                "title": "get_fleets_fleet_id_wings_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_fleets_fleet_id_wings_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-fleets.read_fleet.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_fleets_fleet_id_wings_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_fleets_fleet_id_wings_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "The fleet does not exist or you don't have access to it",
+                        "examples": {
+                            "application/json": {
+                                "error": "fleet 123 not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "404 not found object",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_fleets_fleet_id_wings_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_fleets_fleet_id_wings_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_fleets_fleet_id_wings_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_fleets_fleet_id_wings_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-fleets.read_fleet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get fleet wings",
+                "tags": [
+                    "Fleets"
+                ]
+            },
+            "post": {
+                "description": "Create a new wing in a fleet\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/wings/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/wings/`\n\nAlternate route: `/dev/fleets/{fleet_id}/wings/`\n",
+                "operationId": "post_fleets_fleet_id_wings",
+                "parameters": [
+                    {
+                        "description": "ID for a fleet",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "fleet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Wing created",
+                        "examples": {
+                            "application/json": {
+                                "wing_id": 123
+                            }
+                        },
+                        "schema": {
+                            "description": "201 created object",
+                            "properties": {
+                                "wing_id": {
+                                    "description": "The wing_id of the newly created wing",
+                                    "format": "int64",
+                                    "title": "post_fleets_fleet_id_wings_wing_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "wing_id"
+                            ],
+                            "title": "post_fleets_fleet_id_wings_created",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "post_fleets_fleet_id_wings_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_fleets_fleet_id_wings_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "The fleet does not exist or you don't have access to it",
+                        "examples": {
+                            "application/json": {
+                                "error": "fleet 123 not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "404 not found object",
+                            "properties": {
+                                "error": {
+                                    "description": "Error message",
+                                    "title": "post_fleets_fleet_id_wings_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_fleets_fleet_id_wings_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "post_fleets_fleet_id_wings_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_fleets_fleet_id_wings_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-fleets.write_fleet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Create fleet wing",
+                "tags": [
+                    "Fleets"
+                ]
+            }
+        },
+        "/fleets/{fleet_id}/wings/{wing_id}/": {
+            "delete": {
+                "description": "Delete a fleet wing, only empty wings can be deleted. The wing may contain squads, but the squads must be empty\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/wings/{wing_id}/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/wings/{wing_id}/`\n\nAlternate route: `/dev/fleets/{fleet_id}/wings/{wing_id}/`\n",
+                "operationId": "delete_fleets_fleet_id_wings_wing_id",
+                "parameters": [
+                    {
+                        "description": "ID for a fleet",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "fleet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "The wing to delete",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "wing_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Wing deleted"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "delete_fleets_fleet_id_wings_wing_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "delete_fleets_fleet_id_wings_wing_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "The fleet does not exist or you don't have access to it",
+                        "examples": {
+                            "application/json": {
+                                "error": "fleet 123 not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "404 not found object",
+                            "properties": {
+                                "error": {
+                                    "description": "Error message",
+                                    "title": "delete_fleets_fleet_id_wings_wing_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "delete_fleets_fleet_id_wings_wing_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "delete_fleets_fleet_id_wings_wing_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "delete_fleets_fleet_id_wings_wing_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-fleets.write_fleet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Delete fleet wing",
+                "tags": [
+                    "Fleets"
+                ]
+            },
+            "put": {
+                "description": "Rename a fleet wing\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/wings/{wing_id}/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/wings/{wing_id}/`\n\nAlternate route: `/dev/fleets/{fleet_id}/wings/{wing_id}/`\n",
+                "operationId": "put_fleets_fleet_id_wings_wing_id",
+                "parameters": [
+                    {
+                        "description": "ID for a fleet",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "fleet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "The wing to rename",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "wing_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "New name of the wing",
+                        "in": "body",
+                        "name": "naming",
+                        "required": true,
+                        "schema": {
+                            "description": "naming object",
+                            "properties": {
+                                "name": {
+                                    "description": "name string",
+                                    "maxLength": 10,
+                                    "title": "put_fleets_fleet_id_wings_wing_id_name",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "name"
+                            ],
+                            "title": "put_fleets_fleet_id_wings_wing_id_naming",
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Wing renamed"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "put_fleets_fleet_id_wings_wing_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_fleets_fleet_id_wings_wing_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "The fleet does not exist or you don't have access to it",
+                        "examples": {
+                            "application/json": {
+                                "error": "fleet 123 not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "404 not found object",
+                            "properties": {
+                                "error": {
+                                    "description": "Error message",
+                                    "title": "put_fleets_fleet_id_wings_wing_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_fleets_fleet_id_wings_wing_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "put_fleets_fleet_id_wings_wing_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_fleets_fleet_id_wings_wing_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-fleets.write_fleet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Rename fleet wing",
+                "tags": [
+                    "Fleets"
+                ]
+            }
+        },
+        "/fleets/{fleet_id}/wings/{wing_id}/squads/": {
+            "post": {
+                "description": "Create a new squad in a fleet\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/wings/{wing_id}/squads/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/wings/{wing_id}/squads/`\n\nAlternate route: `/dev/fleets/{fleet_id}/wings/{wing_id}/squads/`\n",
+                "operationId": "post_fleets_fleet_id_wings_wing_id_squads",
+                "parameters": [
+                    {
+                        "description": "ID for a fleet",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "fleet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "The wing_id to create squad in",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "wing_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Squad created",
+                        "examples": {
+                            "application/json": {
+                                "squad_id": 123
+                            }
+                        },
+                        "schema": {
+                            "description": "201 created object",
+                            "properties": {
+                                "squad_id": {
+                                    "description": "The squad_id of the newly created squad",
+                                    "format": "int64",
+                                    "title": "post_fleets_fleet_id_wings_wing_id_squads_squad_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "squad_id"
+                            ],
+                            "title": "post_fleets_fleet_id_wings_wing_id_squads_created",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "post_fleets_fleet_id_wings_wing_id_squads_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_fleets_fleet_id_wings_wing_id_squads_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "The fleet does not exist or you don't have access to it",
+                        "examples": {
+                            "application/json": {
+                                "error": "fleet 123 not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "404 not found object",
+                            "properties": {
+                                "error": {
+                                    "description": "Error message",
+                                    "title": "post_fleets_fleet_id_wings_wing_id_squads_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_fleets_fleet_id_wings_wing_id_squads_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "post_fleets_fleet_id_wings_wing_id_squads_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_fleets_fleet_id_wings_wing_id_squads_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-fleets.write_fleet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Create fleet squad",
+                "tags": [
+                    "Fleets"
+                ]
+            }
+        },
         "/incursions/": {
             "get": {
                 "description": "Return a list of current incursions\n\n---\n\nAlternate route: `/v1/incursions/`\n\nAlternate route: `/legacy/incursions/`\n\nAlternate route: `/dev/incursions/`\n\n\n---\n\nThis route is cached for up to 300 seconds",
@@ -10405,6 +12354,8 @@
                 "esi-characters.read_contacts.v1": "EVE SSO scope esi-characters.read_contacts.v1",
                 "esi-clones.read_clones.v1": "EVE SSO scope esi-clones.read_clones.v1",
                 "esi-corporations.read_corporation_membership.v1": "EVE SSO scope esi-corporations.read_corporation_membership.v1",
+                "esi-fleets.read_fleet.v1": "EVE SSO scope esi-fleets.read_fleet.v1",
+                "esi-fleets.write_fleet.v1": "EVE SSO scope esi-fleets.write_fleet.v1",
                 "esi-killmails.read_killmails.v1": "EVE SSO scope esi-killmails.read_killmails.v1",
                 "esi-location.read_location.v1": "EVE SSO scope esi-location.read_location.v1",
                 "esi-location.read_ship_type.v1": "EVE SSO scope esi-location.read_ship_type.v1",
