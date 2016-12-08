@@ -249,7 +249,7 @@
                                     "type": "string"
                                 },
                                 "executor_corp": {
-                                    "description": "executor_corp integer",
+                                    "description": "the executor corporation ID, if this alliance is not closed",
                                     "format": "int32",
                                     "title": "get_alliances_alliance_id_executor_corp",
                                     "type": "integer"
@@ -280,7 +280,6 @@
                             "required": [
                                 "alliance_name",
                                 "ticker",
-                                "executor_corp",
                                 "date_founded"
                             ],
                             "title": "get_alliances_alliance_id_ok",
@@ -7359,7 +7358,7 @@
         },
         "/search/": {
             "get": {
-                "description": "Search for entities that match a given sub-string.\n\n---\n\nAlternate route: `/v1/search/`\n\nAlternate route: `/latest/search/`\n\nAlternate route: `/dev/search/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Search for entities that match a given sub-string.\n\n---\n\nAlternate route: `/v1/search/`\n\nAlternate route: `/latest/search/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_search",
                 "parameters": [
                     {
