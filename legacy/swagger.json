@@ -7882,7 +7882,7 @@
                 ]
             },
             "put": {
-                "description": "Rename a fleet wing\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/squads/{squad_id}/`\n\nAlternate route: `/latest/fleets/{fleet_id}/squads/{squad_id}/`\n\nAlternate route: `/dev/fleets/{fleet_id}/squads/{squad_id}/`\n",
+                "description": "Rename a fleet squad\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/squads/{squad_id}/`\n\nAlternate route: `/latest/fleets/{fleet_id}/squads/{squad_id}/`\n\nAlternate route: `/dev/fleets/{fleet_id}/squads/{squad_id}/`\n",
                 "operationId": "put_fleets_fleet_id_squads_squad_id",
                 "parameters": [
                     {
@@ -7902,7 +7902,7 @@
                         "type": "integer"
                     },
                     {
-                        "description": "New name of the wing",
+                        "description": "New name of the squad",
                         "in": "body",
                         "name": "naming",
                         "required": true,
@@ -8007,7 +8007,7 @@
                         ]
                     }
                 ],
-                "summary": "Rename fleet wing",
+                "summary": "Rename fleet squad",
                 "tags": [
                     "Fleets"
                 ]
