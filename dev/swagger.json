@@ -199,7 +199,7 @@
         },
         "/alliances/{alliance_id}/": {
             "get": {
-                "description": "Public information about an alliance\n\n---\n\nAlternate route: `/v2/alliances/{alliance_id}/`\n\nAlternate route: `/latest/alliances/{alliance_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Public information about an alliance\n\n---\n\nAlternate route: `/v1/alliances/{alliance_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_alliances_alliance_id",
                 "parameters": [
                     {
@@ -229,7 +229,7 @@
                             "application/json": {
                                 "alliance_name": "C C P Alliance",
                                 "date_founded": "2016-06-26T21:00:00Z",
-                                "executor_corp": 98356193,
+                                "executor_corporation_id": 98356193,
                                 "ticker": "<C C P>"
                             }
                         },
@@ -261,10 +261,10 @@
                                     "title": "get_alliances_alliance_id_date_founded",
                                     "type": "string"
                                 },
-                                "executor_corp": {
-                                    "description": "executor_corp integer",
+                                "executor_corporation_id": {
+                                    "description": "the executor corporation ID, if this alliance is not closed",
                                     "format": "int32",
-                                    "title": "get_alliances_alliance_id_executor_corp",
+                                    "title": "get_alliances_alliance_id_executor_corporation_id",
                                     "type": "integer"
                                 },
                                 "ticker": {
@@ -276,7 +276,6 @@
                             "required": [
                                 "alliance_name",
                                 "ticker",
-                                "executor_corp",
                                 "date_founded"
                             ],
                             "title": "get_alliances_alliance_id_ok",
@@ -4095,7 +4094,7 @@
         },
         "/characters/{character_id}/search/": {
             "get": {
-                "description": "Search for entities that match a given sub-string.\n\n---\n\nAlternate route: `/v2/characters/{character_id}/search/`\n\nAlternate route: `/latest/characters/{character_id}/search/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Search for entities that match a given sub-string.\n\n---\n\nAlternate route: `/v3/characters/{character_id}/search/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_search",
                 "parameters": [
                     {
@@ -4129,8 +4128,7 @@
                                 "region",
                                 "solarsystem",
                                 "station",
-                                "structure",
-                                "wormhole"
+                                "structure"
                             ],
                             "type": "string"
                         },
@@ -4329,17 +4327,6 @@
                                         "type": "integer"
                                     },
                                     "title": "get_characters_character_id_search_structure",
-                                    "type": "array"
-                                },
-                                "wormhole": {
-                                    "description": "wormhole array",
-                                    "items": {
-                                        "description": "wormhole integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_wormhole",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_characters_character_id_search_wormhole",
                                     "type": "array"
                                 }
                             },
@@ -7527,7 +7514,7 @@
         },
         "/search/": {
             "get": {
-                "description": "Search for entities that match a given sub-string.\n\n---\n\nAlternate route: `/v1/search/`\n\nAlternate route: `/legacy/search/`\n\nAlternate route: `/latest/search/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Search for entities that match a given sub-string.\n\n---\n\nAlternate route: `/v2/search/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_search",
                 "parameters": [
                     {
@@ -7552,8 +7539,7 @@
                                 "inventorytype",
                                 "region",
                                 "solarsystem",
-                                "station",
-                                "wormhole"
+                                "station"
                             ],
                             "type": "string"
                         },
@@ -7741,17 +7727,6 @@
                                         "type": "integer"
                                     },
                                     "title": "get_search_station",
-                                    "type": "array"
-                                },
-                                "wormhole": {
-                                    "description": "wormhole array",
-                                    "items": {
-                                        "description": "wormhole integer",
-                                        "format": "int32",
-                                        "title": "get_search_wormhole",
-                                        "type": "integer"
-                                    },
-                                    "title": "get_search_wormhole",
                                     "type": "array"
                                 }
                             },
