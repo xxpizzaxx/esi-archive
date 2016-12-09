@@ -4760,6 +4760,302 @@
                 ]
             }
         },
+        "/characters/{character_id}/search/": {
+            "get": {
+                "description": "Search for entities that match a given sub-string.\n\n---\n\nAlternate route: `/v3/characters/{character_id}/search/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_search",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "The string to search on",
+                        "in": "query",
+                        "minLength": 3,
+                        "name": "search",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "description": "Type of entities to search for",
+                        "in": "query",
+                        "items": {
+                            "enum": [
+                                "agent",
+                                "alliance",
+                                "character",
+                                "constellation",
+                                "corporation",
+                                "faction",
+                                "inventorytype",
+                                "region",
+                                "solarsystem",
+                                "station",
+                                "structure"
+                            ],
+                            "type": "string"
+                        },
+                        "minItems": 1,
+                        "name": "categories",
+                        "required": true,
+                        "type": "array",
+                        "uniqueItems": true
+                    },
+                    {
+                        "default": "en-us",
+                        "description": "Search locale",
+                        "enum": [
+                            "en-us",
+                            "de",
+                            "fr",
+                            "ru",
+                            "ja",
+                            "zh"
+                        ],
+                        "in": "query",
+                        "name": "language",
+                        "type": "string"
+                    },
+                    {
+                        "default": false,
+                        "description": "Whether the search should be a strict match",
+                        "in": "query",
+                        "name": "strict",
+                        "type": "boolean"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of search results",
+                        "examples": {
+                            "application/json": {
+                                "solarsystem": [
+                                    30002510
+                                ],
+                                "station": [
+                                    60004588,
+                                    60004594,
+                                    60005725,
+                                    60009106,
+                                    60012721,
+                                    60012724,
+                                    60012727
+                                ]
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "agent": {
+                                    "description": "agent array",
+                                    "items": {
+                                        "description": "agent integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_agent",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_characters_character_id_search_agent",
+                                    "type": "array"
+                                },
+                                "alliance": {
+                                    "description": "alliance array",
+                                    "items": {
+                                        "description": "alliance integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_alliance",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_characters_character_id_search_alliance",
+                                    "type": "array"
+                                },
+                                "character": {
+                                    "description": "character array",
+                                    "items": {
+                                        "description": "character integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_character",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_characters_character_id_search_character",
+                                    "type": "array"
+                                },
+                                "constellation": {
+                                    "description": "constellation array",
+                                    "items": {
+                                        "description": "constellation integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_constellation",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_characters_character_id_search_constellation",
+                                    "type": "array"
+                                },
+                                "corporation": {
+                                    "description": "corporation array",
+                                    "items": {
+                                        "description": "corporation integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_corporation",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_characters_character_id_search_corporation",
+                                    "type": "array"
+                                },
+                                "faction": {
+                                    "description": "faction array",
+                                    "items": {
+                                        "description": "faction integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_faction",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_characters_character_id_search_faction",
+                                    "type": "array"
+                                },
+                                "inventorytype": {
+                                    "description": "inventorytype array",
+                                    "items": {
+                                        "description": "inventorytype integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_inventorytype",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_characters_character_id_search_inventorytype",
+                                    "type": "array"
+                                },
+                                "region": {
+                                    "description": "region array",
+                                    "items": {
+                                        "description": "region integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_region",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_characters_character_id_search_region",
+                                    "type": "array"
+                                },
+                                "solarsystem": {
+                                    "description": "solarsystem array",
+                                    "items": {
+                                        "description": "solarsystem integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_solarsystem",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_characters_character_id_search_solarsystem",
+                                    "type": "array"
+                                },
+                                "station": {
+                                    "description": "station array",
+                                    "items": {
+                                        "description": "station integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_station",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_characters_character_id_search_station",
+                                    "type": "array"
+                                },
+                                "structure": {
+                                    "description": "structure array",
+                                    "items": {
+                                        "description": "structure integer",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_search_structure",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_characters_character_id_search_structure",
+                                    "type": "array"
+                                }
+                            },
+                            "title": "get_characters_character_id_search_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-search.search_structures.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_search_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_search_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_search_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_search_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-search.search_structures.v1"
+                        ]
+                    }
+                ],
+                "summary": "Search on a string",
+                "tags": [
+                    "Search"
+                ]
+            }
+        },
         "/characters/{character_id}/ship/": {
             "get": {
                 "description": "Get the current ship type, name and id\n\n---\n\nAlternate route: `/v1/characters/{character_id}/ship/`\n\nAlternate route: `/legacy/characters/{character_id}/ship/`\n\nAlternate route: `/latest/characters/{character_id}/ship/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
@@ -9047,6 +9343,165 @@
                 ]
             }
         },
+        "/insurance/prices/": {
+            "get": {
+                "description": "Return available insurance levels for all ship types\n\n---\n\nAlternate route: `/v1/insurance/prices/`\n\nAlternate route: `/legacy/insurance/prices/`\n\nAlternate route: `/latest/insurance/prices/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_insurance_prices",
+                "parameters": [
+                    {
+                        "default": "en",
+                        "description": "Language to use in the response",
+                        "enum": [
+                            "de",
+                            "en",
+                            "fr",
+                            "ja",
+                            "ru",
+                            "zh"
+                        ],
+                        "in": "header",
+                        "name": "Accept-Language",
+                        "type": "string"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of insurance levels for all ship types",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "levels": [
+                                        {
+                                            "cost": 10.0,
+                                            "name": "Basic",
+                                            "payout": 20.0
+                                        }
+                                    ],
+                                    "type_id": 1
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "levels": {
+                                        "description": "A list of a available insurance levels for this ship type",
+                                        "items": {
+                                            "description": "level object",
+                                            "properties": {
+                                                "cost": {
+                                                    "description": "cost number",
+                                                    "format": "float",
+                                                    "title": "get_insurance_prices_cost",
+                                                    "type": "number"
+                                                },
+                                                "name": {
+                                                    "description": "Localized insurance level",
+                                                    "title": "get_insurance_prices_name",
+                                                    "type": "string"
+                                                },
+                                                "payout": {
+                                                    "description": "payout number",
+                                                    "format": "float",
+                                                    "title": "get_insurance_prices_payout",
+                                                    "type": "number"
+                                                }
+                                            },
+                                            "required": [
+                                                "cost",
+                                                "payout",
+                                                "name"
+                                            ],
+                                            "title": "get_insurance_prices_level",
+                                            "type": "object"
+                                        },
+                                        "title": "get_insurance_prices_levels",
+                                        "type": "array"
+                                    },
+                                    "type_id": {
+                                        "description": "type_id integer",
+                                        "format": "int32",
+                                        "title": "get_insurance_prices_type_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "type_id",
+                                    "levels"
+                                ],
+                                "title": "get_insurance_prices_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_insurance_prices_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_insurance_prices_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_insurance_prices_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "List insurance levels",
+                "tags": [
+                    "Insurance"
+                ]
+            }
+        },
         "/killmails/{killmail_id}/{killmail_hash}/": {
             "get": {
                 "description": "Return a single killmail from its ID and hash\n\n---\n\nAlternate route: `/v1/killmails/{killmail_id}/{killmail_hash}/`\n\nAlternate route: `/legacy/killmails/{killmail_id}/{killmail_hash}/`\n\nAlternate route: `/latest/killmails/{killmail_id}/{killmail_hash}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -9975,6 +10430,255 @@
                 "summary": "List orders in a region",
                 "tags": [
                     "Market"
+                ]
+            }
+        },
+        "/search/": {
+            "get": {
+                "description": "Search for entities that match a given sub-string.\n\n---\n\nAlternate route: `/v2/search/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_search",
+                "parameters": [
+                    {
+                        "description": "The string to search on",
+                        "in": "query",
+                        "minLength": 3,
+                        "name": "search",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "description": "Type of entities to search for",
+                        "in": "query",
+                        "items": {
+                            "enum": [
+                                "agent",
+                                "alliance",
+                                "character",
+                                "constellation",
+                                "corporation",
+                                "faction",
+                                "inventorytype",
+                                "region",
+                                "solarsystem",
+                                "station"
+                            ],
+                            "type": "string"
+                        },
+                        "minItems": 1,
+                        "name": "categories",
+                        "required": true,
+                        "type": "array",
+                        "uniqueItems": true
+                    },
+                    {
+                        "default": "en-us",
+                        "description": "Search locale",
+                        "enum": [
+                            "en-us",
+                            "de",
+                            "fr",
+                            "ru",
+                            "ja",
+                            "zh"
+                        ],
+                        "in": "query",
+                        "name": "language",
+                        "type": "string"
+                    },
+                    {
+                        "default": false,
+                        "description": "Whether the search should be a strict match",
+                        "in": "query",
+                        "name": "strict",
+                        "type": "boolean"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of search results",
+                        "examples": {
+                            "application/json": {
+                                "solarsystem": [
+                                    30002510
+                                ],
+                                "station": [
+                                    60004588,
+                                    60004594,
+                                    60005725,
+                                    60009106,
+                                    60012721,
+                                    60012724,
+                                    60012727
+                                ]
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "agent": {
+                                    "description": "agent array",
+                                    "items": {
+                                        "description": "agent integer",
+                                        "format": "int32",
+                                        "title": "get_search_agent",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_search_agent",
+                                    "type": "array"
+                                },
+                                "alliance": {
+                                    "description": "alliance array",
+                                    "items": {
+                                        "description": "alliance integer",
+                                        "format": "int32",
+                                        "title": "get_search_alliance",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_search_alliance",
+                                    "type": "array"
+                                },
+                                "character": {
+                                    "description": "character array",
+                                    "items": {
+                                        "description": "character integer",
+                                        "format": "int32",
+                                        "title": "get_search_character",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_search_character",
+                                    "type": "array"
+                                },
+                                "constellation": {
+                                    "description": "constellation array",
+                                    "items": {
+                                        "description": "constellation integer",
+                                        "format": "int32",
+                                        "title": "get_search_constellation",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_search_constellation",
+                                    "type": "array"
+                                },
+                                "corporation": {
+                                    "description": "corporation array",
+                                    "items": {
+                                        "description": "corporation integer",
+                                        "format": "int32",
+                                        "title": "get_search_corporation",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_search_corporation",
+                                    "type": "array"
+                                },
+                                "faction": {
+                                    "description": "faction array",
+                                    "items": {
+                                        "description": "faction integer",
+                                        "format": "int32",
+                                        "title": "get_search_faction",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_search_faction",
+                                    "type": "array"
+                                },
+                                "inventorytype": {
+                                    "description": "inventorytype array",
+                                    "items": {
+                                        "description": "inventorytype integer",
+                                        "format": "int32",
+                                        "title": "get_search_inventorytype",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_search_inventorytype",
+                                    "type": "array"
+                                },
+                                "region": {
+                                    "description": "region array",
+                                    "items": {
+                                        "description": "region integer",
+                                        "format": "int32",
+                                        "title": "get_search_region",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_search_region",
+                                    "type": "array"
+                                },
+                                "solarsystem": {
+                                    "description": "solarsystem array",
+                                    "items": {
+                                        "description": "solarsystem integer",
+                                        "format": "int32",
+                                        "title": "get_search_solarsystem",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_search_solarsystem",
+                                    "type": "array"
+                                },
+                                "station": {
+                                    "description": "station array",
+                                    "items": {
+                                        "description": "station integer",
+                                        "format": "int32",
+                                        "title": "get_search_station",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_search_station",
+                                    "type": "array"
+                                }
+                            },
+                            "title": "get_search_ok",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_search_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_search_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Search on a string",
+                "tags": [
+                    "Search"
                 ]
             }
         },
@@ -11671,6 +12375,7 @@
                 "esi-mail.read_mail.v1": "EVE SSO scope esi-mail.read_mail.v1",
                 "esi-mail.send_mail.v1": "EVE SSO scope esi-mail.send_mail.v1",
                 "esi-planets.manage_planets.v1": "EVE SSO scope esi-planets.manage_planets.v1",
+                "esi-search.search_structures.v1": "EVE SSO scope esi-search.search_structures.v1",
                 "esi-skills.read_skillqueue.v1": "EVE SSO scope esi-skills.read_skillqueue.v1",
                 "esi-skills.read_skills.v1": "EVE SSO scope esi-skills.read_skills.v1",
                 "esi-universe.read_structures.v1": "EVE SSO scope esi-universe.read_structures.v1",
