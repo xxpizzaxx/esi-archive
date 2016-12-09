@@ -530,6 +530,290 @@
                 ]
             }
         },
+        "/characters/names/": {
+            "get": {
+                "description": "Resolve a set of character IDs to character names\n\n---\n\nAlternate route: `/v1/characters/names/`\n\nAlternate route: `/legacy/characters/names/`\n\nAlternate route: `/latest/characters/names/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_names",
+                "parameters": [
+                    {
+                        "description": "A comma separated list of character IDs",
+                        "in": "query",
+                        "items": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "minItems": 1,
+                        "name": "character_ids",
+                        "required": true,
+                        "type": "array"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of id/name associations",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "character_id": 95465499,
+                                    "character_name": "CCP Bartender"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "character_id": {
+                                        "description": "character_id integer",
+                                        "format": "int64",
+                                        "title": "get_characters_names_character_id",
+                                        "type": "integer"
+                                    },
+                                    "character_name": {
+                                        "description": "character_name string",
+                                        "title": "get_characters_names_character_name",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "character_id",
+                                    "character_name"
+                                ],
+                                "title": "get_characters_names_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_characters_names_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_names_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_names_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get character names",
+                "tags": [
+                    "Character"
+                ]
+            }
+        },
+        "/characters/{character_id}/": {
+            "get": {
+                "description": "Public information about a character\n\n---\n\nAlternate route: `/v3/characters/{character_id}/`\n\nAlternate route: `/legacy/characters/{character_id}/`\n\nAlternate route: `/latest/characters/{character_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Public data for the given character",
+                        "examples": {
+                            "application/json": {
+                                "ancestry_id": 19,
+                                "birthday": "2015-03-24T11:37:00Z",
+                                "bloodline_id": 3,
+                                "corporation_id": 109299958,
+                                "description": "",
+                                "gender": "male",
+                                "name": "CCP Bartender",
+                                "race_id": 2
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "ancestry_id": {
+                                    "description": "ancestry_id integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_ancestry_id",
+                                    "type": "integer"
+                                },
+                                "birthday": {
+                                    "description": "Creation date of the character",
+                                    "format": "date-time",
+                                    "title": "get_characters_character_id_birthday",
+                                    "type": "string"
+                                },
+                                "bloodline_id": {
+                                    "description": "bloodline_id integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_bloodline_id",
+                                    "type": "integer"
+                                },
+                                "corporation_id": {
+                                    "description": "The character's corporation ID",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_corporation_id",
+                                    "type": "integer"
+                                },
+                                "description": {
+                                    "description": "description string",
+                                    "title": "get_characters_character_id_description",
+                                    "type": "string"
+                                },
+                                "gender": {
+                                    "description": "gender string",
+                                    "enum": [
+                                        "female",
+                                        "male"
+                                    ],
+                                    "title": "get_characters_character_id_gender",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "The name of the character",
+                                    "title": "get_characters_character_id_name",
+                                    "type": "string"
+                                },
+                                "race_id": {
+                                    "description": "race_id integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_race_id",
+                                    "type": "integer"
+                                },
+                                "security_status": {
+                                    "description": "security_status number",
+                                    "format": "float",
+                                    "maximum": 10,
+                                    "minimum": -10,
+                                    "title": "get_characters_character_id_security_status",
+                                    "type": "number"
+                                }
+                            },
+                            "required": [
+                                "corporation_id",
+                                "birthday",
+                                "name",
+                                "gender",
+                                "race_id",
+                                "description",
+                                "bloodline_id"
+                            ],
+                            "title": "get_characters_character_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "422": {
+                        "description": "Is not a character ID",
+                        "examples": {
+                            "application/json": {
+                                "error": "98000001 is not a character ID"
+                            }
+                        },
+                        "schema": {
+                            "description": "Is not a character ID",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_characters_character_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_unprocessable_entity",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get character's public information",
+                "tags": [
+                    "Character"
+                ]
+            }
+        },
         "/characters/{character_id}/assets/": {
             "get": {
                 "description": "Return a list of the characters assets\n\n---\n\nAlternate route: `/v1/characters/{character_id}/assets/`\n\nAlternate route: `/legacy/characters/{character_id}/assets/`\n\nAlternate route: `/latest/characters/{character_id}/assets/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -1828,6 +2112,256 @@
                 "summary": "Get clones",
                 "tags": [
                     "Clones"
+                ]
+            }
+        },
+        "/characters/{character_id}/corporationhistory/": {
+            "get": {
+                "description": "Get a list of all the corporations a character has been a member of\n\n---\n\nAlternate route: `/v1/characters/{character_id}/corporationhistory/`\n\nAlternate route: `/legacy/characters/{character_id}/corporationhistory/`\n\nAlternate route: `/latest/characters/{character_id}/corporationhistory/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_corporationhistory",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Corporation history for the given character",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "corporation_id": 90000001,
+                                    "is_deleted": false,
+                                    "record_id": 500,
+                                    "start_date": "2016-06-26T20:00:00Z"
+                                },
+                                {
+                                    "corporation_id": 90000002,
+                                    "is_deleted": false,
+                                    "record_id": 501,
+                                    "start_date": "2016-07-26T20:00:00Z"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "corporation_id": {
+                                        "description": "corporation_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_corporationhistory_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "is_deleted": {
+                                        "description": "True if the corporation has been deleted",
+                                        "title": "get_characters_character_id_corporationhistory_is_deleted",
+                                        "type": "boolean"
+                                    },
+                                    "record_id": {
+                                        "description": "An incrementing ID that can be used to canonically establish order of records in cases where dates may be ambiguous",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_corporationhistory_record_id",
+                                        "type": "integer"
+                                    },
+                                    "start_date": {
+                                        "description": "start_date string",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_corporationhistory_start_date",
+                                        "type": "string"
+                                    }
+                                },
+                                "title": "get_characters_character_id_corporationhistory_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_characters_character_id_corporationhistory_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_corporationhistory_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_corporationhistory_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get corporation history",
+                "tags": [
+                    "Character"
+                ]
+            }
+        },
+        "/characters/{character_id}/cspa/": {
+            "post": {
+                "description": "Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost\n\n---\n\nAlternate route: `/v3/characters/{character_id}/cspa/`\n\nAlternate route: `/legacy/characters/{character_id}/cspa/`\n\nAlternate route: `/latest/characters/{character_id}/cspa/`\n",
+                "operationId": "post_characters_character_id_cspa",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "The target characters to calculate the charge for",
+                        "in": "body",
+                        "name": "characters",
+                        "required": true,
+                        "schema": {
+                            "description": "characters schema",
+                            "properties": {
+                                "characters": {
+                                    "description": "characters array",
+                                    "items": {
+                                        "description": "character integer",
+                                        "format": "int32",
+                                        "title": "post_characters_character_id_cspa_character",
+                                        "type": "integer"
+                                    },
+                                    "minItems": 1,
+                                    "title": "post_characters_character_id_cspa_characters",
+                                    "type": "array",
+                                    "uniqueItems": true
+                                }
+                            },
+                            "required": [
+                                "characters"
+                            ],
+                            "title": "post_characters_character_id_cspa_characters"
+                        }
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Aggregate cost of sending a mail from the source character to the target characters, in ISK hundredths",
+                        "examples": {
+                            "application/json": {
+                                "cost": 295000
+                            }
+                        },
+                        "schema": {
+                            "description": "201 created object",
+                            "properties": {
+                                "cost": {
+                                    "description": "cost integer",
+                                    "format": "int64",
+                                    "title": "post_characters_character_id_cspa_cost",
+                                    "type": "integer"
+                                }
+                            },
+                            "title": "post_characters_character_id_cspa_created",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-characters.read_contacts.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "post_characters_character_id_cspa_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_characters_character_id_cspa_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "post_characters_character_id_cspa_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_characters_character_id_cspa_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_contacts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Calculate a CSPA charge cost",
+                "tags": [
+                    "Character"
                 ]
             }
         },
@@ -4098,6 +4632,131 @@
                 "summary": "Get colony layout",
                 "tags": [
                     "Planetary Interaction"
+                ]
+            }
+        },
+        "/characters/{character_id}/portrait/": {
+            "get": {
+                "description": "Get portrait urls for a character\n\n---\n\nAlternate route: `/v2/characters/{character_id}/portrait/`\n\nAlternate route: `/latest/characters/{character_id}/portrait/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_portrait",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Public data for the given character",
+                        "examples": {
+                            "application/json": {
+                                "px128x128": "https://imageserver.eveonline.com/Character/95465499_128.jpg",
+                                "px256x256": "https://imageserver.eveonline.com/Character/95465499_256.jpg",
+                                "px512x512": "https://imageserver.eveonline.com/Character/95465499_512.jpg",
+                                "px64x64": "https://imageserver.eveonline.com/Character/95465499_64.jpg"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "px128x128": {
+                                    "description": "px128x128 string",
+                                    "title": "get_characters_character_id_portrait_px128x128",
+                                    "type": "string"
+                                },
+                                "px256x256": {
+                                    "description": "px256x256 string",
+                                    "title": "get_characters_character_id_portrait_px256x256",
+                                    "type": "string"
+                                },
+                                "px512x512": {
+                                    "description": "px512x512 string",
+                                    "title": "get_characters_character_id_portrait_px512x512",
+                                    "type": "string"
+                                },
+                                "px64x64": {
+                                    "description": "px64x64 string",
+                                    "title": "get_characters_character_id_portrait_px64x64",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_portrait_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "No image server for this datasource",
+                        "examples": {
+                            "application/json": {
+                                "error": "No image server for this datasource"
+                            }
+                        },
+                        "schema": {
+                            "description": "No image server for this datasource",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_characters_character_id_portrait_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_portrait_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_portrait_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_portrait_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get character portraits",
+                "tags": [
+                    "Character"
                 ]
             }
         },
@@ -10658,6 +11317,490 @@
                     "Universe"
                 ]
             }
+        },
+        "/wars/": {
+            "get": {
+                "description": "Return a list of wars\n\n---\n\nAlternate route: `/v1/wars/`\n\nAlternate route: `/legacy/wars/`\n\nAlternate route: `/latest/wars/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_wars",
+                "parameters": [
+                    {
+                        "default": 1,
+                        "description": "Which page to query, starting at 1, 2000 wars per page.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of war IDs",
+                        "examples": {
+                            "application/json": [
+                                3,
+                                2,
+                                1
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_wars_200_ok",
+                                "type": "integer"
+                            },
+                            "title": "get_wars_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_wars_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_wars_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "List wars",
+                "tags": [
+                    "Wars"
+                ]
+            }
+        },
+        "/wars/{war_id}/": {
+            "get": {
+                "description": "Return details about a war\n\n---\n\nAlternate route: `/v1/wars/{war_id}/`\n\nAlternate route: `/legacy/wars/{war_id}/`\n\nAlternate route: `/latest/wars/{war_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_wars_war_id",
+                "parameters": [
+                    {
+                        "description": "ID for a war",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "war_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a war",
+                        "examples": {
+                            "application/json": {
+                                "aggressor": {
+                                    "corporation_id": 986665792,
+                                    "isk_destroyed": 0,
+                                    "ships_killed": 0
+                                },
+                                "declared": "2004-05-22T05:20:00Z",
+                                "defender": {
+                                    "corporation_id": 1001562011,
+                                    "isk_destroyed": 0,
+                                    "ships_killed": 0
+                                },
+                                "id": 1941,
+                                "mutual": false,
+                                "open_for_allies": false
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "aggressor": {
+                                    "description": "The aggressor corporation or alliance that declared this war, only contains either corporation_id or alliance_id",
+                                    "properties": {
+                                        "alliance_id": {
+                                            "description": "Alliance ID if and only if the aggressor is an alliance",
+                                            "format": "int32",
+                                            "title": "get_wars_war_id_alliance_id",
+                                            "type": "integer"
+                                        },
+                                        "corporation_id": {
+                                            "description": "Corporation ID if and only if the aggressor is a corporation",
+                                            "format": "int32",
+                                            "title": "get_wars_war_id_corporation_id",
+                                            "type": "integer"
+                                        },
+                                        "isk_destroyed": {
+                                            "description": "ISK value of ships the aggressor has destroyed",
+                                            "format": "float",
+                                            "title": "get_wars_war_id_isk_destroyed",
+                                            "type": "number"
+                                        },
+                                        "ships_killed": {
+                                            "description": "The number of ships the aggressor has killed",
+                                            "format": "int32",
+                                            "title": "get_wars_war_id_ships_killed",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "ships_killed",
+                                        "isk_destroyed"
+                                    ],
+                                    "title": "get_wars_war_id_aggressor",
+                                    "type": "object"
+                                },
+                                "allies": {
+                                    "description": "allied corporations or alliances, each object contains either corporation_id or alliance_id",
+                                    "items": {
+                                        "description": "ally object",
+                                        "properties": {
+                                            "alliance_id": {
+                                                "description": "Alliance ID if and only if this ally is an alliance",
+                                                "format": "int32",
+                                                "title": "get_wars_war_id_alliance_id",
+                                                "type": "integer"
+                                            },
+                                            "corporation_id": {
+                                                "description": "Corporation ID if and only if this ally is a corporation",
+                                                "format": "int32",
+                                                "title": "get_wars_war_id_corporation_id",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "title": "get_wars_war_id_ally",
+                                        "type": "object"
+                                    },
+                                    "title": "get_wars_war_id_allies",
+                                    "type": "array"
+                                },
+                                "declared": {
+                                    "description": "Time that the war was declared",
+                                    "format": "date-time",
+                                    "title": "get_wars_war_id_declared",
+                                    "type": "string"
+                                },
+                                "defender": {
+                                    "description": "The defending corporation or alliance that declared this war, only contains either corporation_id or alliance_id",
+                                    "properties": {
+                                        "alliance_id": {
+                                            "description": "Alliance ID if and only if the defender is an alliance",
+                                            "format": "int32",
+                                            "title": "get_wars_war_id_alliance_id",
+                                            "type": "integer"
+                                        },
+                                        "corporation_id": {
+                                            "description": "Corporation ID if and only if the defender is a corporation",
+                                            "format": "int32",
+                                            "title": "get_wars_war_id_corporation_id",
+                                            "type": "integer"
+                                        },
+                                        "isk_destroyed": {
+                                            "description": "ISK value of ships the defender has killed",
+                                            "format": "float",
+                                            "title": "get_wars_war_id_isk_destroyed",
+                                            "type": "number"
+                                        },
+                                        "ships_killed": {
+                                            "description": "The number of ships the defender has killed",
+                                            "format": "int32",
+                                            "title": "get_wars_war_id_ships_killed",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "ships_killed",
+                                        "isk_destroyed"
+                                    ],
+                                    "title": "get_wars_war_id_defender",
+                                    "type": "object"
+                                },
+                                "finished": {
+                                    "description": "Time the war ended and shooting was no longer allowed",
+                                    "format": "date-time",
+                                    "title": "get_wars_war_id_finished",
+                                    "type": "string"
+                                },
+                                "id": {
+                                    "description": "ID of the specified war",
+                                    "format": "int32",
+                                    "title": "get_wars_war_id_id",
+                                    "type": "integer"
+                                },
+                                "mutual": {
+                                    "description": "Was the war declared mutual by both parties",
+                                    "title": "get_wars_war_id_mutual",
+                                    "type": "boolean"
+                                },
+                                "open_for_allies": {
+                                    "description": "Is the war currently open for allies or not",
+                                    "title": "get_wars_war_id_open_for_allies",
+                                    "type": "boolean"
+                                },
+                                "retracted": {
+                                    "description": "Time the war was retracted but both sides could still shoot each other",
+                                    "format": "date-time",
+                                    "title": "get_wars_war_id_retracted",
+                                    "type": "string"
+                                },
+                                "started": {
+                                    "description": "Time when the war started and both sides could shoot each other",
+                                    "format": "date-time",
+                                    "title": "get_wars_war_id_started",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "id",
+                                "declared",
+                                "mutual",
+                                "open_for_allies",
+                                "aggressor",
+                                "defender"
+                            ],
+                            "title": "get_wars_war_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "422": {
+                        "description": "Errors in query parameters",
+                        "examples": {
+                            "application/json": {
+                                "error": "{} is not a valid war ID\n"
+                            }
+                        },
+                        "schema": {
+                            "description": "war_id is not valid",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_wars_war_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_wars_war_id_unprocessable_entity",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_wars_war_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_wars_war_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get war information",
+                "tags": [
+                    "Wars"
+                ]
+            }
+        },
+        "/wars/{war_id}/killmails/": {
+            "get": {
+                "description": "Return a list of kills related to a war\n\n---\n\nAlternate route: `/v1/wars/{war_id}/killmails/`\n\nAlternate route: `/legacy/wars/{war_id}/killmails/`\n\nAlternate route: `/latest/wars/{war_id}/killmails/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_wars_war_id_killmails",
+                "parameters": [
+                    {
+                        "description": "A valid war ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "war_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": 1,
+                        "description": "Which page to query, starting at 1, 2000 killmails per page.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of killmail IDs and hashes",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "killmail_hash": "8eef5e8fb6b88fe3407c489df33822b2e3b57a5e",
+                                    "killmail_id": 2
+                                },
+                                {
+                                    "killmail_hash": "b41ccb498ece33d64019f64c0db392aa3aa701fb",
+                                    "killmail_id": 1
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "killmail_hash": {
+                                        "description": "A hash of this killmail",
+                                        "title": "get_wars_war_id_killmails_killmail_hash",
+                                        "type": "string"
+                                    },
+                                    "killmail_id": {
+                                        "description": "ID of this killmail",
+                                        "format": "int32",
+                                        "title": "get_wars_war_id_killmails_killmail_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "killmail_id",
+                                    "killmail_hash"
+                                ],
+                                "title": "get_wars_war_id_killmails_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_wars_war_id_killmails_ok",
+                            "type": "array"
+                        }
+                    },
+                    "422": {
+                        "description": "Errors in query parameters",
+                        "examples": {
+                            "application/json": {
+                                "error": "{} is not a valid war ID\n"
+                            }
+                        },
+                        "schema": {
+                            "description": "war_id is not valid",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_wars_war_id_killmails_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_wars_war_id_killmails_unprocessable_entity",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_wars_war_id_killmails_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_wars_war_id_killmails_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "List kills for a war",
+                "tags": [
+                    "Wars"
+                ]
+            }
         }
     },
     "produces": [
@@ -10675,6 +11818,7 @@
                 "esi-bookmarks.read_character_bookmarks.v1": "EVE SSO scope esi-bookmarks.read_character_bookmarks.v1",
                 "esi-calendar.read_calendar_events.v1": "EVE SSO scope esi-calendar.read_calendar_events.v1",
                 "esi-calendar.respond_calendar_events.v1": "EVE SSO scope esi-calendar.respond_calendar_events.v1",
+                "esi-characters.read_contacts.v1": "EVE SSO scope esi-characters.read_contacts.v1",
                 "esi-clones.read_clones.v1": "EVE SSO scope esi-clones.read_clones.v1",
                 "esi-corporations.read_corporation_membership.v1": "EVE SSO scope esi-corporations.read_corporation_membership.v1",
                 "esi-fleets.read_fleet.v1": "EVE SSO scope esi-fleets.read_fleet.v1",
