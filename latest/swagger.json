@@ -2650,6 +2650,1323 @@
                 ]
             }
         },
+        "/characters/{character_id}/mail/": {
+            "get": {
+                "description": "Return the 50 most recent mail headers belonging to the character that match the query criteria. Queries can be filtered by label, and last_mail_id can be used to paginate backwards.\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/`\n\nAlternate route: `/legacy/characters/{character_id}/mail/`\n\nAlternate route: `/dev/characters/{character_id}/mail/`\n\n\n---\n\nThis route is cached for up to 30 seconds",
+                "operationId": "get_characters_character_id_mail",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Fetch only mails that match one or more of the given labels",
+                        "in": "query",
+                        "items": {
+                            "format": "int64",
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "minItems": 1,
+                        "name": "labels",
+                        "required": false,
+                        "type": "array",
+                        "uniqueItems": true
+                    },
+                    {
+                        "description": "List only mail with an ID lower than the given ID, if present",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "last_mail_id",
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The requested mail",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "from": 90000001,
+                                    "is_read": true,
+                                    "labels": [
+                                        3
+                                    ],
+                                    "mail_id": 7,
+                                    "recipients": [
+                                        {
+                                            "recipient_id": 90000002,
+                                            "recipient_type": "character"
+                                        }
+                                    ],
+                                    "subject": "Title for EVE Mail",
+                                    "timestamp": "2015-09-30T16:07:00Z"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "from": {
+                                        "description": "From whom the mail was sent",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_mail_from",
+                                        "type": "integer"
+                                    },
+                                    "is_read": {
+                                        "description": "is_read boolean",
+                                        "title": "get_characters_character_id_mail_is_read",
+                                        "type": "boolean"
+                                    },
+                                    "labels": {
+                                        "description": "labels array",
+                                        "items": {
+                                            "description": "label integer",
+                                            "format": "int64",
+                                            "title": "get_characters_character_id_mail_label",
+                                            "type": "integer"
+                                        },
+                                        "maxItems": 25,
+                                        "minimum": 0,
+                                        "title": "get_characters_character_id_mail_labels",
+                                        "type": "array",
+                                        "uniqueItems": true
+                                    },
+                                    "mail_id": {
+                                        "description": "mail_id integer",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_mail_mail_id",
+                                        "type": "integer"
+                                    },
+                                    "recipients": {
+                                        "description": "Recipients of the mail",
+                                        "items": {
+                                            "description": "recipient object",
+                                            "properties": {
+                                                "recipient_id": {
+                                                    "description": "recipient_id integer",
+                                                    "format": "int32",
+                                                    "title": "get_characters_character_id_mail_recipient_id",
+                                                    "type": "integer"
+                                                },
+                                                "recipient_type": {
+                                                    "description": "recipient_type string",
+                                                    "enum": [
+                                                        "alliance",
+                                                        "character",
+                                                        "corporation",
+                                                        "mailing_list"
+                                                    ],
+                                                    "title": "get_characters_character_id_mail_recipient_type",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "recipient_type",
+                                                "recipient_id"
+                                            ],
+                                            "title": "get_characters_character_id_mail_recipient",
+                                            "type": "object"
+                                        },
+                                        "maxItems": 50,
+                                        "minItems": 1,
+                                        "title": "get_characters_character_id_mail_recipients",
+                                        "type": "array",
+                                        "uniqueItems": true
+                                    },
+                                    "subject": {
+                                        "description": "Mail subject",
+                                        "title": "get_characters_character_id_mail_subject",
+                                        "type": "string"
+                                    },
+                                    "timestamp": {
+                                        "description": "When the mail was sent",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_mail_timestamp",
+                                        "type": "string"
+                                    }
+                                },
+                                "title": "get_characters_character_id_mail_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_characters_character_id_mail_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-mail.read_mail.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_mail_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_mail_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_mail_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_mail_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-mail.read_mail.v1"
+                        ]
+                    }
+                ],
+                "summary": "Return mail headers",
+                "tags": [
+                    "Mail"
+                ]
+            },
+            "post": {
+                "description": "Create and send a new mail\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/`\n\nAlternate route: `/legacy/characters/{character_id}/mail/`\n\nAlternate route: `/dev/characters/{character_id}/mail/`\n",
+                "operationId": "post_characters_character_id_mail",
+                "parameters": [
+                    {
+                        "description": "The sender's character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "The mail to send",
+                        "in": "body",
+                        "name": "mail",
+                        "required": true,
+                        "schema": {
+                            "description": "mail schema",
+                            "properties": {
+                                "approved_cost": {
+                                    "default": 0,
+                                    "description": "approved_cost integer",
+                                    "format": "int64",
+                                    "title": "post_characters_character_id_mail_approved_cost",
+                                    "type": "integer"
+                                },
+                                "body": {
+                                    "description": "body string",
+                                    "maxLength": 10000,
+                                    "title": "post_characters_character_id_mail_body",
+                                    "type": "string"
+                                },
+                                "recipients": {
+                                    "description": "recipients array",
+                                    "items": {
+                                        "description": "recipient object",
+                                        "properties": {
+                                            "recipient_id": {
+                                                "description": "recipient_id integer",
+                                                "format": "int32",
+                                                "title": "post_characters_character_id_mail_recipient_id",
+                                                "type": "integer"
+                                            },
+                                            "recipient_type": {
+                                                "description": "recipient_type string",
+                                                "enum": [
+                                                    "alliance",
+                                                    "character",
+                                                    "corporation",
+                                                    "mailing_list"
+                                                ],
+                                                "title": "post_characters_character_id_mail_recipient_type",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "recipient_type",
+                                            "recipient_id"
+                                        ],
+                                        "title": "post_characters_character_id_mail_recipient",
+                                        "type": "object"
+                                    },
+                                    "maxItems": 50,
+                                    "minItems": 1,
+                                    "title": "post_characters_character_id_mail_recipients",
+                                    "type": "array"
+                                },
+                                "subject": {
+                                    "description": "subject string",
+                                    "maxLength": 1000,
+                                    "title": "post_characters_character_id_mail_subject",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "recipients",
+                                "subject",
+                                "body"
+                            ],
+                            "title": "post_characters_character_id_mail_mail"
+                        }
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Mail created",
+                        "examples": {
+                            "application/json": 13
+                        },
+                        "schema": {
+                            "description": "Mail ID",
+                            "format": "int32",
+                            "title": "post_characters_character_id_mail_created",
+                            "type": "integer"
+                        }
+                    },
+                    "400": {
+                        "description": "Only one corporation, alliance, or mailing list can be the\nrecipient of a mail\n",
+                        "examples": {
+                            "application/json": {
+                                "error": "Bad request message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Bad request",
+                            "properties": {
+                                "error": {
+                                    "description": "Bad request message",
+                                    "title": "post_characters_character_id_mail_400_bad_request",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_characters_character_id_mail_bad_request",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-mail.send_mail.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "post_characters_character_id_mail_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_characters_character_id_mail_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "post_characters_character_id_mail_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_characters_character_id_mail_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-mail.send_mail.v1"
+                        ]
+                    }
+                ],
+                "summary": "Send a new mail",
+                "tags": [
+                    "Mail"
+                ]
+            }
+        },
+        "/characters/{character_id}/mail/labels/": {
+            "get": {
+                "description": "Return a list of the users mail labels, unread counts for each label and a total unread count.\n\n---\n\nAlternate route: `/v3/characters/{character_id}/mail/labels/`\n\nAlternate route: `/dev/characters/{character_id}/mail/labels/`\n\n\n---\n\nThis route is cached for up to 30 seconds",
+                "operationId": "get_characters_character_id_mail_labels",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of mail labels and unread counts",
+                        "examples": {
+                            "application/json": {
+                                "labels": [
+                                    {
+                                        "color_hex": "#660066",
+                                        "label_id": 16,
+                                        "name": "PINK",
+                                        "unread_count": 4
+                                    },
+                                    {
+                                        "color_hex": "#ffffff",
+                                        "label_id": 17,
+                                        "name": "WHITE",
+                                        "unread_count": 1
+                                    }
+                                ],
+                                "total_unread_count": 5
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "labels": {
+                                    "description": "labels array",
+                                    "items": {
+                                        "description": "label object",
+                                        "properties": {
+                                            "color": {
+                                                "default": "#ffffff",
+                                                "description": "color string",
+                                                "enum": [
+                                                    "#ffffff",
+                                                    "#ffff01",
+                                                    "#ff6600",
+                                                    "#fe0000",
+                                                    "#9a0000",
+                                                    "#660066",
+                                                    "#0000fe",
+                                                    "#0099ff",
+                                                    "#01ffff",
+                                                    "#00ff33",
+                                                    "#349800",
+                                                    "#006634",
+                                                    "#666666",
+                                                    "#999999",
+                                                    "#e6e6e6",
+                                                    "#ffffcd",
+                                                    "#99ffff",
+                                                    "#ccff9a"
+                                                ],
+                                                "title": "get_characters_character_id_mail_labels_color",
+                                                "type": "string"
+                                            },
+                                            "label_id": {
+                                                "description": "label_id integer",
+                                                "format": "int32",
+                                                "minimum": 0,
+                                                "title": "get_characters_character_id_mail_labels_label_id",
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "description": "name string",
+                                                "maxLength": 40,
+                                                "title": "get_characters_character_id_mail_labels_name",
+                                                "type": "string"
+                                            },
+                                            "unread_count": {
+                                                "description": "unread_count integer",
+                                                "format": "int32",
+                                                "minimum": 0,
+                                                "title": "get_characters_character_id_mail_labels_unread_count",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "title": "get_characters_character_id_mail_labels_label",
+                                        "type": "object"
+                                    },
+                                    "title": "get_characters_character_id_mail_labels_labels",
+                                    "type": "array"
+                                },
+                                "total_unread_count": {
+                                    "description": "total_unread_count integer",
+                                    "format": "int32",
+                                    "minimum": 0,
+                                    "title": "get_characters_character_id_mail_labels_total_unread_count",
+                                    "type": "integer"
+                                }
+                            },
+                            "title": "get_characters_character_id_mail_labels_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-mail.read_mail.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_mail_labels_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_mail_labels_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_mail_labels_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_mail_labels_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-mail.read_mail.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get mail labels and unread counts",
+                "tags": [
+                    "Mail"
+                ]
+            },
+            "post": {
+                "description": "Create a mail label\n\n---\n\nAlternate route: `/v2/characters/{character_id}/mail/labels/`\n\nAlternate route: `/legacy/characters/{character_id}/mail/labels/`\n\nAlternate route: `/dev/characters/{character_id}/mail/labels/`\n",
+                "operationId": "post_characters_character_id_mail_labels",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Label to create",
+                        "in": "body",
+                        "name": "label",
+                        "schema": {
+                            "description": "label object",
+                            "properties": {
+                                "color": {
+                                    "default": "#ffffff",
+                                    "description": "Hexadecimal string representing label color,\nin RGB format\n",
+                                    "enum": [
+                                        "#ffffff",
+                                        "#ffff01",
+                                        "#ff6600",
+                                        "#fe0000",
+                                        "#9a0000",
+                                        "#660066",
+                                        "#0000fe",
+                                        "#0099ff",
+                                        "#01ffff",
+                                        "#00ff33",
+                                        "#349800",
+                                        "#006634",
+                                        "#666666",
+                                        "#999999",
+                                        "#e6e6e6",
+                                        "#ffffcd",
+                                        "#99ffff",
+                                        "#ccff9a"
+                                    ],
+                                    "title": "post_characters_character_id_mail_labels_color",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "maxLength": 40,
+                                    "minLength": 1,
+                                    "title": "post_characters_character_id_mail_labels_name",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "name"
+                            ],
+                            "title": "post_characters_character_id_mail_labels_label",
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Label created",
+                        "examples": {
+                            "application/json": 128
+                        },
+                        "schema": {
+                            "description": "Label ID",
+                            "format": "int64",
+                            "title": "post_characters_character_id_mail_labels_created",
+                            "type": "integer"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-mail.organize_mail.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "post_characters_character_id_mail_labels_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_characters_character_id_mail_labels_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "post_characters_character_id_mail_labels_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_characters_character_id_mail_labels_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-mail.organize_mail.v1"
+                        ]
+                    }
+                ],
+                "summary": "Create a mail label",
+                "tags": [
+                    "Mail"
+                ]
+            }
+        },
+        "/characters/{character_id}/mail/lists/": {
+            "get": {
+                "description": "Return all mailing lists that the character is subscribed to\n\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/lists/`\n\nAlternate route: `/legacy/characters/{character_id}/mail/lists/`\n\nAlternate route: `/dev/characters/{character_id}/mail/lists/`\n\n\n---\n\nThis route is cached for up to 120 seconds",
+                "operationId": "get_characters_character_id_mail_lists",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mailing lists",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "mailing_list_id": 1,
+                                    "name": "test_mailing_list"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "mailing_list_id": {
+                                        "description": "Mailing list ID",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_mail_lists_mailing_list_id",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "description": "name string",
+                                        "title": "get_characters_character_id_mail_lists_name",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "mailing_list_id",
+                                    "name"
+                                ],
+                                "title": "get_characters_character_id_mail_lists_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_characters_character_id_mail_lists_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-mail.read_mail.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_mail_lists_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_mail_lists_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_mail_lists_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_mail_lists_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-mail.read_mail.v1"
+                        ]
+                    }
+                ],
+                "summary": "Return mailing list subscriptions",
+                "tags": [
+                    "Mail"
+                ]
+            }
+        },
+        "/characters/{character_id}/mail/{mail_id}/": {
+            "delete": {
+                "description": "Delete a mail\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/{mail_id}/`\n\nAlternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`\n\nAlternate route: `/dev/characters/{character_id}/mail/{mail_id}/`\n",
+                "operationId": "delete_characters_character_id_mail_mail_id",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "An EVE mail ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "mail_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Mail deleted"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-mail.organize_mail.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "delete_characters_character_id_mail_mail_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "delete_characters_character_id_mail_mail_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "delete_characters_character_id_mail_mail_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "delete_characters_character_id_mail_mail_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-mail.organize_mail.v1"
+                        ]
+                    }
+                ],
+                "summary": "Delete a mail",
+                "tags": [
+                    "Mail"
+                ]
+            },
+            "get": {
+                "description": "Return the contents of an EVE mail\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/{mail_id}/`\n\nAlternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`\n\nAlternate route: `/dev/characters/{character_id}/mail/{mail_id}/`\n\n\n---\n\nThis route is cached for up to 30 seconds",
+                "operationId": "get_characters_character_id_mail_mail_id",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "An EVE mail ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "mail_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Contents of a mail",
+                        "examples": {
+                            "application/json": {
+                                "body": "blah blah blah",
+                                "from": 90000001,
+                                "labels": [
+                                    2,
+                                    32
+                                ],
+                                "read": false,
+                                "subject": "test",
+                                "timestamp": "2015-09-30T16:07:00Z"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "body": {
+                                    "description": "Mail's body",
+                                    "title": "get_characters_character_id_mail_mail_id_body",
+                                    "type": "string"
+                                },
+                                "from": {
+                                    "description": "From whom the mail was sent",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_mail_mail_id_from",
+                                    "type": "integer"
+                                },
+                                "labels": {
+                                    "description": "Labels attached to the mail",
+                                    "items": {
+                                        "description": "label integer",
+                                        "format": "int64",
+                                        "minimum": 0,
+                                        "title": "get_characters_character_id_mail_mail_id_label",
+                                        "type": "integer",
+                                        "uniqueItems": true
+                                    },
+                                    "title": "get_characters_character_id_mail_mail_id_labels",
+                                    "type": "array"
+                                },
+                                "read": {
+                                    "description": "Whether the mail is flagged as read",
+                                    "title": "get_characters_character_id_mail_mail_id_read",
+                                    "type": "boolean"
+                                },
+                                "recipients": {
+                                    "description": "Recipients of the mail",
+                                    "items": {
+                                        "description": "recipient object",
+                                        "properties": {
+                                            "recipient_id": {
+                                                "description": "recipient_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_mail_mail_id_recipient_id",
+                                                "type": "integer"
+                                            },
+                                            "recipient_type": {
+                                                "description": "recipient_type string",
+                                                "enum": [
+                                                    "alliance",
+                                                    "character",
+                                                    "corporation",
+                                                    "mailing_list"
+                                                ],
+                                                "title": "get_characters_character_id_mail_mail_id_recipient_type",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "recipient_type",
+                                            "recipient_id"
+                                        ],
+                                        "title": "get_characters_character_id_mail_mail_id_recipient",
+                                        "type": "object"
+                                    },
+                                    "maxItems": 50,
+                                    "minItems": 1,
+                                    "title": "get_characters_character_id_mail_mail_id_recipients",
+                                    "type": "array",
+                                    "uniqueItems": true
+                                },
+                                "subject": {
+                                    "description": "Mail subject",
+                                    "title": "get_characters_character_id_mail_mail_id_subject",
+                                    "type": "string"
+                                },
+                                "timestamp": {
+                                    "description": "When the mail was sent",
+                                    "format": "date-time",
+                                    "title": "get_characters_character_id_mail_mail_id_timestamp",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_mail_mail_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-mail.read_mail.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_mail_mail_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_mail_mail_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Mail not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_characters_character_id_mail_mail_id_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_mail_mail_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_mail_mail_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_mail_mail_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-mail.read_mail.v1"
+                        ]
+                    }
+                ],
+                "summary": "Return a mail",
+                "tags": [
+                    "Mail"
+                ]
+            },
+            "put": {
+                "description": "Update metadata about a mail\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/{mail_id}/`\n\nAlternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`\n\nAlternate route: `/dev/characters/{character_id}/mail/{mail_id}/`\n",
+                "operationId": "put_characters_character_id_mail_mail_id",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "An EVE mail ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "mail_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Data used to update the mail",
+                        "in": "body",
+                        "name": "contents",
+                        "required": true,
+                        "schema": {
+                            "description": "contents object",
+                            "properties": {
+                                "labels": {
+                                    "description": "Labels to assign to the mail. Pre-existing labels are unassigned.",
+                                    "items": {
+                                        "description": "label integer",
+                                        "format": "int64",
+                                        "minimum": 0,
+                                        "title": "put_characters_character_id_mail_mail_id_label",
+                                        "type": "integer",
+                                        "uniqueItems": true
+                                    },
+                                    "title": "put_characters_character_id_mail_mail_id_labels",
+                                    "type": "array"
+                                },
+                                "read": {
+                                    "description": "Whether the mail is flagged as read",
+                                    "title": "put_characters_character_id_mail_mail_id_read",
+                                    "type": "boolean"
+                                }
+                            },
+                            "title": "put_characters_character_id_mail_mail_id_contents",
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Mail updated"
+                    },
+                    "400": {
+                        "description": "Invalid label ID; or No parameters in body -- nothing to do",
+                        "examples": {
+                            "application/json": {
+                                "error": "Bad request message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Bad request",
+                            "properties": {
+                                "error": {
+                                    "description": "Bad request message",
+                                    "title": "put_characters_character_id_mail_mail_id_400_bad_request",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_characters_character_id_mail_mail_id_bad_request",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-mail.organize_mail.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "put_characters_character_id_mail_mail_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_characters_character_id_mail_mail_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "put_characters_character_id_mail_mail_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_characters_character_id_mail_mail_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-mail.organize_mail.v1"
+                        ]
+                    }
+                ],
+                "summary": "Update metadata about a mail",
+                "tags": [
+                    "Mail"
+                ]
+            }
+        },
         "/characters/{character_id}/planets/": {
             "get": {
                 "description": "Returns a list of all planetary colonies owned by a character.\n\n---\n\nAlternate route: `/v1/characters/{character_id}/planets/`\n\nAlternate route: `/legacy/characters/{character_id}/planets/`\n\nAlternate route: `/dev/characters/{character_id}/planets/`\n\n\n---\n\nThis route is cached for up to 600 seconds",
@@ -11042,6 +12359,9 @@
                 "esi-killmails.read_killmails.v1": "EVE SSO scope esi-killmails.read_killmails.v1",
                 "esi-location.read_location.v1": "EVE SSO scope esi-location.read_location.v1",
                 "esi-location.read_ship_type.v1": "EVE SSO scope esi-location.read_ship_type.v1",
+                "esi-mail.organize_mail.v1": "EVE SSO scope esi-mail.organize_mail.v1",
+                "esi-mail.read_mail.v1": "EVE SSO scope esi-mail.read_mail.v1",
+                "esi-mail.send_mail.v1": "EVE SSO scope esi-mail.send_mail.v1",
                 "esi-planets.manage_planets.v1": "EVE SSO scope esi-planets.manage_planets.v1",
                 "esi-search.search_structures.v1": "EVE SSO scope esi-search.search_structures.v1",
                 "esi-skills.read_skillqueue.v1": "EVE SSO scope esi-skills.read_skillqueue.v1",
