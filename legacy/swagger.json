@@ -11469,7 +11469,8 @@
         },
         "/ui/autopilot/waypoint/": {
             "post": {
-                "description": "Set a solar system as autopilot waypoint\n\n---\n\nAlternate route: `/v1/ui/autopilot/waypoint/`\n\nAlternate route: `/latest/ui/autopilot/waypoint/`\n\nAlternate route: `/dev/ui/autopilot/waypoint/`\n",
+                "deprecated": true,
+                "description": "Set a solar system as autopilot waypoint\n\n---\n\nAlternate route: `/v1/ui/autopilot/waypoint/`\n",
                 "operationId": "post_ui_autopilot_waypoint",
                 "parameters": [
                     {
