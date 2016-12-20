@@ -11637,14 +11637,14 @@
         },
         "/ui/autopilot/waypoint/": {
             "post": {
-                "description": "Set a solar system as autopilot waypoint\n\n---\n\nAlternate route: `/v1/ui/autopilot/waypoint/`\n\nAlternate route: `/legacy/ui/autopilot/waypoint/`\n\nAlternate route: `/dev/ui/autopilot/waypoint/`\n",
+                "description": "Set a solar system as autopilot waypoint\n\n---\n\nAlternate route: `/v2/ui/autopilot/waypoint/`\n\nAlternate route: `/dev/ui/autopilot/waypoint/`\n",
                 "operationId": "post_ui_autopilot_waypoint",
                 "parameters": [
                     {
-                        "description": "The solar system to set as autopilot waypoint",
-                        "format": "int32",
+                        "description": "The destination to travel to, can be solar system, station or structure's id",
+                        "format": "int64",
                         "in": "query",
-                        "name": "solar_system_id",
+                        "name": "destination_id",
                         "required": true,
                         "type": "integer"
                     },
