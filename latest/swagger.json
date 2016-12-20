@@ -4970,34 +4970,6 @@
                                     "items": {
                                         "description": "pin object",
                                         "properties": {
-                                            "content": {
-                                                "description": "content array",
-                                                "items": {
-                                                    "description": "content object",
-                                                    "properties": {
-                                                        "content": {
-                                                            "description": "content integer",
-                                                            "format": "int32",
-                                                            "title": "get_characters_character_id_planets_planet_id_content",
-                                                            "type": "integer"
-                                                        },
-                                                        "content_quantity": {
-                                                            "description": "content_quantity integer",
-                                                            "format": "int64",
-                                                            "title": "get_characters_character_id_planets_planet_id_content_quantity",
-                                                            "type": "integer"
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "content_id",
-                                                        "content_quantity"
-                                                    ],
-                                                    "title": "get_characters_character_id_planets_planet_id_content",
-                                                    "type": "object"
-                                                },
-                                                "title": "get_characters_character_id_planets_planet_id_content",
-                                                "type": "array"
-                                            },
                                             "expiry_time": {
                                                 "description": "expiry_time string",
                                                 "format": "date-time",
