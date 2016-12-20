@@ -11001,6 +11001,504 @@
                 ]
             }
         },
+        "/ui/autopilot/waypoint/": {
+            "post": {
+                "description": "Set a solar system as autopilot waypoint\n\n---\n\nAlternate route: `/v1/ui/autopilot/waypoint/`\n\nAlternate route: `/legacy/ui/autopilot/waypoint/`\n\nAlternate route: `/latest/ui/autopilot/waypoint/`\n",
+                "operationId": "post_ui_autopilot_waypoint",
+                "parameters": [
+                    {
+                        "description": "The solar system to set as autopilot waypoint",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "solar_system_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": false,
+                        "description": "Whether clean other waypoints beforing adding this one",
+                        "in": "query",
+                        "name": "clear_other_waypoints",
+                        "required": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "default": false,
+                        "description": "Whether this solar system should be added to the beginning of all waypoints",
+                        "in": "query",
+                        "name": "add_to_beginning",
+                        "required": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Open window request received"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-ui.write_waypoint.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "post_ui_autopilot_waypoint_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_ui_autopilot_waypoint_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "post_ui_autopilot_waypoint_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_ui_autopilot_waypoint_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-ui.write_waypoint.v1"
+                        ]
+                    }
+                ],
+                "summary": "Set Autopilot Waypoint",
+                "tags": [
+                    "User Interface"
+                ]
+            }
+        },
+        "/ui/openwindow/contract/": {
+            "post": {
+                "description": "Open the contract window inside the client\n\n---\n\nAlternate route: `/v1/ui/openwindow/contract/`\n\nAlternate route: `/legacy/ui/openwindow/contract/`\n\nAlternate route: `/latest/ui/openwindow/contract/`\n",
+                "operationId": "post_ui_openwindow_contract",
+                "parameters": [
+                    {
+                        "description": "The contract to open",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "contract_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Open window request received"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-ui.open_window.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "post_ui_openwindow_contract_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_ui_openwindow_contract_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "post_ui_openwindow_contract_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_ui_openwindow_contract_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-ui.open_window.v1"
+                        ]
+                    }
+                ],
+                "summary": "Open Contract Window",
+                "tags": [
+                    "User Interface"
+                ]
+            }
+        },
+        "/ui/openwindow/information/": {
+            "post": {
+                "description": "Open the information window for a character, corporation or alliance inside the client\n\n---\n\nAlternate route: `/v1/ui/openwindow/information/`\n\nAlternate route: `/legacy/ui/openwindow/information/`\n\nAlternate route: `/latest/ui/openwindow/information/`\n",
+                "operationId": "post_ui_openwindow_information",
+                "parameters": [
+                    {
+                        "description": "The target to open",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "target_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Open window request received"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-ui.open_window.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "post_ui_openwindow_information_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_ui_openwindow_information_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "post_ui_openwindow_information_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_ui_openwindow_information_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-ui.open_window.v1"
+                        ]
+                    }
+                ],
+                "summary": "Open Information Window",
+                "tags": [
+                    "User Interface"
+                ]
+            }
+        },
+        "/ui/openwindow/marketdetails/": {
+            "post": {
+                "description": "Open the market details window for a specific typeID inside the client\n\n---\n\nAlternate route: `/v1/ui/openwindow/marketdetails/`\n\nAlternate route: `/legacy/ui/openwindow/marketdetails/`\n\nAlternate route: `/latest/ui/openwindow/marketdetails/`\n",
+                "operationId": "post_ui_openwindow_marketdetails",
+                "parameters": [
+                    {
+                        "description": "The item type to open in market window",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "type_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Open window request received"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-ui.open_window.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "post_ui_openwindow_marketdetails_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_ui_openwindow_marketdetails_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "post_ui_openwindow_marketdetails_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_ui_openwindow_marketdetails_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-ui.open_window.v1"
+                        ]
+                    }
+                ],
+                "summary": "Open Market Details",
+                "tags": [
+                    "User Interface"
+                ]
+            }
+        },
+        "/ui/openwindow/newmail/": {
+            "post": {
+                "description": "Open the New Mail window, according to settings from the request if applicable\n\n---\n\nAlternate route: `/v1/ui/openwindow/newmail/`\n\nAlternate route: `/legacy/ui/openwindow/newmail/`\n\nAlternate route: `/latest/ui/openwindow/newmail/`\n",
+                "operationId": "post_ui_openwindow_newmail",
+                "parameters": [
+                    {
+                        "description": "The item type to open in market window",
+                        "in": "body",
+                        "name": "new_mail",
+                        "required": true,
+                        "schema": {
+                            "description": "new_mail object",
+                            "properties": {
+                                "body": {
+                                    "description": "body string",
+                                    "maxLength": 10000,
+                                    "title": "post_ui_openwindow_newmail_body",
+                                    "type": "string"
+                                },
+                                "recipients": {
+                                    "description": "recipients array",
+                                    "items": {
+                                        "description": "recipient integer",
+                                        "format": "int32",
+                                        "title": "post_ui_openwindow_newmail_recipient",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 50,
+                                    "minItems": 1,
+                                    "title": "post_ui_openwindow_newmail_recipients",
+                                    "type": "array"
+                                },
+                                "subject": {
+                                    "description": "subject string",
+                                    "maxLength": 1000,
+                                    "title": "post_ui_openwindow_newmail_subject",
+                                    "type": "string"
+                                },
+                                "to_corp_or_alliance_id": {
+                                    "description": "to_corp_or_alliance_id integer",
+                                    "format": "int32",
+                                    "title": "post_ui_openwindow_newmail_to_corp_or_alliance_id",
+                                    "type": "integer"
+                                },
+                                "to_mailing_list_id": {
+                                    "description": "Corporations, alliances and mailing lists are all types of mailing groups. You may only send to one mailing group, at a time, so you may fill out either this field or the to_corp_or_alliance_ids field",
+                                    "format": "int32",
+                                    "title": "post_ui_openwindow_newmail_to_mailing_list_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "subject",
+                                "body",
+                                "recipients"
+                            ],
+                            "title": "post_ui_openwindow_newmail_new_mail",
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Open window request received"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-ui.open_window.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "post_ui_openwindow_newmail_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_ui_openwindow_newmail_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "422": {
+                        "description": "Errors in request body",
+                        "examples": {
+                            "application/json": {
+                                "error": "error in request body"
+                            }
+                        },
+                        "schema": {
+                            "description": "422 unprocessable entity object",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "post_ui_openwindow_newmail_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_ui_openwindow_newmail_unprocessable_entity",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "post_ui_openwindow_newmail_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_ui_openwindow_newmail_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-ui.open_window.v1"
+                        ]
+                    }
+                ],
+                "summary": "Open New Mail Window",
+                "tags": [
+                    "User Interface"
+                ]
+            }
+        },
         "/universe/names/": {
             "post": {
                 "description": "Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types.\n\n---\n\nAlternate route: `/v2/universe/names/`\n",
@@ -12378,6 +12876,8 @@
                 "esi-search.search_structures.v1": "EVE SSO scope esi-search.search_structures.v1",
                 "esi-skills.read_skillqueue.v1": "EVE SSO scope esi-skills.read_skillqueue.v1",
                 "esi-skills.read_skills.v1": "EVE SSO scope esi-skills.read_skills.v1",
+                "esi-ui.open_window.v1": "EVE SSO scope esi-ui.open_window.v1",
+                "esi-ui.write_waypoint.v1": "EVE SSO scope esi-ui.write_waypoint.v1",
                 "esi-universe.read_structures.v1": "EVE SSO scope esi-universe.read_structures.v1",
                 "esi-wallet.read_character_wallet.v1": "EVE SSO scope esi-wallet.read_character_wallet.v1"
             },
