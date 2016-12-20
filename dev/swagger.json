@@ -5664,6 +5664,1311 @@
                 ]
             }
         },
+        "/corporations/names/": {
+            "get": {
+                "description": "Resolve a set of corporation IDs to corporation names\n\n---\n\nAlternate route: `/v1/corporations/names/`\n\nAlternate route: `/legacy/corporations/names/`\n\nAlternate route: `/latest/corporations/names/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_names",
+                "parameters": [
+                    {
+                        "description": "A comma separated list of corporation IDs",
+                        "in": "query",
+                        "items": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "minItems": 1,
+                        "name": "corporation_ids",
+                        "required": true,
+                        "type": "array"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of id/name associations",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "corporation_id": 1000171,
+                                    "corporation_name": "Republic University"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "corporation_id": {
+                                        "description": "corporation_id integer",
+                                        "format": "int32",
+                                        "title": "get_corporations_names_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "corporation_name": {
+                                        "description": "corporation_name string",
+                                        "title": "get_corporations_names_corporation_name",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "corporation_id",
+                                    "corporation_name"
+                                ],
+                                "title": "get_corporations_names_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_corporations_names_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_corporations_names_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_names_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get corporation names",
+                "tags": [
+                    "Corporation"
+                ]
+            }
+        },
+        "/corporations/{corporation_id}/": {
+            "get": {
+                "description": "Public information about a corporation\n\n---\n\nAlternate route: `/v3/corporations/{corporation_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_corporation_id",
+                "parameters": [
+                    {
+                        "description": "An Eve corporation ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "corporation_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Public data about a corporation",
+                        "examples": {
+                            "application/json": {
+                                "alliance_id": 434243723,
+                                "ceo_id": 180548812,
+                                "corporation_description": "This is a corporation description, it's basically just a string",
+                                "corporation_name": "C C P",
+                                "creation_date": "2004-11-28T16:42:51Z",
+                                "creator_id": 180548812,
+                                "member_count": 656,
+                                "tax_rate": 0.256,
+                                "ticker": "-CCP-",
+                                "url": "http://www.eveonline.com"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "alliance_id": {
+                                    "description": "id of alliance that corporation is a member of, if any",
+                                    "format": "int32",
+                                    "title": "get_corporations_corporation_id_alliance_id",
+                                    "type": "integer"
+                                },
+                                "ceo_id": {
+                                    "description": "ceo_id integer",
+                                    "format": "int32",
+                                    "title": "get_corporations_corporation_id_ceo_id",
+                                    "type": "integer"
+                                },
+                                "corporation_description": {
+                                    "description": "corporation_description string",
+                                    "title": "get_corporations_corporation_id_corporation_description",
+                                    "type": "string"
+                                },
+                                "corporation_name": {
+                                    "description": "the full name of the corporation",
+                                    "title": "get_corporations_corporation_id_corporation_name",
+                                    "type": "string"
+                                },
+                                "creation_date": {
+                                    "description": "creation_date string",
+                                    "format": "date-time",
+                                    "title": "get_corporations_corporation_id_creation_date",
+                                    "type": "string"
+                                },
+                                "creator_id": {
+                                    "description": "creator_id integer",
+                                    "format": "int32",
+                                    "title": "get_corporations_corporation_id_creator_id",
+                                    "type": "integer"
+                                },
+                                "member_count": {
+                                    "description": "member_count integer",
+                                    "format": "int32",
+                                    "title": "get_corporations_corporation_id_member_count",
+                                    "type": "integer"
+                                },
+                                "tax_rate": {
+                                    "description": "tax_rate number",
+                                    "format": "float",
+                                    "maximum": 1,
+                                    "minimum": 0,
+                                    "title": "get_corporations_corporation_id_tax_rate",
+                                    "type": "number"
+                                },
+                                "ticker": {
+                                    "description": "the short name of the corporation",
+                                    "title": "get_corporations_corporation_id_ticker",
+                                    "type": "string"
+                                },
+                                "url": {
+                                    "description": "url string",
+                                    "title": "get_corporations_corporation_id_url",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "corporation_name",
+                                "ticker",
+                                "member_count",
+                                "ceo_id",
+                                "corporation_description",
+                                "tax_rate",
+                                "creation_date",
+                                "creator_id",
+                                "url"
+                            ],
+                            "title": "get_corporations_corporation_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Corporation not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_corporations_corporation_id_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_corporations_corporation_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get corporation information",
+                "tags": [
+                    "Corporation"
+                ]
+            }
+        },
+        "/corporations/{corporation_id}/alliancehistory/": {
+            "get": {
+                "description": "Get a list of all the alliances a corporation has been a member of\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/alliancehistory/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/alliancehistory/`\n\nAlternate route: `/latest/corporations/{corporation_id}/alliancehistory/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_corporation_id_alliancehistory",
+                "parameters": [
+                    {
+                        "description": "An EVE corporation ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "corporation_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Alliance history for the given corporation",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "alliance": {
+                                        "alliance_id": 99000006,
+                                        "is_deleted": false
+                                    },
+                                    "record_id": 23,
+                                    "start_date": "2016-10-25T14:46:00Z"
+                                },
+                                {
+                                    "record_id": 1,
+                                    "start_date": "2015-07-06T20:56:00Z"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "alliance": {
+                                        "description": "alliance object",
+                                        "properties": {
+                                            "alliance_id": {
+                                                "description": "alliance_id integer",
+                                                "format": "int32",
+                                                "title": "get_corporations_corporation_id_alliancehistory_alliance_id",
+                                                "type": "integer"
+                                            },
+                                            "is_deleted": {
+                                                "description": "True if the alliance has been deleted",
+                                                "title": "get_corporations_corporation_id_alliancehistory_is_deleted",
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "required": [
+                                            "alliance_id",
+                                            "is_deleted"
+                                        ],
+                                        "title": "get_corporations_corporation_id_alliancehistory_alliance",
+                                        "type": "object"
+                                    },
+                                    "record_id": {
+                                        "description": "An incrementing ID that can be used to canonically establish order of records in cases where dates may be ambiguous",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_alliancehistory_record_id",
+                                        "type": "integer"
+                                    },
+                                    "start_date": {
+                                        "description": "start_date string",
+                                        "format": "date-time",
+                                        "title": "get_corporations_corporation_id_alliancehistory_start_date",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "start_date",
+                                    "record_id"
+                                ],
+                                "title": "get_corporations_corporation_id_alliancehistory_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_corporations_corporation_id_alliancehistory_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_corporations_corporation_id_alliancehistory_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_alliancehistory_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get alliance history",
+                "tags": [
+                    "Corporation"
+                ]
+            }
+        },
+        "/corporations/{corporation_id}/icons/": {
+            "get": {
+                "description": "Get the icon urls for a corporation\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/icons/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/icons/`\n\nAlternate route: `/latest/corporations/{corporation_id}/icons/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_corporation_id_icons",
+                "parameters": [
+                    {
+                        "description": "An EVE corporation ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "corporation_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Urls for icons for the given corporation id and server",
+                        "examples": {
+                            "application/json": {
+                                "px128x128": "https://imageserver.eveonline.com/Corporation/1000010_128.png",
+                                "px256x256": "https://imageserver.eveonline.com/Corporation/1000010_256.png",
+                                "px64x64": "https://imageserver.eveonline.com/Corporation/1000010_64.png"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "px128x128": {
+                                    "description": "px128x128 string",
+                                    "title": "get_corporations_corporation_id_icons_px128x128",
+                                    "type": "string"
+                                },
+                                "px256x256": {
+                                    "description": "px256x256 string",
+                                    "title": "get_corporations_corporation_id_icons_px256x256",
+                                    "type": "string"
+                                },
+                                "px64x64": {
+                                    "description": "px64x64 string",
+                                    "title": "get_corporations_corporation_id_icons_px64x64",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_icons_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "No image server for this datasource",
+                        "examples": {
+                            "application/json": {
+                                "error": "No image server for this datasource"
+                            }
+                        },
+                        "schema": {
+                            "description": "No image server for this datasource",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_corporations_corporation_id_icons_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_icons_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_corporations_corporation_id_icons_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_icons_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get corporation icon",
+                "tags": [
+                    "Corporation"
+                ]
+            }
+        },
+        "/corporations/{corporation_id}/members/": {
+            "get": {
+                "description": "Read the current list of members if the calling character is a member.\n\n---\n\nAlternate route: `/v2/corporations/{corporation_id}/members/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/members/`\n\nAlternate route: `/latest/corporations/{corporation_id}/members/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_corporation_id_members",
+                "parameters": [
+                    {
+                        "description": "A corporation ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "corporation_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of member character IDs",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "character_id": 90000001
+                                },
+                                {
+                                    "character_id": 90000002
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "character_id": {
+                                        "description": "character_id integer",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_members_character_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "character_id"
+                                ],
+                                "title": "get_corporations_corporation_id_members_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_corporations_corporation_id_members_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-corporations.read_corporation_membership.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_corporations_corporation_id_members_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_members_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_corporations_corporation_id_members_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_members_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-corporations.read_corporation_membership.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get corporation members",
+                "tags": [
+                    "Corporation"
+                ]
+            }
+        },
+        "/corporations/{corporation_id}/roles/": {
+            "get": {
+                "description": "Return the roles of all members if the character has the personnel manager role or any grantable role.\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/roles/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/roles/`\n\nAlternate route: `/latest/corporations/{corporation_id}/roles/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_corporation_id_roles",
+                "parameters": [
+                    {
+                        "description": "A corporation ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "corporation_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of member character ID's and roles",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "character_id": 1000171,
+                                    "roles": [
+                                        "Director",
+                                        "Station_Manager"
+                                    ]
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "character_id": {
+                                        "description": "character_id integer",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_roles_character_id",
+                                        "type": "integer"
+                                    },
+                                    "grantable_roles": {
+                                        "description": "grantable_roles array",
+                                        "items": {
+                                            "description": "grantable_role string",
+                                            "enum": [
+                                                "Director",
+                                                "Personnel_Manager",
+                                                "Accountant",
+                                                "Security_Officer",
+                                                "Factory_Manager",
+                                                "Station_Manager",
+                                                "Auditor",
+                                                "Hangar_Take_1",
+                                                "Hangar_Take_2",
+                                                "Hangar_Take_3",
+                                                "Hangar_Take_4",
+                                                "Hangar_Take_5",
+                                                "Hangar_Take_6",
+                                                "Hangar_Take_7",
+                                                "Hangar_Query_1",
+                                                "Hangar_Query_2",
+                                                "Hangar_Query_3",
+                                                "Hangar_Query_4",
+                                                "Hangar_Query_5",
+                                                "Hangar_Query_6",
+                                                "Hangar_Query_7",
+                                                "Account_Take_1",
+                                                "Account_Take_2",
+                                                "Account_Take_3",
+                                                "Account_Take_4",
+                                                "Account_Take_5",
+                                                "Account_Take_6",
+                                                "Account_Take_7",
+                                                "Diplomat",
+                                                "Config_Equipment",
+                                                "Container_Take_1",
+                                                "Container_Take_2",
+                                                "Container_Take_3",
+                                                "Container_Take_4",
+                                                "Container_Take_5",
+                                                "Container_Take_6",
+                                                "Container_Take_7",
+                                                "Rent_Office",
+                                                "Rent_Factory_Facility",
+                                                "Rent_Research_Facility",
+                                                "Junior_Accountant",
+                                                "Config_Starbase_Equipment",
+                                                "Trader",
+                                                "Communications_Officer",
+                                                "Contract_Manager",
+                                                "Starbase_Defense_Operator",
+                                                "Starbase_Fuel_Technician",
+                                                "Fitting_Manager",
+                                                "Terrestrial_Combat_Officer",
+                                                "Terrestrial_Logistics_Officer"
+                                            ],
+                                            "title": "get_corporations_corporation_id_roles_grantable_role",
+                                            "type": "string",
+                                            "uniqueItems": true
+                                        },
+                                        "title": "get_corporations_corporation_id_roles_grantable_roles",
+                                        "type": "array"
+                                    },
+                                    "grantable_roles_at_base": {
+                                        "description": "grantable_roles_at_base array",
+                                        "items": {
+                                            "description": "grantable_roles_at_base string",
+                                            "enum": [
+                                                "Director",
+                                                "Personnel_Manager",
+                                                "Accountant",
+                                                "Security_Officer",
+                                                "Factory_Manager",
+                                                "Station_Manager",
+                                                "Auditor",
+                                                "Hangar_Take_1",
+                                                "Hangar_Take_2",
+                                                "Hangar_Take_3",
+                                                "Hangar_Take_4",
+                                                "Hangar_Take_5",
+                                                "Hangar_Take_6",
+                                                "Hangar_Take_7",
+                                                "Hangar_Query_1",
+                                                "Hangar_Query_2",
+                                                "Hangar_Query_3",
+                                                "Hangar_Query_4",
+                                                "Hangar_Query_5",
+                                                "Hangar_Query_6",
+                                                "Hangar_Query_7",
+                                                "Account_Take_1",
+                                                "Account_Take_2",
+                                                "Account_Take_3",
+                                                "Account_Take_4",
+                                                "Account_Take_5",
+                                                "Account_Take_6",
+                                                "Account_Take_7",
+                                                "Diplomat",
+                                                "Config_Equipment",
+                                                "Container_Take_1",
+                                                "Container_Take_2",
+                                                "Container_Take_3",
+                                                "Container_Take_4",
+                                                "Container_Take_5",
+                                                "Container_Take_6",
+                                                "Container_Take_7",
+                                                "Rent_Office",
+                                                "Rent_Factory_Facility",
+                                                "Rent_Research_Facility",
+                                                "Junior_Accountant",
+                                                "Config_Starbase_Equipment",
+                                                "Trader",
+                                                "Communications_Officer",
+                                                "Contract_Manager",
+                                                "Starbase_Defense_Operator",
+                                                "Starbase_Fuel_Technician",
+                                                "Fitting_Manager",
+                                                "Terrestrial_Combat_Officer",
+                                                "Terrestrial_Logistics_Officer"
+                                            ],
+                                            "title": "get_corporations_corporation_id_roles_grantable_roles_at_base",
+                                            "type": "string",
+                                            "uniqueItems": true
+                                        },
+                                        "title": "get_corporations_corporation_id_roles_grantable_roles_at_base",
+                                        "type": "array"
+                                    },
+                                    "grantable_roles_at_hq": {
+                                        "description": "grantable_roles_at_hq array",
+                                        "items": {
+                                            "description": "grantable_roles_at_hq string",
+                                            "enum": [
+                                                "Director",
+                                                "Personnel_Manager",
+                                                "Accountant",
+                                                "Security_Officer",
+                                                "Factory_Manager",
+                                                "Station_Manager",
+                                                "Auditor",
+                                                "Hangar_Take_1",
+                                                "Hangar_Take_2",
+                                                "Hangar_Take_3",
+                                                "Hangar_Take_4",
+                                                "Hangar_Take_5",
+                                                "Hangar_Take_6",
+                                                "Hangar_Take_7",
+                                                "Hangar_Query_1",
+                                                "Hangar_Query_2",
+                                                "Hangar_Query_3",
+                                                "Hangar_Query_4",
+                                                "Hangar_Query_5",
+                                                "Hangar_Query_6",
+                                                "Hangar_Query_7",
+                                                "Account_Take_1",
+                                                "Account_Take_2",
+                                                "Account_Take_3",
+                                                "Account_Take_4",
+                                                "Account_Take_5",
+                                                "Account_Take_6",
+                                                "Account_Take_7",
+                                                "Diplomat",
+                                                "Config_Equipment",
+                                                "Container_Take_1",
+                                                "Container_Take_2",
+                                                "Container_Take_3",
+                                                "Container_Take_4",
+                                                "Container_Take_5",
+                                                "Container_Take_6",
+                                                "Container_Take_7",
+                                                "Rent_Office",
+                                                "Rent_Factory_Facility",
+                                                "Rent_Research_Facility",
+                                                "Junior_Accountant",
+                                                "Config_Starbase_Equipment",
+                                                "Trader",
+                                                "Communications_Officer",
+                                                "Contract_Manager",
+                                                "Starbase_Defense_Operator",
+                                                "Starbase_Fuel_Technician",
+                                                "Fitting_Manager",
+                                                "Terrestrial_Combat_Officer",
+                                                "Terrestrial_Logistics_Officer"
+                                            ],
+                                            "title": "get_corporations_corporation_id_roles_grantable_roles_at_hq",
+                                            "type": "string",
+                                            "uniqueItems": true
+                                        },
+                                        "title": "get_corporations_corporation_id_roles_grantable_roles_at_hq",
+                                        "type": "array"
+                                    },
+                                    "grantable_roles_at_other": {
+                                        "description": "grantable_roles_at_other array",
+                                        "items": {
+                                            "description": "grantable_roles_at_other string",
+                                            "enum": [
+                                                "Director",
+                                                "Personnel_Manager",
+                                                "Accountant",
+                                                "Security_Officer",
+                                                "Factory_Manager",
+                                                "Station_Manager",
+                                                "Auditor",
+                                                "Hangar_Take_1",
+                                                "Hangar_Take_2",
+                                                "Hangar_Take_3",
+                                                "Hangar_Take_4",
+                                                "Hangar_Take_5",
+                                                "Hangar_Take_6",
+                                                "Hangar_Take_7",
+                                                "Hangar_Query_1",
+                                                "Hangar_Query_2",
+                                                "Hangar_Query_3",
+                                                "Hangar_Query_4",
+                                                "Hangar_Query_5",
+                                                "Hangar_Query_6",
+                                                "Hangar_Query_7",
+                                                "Account_Take_1",
+                                                "Account_Take_2",
+                                                "Account_Take_3",
+                                                "Account_Take_4",
+                                                "Account_Take_5",
+                                                "Account_Take_6",
+                                                "Account_Take_7",
+                                                "Diplomat",
+                                                "Config_Equipment",
+                                                "Container_Take_1",
+                                                "Container_Take_2",
+                                                "Container_Take_3",
+                                                "Container_Take_4",
+                                                "Container_Take_5",
+                                                "Container_Take_6",
+                                                "Container_Take_7",
+                                                "Rent_Office",
+                                                "Rent_Factory_Facility",
+                                                "Rent_Research_Facility",
+                                                "Junior_Accountant",
+                                                "Config_Starbase_Equipment",
+                                                "Trader",
+                                                "Communications_Officer",
+                                                "Contract_Manager",
+                                                "Starbase_Defense_Operator",
+                                                "Starbase_Fuel_Technician",
+                                                "Fitting_Manager",
+                                                "Terrestrial_Combat_Officer",
+                                                "Terrestrial_Logistics_Officer"
+                                            ],
+                                            "title": "get_corporations_corporation_id_roles_grantable_roles_at_other",
+                                            "type": "string",
+                                            "uniqueItems": true
+                                        },
+                                        "title": "get_corporations_corporation_id_roles_grantable_roles_at_other",
+                                        "type": "array"
+                                    },
+                                    "roles": {
+                                        "description": "roles array",
+                                        "items": {
+                                            "description": "role string",
+                                            "enum": [
+                                                "Director",
+                                                "Personnel_Manager",
+                                                "Accountant",
+                                                "Security_Officer",
+                                                "Factory_Manager",
+                                                "Station_Manager",
+                                                "Auditor",
+                                                "Hangar_Take_1",
+                                                "Hangar_Take_2",
+                                                "Hangar_Take_3",
+                                                "Hangar_Take_4",
+                                                "Hangar_Take_5",
+                                                "Hangar_Take_6",
+                                                "Hangar_Take_7",
+                                                "Hangar_Query_1",
+                                                "Hangar_Query_2",
+                                                "Hangar_Query_3",
+                                                "Hangar_Query_4",
+                                                "Hangar_Query_5",
+                                                "Hangar_Query_6",
+                                                "Hangar_Query_7",
+                                                "Account_Take_1",
+                                                "Account_Take_2",
+                                                "Account_Take_3",
+                                                "Account_Take_4",
+                                                "Account_Take_5",
+                                                "Account_Take_6",
+                                                "Account_Take_7",
+                                                "Diplomat",
+                                                "Config_Equipment",
+                                                "Container_Take_1",
+                                                "Container_Take_2",
+                                                "Container_Take_3",
+                                                "Container_Take_4",
+                                                "Container_Take_5",
+                                                "Container_Take_6",
+                                                "Container_Take_7",
+                                                "Rent_Office",
+                                                "Rent_Factory_Facility",
+                                                "Rent_Research_Facility",
+                                                "Junior_Accountant",
+                                                "Config_Starbase_Equipment",
+                                                "Trader",
+                                                "Communications_Officer",
+                                                "Contract_Manager",
+                                                "Starbase_Defense_Operator",
+                                                "Starbase_Fuel_Technician",
+                                                "Fitting_Manager",
+                                                "Terrestrial_Combat_Officer",
+                                                "Terrestrial_Logistics_Officer"
+                                            ],
+                                            "title": "get_corporations_corporation_id_roles_role",
+                                            "type": "string",
+                                            "uniqueItems": true
+                                        },
+                                        "title": "get_corporations_corporation_id_roles_roles",
+                                        "type": "array"
+                                    },
+                                    "roles_at_base": {
+                                        "description": "roles_at_base array",
+                                        "items": {
+                                            "description": "roles_at_base string",
+                                            "enum": [
+                                                "Director",
+                                                "Personnel_Manager",
+                                                "Accountant",
+                                                "Security_Officer",
+                                                "Factory_Manager",
+                                                "Station_Manager",
+                                                "Auditor",
+                                                "Hangar_Take_1",
+                                                "Hangar_Take_2",
+                                                "Hangar_Take_3",
+                                                "Hangar_Take_4",
+                                                "Hangar_Take_5",
+                                                "Hangar_Take_6",
+                                                "Hangar_Take_7",
+                                                "Hangar_Query_1",
+                                                "Hangar_Query_2",
+                                                "Hangar_Query_3",
+                                                "Hangar_Query_4",
+                                                "Hangar_Query_5",
+                                                "Hangar_Query_6",
+                                                "Hangar_Query_7",
+                                                "Account_Take_1",
+                                                "Account_Take_2",
+                                                "Account_Take_3",
+                                                "Account_Take_4",
+                                                "Account_Take_5",
+                                                "Account_Take_6",
+                                                "Account_Take_7",
+                                                "Diplomat",
+                                                "Config_Equipment",
+                                                "Container_Take_1",
+                                                "Container_Take_2",
+                                                "Container_Take_3",
+                                                "Container_Take_4",
+                                                "Container_Take_5",
+                                                "Container_Take_6",
+                                                "Container_Take_7",
+                                                "Rent_Office",
+                                                "Rent_Factory_Facility",
+                                                "Rent_Research_Facility",
+                                                "Junior_Accountant",
+                                                "Config_Starbase_Equipment",
+                                                "Trader",
+                                                "Communications_Officer",
+                                                "Contract_Manager",
+                                                "Starbase_Defense_Operator",
+                                                "Starbase_Fuel_Technician",
+                                                "Fitting_Manager",
+                                                "Terrestrial_Combat_Officer",
+                                                "Terrestrial_Logistics_Officer"
+                                            ],
+                                            "title": "get_corporations_corporation_id_roles_roles_at_base",
+                                            "type": "string",
+                                            "uniqueItems": true
+                                        },
+                                        "title": "get_corporations_corporation_id_roles_roles_at_base",
+                                        "type": "array"
+                                    },
+                                    "roles_at_hq": {
+                                        "description": "roles_at_hq array",
+                                        "items": {
+                                            "description": "roles_at_hq string",
+                                            "enum": [
+                                                "Director",
+                                                "Personnel_Manager",
+                                                "Accountant",
+                                                "Security_Officer",
+                                                "Factory_Manager",
+                                                "Station_Manager",
+                                                "Auditor",
+                                                "Hangar_Take_1",
+                                                "Hangar_Take_2",
+                                                "Hangar_Take_3",
+                                                "Hangar_Take_4",
+                                                "Hangar_Take_5",
+                                                "Hangar_Take_6",
+                                                "Hangar_Take_7",
+                                                "Hangar_Query_1",
+                                                "Hangar_Query_2",
+                                                "Hangar_Query_3",
+                                                "Hangar_Query_4",
+                                                "Hangar_Query_5",
+                                                "Hangar_Query_6",
+                                                "Hangar_Query_7",
+                                                "Account_Take_1",
+                                                "Account_Take_2",
+                                                "Account_Take_3",
+                                                "Account_Take_4",
+                                                "Account_Take_5",
+                                                "Account_Take_6",
+                                                "Account_Take_7",
+                                                "Diplomat",
+                                                "Config_Equipment",
+                                                "Container_Take_1",
+                                                "Container_Take_2",
+                                                "Container_Take_3",
+                                                "Container_Take_4",
+                                                "Container_Take_5",
+                                                "Container_Take_6",
+                                                "Container_Take_7",
+                                                "Rent_Office",
+                                                "Rent_Factory_Facility",
+                                                "Rent_Research_Facility",
+                                                "Junior_Accountant",
+                                                "Config_Starbase_Equipment",
+                                                "Trader",
+                                                "Communications_Officer",
+                                                "Contract_Manager",
+                                                "Starbase_Defense_Operator",
+                                                "Starbase_Fuel_Technician",
+                                                "Fitting_Manager",
+                                                "Terrestrial_Combat_Officer",
+                                                "Terrestrial_Logistics_Officer"
+                                            ],
+                                            "title": "get_corporations_corporation_id_roles_roles_at_hq",
+                                            "type": "string",
+                                            "uniqueItems": true
+                                        },
+                                        "title": "get_corporations_corporation_id_roles_roles_at_hq",
+                                        "type": "array"
+                                    },
+                                    "roles_at_other": {
+                                        "description": "roles_at_other array",
+                                        "items": {
+                                            "description": "roles_at_other string",
+                                            "enum": [
+                                                "Director",
+                                                "Personnel_Manager",
+                                                "Accountant",
+                                                "Security_Officer",
+                                                "Factory_Manager",
+                                                "Station_Manager",
+                                                "Auditor",
+                                                "Hangar_Take_1",
+                                                "Hangar_Take_2",
+                                                "Hangar_Take_3",
+                                                "Hangar_Take_4",
+                                                "Hangar_Take_5",
+                                                "Hangar_Take_6",
+                                                "Hangar_Take_7",
+                                                "Hangar_Query_1",
+                                                "Hangar_Query_2",
+                                                "Hangar_Query_3",
+                                                "Hangar_Query_4",
+                                                "Hangar_Query_5",
+                                                "Hangar_Query_6",
+                                                "Hangar_Query_7",
+                                                "Account_Take_1",
+                                                "Account_Take_2",
+                                                "Account_Take_3",
+                                                "Account_Take_4",
+                                                "Account_Take_5",
+                                                "Account_Take_6",
+                                                "Account_Take_7",
+                                                "Diplomat",
+                                                "Config_Equipment",
+                                                "Container_Take_1",
+                                                "Container_Take_2",
+                                                "Container_Take_3",
+                                                "Container_Take_4",
+                                                "Container_Take_5",
+                                                "Container_Take_6",
+                                                "Container_Take_7",
+                                                "Rent_Office",
+                                                "Rent_Factory_Facility",
+                                                "Rent_Research_Facility",
+                                                "Junior_Accountant",
+                                                "Config_Starbase_Equipment",
+                                                "Trader",
+                                                "Communications_Officer",
+                                                "Contract_Manager",
+                                                "Starbase_Defense_Operator",
+                                                "Starbase_Fuel_Technician",
+                                                "Fitting_Manager",
+                                                "Terrestrial_Combat_Officer",
+                                                "Terrestrial_Logistics_Officer"
+                                            ],
+                                            "title": "get_corporations_corporation_id_roles_roles_at_other",
+                                            "type": "string",
+                                            "uniqueItems": true
+                                        },
+                                        "title": "get_corporations_corporation_id_roles_roles_at_other",
+                                        "type": "array"
+                                    }
+                                },
+                                "required": [
+                                    "character_id"
+                                ],
+                                "title": "get_corporations_corporation_id_roles_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_corporations_corporation_id_roles_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-corporations.read_corporation_membership.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_corporations_corporation_id_roles_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_roles_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_corporations_corporation_id_roles_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_roles_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-corporations.read_corporation_membership.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get corporation member roles",
+                "tags": [
+                    "Corporation"
+                ]
+            }
+        },
         "/fleets/{fleet_id}/": {
             "get": {
                 "description": "Return details about a fleet\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/`\n\nAlternate route: `/latest/fleets/{fleet_id}/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
@@ -11060,6 +12365,7 @@
                 "esi-calendar.respond_calendar_events.v1": "EVE SSO scope esi-calendar.respond_calendar_events.v1",
                 "esi-characters.read_contacts.v1": "EVE SSO scope esi-characters.read_contacts.v1",
                 "esi-clones.read_clones.v1": "EVE SSO scope esi-clones.read_clones.v1",
+                "esi-corporations.read_corporation_membership.v1": "EVE SSO scope esi-corporations.read_corporation_membership.v1",
                 "esi-fleets.read_fleet.v1": "EVE SSO scope esi-fleets.read_fleet.v1",
                 "esi-fleets.write_fleet.v1": "EVE SSO scope esi-fleets.write_fleet.v1",
                 "esi-killmails.read_killmails.v1": "EVE SSO scope esi-killmails.read_killmails.v1",
