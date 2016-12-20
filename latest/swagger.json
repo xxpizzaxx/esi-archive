@@ -2115,6 +2115,682 @@
                 ]
             }
         },
+        "/characters/{character_id}/contacts/": {
+            "delete": {
+                "description": "Bulk delete contacts\n\n---\n\nAlternate route: `/v1/characters/{character_id}/contacts/`\n\nAlternate route: `/legacy/characters/{character_id}/contacts/`\n\nAlternate route: `/dev/characters/{character_id}/contacts/`\n",
+                "operationId": "delete_characters_character_id_contacts",
+                "parameters": [
+                    {
+                        "description": "ID for a character",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "A list of contacts to edit",
+                        "in": "body",
+                        "name": "contact_ids",
+                        "required": true,
+                        "schema": {
+                            "description": "contact_ids array",
+                            "items": {
+                                "description": "ID of the contact to edit",
+                                "format": "int32",
+                                "title": "delete_characters_character_id_contacts_contact_id",
+                                "type": "integer"
+                            },
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "title": "delete_characters_character_id_contacts_contact_ids",
+                            "type": "array"
+                        }
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Contacts deleted"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-characters.write_contacts.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "delete_characters_character_id_contacts_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "delete_characters_character_id_contacts_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "delete_characters_character_id_contacts_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "delete_characters_character_id_contacts_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.write_contacts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Delete contacts",
+                "tags": [
+                    "Contacts"
+                ]
+            },
+            "get": {
+                "description": "Return contacts of a character\n\n---\n\nAlternate route: `/v1/characters/{character_id}/contacts/`\n\nAlternate route: `/legacy/characters/{character_id}/contacts/`\n\nAlternate route: `/dev/characters/{character_id}/contacts/`\n\n\n---\n\nThis route is cached for up to 300 seconds",
+                "operationId": "get_characters_character_id_contacts",
+                "parameters": [
+                    {
+                        "description": "ID for a character",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": 1,
+                        "description": "page integer",
+                        "format": "int32",
+                        "in": "query",
+                        "minimum": 1,
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of contacts",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "contact_id": 123,
+                                    "contact_type": "character",
+                                    "is_blocked": false,
+                                    "is_watched": true,
+                                    "standing": 10.0
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "contact_id": {
+                                        "description": "contact_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_contacts_contact_id",
+                                        "type": "integer"
+                                    },
+                                    "contact_type": {
+                                        "description": "contact_type string",
+                                        "enum": [
+                                            "character",
+                                            "corporation",
+                                            "alliance"
+                                        ],
+                                        "title": "get_characters_character_id_contacts_contact_type",
+                                        "type": "string"
+                                    },
+                                    "is_blocked": {
+                                        "description": "Whether this contact is in the blocked list. Note a missing value denotes unknown, not true or false",
+                                        "title": "get_characters_character_id_contacts_is_blocked",
+                                        "type": "boolean"
+                                    },
+                                    "is_watched": {
+                                        "description": "Whether this contact is being watched",
+                                        "title": "get_characters_character_id_contacts_is_watched",
+                                        "type": "boolean"
+                                    },
+                                    "label_id": {
+                                        "description": "Custom label of the contact",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_contacts_label_id",
+                                        "type": "integer"
+                                    },
+                                    "standing": {
+                                        "description": "Standing of the contact",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_contacts_standing",
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "standing",
+                                    "contact_type",
+                                    "contact_id"
+                                ],
+                                "title": "get_characters_character_id_contacts_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_characters_character_id_contacts_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-characters.read_contacts.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_contacts_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_contacts_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_contacts_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_contacts_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_contacts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get contacts",
+                "tags": [
+                    "Contacts"
+                ]
+            },
+            "post": {
+                "description": "Bulk add contacts with same settings\n\n---\n\nAlternate route: `/v1/characters/{character_id}/contacts/`\n\nAlternate route: `/legacy/characters/{character_id}/contacts/`\n\nAlternate route: `/dev/characters/{character_id}/contacts/`\n",
+                "operationId": "post_characters_character_id_contacts",
+                "parameters": [
+                    {
+                        "description": "ID for a character",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Standing for the new contact",
+                        "format": "float",
+                        "in": "query",
+                        "maximum": 10,
+                        "minimum": -10,
+                        "name": "standing",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "default": false,
+                        "description": "Whether the new contact should be watched, note this is only effective on characters",
+                        "in": "query",
+                        "name": "watched",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "default": 0,
+                        "description": "Add a custom label to the new contact",
+                        "format": "int64",
+                        "in": "query",
+                        "name": "label_id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "A list of contacts to add",
+                        "in": "body",
+                        "name": "contact_ids",
+                        "required": true,
+                        "schema": {
+                            "description": "contact_ids array",
+                            "items": {
+                                "description": "ID of the contact to add",
+                                "format": "int32",
+                                "title": "post_characters_character_id_contacts_contact_id",
+                                "type": "integer"
+                            },
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "title": "post_characters_character_id_contacts_contact_ids",
+                            "type": "array"
+                        }
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "A list of contact ids that successfully created",
+                        "examples": {
+                            "application/json": [
+                                123,
+                                456
+                            ]
+                        },
+                        "schema": {
+                            "description": "201 created array",
+                            "items": {
+                                "description": "201 created integer",
+                                "format": "int32",
+                                "title": "post_characters_character_id_contacts_201_created",
+                                "type": "integer"
+                            },
+                            "title": "post_characters_character_id_contacts_created",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-characters.write_contacts.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "post_characters_character_id_contacts_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_characters_character_id_contacts_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "post_characters_character_id_contacts_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_characters_character_id_contacts_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.write_contacts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Add contacts",
+                "tags": [
+                    "Contacts"
+                ]
+            },
+            "put": {
+                "description": "Bulk edit contacts with same settings\n\n---\n\nAlternate route: `/v1/characters/{character_id}/contacts/`\n\nAlternate route: `/legacy/characters/{character_id}/contacts/`\n\nAlternate route: `/dev/characters/{character_id}/contacts/`\n",
+                "operationId": "put_characters_character_id_contacts",
+                "parameters": [
+                    {
+                        "description": "ID for a character",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Standing for the contact",
+                        "format": "float",
+                        "in": "query",
+                        "maximum": 10,
+                        "minimum": -10,
+                        "name": "standing",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "default": false,
+                        "description": "Whether the contact should be watched, note this is only effective on characters",
+                        "in": "query",
+                        "name": "watched",
+                        "required": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "default": 0,
+                        "description": "Add a custom label to the contact, use 0 for clearing label",
+                        "format": "int64",
+                        "in": "query",
+                        "name": "label_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "A list of contacts to edit",
+                        "in": "body",
+                        "name": "contact_ids",
+                        "required": true,
+                        "schema": {
+                            "description": "contact_ids array",
+                            "items": {
+                                "description": "ID of the contact to edit",
+                                "format": "int32",
+                                "title": "put_characters_character_id_contacts_contact_id",
+                                "type": "integer"
+                            },
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "title": "put_characters_character_id_contacts_contact_ids",
+                            "type": "array"
+                        }
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Contacts updated"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-characters.write_contacts.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "put_characters_character_id_contacts_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_characters_character_id_contacts_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "put_characters_character_id_contacts_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_characters_character_id_contacts_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.write_contacts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Edit contacts",
+                "tags": [
+                    "Contacts"
+                ]
+            }
+        },
+        "/characters/{character_id}/contacts/labels/": {
+            "get": {
+                "description": "Return custom labels for contacts the character defined\n\n---\n\nAlternate route: `/v1/characters/{character_id}/contacts/labels/`\n\nAlternate route: `/legacy/characters/{character_id}/contacts/labels/`\n\nAlternate route: `/dev/characters/{character_id}/contacts/labels/`\n\n\n---\n\nThis route is cached for up to 300 seconds",
+                "operationId": "get_characters_character_id_contacts_labels",
+                "parameters": [
+                    {
+                        "description": "ID for a character",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of contact labels",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "label_id": 123,
+                                    "label_name": "Friends"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "label_id": {
+                                        "description": "label_id integer",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_contacts_labels_label_id",
+                                        "type": "integer"
+                                    },
+                                    "label_name": {
+                                        "description": "label_name string",
+                                        "title": "get_characters_character_id_contacts_labels_label_name",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "label_id",
+                                    "label_name"
+                                ],
+                                "title": "get_characters_character_id_contacts_labels_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_characters_character_id_contacts_labels_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-characters.read_contacts.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_contacts_labels_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_contacts_labels_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_contacts_labels_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_contacts_labels_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_contacts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get contact labels",
+                "tags": [
+                    "Contacts"
+                ]
+            }
+        },
         "/characters/{character_id}/corporationhistory/": {
             "get": {
                 "description": "Get a list of all the corporations a character has been a member of\n\n---\n\nAlternate route: `/v1/characters/{character_id}/corporationhistory/`\n\nAlternate route: `/legacy/characters/{character_id}/corporationhistory/`\n\nAlternate route: `/dev/characters/{character_id}/corporationhistory/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -12850,6 +13526,7 @@
                 "esi-calendar.read_calendar_events.v1": "EVE SSO scope esi-calendar.read_calendar_events.v1",
                 "esi-calendar.respond_calendar_events.v1": "EVE SSO scope esi-calendar.respond_calendar_events.v1",
                 "esi-characters.read_contacts.v1": "EVE SSO scope esi-characters.read_contacts.v1",
+                "esi-characters.write_contacts.v1": "EVE SSO scope esi-characters.write_contacts.v1",
                 "esi-clones.read_clones.v1": "EVE SSO scope esi-clones.read_clones.v1",
                 "esi-corporations.read_corporation_membership.v1": "EVE SSO scope esi-corporations.read_corporation_membership.v1",
                 "esi-fleets.read_fleet.v1": "EVE SSO scope esi-fleets.read_fleet.v1",
