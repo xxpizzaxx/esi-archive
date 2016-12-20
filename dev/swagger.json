@@ -892,6 +892,8 @@
                                             "CorpseBay",
                                             "DroneBay",
                                             "FleetHangar",
+                                            "Deliveries",
+                                            "HiddenModifiers",
                                             "Hangar",
                                             "HangarAll",
                                             "LoSlot0",
