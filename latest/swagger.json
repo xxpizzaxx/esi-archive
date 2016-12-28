@@ -2296,7 +2296,8 @@
                                         "enum": [
                                             "character",
                                             "corporation",
-                                            "alliance"
+                                            "alliance",
+                                            "faction"
                                         ],
                                         "title": "get_characters_character_id_contacts_contact_type",
                                         "type": "string"
@@ -2560,7 +2561,7 @@
                         "description": "Whether the contact should be watched, note this is only effective on characters",
                         "in": "query",
                         "name": "watched",
-                        "required": true,
+                        "required": false,
                         "type": "boolean"
                     },
                     {
@@ -2569,7 +2570,7 @@
                         "format": "int64",
                         "in": "query",
                         "name": "label_id",
-                        "required": true,
+                        "required": false,
                         "type": "integer"
                     },
                     {
