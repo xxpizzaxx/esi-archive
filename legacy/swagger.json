@@ -2055,8 +2055,8 @@
                                 "title": "delete_characters_character_id_contacts_contact_id",
                                 "type": "integer"
                             },
-                            "maxLength": 20,
-                            "minLength": 1,
+                            "maxItems": 20,
+                            "minItems": 1,
                             "title": "delete_characters_character_id_contacts_contact_ids",
                             "type": "array"
                         }
@@ -2354,8 +2354,8 @@
                                 "title": "post_characters_character_id_contacts_contact_id",
                                 "type": "integer"
                             },
-                            "maxLength": 20,
-                            "minLength": 1,
+                            "maxItems": 100,
+                            "minItems": 1,
                             "title": "post_characters_character_id_contacts_contact_ids",
                             "type": "array"
                         }
@@ -2498,8 +2498,8 @@
                                 "title": "put_characters_character_id_contacts_contact_id",
                                 "type": "integer"
                             },
-                            "maxLength": 20,
-                            "minLength": 1,
+                            "maxItems": 100,
+                            "minItems": 1,
                             "title": "put_characters_character_id_contacts_contact_ids",
                             "type": "array"
                         }
