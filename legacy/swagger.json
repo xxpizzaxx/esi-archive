@@ -1,1 +1,1390 @@
-{}
+{
+    "basePath": "/legacy",
+    "host": "esi.tech.ccp.is",
+    "info": {
+        "description": "An OpenAPI for EVE Online",
+        "title": "EVE Swagger Interface",
+        "version": "0.3.6.dev9"
+    },
+    "paths": {
+        "/characters/{character_id}/wallets/": {
+            "get": {
+                "description": "List your wallets and their balances. Characters typically have only one wallet, with wallet_id 1000 being the master wallet.\n\n---\n\nAlternate route: `/v1/characters/{character_id}/wallets/`\n\nAlternate route: `/latest/characters/{character_id}/wallets/`\n\nAlternate route: `/dev/characters/{character_id}/wallets/`\n\n\n---\n\nThis route is cached for up to 120 seconds",
+                "operationId": "get_characters_character_id_wallets",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Wallet data for selected user",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "balance": 295000,
+                                    "wallet_id": 1000
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "balance": {
+                                        "description": "Wallet's balance in ISK hundredths.",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_wallets_balance",
+                                        "type": "integer"
+                                    },
+                                    "wallet_id": {
+                                        "description": "wallet_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_wallets_wallet_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "title": "get_characters_character_id_wallets_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_characters_character_id_wallets_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-wallet.read_character_wallet.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_wallets_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_wallets_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_wallets_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_wallets_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-wallet.read_character_wallet.v1"
+                        ]
+                    }
+                ],
+                "summary": "List wallets and balances",
+                "tags": [
+                    "Wallet"
+                ]
+            }
+        },
+        "/universe/names/": {
+            "post": {
+                "description": "Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types.\n\n---\n\nAlternate route: `/v1/universe/names/`\n\nAlternate route: `/latest/universe/names/`\n",
+                "operationId": "post_universe_names",
+                "parameters": [
+                    {
+                        "description": "The ids to resolve",
+                        "in": "body",
+                        "name": "ids",
+                        "required": true,
+                        "schema": {
+                            "description": "ids schema",
+                            "properties": {
+                                "ids": {
+                                    "description": "ids array",
+                                    "items": {
+                                        "description": "id integer",
+                                        "format": "int32",
+                                        "title": "post_universe_names_id",
+                                        "type": "integer"
+                                    },
+                                    "minItems": 1,
+                                    "title": "post_universe_names_ids",
+                                    "type": "array",
+                                    "uniqueItems": true
+                                }
+                            },
+                            "required": [
+                                "ids"
+                            ],
+                            "title": "post_universe_names_ids"
+                        }
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of id/name associations for a set of ID's. ID's that cannot be resolved are not returned.",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "category": "character",
+                                    "id": 95465499,
+                                    "name": "CCP Bartender"
+                                },
+                                {
+                                    "category": "solar_system",
+                                    "id": 30000142,
+                                    "name": "Jita"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "category": {
+                                        "description": "category string",
+                                        "enum": [
+                                            "alliance",
+                                            "character",
+                                            "constellation",
+                                            "corporation",
+                                            "inventory_type",
+                                            "region",
+                                            "solar_system",
+                                            "station"
+                                        ],
+                                        "title": "post_universe_names_category",
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "description": "id integer",
+                                        "format": "int32",
+                                        "title": "post_universe_names_id",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "description": "name string",
+                                        "title": "post_universe_names_name",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "id",
+                                    "name",
+                                    "category"
+                                ],
+                                "title": "post_universe_names_200_ok",
+                                "type": "object"
+                            },
+                            "title": "post_universe_names_ok",
+                            "type": "array"
+                        }
+                    },
+                    "404": {
+                        "description": "no valid IDs found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "post_universe_names_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_universe_names_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "post_universe_names_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_universe_names_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get names and categories for a set of ID's",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
+        "/universe/stations/{station_id}/": {
+            "get": {
+                "description": "Public information on stations\n\n---\n\nAlternate route: `/v1/universe/stations/{station_id}/`\n\nAlternate route: `/latest/universe/stations/{station_id}/`\n\nAlternate route: `/dev/universe/stations/{station_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_stations_station_id",
+                "parameters": [
+                    {
+                        "description": "An Eve station ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "station_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Public data about a station",
+                        "examples": {
+                            "application/json": {
+                                "solar_system_id": 30000142,
+                                "station_name": "Jita IV Moon IV - Caldari Navy Assembly Plant"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "solar_system_id": {
+                                    "description": "solar_system_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_stations_station_id_solar_system_id",
+                                    "type": "integer"
+                                },
+                                "station_name": {
+                                    "description": "the full name of the station",
+                                    "title": "get_universe_stations_station_id_station_name",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_stations_station_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_stations_station_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_stations_station_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get station information",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
+        "/universe/structures/": {
+            "get": {
+                "description": "List all public structures\n\n---\n\nAlternate route: `/v1/universe/structures/`\n\nAlternate route: `/latest/universe/structures/`\n\nAlternate route: `/dev/universe/structures/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_structures",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of public structure IDs",
+                        "examples": {
+                            "application/json": [
+                                1000000017013,
+                                1000000025062
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int64",
+                                "minimum": 0,
+                                "title": "get_universe_structures_200_ok",
+                                "type": "integer",
+                                "uniqueItems": true
+                            },
+                            "title": "get_universe_structures_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_structures_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_structures_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "List all public structures",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
+        "/universe/structures/{structure_id}/": {
+            "get": {
+                "description": "Returns information on requested structure, if you are on the ACL. Otherwise, returns \"Forbidden\" for all inputs.\n\n---\n\nAlternate route: `/v1/universe/structures/{structure_id}/`\n\nAlternate route: `/latest/universe/structures/{structure_id}/`\n\nAlternate route: `/dev/universe/structures/{structure_id}/`\n",
+                "operationId": "get_universe_structures_structure_id",
+                "parameters": [
+                    {
+                        "description": "An Eve structure ID",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "structure_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data about a structure",
+                        "examples": {
+                            "application/json": {
+                                "name": "V-3YG7 VI - The Capital",
+                                "solar_system_id": 30000142
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "name": {
+                                    "description": "The full name of the structure",
+                                    "title": "get_universe_structures_structure_id_name",
+                                    "type": "string"
+                                },
+                                "position": {
+                                    "description": "Coordinates of the structure in Cartesian space relative to the Sun, in metres.\n",
+                                    "properties": {
+                                        "x": {
+                                            "description": "x number",
+                                            "format": "float",
+                                            "title": "get_universe_structures_structure_id_x",
+                                            "type": "number"
+                                        },
+                                        "y": {
+                                            "description": "y number",
+                                            "format": "float",
+                                            "title": "get_universe_structures_structure_id_y",
+                                            "type": "number"
+                                        },
+                                        "z": {
+                                            "description": "z number",
+                                            "format": "float",
+                                            "title": "get_universe_structures_structure_id_z",
+                                            "type": "number"
+                                        }
+                                    },
+                                    "required": [
+                                        "x",
+                                        "y",
+                                        "z"
+                                    ],
+                                    "title": "get_universe_structures_structure_id_position",
+                                    "type": "object"
+                                },
+                                "solar_system_id": {
+                                    "description": "solar_system_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_structures_structure_id_solar_system_id",
+                                    "type": "integer"
+                                },
+                                "type_id": {
+                                    "description": "type_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_structures_structure_id_type_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "solar_system_id"
+                            ],
+                            "title": "get_universe_structures_structure_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-universe.read_structures.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_universe_structures_structure_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_structures_structure_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Structure not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_universe_structures_structure_id_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_structures_structure_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_structures_structure_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_structures_structure_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-universe.read_structures.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get structure information",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
+        "/universe/systems/{system_id}/": {
+            "get": {
+                "description": "Information on solar systems\n\n---\n\nAlternate route: `/v1/universe/systems/{system_id}/`\n\nAlternate route: `/latest/universe/systems/{system_id}/`\n\nAlternate route: `/dev/universe/systems/{system_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_systems_system_id",
+                "parameters": [
+                    {
+                        "description": "An Eve solar system ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "system_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data about a solar system",
+                        "examples": {
+                            "application/json": {
+                                "solar_system_name": "Jita"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "solar_system_name": {
+                                    "description": "the full name of the system",
+                                    "title": "get_universe_systems_system_id_solar_system_name",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_systems_system_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "System not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "System not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "System not found",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_universe_systems_system_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_systems_system_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_systems_system_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_systems_system_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get solar system information",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
+        "/universe/types/{type_id}/": {
+            "get": {
+                "description": "Get information on a type\n\n---\n\nAlternate route: `/v1/universe/types/{type_id}/`\n\nAlternate route: `/latest/universe/types/{type_id}/`\n\nAlternate route: `/dev/universe/types/{type_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_types_type_id",
+                "parameters": [
+                    {
+                        "description": "An Eve item type ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "type_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Public data about a type",
+                        "examples": {
+                            "application/json": {
+                                "category_id": 6,
+                                "graphic_id": 46,
+                                "group_id": 25,
+                                "type_description": "The Rifter is a very powerful combat frigate and can easily tackle the best frigates out there. It has gone through many radical design phases since its inauguration during the Minmatar Rebellion. The Rifter has a wide variety of offensive capabilities, making it an unpredictable and deadly adversary.",
+                                "type_name": "Rifter"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "category_id": {
+                                    "description": "category_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_types_type_id_category_id",
+                                    "type": "integer"
+                                },
+                                "graphic_id": {
+                                    "description": "graphic_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_types_type_id_graphic_id",
+                                    "type": "integer"
+                                },
+                                "group_id": {
+                                    "description": "group_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_types_type_id_group_id",
+                                    "type": "integer"
+                                },
+                                "icon_id": {
+                                    "description": "icon_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_types_type_id_icon_id",
+                                    "type": "integer"
+                                },
+                                "type_description": {
+                                    "description": "type_description string",
+                                    "title": "get_universe_types_type_id_type_description",
+                                    "type": "string"
+                                },
+                                "type_name": {
+                                    "description": "type_name string",
+                                    "title": "get_universe_types_type_id_type_name",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "type_name",
+                                "type_description",
+                                "group_id",
+                                "category_id"
+                            ],
+                            "title": "get_universe_types_type_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Type not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Type not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "Type not found",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_universe_types_type_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_types_type_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_types_type_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_types_type_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get type information",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
+        "/wars/": {
+            "get": {
+                "description": "Return a list of wars\n\n---\n\nAlternate route: `/v1/wars/`\n\nAlternate route: `/latest/wars/`\n\nAlternate route: `/dev/wars/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_wars",
+                "parameters": [
+                    {
+                        "default": 1,
+                        "description": "Which page to query, starting at 1, 2000 wars per page.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of war IDs",
+                        "examples": {
+                            "application/json": [
+                                3,
+                                2,
+                                1
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_wars_200_ok",
+                                "type": "integer"
+                            },
+                            "title": "get_wars_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_wars_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_wars_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "List wars",
+                "tags": [
+                    "Wars"
+                ]
+            }
+        },
+        "/wars/{war_id}/": {
+            "get": {
+                "description": "Return details about a war\n\n---\n\nAlternate route: `/v1/wars/{war_id}/`\n\nAlternate route: `/latest/wars/{war_id}/`\n\nAlternate route: `/dev/wars/{war_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_wars_war_id",
+                "parameters": [
+                    {
+                        "description": "ID for a war",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "war_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a war",
+                        "examples": {
+                            "application/json": {
+                                "aggressor": {
+                                    "corporation_id": 986665792,
+                                    "isk_destroyed": 0,
+                                    "ships_killed": 0
+                                },
+                                "declared": "2004-05-22T05:20:00Z",
+                                "defender": {
+                                    "corporation_id": 1001562011,
+                                    "isk_destroyed": 0,
+                                    "ships_killed": 0
+                                },
+                                "id": 1941,
+                                "mutual": false,
+                                "open_for_allies": false
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "aggressor": {
+                                    "description": "The aggressor corporation or alliance that declared this war, only contains either corporation_id or alliance_id",
+                                    "properties": {
+                                        "alliance_id": {
+                                            "description": "Alliance ID if and only if the aggressor is an alliance",
+                                            "format": "int32",
+                                            "title": "get_wars_war_id_alliance_id",
+                                            "type": "integer"
+                                        },
+                                        "corporation_id": {
+                                            "description": "Corporation ID if and only if the aggressor is a corporation",
+                                            "format": "int32",
+                                            "title": "get_wars_war_id_corporation_id",
+                                            "type": "integer"
+                                        },
+                                        "isk_destroyed": {
+                                            "description": "ISK value of ships the aggressor has destroyed",
+                                            "format": "float",
+                                            "title": "get_wars_war_id_isk_destroyed",
+                                            "type": "number"
+                                        },
+                                        "ships_killed": {
+                                            "description": "The number of ships the aggressor has killed",
+                                            "format": "int32",
+                                            "title": "get_wars_war_id_ships_killed",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "ships_killed",
+                                        "isk_destroyed"
+                                    ],
+                                    "title": "get_wars_war_id_aggressor",
+                                    "type": "object"
+                                },
+                                "allies": {
+                                    "description": "allied corporations or alliances, each object contains either corporation_id or alliance_id",
+                                    "items": {
+                                        "description": "ally object",
+                                        "properties": {
+                                            "alliance_id": {
+                                                "description": "Alliance ID if and only if this ally is an alliance",
+                                                "format": "int32",
+                                                "title": "get_wars_war_id_alliance_id",
+                                                "type": "integer"
+                                            },
+                                            "corporation_id": {
+                                                "description": "Corporation ID if and only if this ally is a corporation",
+                                                "format": "int32",
+                                                "title": "get_wars_war_id_corporation_id",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "title": "get_wars_war_id_ally",
+                                        "type": "object"
+                                    },
+                                    "title": "get_wars_war_id_allies",
+                                    "type": "array"
+                                },
+                                "declared": {
+                                    "description": "Time that the war was declared",
+                                    "format": "date-time",
+                                    "title": "get_wars_war_id_declared",
+                                    "type": "string"
+                                },
+                                "defender": {
+                                    "description": "The defending corporation or alliance that declared this war, only contains either corporation_id or alliance_id",
+                                    "properties": {
+                                        "alliance_id": {
+                                            "description": "Alliance ID if and only if the defender is an alliance",
+                                            "format": "int32",
+                                            "title": "get_wars_war_id_alliance_id",
+                                            "type": "integer"
+                                        },
+                                        "corporation_id": {
+                                            "description": "Corporation ID if and only if the defender is a corporation",
+                                            "format": "int32",
+                                            "title": "get_wars_war_id_corporation_id",
+                                            "type": "integer"
+                                        },
+                                        "isk_destroyed": {
+                                            "description": "ISK value of ships the defender has killed",
+                                            "format": "float",
+                                            "title": "get_wars_war_id_isk_destroyed",
+                                            "type": "number"
+                                        },
+                                        "ships_killed": {
+                                            "description": "The number of ships the defender has killed",
+                                            "format": "int32",
+                                            "title": "get_wars_war_id_ships_killed",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "ships_killed",
+                                        "isk_destroyed"
+                                    ],
+                                    "title": "get_wars_war_id_defender",
+                                    "type": "object"
+                                },
+                                "finished": {
+                                    "description": "Time the war ended and shooting was no longer allowed",
+                                    "format": "date-time",
+                                    "title": "get_wars_war_id_finished",
+                                    "type": "string"
+                                },
+                                "id": {
+                                    "description": "ID of the specified war",
+                                    "format": "int32",
+                                    "title": "get_wars_war_id_id",
+                                    "type": "integer"
+                                },
+                                "mutual": {
+                                    "description": "Was the war declared mutual by both parties",
+                                    "title": "get_wars_war_id_mutual",
+                                    "type": "boolean"
+                                },
+                                "open_for_allies": {
+                                    "description": "Is the war currently open for allies or not",
+                                    "title": "get_wars_war_id_open_for_allies",
+                                    "type": "boolean"
+                                },
+                                "retracted": {
+                                    "description": "Time the war was retracted but both sides could still shoot each other",
+                                    "format": "date-time",
+                                    "title": "get_wars_war_id_retracted",
+                                    "type": "string"
+                                },
+                                "started": {
+                                    "description": "Time when the war started and both sides could shoot each other",
+                                    "format": "date-time",
+                                    "title": "get_wars_war_id_started",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "id",
+                                "declared",
+                                "mutual",
+                                "open_for_allies",
+                                "aggressor",
+                                "defender"
+                            ],
+                            "title": "get_wars_war_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "422": {
+                        "description": "Errors in query parameters",
+                        "examples": {
+                            "application/json": {
+                                "error": "{} is not a valid war ID\n"
+                            }
+                        },
+                        "schema": {
+                            "description": "war_id is not valid",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_wars_war_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_wars_war_id_unprocessable_entity",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_wars_war_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_wars_war_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get war information",
+                "tags": [
+                    "Wars"
+                ]
+            }
+        },
+        "/wars/{war_id}/killmails/": {
+            "get": {
+                "description": "Return a list of kills related to a war\n\n---\n\nAlternate route: `/v1/wars/{war_id}/killmails/`\n\nAlternate route: `/latest/wars/{war_id}/killmails/`\n\nAlternate route: `/dev/wars/{war_id}/killmails/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_wars_war_id_killmails",
+                "parameters": [
+                    {
+                        "description": "A valid war ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "war_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": 1,
+                        "description": "Which page to query, starting at 1, 2000 killmails per page.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of killmail IDs and hashes",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "killmail_hash": "8eef5e8fb6b88fe3407c489df33822b2e3b57a5e",
+                                    "killmail_id": 2
+                                },
+                                {
+                                    "killmail_hash": "b41ccb498ece33d64019f64c0db392aa3aa701fb",
+                                    "killmail_id": 1
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "killmail_hash": {
+                                        "description": "A hash of this killmail",
+                                        "title": "get_wars_war_id_killmails_killmail_hash",
+                                        "type": "string"
+                                    },
+                                    "killmail_id": {
+                                        "description": "ID of this killmail",
+                                        "format": "int32",
+                                        "title": "get_wars_war_id_killmails_killmail_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "killmail_id",
+                                    "killmail_hash"
+                                ],
+                                "title": "get_wars_war_id_killmails_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_wars_war_id_killmails_ok",
+                            "type": "array"
+                        }
+                    },
+                    "422": {
+                        "description": "Errors in query parameters",
+                        "examples": {
+                            "application/json": {
+                                "error": "{} is not a valid war ID\n"
+                            }
+                        },
+                        "schema": {
+                            "description": "war_id is not valid",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_wars_war_id_killmails_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_wars_war_id_killmails_unprocessable_entity",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_wars_war_id_killmails_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_wars_war_id_killmails_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "List kills for a war",
+                "tags": [
+                    "Wars"
+                ]
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "schemes": [
+        "https"
+    ],
+    "securityDefinitions": {
+        "evesso": {
+            "authorizationUrl": "https://login.eveonline.com/oauth/authorize",
+            "flow": "implicit",
+            "scopes": {
+                "esi-universe.read_structures.v1": "EVE SSO scope esi-universe.read_structures.v1",
+                "esi-wallet.read_character_wallet.v1": "EVE SSO scope esi-wallet.read_character_wallet.v1"
+            },
+            "type": "oauth2"
+        }
+    },
+    "swagger": "2.0"
+}
