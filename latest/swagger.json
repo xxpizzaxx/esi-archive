@@ -11990,7 +11990,7 @@
                 "operationId": "post_ui_openwindow_newmail",
                 "parameters": [
                     {
-                        "description": "The item type to open in market window",
+                        "description": "The details of mail to create",
                         "in": "body",
                         "name": "new_mail",
                         "required": true,
