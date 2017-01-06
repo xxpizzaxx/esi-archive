@@ -961,7 +961,8 @@
                                             "FighterTube1",
                                             "FighterTube2",
                                             "FighterTube3",
-                                            "FighterTube4"
+                                            "FighterTube4",
+                                            "Module"
                                         ],
                                         "title": "get_characters_character_id_assets_location_flag",
                                         "type": "string"
