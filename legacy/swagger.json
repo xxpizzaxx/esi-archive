@@ -3946,6 +3946,117 @@
                 ]
             }
         },
+        "/characters/{character_id}/mail/labels/{label_id}/": {
+            "delete": {
+                "description": "Delete a mail label\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/labels/{label_id}/`\n\nAlternate route: `/latest/characters/{character_id}/mail/labels/{label_id}/`\n\nAlternate route: `/dev/characters/{character_id}/mail/labels/{label_id}/`\n",
+                "operationId": "delete_characters_character_id_mail_labels_label_id",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "An EVE label id",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "label_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Label deleted"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-mail.organize_mail.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "delete_characters_character_id_mail_labels_label_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "delete_characters_character_id_mail_labels_label_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "422": {
+                        "description": "Default labels cannot be deleted",
+                        "examples": {
+                            "application/json": {
+                                "error": "Unprocessable entity message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Unprocessable entity",
+                            "properties": {
+                                "error": {
+                                    "description": "Unprocessable entity message",
+                                    "title": "delete_characters_character_id_mail_labels_label_id_422_unprocessable_entity",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "delete_characters_character_id_mail_labels_label_id_unprocessable_entity",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "delete_characters_character_id_mail_labels_label_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "delete_characters_character_id_mail_labels_label_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-mail.organize_mail.v1"
+                        ]
+                    }
+                ],
+                "summary": "Delete a mail label",
+                "tags": [
+                    "Mail"
+                ]
+            }
+        },
         "/characters/{character_id}/mail/lists/": {
             "get": {
                 "description": "Return all mailing lists that the character is subscribed to\n\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/lists/`\n\nAlternate route: `/latest/characters/{character_id}/mail/lists/`\n\nAlternate route: `/dev/characters/{character_id}/mail/lists/`\n\n\n---\n\nThis route is cached for up to 120 seconds",
