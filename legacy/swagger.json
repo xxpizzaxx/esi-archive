@@ -7852,18 +7852,18 @@
                         "type": "integer"
                     },
                     {
-                        "default": "en",
+                        "default": "en-us",
                         "description": "Language to use in the response",
                         "enum": [
                             "de",
-                            "en",
+                            "en-us",
                             "fr",
                             "ja",
                             "ru",
                             "zh"
                         ],
-                        "in": "header",
-                        "name": "Accept-Language",
+                        "in": "query",
+                        "name": "language",
                         "type": "string"
                     },
                     {
@@ -7906,7 +7906,7 @@
                                 "description": "The language used in the response",
                                 "enum": [
                                     "de",
-                                    "en",
+                                    "en-us",
                                     "fr",
                                     "ja",
                                     "ru",
@@ -8790,18 +8790,18 @@
                         "type": "integer"
                     },
                     {
-                        "default": "en",
+                        "default": "en-us",
                         "description": "Language to use in the response",
                         "enum": [
                             "de",
-                            "en",
+                            "en-us",
                             "fr",
                             "ja",
                             "ru",
                             "zh"
                         ],
-                        "in": "header",
-                        "name": "Accept-Language",
+                        "in": "query",
+                        "name": "language",
                         "type": "string"
                     },
                     {
@@ -8842,7 +8842,7 @@
                                 "description": "The language used in the response",
                                 "enum": [
                                     "de",
-                                    "en",
+                                    "en-us",
                                     "fr",
                                     "ja",
                                     "ru",
@@ -9916,18 +9916,18 @@
                 "operationId": "get_insurance_prices",
                 "parameters": [
                     {
-                        "default": "en",
+                        "default": "en-us",
                         "description": "Language to use in the response",
                         "enum": [
                             "de",
-                            "en",
+                            "en-us",
                             "fr",
                             "ja",
                             "ru",
                             "zh"
                         ],
-                        "in": "header",
-                        "name": "Accept-Language",
+                        "in": "query",
+                        "name": "language",
                         "type": "string"
                     },
                     {
@@ -9968,7 +9968,7 @@
                                 "description": "The language used in the response",
                                 "enum": [
                                     "de",
-                                    "en",
+                                    "en-us",
                                     "fr",
                                     "ja",
                                     "ru",
