@@ -1454,7 +1454,7 @@
                 "parameters": [
                     {
                         "description": "The character to retrieve events from",
-                        "format": "int64",
+                        "format": "int32",
                         "in": "path",
                         "name": "character_id",
                         "required": true,
@@ -1616,7 +1616,7 @@
                 "parameters": [
                     {
                         "description": "The character id requesting the event",
-                        "format": "int64",
+                        "format": "int32",
                         "in": "path",
                         "name": "character_id",
                         "required": true,
@@ -1684,7 +1684,7 @@
                                 },
                                 "duration": {
                                     "description": "Length in minutes",
-                                    "format": "int64",
+                                    "format": "int32",
                                     "title": "get_characters_character_id_calendar_event_id_duration",
                                     "type": "integer"
                                 },
@@ -1702,7 +1702,7 @@
                                 },
                                 "owner_id": {
                                     "description": "owner_id integer",
-                                    "format": "int64",
+                                    "format": "int32",
                                     "title": "get_characters_character_id_calendar_event_id_owner_id",
                                     "type": "integer"
                                 },
