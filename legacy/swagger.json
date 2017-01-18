@@ -11052,6 +11052,218 @@
                 ]
             }
         },
+        "/markets/structures/{structure_id}/": {
+            "get": {
+                "description": "Return all orders in a structure\n\n---\n\nAlternate route: `/v1/markets/structures/{structure_id}/`\n\nAlternate route: `/latest/markets/structures/{structure_id}/`\n\nAlternate route: `/dev/markets/structures/{structure_id}/`\n",
+                "operationId": "get_markets_structures_structure_id",
+                "parameters": [
+                    {
+                        "description": "Return orders in this region",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "structure_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": 1,
+                        "description": "Which page to query, only used for querying without type_id. Starting at 1\n",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of orders",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "duration": 90,
+                                    "is_buy_order": false,
+                                    "issued": "2016-09-03T05:12:25Z",
+                                    "location_id": 60005599,
+                                    "min_volume": 1,
+                                    "order_id": 4623824223,
+                                    "price": 9.9,
+                                    "range": "region",
+                                    "type_id": 34,
+                                    "volume_remain": 1296000,
+                                    "volume_total": 2000000
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "duration": {
+                                        "description": "duration integer",
+                                        "format": "int32",
+                                        "title": "get_markets_structures_structure_id_duration",
+                                        "type": "integer"
+                                    },
+                                    "is_buy_order": {
+                                        "description": "is_buy_order boolean",
+                                        "title": "get_markets_structures_structure_id_is_buy_order",
+                                        "type": "boolean"
+                                    },
+                                    "issued": {
+                                        "description": "issued string",
+                                        "format": "date-time",
+                                        "title": "get_markets_structures_structure_id_issued",
+                                        "type": "string"
+                                    },
+                                    "location_id": {
+                                        "description": "location_id integer",
+                                        "format": "int64",
+                                        "title": "get_markets_structures_structure_id_location_id",
+                                        "type": "integer"
+                                    },
+                                    "min_volume": {
+                                        "description": "min_volume integer",
+                                        "format": "int32",
+                                        "title": "get_markets_structures_structure_id_min_volume",
+                                        "type": "integer"
+                                    },
+                                    "order_id": {
+                                        "description": "order_id integer",
+                                        "format": "int64",
+                                        "title": "get_markets_structures_structure_id_order_id",
+                                        "type": "integer"
+                                    },
+                                    "price": {
+                                        "description": "price number",
+                                        "format": "float",
+                                        "title": "get_markets_structures_structure_id_price",
+                                        "type": "number"
+                                    },
+                                    "range": {
+                                        "description": "range string",
+                                        "enum": [
+                                            "station",
+                                            "region",
+                                            "solarsystem",
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "10",
+                                            "20",
+                                            "30",
+                                            "40"
+                                        ],
+                                        "title": "get_markets_structures_structure_id_range",
+                                        "type": "string"
+                                    },
+                                    "type_id": {
+                                        "description": "type_id integer",
+                                        "format": "int32",
+                                        "title": "get_markets_structures_structure_id_type_id",
+                                        "type": "integer"
+                                    },
+                                    "volume_remain": {
+                                        "description": "volume_remain integer",
+                                        "format": "int32",
+                                        "title": "get_markets_structures_structure_id_volume_remain",
+                                        "type": "integer"
+                                    },
+                                    "volume_total": {
+                                        "description": "volume_total integer",
+                                        "format": "int32",
+                                        "title": "get_markets_structures_structure_id_volume_total",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "order_id",
+                                    "type_id",
+                                    "location_id",
+                                    "volume_total",
+                                    "volume_remain",
+                                    "min_volume",
+                                    "price",
+                                    "is_buy_order",
+                                    "duration",
+                                    "issued",
+                                    "range"
+                                ],
+                                "title": "get_markets_structures_structure_id_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_markets_structures_structure_id_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-markets.structure_markets.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_markets_structures_structure_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_markets_structures_structure_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_markets_structures_structure_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_markets_structures_structure_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-markets.structure_markets.v1"
+                        ]
+                    }
+                ],
+                "summary": "List orders in a structure",
+                "tags": [
+                    "Market"
+                ]
+            }
+        },
         "/markets/{region_id}/history/": {
             "get": {
                 "description": "Return a list of historical market statistics for the specified type in a region\n\n---\n\nAlternate route: `/v1/markets/{region_id}/history/`\n\nAlternate route: `/latest/markets/{region_id}/history/`\n\nAlternate route: `/dev/markets/{region_id}/history/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -14522,6 +14734,7 @@
                 "esi-mail.organize_mail.v1": "EVE SSO scope esi-mail.organize_mail.v1",
                 "esi-mail.read_mail.v1": "EVE SSO scope esi-mail.read_mail.v1",
                 "esi-mail.send_mail.v1": "EVE SSO scope esi-mail.send_mail.v1",
+                "esi-markets.structure_markets.v1": "EVE SSO scope esi-markets.structure_markets.v1",
                 "esi-planets.manage_planets.v1": "EVE SSO scope esi-planets.manage_planets.v1",
                 "esi-search.search_structures.v1": "EVE SSO scope esi-search.search_structures.v1",
                 "esi-skills.read_skillqueue.v1": "EVE SSO scope esi-skills.read_skillqueue.v1",
