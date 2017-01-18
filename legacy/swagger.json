@@ -12079,6 +12079,521 @@
                 ]
             }
         },
+        "/universe/categories/": {
+            "get": {
+                "description": "Get a list of item categories\n\n---\n\nAlternate route: `/v1/universe/categories/`\n\nAlternate route: `/latest/universe/categories/`\n\nAlternate route: `/dev/universe/categories/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_categories",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of item category ids",
+                        "examples": {
+                            "application/json": [
+                                1,
+                                2,
+                                3
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_universe_categories_200_ok",
+                                "type": "integer"
+                            },
+                            "title": "get_universe_categories_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_categories_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_categories_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get item categories",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
+        "/universe/categories/{category_id}/": {
+            "get": {
+                "description": "Get information of an item category\n\n---\n\nAlternate route: `/v1/universe/categories/{category_id}/`\n\nAlternate route: `/latest/universe/categories/{category_id}/`\n\nAlternate route: `/dev/universe/categories/{category_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_categories_category_id",
+                "parameters": [
+                    {
+                        "description": "An Eve item category ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "category_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "en-us",
+                        "description": "Language to use in the response",
+                        "enum": [
+                            "de",
+                            "en-us",
+                            "fr",
+                            "ja",
+                            "ru",
+                            "zh"
+                        ],
+                        "in": "query",
+                        "name": "language",
+                        "type": "string"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Information about an item category",
+                        "examples": {
+                            "application/json": {
+                                "category_id": 6,
+                                "groups": [
+                                    25,
+                                    26,
+                                    27
+                                ],
+                                "name": "Ship",
+                                "published": true
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "category_id": {
+                                    "description": "category_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_categories_category_id_category_id",
+                                    "type": "integer"
+                                },
+                                "groups": {
+                                    "description": "groups array",
+                                    "items": {
+                                        "description": "group integer",
+                                        "format": "int32",
+                                        "title": "get_universe_categories_category_id_group",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_universe_categories_category_id_groups",
+                                    "type": "array"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_universe_categories_category_id_name",
+                                    "type": "string"
+                                },
+                                "published": {
+                                    "description": "published boolean",
+                                    "title": "get_universe_categories_category_id_published",
+                                    "type": "boolean"
+                                }
+                            },
+                            "required": [
+                                "category_id",
+                                "name",
+                                "published",
+                                "groups"
+                            ],
+                            "title": "get_universe_categories_category_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Category not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "category 123 not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "Category not found",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_universe_categories_category_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_categories_category_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_categories_category_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_categories_category_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get item category information",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
+        "/universe/groups/": {
+            "get": {
+                "description": "Get a list of item groups\n\n---\n\nAlternate route: `/v1/universe/groups/`\n\nAlternate route: `/latest/universe/groups/`\n\nAlternate route: `/dev/universe/groups/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_groups",
+                "parameters": [
+                    {
+                        "description": "Which page to query",
+                        "format": "int32",
+                        "in": "query",
+                        "minimum": 1,
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of item group ids",
+                        "examples": {
+                            "application/json": [
+                                1,
+                                2,
+                                3
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_universe_groups_200_ok",
+                                "type": "integer"
+                            },
+                            "title": "get_universe_groups_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_groups_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_groups_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get item groups",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
+        "/universe/groups/{group_id}/": {
+            "get": {
+                "description": "Get information on an item group\n\n---\n\nAlternate route: `/v1/universe/groups/{group_id}/`\n\nAlternate route: `/latest/universe/groups/{group_id}/`\n\nAlternate route: `/dev/universe/groups/{group_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_groups_group_id",
+                "parameters": [
+                    {
+                        "description": "An Eve item group ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "group_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "en-us",
+                        "description": "Language to use in the response",
+                        "enum": [
+                            "de",
+                            "en-us",
+                            "fr",
+                            "ja",
+                            "ru",
+                            "zh"
+                        ],
+                        "in": "query",
+                        "name": "language",
+                        "type": "string"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Information about an item group",
+                        "examples": {
+                            "application/json": {
+                                "category_id": 6,
+                                "group_id": 25,
+                                "name": "Frigate",
+                                "published": true,
+                                "types": [
+                                    587,
+                                    586,
+                                    585
+                                ]
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "category_id": {
+                                    "description": "category_id number",
+                                    "format": "float",
+                                    "title": "get_universe_groups_group_id_category_id",
+                                    "type": "number"
+                                },
+                                "group_id": {
+                                    "description": "group_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_groups_group_id_group_id",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_universe_groups_group_id_name",
+                                    "type": "string"
+                                },
+                                "published": {
+                                    "description": "published boolean",
+                                    "title": "get_universe_groups_group_id_published",
+                                    "type": "boolean"
+                                },
+                                "types": {
+                                    "description": "types array",
+                                    "items": {
+                                        "description": "type integer",
+                                        "format": "int32",
+                                        "title": "get_universe_groups_group_id_type",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_universe_groups_group_id_types",
+                                    "type": "array"
+                                }
+                            },
+                            "required": [
+                                "group_id",
+                                "name",
+                                "published",
+                                "category_id",
+                                "types"
+                            ],
+                            "title": "get_universe_groups_group_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Group not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "group 123 not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "Group not found",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_universe_groups_group_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_groups_group_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_groups_group_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_groups_group_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get item group information",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
         "/universe/names/": {
             "post": {
                 "description": "Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types.\n\n---\n\nAlternate route: `/v1/universe/names/`\n\nAlternate route: `/latest/universe/names/`\n",
@@ -12799,9 +13314,99 @@
                 ]
             }
         },
+        "/universe/types/": {
+            "get": {
+                "description": "Get a list of type ids\n\n---\n\nAlternate route: `/v1/universe/types/`\n\nAlternate route: `/latest/universe/types/`\n\nAlternate route: `/dev/universe/types/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_types",
+                "parameters": [
+                    {
+                        "description": "Which page to query",
+                        "format": "int32",
+                        "in": "query",
+                        "minimum": 1,
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of type ids",
+                        "examples": {
+                            "application/json": [
+                                1,
+                                2,
+                                3
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_universe_types_200_ok",
+                                "type": "integer"
+                            },
+                            "title": "get_universe_types_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_types_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_types_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get types",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
         "/universe/types/{type_id}/": {
             "get": {
-                "description": "Get information on a type\n\n---\n\nAlternate route: `/v1/universe/types/{type_id}/`\n\nAlternate route: `/latest/universe/types/{type_id}/`\n\nAlternate route: `/dev/universe/types/{type_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "deprecated": true,
+                "description": "Get information on a type\n\n---\n\nAlternate route: `/v1/universe/types/{type_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_universe_types_type_id",
                 "parameters": [
                     {
