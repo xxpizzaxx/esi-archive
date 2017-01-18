@@ -2984,7 +2984,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "A list of contacts",
+                        "description": "A list of fittings",
                         "examples": {
                             "application/json": [
                                 {
@@ -3247,7 +3247,7 @@
                 ],
                 "responses": {
                     "201": {
-                        "description": "A list of contacts",
+                        "description": "A list of fittings",
                         "examples": {
                             "application/json": {
                                 "fitting_id": 2
