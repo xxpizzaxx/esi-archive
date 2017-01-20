@@ -11222,7 +11222,7 @@
         },
         "/markets/structures/{structure_id}/": {
             "get": {
-                "description": "Return all orders in a structure\n\n---\n\nAlternate route: `/v1/markets/structures/{structure_id}/`\n\nAlternate route: `/legacy/markets/structures/{structure_id}/`\n\nAlternate route: `/dev/markets/structures/{structure_id}/`\n",
+                "description": "Return all orders in a structure\n\n---\n\nAlternate route: `/v1/markets/structures/{structure_id}/`\n\nAlternate route: `/legacy/markets/structures/{structure_id}/`\n\nAlternate route: `/dev/markets/structures/{structure_id}/`\n\n\n---\n\nThis route is cached for up to 300 seconds",
                 "operationId": "get_markets_structures_structure_id",
                 "parameters": [
                     {
@@ -11273,6 +11273,20 @@
                                     "volume_total": 2000000
                                 }
                             ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
                         },
                         "schema": {
                             "description": "200 ok array",
