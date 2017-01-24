@@ -641,7 +641,7 @@
         },
         "/characters/{character_id}/": {
             "get": {
-                "description": "Public information about a character\n\n---\n\nAlternate route: `/v3/characters/{character_id}/`\n\nAlternate route: `/legacy/characters/{character_id}/`\n\nAlternate route: `/dev/characters/{character_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Public information about a character\n\n---\n\nAlternate route: `/v3/characters/{character_id}/`\n\nAlternate route: `/legacy/characters/{character_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id",
                 "parameters": [
                     {
@@ -14515,6 +14515,94 @@
                 "summary": "Get type information",
                 "tags": [
                     "Universe"
+                ]
+            }
+        },
+        "/wars/": {
+            "get": {
+                "description": "Return a list of wars\n\n---\n\nAlternate route: `/v1/wars/`\n\nAlternate route: `/legacy/wars/`\n\nAlternate route: `/dev/wars/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_wars",
+                "parameters": [
+                    {
+                        "description": "Only return wars with ID smaller than this.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "max_war_id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of war IDs, 2000 at most, in decending order by war_id.",
+                        "examples": {
+                            "application/json": [
+                                3,
+                                2,
+                                1
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_wars_200_ok",
+                                "type": "integer"
+                            },
+                            "title": "get_wars_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_wars_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_wars_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "List wars",
+                "tags": [
+                    "Wars"
                 ]
             }
         },
