@@ -11259,7 +11259,7 @@
                 "operationId": "get_markets_structures_structure_id",
                 "parameters": [
                     {
-                        "description": "Return orders in this region",
+                        "description": "Return orders in this structure",
                         "format": "int64",
                         "in": "path",
                         "name": "structure_id",
@@ -11268,7 +11268,7 @@
                     },
                     {
                         "default": 1,
-                        "description": "Which page to query, only used for querying without type_id. Starting at 1\n",
+                        "description": "Which page to query, starting at 1",
                         "format": "int32",
                         "in": "query",
                         "name": "page",
