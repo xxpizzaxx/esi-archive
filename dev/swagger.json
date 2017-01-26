@@ -13200,6 +13200,190 @@
                 ]
             }
         },
+        "/universe/factions/": {
+            "get": {
+                "description": "Get a list of factions\n\n---\n\nAlternate route: `/v1/universe/factions/`\n\nAlternate route: `/legacy/universe/factions/`\n\nAlternate route: `/latest/universe/factions/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_factions",
+                "parameters": [
+                    {
+                        "default": "en-us",
+                        "description": "Language to use in the response",
+                        "enum": [
+                            "de",
+                            "en-us",
+                            "fr",
+                            "ja",
+                            "ru",
+                            "zh"
+                        ],
+                        "in": "query",
+                        "name": "language",
+                        "type": "string"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of factions",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "corporation_id": 456,
+                                    "description": "blah blah",
+                                    "faction_id": 1,
+                                    "is_unique": true,
+                                    "name": "Faction",
+                                    "size_factor": 1.0,
+                                    "solar_system_id": 123,
+                                    "station_count": 1000,
+                                    "station_system_count": 100
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "corporation_id": {
+                                        "description": "corporation_id integer",
+                                        "format": "int32",
+                                        "title": "get_universe_factions_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "description": {
+                                        "description": "description string",
+                                        "title": "get_universe_factions_description",
+                                        "type": "string"
+                                    },
+                                    "faction_id": {
+                                        "description": "faction_id integer",
+                                        "format": "int32",
+                                        "title": "get_universe_factions_faction_id",
+                                        "type": "integer"
+                                    },
+                                    "is_unique": {
+                                        "description": "is_unique boolean",
+                                        "title": "get_universe_factions_is_unique",
+                                        "type": "boolean"
+                                    },
+                                    "militia_corporation_id": {
+                                        "description": "militia_corporation_id integer",
+                                        "format": "int32",
+                                        "title": "get_universe_factions_militia_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "description": "name string",
+                                        "title": "get_universe_factions_name",
+                                        "type": "string"
+                                    },
+                                    "size_factor": {
+                                        "description": "size_factor number",
+                                        "format": "float",
+                                        "title": "get_universe_factions_size_factor",
+                                        "type": "number"
+                                    },
+                                    "solar_system_id": {
+                                        "description": "solar_system_id integer",
+                                        "format": "int32",
+                                        "title": "get_universe_factions_solar_system_id",
+                                        "type": "integer"
+                                    },
+                                    "station_count": {
+                                        "description": "station_count integer",
+                                        "format": "int32",
+                                        "title": "get_universe_factions_station_count",
+                                        "type": "integer"
+                                    },
+                                    "station_system_count": {
+                                        "description": "station_system_count integer",
+                                        "format": "int32",
+                                        "title": "get_universe_factions_station_system_count",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "faction_id",
+                                    "name",
+                                    "description",
+                                    "solar_system_id",
+                                    "corporation_id",
+                                    "size_factor",
+                                    "station_count",
+                                    "station_system_count",
+                                    "is_unique"
+                                ],
+                                "title": "get_universe_factions_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_universe_factions_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_factions_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_factions_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get factions",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
         "/universe/groups/": {
             "get": {
                 "description": "Get a list of item groups\n\n---\n\nAlternate route: `/v1/universe/groups/`\n\nAlternate route: `/legacy/universe/groups/`\n\nAlternate route: `/latest/universe/groups/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
