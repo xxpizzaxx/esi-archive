@@ -7,6 +7,529 @@
         "version": "0.3.9"
     },
     "paths": {
+        "/alliances/": {
+            "get": {
+                "description": "List all active player alliances\n\n---\n\nAlternate route: `/v1/alliances/`\n\nAlternate route: `/legacy/alliances/`\n\nAlternate route: `/dev/alliances/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_alliances",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of Alliance IDs",
+                        "examples": {
+                            "application/json": [
+                                99000001,
+                                99000002
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "minimum": 0,
+                                "title": "get_alliances_200_ok",
+                                "type": "integer",
+                                "uniqueItems": true
+                            },
+                            "title": "get_alliances_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_alliances_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_alliances_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "List all alliances",
+                "tags": [
+                    "Alliance"
+                ]
+            }
+        },
+        "/alliances/names/": {
+            "get": {
+                "description": "Resolve a set of alliance IDs to alliance names\n\n---\n\nAlternate route: `/v1/alliances/names/`\n\nAlternate route: `/legacy/alliances/names/`\n\nAlternate route: `/dev/alliances/names/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_alliances_names",
+                "parameters": [
+                    {
+                        "description": "A comma separated list of alliance IDs",
+                        "in": "query",
+                        "items": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "minItems": 1,
+                        "name": "alliance_ids",
+                        "required": true,
+                        "type": "array"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of id/name associations",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "alliance_id": 1000171,
+                                    "alliance_name": "Republic University"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "alliance_id": {
+                                        "description": "alliance_id integer",
+                                        "format": "int32",
+                                        "title": "get_alliances_names_alliance_id",
+                                        "type": "integer"
+                                    },
+                                    "alliance_name": {
+                                        "description": "alliance_name string",
+                                        "title": "get_alliances_names_alliance_name",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "alliance_id",
+                                    "alliance_name"
+                                ],
+                                "title": "get_alliances_names_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_alliances_names_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_alliances_names_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_alliances_names_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get alliance names",
+                "tags": [
+                    "Alliance"
+                ]
+            }
+        },
+        "/alliances/{alliance_id}/": {
+            "get": {
+                "description": "Public information about an alliance\n\n---\n\nAlternate route: `/v2/alliances/{alliance_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_alliances_alliance_id",
+                "parameters": [
+                    {
+                        "description": "An Eve alliance ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "alliance_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Public data about an alliance",
+                        "examples": {
+                            "application/json": {
+                                "alliance_name": "C C P Alliance",
+                                "date_founded": "2016-06-26T21:00:00Z",
+                                "executor_corp": 98356193,
+                                "ticker": "<C C P>"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "alliance_name": {
+                                    "description": "the full name of the alliance",
+                                    "title": "get_alliances_alliance_id_alliance_name",
+                                    "type": "string"
+                                },
+                                "date_founded": {
+                                    "description": "date_founded string",
+                                    "format": "date-time",
+                                    "title": "get_alliances_alliance_id_date_founded",
+                                    "type": "string"
+                                },
+                                "executor_corp": {
+                                    "description": "the executor corporation ID, if this alliance is not closed",
+                                    "format": "int32",
+                                    "title": "get_alliances_alliance_id_executor_corp",
+                                    "type": "integer"
+                                },
+                                "ticker": {
+                                    "description": "the short name of the alliance",
+                                    "title": "get_alliances_alliance_id_ticker",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "alliance_name",
+                                "ticker",
+                                "date_founded"
+                            ],
+                            "title": "get_alliances_alliance_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Alliance not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Alliance not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "Alliance not found",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_alliances_alliance_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_alliances_alliance_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_alliances_alliance_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_alliances_alliance_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get alliance information",
+                "tags": [
+                    "Alliance"
+                ]
+            }
+        },
+        "/alliances/{alliance_id}/corporations/": {
+            "get": {
+                "description": "List all current member corporations of an alliance\n\n---\n\nAlternate route: `/v1/alliances/{alliance_id}/corporations/`\n\nAlternate route: `/legacy/alliances/{alliance_id}/corporations/`\n\nAlternate route: `/dev/alliances/{alliance_id}/corporations/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_alliances_alliance_id_corporations",
+                "parameters": [
+                    {
+                        "description": "An EVE alliance ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "alliance_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of corporation IDs",
+                        "examples": {
+                            "application/json": [
+                                98000001
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "minimum": 0,
+                                "title": "get_alliances_alliance_id_corporations_200_ok",
+                                "type": "integer",
+                                "uniqueItems": true
+                            },
+                            "title": "get_alliances_alliance_id_corporations_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_alliances_alliance_id_corporations_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_alliances_alliance_id_corporations_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "List alliance's corporations",
+                "tags": [
+                    "Alliance"
+                ]
+            }
+        },
+        "/alliances/{alliance_id}/icons/": {
+            "get": {
+                "description": "Get the icon urls for a alliance\n\n---\n\nAlternate route: `/v1/alliances/{alliance_id}/icons/`\n\nAlternate route: `/legacy/alliances/{alliance_id}/icons/`\n\nAlternate route: `/dev/alliances/{alliance_id}/icons/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_alliances_alliance_id_icons",
+                "parameters": [
+                    {
+                        "description": "An EVE alliance ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "alliance_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Urls for icons for the given alliance id and server",
+                        "examples": {
+                            "application/json": {
+                                "px128x128": "https://imageserver.eveonline.com/Alliance/503818424_128.png",
+                                "px64x64": "https://imageserver.eveonline.com/Alliance/503818424_64.png"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "px128x128": {
+                                    "description": "px128x128 string",
+                                    "title": "get_alliances_alliance_id_icons_px128x128",
+                                    "type": "string"
+                                },
+                                "px64x64": {
+                                    "description": "px64x64 string",
+                                    "title": "get_alliances_alliance_id_icons_px64x64",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_alliances_alliance_id_icons_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "No image server for this datasource",
+                        "examples": {
+                            "application/json": {
+                                "error": "No image server for this datasource"
+                            }
+                        },
+                        "schema": {
+                            "description": "No image server for this datasource",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_alliances_alliance_id_icons_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_alliances_alliance_id_icons_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_alliances_alliance_id_icons_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_alliances_alliance_id_icons_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get alliance icon",
+                "tags": [
+                    "Alliance"
+                ]
+            }
+        },
         "/characters/names/": {
             "get": {
                 "description": "Resolve a set of character IDs to character names\n\n---\n\nAlternate route: `/v1/characters/names/`\n\nAlternate route: `/legacy/characters/names/`\n\nAlternate route: `/dev/characters/names/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
