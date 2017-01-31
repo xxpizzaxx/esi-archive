@@ -625,7 +625,8 @@
         },
         "/characters/{character_id}/": {
             "get": {
-                "description": "Public information about a character\n\n---\n\nAlternate route: `/v3/characters/{character_id}/`\n\nAlternate route: `/latest/characters/{character_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "deprecated": true,
+                "description": "Public information about a character\n\n---\n\nAlternate route: `/v3/characters/{character_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id",
                 "parameters": [
                     {
@@ -12763,6 +12764,201 @@
                 ]
             }
         },
+        "/universe/bloodlines/": {
+            "get": {
+                "description": "Get a list of bloodlines\n\n---\n\nAlternate route: `/v1/universe/bloodlines/`\n\nAlternate route: `/latest/universe/bloodlines/`\n\nAlternate route: `/dev/universe/bloodlines/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_bloodlines",
+                "parameters": [
+                    {
+                        "default": "en-us",
+                        "description": "Language to use in the response",
+                        "enum": [
+                            "de",
+                            "en-us",
+                            "fr",
+                            "ja",
+                            "ru",
+                            "zh"
+                        ],
+                        "in": "query",
+                        "name": "language",
+                        "type": "string"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of bloodlines",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "bloodline_id": 1,
+                                    "charisma": 6,
+                                    "corporation_id": 1000006,
+                                    "description": "The Deteis are regarded as ...",
+                                    "intelligence": 7,
+                                    "memory": 7,
+                                    "name": "Deteis",
+                                    "perception": 5,
+                                    "race_id": 1,
+                                    "ship_type_id": 601,
+                                    "willpower": 5
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "bloodline_id": {
+                                        "description": "bloodline_id integer",
+                                        "format": "int32",
+                                        "title": "get_universe_bloodlines_bloodline_id",
+                                        "type": "integer"
+                                    },
+                                    "charisma": {
+                                        "description": "charisma integer",
+                                        "format": "int32",
+                                        "title": "get_universe_bloodlines_charisma",
+                                        "type": "integer"
+                                    },
+                                    "corporation_id": {
+                                        "description": "corporation_id integer",
+                                        "format": "int32",
+                                        "title": "get_universe_bloodlines_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "description": {
+                                        "description": "description string",
+                                        "title": "get_universe_bloodlines_description",
+                                        "type": "string"
+                                    },
+                                    "intelligence": {
+                                        "description": "intelligence integer",
+                                        "format": "int32",
+                                        "title": "get_universe_bloodlines_intelligence",
+                                        "type": "integer"
+                                    },
+                                    "memory": {
+                                        "description": "memory integer",
+                                        "format": "int32",
+                                        "title": "get_universe_bloodlines_memory",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "description": "name string",
+                                        "title": "get_universe_bloodlines_name",
+                                        "type": "string"
+                                    },
+                                    "perception": {
+                                        "description": "perception integer",
+                                        "format": "int32",
+                                        "title": "get_universe_bloodlines_perception",
+                                        "type": "integer"
+                                    },
+                                    "race_id": {
+                                        "description": "race_id integer",
+                                        "format": "int32",
+                                        "title": "get_universe_bloodlines_race_id",
+                                        "type": "integer"
+                                    },
+                                    "ship_type_id": {
+                                        "description": "ship_type_id integer",
+                                        "format": "int32",
+                                        "title": "get_universe_bloodlines_ship_type_id",
+                                        "type": "integer"
+                                    },
+                                    "willpower": {
+                                        "description": "willpower integer",
+                                        "format": "int32",
+                                        "title": "get_universe_bloodlines_willpower",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "bloodline_id",
+                                    "name",
+                                    "description",
+                                    "race_id",
+                                    "ship_type_id",
+                                    "corporation_id",
+                                    "perception",
+                                    "willpower",
+                                    "charisma",
+                                    "memory",
+                                    "intelligence"
+                                ],
+                                "title": "get_universe_bloodlines_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_universe_bloodlines_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_bloodlines_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_bloodlines_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get bloodlines",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
         "/universe/categories/": {
             "get": {
                 "description": "Get a list of item categories\n\n---\n\nAlternate route: `/v1/universe/categories/`\n\nAlternate route: `/latest/universe/categories/`\n\nAlternate route: `/dev/universe/categories/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -12969,15 +13165,15 @@
                         "description": "Category not found",
                         "examples": {
                             "application/json": {
-                                "error": "category 123 not found"
+                                "error": "Not found message"
                             }
                         },
                         "schema": {
-                            "description": "Category not found",
+                            "description": "Not found",
                             "properties": {
                                 "error": {
-                                    "description": "error message",
-                                    "title": "get_universe_categories_category_id_error",
+                                    "description": "Not found message",
+                                    "title": "get_universe_categories_category_id_404_not_found",
                                     "type": "string"
                                 }
                             },
@@ -13419,15 +13615,15 @@
                         "description": "Group not found",
                         "examples": {
                             "application/json": {
-                                "error": "group 123 not found"
+                                "error": "Not found message"
                             }
                         },
                         "schema": {
-                            "description": "Group not found",
+                            "description": "Not found",
                             "properties": {
                                 "error": {
-                                    "description": "error message",
-                                    "title": "get_universe_groups_group_id_error",
+                                    "description": "Not found message",
+                                    "title": "get_universe_groups_group_id_404_not_found",
                                     "type": "string"
                                 }
                             },
@@ -13464,7 +13660,8 @@
         },
         "/universe/names/": {
             "post": {
-                "description": "Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types.\n\n---\n\nAlternate route: `/v1/universe/names/`\n\nAlternate route: `/latest/universe/names/`\n",
+                "deprecated": true,
+                "description": "Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types.\n\n---\n\nAlternate route: `/v1/universe/names/`\n",
                 "operationId": "post_universe_names",
                 "parameters": [
                     {
