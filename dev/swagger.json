@@ -4,7 +4,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.3.9"
+        "version": "0.3.10.dev6"
     },
     "paths": {
         "/alliances/": {
@@ -11599,18 +11599,18 @@
                         }
                     },
                     "422": {
-                        "description": "Errors in query parameters",
+                        "description": "Not found",
                         "examples": {
                             "application/json": {
-                                "error": "123 is not a valid market region\n"
+                                "error": "Unprocessable entity message"
                             }
                         },
                         "schema": {
-                            "description": "bad region_id",
+                            "description": "Unprocessable entity",
                             "properties": {
                                 "error": {
-                                    "description": "error message",
-                                    "title": "get_markets_region_id_history_error",
+                                    "description": "Unprocessable entity message",
+                                    "title": "get_markets_region_id_history_422_unprocessable_entity",
                                     "type": "string"
                                 }
                             },
@@ -11839,18 +11839,18 @@
                         }
                     },
                     "422": {
-                        "description": "Errors in query parameters",
+                        "description": "Not found",
                         "examples": {
                             "application/json": {
-                                "error": "123 is not a valid market region\n"
+                                "error": "Unprocessable entity message"
                             }
                         },
                         "schema": {
-                            "description": "bad region_id",
+                            "description": "Unprocessable entity",
                             "properties": {
                                 "error": {
-                                    "description": "error message",
-                                    "title": "get_markets_region_id_orders_error",
+                                    "description": "Unprocessable entity message",
+                                    "title": "get_markets_region_id_orders_422_unprocessable_entity",
                                     "type": "string"
                                 }
                             },
