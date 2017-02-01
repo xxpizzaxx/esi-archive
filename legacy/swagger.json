@@ -8103,15 +8103,15 @@
                         "description": "The fleet does not exist or you don't have access to it",
                         "examples": {
                             "application/json": {
-                                "error": "Not found message"
+                                "error": "fleet 123 not found"
                             }
                         },
                         "schema": {
-                            "description": "Not found",
+                            "description": "404 not found object",
                             "properties": {
                                 "error": {
-                                    "description": "Not found message",
-                                    "title": "get_fleets_fleet_id_404_not_found",
+                                    "description": "error message",
+                                    "title": "get_fleets_fleet_id_error",
                                     "type": "string"
                                 }
                             },
@@ -8247,15 +8247,15 @@
                         "description": "The fleet does not exist or you don't have access to it",
                         "examples": {
                             "application/json": {
-                                "error": "Not found message"
+                                "error": "fleet 123 not found"
                             }
                         },
                         "schema": {
-                            "description": "Not found",
+                            "description": "404 not found object",
                             "properties": {
                                 "error": {
-                                    "description": "Not found message",
-                                    "title": "put_fleets_fleet_id_404_not_found",
+                                    "description": "Error message",
+                                    "title": "put_fleets_fleet_id_error",
                                     "type": "string"
                                 }
                             },
@@ -8493,15 +8493,15 @@
                         "description": "The fleet does not exist or you don't have access to it",
                         "examples": {
                             "application/json": {
-                                "error": "Not found message"
+                                "error": "fleet 123 not found"
                             }
                         },
                         "schema": {
-                            "description": "Not found",
+                            "description": "404 not found object",
                             "properties": {
                                 "error": {
-                                    "description": "Not found message",
-                                    "title": "get_fleets_fleet_id_members_404_not_found",
+                                    "description": "error message",
+                                    "title": "get_fleets_fleet_id_members_error",
                                     "type": "string"
                                 }
                             },
@@ -8642,15 +8642,15 @@
                         "description": "The fleet does not exist or you don't have access to it",
                         "examples": {
                             "application/json": {
-                                "error": "Not found message"
+                                "error": "fleet 123 not found"
                             }
                         },
                         "schema": {
-                            "description": "Not found",
+                            "description": "404 not found object",
                             "properties": {
                                 "error": {
-                                    "description": "Not found message",
-                                    "title": "post_fleets_fleet_id_members_404_not_found",
+                                    "description": "Error message",
+                                    "title": "post_fleets_fleet_id_members_error",
                                     "type": "string"
                                 }
                             },
@@ -8773,15 +8773,15 @@
                         "description": "The fleet does not exist or you don't have access to it",
                         "examples": {
                             "application/json": {
-                                "error": "Not found message"
+                                "error": "fleet 123 not found"
                             }
                         },
                         "schema": {
-                            "description": "Not found",
+                            "description": "404 not found object",
                             "properties": {
                                 "error": {
-                                    "description": "Not found message",
-                                    "title": "delete_fleets_fleet_id_members_member_id_404_not_found",
+                                    "description": "Error message",
+                                    "title": "delete_fleets_fleet_id_members_member_id_error",
                                     "type": "string"
                                 }
                             },
@@ -8923,15 +8923,15 @@
                         "description": "The fleet does not exist or you don't have access to it",
                         "examples": {
                             "application/json": {
-                                "error": "Not found message"
+                                "error": "fleet 123 not found"
                             }
                         },
                         "schema": {
-                            "description": "Not found",
+                            "description": "404 not found object",
                             "properties": {
                                 "error": {
-                                    "description": "Not found message",
-                                    "title": "put_fleets_fleet_id_members_member_id_404_not_found",
+                                    "description": "Error message",
+                                    "title": "put_fleets_fleet_id_members_member_id_error",
                                     "type": "string"
                                 }
                             },
@@ -9054,15 +9054,15 @@
                         "description": "The fleet does not exist or you don't have access to it",
                         "examples": {
                             "application/json": {
-                                "error": "Not found message"
+                                "error": "fleet 123 not found"
                             }
                         },
                         "schema": {
-                            "description": "Not found",
+                            "description": "404 not found object",
                             "properties": {
                                 "error": {
-                                    "description": "Not found message",
-                                    "title": "delete_fleets_fleet_id_squads_squad_id_404_not_found",
+                                    "description": "Error message",
+                                    "title": "delete_fleets_fleet_id_squads_squad_id_error",
                                     "type": "string"
                                 }
                             },
@@ -9185,15 +9185,15 @@
                         "description": "The fleet does not exist or you don't have access to it",
                         "examples": {
                             "application/json": {
-                                "error": "Not found message"
+                                "error": "fleet 123 not found"
                             }
                         },
                         "schema": {
-                            "description": "Not found",
+                            "description": "404 not found object",
                             "properties": {
                                 "error": {
-                                    "description": "Not found message",
-                                    "title": "put_fleets_fleet_id_squads_squad_id_404_not_found",
+                                    "description": "Error message",
+                                    "title": "put_fleets_fleet_id_squads_squad_id_error",
                                     "type": "string"
                                 }
                             },
@@ -9398,15 +9398,15 @@
                         "description": "The fleet does not exist or you don't have access to it",
                         "examples": {
                             "application/json": {
-                                "error": "Not found message"
+                                "error": "fleet 123 not found"
                             }
                         },
                         "schema": {
-                            "description": "Not found",
+                            "description": "404 not found object",
                             "properties": {
                                 "error": {
-                                    "description": "Not found message",
-                                    "title": "get_fleets_fleet_id_wings_404_not_found",
+                                    "description": "error message",
+                                    "title": "get_fleets_fleet_id_wings_error",
                                     "type": "string"
                                 }
                             },
@@ -9520,15 +9520,15 @@
                         "description": "The fleet does not exist or you don't have access to it",
                         "examples": {
                             "application/json": {
-                                "error": "Not found message"
+                                "error": "fleet 123 not found"
                             }
                         },
                         "schema": {
-                            "description": "Not found",
+                            "description": "404 not found object",
                             "properties": {
                                 "error": {
-                                    "description": "Not found message",
-                                    "title": "post_fleets_fleet_id_wings_404_not_found",
+                                    "description": "Error message",
+                                    "title": "post_fleets_fleet_id_wings_error",
                                     "type": "string"
                                 }
                             },
@@ -9631,15 +9631,15 @@
                         "description": "The fleet does not exist or you don't have access to it",
                         "examples": {
                             "application/json": {
-                                "error": "Not found message"
+                                "error": "fleet 123 not found"
                             }
                         },
                         "schema": {
-                            "description": "Not found",
+                            "description": "404 not found object",
                             "properties": {
                                 "error": {
-                                    "description": "Not found message",
-                                    "title": "delete_fleets_fleet_id_wings_wing_id_404_not_found",
+                                    "description": "Error message",
+                                    "title": "delete_fleets_fleet_id_wings_wing_id_error",
                                     "type": "string"
                                 }
                             },
@@ -9762,15 +9762,15 @@
                         "description": "The fleet does not exist or you don't have access to it",
                         "examples": {
                             "application/json": {
-                                "error": "Not found message"
+                                "error": "fleet 123 not found"
                             }
                         },
                         "schema": {
-                            "description": "Not found",
+                            "description": "404 not found object",
                             "properties": {
                                 "error": {
-                                    "description": "Not found message",
-                                    "title": "put_fleets_fleet_id_wings_wing_id_404_not_found",
+                                    "description": "Error message",
+                                    "title": "put_fleets_fleet_id_wings_wing_id_error",
                                     "type": "string"
                                 }
                             },
@@ -9894,15 +9894,15 @@
                         "description": "The fleet does not exist or you don't have access to it",
                         "examples": {
                             "application/json": {
-                                "error": "Not found message"
+                                "error": "fleet 123 not found"
                             }
                         },
                         "schema": {
-                            "description": "Not found",
+                            "description": "404 not found object",
                             "properties": {
                                 "error": {
-                                    "description": "Not found message",
-                                    "title": "post_fleets_fleet_id_wings_wing_id_squads_404_not_found",
+                                    "description": "Error message",
+                                    "title": "post_fleets_fleet_id_wings_wing_id_squads_error",
                                     "type": "string"
                                 }
                             },
@@ -10903,18 +10903,18 @@
                         }
                     },
                     "422": {
-                        "description": "Invalid killmail_id and/or killmail_hash",
+                        "description": "Errors in query parameters",
                         "examples": {
                             "application/json": {
-                                "error": "Unprocessable entity message"
+                                "error": "56769403 and/or 2ec3ac328d4ac4769817285be884cc6c004efa0c is not valid\n"
                             }
                         },
                         "schema": {
-                            "description": "Unprocessable entity",
+                            "description": "killmail_id and/or killmail_hash is not valid",
                             "properties": {
                                 "error": {
-                                    "description": "Unprocessable entity message",
-                                    "title": "get_killmails_killmail_id_killmail_hash_422_unprocessable_entity",
+                                    "description": "error message",
+                                    "title": "get_killmails_killmail_id_killmail_hash_error",
                                     "type": "string"
                                 }
                             },
@@ -12711,18 +12711,18 @@
                         }
                     },
                     "422": {
-                        "description": "Invalid request",
+                        "description": "Errors in request body",
                         "examples": {
                             "application/json": {
-                                "error": "Unprocessable entity message"
+                                "error": "error in request body"
                             }
                         },
                         "schema": {
-                            "description": "Unprocessable entity",
+                            "description": "422 unprocessable entity object",
                             "properties": {
                                 "error": {
-                                    "description": "Unprocessable entity message",
-                                    "title": "post_ui_openwindow_newmail_422_unprocessable_entity",
+                                    "description": "error message",
+                                    "title": "post_ui_openwindow_newmail_error",
                                     "type": "string"
                                 }
                             },
@@ -15053,18 +15053,18 @@
                         }
                     },
                     "422": {
-                        "description": "War not found",
+                        "description": "Errors in query parameters",
                         "examples": {
                             "application/json": {
-                                "error": "Unprocessable entity message"
+                                "error": "{} is not a valid war ID\n"
                             }
                         },
                         "schema": {
-                            "description": "Unprocessable entity",
+                            "description": "war_id is not valid",
                             "properties": {
                                 "error": {
-                                    "description": "Unprocessable entity message",
-                                    "title": "get_wars_war_id_422_unprocessable_entity",
+                                    "description": "error message",
+                                    "title": "get_wars_war_id_error",
                                     "type": "string"
                                 }
                             },
@@ -15191,18 +15191,18 @@
                         }
                     },
                     "422": {
-                        "description": "War not found",
+                        "description": "Errors in query parameters",
                         "examples": {
                             "application/json": {
-                                "error": "Unprocessable entity message"
+                                "error": "{} is not a valid war ID\n"
                             }
                         },
                         "schema": {
-                            "description": "Unprocessable entity",
+                            "description": "war_id is not valid",
                             "properties": {
                                 "error": {
-                                    "description": "Unprocessable entity message",
-                                    "title": "get_wars_war_id_killmails_422_unprocessable_entity",
+                                    "description": "error message",
+                                    "title": "get_wars_war_id_killmails_error",
                                     "type": "string"
                                 }
                             },
