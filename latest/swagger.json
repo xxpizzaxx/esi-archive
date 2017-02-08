@@ -13379,6 +13379,290 @@
                 ]
             }
         },
+        "/universe/constellations/": {
+            "get": {
+                "description": "Get a list of constellations\n\n---\n\nAlternate route: `/v1/universe/constellations/`\n\nAlternate route: `/legacy/universe/constellations/`\n\nAlternate route: `/dev/universe/constellations/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_constellations",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of constellation ids",
+                        "examples": {
+                            "application/json": [
+                                20000001,
+                                20000002
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_universe_constellations_200_ok",
+                                "type": "integer"
+                            },
+                            "title": "get_universe_constellations_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_constellations_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_constellations_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get constellations",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
+        "/universe/constellations/{constellation_id}/": {
+            "get": {
+                "description": "Get information on a constellation\n\n---\n\nAlternate route: `/v1/universe/constellations/{constellation_id}/`\n\nAlternate route: `/legacy/universe/constellations/{constellation_id}/`\n\nAlternate route: `/dev/universe/constellations/{constellation_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_constellations_constellation_id",
+                "parameters": [
+                    {
+                        "description": "constellation_id integer",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "constellation_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "en-us",
+                        "description": "Language to use in the response",
+                        "enum": [
+                            "de",
+                            "en-us",
+                            "fr",
+                            "ja",
+                            "ru",
+                            "zh"
+                        ],
+                        "in": "query",
+                        "name": "language",
+                        "type": "string"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Information about a constellation",
+                        "examples": {
+                            "application/json": {
+                                "constellation_id": 20000009,
+                                "name": "Mekashtad",
+                                "position": {
+                                    "x": 67796138757472320,
+                                    "y": -70591121348560960,
+                                    "z": -59587016159270070
+                                },
+                                "region_id": 10000001,
+                                "systems": [
+                                    20000302,
+                                    20000303
+                                ]
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "constellation_id": {
+                                    "description": "constellation_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_constellations_constellation_id_constellation_id",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_universe_constellations_constellation_id_name",
+                                    "type": "string"
+                                },
+                                "position": {
+                                    "description": "position object",
+                                    "properties": {
+                                        "x": {
+                                            "description": "x number",
+                                            "format": "float",
+                                            "title": "get_universe_constellations_constellation_id_x",
+                                            "type": "number"
+                                        },
+                                        "y": {
+                                            "description": "y number",
+                                            "format": "float",
+                                            "title": "get_universe_constellations_constellation_id_y",
+                                            "type": "number"
+                                        },
+                                        "z": {
+                                            "description": "z number",
+                                            "format": "float",
+                                            "title": "get_universe_constellations_constellation_id_z",
+                                            "type": "number"
+                                        }
+                                    },
+                                    "required": [
+                                        "x",
+                                        "y",
+                                        "z"
+                                    ],
+                                    "title": "get_universe_constellations_constellation_id_position",
+                                    "type": "object"
+                                },
+                                "region_id": {
+                                    "description": "The region this constellation is in",
+                                    "format": "int32",
+                                    "title": "get_universe_constellations_constellation_id_region_id",
+                                    "type": "integer"
+                                },
+                                "systems": {
+                                    "description": "systems array",
+                                    "items": {
+                                        "description": "system integer",
+                                        "format": "int32",
+                                        "title": "get_universe_constellations_constellation_id_system",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_universe_constellations_constellation_id_systems",
+                                    "type": "array"
+                                }
+                            },
+                            "required": [
+                                "constellation_id",
+                                "name",
+                                "position",
+                                "region_id",
+                                "systems"
+                            ],
+                            "title": "get_universe_constellations_constellation_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Constellation not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_universe_constellations_constellation_id_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_constellations_constellation_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_constellations_constellation_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_constellations_constellation_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get constellation information",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
         "/universe/factions/": {
             "get": {
                 "description": "Get a list of factions\n\n---\n\nAlternate route: `/v1/universe/factions/`\n\nAlternate route: `/legacy/universe/factions/`\n\nAlternate route: `/dev/universe/factions/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -13829,6 +14113,168 @@
                 ]
             }
         },
+        "/universe/moons/{moon_id}/": {
+            "get": {
+                "description": "Get information on a moon\n\n---\n\nAlternate route: `/v1/universe/moons/{moon_id}/`\n\nAlternate route: `/legacy/universe/moons/{moon_id}/`\n\nAlternate route: `/dev/universe/moons/{moon_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_moons_moon_id",
+                "parameters": [
+                    {
+                        "description": "moon_id integer",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "moon_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Information about a moon",
+                        "examples": {
+                            "application/json": {
+                                "moon_id": 40000042,
+                                "name": "Akpivem I - Moon 1",
+                                "position": {
+                                    "x": 58605102008,
+                                    "y": -3066616285,
+                                    "z": -55193617920
+                                },
+                                "system_id": 30000003
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "moon_id": {
+                                    "description": "moon_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_moons_moon_id_moon_id",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_universe_moons_moon_id_name",
+                                    "type": "string"
+                                },
+                                "position": {
+                                    "description": "position object",
+                                    "properties": {
+                                        "x": {
+                                            "description": "x number",
+                                            "format": "float",
+                                            "title": "get_universe_moons_moon_id_x",
+                                            "type": "number"
+                                        },
+                                        "y": {
+                                            "description": "y number",
+                                            "format": "float",
+                                            "title": "get_universe_moons_moon_id_y",
+                                            "type": "number"
+                                        },
+                                        "z": {
+                                            "description": "z number",
+                                            "format": "float",
+                                            "title": "get_universe_moons_moon_id_z",
+                                            "type": "number"
+                                        }
+                                    },
+                                    "required": [
+                                        "x",
+                                        "y",
+                                        "z"
+                                    ],
+                                    "title": "get_universe_moons_moon_id_position",
+                                    "type": "object"
+                                },
+                                "system_id": {
+                                    "description": "The solar system this moon is in",
+                                    "format": "int32",
+                                    "title": "get_universe_moons_moon_id_system_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "moon_id",
+                                "name",
+                                "position",
+                                "system_id"
+                            ],
+                            "title": "get_universe_moons_moon_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Moon not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_universe_moons_moon_id_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_moons_moon_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_moons_moon_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_moons_moon_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get moon information",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
         "/universe/names/": {
             "post": {
                 "description": "Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types.\n\n---\n\nAlternate route: `/v2/universe/names/`\n\nAlternate route: `/dev/universe/names/`\n",
@@ -13978,6 +14424,176 @@
                 ]
             }
         },
+        "/universe/planets/{planet_id}/": {
+            "get": {
+                "description": "Get information on a planet\n\n---\n\nAlternate route: `/v1/universe/planets/{planet_id}/`\n\nAlternate route: `/legacy/universe/planets/{planet_id}/`\n\nAlternate route: `/dev/universe/planets/{planet_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_planets_planet_id",
+                "parameters": [
+                    {
+                        "description": "planet_id integer",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "planet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Information about a planet",
+                        "examples": {
+                            "application/json": {
+                                "name": "Akpivem III",
+                                "planet_id": 40000046,
+                                "position": {
+                                    "x": -189226344497,
+                                    "y": 9901605317,
+                                    "z": -254852632979
+                                },
+                                "system_id": 30000003,
+                                "type_id": 13
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_universe_planets_planet_id_name",
+                                    "type": "string"
+                                },
+                                "planet_id": {
+                                    "description": "planet_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_planets_planet_id_planet_id",
+                                    "type": "integer"
+                                },
+                                "position": {
+                                    "description": "position object",
+                                    "properties": {
+                                        "x": {
+                                            "description": "x number",
+                                            "format": "float",
+                                            "title": "get_universe_planets_planet_id_x",
+                                            "type": "number"
+                                        },
+                                        "y": {
+                                            "description": "y number",
+                                            "format": "float",
+                                            "title": "get_universe_planets_planet_id_y",
+                                            "type": "number"
+                                        },
+                                        "z": {
+                                            "description": "z number",
+                                            "format": "float",
+                                            "title": "get_universe_planets_planet_id_z",
+                                            "type": "number"
+                                        }
+                                    },
+                                    "required": [
+                                        "x",
+                                        "y",
+                                        "z"
+                                    ],
+                                    "title": "get_universe_planets_planet_id_position",
+                                    "type": "object"
+                                },
+                                "system_id": {
+                                    "description": "The solar system this planet is in",
+                                    "format": "int32",
+                                    "title": "get_universe_planets_planet_id_system_id",
+                                    "type": "integer"
+                                },
+                                "type_id": {
+                                    "description": "type_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_planets_planet_id_type_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "planet_id",
+                                "name",
+                                "type_id",
+                                "position",
+                                "system_id"
+                            ],
+                            "title": "get_universe_planets_planet_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Planet not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_universe_planets_planet_id_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_planets_planet_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_planets_planet_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_planets_planet_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get planet information",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
         "/universe/races/": {
             "get": {
                 "description": "Get a list of character races\n\n---\n\nAlternate route: `/v1/universe/races/`\n\nAlternate route: `/legacy/universe/races/`\n\nAlternate route: `/dev/universe/races/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -14117,6 +14733,252 @@
                 ]
             }
         },
+        "/universe/regions/": {
+            "get": {
+                "description": "Get a list of regions\n\n---\n\nAlternate route: `/v1/universe/regions/`\n\nAlternate route: `/legacy/universe/regions/`\n\nAlternate route: `/dev/universe/regions/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_regions",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of region ids",
+                        "examples": {
+                            "application/json": [
+                                11000001,
+                                11000002
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_universe_regions_200_ok",
+                                "type": "integer"
+                            },
+                            "title": "get_universe_regions_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_regions_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_regions_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get regions",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
+        "/universe/regions/{region_id}/": {
+            "get": {
+                "description": "Get information on a region\n\n---\n\nAlternate route: `/v1/universe/regions/{region_id}/`\n\nAlternate route: `/legacy/universe/regions/{region_id}/`\n\nAlternate route: `/dev/universe/regions/{region_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_regions_region_id",
+                "parameters": [
+                    {
+                        "description": "region_id integer",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "region_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "en-us",
+                        "description": "Language to use in the response",
+                        "enum": [
+                            "de",
+                            "en-us",
+                            "fr",
+                            "ja",
+                            "ru",
+                            "zh"
+                        ],
+                        "in": "query",
+                        "name": "language",
+                        "type": "string"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Information about a region",
+                        "examples": {
+                            "application/json": {
+                                "constellations": [
+                                    20000302,
+                                    20000303
+                                ],
+                                "description": "It has long been an established fact of civilization...",
+                                "name": "Metropolis",
+                                "region_id": 10000042
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "constellations": {
+                                    "description": "constellations array",
+                                    "items": {
+                                        "description": "constellation integer",
+                                        "format": "int32",
+                                        "title": "get_universe_regions_region_id_constellation",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_universe_regions_region_id_constellations",
+                                    "type": "array"
+                                },
+                                "description": {
+                                    "description": "description string",
+                                    "title": "get_universe_regions_region_id_description",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_universe_regions_region_id_name",
+                                    "type": "string"
+                                },
+                                "region_id": {
+                                    "description": "region_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_regions_region_id_region_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "region_id",
+                                "name",
+                                "constellations"
+                            ],
+                            "title": "get_universe_regions_region_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Region not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_universe_regions_region_id_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_regions_region_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_regions_region_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_regions_region_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get region information",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
         "/universe/schematics/{schematic_id}/": {
             "get": {
                 "description": "Get information on a planetary factory schematic\n\n---\n\nAlternate route: `/v1/universe/schematics/{schematic_id}/`\n\nAlternate route: `/legacy/universe/schematics/{schematic_id}/`\n\nAlternate route: `/dev/universe/schematics/{schematic_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -14235,9 +15097,207 @@
                 ]
             }
         },
+        "/universe/stargates/{stargate_id}/": {
+            "get": {
+                "description": "Get information on a planet\n\n---\n\nAlternate route: `/v1/universe/stargates/{stargate_id}/`\n\nAlternate route: `/legacy/universe/stargates/{stargate_id}/`\n\nAlternate route: `/dev/universe/stargates/{stargate_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_stargates_stargate_id",
+                "parameters": [
+                    {
+                        "description": "stargate_id integer",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "stargate_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Information about a planet",
+                        "examples": {
+                            "application/json": {
+                                "destination": {
+                                    "stargate_id": 50000056,
+                                    "system_id": 30000001
+                                },
+                                "name": "Stargate (Tanoo)",
+                                "position": {
+                                    "x": -101092761600,
+                                    "y": 5279539200,
+                                    "z": 1550503403520
+                                },
+                                "stargate_id": 50000342,
+                                "system_id": 30000003,
+                                "type_id": 29624
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "destination": {
+                                    "description": "destination object",
+                                    "properties": {
+                                        "stargate_id": {
+                                            "description": "The stargate this stargate connects to",
+                                            "format": "int32",
+                                            "title": "get_universe_stargates_stargate_id_stargate_id",
+                                            "type": "integer"
+                                        },
+                                        "system_id": {
+                                            "description": "The solar system this stargate connects to",
+                                            "format": "int32",
+                                            "title": "get_universe_stargates_stargate_id_system_id",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "system_id",
+                                        "stargate_id"
+                                    ],
+                                    "title": "get_universe_stargates_stargate_id_destination",
+                                    "type": "object"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_universe_stargates_stargate_id_name",
+                                    "type": "string"
+                                },
+                                "position": {
+                                    "description": "position object",
+                                    "properties": {
+                                        "x": {
+                                            "description": "x number",
+                                            "format": "float",
+                                            "title": "get_universe_stargates_stargate_id_x",
+                                            "type": "number"
+                                        },
+                                        "y": {
+                                            "description": "y number",
+                                            "format": "float",
+                                            "title": "get_universe_stargates_stargate_id_y",
+                                            "type": "number"
+                                        },
+                                        "z": {
+                                            "description": "z number",
+                                            "format": "float",
+                                            "title": "get_universe_stargates_stargate_id_z",
+                                            "type": "number"
+                                        }
+                                    },
+                                    "required": [
+                                        "x",
+                                        "y",
+                                        "z"
+                                    ],
+                                    "title": "get_universe_stargates_stargate_id_position",
+                                    "type": "object"
+                                },
+                                "stargate_id": {
+                                    "description": "stargate_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_stargates_stargate_id_stargate_id",
+                                    "type": "integer"
+                                },
+                                "system_id": {
+                                    "description": "The solar system this stargate is in",
+                                    "format": "int32",
+                                    "title": "get_universe_stargates_stargate_id_system_id",
+                                    "type": "integer"
+                                },
+                                "type_id": {
+                                    "description": "type_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_stargates_stargate_id_type_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "stargate_id",
+                                "name",
+                                "type_id",
+                                "position",
+                                "system_id",
+                                "destination"
+                            ],
+                            "title": "get_universe_stargates_stargate_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Stargate not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_universe_stargates_stargate_id_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_stargates_stargate_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_stargates_stargate_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_stargates_stargate_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get planet information",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
         "/universe/stations/{station_id}/": {
             "get": {
-                "description": "Public information on stations\n\n---\n\nAlternate route: `/v1/universe/stations/{station_id}/`\n\nAlternate route: `/legacy/universe/stations/{station_id}/`\n\nAlternate route: `/dev/universe/stations/{station_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Public information on stations\n\n---\n\nAlternate route: `/v1/universe/stations/{station_id}/`\n\nAlternate route: `/legacy/universe/stations/{station_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_universe_stations_station_id",
                 "parameters": [
                     {
@@ -14577,9 +15637,88 @@
                 ]
             }
         },
+        "/universe/systems/": {
+            "get": {
+                "description": "Get a list of solar systems\n\n---\n\nAlternate route: `/v1/universe/systems/`\n\nAlternate route: `/legacy/universe/systems/`\n\nAlternate route: `/dev/universe/systems/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_systems",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of solar system ids",
+                        "examples": {
+                            "application/json": [
+                                30000001,
+                                30000002
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_universe_systems_200_ok",
+                                "type": "integer"
+                            },
+                            "title": "get_universe_systems_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_systems_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_systems_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get solar systems",
+                "tags": [
+                    "Universe"
+                ]
+            }
+        },
         "/universe/systems/{system_id}/": {
             "get": {
-                "description": "Information on solar systems\n\n---\n\nAlternate route: `/v1/universe/systems/{system_id}/`\n\nAlternate route: `/legacy/universe/systems/{system_id}/`\n\nAlternate route: `/dev/universe/systems/{system_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Information on solar systems\n\n---\n\nAlternate route: `/v1/universe/systems/{system_id}/`\n\nAlternate route: `/legacy/universe/systems/{system_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_universe_systems_system_id",
                 "parameters": [
                     {
