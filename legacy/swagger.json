@@ -14933,7 +14933,7 @@
         },
         "/universe/stargates/{stargate_id}/": {
             "get": {
-                "description": "Get information on a planet\n\n---\n\nAlternate route: `/v1/universe/stargates/{stargate_id}/`\n\nAlternate route: `/latest/universe/stargates/{stargate_id}/`\n\nAlternate route: `/dev/universe/stargates/{stargate_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get information on a stargate\n\n---\n\nAlternate route: `/v1/universe/stargates/{stargate_id}/`\n\nAlternate route: `/latest/universe/stargates/{stargate_id}/`\n\nAlternate route: `/dev/universe/stargates/{stargate_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_universe_stargates_stargate_id",
                 "parameters": [
                     {
@@ -14958,7 +14958,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Information about a planet",
+                        "description": "Information about a stargate",
                         "examples": {
                             "application/json": {
                                 "destination": {
@@ -15123,7 +15123,7 @@
                         }
                     }
                 },
-                "summary": "Get planet information",
+                "summary": "Get stargate information",
                 "tags": [
                     "Universe"
                 ]
