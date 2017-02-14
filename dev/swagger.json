@@ -6282,6 +6282,139 @@
                 ]
             }
         },
+        "/characters/{character_id}/ship/": {
+            "get": {
+                "description": "Get the current ship type, name and id\n\n---\n\nAlternate route: `/v1/characters/{character_id}/ship/`\n\nAlternate route: `/legacy/characters/{character_id}/ship/`\n\nAlternate route: `/latest/characters/{character_id}/ship/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
+                "operationId": "get_characters_character_id_ship",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get the current ship type, name and id",
+                        "examples": {
+                            "application/json": {
+                                "ship_item_id": 1000000016991,
+                                "ship_name": "SPACESHIPS!!!",
+                                "ship_type_id": 1233
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "ship_item_id": {
+                                    "description": "Item id's are unique to a ship and persist until it is repackaged. This value can be used to track repeated uses of a ship, or detect when a pilot changes into a different instance of the same ship type.",
+                                    "format": "int64",
+                                    "title": "get_characters_character_id_ship_ship_item_id",
+                                    "type": "integer"
+                                },
+                                "ship_name": {
+                                    "description": "ship_name string",
+                                    "title": "get_characters_character_id_ship_ship_name",
+                                    "type": "string"
+                                },
+                                "ship_type_id": {
+                                    "description": "ship_type_id integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_ship_ship_type_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "ship_type_id",
+                                "ship_item_id",
+                                "ship_name"
+                            ],
+                            "title": "get_characters_character_id_ship_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-location.read_ship_type.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_ship_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_ship_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_ship_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_ship_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-location.read_ship_type.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get current ship",
+                "tags": [
+                    "Location"
+                ]
+            }
+        },
         "/characters/{character_id}/skillqueue/": {
             "get": {
                 "description": "List the configured skill queue for the given character\n\n---\n\nAlternate route: `/v2/characters/{character_id}/skillqueue/`\n\nAlternate route: `/legacy/characters/{character_id}/skillqueue/`\n\nAlternate route: `/latest/characters/{character_id}/skillqueue/`\n\n\n---\n\nThis route is cached for up to 120 seconds",
@@ -10296,6 +10429,141 @@
                     }
                 },
                 "summary": "List industry facilities",
+                "tags": [
+                    "Industry"
+                ]
+            }
+        },
+        "/industry/systems/": {
+            "get": {
+                "description": "Return cost indices for solar systems\n\n---\n\nAlternate route: `/v1/industry/systems/`\n\nAlternate route: `/legacy/industry/systems/`\n\nAlternate route: `/latest/industry/systems/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_industry_systems",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of cost indicies",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "cost_indices": [
+                                        {
+                                            "activity": "invention",
+                                            "cost_index": 0.00480411064973412
+                                        }
+                                    ],
+                                    "solar_system_id": 30011392
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "cost_indices": {
+                                        "description": "cost_indices array",
+                                        "items": {
+                                            "description": "cost_indice object",
+                                            "properties": {
+                                                "activity": {
+                                                    "description": "activity string",
+                                                    "enum": [
+                                                        "none",
+                                                        "manufacturing",
+                                                        "researching_technology",
+                                                        "researching_time_efficiency",
+                                                        "researching_material_efficiency",
+                                                        "copying",
+                                                        "duplicating",
+                                                        "invention",
+                                                        "reverse_engineering"
+                                                    ],
+                                                    "title": "get_industry_systems_activity",
+                                                    "type": "string"
+                                                },
+                                                "cost_index": {
+                                                    "description": "cost_index number",
+                                                    "format": "float",
+                                                    "title": "get_industry_systems_cost_index",
+                                                    "type": "number"
+                                                }
+                                            },
+                                            "required": [
+                                                "activity",
+                                                "cost_index"
+                                            ],
+                                            "title": "get_industry_systems_cost_indice",
+                                            "type": "object"
+                                        },
+                                        "title": "get_industry_systems_cost_indices",
+                                        "type": "array"
+                                    },
+                                    "solar_system_id": {
+                                        "description": "solar_system_id integer",
+                                        "format": "int32",
+                                        "title": "get_industry_systems_solar_system_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "solar_system_id",
+                                    "cost_indices"
+                                ],
+                                "title": "get_industry_systems_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_industry_systems_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_industry_systems_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_industry_systems_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "List solar system cost indices",
                 "tags": [
                     "Industry"
                 ]
@@ -15045,7 +15313,7 @@
         },
         "/universe/stations/{station_id}/": {
             "get": {
-                "description": "Get information on a station\n\n---\n\nAlternate route: `/v2/universe/stations/{station_id}/`\n\nAlternate route: `/latest/universe/stations/{station_id}/`\n\n\n---\n\nThis route is cached for up to 300 seconds",
+                "description": "Get information on a station\n\n---\n\nAlternate route: `/v2/universe/stations/{station_id}/`\n\n\n---\n\nThis route is cached for up to 300 seconds",
                 "operationId": "get_universe_stations_station_id",
                 "parameters": [
                     {
@@ -15642,7 +15910,7 @@
         },
         "/universe/systems/{system_id}/": {
             "get": {
-                "description": "Get information on a solar system\n\n---\n\nAlternate route: `/v2/universe/systems/{system_id}/`\n\nAlternate route: `/latest/universe/systems/{system_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get information on a solar system\n\n---\n\nAlternate route: `/v2/universe/systems/{system_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_universe_systems_system_id",
                 "parameters": [
                     {
@@ -16764,6 +17032,7 @@
                 "esi-fleets.write_fleet.v1": "EVE SSO scope esi-fleets.write_fleet.v1",
                 "esi-killmails.read_killmails.v1": "EVE SSO scope esi-killmails.read_killmails.v1",
                 "esi-location.read_location.v1": "EVE SSO scope esi-location.read_location.v1",
+                "esi-location.read_ship_type.v1": "EVE SSO scope esi-location.read_ship_type.v1",
                 "esi-mail.organize_mail.v1": "EVE SSO scope esi-mail.organize_mail.v1",
                 "esi-mail.read_mail.v1": "EVE SSO scope esi-mail.read_mail.v1",
                 "esi-mail.send_mail.v1": "EVE SSO scope esi-mail.send_mail.v1",
