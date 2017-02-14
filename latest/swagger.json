@@ -15297,11 +15297,11 @@
         },
         "/universe/stations/{station_id}/": {
             "get": {
-                "description": "Public information on stations\n\n---\n\nAlternate route: `/v1/universe/stations/{station_id}/`\n\nAlternate route: `/legacy/universe/stations/{station_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get information on a station\n\n---\n\nAlternate route: `/v2/universe/stations/{station_id}/`\n\nAlternate route: `/dev/universe/stations/{station_id}/`\n\n\n---\n\nThis route is cached for up to 300 seconds",
                 "operationId": "get_universe_stations_station_id",
                 "parameters": [
                     {
-                        "description": "An Eve station ID",
+                        "description": "station_id integer",
                         "format": "int32",
                         "in": "path",
                         "name": "station_id",
@@ -15322,11 +15322,38 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Public data about a station",
+                        "description": "Information about a station",
                         "examples": {
                             "application/json": {
-                                "solar_system_id": 30000142,
-                                "station_name": "Jita IV Moon IV - Caldari Navy Assembly Plant"
+                                "max_dockable_ship_volume": 50000000,
+                                "name": "Jakanerva III - Moon 15 - Prompt Delivery Storage",
+                                "office_rental_cost": 10000,
+                                "owner": 1000003,
+                                "position": {
+                                    "x": 165632286720,
+                                    "y": 2771804160,
+                                    "z": -2455331266560
+                                },
+                                "race_id": 1,
+                                "reprocessing_efficiency": 0.5,
+                                "reprocessing_stations_take": 0.05,
+                                "services": [
+                                    "courier-missions",
+                                    "reprocessing-plant",
+                                    "market",
+                                    "repair-facilities",
+                                    "fitting",
+                                    "news",
+                                    "storage",
+                                    "insurance",
+                                    "docking",
+                                    "office-rental",
+                                    "loyalty-point-store",
+                                    "navy-offices"
+                                ],
+                                "station_id": 60000277,
+                                "system_id": 30000148,
+                                "type_id": 1531
                             }
                         },
                         "headers": {
@@ -15346,19 +15373,168 @@
                         "schema": {
                             "description": "200 ok object",
                             "properties": {
-                                "solar_system_id": {
-                                    "description": "solar_system_id integer",
+                                "max_dockable_ship_volume": {
+                                    "description": "max_dockable_ship_volume number",
+                                    "format": "float",
+                                    "title": "get_universe_stations_station_id_max_dockable_ship_volume",
+                                    "type": "number"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_universe_stations_station_id_name",
+                                    "type": "string"
+                                },
+                                "office_rental_cost": {
+                                    "description": "office_rental_cost number",
+                                    "format": "float",
+                                    "title": "get_universe_stations_station_id_office_rental_cost",
+                                    "type": "number"
+                                },
+                                "owner": {
+                                    "description": "ID of the corporation that controls this station",
                                     "format": "int32",
-                                    "title": "get_universe_stations_station_id_solar_system_id",
+                                    "title": "get_universe_stations_station_id_owner",
                                     "type": "integer"
                                 },
-                                "station_name": {
-                                    "description": "the full name of the station",
-                                    "title": "get_universe_stations_station_id_station_name",
+                                "position": {
+                                    "description": "position object",
+                                    "properties": {
+                                        "x": {
+                                            "description": "x number",
+                                            "format": "float",
+                                            "title": "get_universe_stations_station_id_x",
+                                            "type": "number"
+                                        },
+                                        "y": {
+                                            "description": "y number",
+                                            "format": "float",
+                                            "title": "get_universe_stations_station_id_y",
+                                            "type": "number"
+                                        },
+                                        "z": {
+                                            "description": "z number",
+                                            "format": "float",
+                                            "title": "get_universe_stations_station_id_z",
+                                            "type": "number"
+                                        }
+                                    },
+                                    "required": [
+                                        "x",
+                                        "y",
+                                        "z"
+                                    ],
+                                    "title": "get_universe_stations_station_id_position",
+                                    "type": "object"
+                                },
+                                "race_id": {
+                                    "description": "race_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_stations_station_id_race_id",
+                                    "type": "integer"
+                                },
+                                "reprocessing_efficiency": {
+                                    "description": "reprocessing_efficiency number",
+                                    "format": "float",
+                                    "title": "get_universe_stations_station_id_reprocessing_efficiency",
+                                    "type": "number"
+                                },
+                                "reprocessing_stations_take": {
+                                    "description": "reprocessing_stations_take number",
+                                    "format": "float",
+                                    "title": "get_universe_stations_station_id_reprocessing_stations_take",
+                                    "type": "number"
+                                },
+                                "services": {
+                                    "description": "services array",
+                                    "items": {
+                                        "description": "service string",
+                                        "enum": [
+                                            "bounty-missions",
+                                            "assasination-missions",
+                                            "courier-missions",
+                                            "interbus",
+                                            "reprocessing-plant",
+                                            "refinery",
+                                            "market",
+                                            "black-market",
+                                            "stock-exchange",
+                                            "cloning",
+                                            "surgery",
+                                            "dna-therapy",
+                                            "repair-facilities",
+                                            "factory",
+                                            "labratory",
+                                            "gambling",
+                                            "fitting",
+                                            "paintshop",
+                                            "news",
+                                            "storage",
+                                            "insurance",
+                                            "docking",
+                                            "office-rental",
+                                            "jump-clone-facility",
+                                            "loyalty-point-store",
+                                            "navy-offices",
+                                            "security-offices"
+                                        ],
+                                        "title": "get_universe_stations_station_id_service",
+                                        "type": "string"
+                                    },
+                                    "title": "get_universe_stations_station_id_services",
+                                    "type": "array"
+                                },
+                                "station_id": {
+                                    "description": "station_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_stations_station_id_station_id",
+                                    "type": "integer"
+                                },
+                                "system_id": {
+                                    "description": "The solar system this station is in",
+                                    "format": "int32",
+                                    "title": "get_universe_stations_station_id_system_id",
+                                    "type": "integer"
+                                },
+                                "type_id": {
+                                    "description": "type_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_stations_station_id_type_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "station_id",
+                                "name",
+                                "type_id",
+                                "position",
+                                "system_id",
+                                "reprocessing_efficiency",
+                                "reprocessing_stations_take",
+                                "max_dockable_ship_volume",
+                                "office_rental_cost",
+                                "services"
+                            ],
+                            "title": "get_universe_stations_station_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Station not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_universe_stations_station_id_404_not_found",
                                     "type": "string"
                                 }
                             },
-                            "title": "get_universe_stations_station_id_ok",
+                            "title": "get_universe_stations_station_id_not_found",
                             "type": "object"
                         }
                     },
@@ -15718,16 +15894,31 @@
         },
         "/universe/systems/{system_id}/": {
             "get": {
-                "description": "Information on solar systems\n\n---\n\nAlternate route: `/v1/universe/systems/{system_id}/`\n\nAlternate route: `/legacy/universe/systems/{system_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get information on a solar system\n\n---\n\nAlternate route: `/v2/universe/systems/{system_id}/`\n\nAlternate route: `/dev/universe/systems/{system_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_universe_systems_system_id",
                 "parameters": [
                     {
-                        "description": "An Eve solar system ID",
+                        "description": "system_id integer",
                         "format": "int32",
                         "in": "path",
                         "name": "system_id",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "default": "en-us",
+                        "description": "Language to use in the response",
+                        "enum": [
+                            "de",
+                            "en-us",
+                            "fr",
+                            "ja",
+                            "ru",
+                            "zh"
+                        ],
+                        "in": "query",
+                        "name": "language",
+                        "type": "string"
                     },
                     {
                         "default": "tranquility",
@@ -15743,15 +15934,50 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Data about a solar system",
+                        "description": "Information about a solar system",
                         "examples": {
                             "application/json": {
-                                "solar_system_name": "Jita"
+                                "constellation_id": 20000001,
+                                "name": "Akpivem",
+                                "planets": [
+                                    {
+                                        "moons": [
+                                            40000042
+                                        ],
+                                        "planet_id": 40000041
+                                    },
+                                    {
+                                        "planet_id": 40000043
+                                    }
+                                ],
+                                "position": {
+                                    "x": -91174141133075340,
+                                    "y": 43938227486247170,
+                                    "z": -56482824383339900
+                                },
+                                "security_class": "B",
+                                "security_status": 0.8462923765182495,
+                                "stargates": [
+                                    50000342
+                                ],
+                                "system_id": 30000003
                             }
                         },
                         "headers": {
                             "Cache-Control": {
                                 "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
                                 "type": "string"
                             },
                             "Expires": {
@@ -15766,29 +15992,134 @@
                         "schema": {
                             "description": "200 ok object",
                             "properties": {
-                                "solar_system_name": {
-                                    "description": "the full name of the system",
-                                    "title": "get_universe_systems_system_id_solar_system_name",
+                                "constellation_id": {
+                                    "description": "The constellation this solar system is in",
+                                    "format": "int32",
+                                    "title": "get_universe_systems_system_id_constellation_id",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_universe_systems_system_id_name",
                                     "type": "string"
+                                },
+                                "planets": {
+                                    "description": "planets array",
+                                    "items": {
+                                        "description": "planet object",
+                                        "properties": {
+                                            "moons": {
+                                                "description": "moons array",
+                                                "items": {
+                                                    "description": "moon integer",
+                                                    "format": "int32",
+                                                    "title": "get_universe_systems_system_id_moon",
+                                                    "type": "integer"
+                                                },
+                                                "title": "get_universe_systems_system_id_moons",
+                                                "type": "array"
+                                            },
+                                            "planet_id": {
+                                                "description": "planet_id integer",
+                                                "format": "int32",
+                                                "title": "get_universe_systems_system_id_planet_id",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "planet_id"
+                                        ],
+                                        "title": "get_universe_systems_system_id_planet",
+                                        "type": "object"
+                                    },
+                                    "title": "get_universe_systems_system_id_planets",
+                                    "type": "array"
+                                },
+                                "position": {
+                                    "description": "position object",
+                                    "properties": {
+                                        "x": {
+                                            "description": "x number",
+                                            "format": "float",
+                                            "title": "get_universe_systems_system_id_x",
+                                            "type": "number"
+                                        },
+                                        "y": {
+                                            "description": "y number",
+                                            "format": "float",
+                                            "title": "get_universe_systems_system_id_y",
+                                            "type": "number"
+                                        },
+                                        "z": {
+                                            "description": "z number",
+                                            "format": "float",
+                                            "title": "get_universe_systems_system_id_z",
+                                            "type": "number"
+                                        }
+                                    },
+                                    "required": [
+                                        "x",
+                                        "y",
+                                        "z"
+                                    ],
+                                    "title": "get_universe_systems_system_id_position",
+                                    "type": "object"
+                                },
+                                "security_class": {
+                                    "description": "security_class string",
+                                    "title": "get_universe_systems_system_id_security_class",
+                                    "type": "string"
+                                },
+                                "security_status": {
+                                    "description": "security_status number",
+                                    "format": "float",
+                                    "title": "get_universe_systems_system_id_security_status",
+                                    "type": "number"
+                                },
+                                "stargates": {
+                                    "description": "stargates array",
+                                    "items": {
+                                        "description": "stargate integer",
+                                        "format": "int32",
+                                        "title": "get_universe_systems_system_id_stargate",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_universe_systems_system_id_stargates",
+                                    "type": "array"
+                                },
+                                "system_id": {
+                                    "description": "system_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_systems_system_id_system_id",
+                                    "type": "integer"
                                 }
                             },
+                            "required": [
+                                "system_id",
+                                "name",
+                                "position",
+                                "security_status",
+                                "constellation_id",
+                                "planets",
+                                "stargates"
+                            ],
                             "title": "get_universe_systems_system_id_ok",
                             "type": "object"
                         }
                     },
                     "404": {
-                        "description": "System not found",
+                        "description": "Solar system not found",
                         "examples": {
                             "application/json": {
-                                "error": "System not found"
+                                "error": "Not found message"
                             }
                         },
                         "schema": {
-                            "description": "System not found",
+                            "description": "Not found",
                             "properties": {
                                 "error": {
-                                    "description": "error message",
-                                    "title": "get_universe_systems_system_id_error",
+                                    "description": "Not found message",
+                                    "title": "get_universe_systems_system_id_404_not_found",
                                     "type": "string"
                                 }
                             },
