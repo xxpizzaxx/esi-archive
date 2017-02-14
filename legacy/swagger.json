@@ -15131,7 +15131,8 @@
         },
         "/universe/stations/{station_id}/": {
             "get": {
-                "description": "Public information on stations\n\n---\n\nAlternate route: `/v1/universe/stations/{station_id}/`\n\nAlternate route: `/latest/universe/stations/{station_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "deprecated": true,
+                "description": "Public information on stations\n\n---\n\nAlternate route: `/v1/universe/stations/{station_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_universe_stations_station_id",
                 "parameters": [
                     {
@@ -15552,7 +15553,8 @@
         },
         "/universe/systems/{system_id}/": {
             "get": {
-                "description": "Information on solar systems\n\n---\n\nAlternate route: `/v1/universe/systems/{system_id}/`\n\nAlternate route: `/latest/universe/systems/{system_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "deprecated": true,
+                "description": "Information on solar systems\n\n---\n\nAlternate route: `/v1/universe/systems/{system_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_universe_systems_system_id",
                 "parameters": [
                     {
