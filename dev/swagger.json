@@ -4087,6 +4087,24 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -6470,6 +6488,24 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -12108,6 +12144,18 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -12203,12 +12251,15 @@
                 "operationId": "get_markets_structures_structure_id",
                 "parameters": [
                     {
-                        "description": "Return orders in this structure",
-                        "format": "int64",
-                        "in": "path",
-                        "name": "structure_id",
-                        "required": true,
-                        "type": "integer"
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
                     },
                     {
                         "default": 1,
@@ -12220,14 +12271,29 @@
                         "type": "integer"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Return orders in this structure",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "structure_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -12429,6 +12495,17 @@
                 "operationId": "get_markets_region_id_history",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "Return statistics in this region",
                         "format": "int32",
                         "in": "path",
@@ -12445,14 +12522,15 @@
                         "type": "integer"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Client identifier, takes precedence over headers",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -12595,20 +12673,15 @@
                 "operationId": "get_markets_region_id_orders",
                 "parameters": [
                     {
-                        "description": "Return orders in this region",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "region_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "Return orders only for this type",
-                        "format": "int32",
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
                         "in": "query",
-                        "name": "type_id",
-                        "required": false,
-                        "type": "integer"
+                        "name": "datasource",
+                        "type": "string"
                     },
                     {
                         "default": "all",
@@ -12633,14 +12706,31 @@
                         "type": "integer"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Return orders in this region",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "region_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Return orders only for this type",
+                        "format": "int32",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "type_id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
