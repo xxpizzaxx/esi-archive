@@ -4,7 +4,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.3.10.dev19"
+        "version": "0.4.0"
     },
     "paths": {
         "/alliances/": {
@@ -21,6 +21,18 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -114,6 +126,18 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -219,6 +243,18 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -352,6 +388,18 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -439,6 +487,18 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -557,6 +617,18 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -661,6 +733,18 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -841,6 +925,24 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -1093,6 +1195,24 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -1340,6 +1460,24 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -1466,14 +1604,6 @@
                         "type": "integer"
                     },
                     {
-                        "description": "The event ID to retrieve events from",
-                        "format": "int32",
-                        "in": "query",
-                        "name": "from_event",
-                        "required": false,
-                        "type": "integer"
-                    },
-                    {
                         "default": "tranquility",
                         "description": "The server name you would like data from",
                         "enum": [
@@ -1482,6 +1612,32 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "The event ID to retrieve events from",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "from_event",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -1628,14 +1784,6 @@
                         "type": "integer"
                     },
                     {
-                        "description": "The id of the event requested",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "event_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
                         "default": "tranquility",
                         "description": "The server name you would like data from",
                         "enum": [
@@ -1644,6 +1792,32 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "The id of the event requested",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "event_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -1826,6 +2000,17 @@
                         "type": "integer"
                     },
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "The ID of the event requested",
                         "format": "int32",
                         "in": "path",
@@ -1859,14 +2044,21 @@
                         }
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -1950,6 +2142,24 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -2165,6 +2375,24 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -2237,6 +2465,17 @@
                         "type": "integer"
                     },
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "default": 1,
                         "description": "page integer",
                         "format": "int32",
@@ -2247,14 +2486,21 @@
                         "type": "integer"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -2409,33 +2655,6 @@
                         "type": "integer"
                     },
                     {
-                        "description": "Standing for the new contact",
-                        "format": "float",
-                        "in": "query",
-                        "maximum": 10,
-                        "minimum": -10,
-                        "name": "standing",
-                        "required": true,
-                        "type": "number"
-                    },
-                    {
-                        "default": false,
-                        "description": "Whether the new contact should be watched, note this is only effective on characters",
-                        "in": "query",
-                        "name": "watched",
-                        "required": false,
-                        "type": "boolean"
-                    },
-                    {
-                        "default": 0,
-                        "description": "Add a custom label to the new contact",
-                        "format": "int64",
-                        "in": "query",
-                        "name": "label_id",
-                        "required": false,
-                        "type": "integer"
-                    },
-                    {
                         "description": "A list of contacts to add",
                         "in": "body",
                         "name": "contact_ids",
@@ -2463,6 +2682,51 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "default": 0,
+                        "description": "Add a custom label to the new contact",
+                        "format": "int64",
+                        "in": "query",
+                        "name": "label_id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Standing for the new contact",
+                        "format": "float",
+                        "in": "query",
+                        "maximum": 10,
+                        "minimum": -10,
+                        "name": "standing",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "default": false,
+                        "description": "Whether the new contact should be watched, note this is only effective on characters",
+                        "in": "query",
+                        "name": "watched",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -2553,33 +2817,6 @@
                         "type": "integer"
                     },
                     {
-                        "description": "Standing for the contact",
-                        "format": "float",
-                        "in": "query",
-                        "maximum": 10,
-                        "minimum": -10,
-                        "name": "standing",
-                        "required": true,
-                        "type": "number"
-                    },
-                    {
-                        "default": false,
-                        "description": "Whether the contact should be watched, note this is only effective on characters",
-                        "in": "query",
-                        "name": "watched",
-                        "required": false,
-                        "type": "boolean"
-                    },
-                    {
-                        "default": 0,
-                        "description": "Add a custom label to the contact, use 0 for clearing label",
-                        "format": "int64",
-                        "in": "query",
-                        "name": "label_id",
-                        "required": false,
-                        "type": "integer"
-                    },
-                    {
                         "description": "A list of contacts to edit",
                         "in": "body",
                         "name": "contact_ids",
@@ -2607,6 +2844,51 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "default": 0,
+                        "description": "Add a custom label to the contact, use 0 for clearing label",
+                        "format": "int64",
+                        "in": "query",
+                        "name": "label_id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Standing for the contact",
+                        "format": "float",
+                        "in": "query",
+                        "maximum": 10,
+                        "minimum": -10,
+                        "name": "standing",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "default": false,
+                        "description": "Whether the contact should be watched, note this is only effective on characters",
+                        "in": "query",
+                        "name": "watched",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -2690,6 +2972,24 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -2822,6 +3122,18 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -2972,6 +3284,24 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -3072,6 +3402,24 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -3252,6 +3600,17 @@
                         "type": "integer"
                     },
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "Details about the new fitting",
                         "in": "body",
                         "name": "fitting",
@@ -3327,14 +3686,21 @@
                         }
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -3431,14 +3797,6 @@
                         "type": "integer"
                     },
                     {
-                        "description": "ID for a fitting of this character",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "fitting_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
                         "default": "tranquility",
                         "description": "The server name you would like data from",
                         "enum": [
@@ -3447,6 +3805,32 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "ID for a fitting of this character",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "fitting_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -3522,6 +3906,17 @@
                         "type": "integer"
                     },
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "default": 50,
                         "description": "How many killmails to return at maximum",
                         "format": "int32",
@@ -3540,14 +3935,21 @@
                         "type": "integer"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -3807,6 +4209,17 @@
                         "type": "integer"
                     },
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "Fetch only mails that match one or more of the given labels",
                         "in": "query",
                         "items": {
@@ -3828,14 +4241,21 @@
                         "type": "integer"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -4033,6 +4453,17 @@
                         "type": "integer"
                     },
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "The mail to send",
                         "in": "body",
                         "name": "mail",
@@ -4104,14 +4535,21 @@
                         }
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -4224,6 +4662,24 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -4402,6 +4858,17 @@
                         "type": "integer"
                     },
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "Label to create",
                         "in": "body",
                         "name": "label",
@@ -4450,14 +4917,21 @@
                         }
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -4542,14 +5016,6 @@
                         "type": "integer"
                     },
                     {
-                        "description": "An EVE label id",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "label_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
                         "default": "tranquility",
                         "description": "The server name you would like data from",
                         "enum": [
@@ -4558,6 +5024,32 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "An EVE label id",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "label_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -4661,6 +5153,24 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -4785,14 +5295,6 @@
                         "type": "integer"
                     },
                     {
-                        "description": "An EVE mail ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "mail_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
                         "default": "tranquility",
                         "description": "The server name you would like data from",
                         "enum": [
@@ -4801,6 +5303,32 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "An EVE mail ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "mail_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -4874,14 +5402,6 @@
                         "type": "integer"
                     },
                     {
-                        "description": "An EVE mail ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "mail_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
                         "default": "tranquility",
                         "description": "The server name you would like data from",
                         "enum": [
@@ -4890,6 +5410,32 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "An EVE mail ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "mail_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -5093,14 +5639,6 @@
                         "type": "integer"
                     },
                     {
-                        "description": "An EVE mail ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "mail_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
                         "description": "Data used to update the mail",
                         "in": "body",
                         "name": "contents",
@@ -5140,6 +5678,32 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "An EVE mail ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "mail_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -5243,6 +5807,24 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -5417,7 +5999,7 @@
         },
         "/characters/{character_id}/planets/{planet_id}/": {
             "get": {
-                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information on this endpoint will not update until this criteria is met.\n\n---\n\nAlternate route: `/v1/characters/{character_id}/planets/{planet_id}/`\n\nAlternate route: `/legacy/characters/{character_id}/planets/{planet_id}/`\n\nAlternate route: `/dev/characters/{character_id}/planets/{planet_id}/`\n\n\n---\n\nThis route is cached for up to 600 seconds",
+                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information on this endpoint will not update until this criteria is met.\n\n---\n\nAlternate route: `/v1/characters/{character_id}/planets/{planet_id}/`\n\nAlternate route: `/legacy/characters/{character_id}/planets/{planet_id}/`\n\n\n---\n\nThis route is cached for up to 600 seconds",
                 "operationId": "get_characters_character_id_planets_planet_id",
                 "parameters": [
                     {
@@ -5425,14 +6007,6 @@
                         "format": "int32",
                         "in": "path",
                         "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "Planet id of the target planet",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "planet_id",
                         "required": true,
                         "type": "integer"
                     },
@@ -5445,6 +6019,32 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Planet id of the target planet",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "planet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -5884,6 +6484,18 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -5992,22 +6604,6 @@
                 "operationId": "get_characters_character_id_search",
                 "parameters": [
                     {
-                        "description": "An EVE character ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "The string to search on",
-                        "in": "query",
-                        "minLength": 3,
-                        "name": "search",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "description": "Type of entities to search for",
                         "in": "query",
                         "items": {
@@ -6034,6 +6630,25 @@
                         "uniqueItems": true
                     },
                     {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "default": "en-us",
                         "description": "Search locale",
                         "enum": [
@@ -6049,6 +6664,14 @@
                         "type": "string"
                     },
                     {
+                        "description": "The string to search on",
+                        "in": "query",
+                        "minLength": 3,
+                        "name": "search",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
                         "default": false,
                         "description": "Whether the search should be a strict match",
                         "in": "query",
@@ -6056,14 +6679,21 @@
                         "type": "boolean"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -6450,6 +7080,24 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -6639,6 +7287,24 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -6796,6 +7462,24 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -6929,6 +7613,18 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -7011,6 +7707,98 @@
                 ]
             }
         },
+        "/corporations/npccorps/": {
+            "get": {
+                "description": "Get a list of npc corporations\n\n---\n\nAlternate route: `/v1/corporations/npccorps/`\n\nAlternate route: `/legacy/corporations/npccorps/`\n\nAlternate route: `/dev/corporations/npccorps/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_npccorps",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of npc corporation ids",
+                        "examples": {
+                            "application/json": [
+                                1000001,
+                                1000002,
+                                1000003
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_corporations_npccorps_200_ok",
+                                "type": "integer"
+                            },
+                            "title": "get_corporations_npccorps_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_corporations_npccorps_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_npccorps_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get npc corporations",
+                "tags": [
+                    "Corporation"
+                ]
+            }
+        },
         "/corporations/{corporation_id}/": {
             "get": {
                 "description": "Public information about a corporation\n\n---\n\nAlternate route: `/v2/corporations/{corporation_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -7033,6 +7821,18 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -7174,6 +7974,18 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -7310,6 +8122,18 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -7428,6 +8252,24 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -7556,6 +8398,24 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -8167,16 +9027,16 @@
                 ]
             }
         },
-        "/fleets/{fleet_id}/": {
+        "/corporations/{corporation_id}/structures/": {
             "get": {
-                "description": "Return details about a fleet\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/`\n\nAlternate route: `/dev/fleets/{fleet_id}/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
-                "operationId": "get_fleets_fleet_id",
+                "description": "Get a list of corporation structures\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/structures/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/structures/`\n\nAlternate route: `/dev/corporations/{corporation_id}/structures/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_corporation_id_structures",
                 "parameters": [
                     {
-                        "description": "ID for a fleet",
-                        "format": "int64",
+                        "description": "A corporation ID",
+                        "format": "int32",
                         "in": "path",
-                        "name": "fleet_id",
+                        "name": "corporation_id",
                         "required": true,
                         "type": "integer"
                     },
@@ -8189,6 +9049,278 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "default": "en-us",
+                        "description": "Language to use in the response",
+                        "enum": [
+                            "de",
+                            "en-us",
+                            "fr",
+                            "ja",
+                            "ru",
+                            "zh"
+                        ],
+                        "in": "query",
+                        "name": "language",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Which page to query, 250 structures per page",
+                        "format": "int32",
+                        "in": "query",
+                        "minimum": 1,
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of corporation structures' information",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "corporation_id": 667531913,
+                                    "current_vul": "{1,2}",
+                                    "next_vul": "{3,4}",
+                                    "profile_id": 11237,
+                                    "structure_id": 1021975535893,
+                                    "system_id": 30004763,
+                                    "type_id": 35833
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "corporation_id": {
+                                        "description": "ID of the corporation that owns the structure",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_structures_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "current_vul": {
+                                        "description": "Set of {Day, Hour} for this week's vulnerability windows, Monday is day 0",
+                                        "title": "get_corporations_corporation_id_structures_current_vul",
+                                        "type": "string"
+                                    },
+                                    "fuel_expires": {
+                                        "description": "Date on which the structure will run out of fuel",
+                                        "format": "date",
+                                        "title": "get_corporations_corporation_id_structures_fuel_expires",
+                                        "type": "string"
+                                    },
+                                    "next_vul": {
+                                        "description": "Set of {Day, Hour} for next week's vulnerability windows, Monday is day 0",
+                                        "title": "get_corporations_corporation_id_structures_next_vul",
+                                        "type": "string"
+                                    },
+                                    "profile_id": {
+                                        "description": "The id of the ACL profile for this citadel",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_structures_profile_id",
+                                        "type": "integer"
+                                    },
+                                    "services": {
+                                        "description": "Contains a list of service upgrades, and their state",
+                                        "title": "get_corporations_corporation_id_structures_services",
+                                        "type": "string"
+                                    },
+                                    "state_timer_end": {
+                                        "description": "Date at which the structure will move to it's next state",
+                                        "format": "date",
+                                        "title": "get_corporations_corporation_id_structures_state_timer_end",
+                                        "type": "string"
+                                    },
+                                    "state_timer_start": {
+                                        "description": "Date at which the structure entered it's current state",
+                                        "format": "date",
+                                        "title": "get_corporations_corporation_id_structures_state_timer_start",
+                                        "type": "string"
+                                    },
+                                    "structure_id": {
+                                        "description": "The Item ID of the structure",
+                                        "format": "int64",
+                                        "title": "get_corporations_corporation_id_structures_structure_id",
+                                        "type": "integer"
+                                    },
+                                    "system_id": {
+                                        "description": "The solar system the structure is in",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_structures_system_id",
+                                        "type": "integer"
+                                    },
+                                    "type_id": {
+                                        "description": "The type id of the structure",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_structures_type_id",
+                                        "type": "integer"
+                                    },
+                                    "unanchors_at": {
+                                        "description": "Date at which the structure will unanchor",
+                                        "format": "date",
+                                        "title": "get_corporations_corporation_id_structures_unanchors_at",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "structure_id",
+                                    "type_id",
+                                    "corporation_id",
+                                    "system_id",
+                                    "profile_id",
+                                    "current_vul",
+                                    "next_vul"
+                                ],
+                                "title": "get_corporations_corporation_id_structures_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_corporations_corporation_id_structures_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-corporations.read_structures.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_corporations_corporation_id_structures_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_structures_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_corporations_corporation_id_structures_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_structures_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-corporations.read_structures.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get corporation structures",
+                "tags": [
+                    "Corporation"
+                ]
+            }
+        },
+        "/fleets/{fleet_id}/": {
+            "get": {
+                "description": "Return details about a fleet\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/`\n\nAlternate route: `/dev/fleets/{fleet_id}/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
+                "operationId": "get_fleets_fleet_id",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "ID for a fleet",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "fleet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -8329,6 +9461,17 @@
                 "operationId": "put_fleets_fleet_id",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "ID for a fleet",
                         "format": "int64",
                         "in": "path",
@@ -8360,14 +9503,21 @@
                         }
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -8475,6 +9625,17 @@
                 "operationId": "get_fleets_fleet_id_members",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "ID for a fleet",
                         "format": "int64",
                         "in": "path",
@@ -8498,14 +9659,21 @@
                         "type": "string"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -8719,6 +9887,17 @@
                 "operationId": "post_fleets_fleet_id_members",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "ID for a fleet",
                         "format": "int64",
                         "in": "path",
@@ -8775,14 +9954,21 @@
                         }
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -8890,6 +10076,17 @@
                 "operationId": "delete_fleets_fleet_id_members_member_id",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "ID for a fleet",
                         "format": "int64",
                         "in": "path",
@@ -8906,14 +10103,21 @@
                         "type": "integer"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -8999,6 +10203,17 @@
                 "operationId": "put_fleets_fleet_id_members_member_id",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "ID for a fleet",
                         "format": "int64",
                         "in": "path",
@@ -9056,14 +10271,21 @@
                         }
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -9171,6 +10393,17 @@
                 "operationId": "delete_fleets_fleet_id_squads_squad_id",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "ID for a fleet",
                         "format": "int64",
                         "in": "path",
@@ -9187,14 +10420,21 @@
                         "type": "integer"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -9280,18 +10520,21 @@
                 "operationId": "put_fleets_fleet_id_squads_squad_id",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "ID for a fleet",
                         "format": "int64",
                         "in": "path",
                         "name": "fleet_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "The squad to rename",
-                        "format": "int64",
-                        "in": "path",
-                        "name": "squad_id",
                         "required": true,
                         "type": "integer"
                     },
@@ -9318,14 +10561,29 @@
                         }
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "The squad to rename",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "squad_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -9413,6 +10671,17 @@
                 "operationId": "get_fleets_fleet_id_wings",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "ID for a fleet",
                         "format": "int64",
                         "in": "path",
@@ -9436,14 +10705,21 @@
                         "type": "string"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -9624,14 +10900,6 @@
                 "operationId": "post_fleets_fleet_id_wings",
                 "parameters": [
                     {
-                        "description": "ID for a fleet",
-                        "format": "int64",
-                        "in": "path",
-                        "name": "fleet_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
                         "default": "tranquility",
                         "description": "The server name you would like data from",
                         "enum": [
@@ -9640,6 +10908,32 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "ID for a fleet",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "fleet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -9748,12 +11042,35 @@
                 "operationId": "delete_fleets_fleet_id_wings_wing_id",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "ID for a fleet",
                         "format": "int64",
                         "in": "path",
                         "name": "fleet_id",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
                     },
                     {
                         "description": "The wing to delete",
@@ -9764,14 +11081,9 @@
                         "type": "integer"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -9857,18 +11169,21 @@
                 "operationId": "put_fleets_fleet_id_wings_wing_id",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "ID for a fleet",
                         "format": "int64",
                         "in": "path",
                         "name": "fleet_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "The wing to rename",
-                        "format": "int64",
-                        "in": "path",
-                        "name": "wing_id",
                         "required": true,
                         "type": "integer"
                     },
@@ -9895,14 +11210,29 @@
                         }
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "The wing to rename",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "wing_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -9990,12 +11320,35 @@
                 "operationId": "post_fleets_fleet_id_wings_wing_id_squads",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "ID for a fleet",
                         "format": "int64",
                         "in": "path",
                         "name": "fleet_id",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
                     },
                     {
                         "description": "The wing_id to create squad in",
@@ -10006,14 +11359,9 @@
                         "type": "integer"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -10130,6 +11478,18 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -10292,6 +11652,18 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -10421,6 +11793,18 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -10547,6 +11931,17 @@
                 "operationId": "get_insurance_prices",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "default": "en-us",
                         "description": "Language to use in the response",
                         "enum": [
@@ -10562,14 +11957,15 @@
                         "type": "string"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Client identifier, takes precedence over headers",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -10706,12 +12102,15 @@
                 "operationId": "get_killmails_killmail_id_killmail_hash",
                 "parameters": [
                     {
-                        "description": "The killmail ID to be queried",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "killmail_id",
-                        "required": true,
-                        "type": "integer"
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
                     },
                     {
                         "description": "The killmail hash for verification",
@@ -10721,14 +12120,23 @@
                         "type": "string"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "The killmail ID to be queried",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "killmail_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -11863,14 +13271,6 @@
                 "operationId": "get_search",
                 "parameters": [
                     {
-                        "description": "The string to search on",
-                        "in": "query",
-                        "minLength": 3,
-                        "name": "search",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "description": "Type of entities to search for",
                         "in": "query",
                         "items": {
@@ -11896,6 +13296,17 @@
                         "uniqueItems": true
                     },
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "default": "en-us",
                         "description": "Search locale",
                         "enum": [
@@ -11911,6 +13322,14 @@
                         "type": "string"
                     },
                     {
+                        "description": "The string to search on",
+                        "in": "query",
+                        "minLength": 3,
+                        "name": "search",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
                         "default": false,
                         "description": "Whether the search should be a strict match",
                         "in": "query",
@@ -11918,14 +13337,15 @@
                         "type": "boolean"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Client identifier, takes precedence over headers",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -12133,6 +13553,18 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -12317,6 +13749,18 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -12443,26 +13887,18 @@
                 "operationId": "post_ui_autopilot_waypoint",
                 "parameters": [
                     {
-                        "description": "The destination to travel to, can be solar system, station or structure's id",
-                        "format": "int64",
+                        "default": false,
+                        "description": "Whether this solar system should be added to the beginning of all waypoints",
                         "in": "query",
-                        "name": "destination_id",
+                        "name": "add_to_beginning",
                         "required": true,
-                        "type": "integer"
+                        "type": "boolean"
                     },
                     {
                         "default": false,
                         "description": "Whether clean other waypoints beforing adding this one",
                         "in": "query",
                         "name": "clear_other_waypoints",
-                        "required": true,
-                        "type": "boolean"
-                    },
-                    {
-                        "default": false,
-                        "description": "Whether this solar system should be added to the beginning of all waypoints",
-                        "in": "query",
-                        "name": "add_to_beginning",
                         "required": true,
                         "type": "boolean"
                     },
@@ -12475,6 +13911,32 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "The destination to travel to, can be solar system, station or structure's id",
+                        "format": "int64",
+                        "in": "query",
+                        "name": "destination_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -12559,6 +14021,24 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -12625,14 +14105,6 @@
                 "operationId": "post_ui_openwindow_information",
                 "parameters": [
                     {
-                        "description": "The target to open",
-                        "format": "int32",
-                        "in": "query",
-                        "name": "target_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
                         "default": "tranquility",
                         "description": "The server name you would like data from",
                         "enum": [
@@ -12641,6 +14113,32 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "The target to open",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "target_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -12708,14 +14206,6 @@
                 "operationId": "post_ui_openwindow_marketdetails",
                 "parameters": [
                     {
-                        "description": "The item type to open in market window",
-                        "format": "int32",
-                        "in": "query",
-                        "name": "type_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
                         "default": "tranquility",
                         "description": "The server name you would like data from",
                         "enum": [
@@ -12724,6 +14214,32 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "The item type to open in market window",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "type_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -12791,6 +14307,17 @@
                 "operationId": "post_ui_openwindow_newmail",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "The details of mail to create",
                         "in": "body",
                         "name": "new_mail",
@@ -12846,14 +14373,21 @@
                         }
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Access token to use, if preferred over a header",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -12941,6 +14475,17 @@
                 "operationId": "get_universe_bloodlines",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "default": "en-us",
                         "description": "Language to use in the response",
                         "enum": [
@@ -12956,14 +14501,15 @@
                         "type": "string"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Client identifier, takes precedence over headers",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -13145,6 +14691,18 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -13224,6 +14782,17 @@
                         "type": "integer"
                     },
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "default": "en-us",
                         "description": "Language to use in the response",
                         "enum": [
@@ -13239,14 +14808,15 @@
                         "type": "string"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Client identifier, takes precedence over headers",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -13394,6 +14964,18 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -13472,6 +15054,17 @@
                         "type": "integer"
                     },
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "default": "en-us",
                         "description": "Language to use in the response",
                         "enum": [
@@ -13487,14 +15080,15 @@
                         "type": "string"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Client identifier, takes precedence over headers",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -13669,6 +15263,17 @@
                 "operationId": "get_universe_factions",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "default": "en-us",
                         "description": "Language to use in the response",
                         "enum": [
@@ -13684,14 +15289,15 @@
                         "type": "string"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Client identifier, takes precedence over headers",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -13853,6 +15459,17 @@
                 "operationId": "get_universe_groups",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "Which page to query",
                         "format": "int32",
                         "in": "query",
@@ -13862,14 +15479,15 @@
                         "type": "integer"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Client identifier, takes precedence over headers",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -13942,6 +15560,17 @@
                 "operationId": "get_universe_groups_group_id",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "An Eve item group ID",
                         "format": "int32",
                         "in": "path",
@@ -13965,14 +15594,15 @@
                         "type": "string"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Client identifier, takes precedence over headers",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -14119,14 +15749,6 @@
                 "operationId": "get_universe_moons_moon_id",
                 "parameters": [
                     {
-                        "description": "moon_id integer",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "moon_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
                         "default": "tranquility",
                         "description": "The server name you would like data from",
                         "enum": [
@@ -14135,6 +15757,26 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "moon_id integer",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "moon_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -14281,6 +15923,17 @@
                 "operationId": "post_universe_names",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "The ids to resolve",
                         "in": "body",
                         "name": "ids",
@@ -14305,14 +15958,15 @@
                         }
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Client identifier, takes precedence over headers",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -14430,14 +16084,6 @@
                 "operationId": "get_universe_planets_planet_id",
                 "parameters": [
                     {
-                        "description": "planet_id integer",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "planet_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
                         "default": "tranquility",
                         "description": "The server name you would like data from",
                         "enum": [
@@ -14446,6 +16092,26 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "planet_id integer",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "planet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -14600,6 +16266,17 @@
                 "operationId": "get_universe_races",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "default": "en-us",
                         "description": "Language to use in the response",
                         "enum": [
@@ -14615,14 +16292,15 @@
                         "type": "string"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Client identifier, takes precedence over headers",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -14748,6 +16426,18 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -14818,12 +16508,15 @@
                 "operationId": "get_universe_regions_region_id",
                 "parameters": [
                     {
-                        "description": "region_id integer",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "region_id",
-                        "required": true,
-                        "type": "integer"
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
                     },
                     {
                         "default": "en-us",
@@ -14841,14 +16534,23 @@
                         "type": "string"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "region_id integer",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "region_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -14985,14 +16687,6 @@
                 "operationId": "get_universe_schematics_schematic_id",
                 "parameters": [
                     {
-                        "description": "A PI schematic ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "schematic_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
                         "default": "tranquility",
                         "description": "The server name you would like data from",
                         "enum": [
@@ -15001,6 +16695,26 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "A PI schematic ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "schematic_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -15103,14 +16817,6 @@
                 "operationId": "get_universe_stargates_stargate_id",
                 "parameters": [
                     {
-                        "description": "stargate_id integer",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "stargate_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
                         "default": "tranquility",
                         "description": "The server name you would like data from",
                         "enum": [
@@ -15119,6 +16825,26 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "stargate_id integer",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "stargate_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -15301,14 +17027,6 @@
                 "operationId": "get_universe_stations_station_id",
                 "parameters": [
                     {
-                        "description": "station_id integer",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "station_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
                         "default": "tranquility",
                         "description": "The server name you would like data from",
                         "enum": [
@@ -15317,6 +17035,26 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "station_id integer",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "station_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -15580,6 +17318,18 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -15652,14 +17402,6 @@
                 "operationId": "get_universe_structures_structure_id",
                 "parameters": [
                     {
-                        "description": "An Eve structure ID",
-                        "format": "int64",
-                        "in": "path",
-                        "name": "structure_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
                         "default": "tranquility",
                         "description": "The server name you would like data from",
                         "enum": [
@@ -15668,6 +17410,32 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "An Eve structure ID",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "structure_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -15828,6 +17596,18 @@
                         "in": "query",
                         "name": "datasource",
                         "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -15898,12 +17678,15 @@
                 "operationId": "get_universe_systems_system_id",
                 "parameters": [
                     {
-                        "description": "system_id integer",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "system_id",
-                        "required": true,
-                        "type": "integer"
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
                     },
                     {
                         "default": "en-us",
@@ -15921,14 +17704,23 @@
                         "type": "string"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "system_id integer",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "system_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -16160,6 +17952,17 @@
                 "operationId": "get_universe_types",
                 "parameters": [
                     {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
                         "description": "Which page to query",
                         "format": "int32",
                         "in": "query",
@@ -16169,14 +17972,15 @@
                         "type": "integer"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Client identifier, takes precedence over headers",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -16249,12 +18053,15 @@
                 "operationId": "get_universe_types_type_id",
                 "parameters": [
                     {
-                        "description": "An Eve item type ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "type_id",
-                        "required": true,
-                        "type": "integer"
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
                     },
                     {
                         "default": "en-us",
@@ -16272,14 +18079,23 @@
                         "type": "string"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "An Eve item type ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "type_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -16513,14 +18329,6 @@
                 "operationId": "get_wars",
                 "parameters": [
                     {
-                        "description": "Only return wars with ID smaller than this.",
-                        "format": "int32",
-                        "in": "query",
-                        "name": "max_war_id",
-                        "required": false,
-                        "type": "integer"
-                    },
-                    {
                         "default": "tranquility",
                         "description": "The server name you would like data from",
                         "enum": [
@@ -16529,6 +18337,26 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Only return wars with ID smaller than this.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "max_war_id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -16601,14 +18429,6 @@
                 "operationId": "get_wars_war_id",
                 "parameters": [
                     {
-                        "description": "ID for a war",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "war_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
                         "default": "tranquility",
                         "description": "The server name you would like data from",
                         "enum": [
@@ -16617,6 +18437,26 @@
                         ],
                         "in": "query",
                         "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "ID for a war",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "war_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -16858,12 +18698,15 @@
                 "operationId": "get_wars_war_id_killmails",
                 "parameters": [
                     {
-                        "description": "A valid war ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "war_id",
-                        "required": true,
-                        "type": "integer"
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
                     },
                     {
                         "default": 1,
@@ -16875,14 +18718,23 @@
                         "type": "integer"
                     },
                     {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
+                        "description": "Client identifier, takes precedence over headers",
                         "in": "query",
-                        "name": "datasource",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "A valid war ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "war_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
                         "type": "string"
                     }
                 ],
@@ -17010,6 +18862,7 @@
                 "esi-characters.write_contacts.v1": "EVE SSO scope esi-characters.write_contacts.v1",
                 "esi-clones.read_clones.v1": "EVE SSO scope esi-clones.read_clones.v1",
                 "esi-corporations.read_corporation_membership.v1": "EVE SSO scope esi-corporations.read_corporation_membership.v1",
+                "esi-corporations.read_structures.v1": "EVE SSO scope esi-corporations.read_structures.v1",
                 "esi-fittings.read_fittings.v1": "EVE SSO scope esi-fittings.read_fittings.v1",
                 "esi-fittings.write_fittings.v1": "EVE SSO scope esi-fittings.write_fittings.v1",
                 "esi-fleets.read_fleet.v1": "EVE SSO scope esi-fleets.read_fleet.v1",
