@@ -4213,143 +4213,6 @@
                 ]
             }
         },
-        "/characters/{character_id}/loyalty/points/": {
-            "get": {
-                "description": "Return a list of loyalty points for all corporations the character has worked for\n\n---\n\nAlternate route: `/v1/characters/{character_id}/loyalty/points/`\n\nAlternate route: `/legacy/characters/{character_id}/loyalty/points/`\n\nAlternate route: `/dev/characters/{character_id}/loyalty/points/`\n",
-                "operationId": "get_characters_character_id_loyalty_points",
-                "parameters": [
-                    {
-                        "description": "ID for a character",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "character_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    },
-                    {
-                        "description": "Access token to use, if preferred over a header",
-                        "in": "query",
-                        "name": "token",
-                        "type": "string"
-                    },
-                    {
-                        "description": "Client identifier, takes precedence over headers",
-                        "in": "query",
-                        "name": "user_agent",
-                        "type": "string"
-                    },
-                    {
-                        "description": "Client identifier, takes precedence over User-Agent",
-                        "in": "header",
-                        "name": "X-User-Agent",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of loyalty points",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "corporation_id": 123,
-                                    "loyalty_points": 100
-                                }
-                            ]
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "corporation_id": {
-                                        "description": "corporation_id integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_loyalty_points_corporation_id",
-                                        "type": "integer"
-                                    },
-                                    "loyalty_points": {
-                                        "description": "loyalty_points integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_loyalty_points_loyalty_points",
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "corporation_id",
-                                    "loyalty_points"
-                                ],
-                                "title": "get_characters_character_id_loyalty_points_200_ok",
-                                "type": "object"
-                            },
-                            "title": "get_characters_character_id_loyalty_points_ok",
-                            "type": "array"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Token is not valid for scope(s): esi-characters.read_loyalty.v1"
-                            }
-                        },
-                        "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_loyalty_points_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_loyalty_points_forbidden",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_loyalty_points_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_loyalty_points_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-characters.read_loyalty.v1"
-                        ]
-                    }
-                ],
-                "summary": "Get loyalty points",
-                "tags": [
-                    "Loyalty"
-                ]
-            }
-        },
         "/characters/{character_id}/mail/": {
             "get": {
                 "description": "Return the 50 most recent mail headers belonging to the character that match the query criteria. Queries can be filtered by label, and last_mail_id can be used to paginate backwards.\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/`\n\nAlternate route: `/legacy/characters/{character_id}/mail/`\n\nAlternate route: `/dev/characters/{character_id}/mail/`\n\n\n---\n\nThis route is cached for up to 30 seconds",
@@ -9200,6 +9063,260 @@
                 ]
             }
         },
+        "/corporations/{corporation_id}/structures/": {
+            "get": {
+                "description": "Get a list of corporation structures\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/structures/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/structures/`\n\nAlternate route: `/dev/corporations/{corporation_id}/structures/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_corporation_id_structures",
+                "parameters": [
+                    {
+                        "description": "A corporation ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "corporation_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "default": "en-us",
+                        "description": "Language to use in the response",
+                        "enum": [
+                            "de",
+                            "en-us",
+                            "fr",
+                            "ja",
+                            "ru",
+                            "zh"
+                        ],
+                        "in": "query",
+                        "name": "language",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Which page to query, 250 structures per page",
+                        "format": "int32",
+                        "in": "query",
+                        "minimum": 1,
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of corporation structures' information",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "corporation_id": 667531913,
+                                    "current_vul": "{1,2}",
+                                    "next_vul": "{3,4}",
+                                    "profile_id": 11237,
+                                    "structure_id": 1021975535893,
+                                    "system_id": 30004763,
+                                    "type_id": 35833
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "corporation_id": {
+                                        "description": "ID of the corporation that owns the structure",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_structures_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "current_vul": {
+                                        "description": "Set of {Day, Hour} for this week's vulnerability windows, Monday is day 0",
+                                        "title": "get_corporations_corporation_id_structures_current_vul",
+                                        "type": "string"
+                                    },
+                                    "fuel_expires": {
+                                        "description": "Date on which the structure will run out of fuel",
+                                        "format": "date",
+                                        "title": "get_corporations_corporation_id_structures_fuel_expires",
+                                        "type": "string"
+                                    },
+                                    "next_vul": {
+                                        "description": "Set of {Day, Hour} for next week's vulnerability windows, Monday is day 0",
+                                        "title": "get_corporations_corporation_id_structures_next_vul",
+                                        "type": "string"
+                                    },
+                                    "profile_id": {
+                                        "description": "The id of the ACL profile for this citadel",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_structures_profile_id",
+                                        "type": "integer"
+                                    },
+                                    "services": {
+                                        "description": "Contains a list of service upgrades, and their state",
+                                        "title": "get_corporations_corporation_id_structures_services",
+                                        "type": "string"
+                                    },
+                                    "state_timer_end": {
+                                        "description": "Date at which the structure will move to it's next state",
+                                        "format": "date",
+                                        "title": "get_corporations_corporation_id_structures_state_timer_end",
+                                        "type": "string"
+                                    },
+                                    "state_timer_start": {
+                                        "description": "Date at which the structure entered it's current state",
+                                        "format": "date",
+                                        "title": "get_corporations_corporation_id_structures_state_timer_start",
+                                        "type": "string"
+                                    },
+                                    "structure_id": {
+                                        "description": "The Item ID of the structure",
+                                        "format": "int64",
+                                        "title": "get_corporations_corporation_id_structures_structure_id",
+                                        "type": "integer"
+                                    },
+                                    "system_id": {
+                                        "description": "The solar system the structure is in",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_structures_system_id",
+                                        "type": "integer"
+                                    },
+                                    "type_id": {
+                                        "description": "The type id of the structure",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_structures_type_id",
+                                        "type": "integer"
+                                    },
+                                    "unanchors_at": {
+                                        "description": "Date at which the structure will unanchor",
+                                        "format": "date",
+                                        "title": "get_corporations_corporation_id_structures_unanchors_at",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "structure_id",
+                                    "type_id",
+                                    "corporation_id",
+                                    "system_id",
+                                    "profile_id",
+                                    "current_vul",
+                                    "next_vul"
+                                ],
+                                "title": "get_corporations_corporation_id_structures_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_corporations_corporation_id_structures_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-corporations.read_structures.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_corporations_corporation_id_structures_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_structures_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_corporations_corporation_id_structures_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_structures_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-corporations.read_structures.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get corporation structures",
+                "tags": [
+                    "Corporation"
+                ]
+            }
+        },
         "/fleets/{fleet_id}/": {
             "get": {
                 "description": "Return details about a fleet\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/`\n\nAlternate route: `/dev/fleets/{fleet_id}/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
@@ -12445,191 +12562,6 @@
                 "summary": "Get a single killmail",
                 "tags": [
                     "Killmails"
-                ]
-            }
-        },
-        "/loyalty/stores/{corporation_id}/offers/": {
-            "get": {
-                "description": "Return a list of offers from a specific corporation's loyalty store\n\n---\n\nAlternate route: `/v1/loyalty/stores/{corporation_id}/offers/`\n\nAlternate route: `/legacy/loyalty/stores/{corporation_id}/offers/`\n\nAlternate route: `/dev/loyalty/stores/{corporation_id}/offers/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_loyalty_stores_corporation_id_offers",
-                "parameters": [
-                    {
-                        "description": "ID of a corporation",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "corporation_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "default": "tranquility",
-                        "description": "The server name you would like data from",
-                        "enum": [
-                            "tranquility",
-                            "singularity"
-                        ],
-                        "in": "query",
-                        "name": "datasource",
-                        "type": "string"
-                    },
-                    {
-                        "description": "Client identifier, takes precedence over headers",
-                        "in": "query",
-                        "name": "user_agent",
-                        "type": "string"
-                    },
-                    {
-                        "description": "Client identifier, takes precedence over User-Agent",
-                        "in": "header",
-                        "name": "X-User-Agent",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of offers",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "isk_cost": 0,
-                                    "lp_cost": 100,
-                                    "offer_id": 1,
-                                    "quantity": 1,
-                                    "required_items": [],
-                                    "type_id": 123
-                                },
-                                {
-                                    "isk_cost": 1000,
-                                    "lp_cost": 100,
-                                    "offer_id": 2,
-                                    "quantity": 10,
-                                    "required_items": [
-                                        {
-                                            "quantity": 10,
-                                            "type_id": 1234
-                                        }
-                                    ],
-                                    "type_id": 1235
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "isk_cost": {
-                                        "description": "isk_cost number",
-                                        "format": "int32",
-                                        "title": "get_loyalty_stores_corporation_id_offers_isk_cost",
-                                        "type": "number"
-                                    },
-                                    "lp_cost": {
-                                        "description": "lp_cost integer",
-                                        "format": "int32",
-                                        "title": "get_loyalty_stores_corporation_id_offers_lp_cost",
-                                        "type": "integer"
-                                    },
-                                    "offer_id": {
-                                        "description": "offer_id integer",
-                                        "format": "int32",
-                                        "title": "get_loyalty_stores_corporation_id_offers_offer_id",
-                                        "type": "integer"
-                                    },
-                                    "quantity": {
-                                        "description": "quantity integer",
-                                        "format": "int32",
-                                        "title": "get_loyalty_stores_corporation_id_offers_quantity",
-                                        "type": "integer"
-                                    },
-                                    "required_items": {
-                                        "description": "required_items array",
-                                        "items": {
-                                            "description": "required_item object",
-                                            "properties": {
-                                                "quantity": {
-                                                    "description": "quantity integer",
-                                                    "format": "int32",
-                                                    "title": "get_loyalty_stores_corporation_id_offers_quantity",
-                                                    "type": "integer"
-                                                },
-                                                "type_id": {
-                                                    "description": "type_id integer",
-                                                    "format": "int32",
-                                                    "title": "get_loyalty_stores_corporation_id_offers_type_id",
-                                                    "type": "integer"
-                                                }
-                                            },
-                                            "required": [
-                                                "type_id",
-                                                "quantity"
-                                            ],
-                                            "title": "get_loyalty_stores_corporation_id_offers_required_item",
-                                            "type": "object"
-                                        },
-                                        "title": "get_loyalty_stores_corporation_id_offers_required_items",
-                                        "type": "array"
-                                    },
-                                    "type_id": {
-                                        "description": "type_id integer",
-                                        "format": "int32",
-                                        "title": "get_loyalty_stores_corporation_id_offers_type_id",
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "offer_id",
-                                    "type_id",
-                                    "quantity",
-                                    "lp_cost",
-                                    "isk_cost",
-                                    "required_items"
-                                ],
-                                "title": "get_loyalty_stores_corporation_id_offers_200_ok",
-                                "type": "object"
-                            },
-                            "title": "get_loyalty_stores_corporation_id_offers_ok",
-                            "type": "array"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
-                            }
-                        },
-                        "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_loyalty_stores_corporation_id_offers_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_loyalty_stores_corporation_id_offers_internal_server_error",
-                            "type": "object"
-                        }
-                    }
-                },
-                "summary": "List loyalty store offers",
-                "tags": [
-                    "Loyalty"
                 ]
             }
         },
@@ -19017,10 +18949,10 @@
                 "esi-calendar.read_calendar_events.v1": "EVE SSO scope esi-calendar.read_calendar_events.v1",
                 "esi-calendar.respond_calendar_events.v1": "EVE SSO scope esi-calendar.respond_calendar_events.v1",
                 "esi-characters.read_contacts.v1": "EVE SSO scope esi-characters.read_contacts.v1",
-                "esi-characters.read_loyalty.v1": "EVE SSO scope esi-characters.read_loyalty.v1",
                 "esi-characters.write_contacts.v1": "EVE SSO scope esi-characters.write_contacts.v1",
                 "esi-clones.read_clones.v1": "EVE SSO scope esi-clones.read_clones.v1",
                 "esi-corporations.read_corporation_membership.v1": "EVE SSO scope esi-corporations.read_corporation_membership.v1",
+                "esi-corporations.read_structures.v1": "EVE SSO scope esi-corporations.read_structures.v1",
                 "esi-fittings.read_fittings.v1": "EVE SSO scope esi-fittings.read_fittings.v1",
                 "esi-fittings.write_fittings.v1": "EVE SSO scope esi-fittings.write_fittings.v1",
                 "esi-fleets.read_fleet.v1": "EVE SSO scope esi-fleets.read_fleet.v1",
