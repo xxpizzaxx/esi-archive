@@ -6158,7 +6158,8 @@
         },
         "/characters/{character_id}/planets/{planet_id}/": {
             "get": {
-                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information on this endpoint will not update until this criteria is met.\n\n---\n\nAlternate route: `/v1/characters/{character_id}/planets/{planet_id}/`\n\nAlternate route: `/latest/characters/{character_id}/planets/{planet_id}/`\n\n\n---\n\nThis route is cached for up to 600 seconds",
+                "deprecated": true,
+                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information on this endpoint will not update until this criteria is met.\n\n---\n\nAlternate route: `/v1/characters/{character_id}/planets/{planet_id}/`\n\n\n---\n\nThis route is cached for up to 600 seconds",
                 "operationId": "get_characters_character_id_planets_planet_id",
                 "parameters": [
                     {
@@ -7827,7 +7828,7 @@
         "/corporations/{corporation_id}/": {
             "get": {
                 "deprecated": true,
-                "description": "Public information about a corporation\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Public information about a corporation\n\n---\n\nAlternate route: `/v2/corporations/{corporation_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id",
                 "parameters": [
                     {
@@ -7867,9 +7868,11 @@
                         "description": "Public data about a corporation",
                         "examples": {
                             "application/json": {
-                                "corporation_name": "Republic University",
-                                "member_count": 191303,
-                                "ticker": "[RUN]"
+                                "alliance_id": 434243723,
+                                "ceo_id": 180548812,
+                                "corporation_name": "C C P",
+                                "member_count": 656,
+                                "ticker": "-CCP-"
                             }
                         },
                         "headers": {
@@ -7895,32 +7898,16 @@
                                     "title": "get_corporations_corporation_id_alliance_id",
                                     "type": "integer"
                                 },
+                                "ceo_id": {
+                                    "description": "ceo_id integer",
+                                    "format": "int32",
+                                    "title": "get_corporations_corporation_id_ceo_id",
+                                    "type": "integer"
+                                },
                                 "corporation_name": {
                                     "description": "the full name of the corporation",
                                     "title": "get_corporations_corporation_id_corporation_name",
                                     "type": "string"
-                                },
-                                "logo_urls": {
-                                    "description": "logo_urls object",
-                                    "properties": {
-                                        "128x128": {
-                                            "description": "128x128 string",
-                                            "title": "get_corporations_corporation_id_128x128",
-                                            "type": "string"
-                                        },
-                                        "256x256": {
-                                            "description": "256x256 string",
-                                            "title": "get_corporations_corporation_id_256x256",
-                                            "type": "string"
-                                        },
-                                        "64x64": {
-                                            "description": "64x64 string",
-                                            "title": "get_corporations_corporation_id_64x64",
-                                            "type": "string"
-                                        }
-                                    },
-                                    "title": "get_corporations_corporation_id_logo_urls",
-                                    "type": "object"
                                 },
                                 "member_count": {
                                     "description": "member_count integer",
@@ -7937,9 +7924,30 @@
                             "required": [
                                 "corporation_name",
                                 "ticker",
-                                "member_count"
+                                "member_count",
+                                "ceo_id"
                             ],
                             "title": "get_corporations_corporation_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Corporation not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_corporations_corporation_id_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_not_found",
                             "type": "object"
                         }
                     },
@@ -9041,6 +9049,490 @@
                     }
                 ],
                 "summary": "Get corporation member roles",
+                "tags": [
+                    "Corporation"
+                ]
+            }
+        },
+        "/corporations/{corporation_id}/structures/": {
+            "get": {
+                "description": "Get a list of corporation structures\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/structures/`\n\nAlternate route: `/latest/corporations/{corporation_id}/structures/`\n\nAlternate route: `/dev/corporations/{corporation_id}/structures/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_corporation_id_structures",
+                "parameters": [
+                    {
+                        "description": "A corporation ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "corporation_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "default": "en-us",
+                        "description": "Language to use in the response",
+                        "enum": [
+                            "de",
+                            "en-us",
+                            "fr",
+                            "ja",
+                            "ru",
+                            "zh"
+                        ],
+                        "in": "query",
+                        "name": "language",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Which page to query, 250 structures per page",
+                        "format": "int32",
+                        "in": "query",
+                        "minimum": 1,
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of corporation structures' information",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "corporation_id": 667531913,
+                                    "current_vul": [
+                                        {
+                                            "day": 1,
+                                            "hour": 2
+                                        }
+                                    ],
+                                    "next_vul": [
+                                        {
+                                            "day": 3,
+                                            "hour": 4
+                                        }
+                                    ],
+                                    "profile_id": 11237,
+                                    "structure_id": 1021975535893,
+                                    "system_id": 30004763,
+                                    "type_id": 35833
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "corporation_id": {
+                                        "description": "ID of the corporation that owns the structure",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_structures_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "current_vul": {
+                                        "description": "This week's vulnerability windows, Monday is day 0",
+                                        "items": {
+                                            "description": "current_vul object",
+                                            "properties": {
+                                                "day": {
+                                                    "description": "day integer",
+                                                    "format": "int32",
+                                                    "title": "get_corporations_corporation_id_structures_day",
+                                                    "type": "integer"
+                                                },
+                                                "hour": {
+                                                    "description": "hour integer",
+                                                    "format": "int32",
+                                                    "title": "get_corporations_corporation_id_structures_hour",
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "required": [
+                                                "day",
+                                                "hour"
+                                            ],
+                                            "title": "get_corporations_corporation_id_structures_current_vul",
+                                            "type": "object"
+                                        },
+                                        "title": "get_corporations_corporation_id_structures_current_vul",
+                                        "type": "array"
+                                    },
+                                    "fuel_expires": {
+                                        "description": "Date on which the structure will run out of fuel",
+                                        "format": "date",
+                                        "title": "get_corporations_corporation_id_structures_fuel_expires",
+                                        "type": "string"
+                                    },
+                                    "next_vul": {
+                                        "description": "Next week's vulnerability windows, Monday is day 0",
+                                        "items": {
+                                            "description": "next_vul object",
+                                            "properties": {
+                                                "day": {
+                                                    "description": "day integer",
+                                                    "format": "int32",
+                                                    "title": "get_corporations_corporation_id_structures_day",
+                                                    "type": "integer"
+                                                },
+                                                "hour": {
+                                                    "description": "hour integer",
+                                                    "format": "int32",
+                                                    "title": "get_corporations_corporation_id_structures_hour",
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "required": [
+                                                "day",
+                                                "hour"
+                                            ],
+                                            "title": "get_corporations_corporation_id_structures_next_vul",
+                                            "type": "object"
+                                        },
+                                        "title": "get_corporations_corporation_id_structures_next_vul",
+                                        "type": "array"
+                                    },
+                                    "profile_id": {
+                                        "description": "The id of the ACL profile for this citadel",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_structures_profile_id",
+                                        "type": "integer"
+                                    },
+                                    "services": {
+                                        "description": "Contains a list of service upgrades, and their state",
+                                        "items": {
+                                            "description": "service object",
+                                            "properties": {
+                                                "name": {
+                                                    "description": "name string",
+                                                    "title": "get_corporations_corporation_id_structures_name",
+                                                    "type": "string"
+                                                },
+                                                "state": {
+                                                    "description": "state string",
+                                                    "enum": [
+                                                        "online",
+                                                        "offline",
+                                                        "cleanup"
+                                                    ],
+                                                    "title": "get_corporations_corporation_id_structures_state",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "name",
+                                                "state"
+                                            ],
+                                            "title": "get_corporations_corporation_id_structures_service",
+                                            "type": "object"
+                                        },
+                                        "title": "get_corporations_corporation_id_structures_services",
+                                        "type": "array"
+                                    },
+                                    "state_timer_end": {
+                                        "description": "Date at which the structure will move to it's next state",
+                                        "format": "date",
+                                        "title": "get_corporations_corporation_id_structures_state_timer_end",
+                                        "type": "string"
+                                    },
+                                    "state_timer_start": {
+                                        "description": "Date at which the structure entered it's current state",
+                                        "format": "date",
+                                        "title": "get_corporations_corporation_id_structures_state_timer_start",
+                                        "type": "string"
+                                    },
+                                    "structure_id": {
+                                        "description": "The Item ID of the structure",
+                                        "format": "int64",
+                                        "title": "get_corporations_corporation_id_structures_structure_id",
+                                        "type": "integer"
+                                    },
+                                    "system_id": {
+                                        "description": "The solar system the structure is in",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_structures_system_id",
+                                        "type": "integer"
+                                    },
+                                    "type_id": {
+                                        "description": "The type id of the structure",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_structures_type_id",
+                                        "type": "integer"
+                                    },
+                                    "unanchors_at": {
+                                        "description": "Date at which the structure will unanchor",
+                                        "format": "date",
+                                        "title": "get_corporations_corporation_id_structures_unanchors_at",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "structure_id",
+                                    "type_id",
+                                    "corporation_id",
+                                    "system_id",
+                                    "profile_id",
+                                    "current_vul",
+                                    "next_vul"
+                                ],
+                                "title": "get_corporations_corporation_id_structures_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_corporations_corporation_id_structures_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-corporations.read_structures.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_corporations_corporation_id_structures_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_structures_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_corporations_corporation_id_structures_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_corporation_id_structures_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-corporations.read_structures.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get corporation structures",
+                "tags": [
+                    "Corporation"
+                ]
+            }
+        },
+        "/corporations/{corporation_id}/structures/{structure_id}/": {
+            "put": {
+                "description": "Get a list of corporation structures\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/structures/{structure_id}/`\n\nAlternate route: `/latest/corporations/{corporation_id}/structures/{structure_id}/`\n\nAlternate route: `/dev/corporations/{corporation_id}/structures/{structure_id}/`\n",
+                "operationId": "put_corporations_corporation_id_structures_structure_id",
+                "parameters": [
+                    {
+                        "description": "A corporation ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "corporation_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "New vulnerability window schedule for the structure",
+                        "in": "body",
+                        "name": "new_schedule",
+                        "required": true,
+                        "schema": {
+                            "description": "new_schedule array",
+                            "items": {
+                                "description": "new_schedule object",
+                                "properties": {
+                                    "day": {
+                                        "description": "Day of the week, zero-indexed to Monday",
+                                        "format": "int32",
+                                        "maximum": 6,
+                                        "minimum": 0,
+                                        "title": "put_corporations_corporation_id_structures_structure_id_day",
+                                        "type": "integer"
+                                    },
+                                    "hour": {
+                                        "description": "Hour of the day evetime, zero-indexed to midnight",
+                                        "format": "int32",
+                                        "maximum": 23,
+                                        "minimum": 0,
+                                        "title": "put_corporations_corporation_id_structures_structure_id_hour",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "day",
+                                    "hour"
+                                ],
+                                "title": "put_corporations_corporation_id_structures_structure_id_new_schedule",
+                                "type": "object"
+                            },
+                            "minItems": 1,
+                            "title": "put_corporations_corporation_id_structures_structure_id_new_schedule",
+                            "type": "array"
+                        }
+                    },
+                    {
+                        "description": "A structure ID",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "structure_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Structure vulnerability window updated"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-corporations.write_structures.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "put_corporations_corporation_id_structures_structure_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_corporations_corporation_id_structures_structure_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "put_corporations_corporation_id_structures_structure_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_corporations_corporation_id_structures_structure_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-corporations.write_structures.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get corporation structures",
                 "tags": [
                     "Corporation"
                 ]
@@ -19079,6 +19571,8 @@
                 "esi-characters.write_contacts.v1": "EVE SSO scope esi-characters.write_contacts.v1",
                 "esi-clones.read_clones.v1": "EVE SSO scope esi-clones.read_clones.v1",
                 "esi-corporations.read_corporation_membership.v1": "EVE SSO scope esi-corporations.read_corporation_membership.v1",
+                "esi-corporations.read_structures.v1": "EVE SSO scope esi-corporations.read_structures.v1",
+                "esi-corporations.write_structures.v1": "EVE SSO scope esi-corporations.write_structures.v1",
                 "esi-fittings.read_fittings.v1": "EVE SSO scope esi-fittings.read_fittings.v1",
                 "esi-fittings.write_fittings.v1": "EVE SSO scope esi-fittings.write_fittings.v1",
                 "esi-fleets.read_fleet.v1": "EVE SSO scope esi-fleets.read_fleet.v1",
