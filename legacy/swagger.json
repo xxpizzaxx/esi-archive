@@ -7732,6 +7732,98 @@
                 ]
             }
         },
+        "/corporations/npccorps/": {
+            "get": {
+                "description": "Get a list of npc corporations\n\n---\n\nAlternate route: `/v1/corporations/npccorps/`\n\nAlternate route: `/latest/corporations/npccorps/`\n\nAlternate route: `/dev/corporations/npccorps/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_npccorps",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of npc corporation ids",
+                        "examples": {
+                            "application/json": [
+                                1000001,
+                                1000002,
+                                1000003
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_corporations_npccorps_200_ok",
+                                "type": "integer"
+                            },
+                            "title": "get_corporations_npccorps_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_corporations_npccorps_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_corporations_npccorps_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get npc corporations",
+                "tags": [
+                    "Corporation"
+                ]
+            }
+        },
         "/corporations/{corporation_id}/": {
             "get": {
                 "deprecated": true,
@@ -8951,6 +9043,658 @@
                 "summary": "Get corporation member roles",
                 "tags": [
                     "Corporation"
+                ]
+            }
+        },
+        "/dogma/attributes/": {
+            "get": {
+                "description": "Get a list of dogma attribute ids\n\n---\n\nAlternate route: `/v1/dogma/attributes/`\n\nAlternate route: `/latest/dogma/attributes/`\n\nAlternate route: `/dev/dogma/attributes/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_dogma_attributes",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of dogma attribute ids",
+                        "examples": {
+                            "application/json": [
+                                1,
+                                2,
+                                3
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_dogma_attributes_200_ok",
+                                "type": "integer"
+                            },
+                            "title": "get_dogma_attributes_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_dogma_attributes_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_dogma_attributes_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get attributes",
+                "tags": [
+                    "Dogma"
+                ]
+            }
+        },
+        "/dogma/attributes/{attribute_id}/": {
+            "get": {
+                "description": "Get information on a dogma attribute\n\n---\n\nAlternate route: `/v1/dogma/attributes/{attribute_id}/`\n\nAlternate route: `/latest/dogma/attributes/{attribute_id}/`\n\nAlternate route: `/dev/dogma/attributes/{attribute_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_dogma_attributes_attribute_id",
+                "parameters": [
+                    {
+                        "description": "A dogma attribute ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "attribute_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Information about a dogma attribute",
+                        "examples": {
+                            "application/json": {
+                                "attribute_id": 20,
+                                "default_value": 1,
+                                "description": "Factor by which topspeed increases.",
+                                "display_name": "Maximum Velocity Bonus",
+                                "high_is_good": true,
+                                "icon_id": 1389,
+                                "name": "speedFactor",
+                                "published": true,
+                                "stackable": false,
+                                "unit_id": 124
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "attribute_id": {
+                                    "description": "attribute_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_attributes_attribute_id_attribute_id",
+                                    "type": "integer"
+                                },
+                                "default_value": {
+                                    "description": "default_value number",
+                                    "format": "float",
+                                    "title": "get_dogma_attributes_attribute_id_default_value",
+                                    "type": "number"
+                                },
+                                "description": {
+                                    "description": "description string",
+                                    "title": "get_dogma_attributes_attribute_id_description",
+                                    "type": "string"
+                                },
+                                "display_name": {
+                                    "description": "display_name string",
+                                    "title": "get_dogma_attributes_attribute_id_display_name",
+                                    "type": "string"
+                                },
+                                "high_is_good": {
+                                    "description": "high_is_good boolean",
+                                    "title": "get_dogma_attributes_attribute_id_high_is_good",
+                                    "type": "boolean"
+                                },
+                                "icon_id": {
+                                    "description": "icon_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_attributes_attribute_id_icon_id",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_dogma_attributes_attribute_id_name",
+                                    "type": "string"
+                                },
+                                "published": {
+                                    "description": "published boolean",
+                                    "title": "get_dogma_attributes_attribute_id_published",
+                                    "type": "boolean"
+                                },
+                                "stackable": {
+                                    "description": "stackable boolean",
+                                    "title": "get_dogma_attributes_attribute_id_stackable",
+                                    "type": "boolean"
+                                },
+                                "unit_id": {
+                                    "description": "unit_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_attributes_attribute_id_unit_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "attribute_id"
+                            ],
+                            "title": "get_dogma_attributes_attribute_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Dogma attribute not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_dogma_attributes_attribute_id_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_dogma_attributes_attribute_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_dogma_attributes_attribute_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_dogma_attributes_attribute_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get attribute information",
+                "tags": [
+                    "Dogma"
+                ]
+            }
+        },
+        "/dogma/effects/": {
+            "get": {
+                "description": "Get a list of dogma effect ids\n\n---\n\nAlternate route: `/v1/dogma/effects/`\n\nAlternate route: `/latest/dogma/effects/`\n\nAlternate route: `/dev/dogma/effects/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_dogma_effects",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of dogma effect ids",
+                        "examples": {
+                            "application/json": [
+                                1,
+                                2,
+                                3
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_dogma_effects_200_ok",
+                                "type": "integer"
+                            },
+                            "title": "get_dogma_effects_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_dogma_effects_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_dogma_effects_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get effects",
+                "tags": [
+                    "Dogma"
+                ]
+            }
+        },
+        "/dogma/effects/{effect_id}/": {
+            "get": {
+                "description": "Get information on a dogma effect\n\n---\n\nAlternate route: `/v1/dogma/effects/{effect_id}/`\n\nAlternate route: `/latest/dogma/effects/{effect_id}/`\n\nAlternate route: `/dev/dogma/effects/{effect_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_dogma_effects_effect_id",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "A dogma effect ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "effect_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Information about a dogma effect",
+                        "examples": {
+                            "application/json": {
+                                "description": "Requires a high power slot.",
+                                "disallow_auto_repeat": false,
+                                "display_name": "High power",
+                                "effect_category": 0,
+                                "effect_id": 12,
+                                "electronic_chance": false,
+                                "icon_id": 293,
+                                "is_assistance": false,
+                                "is_offensive": false,
+                                "is_warp_safe": false,
+                                "name": "hiPower",
+                                "post_expression": 131,
+                                "pre_expression": 131,
+                                "published": true,
+                                "range_chance": false
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "description": {
+                                    "description": "description string",
+                                    "title": "get_dogma_effects_effect_id_description",
+                                    "type": "string"
+                                },
+                                "disallow_auto_repeat": {
+                                    "description": "disallow_auto_repeat boolean",
+                                    "title": "get_dogma_effects_effect_id_disallow_auto_repeat",
+                                    "type": "boolean"
+                                },
+                                "discharge_attribute_id": {
+                                    "description": "discharge_attribute_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_discharge_attribute_id",
+                                    "type": "integer"
+                                },
+                                "display_name": {
+                                    "description": "display_name string",
+                                    "title": "get_dogma_effects_effect_id_display_name",
+                                    "type": "string"
+                                },
+                                "duration_attribute_id": {
+                                    "description": "duration_attribute_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_duration_attribute_id",
+                                    "type": "integer"
+                                },
+                                "effect_category": {
+                                    "description": "effect_category integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_effect_category",
+                                    "type": "integer"
+                                },
+                                "effect_id": {
+                                    "description": "effect_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_effect_id",
+                                    "type": "integer"
+                                },
+                                "electronic_chance": {
+                                    "description": "electronic_chance boolean",
+                                    "title": "get_dogma_effects_effect_id_electronic_chance",
+                                    "type": "boolean"
+                                },
+                                "falloff_attribute_id": {
+                                    "description": "falloff_attribute_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_falloff_attribute_id",
+                                    "type": "integer"
+                                },
+                                "icon_id": {
+                                    "description": "icon_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_icon_id",
+                                    "type": "integer"
+                                },
+                                "is_assistance": {
+                                    "description": "is_assistance boolean",
+                                    "title": "get_dogma_effects_effect_id_is_assistance",
+                                    "type": "boolean"
+                                },
+                                "is_offensive": {
+                                    "description": "is_offensive boolean",
+                                    "title": "get_dogma_effects_effect_id_is_offensive",
+                                    "type": "boolean"
+                                },
+                                "is_warp_safe": {
+                                    "description": "is_warp_safe boolean",
+                                    "title": "get_dogma_effects_effect_id_is_warp_safe",
+                                    "type": "boolean"
+                                },
+                                "modifiers": {
+                                    "description": "modifiers array",
+                                    "items": {
+                                        "description": "modifier object",
+                                        "properties": {
+                                            "domain": {
+                                                "description": "domain string",
+                                                "title": "get_dogma_effects_effect_id_domain",
+                                                "type": "string"
+                                            },
+                                            "func": {
+                                                "description": "func string",
+                                                "title": "get_dogma_effects_effect_id_func",
+                                                "type": "string"
+                                            },
+                                            "modified_attribute_id": {
+                                                "description": "modified_attribute_id integer",
+                                                "format": "int32",
+                                                "title": "get_dogma_effects_effect_id_modified_attribute_id",
+                                                "type": "integer"
+                                            },
+                                            "modifying_attribute_id": {
+                                                "description": "modifying_attribute_id integer",
+                                                "format": "int32",
+                                                "title": "get_dogma_effects_effect_id_modifying_attribute_id",
+                                                "type": "integer"
+                                            },
+                                            "operator": {
+                                                "description": "operator integer",
+                                                "format": "int32",
+                                                "title": "get_dogma_effects_effect_id_operator",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "func",
+                                            "domain",
+                                            "modified_attribute_id",
+                                            "modifying_attribute_id",
+                                            "operator"
+                                        ],
+                                        "title": "get_dogma_effects_effect_id_modifier",
+                                        "type": "object"
+                                    },
+                                    "title": "get_dogma_effects_effect_id_modifiers",
+                                    "type": "array"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_dogma_effects_effect_id_name",
+                                    "type": "string"
+                                },
+                                "post_expression": {
+                                    "description": "post_expression integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_post_expression",
+                                    "type": "integer"
+                                },
+                                "pre_expression": {
+                                    "description": "pre_expression integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_pre_expression",
+                                    "type": "integer"
+                                },
+                                "published": {
+                                    "description": "published boolean",
+                                    "title": "get_dogma_effects_effect_id_published",
+                                    "type": "boolean"
+                                },
+                                "range_attribute_id": {
+                                    "description": "range_attribute_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_range_attribute_id",
+                                    "type": "integer"
+                                },
+                                "range_chance": {
+                                    "description": "range_chance boolean",
+                                    "title": "get_dogma_effects_effect_id_range_chance",
+                                    "type": "boolean"
+                                },
+                                "tracking_speed_attribute_id": {
+                                    "description": "tracking_speed_attribute_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_tracking_speed_attribute_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "effect_id"
+                            ],
+                            "title": "get_dogma_effects_effect_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Dogma effect not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_dogma_effects_effect_id_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_dogma_effects_effect_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_dogma_effects_effect_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_dogma_effects_effect_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get effect information",
+                "tags": [
+                    "Dogma"
                 ]
             }
         },
