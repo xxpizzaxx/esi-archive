@@ -9392,7 +9392,7 @@
         },
         "/corporations/{corporation_id}/structures/{structure_id}/": {
             "put": {
-                "description": "Get a list of corporation structures\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/structures/{structure_id}/`\n\nAlternate route: `/latest/corporations/{corporation_id}/structures/{structure_id}/`\n\nAlternate route: `/dev/corporations/{corporation_id}/structures/{structure_id}/`\n",
+                "description": "Update the vulnerability window schedule of a corporation structure\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/structures/{structure_id}/`\n\nAlternate route: `/latest/corporations/{corporation_id}/structures/{structure_id}/`\n\nAlternate route: `/dev/corporations/{corporation_id}/structures/{structure_id}/`\n",
                 "operationId": "put_corporations_corporation_id_structures_structure_id",
                 "parameters": [
                     {
@@ -9532,7 +9532,7 @@
                         ]
                     }
                 ],
-                "summary": "Get corporation structures",
+                "summary": "Update structure vulnerability schedule",
                 "tags": [
                     "Corporation"
                 ]
