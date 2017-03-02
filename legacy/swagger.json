@@ -13712,13 +13712,7 @@
                 "summary": "Get item groups",
                 "tags": [
                     "Market"
-                ],
-                "x-alternate-versions": [
-                    "dev",
-                    "latest",
-                    "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/markets/groups/{market_group_id}/": {
@@ -13905,13 +13899,7 @@
                 "summary": "Get item group information",
                 "tags": [
                     "Market"
-                ],
-                "x-alternate-versions": [
-                    "dev",
-                    "latest",
-                    "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/markets/prices/": {
@@ -14027,13 +14015,7 @@
                 "summary": "List market prices",
                 "tags": [
                     "Market"
-                ],
-                "x-alternate-versions": [
-                    "dev",
-                    "latest",
-                    "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/markets/structures/{structure_id}/": {
@@ -14277,13 +14259,7 @@
                 "summary": "List orders in a structure",
                 "tags": [
                     "Market"
-                ],
-                "x-alternate-versions": [
-                    "dev",
-                    "latest",
-                    "v1"
-                ],
-                "x-cached-seconds": 300
+                ]
             }
         },
         "/markets/{region_id}/history/": {
@@ -14461,13 +14437,7 @@
                 "summary": "List historical market statistics in a region",
                 "tags": [
                     "Market"
-                ],
-                "x-alternate-versions": [
-                    "dev",
-                    "latest",
-                    "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/markets/{region_id}/orders/": {
@@ -14719,13 +14689,7 @@
                 "summary": "List orders in a region",
                 "tags": [
                     "Market"
-                ],
-                "x-alternate-versions": [
-                    "dev",
-                    "latest",
-                    "v1"
-                ],
-                "x-cached-seconds": 300
+                ]
             }
         },
         "/search/": {
