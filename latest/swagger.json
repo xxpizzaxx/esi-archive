@@ -4,7 +4,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.4.1.dev16"
+        "version": "0.4.1"
     },
     "paths": {
         "/alliances/": {
@@ -97,7 +97,13 @@
                 "summary": "List all alliances",
                 "tags": [
                     "Alliance"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/alliances/names/": {
@@ -218,7 +224,13 @@
                 "summary": "Get alliance names",
                 "tags": [
                     "Alliance"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/alliances/{alliance_id}/": {
@@ -362,7 +374,11 @@
                 "summary": "Get alliance information",
                 "tags": [
                     "Alliance"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "v2"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/alliances/{alliance_id}/corporations/": {
@@ -462,7 +478,13 @@
                 "summary": "List alliance's corporations",
                 "tags": [
                     "Alliance"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/alliances/{alliance_id}/icons/": {
@@ -587,7 +609,13 @@
                 "summary": "Get alliance icon",
                 "tags": [
                     "Alliance"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/characters/names/": {
@@ -708,7 +736,13 @@
                 "summary": "Get character names",
                 "tags": [
                     "Character"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/characters/{character_id}/": {
@@ -900,7 +934,12 @@
                 "summary": "Get character's public information",
                 "tags": [
                     "Character"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v4"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/characters/{character_id}/assets/": {
@@ -1440,7 +1479,13 @@
                 "summary": "List bookmarks",
                 "tags": [
                     "Bookmarks"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/characters/{character_id}/bookmarks/folders/": {
@@ -1593,7 +1638,13 @@
                 "summary": "List bookmark folders",
                 "tags": [
                     "Bookmarks"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/characters/{character_id}/calendar/": {
@@ -1773,7 +1824,13 @@
                 "summary": "List calendar event summaries",
                 "tags": [
                     "Calendar"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 5
             }
         },
         "/characters/{character_id}/calendar/{event_id}/": {
@@ -1991,7 +2048,12 @@
                 "summary": "Get an event",
                 "tags": [
                     "Calendar"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v3"
+                ],
+                "x-cached-seconds": 5
             },
             "put": {
                 "description": "Set your response status to an event\n\n---\n\nAlternate route: `/v3/characters/{character_id}/calendar/{event_id}/`\n\nAlternate route: `/dev/characters/{character_id}/calendar/{event_id}/`\n",
@@ -2123,6 +2185,10 @@
                 "summary": "Respond to an event",
                 "tags": [
                     "Calendar"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v3"
                 ]
             }
         },
@@ -2461,6 +2527,11 @@
                 "summary": "Delete contacts",
                 "tags": [
                     "Contacts"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             },
             "get": {
@@ -2651,7 +2722,13 @@
                 "summary": "Get contacts",
                 "tags": [
                     "Contacts"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 300
             },
             "post": {
                 "description": "Bulk add contacts with same settings\n\n---\n\nAlternate route: `/v1/characters/{character_id}/contacts/`\n\nAlternate route: `/legacy/characters/{character_id}/contacts/`\n\nAlternate route: `/dev/characters/{character_id}/contacts/`\n",
@@ -2813,6 +2890,11 @@
                 "summary": "Add contacts",
                 "tags": [
                     "Contacts"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             },
             "put": {
@@ -2958,6 +3040,11 @@
                 "summary": "Edit contacts",
                 "tags": [
                     "Contacts"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -3108,7 +3195,13 @@
                 "summary": "Get contact labels",
                 "tags": [
                     "Contacts"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 300
             }
         },
         "/characters/{character_id}/corporationhistory/": {
@@ -3241,7 +3334,13 @@
                 "summary": "Get corporation history",
                 "tags": [
                     "Character"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/characters/{character_id}/cspa/": {
@@ -3388,6 +3487,11 @@
                 "summary": "Calculate a CSPA charge cost",
                 "tags": [
                     "Character"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v3"
                 ]
             }
         },
@@ -3596,7 +3700,13 @@
                 "summary": "Get fittings",
                 "tags": [
                     "Fittings"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 300
             },
             "post": {
                 "description": "Save a new fitting for a character\n\n---\n\nAlternate route: `/v1/characters/{character_id}/fittings/`\n\nAlternate route: `/legacy/characters/{character_id}/fittings/`\n\nAlternate route: `/dev/characters/{character_id}/fittings/`\n",
@@ -3791,6 +3901,11 @@
                 "summary": "Create fitting",
                 "tags": [
                     "Fittings"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -3900,6 +4015,11 @@
                 "summary": "Delete fitting",
                 "tags": [
                     "Fittings"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -4072,7 +4192,13 @@
                 "summary": "List kills and losses",
                 "tags": [
                     "Killmails"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 120
             }
         },
         "/characters/{character_id}/location/": {
@@ -4221,7 +4347,13 @@
                 "summary": "Get character location",
                 "tags": [
                     "Location"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 5
             }
         },
         "/characters/{character_id}/loyalty/points/": {
@@ -4358,6 +4490,11 @@
                 "summary": "Get loyalty points",
                 "tags": [
                     "Loyalty"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -4604,7 +4741,13 @@
                 "summary": "Return mail headers",
                 "tags": [
                     "Mail"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 30
             },
             "post": {
                 "description": "Create and send a new mail\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/`\n\nAlternate route: `/legacy/characters/{character_id}/mail/`\n\nAlternate route: `/dev/characters/{character_id}/mail/`\n",
@@ -4803,6 +4946,11 @@
                 "summary": "Send a new mail",
                 "tags": [
                     "Mail"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -5009,7 +5157,12 @@
                 "summary": "Get mail labels and unread counts",
                 "tags": [
                     "Mail"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v3"
+                ],
+                "x-cached-seconds": 30
             },
             "post": {
                 "description": "Create a mail label\n\n---\n\nAlternate route: `/v2/characters/{character_id}/mail/labels/`\n\nAlternate route: `/legacy/characters/{character_id}/mail/labels/`\n\nAlternate route: `/dev/characters/{character_id}/mail/labels/`\n",
@@ -5165,6 +5318,11 @@
                 "summary": "Create a mail label",
                 "tags": [
                     "Mail"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v2"
                 ]
             }
         },
@@ -5294,6 +5452,11 @@
                 "summary": "Delete a mail label",
                 "tags": [
                     "Mail"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -5444,7 +5607,13 @@
                 "summary": "Return mailing list subscriptions",
                 "tags": [
                     "Mail"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 120
             }
         },
         "/characters/{character_id}/mail/{mail_id}/": {
@@ -5553,6 +5722,11 @@
                 "summary": "Delete a mail",
                 "tags": [
                     "Mail"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             },
             "get": {
@@ -5790,7 +5964,13 @@
                 "summary": "Return a mail",
                 "tags": [
                     "Mail"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 30
             },
             "put": {
                 "description": "Update metadata about a mail\n\n---\n\nAlternate route: `/v1/characters/{character_id}/mail/{mail_id}/`\n\nAlternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`\n\nAlternate route: `/dev/characters/{character_id}/mail/{mail_id}/`\n",
@@ -5948,6 +6128,11 @@
                 "summary": "Update metadata about a mail",
                 "tags": [
                     "Mail"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -6160,7 +6345,13 @@
                 "summary": "Get colonies",
                 "tags": [
                     "Planetary Interaction"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 600
             }
         },
         "/characters/{character_id}/planets/{planet_id}/": {
@@ -6620,7 +6811,12 @@
                 "summary": "Get colony layout",
                 "tags": [
                     "Planetary Interaction"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v2"
+                ],
+                "x-cached-seconds": 600
             }
         },
         "/characters/{character_id}/portrait/": {
@@ -6757,7 +6953,12 @@
                 "summary": "Get character portraits",
                 "tags": [
                     "Character"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v2"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/characters/{character_id}/search/": {
@@ -7083,7 +7284,11 @@
                 "summary": "Search on a string",
                 "tags": [
                     "Search"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "v2"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/characters/{character_id}/ship/": {
@@ -7234,7 +7439,13 @@
                 "summary": "Get current ship",
                 "tags": [
                     "Location"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 5
             }
         },
         "/characters/{character_id}/skillqueue/": {
@@ -7441,7 +7652,13 @@
                 "summary": "Get character's skill queue",
                 "tags": [
                     "Skills"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v2"
+                ],
+                "x-cached-seconds": 120
             }
         },
         "/characters/{character_id}/skills/": {
@@ -7616,7 +7833,12 @@
                 "summary": "Get character skills",
                 "tags": [
                     "Skills"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v3"
+                ],
+                "x-cached-seconds": 120
             }
         },
         "/characters/{character_id}/wallets/": {
@@ -7763,7 +7985,13 @@
                 "summary": "List wallets and balances",
                 "tags": [
                     "Wallet"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 120
             }
         },
         "/corporations/names/": {
@@ -7884,7 +8112,13 @@
                 "summary": "Get corporation names",
                 "tags": [
                     "Corporation"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/corporations/npccorps/": {
@@ -7976,7 +8210,13 @@
                 "summary": "Get npc corporations",
                 "tags": [
                     "Corporation"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/corporations/{corporation_id}/": {
@@ -8178,7 +8418,12 @@
                 "summary": "Get corporation information",
                 "tags": [
                     "Corporation"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v3"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/corporations/{corporation_id}/alliancehistory/": {
@@ -8326,7 +8571,13 @@
                 "summary": "Get alliance history",
                 "tags": [
                     "Corporation"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/corporations/{corporation_id}/icons/": {
@@ -8457,7 +8708,13 @@
                 "summary": "Get corporation icon",
                 "tags": [
                     "Corporation"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/corporations/{corporation_id}/members/": {
@@ -8603,7 +8860,13 @@
                 "summary": "Get corporation members",
                 "tags": [
                     "Corporation"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v2"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/corporations/{corporation_id}/roles/": {
@@ -9254,7 +9517,13 @@
                 "summary": "Get corporation member roles",
                 "tags": [
                     "Corporation"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/corporations/{corporation_id}/structures/": {
@@ -9590,7 +9859,13 @@
                 "summary": "Get corporation structures",
                 "tags": [
                     "Corporation"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/corporations/{corporation_id}/structures/{structure_id}/": {
@@ -9738,6 +10013,11 @@
                 "summary": "Update structure vulnerability schedule",
                 "tags": [
                     "Corporation"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -9830,7 +10110,13 @@
                 "summary": "Get attributes",
                 "tags": [
                     "Dogma"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/dogma/attributes/{attribute_id}/": {
@@ -10010,7 +10296,13 @@
                 "summary": "Get attribute information",
                 "tags": [
                     "Dogma"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/dogma/effects/": {
@@ -10102,7 +10394,13 @@
                 "summary": "Get effects",
                 "tags": [
                     "Dogma"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/dogma/effects/{effect_id}/": {
@@ -10390,7 +10688,13 @@
                 "summary": "Get effect information",
                 "tags": [
                     "Dogma"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/fleets/{fleet_id}/": {
@@ -10566,7 +10870,13 @@
                 "summary": "Get fleet information",
                 "tags": [
                     "Fleets"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 5
             },
             "put": {
                 "description": "Update settings about a fleet\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/`\n\nAlternate route: `/dev/fleets/{fleet_id}/`\n",
@@ -10728,6 +11038,11 @@
                 "summary": "Update fleet",
                 "tags": [
                     "Fleets"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -10992,7 +11307,13 @@
                 "summary": "Get fleet members",
                 "tags": [
                     "Fleets"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 5
             },
             "post": {
                 "description": "Invite a character into the fleet, if a character has a CSPA charge set, it is not possible to invite them to the fleet using ESI\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/members/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/members/`\n\nAlternate route: `/dev/fleets/{fleet_id}/members/`\n",
@@ -11179,6 +11500,11 @@
                 "summary": "Create fleet invitation",
                 "tags": [
                     "Fleets"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -11308,6 +11634,11 @@
                 "summary": "Kick fleet member",
                 "tags": [
                     "Fleets"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             },
             "put": {
@@ -11496,6 +11827,11 @@
                 "summary": "Move fleet member",
                 "tags": [
                     "Fleets"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -11625,6 +11961,11 @@
                 "summary": "Delete fleet squad",
                 "tags": [
                     "Fleets"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             },
             "put": {
@@ -11774,6 +12115,11 @@
                 "summary": "Rename fleet squad",
                 "tags": [
                     "Fleets"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -12005,7 +12351,13 @@
                 "summary": "Get fleet wings",
                 "tags": [
                     "Fleets"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 5
             },
             "post": {
                 "description": "Create a new wing in a fleet\n\n---\n\nAlternate route: `/v1/fleets/{fleet_id}/wings/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/wings/`\n\nAlternate route: `/dev/fleets/{fleet_id}/wings/`\n",
@@ -12145,6 +12497,11 @@
                 "summary": "Create fleet wing",
                 "tags": [
                     "Fleets"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -12274,6 +12631,11 @@
                 "summary": "Delete fleet wing",
                 "tags": [
                     "Fleets"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             },
             "put": {
@@ -12423,6 +12785,11 @@
                 "summary": "Rename fleet wing",
                 "tags": [
                     "Fleets"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -12573,6 +12940,11 @@
                 "summary": "Create fleet squad",
                 "tags": [
                     "Fleets"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -12746,7 +13118,13 @@
                 "summary": "List incursions",
                 "tags": [
                     "Incursions"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 300
             }
         },
         "/industry/facilities/": {
@@ -12887,7 +13265,13 @@
                 "summary": "List industry facilities",
                 "tags": [
                     "Industry"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/industry/systems/": {
@@ -13034,7 +13418,13 @@
                 "summary": "List solar system cost indices",
                 "tags": [
                     "Industry"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/insurance/prices/": {
@@ -13205,7 +13595,13 @@
                 "summary": "List insurance levels",
                 "tags": [
                     "Insurance"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/killmails/{killmail_id}/{killmail_hash}/": {
@@ -13638,7 +14034,13 @@
                 "summary": "Get a single killmail",
                 "tags": [
                     "Killmails"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/loyalty/stores/{corporation_id}/offers/": {
@@ -13823,7 +14225,13 @@
                 "summary": "List loyalty store offers",
                 "tags": [
                     "Loyalty"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/markets/groups/": {
@@ -13915,7 +14323,13 @@
                 "summary": "Get item groups",
                 "tags": [
                     "Market"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/markets/groups/{market_group_id}/": {
@@ -14102,7 +14516,13 @@
                 "summary": "Get item group information",
                 "tags": [
                     "Market"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/markets/prices/": {
@@ -14218,7 +14638,13 @@
                 "summary": "List market prices",
                 "tags": [
                     "Market"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/markets/structures/{structure_id}/": {
@@ -14462,7 +14888,13 @@
                 "summary": "List orders in a structure",
                 "tags": [
                     "Market"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 300
             }
         },
         "/markets/{region_id}/history/": {
@@ -14640,7 +15072,13 @@
                 "summary": "List historical market statistics in a region",
                 "tags": [
                     "Market"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/markets/{region_id}/orders/": {
@@ -14892,7 +15330,13 @@
                 "summary": "List orders in a region",
                 "tags": [
                     "Market"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 300
             }
         },
         "/search/": {
@@ -15165,7 +15609,12 @@
                 "summary": "Search on a string",
                 "tags": [
                     "Search"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/sovereignty/campaigns/": {
@@ -15361,7 +15810,13 @@
                 "summary": "List sovereignty campaigns",
                 "tags": [
                     "Sovereignty"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 5
             }
         },
         "/sovereignty/structures/": {
@@ -15508,7 +15963,13 @@
                 "summary": "List sovereignty structures",
                 "tags": [
                     "Sovereignty"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 120
             }
         },
         "/ui/autopilot/waypoint/": {
@@ -15625,6 +16086,10 @@
                 "summary": "Set Autopilot Waypoint",
                 "tags": [
                     "User Interface"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v2"
                 ]
             }
         },
@@ -15726,6 +16191,11 @@
                 "summary": "Open Contract Window",
                 "tags": [
                     "User Interface"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -15827,6 +16297,11 @@
                 "summary": "Open Information Window",
                 "tags": [
                     "User Interface"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -15928,6 +16403,11 @@
                 "summary": "Open Market Details",
                 "tags": [
                     "User Interface"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -16096,6 +16576,11 @@
                 "summary": "Open New Mail Window",
                 "tags": [
                     "User Interface"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -16303,7 +16788,13 @@
                 "summary": "Get bloodlines",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/categories/": {
@@ -16395,7 +16886,13 @@
                 "summary": "Get item categories",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/categories/{category_id}/": {
@@ -16576,7 +17073,13 @@
                 "summary": "Get item category information",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/constellations/": {
@@ -16667,7 +17170,13 @@
                 "summary": "Get constellations",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/constellations/{constellation_id}/": {
@@ -16884,7 +17393,13 @@
                 "summary": "Get constellation information",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/factions/": {
@@ -17080,7 +17595,13 @@
                 "summary": "Get factions",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/graphics/": {
@@ -17171,7 +17692,13 @@
                 "summary": "Get graphics",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/graphics/{graphic_id}/": {
@@ -17330,7 +17857,13 @@
                 "summary": "Get graphic information",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/groups/": {
@@ -17431,7 +17964,13 @@
                 "summary": "Get item groups",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/groups/{group_id}/": {
@@ -17620,7 +18159,13 @@
                 "summary": "Get item group information",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/moons/{moon_id}/": {
@@ -17794,7 +18339,13 @@
                 "summary": "Get moon information",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/names/": {
@@ -17955,6 +18506,10 @@
                 "summary": "Get names and categories for a set of ID's",
                 "tags": [
                     "Universe"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v2"
                 ]
             }
         },
@@ -18137,7 +18692,13 @@
                 "summary": "Get planet information",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/races/": {
@@ -18288,7 +18849,13 @@
                 "summary": "Get character races",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/regions/": {
@@ -18379,7 +18946,13 @@
                 "summary": "Get regions",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/regions/{region_id}/": {
@@ -18558,7 +19131,13 @@
                 "summary": "Get region information",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/schematics/{schematic_id}/": {
@@ -18688,7 +19267,13 @@
                 "summary": "Get schematic information",
                 "tags": [
                     "Planetary Interaction"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/stargates/{stargate_id}/": {
@@ -18898,7 +19483,13 @@
                 "summary": "Get stargate information",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/stations/{station_id}/": {
@@ -19180,7 +19771,12 @@
                 "summary": "Get station information",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v2"
+                ],
+                "x-cached-seconds": 300
             }
         },
         "/universe/structures/": {
@@ -19273,7 +19869,13 @@
                 "summary": "List all public structures",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/structures/{structure_id}/": {
@@ -19458,6 +20060,11 @@
                 "summary": "Get structure information",
                 "tags": [
                     "Universe"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ]
             }
         },
@@ -19549,7 +20156,13 @@
                 "summary": "Get solar systems",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/systems/{system_id}/": {
@@ -19823,7 +20436,12 @@
                 "summary": "Get solar system information",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v2"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/types/": {
@@ -19924,7 +20542,13 @@
                 "summary": "Get types",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/types/{type_id}/": {
@@ -20200,7 +20824,11 @@
                 "summary": "Get type information",
                 "tags": [
                     "Universe"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "v2"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/wars/": {
@@ -20300,7 +20928,13 @@
                 "summary": "List wars",
                 "tags": [
                     "Wars"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/wars/{war_id}/": {
@@ -20569,7 +21203,13 @@
                 "summary": "Get war information",
                 "tags": [
                     "Wars"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/wars/{war_id}/killmails/": {
@@ -20719,7 +21359,13 @@
                 "summary": "List kills for a war",
                 "tags": [
                     "Wars"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         }
     },
