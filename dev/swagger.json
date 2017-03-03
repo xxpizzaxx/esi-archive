@@ -1169,7 +1169,13 @@
                 "summary": "Get character assets",
                 "tags": [
                     "Assets"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/characters/{character_id}/bookmarks/": {
@@ -2330,7 +2336,12 @@
                 "summary": "Get clones",
                 "tags": [
                     "Clones"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "v2"
+                ],
+                "x-cached-seconds": 120
             }
         },
         "/characters/{character_id}/contacts/": {
