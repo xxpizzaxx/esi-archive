@@ -4,7 +4,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.4.1.dev1"
+        "version": "0.4.1.dev16"
     },
     "paths": {
         "/alliances/": {
@@ -1169,7 +1169,13 @@
                 "summary": "Get character assets",
                 "tags": [
                     "Assets"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/characters/{character_id}/bookmarks/": {
@@ -2330,7 +2336,12 @@
                 "summary": "Get clones",
                 "tags": [
                     "Clones"
-                ]
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v2"
+                ],
+                "x-cached-seconds": 120
             }
         },
         "/characters/{character_id}/contacts/": {
