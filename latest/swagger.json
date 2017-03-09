@@ -20730,7 +20730,7 @@
         },
         "/universe/structures/{structure_id}/": {
             "get": {
-                "description": "Returns information on requested structure, if you are on the ACL. Otherwise, returns \"Forbidden\" for all inputs.\n\n---\n\nAlternate route: `/v1/universe/structures/{structure_id}/`\n\nAlternate route: `/legacy/universe/structures/{structure_id}/`\n\nAlternate route: `/dev/universe/structures/{structure_id}/`\n",
+                "description": "Returns information on requested structure, if you are on the ACL. Otherwise, returns \"Forbidden\" for all inputs.\n\n---\n\nAlternate route: `/v1/universe/structures/{structure_id}/`\n\nAlternate route: `/legacy/universe/structures/{structure_id}/`\n\nAlternate route: `/dev/universe/structures/{structure_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_universe_structures_structure_id",
                 "parameters": [
                     {
@@ -20778,6 +20778,20 @@
                             "application/json": {
                                 "name": "V-3YG7 VI - The Capital",
                                 "solar_system_id": 30000142
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
                             }
                         },
                         "schema": {
@@ -20915,7 +20929,8 @@
                     "dev",
                     "legacy",
                     "v1"
-                ]
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/universe/systems/": {
