@@ -4,7 +4,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.4.2.dev7"
+        "version": "0.4.2.dev5"
     },
     "paths": {
         "/alliances/": {
@@ -20663,11 +20663,11 @@
                                 "format": "int64",
                                 "minimum": 0,
                                 "title": "get_universe_structures_200_ok",
-                                "type": "integer"
+                                "type": "integer",
+                                "uniqueItems": true
                             },
                             "title": "get_universe_structures_ok",
-                            "type": "array",
-                            "uniqueItems": true
+                            "type": "array"
                         }
                     },
                     "500": {
