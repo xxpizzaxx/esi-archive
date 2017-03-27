@@ -6136,6 +6136,163 @@
                 ]
             }
         },
+        "/characters/{character_id}/opportunities/": {
+            "get": {
+                "description": "Return a list of tasks finished by a character\n\n---\n\nAlternate route: `/v1/characters/{character_id}/opportunities/`\n\nAlternate route: `/legacy/characters/{character_id}/opportunities/`\n\nAlternate route: `/dev/characters/{character_id}/opportunities/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_opportunities",
+                "parameters": [
+                    {
+                        "description": "ID for a character",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of opportunities task ids",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "completed_at": "2016-04-29T12:34:56Z",
+                                    "task_id": 1
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "completed_at": {
+                                        "description": "completed_at string",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_opportunities_completed_at",
+                                        "type": "string"
+                                    },
+                                    "task_id": {
+                                        "description": "task_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_opportunities_task_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "task_id",
+                                    "completed_at"
+                                ],
+                                "title": "get_characters_character_id_opportunities_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_characters_character_id_opportunities_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-characters.read_opportunities.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_opportunities_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_opportunities_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_opportunities_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_opportunities_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_opportunities.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get a character's completed tasks",
+                "tags": [
+                    "Opportunities"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
         "/characters/{character_id}/planets/": {
             "get": {
                 "description": "Returns a list of all planetary colonies owned by a character.\n\n---\n\nAlternate route: `/v1/characters/{character_id}/planets/`\n\nAlternate route: `/legacy/characters/{character_id}/planets/`\n\nAlternate route: `/dev/characters/{character_id}/planets/`\n\n\n---\n\nThis route is cached for up to 600 seconds",
@@ -15339,6 +15496,521 @@
                 "x-cached-seconds": 300
             }
         },
+        "/opportunities/groups/": {
+            "get": {
+                "description": "Return a list of opportunities groups\n\n---\n\nAlternate route: `/v1/opportunities/groups/`\n\nAlternate route: `/legacy/opportunities/groups/`\n\nAlternate route: `/dev/opportunities/groups/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_opportunities_groups",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of opportunities group ids",
+                        "examples": {
+                            "application/json": [
+                                100,
+                                101,
+                                102,
+                                103
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_opportunities_groups_200_ok",
+                                "type": "integer"
+                            },
+                            "title": "get_opportunities_groups_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_opportunities_groups_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_opportunities_groups_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get opportunities groups",
+                "tags": [
+                    "Opportunities"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/opportunities/groups/{group_id}/": {
+            "get": {
+                "description": "Return information of an opportunities group\n\n---\n\nAlternate route: `/v1/opportunities/groups/{group_id}/`\n\nAlternate route: `/legacy/opportunities/groups/{group_id}/`\n\nAlternate route: `/dev/opportunities/groups/{group_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_opportunities_groups_group_id",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "ID of an opportunities group",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "group_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "en-us",
+                        "description": "Language to use in the response",
+                        "enum": [
+                            "de",
+                            "en-us",
+                            "fr",
+                            "ja",
+                            "ru",
+                            "zh"
+                        ],
+                        "in": "query",
+                        "name": "language",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of an opportunities group",
+                        "examples": {
+                            "application/json": {
+                                "connected_groups": [
+                                    100
+                                ],
+                                "description": "As a capsuleer...",
+                                "group_id": 103,
+                                "name": "Welcome to New Eden",
+                                "notification": "Completed:<br>Welcome to New Eden",
+                                "required_tasks": [
+                                    19
+                                ]
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "connected_groups": {
+                                    "description": "The groups that are connected to this group on the opportunities map",
+                                    "items": {
+                                        "description": "connected_group integer",
+                                        "format": "int32",
+                                        "title": "get_opportunities_groups_group_id_connected_group",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_opportunities_groups_group_id_connected_groups",
+                                    "type": "array"
+                                },
+                                "description": {
+                                    "description": "description string",
+                                    "title": "get_opportunities_groups_group_id_description",
+                                    "type": "string"
+                                },
+                                "group_id": {
+                                    "description": "group_id integer",
+                                    "format": "int32",
+                                    "title": "get_opportunities_groups_group_id_group_id",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_opportunities_groups_group_id_name",
+                                    "type": "string"
+                                },
+                                "notification": {
+                                    "description": "notification string",
+                                    "title": "get_opportunities_groups_group_id_notification",
+                                    "type": "string"
+                                },
+                                "required_tasks": {
+                                    "description": "Tasks need to complete for this group",
+                                    "items": {
+                                        "description": "required_task integer",
+                                        "format": "int32",
+                                        "title": "get_opportunities_groups_group_id_required_task",
+                                        "type": "integer"
+                                    },
+                                    "title": "get_opportunities_groups_group_id_required_tasks",
+                                    "type": "array"
+                                }
+                            },
+                            "required": [
+                                "group_id",
+                                "name",
+                                "description",
+                                "notification",
+                                "required_tasks",
+                                "connected_groups"
+                            ],
+                            "title": "get_opportunities_groups_group_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_opportunities_groups_group_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_opportunities_groups_group_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get opportunities group",
+                "tags": [
+                    "Opportunities"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/opportunities/tasks/": {
+            "get": {
+                "description": "Return a list of opportunities tasks\n\n---\n\nAlternate route: `/v1/opportunities/tasks/`\n\nAlternate route: `/legacy/opportunities/tasks/`\n\nAlternate route: `/dev/opportunities/tasks/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_opportunities_tasks",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of opportunities task ids",
+                        "examples": {
+                            "application/json": [
+                                1,
+                                2,
+                                3,
+                                4
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_opportunities_tasks_200_ok",
+                                "type": "integer"
+                            },
+                            "title": "get_opportunities_tasks_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_opportunities_tasks_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_opportunities_tasks_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get opportunities tasks",
+                "tags": [
+                    "Opportunities"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/opportunities/tasks/{task_id}/": {
+            "get": {
+                "description": "Return information of an opportunities task\n\n---\n\nAlternate route: `/v1/opportunities/tasks/{task_id}/`\n\nAlternate route: `/legacy/opportunities/tasks/{task_id}/`\n\nAlternate route: `/dev/opportunities/tasks/{task_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_opportunities_tasks_task_id",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "ID of an opportunities task",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "task_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of an opportunities task",
+                        "examples": {
+                            "application/json": {
+                                "description": "To use station services...",
+                                "name": "Dock in the station",
+                                "notification": "Completed:<br>Docked in a station!",
+                                "task_id": 10
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "description": {
+                                    "description": "description string",
+                                    "title": "get_opportunities_tasks_task_id_description",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_opportunities_tasks_task_id_name",
+                                    "type": "string"
+                                },
+                                "notification": {
+                                    "description": "notification string",
+                                    "title": "get_opportunities_tasks_task_id_notification",
+                                    "type": "string"
+                                },
+                                "task_id": {
+                                    "description": "task_id integer",
+                                    "format": "int32",
+                                    "title": "get_opportunities_tasks_task_id_task_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "task_id",
+                                "name",
+                                "description",
+                                "notification"
+                            ],
+                            "title": "get_opportunities_tasks_task_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_opportunities_tasks_task_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_opportunities_tasks_task_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get opportunities task",
+                "tags": [
+                    "Opportunities"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
         "/route/{origin}/{destination}/": {
             "get": {
                 "description": "Get the systems between origin and destination\n\n---\n\nAlternate route: `/legacy/route/{origin}/{destination}/`\n\nAlternate route: `/dev/route/{origin}/{destination}/`\n\nAlternate route: `/v1/route/{origin}/{destination}/`\n\n\n---\n\nThis route is cached for up to 86400 seconds",
@@ -21579,6 +22251,7 @@
                 "esi-calendar.respond_calendar_events.v1": "EVE SSO scope esi-calendar.respond_calendar_events.v1",
                 "esi-characters.read_contacts.v1": "EVE SSO scope esi-characters.read_contacts.v1",
                 "esi-characters.read_loyalty.v1": "EVE SSO scope esi-characters.read_loyalty.v1",
+                "esi-characters.read_opportunities.v1": "EVE SSO scope esi-characters.read_opportunities.v1",
                 "esi-characters.write_contacts.v1": "EVE SSO scope esi-characters.write_contacts.v1",
                 "esi-clones.read_clones.v1": "EVE SSO scope esi-clones.read_clones.v1",
                 "esi-corporations.read_corporation_membership.v1": "EVE SSO scope esi-corporations.read_corporation_membership.v1",
