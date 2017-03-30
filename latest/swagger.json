@@ -618,6 +618,175 @@
                 "x-cached-seconds": 3600
             }
         },
+        "/characters/affiliation/": {
+            "post": {
+                "description": "Bulk lookup of character IDs to corporation, alliance and faction\n\n---\n\nAlternate route: `/v1/characters/affiliation/`\n\nAlternate route: `/legacy/characters/affiliation/`\n\nAlternate route: `/dev/characters/affiliation/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "post_characters_affiliation",
+                "parameters": [
+                    {
+                        "description": "The character IDs to fetch affiliations for",
+                        "in": "body",
+                        "name": "characters",
+                        "required": true,
+                        "schema": {
+                            "description": "characters array",
+                            "items": {
+                                "description": "character integer",
+                                "format": "int32",
+                                "title": "post_characters_affiliation_character",
+                                "type": "integer"
+                            },
+                            "maxItems": 250,
+                            "minItems": 1,
+                            "title": "post_characters_affiliation_characters",
+                            "type": "array",
+                            "uniqueItems": true
+                        }
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Character corporation, alliance and faction IDs",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "alliance_id": 434243723,
+                                    "character_id": 95538921,
+                                    "corporation_id": 109299958
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "alliance_id": {
+                                        "description": "The character's alliance ID, if their corporation is in an alliance",
+                                        "format": "int32",
+                                        "title": "post_characters_affiliation_alliance_id",
+                                        "type": "integer"
+                                    },
+                                    "character_id": {
+                                        "description": "The character's ID",
+                                        "format": "int32",
+                                        "title": "post_characters_affiliation_character_id",
+                                        "type": "integer"
+                                    },
+                                    "corporation_id": {
+                                        "description": "The character's corporation ID",
+                                        "format": "int32",
+                                        "title": "post_characters_affiliation_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "faction_id": {
+                                        "description": "The character's faction ID, if their corporation is in a faction",
+                                        "format": "int32",
+                                        "title": "post_characters_affiliation_faction_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "character_id",
+                                    "corporation_id"
+                                ],
+                                "title": "post_characters_affiliation_200_ok",
+                                "type": "object"
+                            },
+                            "title": "post_characters_affiliation_ok",
+                            "type": "array"
+                        }
+                    },
+                    "422": {
+                        "description": "No valid character IDs found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Unprocessable entity message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Unprocessable entity",
+                            "properties": {
+                                "error": {
+                                    "description": "Unprocessable entity message",
+                                    "title": "post_characters_affiliation_422_unprocessable_entity",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_characters_affiliation_unprocessable_entity",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "post_characters_affiliation_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_characters_affiliation_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Character affiliation",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
         "/characters/names/": {
             "get": {
                 "description": "Resolve a set of character IDs to character names\n\n---\n\nAlternate route: `/v1/characters/names/`\n\nAlternate route: `/legacy/characters/names/`\n\nAlternate route: `/dev/characters/names/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -938,6 +1107,187 @@
                 "x-alternate-versions": [
                     "dev",
                     "v4"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/characters/{character_id}/agents_research/": {
+            "get": {
+                "description": "Return a list of agents research information for a character. The formula for finding the current research points with an agent is: currentPoints = remainderPoints + pointsPerDay * days(currentTime - researchStartDate)\n\n---\n\nAlternate route: `/v1/characters/{character_id}/agents_research/`\n\nAlternate route: `/legacy/characters/{character_id}/agents_research/`\n\nAlternate route: `/dev/characters/{character_id}/agents_research/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_agents_research",
+                "parameters": [
+                    {
+                        "description": "ID for a character",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of agents research information",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "agent_id": 3009358,
+                                    "points_per_day": 53.5346162146776,
+                                    "remainder_points": 53604.0634303189,
+                                    "skill_type_id": 11450,
+                                    "started_at": "2017-03-23T14:47:00Z"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "agent_id": {
+                                        "description": "agent_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_agents_research_agent_id",
+                                        "type": "integer"
+                                    },
+                                    "points_per_day": {
+                                        "description": "points_per_day number",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_agents_research_points_per_day",
+                                        "type": "number"
+                                    },
+                                    "remainder_points": {
+                                        "description": "remainder_points number",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_agents_research_remainder_points",
+                                        "type": "number"
+                                    },
+                                    "skill_type_id": {
+                                        "description": "skill_type_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_agents_research_skill_type_id",
+                                        "type": "integer"
+                                    },
+                                    "started_at": {
+                                        "description": "started_at string",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_agents_research_started_at",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "agent_id",
+                                    "skill_type_id",
+                                    "started_at",
+                                    "points_per_day",
+                                    "remainder_points"
+                                ],
+                                "title": "get_characters_character_id_agents_research_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_characters_character_id_agents_research_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-characters.read_agents_research.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_agents_research_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_agents_research_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_agents_research_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_agents_research_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_agents_research.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get agents research",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
                 ],
                 "x-cached-seconds": 3600
             }
@@ -2190,6 +2540,349 @@
                     "dev",
                     "v3"
                 ]
+            }
+        },
+        "/characters/{character_id}/chat_channels/": {
+            "get": {
+                "description": "Return chat channels that a character is the owner or an operator of\n\n---\n\nAlternate route: `/v1/characters/{character_id}/chat_channels/`\n\nAlternate route: `/legacy/characters/{character_id}/chat_channels/`\n\nAlternate route: `/dev/characters/{character_id}/chat_channels/`\n\n\n---\n\nThis route is cached for up to 300 seconds",
+                "operationId": "get_characters_character_id_chat_channels",
+                "parameters": [
+                    {
+                        "description": "ID for a character",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of chat channels",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "allowed": [],
+                                    "blocked": [],
+                                    "channel_id": -69329950,
+                                    "comparison_key": "players'haven",
+                                    "has_password": false,
+                                    "motd": "<b>Feed pineapples to the cats!</b>",
+                                    "muted": [],
+                                    "name": "Players' Haven",
+                                    "operators": [],
+                                    "owner_id": 95578451
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "allowed": {
+                                        "description": "allowed array",
+                                        "items": {
+                                            "description": "allowed object",
+                                            "properties": {
+                                                "accessor_id": {
+                                                    "description": "ID of an allowed channel member",
+                                                    "format": "int32",
+                                                    "title": "get_characters_character_id_chat_channels_accessor_id",
+                                                    "type": "integer"
+                                                },
+                                                "accessor_type": {
+                                                    "description": "accessor_type string",
+                                                    "enum": [
+                                                        "character",
+                                                        "corporation",
+                                                        "alliance"
+                                                    ],
+                                                    "title": "get_characters_character_id_chat_channels_accessor_type",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "accessor_id",
+                                                "accessor_type"
+                                            ],
+                                            "title": "get_characters_character_id_chat_channels_allowed",
+                                            "type": "object"
+                                        },
+                                        "title": "get_characters_character_id_chat_channels_allowed",
+                                        "type": "array"
+                                    },
+                                    "blocked": {
+                                        "description": "blocked array",
+                                        "items": {
+                                            "description": "blocked object",
+                                            "properties": {
+                                                "accessor_id": {
+                                                    "description": "ID of a blocked channel member",
+                                                    "format": "int32",
+                                                    "title": "get_characters_character_id_chat_channels_accessor_id",
+                                                    "type": "integer"
+                                                },
+                                                "accessor_type": {
+                                                    "description": "accessor_type string",
+                                                    "enum": [
+                                                        "character",
+                                                        "corporation",
+                                                        "alliance"
+                                                    ],
+                                                    "title": "get_characters_character_id_chat_channels_accessor_type",
+                                                    "type": "string"
+                                                },
+                                                "end_at": {
+                                                    "description": "Time at which this accessor will no longer be blocked",
+                                                    "format": "date-time",
+                                                    "title": "get_characters_character_id_chat_channels_end_at",
+                                                    "type": "string"
+                                                },
+                                                "reason": {
+                                                    "description": "Reason this accessor is blocked",
+                                                    "title": "get_characters_character_id_chat_channels_reason",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "accessor_id",
+                                                "accessor_type"
+                                            ],
+                                            "title": "get_characters_character_id_chat_channels_blocked",
+                                            "type": "object"
+                                        },
+                                        "title": "get_characters_character_id_chat_channels_blocked",
+                                        "type": "array"
+                                    },
+                                    "channel_id": {
+                                        "description": "Unique channel ID. Always negative for player-created channels. Permanent (CCP created) channels have a positive ID, but don't appear in the API",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_chat_channels_channel_id",
+                                        "type": "integer"
+                                    },
+                                    "comparison_key": {
+                                        "description": "Normalized, unique string used to compare channel names",
+                                        "title": "get_characters_character_id_chat_channels_comparison_key",
+                                        "type": "string"
+                                    },
+                                    "has_password": {
+                                        "description": "Whether this is a password protected channel",
+                                        "title": "get_characters_character_id_chat_channels_has_password",
+                                        "type": "boolean"
+                                    },
+                                    "motd": {
+                                        "description": "Message of the day for this channel",
+                                        "title": "get_characters_character_id_chat_channels_motd",
+                                        "type": "string"
+                                    },
+                                    "muted": {
+                                        "description": "muted array",
+                                        "items": {
+                                            "description": "muted object",
+                                            "properties": {
+                                                "accessor_id": {
+                                                    "description": "ID of a muted channel member",
+                                                    "format": "int32",
+                                                    "title": "get_characters_character_id_chat_channels_accessor_id",
+                                                    "type": "integer"
+                                                },
+                                                "accessor_type": {
+                                                    "description": "accessor_type string",
+                                                    "enum": [
+                                                        "character",
+                                                        "corporation",
+                                                        "alliance"
+                                                    ],
+                                                    "title": "get_characters_character_id_chat_channels_accessor_type",
+                                                    "type": "string"
+                                                },
+                                                "end_at": {
+                                                    "description": "Time at which this accessor will no longer be muted",
+                                                    "format": "date-time",
+                                                    "title": "get_characters_character_id_chat_channels_end_at",
+                                                    "type": "string"
+                                                },
+                                                "reason": {
+                                                    "description": "Reason this accessor is muted",
+                                                    "title": "get_characters_character_id_chat_channels_reason",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "accessor_id",
+                                                "accessor_type"
+                                            ],
+                                            "title": "get_characters_character_id_chat_channels_muted",
+                                            "type": "object"
+                                        },
+                                        "title": "get_characters_character_id_chat_channels_muted",
+                                        "type": "array"
+                                    },
+                                    "name": {
+                                        "description": "Displayed name of channel",
+                                        "title": "get_characters_character_id_chat_channels_name",
+                                        "type": "string"
+                                    },
+                                    "operators": {
+                                        "description": "operators array",
+                                        "items": {
+                                            "description": "operator object",
+                                            "properties": {
+                                                "accessor_id": {
+                                                    "description": "ID of a channel operator",
+                                                    "format": "int32",
+                                                    "title": "get_characters_character_id_chat_channels_accessor_id",
+                                                    "type": "integer"
+                                                },
+                                                "accessor_type": {
+                                                    "description": "accessor_type string",
+                                                    "enum": [
+                                                        "character",
+                                                        "corporation",
+                                                        "alliance"
+                                                    ],
+                                                    "title": "get_characters_character_id_chat_channels_accessor_type",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "accessor_id",
+                                                "accessor_type"
+                                            ],
+                                            "title": "get_characters_character_id_chat_channels_operator",
+                                            "type": "object"
+                                        },
+                                        "title": "get_characters_character_id_chat_channels_operators",
+                                        "type": "array"
+                                    },
+                                    "owner_id": {
+                                        "description": "owner_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_chat_channels_owner_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "channel_id",
+                                    "name",
+                                    "owner_id",
+                                    "comparison_key",
+                                    "has_password",
+                                    "motd",
+                                    "allowed",
+                                    "operators",
+                                    "blocked",
+                                    "muted"
+                                ],
+                                "title": "get_characters_character_id_chat_channels_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_characters_character_id_chat_channels_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-characters.read_chat_channels.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_chat_channels_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_chat_channels_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_chat_channels_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_chat_channels_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_chat_channels.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get chat channels",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 300
             }
         },
         "/characters/{character_id}/clones/": {
@@ -6136,6 +6829,260 @@
                 ]
             }
         },
+        "/characters/{character_id}/medals/": {
+            "get": {
+                "description": "Return a list of medals the character has\n\n---\n\nAlternate route: `/v1/characters/{character_id}/medals/`\n\nAlternate route: `/legacy/characters/{character_id}/medals/`\n\nAlternate route: `/dev/characters/{character_id}/medals/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_medals",
+                "parameters": [
+                    {
+                        "description": "ID for a character",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of medals",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "corporation_id": 98000001,
+                                    "date": "2017-03-16T15:01:45Z",
+                                    "description": "For 33 corp!",
+                                    "graphics": [
+                                        {
+                                            "color": -1,
+                                            "graphic": "gallente.1_1",
+                                            "layer": 0,
+                                            "part": 1
+                                        }
+                                    ],
+                                    "issuer_id": 2112000002,
+                                    "medal_id": 3,
+                                    "reason": "Thanks!",
+                                    "status": "private",
+                                    "title": "33 tester medal"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "corporation_id": {
+                                        "description": "corporation_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_medals_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "date": {
+                                        "description": "date string",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_medals_date",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "description string",
+                                        "title": "get_characters_character_id_medals_description",
+                                        "type": "string"
+                                    },
+                                    "graphics": {
+                                        "description": "graphics array",
+                                        "items": {
+                                            "description": "graphic object",
+                                            "properties": {
+                                                "color": {
+                                                    "description": "color integer",
+                                                    "format": "int32",
+                                                    "title": "get_characters_character_id_medals_color",
+                                                    "type": "integer"
+                                                },
+                                                "graphic": {
+                                                    "description": "graphic string",
+                                                    "title": "get_characters_character_id_medals_graphic",
+                                                    "type": "string"
+                                                },
+                                                "layer": {
+                                                    "description": "layer integer",
+                                                    "format": "int32",
+                                                    "title": "get_characters_character_id_medals_layer",
+                                                    "type": "integer"
+                                                },
+                                                "part": {
+                                                    "description": "part integer",
+                                                    "format": "int32",
+                                                    "title": "get_characters_character_id_medals_part",
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "required": [
+                                                "part",
+                                                "layer",
+                                                "graphic"
+                                            ],
+                                            "title": "get_characters_character_id_medals_graphic",
+                                            "type": "object"
+                                        },
+                                        "title": "get_characters_character_id_medals_graphics",
+                                        "type": "array"
+                                    },
+                                    "issuer_id": {
+                                        "description": "issuer_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_medals_issuer_id",
+                                        "type": "integer"
+                                    },
+                                    "medal_id": {
+                                        "description": "medal_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_medals_medal_id",
+                                        "type": "integer"
+                                    },
+                                    "reason": {
+                                        "description": "reason string",
+                                        "title": "get_characters_character_id_medals_reason",
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "description": "status string",
+                                        "enum": [
+                                            "public",
+                                            "private"
+                                        ],
+                                        "title": "get_characters_character_id_medals_status",
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "description": "title string",
+                                        "title": "get_characters_character_id_medals_title",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "medal_id",
+                                    "title",
+                                    "description",
+                                    "corporation_id",
+                                    "issuer_id",
+                                    "date",
+                                    "reason",
+                                    "status",
+                                    "graphics"
+                                ],
+                                "title": "get_characters_character_id_medals_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_characters_character_id_medals_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-characters.read_medals.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_medals_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_medals_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_medals_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_medals_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_medals.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get medals",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
         "/characters/{character_id}/opportunities/": {
             "get": {
                 "description": "Return a list of tasks finished by a character\n\n---\n\nAlternate route: `/v1/characters/{character_id}/opportunities/`\n\nAlternate route: `/legacy/characters/{character_id}/opportunities/`\n\nAlternate route: `/dev/characters/{character_id}/opportunities/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -7996,6 +8943,187 @@
                     "v3"
                 ],
                 "x-cached-seconds": 120
+            }
+        },
+        "/characters/{character_id}/standings/": {
+            "get": {
+                "description": "Return character standings from agents, NPC corporations, and factions\n\n---\n\nAlternate route: `/v1/characters/{character_id}/standings/`\n\nAlternate route: `/legacy/characters/{character_id}/standings/`\n\nAlternate route: `/dev/characters/{character_id}/standings/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_standings",
+                "parameters": [
+                    {
+                        "description": "ID for a character",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of standings",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "from_id": 3009841,
+                                    "from_type": "agent",
+                                    "standing": 0.1
+                                },
+                                {
+                                    "from_id": 1000061,
+                                    "from_type": "npc_corp",
+                                    "standing": 0
+                                },
+                                {
+                                    "from_id": 500003,
+                                    "from_type": "faction",
+                                    "standing": -1
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "from_id": {
+                                        "description": "from_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_standings_from_id",
+                                        "type": "integer"
+                                    },
+                                    "from_type": {
+                                        "description": "from_type string",
+                                        "enum": [
+                                            "agent",
+                                            "npc_corp",
+                                            "faction"
+                                        ],
+                                        "title": "get_characters_character_id_standings_from_type",
+                                        "type": "string"
+                                    },
+                                    "standing": {
+                                        "description": "standing number",
+                                        "format": "float",
+                                        "maximum": 10,
+                                        "minimum": -10,
+                                        "title": "get_characters_character_id_standings_standing",
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "from_id",
+                                    "from_type",
+                                    "standing"
+                                ],
+                                "title": "get_characters_character_id_standings_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_characters_character_id_standings_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-characters.read_standings.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_standings_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_standings_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_standings_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_standings_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_standings.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get standings",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/characters/{character_id}/wallets/": {
@@ -16669,6 +17797,133 @@
                 "x-cached-seconds": 5
             }
         },
+        "/sovereignty/map/": {
+            "get": {
+                "description": "Shows sovereignty information for solar systems\n\n---\n\nAlternate route: `/v1/sovereignty/map/`\n\nAlternate route: `/legacy/sovereignty/map/`\n\nAlternate route: `/dev/sovereignty/map/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_sovereignty_map",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of sovereignty information for solar systems in New Eden",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "faction_id": 500001,
+                                    "system_id": 30045334
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "alliance_id": {
+                                        "description": "alliance_id integer",
+                                        "format": "int32",
+                                        "title": "get_sovereignty_map_alliance_id",
+                                        "type": "integer"
+                                    },
+                                    "corporation_id": {
+                                        "description": "corporation_id integer",
+                                        "format": "int32",
+                                        "title": "get_sovereignty_map_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "faction_id": {
+                                        "description": "faction_id integer",
+                                        "format": "int32",
+                                        "title": "get_sovereignty_map_faction_id",
+                                        "type": "integer"
+                                    },
+                                    "system_id": {
+                                        "description": "system_id integer",
+                                        "format": "int32",
+                                        "title": "get_sovereignty_map_system_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "system_id"
+                                ],
+                                "title": "get_sovereignty_map_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_sovereignty_map_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_sovereignty_map_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_sovereignty_map_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "List sovereignty of systems",
+                "tags": [
+                    "Sovereignty"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
         "/sovereignty/structures/": {
             "get": {
                 "description": "Shows sovereignty data for structures.\n\n---\n\nAlternate route: `/v1/sovereignty/structures/`\n\nAlternate route: `/legacy/sovereignty/structures/`\n\nAlternate route: `/dev/sovereignty/structures/`\n\n\n---\n\nThis route is cached for up to 120 seconds",
@@ -20933,6 +22188,254 @@
                 "x-cached-seconds": 3600
             }
         },
+        "/universe/system_jumps/": {
+            "get": {
+                "description": "Get the number of jumps in solar systems within the last hour, excluding wormhole space. Only systems with jumps will be listed\n\n---\n\nAlternate route: `/v1/universe/system_jumps/`\n\nAlternate route: `/legacy/universe/system_jumps/`\n\nAlternate route: `/dev/universe/system_jumps/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_system_jumps",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of systems and number of jumps",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "ship_jumps": 42,
+                                    "system_id": 30002410
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "ship_jumps": {
+                                        "description": "ship_jumps integer",
+                                        "format": "int32",
+                                        "title": "get_universe_system_jumps_ship_jumps",
+                                        "type": "integer"
+                                    },
+                                    "system_id": {
+                                        "description": "system_id integer",
+                                        "format": "int32",
+                                        "title": "get_universe_system_jumps_system_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "system_id",
+                                    "ship_jumps"
+                                ],
+                                "title": "get_universe_system_jumps_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_universe_system_jumps_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_system_jumps_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_system_jumps_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get system jumps",
+                "tags": [
+                    "Universe"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/universe/system_kills/": {
+            "get": {
+                "description": "Get the number of ship, pod and NPC kills per solar system within the last hour, excluding wormhole space. Only systems with kills will be listed\n\n---\n\nAlternate route: `/v1/universe/system_kills/`\n\nAlternate route: `/legacy/universe/system_kills/`\n\nAlternate route: `/dev/universe/system_kills/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_system_kills",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of systems and number of ship, pod and NPC kills",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "npc_kills": 0,
+                                    "pod_kills": 24,
+                                    "ship_kills": 42,
+                                    "system_id": 30002410
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "npc_kills": {
+                                        "description": "Number of NPC ships killed in this system",
+                                        "format": "int32",
+                                        "title": "get_universe_system_kills_npc_kills",
+                                        "type": "integer"
+                                    },
+                                    "pod_kills": {
+                                        "description": "Number of pods killed in this system",
+                                        "format": "int32",
+                                        "title": "get_universe_system_kills_pod_kills",
+                                        "type": "integer"
+                                    },
+                                    "ship_kills": {
+                                        "description": "Number of player ships killed in this system",
+                                        "format": "int32",
+                                        "title": "get_universe_system_kills_ship_kills",
+                                        "type": "integer"
+                                    },
+                                    "system_id": {
+                                        "description": "system_id integer",
+                                        "format": "int32",
+                                        "title": "get_universe_system_kills_system_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "system_id",
+                                    "ship_kills",
+                                    "npc_kills",
+                                    "pod_kills"
+                                ],
+                                "title": "get_universe_system_kills_200_ok",
+                                "type": "object"
+                            },
+                            "title": "get_universe_system_kills_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_universe_system_kills_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_system_kills_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Get system kills",
+                "tags": [
+                    "Universe"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
         "/universe/systems/": {
             "get": {
                 "description": "Get a list of solar systems\n\n---\n\nAlternate route: `/v1/universe/systems/`\n\nAlternate route: `/legacy/universe/systems/`\n\nAlternate route: `/dev/universe/systems/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -22249,9 +23752,13 @@
                 "esi-bookmarks.read_character_bookmarks.v1": "EVE SSO scope esi-bookmarks.read_character_bookmarks.v1",
                 "esi-calendar.read_calendar_events.v1": "EVE SSO scope esi-calendar.read_calendar_events.v1",
                 "esi-calendar.respond_calendar_events.v1": "EVE SSO scope esi-calendar.respond_calendar_events.v1",
+                "esi-characters.read_agents_research.v1": "EVE SSO scope esi-characters.read_agents_research.v1",
+                "esi-characters.read_chat_channels.v1": "EVE SSO scope esi-characters.read_chat_channels.v1",
                 "esi-characters.read_contacts.v1": "EVE SSO scope esi-characters.read_contacts.v1",
                 "esi-characters.read_loyalty.v1": "EVE SSO scope esi-characters.read_loyalty.v1",
+                "esi-characters.read_medals.v1": "EVE SSO scope esi-characters.read_medals.v1",
                 "esi-characters.read_opportunities.v1": "EVE SSO scope esi-characters.read_opportunities.v1",
+                "esi-characters.read_standings.v1": "EVE SSO scope esi-characters.read_standings.v1",
                 "esi-characters.write_contacts.v1": "EVE SSO scope esi-characters.write_contacts.v1",
                 "esi-clones.read_clones.v1": "EVE SSO scope esi-clones.read_clones.v1",
                 "esi-corporations.read_corporation_membership.v1": "EVE SSO scope esi-corporations.read_corporation_membership.v1",
