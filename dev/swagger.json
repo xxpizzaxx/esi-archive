@@ -1458,7 +1458,8 @@
                                             "FighterTube2",
                                             "FighterTube3",
                                             "FighterTube4",
-                                            "Module"
+                                            "Module",
+                                            "Wardrobe"
                                         ],
                                         "title": "get_characters_character_id_assets_location_flag",
                                         "type": "string"
