@@ -636,7 +636,7 @@
                                 "title": "post_characters_affiliation_character",
                                 "type": "integer"
                             },
-                            "maxItems": 250,
+                            "maxItems": 1000,
                             "minItems": 1,
                             "title": "post_characters_affiliation_characters",
                             "type": "array",
