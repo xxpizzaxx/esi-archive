@@ -18237,6 +18237,126 @@
                 "x-cached-seconds": 120
             }
         },
+        "/status/": {
+            "get": {
+                "description": "EVE Server status\n\n---\n\nAlternate route: `/v1/status/`\n\nAlternate route: `/legacy/status/`\n\nAlternate route: `/dev/status/`\n\n\n---\n\nThis route is cached for up to 30 seconds",
+                "operationId": "get_status",
+                "parameters": [
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Server status",
+                        "examples": {
+                            "application/json": {
+                                "players": 12345,
+                                "server_version": 1132976,
+                                "start_time": "2017-01-02T12:34:56Z"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "players": {
+                                    "description": "Current online player count",
+                                    "title": "get_status_players",
+                                    "type": "integer"
+                                },
+                                "server_version": {
+                                    "description": "Running version as string",
+                                    "title": "get_status_server_version",
+                                    "type": "string"
+                                },
+                                "start_time": {
+                                    "description": "Server start timestamp",
+                                    "format": "date-time",
+                                    "title": "get_status_start_time",
+                                    "type": "string"
+                                },
+                                "vip": {
+                                    "description": "If the server is in VIP mode",
+                                    "title": "get_status_vip",
+                                    "type": "boolean"
+                                }
+                            },
+                            "required": [
+                                "start_time",
+                                "players",
+                                "server_version"
+                            ],
+                            "title": "get_status_ok",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_status_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_status_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "summary": "Retrieve the uptime and player counts",
+                "tags": [
+                    "Status"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 30
+            }
+        },
         "/ui/autopilot/waypoint/": {
             "post": {
                 "description": "Set a solar system as autopilot waypoint\n\n---\n\nAlternate route: `/v2/ui/autopilot/waypoint/`\n\nAlternate route: `/dev/ui/autopilot/waypoint/`\n",
