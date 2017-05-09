@@ -8117,7 +8117,7 @@
                 ],
                 "summary": "List orders from a character",
                 "tags": [
-                    "Market"
+                    "Markets"
                 ],
                 "x-alternate-versions": [
                     "dev",
