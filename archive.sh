@@ -8,6 +8,7 @@ function archive {
 }
 
 archive latest
+archive _latest
 archive dev
 archive legacy
 
