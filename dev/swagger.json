@@ -4,7 +4,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.4.4"
+        "version": "0.4.5.dev2"
     },
     "paths": {
         "/alliances/": {
@@ -7895,13 +7895,13 @@
                                     "is_buy_order": true,
                                     "is_corp": false,
                                     "issued": "2016-09-03T05:12:25Z",
+                                    "location_id": 456,
                                     "min_volume": 1,
                                     "order_id": 123,
                                     "price": 33.3,
                                     "range": "station",
                                     "region_id": 123,
                                     "state": "open",
-                                    "station_id": 456,
                                     "type_id": 456,
                                     "volume_remain": 4422,
                                     "volume_total": 123456
@@ -7961,6 +7961,12 @@
                                         "title": "get_characters_character_id_orders_issued",
                                         "type": "string"
                                     },
+                                    "location_id": {
+                                        "description": "ID of the location where order was placed",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_orders_location_id",
+                                        "type": "integer"
+                                    },
                                     "min_volume": {
                                         "description": "For bids (buy orders), the minimum quantity that will be accepted in a matching offer (sell order)",
                                         "format": "int32",
@@ -8017,12 +8023,6 @@
                                         "title": "get_characters_character_id_orders_state",
                                         "type": "string"
                                     },
-                                    "station_id": {
-                                        "description": "ID of the station where order was placed",
-                                        "format": "int64",
-                                        "title": "get_characters_character_id_orders_station_id",
-                                        "type": "integer"
-                                    },
                                     "type_id": {
                                         "description": "The type ID of the item transacted in this order",
                                         "format": "int32",
@@ -8046,7 +8046,7 @@
                                     "order_id",
                                     "type_id",
                                     "region_id",
-                                    "station_id",
+                                    "location_id",
                                     "range",
                                     "is_buy_order",
                                     "price",
