@@ -8952,6 +8952,196 @@
                 "x-cached-seconds": 3600
             }
         },
+        "/characters/{character_id}/roles/": {
+            "get": {
+                "description": "Returns a character's corporation roles\n\n---\n\nAlternate route: `/v1/characters/{character_id}/roles/`\n\nAlternate route: `/legacy/characters/{character_id}/roles/`\n\nAlternate route: `/dev/characters/{character_id}/roles/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_roles",
+                "parameters": [
+                    {
+                        "description": "A character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The character's roles in thier corporation",
+                        "examples": {
+                            "application/json": [
+                                "Director",
+                                "Station_Manager"
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok string",
+                                "enum": [
+                                    "Director",
+                                    "Personnel_Manager",
+                                    "Accountant",
+                                    "Security_Officer",
+                                    "Factory_Manager",
+                                    "Station_Manager",
+                                    "Auditor",
+                                    "Hangar_Take_1",
+                                    "Hangar_Take_2",
+                                    "Hangar_Take_3",
+                                    "Hangar_Take_4",
+                                    "Hangar_Take_5",
+                                    "Hangar_Take_6",
+                                    "Hangar_Take_7",
+                                    "Hangar_Query_1",
+                                    "Hangar_Query_2",
+                                    "Hangar_Query_3",
+                                    "Hangar_Query_4",
+                                    "Hangar_Query_5",
+                                    "Hangar_Query_6",
+                                    "Hangar_Query_7",
+                                    "Account_Take_1",
+                                    "Account_Take_2",
+                                    "Account_Take_3",
+                                    "Account_Take_4",
+                                    "Account_Take_5",
+                                    "Account_Take_6",
+                                    "Account_Take_7",
+                                    "Diplomat",
+                                    "Config_Equipment",
+                                    "Container_Take_1",
+                                    "Container_Take_2",
+                                    "Container_Take_3",
+                                    "Container_Take_4",
+                                    "Container_Take_5",
+                                    "Container_Take_6",
+                                    "Container_Take_7",
+                                    "Rent_Office",
+                                    "Rent_Factory_Facility",
+                                    "Rent_Research_Facility",
+                                    "Junior_Accountant",
+                                    "Config_Starbase_Equipment",
+                                    "Trader",
+                                    "Communications_Officer",
+                                    "Contract_Manager",
+                                    "Starbase_Defense_Operator",
+                                    "Starbase_Fuel_Technician",
+                                    "Fitting_Manager",
+                                    "Terrestrial_Combat_Officer",
+                                    "Terrestrial_Logistics_Officer"
+                                ],
+                                "title": "get_characters_character_id_roles_200_ok",
+                                "type": "string",
+                                "uniqueItems": true
+                            },
+                            "title": "get_characters_character_id_roles_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-characters.read_corporation_roles.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_roles_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_roles_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_roles_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_roles_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_corporation_roles.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get character corporation roles",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
         "/characters/{character_id}/search/": {
             "get": {
                 "description": "Search for entities that match a given sub-string.\n\n---\n\nAlternate route: `/v2/characters/{character_id}/search/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -24763,6 +24953,7 @@
                 "esi-characters.read_blueprints.v1": "EVE SSO scope esi-characters.read_blueprints.v1",
                 "esi-characters.read_chat_channels.v1": "EVE SSO scope esi-characters.read_chat_channels.v1",
                 "esi-characters.read_contacts.v1": "EVE SSO scope esi-characters.read_contacts.v1",
+                "esi-characters.read_corporation_roles.v1": "EVE SSO scope esi-characters.read_corporation_roles.v1",
                 "esi-characters.read_loyalty.v1": "EVE SSO scope esi-characters.read_loyalty.v1",
                 "esi-characters.read_medals.v1": "EVE SSO scope esi-characters.read_medals.v1",
                 "esi-characters.read_opportunities.v1": "EVE SSO scope esi-characters.read_opportunities.v1",
