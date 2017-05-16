@@ -4,7 +4,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.4.6.dev9"
+        "version": "0.4.6.dev10"
     },
     "paths": {
         "/alliances/": {
