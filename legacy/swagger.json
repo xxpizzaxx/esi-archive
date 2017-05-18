@@ -21175,10 +21175,10 @@
                             "description": "200 ok object",
                             "properties": {
                                 "category_id": {
-                                    "description": "category_id number",
-                                    "format": "float",
+                                    "description": "category_id integer",
+                                    "format": "int32",
                                     "title": "get_universe_groups_group_id_category_id",
-                                    "type": "number"
+                                    "type": "integer"
                                 },
                                 "group_id": {
                                     "description": "group_id integer",
