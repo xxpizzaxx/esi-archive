@@ -4135,7 +4135,7 @@
                                     },
                                     "station_id": {
                                         "description": "ID of the station where industry facility is located",
-                                        "format": "int32",
+                                        "format": "int64",
                                         "title": "get_characters_character_id_industry_jobs_station_id",
                                         "type": "integer"
                                     },
