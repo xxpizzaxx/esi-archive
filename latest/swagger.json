@@ -4581,7 +4581,7 @@
                                 "description": {
                                     "description": "description string",
                                     "maxLength": 500,
-                                    "minLength": 1,
+                                    "minLength": 0,
                                     "title": "post_characters_character_id_fittings_description",
                                     "type": "string"
                                 },
