@@ -4,7 +4,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.4.6"
+        "version": "0.4.7"
     },
     "paths": {
         "/v1/alliances/": {
@@ -1159,6 +1159,7 @@
                                 "title": "get_characters_character_id_assets_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 100000,
                             "title": "get_characters_character_id_assets_ok",
                             "type": "array"
                         }
@@ -2015,7 +2016,7 @@
                             }
                         },
                         "schema": {
-                            "description": "Up to 50 events from now or the event you requested\n",
+                            "description": "Up to 50 events from now or the event you requested",
                             "items": {
                                 "description": "event",
                                 "properties": {
@@ -2057,6 +2058,7 @@
                                 "title": "get_characters_character_id_calendar_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 50,
                             "title": "get_characters_character_id_calendar_ok",
                             "type": "array"
                         }
@@ -20934,6 +20936,7 @@
                                                     "title": "get_characters_character_id_clones_implant",
                                                     "type": "integer"
                                                 },
+                                                "maxItems": 11,
                                                 "title": "get_characters_character_id_clones_implants",
                                                 "type": "array"
                                             },
@@ -20956,6 +20959,7 @@
                                         "title": "get_characters_character_id_clones_jump_clone",
                                         "type": "object"
                                     },
+                                    "maxItems": 10,
                                     "title": "get_characters_character_id_clones_jump_clones",
                                     "type": "array"
                                 },
