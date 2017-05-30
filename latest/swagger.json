@@ -2700,6 +2700,142 @@
                     "v3"
                 ],
                 "x-cached-seconds": 5
+            },
+            "put": {
+                "description": "Set your response status to an event\n\n---\n\nAlternate route: `/v3/characters/{character_id}/calendar/{event_id}/`\n\nAlternate route: `/dev/characters/{character_id}/calendar/{event_id}/`\n",
+                "operationId": "put_characters_character_id_calendar_event_id",
+                "parameters": [
+                    {
+                        "description": "The character ID requesting the event",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "The ID of the event requested",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "event_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "The response value to set, overriding current value.",
+                        "in": "body",
+                        "name": "response",
+                        "required": true,
+                        "schema": {
+                            "description": "response schema",
+                            "properties": {
+                                "response": {
+                                    "description": "response string",
+                                    "enum": [
+                                        "accepted",
+                                        "declined",
+                                        "tentative"
+                                    ],
+                                    "title": "put_characters_character_id_calendar_event_id_response",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "response"
+                            ],
+                            "title": "put_characters_character_id_calendar_event_id_response"
+                        }
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Event updated"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-calendar.respond_calendar_events.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "put_characters_character_id_calendar_event_id_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_characters_character_id_calendar_event_id_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "put_characters_character_id_calendar_event_id_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "put_characters_character_id_calendar_event_id_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-calendar.respond_calendar_events.v1"
+                        ]
+                    }
+                ],
+                "summary": "Respond to an event",
+                "tags": [
+                    "Calendar"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v3"
+                ]
             }
         },
         "/characters/{character_id}/chat_channels/": {
@@ -24820,6 +24956,7 @@
                 "esi-assets.read_assets.v1": "EVE SSO scope esi-assets.read_assets.v1",
                 "esi-bookmarks.read_character_bookmarks.v1": "EVE SSO scope esi-bookmarks.read_character_bookmarks.v1",
                 "esi-calendar.read_calendar_events.v1": "EVE SSO scope esi-calendar.read_calendar_events.v1",
+                "esi-calendar.respond_calendar_events.v1": "EVE SSO scope esi-calendar.respond_calendar_events.v1",
                 "esi-characters.read_agents_research.v1": "EVE SSO scope esi-characters.read_agents_research.v1",
                 "esi-characters.read_blueprints.v1": "EVE SSO scope esi-characters.read_blueprints.v1",
                 "esi-characters.read_chat_channels.v1": "EVE SSO scope esi-characters.read_chat_channels.v1",
