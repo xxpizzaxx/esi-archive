@@ -7708,6 +7708,135 @@
                 "x-cached-seconds": 3600
             }
         },
+        "/characters/{character_id}/online/": {
+            "get": {
+                "description": "Checks if the character is currently online\n\n---\n\nAlternate route: `/v1/characters/{character_id}/online/`\n\nAlternate route: `/legacy/characters/{character_id}/online/`\n\nAlternate route: `/dev/characters/{character_id}/online/`\n\n\n---\n\nThis route is cached for up to 60 seconds",
+                "operationId": "get_characters_character_id_online",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Boolean of if the character is currently online",
+                        "examples": {
+                            "application/json": true
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok boolean",
+                            "title": "get_characters_character_id_online_ok",
+                            "type": "boolean"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-location.read_online.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_online_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_online_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_online_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_online_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-location.read_online.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get character online",
+                "tags": [
+                    "Location"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 60
+            }
+        },
         "/characters/{character_id}/opportunities/": {
             "get": {
                 "description": "Return a list of tasks finished by a character\n\n---\n\nAlternate route: `/v1/characters/{character_id}/opportunities/`\n\nAlternate route: `/legacy/characters/{character_id}/opportunities/`\n\nAlternate route: `/dev/characters/{character_id}/opportunities/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -24978,6 +25107,7 @@
                 "esi-industry.read_character_jobs.v1": "EVE SSO scope esi-industry.read_character_jobs.v1",
                 "esi-killmails.read_killmails.v1": "EVE SSO scope esi-killmails.read_killmails.v1",
                 "esi-location.read_location.v1": "EVE SSO scope esi-location.read_location.v1",
+                "esi-location.read_online.v1": "EVE SSO scope esi-location.read_online.v1",
                 "esi-location.read_ship_type.v1": "EVE SSO scope esi-location.read_ship_type.v1",
                 "esi-mail.organize_mail.v1": "EVE SSO scope esi-mail.organize_mail.v1",
                 "esi-mail.read_mail.v1": "EVE SSO scope esi-mail.read_mail.v1",
