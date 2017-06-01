@@ -9320,7 +9320,6 @@
                             ],
                             "type": "string"
                         },
-                        "maxItems": 11,
                         "minItems": 1,
                         "name": "categories",
                         "required": true,
@@ -9439,7 +9438,6 @@
                                         "title": "get_characters_character_id_search_agent",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_characters_character_id_search_agent",
                                     "type": "array"
                                 },
@@ -9451,7 +9449,6 @@
                                         "title": "get_characters_character_id_search_alliance",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_characters_character_id_search_alliance",
                                     "type": "array"
                                 },
@@ -9463,7 +9460,6 @@
                                         "title": "get_characters_character_id_search_character",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_characters_character_id_search_character",
                                     "type": "array"
                                 },
@@ -9475,7 +9471,6 @@
                                         "title": "get_characters_character_id_search_constellation",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_characters_character_id_search_constellation",
                                     "type": "array"
                                 },
@@ -9487,7 +9482,6 @@
                                         "title": "get_characters_character_id_search_corporation",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_characters_character_id_search_corporation",
                                     "type": "array"
                                 },
@@ -9499,7 +9493,6 @@
                                         "title": "get_characters_character_id_search_faction",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_characters_character_id_search_faction",
                                     "type": "array"
                                 },
@@ -9511,7 +9504,6 @@
                                         "title": "get_characters_character_id_search_inventorytype",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_characters_character_id_search_inventorytype",
                                     "type": "array"
                                 },
@@ -9523,7 +9515,6 @@
                                         "title": "get_characters_character_id_search_region",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_characters_character_id_search_region",
                                     "type": "array"
                                 },
@@ -9535,7 +9526,6 @@
                                         "title": "get_characters_character_id_search_solarsystem",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_characters_character_id_search_solarsystem",
                                     "type": "array"
                                 },
@@ -9547,7 +9537,6 @@
                                         "title": "get_characters_character_id_search_station",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_characters_character_id_search_station",
                                     "type": "array"
                                 },
@@ -9559,7 +9548,6 @@
                                         "title": "get_characters_character_id_search_structure",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_characters_character_id_search_structure",
                                     "type": "array"
                                 }
@@ -18574,7 +18562,6 @@
                             ],
                             "type": "string"
                         },
-                        "maxItems": 10,
                         "minItems": 1,
                         "name": "categories",
                         "required": true,
@@ -18679,7 +18666,6 @@
                                         "title": "get_search_agent",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_search_agent",
                                     "type": "array"
                                 },
@@ -18691,7 +18677,6 @@
                                         "title": "get_search_alliance",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_search_alliance",
                                     "type": "array"
                                 },
@@ -18703,7 +18688,6 @@
                                         "title": "get_search_character",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_search_character",
                                     "type": "array"
                                 },
@@ -18715,7 +18699,6 @@
                                         "title": "get_search_constellation",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_search_constellation",
                                     "type": "array"
                                 },
@@ -18727,7 +18710,6 @@
                                         "title": "get_search_corporation",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_search_corporation",
                                     "type": "array"
                                 },
@@ -18739,7 +18721,6 @@
                                         "title": "get_search_faction",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_search_faction",
                                     "type": "array"
                                 },
@@ -18751,7 +18732,6 @@
                                         "title": "get_search_inventorytype",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_search_inventorytype",
                                     "type": "array"
                                 },
@@ -18763,7 +18743,6 @@
                                         "title": "get_search_region",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_search_region",
                                     "type": "array"
                                 },
@@ -18775,7 +18754,6 @@
                                         "title": "get_search_solarsystem",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_search_solarsystem",
                                     "type": "array"
                                 },
@@ -18787,7 +18765,6 @@
                                         "title": "get_search_station",
                                         "type": "integer"
                                     },
-                                    "maxItems": 500,
                                     "title": "get_search_station",
                                     "type": "array"
                                 }
