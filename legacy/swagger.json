@@ -3566,6 +3566,7 @@
                                 "title": "get_characters_character_id_contacts_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 1024,
                             "title": "get_characters_character_id_contacts_ok",
                             "type": "array"
                         }
@@ -3734,6 +3735,7 @@
                                 "title": "post_characters_character_id_contacts_201_created",
                                 "type": "integer"
                             },
+                            "maxItems": 100,
                             "title": "post_characters_character_id_contacts_created",
                             "type": "array"
                         }
@@ -4039,6 +4041,7 @@
                                 "title": "get_characters_character_id_contacts_labels_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 64,
                             "title": "get_characters_character_id_contacts_labels_ok",
                             "type": "array"
                         }
