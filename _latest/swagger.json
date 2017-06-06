@@ -4381,6 +4381,7 @@
                                 "title": "get_characters_character_id_killmails_recent_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 5000,
                             "title": "get_characters_character_id_killmails_recent_ok",
                             "type": "array"
                         }
@@ -6775,6 +6776,7 @@
                                 "title": "get_characters_character_id_orders_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 500,
                             "title": "get_characters_character_id_orders_ok",
                             "type": "array"
                         }
@@ -7180,11 +7182,12 @@
                                     "Terrestrial_Logistics_Officer"
                                 ],
                                 "title": "get_characters_character_id_roles_200_ok",
-                                "type": "string",
-                                "uniqueItems": true
+                                "type": "string"
                             },
+                            "maxItems": 50,
                             "title": "get_characters_character_id_roles_ok",
-                            "type": "array"
+                            "type": "array",
+                            "uniqueItems": true
                         }
                     },
                     "403": {
@@ -7752,6 +7755,7 @@
                             "format": "int64",
                             "type": "integer"
                         },
+                        "maxItems": 100,
                         "minItems": 1,
                         "name": "corporation_ids",
                         "required": true,
@@ -7830,6 +7834,7 @@
                                 "title": "get_corporations_names_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 100,
                             "title": "get_corporations_names_ok",
                             "type": "array"
                         }
@@ -7928,6 +7933,7 @@
                                 "title": "get_corporations_npccorps_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 500,
                             "title": "get_corporations_npccorps_ok",
                             "type": "array"
                         }
@@ -8082,6 +8088,7 @@
                                 "title": "get_corporations_corporation_id_alliancehistory_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10000,
                             "title": "get_corporations_corporation_id_alliancehistory_ok",
                             "type": "array"
                         }
@@ -8398,6 +8405,7 @@
                                             "type": "string",
                                             "uniqueItems": true
                                         },
+                                        "maxItems": 50,
                                         "title": "get_corporations_corporation_id_roles_grantable_roles",
                                         "type": "array"
                                     },
@@ -8461,6 +8469,7 @@
                                             "type": "string",
                                             "uniqueItems": true
                                         },
+                                        "maxItems": 50,
                                         "title": "get_corporations_corporation_id_roles_grantable_roles_at_base",
                                         "type": "array"
                                     },
@@ -8524,6 +8533,7 @@
                                             "type": "string",
                                             "uniqueItems": true
                                         },
+                                        "maxItems": 50,
                                         "title": "get_corporations_corporation_id_roles_grantable_roles_at_hq",
                                         "type": "array"
                                     },
@@ -8587,6 +8597,7 @@
                                             "type": "string",
                                             "uniqueItems": true
                                         },
+                                        "maxItems": 50,
                                         "title": "get_corporations_corporation_id_roles_grantable_roles_at_other",
                                         "type": "array"
                                     },
@@ -8650,6 +8661,7 @@
                                             "type": "string",
                                             "uniqueItems": true
                                         },
+                                        "maxItems": 50,
                                         "title": "get_corporations_corporation_id_roles_roles",
                                         "type": "array"
                                     },
@@ -8713,6 +8725,7 @@
                                             "type": "string",
                                             "uniqueItems": true
                                         },
+                                        "maxItems": 50,
                                         "title": "get_corporations_corporation_id_roles_roles_at_base",
                                         "type": "array"
                                     },
@@ -8776,6 +8789,7 @@
                                             "type": "string",
                                             "uniqueItems": true
                                         },
+                                        "maxItems": 50,
                                         "title": "get_corporations_corporation_id_roles_roles_at_hq",
                                         "type": "array"
                                     },
@@ -8839,6 +8853,7 @@
                                             "type": "string",
                                             "uniqueItems": true
                                         },
+                                        "maxItems": 50,
                                         "title": "get_corporations_corporation_id_roles_roles_at_other",
                                         "type": "array"
                                     }
@@ -8849,6 +8864,7 @@
                                 "title": "get_corporations_corporation_id_roles_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 12601,
                             "title": "get_corporations_corporation_id_roles_ok",
                             "type": "array"
                         }
@@ -9068,6 +9084,7 @@
                                             "title": "get_corporations_corporation_id_structures_current_vul",
                                             "type": "object"
                                         },
+                                        "maxItems": 168,
                                         "title": "get_corporations_corporation_id_structures_current_vul",
                                         "type": "array"
                                     },
@@ -9102,6 +9119,7 @@
                                             "title": "get_corporations_corporation_id_structures_next_vul",
                                             "type": "object"
                                         },
+                                        "maxItems": 168,
                                         "title": "get_corporations_corporation_id_structures_next_vul",
                                         "type": "array"
                                     },
@@ -9139,6 +9157,7 @@
                                             "title": "get_corporations_corporation_id_structures_service",
                                             "type": "object"
                                         },
+                                        "maxItems": 10,
                                         "title": "get_corporations_corporation_id_structures_services",
                                         "type": "array"
                                     },
@@ -9191,6 +9210,7 @@
                                 "title": "get_corporations_corporation_id_structures_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 250,
                             "title": "get_corporations_corporation_id_structures_ok",
                             "type": "array"
                         }
@@ -9313,6 +9333,7 @@
                                 "title": "put_corporations_corporation_id_structures_structure_id_new_schedule",
                                 "type": "object"
                             },
+                            "maxItems": 168,
                             "minItems": 1,
                             "title": "put_corporations_corporation_id_structures_structure_id_new_schedule",
                             "type": "array"
@@ -13173,6 +13194,7 @@
                                         "title": "get_killmails_killmail_id_killmail_hash_attacker",
                                         "type": "object"
                                     },
+                                    "maxItems": 10000,
                                     "title": "get_killmails_killmail_id_killmail_hash_attackers",
                                     "type": "array"
                                 },
@@ -13294,6 +13316,7 @@
                                                             "title": "get_killmails_killmail_id_killmail_hash_item",
                                                             "type": "object"
                                                         },
+                                                        "maxItems": 10000,
                                                         "title": "get_killmails_killmail_id_killmail_hash_items",
                                                         "type": "array"
                                                     },
@@ -13324,6 +13347,7 @@
                                                 "title": "get_killmails_killmail_id_killmail_hash_item",
                                                 "type": "object"
                                             },
+                                            "maxItems": 10000,
                                             "title": "get_killmails_killmail_id_killmail_hash_items",
                                             "type": "array"
                                         },
@@ -13696,6 +13720,7 @@
                                 "title": "get_markets_groups_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 5000,
                             "title": "get_markets_groups_ok",
                             "type": "array"
                         }
@@ -13859,6 +13884,7 @@
                                         "title": "get_markets_groups_market_group_id_type",
                                         "type": "integer"
                                     },
+                                    "maxItems": 5000,
                                     "title": "get_markets_groups_market_group_id_types",
                                     "type": "array"
                                 }
@@ -14011,6 +14037,7 @@
                                 "title": "get_markets_prices_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 20000,
                             "title": "get_markets_prices_ok",
                             "type": "array"
                         }
@@ -14234,6 +14261,7 @@
                                 "title": "get_markets_structures_structure_id_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 5000,
                             "title": "get_markets_structures_structure_id_ok",
                             "type": "array"
                         }
@@ -14425,6 +14453,7 @@
                                 "title": "get_markets_region_id_history_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 500,
                             "title": "get_markets_region_id_history_ok",
                             "type": "array"
                         }
@@ -14683,6 +14712,7 @@
                                 "title": "get_markets_region_id_orders_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10000,
                             "title": "get_markets_region_id_orders_ok",
                             "type": "array"
                         }
@@ -17000,6 +17030,7 @@
                                 "title": "get_universe_bloodlines_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 100,
                             "title": "get_universe_bloodlines_ok",
                             "type": "array"
                         }
@@ -17097,6 +17128,7 @@
                                 "title": "get_universe_categories_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 10000,
                             "title": "get_universe_categories_ok",
                             "type": "array"
                         }
@@ -17243,6 +17275,7 @@
                                         "title": "get_universe_categories_category_id_group",
                                         "type": "integer"
                                     },
+                                    "maxItems": 10000,
                                     "title": "get_universe_categories_category_id_groups",
                                     "type": "array"
                                 },
@@ -17379,6 +17412,7 @@
                                 "title": "get_universe_constellations_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 10000,
                             "title": "get_universe_constellations_ok",
                             "type": "array"
                         }
@@ -17570,6 +17604,7 @@
                                         "title": "get_universe_constellations_constellation_id_system",
                                         "type": "integer"
                                     },
+                                    "maxItems": 10000,
                                     "title": "get_universe_constellations_constellation_id_systems",
                                     "type": "array"
                                 }
@@ -17802,6 +17837,7 @@
                                 "title": "get_universe_factions_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10000,
                             "title": "get_universe_factions_ok",
                             "type": "array"
                         }
@@ -17898,6 +17934,7 @@
                                 "title": "get_universe_graphics_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 10000,
                             "title": "get_universe_graphics_ok",
                             "type": "array"
                         }
@@ -18168,6 +18205,7 @@
                                 "title": "get_universe_groups_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 1000,
                             "title": "get_universe_groups_ok",
                             "type": "array"
                         }
@@ -18331,6 +18369,7 @@
                                         "title": "get_universe_groups_group_id_type",
                                         "type": "integer"
                                     },
+                                    "maxItems": 10000,
                                     "title": "get_universe_groups_group_id_types",
                                     "type": "array"
                                 }
@@ -18884,6 +18923,7 @@
                                 "title": "get_universe_races_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 4,
                             "title": "get_universe_races_ok",
                             "type": "array"
                         }
@@ -18980,6 +19020,7 @@
                                 "title": "get_universe_regions_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 1000,
                             "title": "get_universe_regions_ok",
                             "type": "array"
                         }
@@ -19119,6 +19160,7 @@
                                         "title": "get_universe_regions_region_id_constellation",
                                         "type": "integer"
                                     },
+                                    "maxItems": 1000,
                                     "title": "get_universe_regions_region_id_constellations",
                                     "type": "array"
                                 },
@@ -19612,6 +19654,7 @@
                                 "title": "get_universe_structures_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 10000,
                             "title": "get_universe_structures_ok",
                             "type": "array",
                             "uniqueItems": true
@@ -19934,6 +19977,7 @@
                                 "title": "get_universe_system_jumps_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 1000,
                             "title": "get_universe_system_jumps_ok",
                             "type": "array"
                         }
@@ -20066,6 +20110,7 @@
                                 "title": "get_universe_system_kills_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10000,
                             "title": "get_universe_system_kills_ok",
                             "type": "array"
                         }
@@ -20163,6 +20208,7 @@
                                 "title": "get_universe_systems_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 10000,
                             "title": "get_universe_systems_ok",
                             "type": "array"
                         }
@@ -20269,6 +20315,7 @@
                                 "title": "get_universe_types_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 1000,
                             "title": "get_universe_types_ok",
                             "type": "array"
                         }
@@ -22628,6 +22675,7 @@
                                 "title": "get_corporations_corporation_id_members_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 12601,
                             "title": "get_corporations_corporation_id_members_ok",
                             "type": "array"
                         }
@@ -22923,6 +22971,7 @@
                                 "title": "post_universe_names_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 1000,
                             "title": "post_universe_names_ok",
                             "type": "array"
                         }
@@ -23175,6 +23224,7 @@
                                         "title": "get_universe_stations_station_id_service",
                                         "type": "string"
                                     },
+                                    "maxItems": 30,
                                     "title": "get_universe_stations_station_id_services",
                                     "type": "array"
                                 },
@@ -23401,6 +23451,7 @@
                                                     "title": "get_universe_systems_system_id_moon",
                                                     "type": "integer"
                                                 },
+                                                "maxItems": 1000,
                                                 "title": "get_universe_systems_system_id_moons",
                                                 "type": "array"
                                             },
@@ -23417,6 +23468,7 @@
                                         "title": "get_universe_systems_system_id_planet",
                                         "type": "object"
                                     },
+                                    "maxItems": 1000,
                                     "title": "get_universe_systems_system_id_planets",
                                     "type": "array"
                                 },
@@ -23469,6 +23521,7 @@
                                         "title": "get_universe_systems_system_id_stargate",
                                         "type": "integer"
                                     },
+                                    "maxItems": 1000,
                                     "title": "get_universe_systems_system_id_stargates",
                                     "type": "array"
                                 },
@@ -23672,6 +23725,7 @@
                                         "title": "get_universe_types_type_id_dogma_attribute",
                                         "type": "object"
                                     },
+                                    "maxItems": 1000,
                                     "title": "get_universe_types_type_id_dogma_attributes",
                                     "type": "array"
                                 },
@@ -23699,6 +23753,7 @@
                                         "title": "get_universe_types_type_id_dogma_effect",
                                         "type": "object"
                                     },
+                                    "maxItems": 1000,
                                     "title": "get_universe_types_type_id_dogma_effects",
                                     "type": "array"
                                 },
