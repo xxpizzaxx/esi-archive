@@ -2496,19 +2496,19 @@
                         "type": "integer"
                     },
                     {
-                        "description": "A list of contacts to edit",
+                        "description": "A list of contacts to delete",
                         "in": "body",
                         "name": "contact_ids",
                         "required": true,
                         "schema": {
                             "description": "contact_ids array",
                             "items": {
-                                "description": "ID of the contact to edit",
+                                "description": "ID of the contact to delete",
                                 "format": "int32",
                                 "title": "delete_characters_character_id_contacts_contact_id",
                                 "type": "integer"
                             },
-                            "maxItems": 20,
+                            "maxItems": 100,
                             "minItems": 1,
                             "title": "delete_characters_character_id_contacts_contact_ids",
                             "type": "array"
@@ -2601,7 +2601,6 @@
                     "Contacts"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ]
