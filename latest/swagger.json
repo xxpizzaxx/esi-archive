@@ -23707,7 +23707,7 @@
                                 "title": "get_universe_system_jumps_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 1000,
+                            "maxItems": 10000,
                             "title": "get_universe_system_jumps_ok",
                             "type": "array"
                         }
