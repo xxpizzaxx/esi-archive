@@ -7718,7 +7718,7 @@
         },
         "/characters/{character_id}/online/": {
             "get": {
-                "description": "Checks if the character is currently online\n\n---\n\nAlternate route: `/v1/characters/{character_id}/online/`\n\nAlternate route: `/legacy/characters/{character_id}/online/`\n\nAlternate route: `/dev/characters/{character_id}/online/`\n\n\n---\n\nThis route is cached for up to 60 seconds",
+                "description": "Checks if the character is currently online\n\n---\n\nAlternate route: `/v1/characters/{character_id}/online/`\n\nAlternate route: `/legacy/characters/{character_id}/online/`\n\n\n---\n\nThis route is cached for up to 60 seconds",
                 "operationId": "get_characters_character_id_online",
                 "parameters": [
                     {
@@ -7838,7 +7838,6 @@
                     "Location"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ],
