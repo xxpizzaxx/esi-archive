@@ -4,7 +4,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.4.9.dev1"
+        "version": "0.4.9"
     },
     "paths": {
         "/v1/alliances/": {
@@ -7872,7 +7872,7 @@
         },
         "/v1/corporations/npccorps/": {
             "get": {
-                "description": "Get a list of npc corporations\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get a list of npc corporations\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_corporations_npccorps",
                 "parameters": [
                     {
@@ -7965,8 +7965,7 @@
                     "dev",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/v1/corporations/{corporation_id}/alliancehistory/": {
@@ -9429,7 +9428,7 @@
         },
         "/v1/dogma/attributes/": {
             "get": {
-                "description": "Get a list of dogma attribute ids\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get a list of dogma attribute ids\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_dogma_attributes",
                 "parameters": [
                     {
@@ -9522,13 +9521,12 @@
                     "dev",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/v1/dogma/attributes/{attribute_id}/": {
             "get": {
-                "description": "Get information on a dogma attribute\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get information on a dogma attribute\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_dogma_attributes_attribute_id",
                 "parameters": [
                     {
@@ -9708,13 +9706,12 @@
                     "dev",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/v1/dogma/effects/": {
             "get": {
-                "description": "Get a list of dogma effect ids\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get a list of dogma effect ids\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_dogma_effects",
                 "parameters": [
                     {
@@ -9807,13 +9804,12 @@
                     "dev",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/v1/dogma/effects/{effect_id}/": {
             "get": {
-                "description": "Get information on a dogma effect\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get information on a dogma effect\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_dogma_effects_effect_id",
                 "parameters": [
                     {
@@ -10101,8 +10097,7 @@
                 "x-alternate-versions": [
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/v1/fleets/{fleet_id}/": {
@@ -12457,7 +12452,7 @@
                                             "title": "get_incursions_infested_solar_system",
                                             "type": "integer"
                                         },
-                                        "maxItems": 10,
+                                        "maxItems": 100,
                                         "title": "get_incursions_infested_solar_systems",
                                         "type": "array"
                                     },
@@ -12502,7 +12497,7 @@
                                 "title": "get_incursions_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 10,
+                            "maxItems": 100,
                             "title": "get_incursions_ok",
                             "type": "array"
                         }
@@ -13466,7 +13461,7 @@
         },
         "/v1/loyalty/stores/{corporation_id}/offers/": {
             "get": {
-                "description": "Return a list of offers from a specific corporation's loyalty store\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return a list of offers from a specific corporation's loyalty store\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_loyalty_stores_corporation_id_offers",
                 "parameters": [
                     {
@@ -13653,13 +13648,12 @@
                     "dev",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/v1/markets/groups/": {
             "get": {
-                "description": "Get a list of item groups\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get a list of item groups\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_markets_groups",
                 "parameters": [
                     {
@@ -13752,13 +13746,12 @@
                     "dev",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/v1/markets/groups/{market_group_id}/": {
             "get": {
-                "description": "Get information on an item group\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get information on an item group\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_markets_groups_market_group_id",
                 "parameters": [
                     {
@@ -13946,8 +13939,7 @@
                     "dev",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/v1/markets/prices/": {
@@ -14770,7 +14762,7 @@
         },
         "/v1/opportunities/groups/": {
             "get": {
-                "description": "Return a list of opportunities groups\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return a list of opportunities groups\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_opportunities_groups",
                 "parameters": [
                     {
@@ -14864,13 +14856,12 @@
                     "dev",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/v1/opportunities/groups/{group_id}/": {
             "get": {
-                "description": "Return information of an opportunities group\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return information of an opportunities group\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_opportunities_groups_group_id",
                 "parameters": [
                     {
@@ -15053,13 +15044,12 @@
                     "dev",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/v1/opportunities/tasks/": {
             "get": {
-                "description": "Return a list of opportunities tasks\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return a list of opportunities tasks\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_opportunities_tasks",
                 "parameters": [
                     {
@@ -15153,13 +15143,12 @@
                     "dev",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/v1/opportunities/tasks/{task_id}/": {
             "get": {
-                "description": "Return information of an opportunities task\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return information of an opportunities task\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_opportunities_tasks_task_id",
                 "parameters": [
                     {
@@ -15283,8 +15272,7 @@
                     "dev",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/v1/route/{origin}/{destination}/": {
