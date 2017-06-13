@@ -23616,7 +23616,7 @@
         },
         "/universe/system_jumps/": {
             "get": {
-                "description": "Get the number of jumps in solar systems within the last hour, excluding wormhole space. Only systems with jumps will be listed\n\n---\n\nAlternate route: `/v1/universe/system_jumps/`\n\nAlternate route: `/legacy/universe/system_jumps/`\n\nAlternate route: `/dev/universe/system_jumps/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get the number of jumps in solar systems within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with jumps will be listed\n\n---\n\nAlternate route: `/v1/universe/system_jumps/`\n\nAlternate route: `/legacy/universe/system_jumps/`\n\nAlternate route: `/dev/universe/system_jumps/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_universe_system_jumps",
                 "parameters": [
                     {
@@ -23733,7 +23733,7 @@
         },
         "/universe/system_kills/": {
             "get": {
-                "description": "Get the number of ship, pod and NPC kills per solar system within the last hour, excluding wormhole space. Only systems with kills will be listed\n\n---\n\nAlternate route: `/v1/universe/system_kills/`\n\nAlternate route: `/legacy/universe/system_kills/`\n\nAlternate route: `/dev/universe/system_kills/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed\n\n---\n\nAlternate route: `/v1/universe/system_kills/`\n\nAlternate route: `/legacy/universe/system_kills/`\n\nAlternate route: `/dev/universe/system_kills/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_universe_system_kills",
                 "parameters": [
                     {
