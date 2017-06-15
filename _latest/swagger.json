@@ -1949,7 +1949,7 @@
         },
         "/v1/characters/{character_id}/calendar/": {
             "get": {
-                "description": "Get 50 event summaries from the calendar. If no event ID is given,\nthe resource will return the next 50 chronological event summaries\nfrom now. If an event ID is specified, it will return the next 50\nchronological event summaries from after that event.\n\n---\n\nThis route is cached for up to 5 seconds",
+                "description": "Get 50 event summaries from the calendar. If no event ID is given, the resource will return the next 50 chronological event summaries from now. If an event ID is specified, it will return the next 50 chronological event summaries from after that event.\n\n---\n\nThis route is cached for up to 5 seconds",
                 "operationId": "get_characters_character_id_calendar",
                 "parameters": [
                     {
@@ -4775,6 +4775,7 @@
                             "minimum": 0,
                             "type": "integer"
                         },
+                        "maxItems": 25,
                         "minItems": 1,
                         "name": "labels",
                         "required": false,
@@ -4931,6 +4932,7 @@
                                 "title": "get_characters_character_id_mail_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 50,
                             "title": "get_characters_character_id_mail_ok",
                             "type": "array"
                         }
@@ -5121,7 +5123,7 @@
                         }
                     },
                     "400": {
-                        "description": "Only one corporation, alliance, or mailing list can be the\nrecipient of a mail\n",
+                        "description": "Only one corporation, alliance, or mailing list can be the recipient of a mail",
                         "examples": {
                             "application/json": {
                                 "error": "Bad request message"
@@ -5425,6 +5427,7 @@
                                 "title": "get_characters_character_id_mail_lists_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 1000,
                             "title": "get_characters_character_id_mail_lists_ok",
                             "type": "array"
                         }
@@ -5706,6 +5709,7 @@
                                         "type": "integer",
                                         "uniqueItems": true
                                     },
+                                    "maxItems": 25,
                                     "title": "get_characters_character_id_mail_mail_id_labels",
                                     "type": "array"
                                 },
@@ -5875,6 +5879,7 @@
                                         "type": "integer",
                                         "uniqueItems": true
                                     },
+                                    "maxItems": 25,
                                     "title": "put_characters_character_id_mail_mail_id_labels",
                                     "type": "array"
                                 },
@@ -11668,7 +11673,7 @@
                                             "title": "get_fleets_fleet_id_wings_squad",
                                             "type": "object"
                                         },
-                                        "maxItems": 5,
+                                        "maxItems": 25,
                                         "title": "get_fleets_fleet_id_wings_squads",
                                         "type": "array"
                                     }
@@ -11681,7 +11686,7 @@
                                 "title": "get_fleets_fleet_id_wings_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 5,
+                            "maxItems": 25,
                             "title": "get_fleets_fleet_id_wings_ok",
                             "type": "array"
                         }
@@ -15396,6 +15401,7 @@
                                 "title": "Solar system ID",
                                 "type": "integer"
                             },
+                            "maxItems": 1000,
                             "title": "get_route_origin_destination_ok",
                             "type": "array"
                         }
@@ -24513,6 +24519,7 @@
                                         "title": "get_characters_character_id_mail_labels_label",
                                         "type": "object"
                                     },
+                                    "maxItems": 30,
                                     "title": "get_characters_character_id_mail_labels_labels",
                                     "type": "array"
                                 },
