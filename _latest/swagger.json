@@ -11668,7 +11668,7 @@
                                             "title": "get_fleets_fleet_id_wings_squad",
                                             "type": "object"
                                         },
-                                        "maxItems": 25,
+                                        "maxItems": 5,
                                         "title": "get_fleets_fleet_id_wings_squads",
                                         "type": "array"
                                     }
@@ -11681,7 +11681,7 @@
                                 "title": "get_fleets_fleet_id_wings_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 25,
+                            "maxItems": 5,
                             "title": "get_fleets_fleet_id_wings_ok",
                             "type": "array"
                         }
