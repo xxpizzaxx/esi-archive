@@ -4,7 +4,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.4.9"
+        "version": "0.5.0"
     },
     "paths": {
         "/alliances/": {
@@ -8449,6 +8449,7 @@
                                 "title": "get_characters_character_id_planets_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10,
                             "title": "get_characters_character_id_planets_ok",
                             "type": "array"
                         }
@@ -8515,7 +8516,7 @@
         },
         "/characters/{character_id}/planets/{planet_id}/": {
             "get": {
-                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information on this endpoint will not update until this criteria is met.\n\n---\n\nAlternate route: `/v2/characters/{character_id}/planets/{planet_id}/`\n\nAlternate route: `/dev/characters/{character_id}/planets/{planet_id}/`\n\n\n---\n\nThis route is cached for up to 600 seconds",
+                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.\n\n---\n\nAlternate route: `/v2/characters/{character_id}/planets/{planet_id}/`\n\nAlternate route: `/dev/characters/{character_id}/planets/{planet_id}/`\n\n\n---\n\nThis route is cached for up to 600 seconds",
                 "operationId": "get_characters_character_id_planets_planet_id",
                 "parameters": [
                     {
@@ -8654,6 +8655,7 @@
                                         "title": "get_characters_character_id_planets_planet_id_link",
                                         "type": "object"
                                     },
+                                    "maxItems": 500,
                                     "title": "get_characters_character_id_planets_planet_id_links",
                                     "type": "array"
                                 },
@@ -8717,6 +8719,7 @@
                                                             "title": "get_characters_character_id_planets_planet_id_head",
                                                             "type": "object"
                                                         },
+                                                        "maxItems": 10,
                                                         "title": "get_characters_character_id_planets_planet_id_heads",
                                                         "type": "array"
                                                     },
@@ -8807,6 +8810,7 @@
                                         "title": "get_characters_character_id_planets_planet_id_pin",
                                         "type": "object"
                                     },
+                                    "maxItems": 100,
                                     "title": "get_characters_character_id_planets_planet_id_pins",
                                     "type": "array"
                                 },
@@ -8872,6 +8876,7 @@
                                                     "title": "get_characters_character_id_planets_planet_id_waypoint",
                                                     "type": "object"
                                                 },
+                                                "maxItems": 5,
                                                 "title": "get_characters_character_id_planets_planet_id_waypoints",
                                                 "type": "array"
                                             }
@@ -8886,6 +8891,7 @@
                                         "title": "get_characters_character_id_planets_planet_id_route",
                                         "type": "object"
                                     },
+                                    "maxItems": 1000,
                                     "title": "get_characters_character_id_planets_planet_id_routes",
                                     "type": "array"
                                 }
@@ -23740,7 +23746,7 @@
         },
         "/universe/system_kills/": {
             "get": {
-                "description": "Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed\n\n---\n\nAlternate route: `/v1/universe/system_kills/`\n\nAlternate route: `/legacy/universe/system_kills/`\n\nAlternate route: `/dev/universe/system_kills/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed\n\n---\n\nAlternate route: `/v1/universe/system_kills/`\n\nAlternate route: `/legacy/universe/system_kills/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_universe_system_kills",
                 "parameters": [
                     {
@@ -23812,7 +23818,7 @@
                                         "type": "integer"
                                     },
                                     "ship_kills": {
-                                        "description": "Number of player ships killed in this system",
+                                        "description": "Number of player and NPC ships killed in this system",
                                         "format": "int32",
                                         "title": "get_universe_system_kills_ship_kills",
                                         "type": "integer"
@@ -23864,7 +23870,6 @@
                     "Universe"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ],
@@ -24174,7 +24179,7 @@
                                         "title": "get_universe_systems_system_id_stargate",
                                         "type": "integer"
                                     },
-                                    "maxItems": 1000,
+                                    "maxItems": 25,
                                     "title": "get_universe_systems_system_id_stargates",
                                     "type": "array"
                                 },
