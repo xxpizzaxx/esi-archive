@@ -4,7 +4,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.4.7"
+        "version": "0.5.0"
     },
     "paths": {
         "/alliances/": {
@@ -2294,7 +2294,7 @@
         },
         "/characters/{character_id}/calendar/": {
             "get": {
-                "description": "Get 50 event summaries from the calendar. If no event ID is given,\nthe resource will return the next 50 chronological event summaries\nfrom now. If an event ID is specified, it will return the next 50\nchronological event summaries from after that event.\n\n\n---\n\nAlternate route: `/v1/characters/{character_id}/calendar/`\n\nAlternate route: `/legacy/characters/{character_id}/calendar/`\n\nAlternate route: `/latest/characters/{character_id}/calendar/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
+                "description": "Get 50 event summaries from the calendar. If no event ID is given, the resource will return the next 50 chronological event summaries from now. If an event ID is specified, it will return the next 50 chronological event summaries from after that event.\n\n---\n\nAlternate route: `/v1/characters/{character_id}/calendar/`\n\nAlternate route: `/legacy/characters/{character_id}/calendar/`\n\nAlternate route: `/latest/characters/{character_id}/calendar/`\n\n\n---\n\nThis route is cached for up to 5 seconds",
                 "operationId": "get_characters_character_id_calendar",
                 "parameters": [
                     {
@@ -3408,7 +3408,7 @@
         },
         "/characters/{character_id}/contacts/": {
             "delete": {
-                "description": "Bulk delete contacts\n\n---\n\nAlternate route: `/v1/characters/{character_id}/contacts/`\n\nAlternate route: `/legacy/characters/{character_id}/contacts/`\n\nAlternate route: `/latest/characters/{character_id}/contacts/`\n",
+                "description": "Bulk delete contacts\n\n---\n\nAlternate route: `/v2/characters/{character_id}/contacts/`\n",
                 "operationId": "delete_characters_character_id_contacts",
                 "parameters": [
                     {
@@ -3420,23 +3420,17 @@
                         "type": "integer"
                     },
                     {
-                        "description": "A list of contacts to edit",
-                        "in": "body",
+                        "description": "A list of contacts to delete",
+                        "in": "query",
+                        "items": {
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "maxItems": 100,
+                        "minItems": 1,
                         "name": "contact_ids",
                         "required": true,
-                        "schema": {
-                            "description": "contact_ids array",
-                            "items": {
-                                "description": "ID of the contact to edit",
-                                "format": "int32",
-                                "title": "delete_characters_character_id_contacts_contact_id",
-                                "type": "integer"
-                            },
-                            "maxItems": 20,
-                            "minItems": 1,
-                            "title": "delete_characters_character_id_contacts_contact_ids",
-                            "type": "array"
-                        }
+                        "type": "array"
                     },
                     {
                         "default": "tranquility",
@@ -3525,9 +3519,7 @@
                     "Contacts"
                 ],
                 "x-alternate-versions": [
-                    "latest",
-                    "legacy",
-                    "v1"
+                    "v2"
                 ]
             },
             "get": {
@@ -3663,6 +3655,7 @@
                                 "title": "get_characters_character_id_contacts_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 1024,
                             "title": "get_characters_character_id_contacts_ok",
                             "type": "array"
                         }
@@ -3831,6 +3824,7 @@
                                 "title": "post_characters_character_id_contacts_201_created",
                                 "type": "integer"
                             },
+                            "maxItems": 100,
                             "title": "post_characters_character_id_contacts_created",
                             "type": "array"
                         }
@@ -4136,6 +4130,7 @@
                                 "title": "get_characters_character_id_contacts_labels_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 64,
                             "title": "get_characters_character_id_contacts_labels_ok",
                             "type": "array"
                         }
@@ -4619,6 +4614,7 @@
                                             "title": "get_characters_character_id_fittings_item",
                                             "type": "object"
                                         },
+                                        "maxItems": 255,
                                         "title": "get_characters_character_id_fittings_items",
                                         "type": "array"
                                     },
@@ -4644,6 +4640,7 @@
                                 "title": "get_characters_character_id_fittings_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 250,
                             "title": "get_characters_character_id_fittings_ok",
                             "type": "array"
                         }
@@ -5275,6 +5272,7 @@
                                 "title": "get_characters_character_id_industry_jobs_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 2000,
                             "title": "get_characters_character_id_industry_jobs_ok",
                             "type": "array"
                         }
@@ -5453,6 +5451,7 @@
                                 "title": "get_characters_character_id_killmails_recent_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 5000,
                             "title": "get_characters_character_id_killmails_recent_ok",
                             "type": "array"
                         }
@@ -5751,6 +5750,7 @@
                                 "title": "get_characters_character_id_loyalty_points_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 500,
                             "title": "get_characters_character_id_loyalty_points_ok",
                             "type": "array"
                         }
@@ -5846,6 +5846,7 @@
                             "minimum": 0,
                             "type": "integer"
                         },
+                        "maxItems": 25,
                         "minItems": 1,
                         "name": "labels",
                         "required": false,
@@ -6002,6 +6003,7 @@
                                 "title": "get_characters_character_id_mail_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 50,
                             "title": "get_characters_character_id_mail_ok",
                             "type": "array"
                         }
@@ -6192,7 +6194,7 @@
                         }
                     },
                     "400": {
-                        "description": "Only one corporation, alliance, or mailing list can be the\nrecipient of a mail\n",
+                        "description": "Only one corporation, alliance, or mailing list can be the recipient of a mail",
                         "examples": {
                             "application/json": {
                                 "error": "Bad request message"
@@ -6407,6 +6409,7 @@
                                         "title": "get_characters_character_id_mail_labels_label",
                                         "type": "object"
                                     },
+                                    "maxItems": 30,
                                     "title": "get_characters_character_id_mail_labels_labels",
                                     "type": "array"
                                 },
@@ -6868,6 +6871,7 @@
                                 "title": "get_characters_character_id_mail_lists_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 1000,
                             "title": "get_characters_character_id_mail_lists_ok",
                             "type": "array"
                         }
@@ -7149,6 +7153,7 @@
                                         "type": "integer",
                                         "uniqueItems": true
                                     },
+                                    "maxItems": 25,
                                     "title": "get_characters_character_id_mail_mail_id_labels",
                                     "type": "array"
                                 },
@@ -7318,6 +7323,7 @@
                                         "type": "integer",
                                         "uniqueItems": true
                                     },
+                                    "maxItems": 25,
                                     "title": "put_characters_character_id_mail_mail_id_labels",
                                     "type": "array"
                                 },
@@ -7710,7 +7716,7 @@
         },
         "/characters/{character_id}/online/": {
             "get": {
-                "description": "Checks if the character is currently online\n\n---\n\nAlternate route: `/v1/characters/{character_id}/online/`\n\nAlternate route: `/legacy/characters/{character_id}/online/`\n\nAlternate route: `/latest/characters/{character_id}/online/`\n\n\n---\n\nThis route is cached for up to 60 seconds",
+                "description": "Checks if the character is currently online\n\n---\n\nAlternate route: `/v2/characters/{character_id}/online/`\n\n\n---\n\nThis route is cached for up to 60 seconds",
                 "operationId": "get_characters_character_id_online",
                 "parameters": [
                     {
@@ -7753,9 +7759,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Boolean of if the character is currently online",
+                        "description": "Object describing the character's online status",
                         "examples": {
-                            "application/json": true
+                            "application/json": {
+                                "last_login": "2017-01-02T03:04:05Z",
+                                "last_logout": "2017-01-02T04:05:06Z",
+                                "logins": 9001,
+                                "online": true
+                            }
                         },
                         "headers": {
                             "Cache-Control": {
@@ -7772,9 +7783,37 @@
                             }
                         },
                         "schema": {
-                            "description": "200 ok boolean",
+                            "description": "200 ok object",
+                            "properties": {
+                                "last_login": {
+                                    "description": "Timestamp of the last login",
+                                    "format": "date-time",
+                                    "title": "get_characters_character_id_online_last_login",
+                                    "type": "string"
+                                },
+                                "last_logout": {
+                                    "description": "Timestamp of the last logout",
+                                    "format": "date-time",
+                                    "title": "get_characters_character_id_online_last_logout",
+                                    "type": "string"
+                                },
+                                "logins": {
+                                    "description": "Total number of times the character has logged in",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_online_logins",
+                                    "type": "integer"
+                                },
+                                "online": {
+                                    "description": "If the character is online",
+                                    "title": "get_characters_character_id_online_online",
+                                    "type": "boolean"
+                                }
+                            },
+                            "required": [
+                                "online"
+                            ],
                             "title": "get_characters_character_id_online_ok",
-                            "type": "boolean"
+                            "type": "object"
                         }
                     },
                     "403": {
@@ -7830,9 +7869,7 @@
                     "Location"
                 ],
                 "x-alternate-versions": [
-                    "latest",
-                    "legacy",
-                    "v1"
+                    "v2"
                 ],
                 "x-cached-seconds": 60
             }
@@ -7930,6 +7967,7 @@
                                 "title": "get_characters_character_id_opportunities_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 100,
                             "title": "get_characters_character_id_opportunities_ok",
                             "type": "array"
                         }
@@ -8217,6 +8255,7 @@
                                 "title": "get_characters_character_id_orders_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 500,
                             "title": "get_characters_character_id_orders_ok",
                             "type": "array"
                         }
@@ -8435,6 +8474,7 @@
                                 "title": "get_characters_character_id_planets_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10,
                             "title": "get_characters_character_id_planets_ok",
                             "type": "array"
                         }
@@ -8501,7 +8541,7 @@
         },
         "/characters/{character_id}/planets/{planet_id}/": {
             "get": {
-                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information on this endpoint will not update until this criteria is met.\n\n---\n\nAlternate route: `/v2/characters/{character_id}/planets/{planet_id}/`\n\nAlternate route: `/latest/characters/{character_id}/planets/{planet_id}/`\n\n\n---\n\nThis route is cached for up to 600 seconds",
+                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.\n\n---\n\nAlternate route: `/v2/characters/{character_id}/planets/{planet_id}/`\n\nAlternate route: `/latest/characters/{character_id}/planets/{planet_id}/`\n\n\n---\n\nThis route is cached for up to 600 seconds",
                 "operationId": "get_characters_character_id_planets_planet_id",
                 "parameters": [
                     {
@@ -8640,6 +8680,7 @@
                                         "title": "get_characters_character_id_planets_planet_id_link",
                                         "type": "object"
                                     },
+                                    "maxItems": 500,
                                     "title": "get_characters_character_id_planets_planet_id_links",
                                     "type": "array"
                                 },
@@ -8703,6 +8744,7 @@
                                                             "title": "get_characters_character_id_planets_planet_id_head",
                                                             "type": "object"
                                                         },
+                                                        "maxItems": 10,
                                                         "title": "get_characters_character_id_planets_planet_id_heads",
                                                         "type": "array"
                                                     },
@@ -8793,6 +8835,7 @@
                                         "title": "get_characters_character_id_planets_planet_id_pin",
                                         "type": "object"
                                     },
+                                    "maxItems": 100,
                                     "title": "get_characters_character_id_planets_planet_id_pins",
                                     "type": "array"
                                 },
@@ -8858,6 +8901,7 @@
                                                     "title": "get_characters_character_id_planets_planet_id_waypoint",
                                                     "type": "object"
                                                 },
+                                                "maxItems": 5,
                                                 "title": "get_characters_character_id_planets_planet_id_waypoints",
                                                 "type": "array"
                                             }
@@ -8872,6 +8916,7 @@
                                         "title": "get_characters_character_id_planets_planet_id_route",
                                         "type": "object"
                                     },
+                                    "maxItems": 1000,
                                     "title": "get_characters_character_id_planets_planet_id_routes",
                                     "type": "array"
                                 }
@@ -9229,11 +9274,12 @@
                                     "Terrestrial_Logistics_Officer"
                                 ],
                                 "title": "get_characters_character_id_roles_200_ok",
-                                "type": "string",
-                                "uniqueItems": true
+                                "type": "string"
                             },
+                            "maxItems": 50,
                             "title": "get_characters_character_id_roles_ok",
-                            "type": "array"
+                            "type": "array",
+                            "uniqueItems": true
                         }
                     },
                     "403": {
@@ -9932,6 +9978,7 @@
                                 "title": "get_characters_character_id_skillqueue_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 50,
                             "title": "get_characters_character_id_skillqueue_ok",
                             "type": "array"
                         }
@@ -10103,6 +10150,7 @@
                                         "title": "get_characters_character_id_skills_skill",
                                         "type": "object"
                                     },
+                                    "maxItems": 1000,
                                     "title": "get_characters_character_id_skills_skills",
                                     "type": "array"
                                 },
@@ -10447,6 +10495,7 @@
                                 "title": "get_characters_character_id_wallets_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10,
                             "title": "get_characters_character_id_wallets_ok",
                             "type": "array"
                         }
@@ -10523,6 +10572,7 @@
                             "format": "int64",
                             "type": "integer"
                         },
+                        "maxItems": 100,
                         "minItems": 1,
                         "name": "corporation_ids",
                         "required": true,
@@ -10601,6 +10651,7 @@
                                 "title": "get_corporations_names_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 100,
                             "title": "get_corporations_names_ok",
                             "type": "array"
                         }
@@ -10640,7 +10691,7 @@
         },
         "/corporations/npccorps/": {
             "get": {
-                "description": "Get a list of npc corporations\n\n---\n\nAlternate route: `/v1/corporations/npccorps/`\n\nAlternate route: `/legacy/corporations/npccorps/`\n\nAlternate route: `/latest/corporations/npccorps/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get a list of npc corporations\n\n---\n\nAlternate route: `/v1/corporations/npccorps/`\n\nAlternate route: `/legacy/corporations/npccorps/`\n\nAlternate route: `/latest/corporations/npccorps/`\n\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_corporations_npccorps",
                 "parameters": [
                     {
@@ -10699,6 +10750,7 @@
                                 "title": "get_corporations_npccorps_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 500,
                             "title": "get_corporations_npccorps_ok",
                             "type": "array"
                         }
@@ -10732,8 +10784,7 @@
                     "latest",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/corporations/{corporation_id}/": {
@@ -11060,6 +11111,7 @@
                                 "title": "get_corporations_corporation_id_alliancehistory_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10000,
                             "title": "get_corporations_corporation_id_alliancehistory_ok",
                             "type": "array"
                         }
@@ -11322,6 +11374,7 @@
                                 "title": "get_corporations_corporation_id_members_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 12601,
                             "title": "get_corporations_corporation_id_members_ok",
                             "type": "array"
                         }
@@ -11528,6 +11581,7 @@
                                             "type": "string",
                                             "uniqueItems": true
                                         },
+                                        "maxItems": 50,
                                         "title": "get_corporations_corporation_id_roles_grantable_roles",
                                         "type": "array"
                                     },
@@ -11591,6 +11645,7 @@
                                             "type": "string",
                                             "uniqueItems": true
                                         },
+                                        "maxItems": 50,
                                         "title": "get_corporations_corporation_id_roles_grantable_roles_at_base",
                                         "type": "array"
                                     },
@@ -11654,6 +11709,7 @@
                                             "type": "string",
                                             "uniqueItems": true
                                         },
+                                        "maxItems": 50,
                                         "title": "get_corporations_corporation_id_roles_grantable_roles_at_hq",
                                         "type": "array"
                                     },
@@ -11717,6 +11773,7 @@
                                             "type": "string",
                                             "uniqueItems": true
                                         },
+                                        "maxItems": 50,
                                         "title": "get_corporations_corporation_id_roles_grantable_roles_at_other",
                                         "type": "array"
                                     },
@@ -11780,6 +11837,7 @@
                                             "type": "string",
                                             "uniqueItems": true
                                         },
+                                        "maxItems": 50,
                                         "title": "get_corporations_corporation_id_roles_roles",
                                         "type": "array"
                                     },
@@ -11843,6 +11901,7 @@
                                             "type": "string",
                                             "uniqueItems": true
                                         },
+                                        "maxItems": 50,
                                         "title": "get_corporations_corporation_id_roles_roles_at_base",
                                         "type": "array"
                                     },
@@ -11906,6 +11965,7 @@
                                             "type": "string",
                                             "uniqueItems": true
                                         },
+                                        "maxItems": 50,
                                         "title": "get_corporations_corporation_id_roles_roles_at_hq",
                                         "type": "array"
                                     },
@@ -11969,6 +12029,7 @@
                                             "type": "string",
                                             "uniqueItems": true
                                         },
+                                        "maxItems": 50,
                                         "title": "get_corporations_corporation_id_roles_roles_at_other",
                                         "type": "array"
                                     }
@@ -11979,6 +12040,7 @@
                                 "title": "get_corporations_corporation_id_roles_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 12601,
                             "title": "get_corporations_corporation_id_roles_ok",
                             "type": "array"
                         }
@@ -12198,6 +12260,7 @@
                                             "title": "get_corporations_corporation_id_structures_current_vul",
                                             "type": "object"
                                         },
+                                        "maxItems": 168,
                                         "title": "get_corporations_corporation_id_structures_current_vul",
                                         "type": "array"
                                     },
@@ -12232,6 +12295,7 @@
                                             "title": "get_corporations_corporation_id_structures_next_vul",
                                             "type": "object"
                                         },
+                                        "maxItems": 168,
                                         "title": "get_corporations_corporation_id_structures_next_vul",
                                         "type": "array"
                                     },
@@ -12269,6 +12333,7 @@
                                             "title": "get_corporations_corporation_id_structures_service",
                                             "type": "object"
                                         },
+                                        "maxItems": 10,
                                         "title": "get_corporations_corporation_id_structures_services",
                                         "type": "array"
                                     },
@@ -12321,6 +12386,7 @@
                                 "title": "get_corporations_corporation_id_structures_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 250,
                             "title": "get_corporations_corporation_id_structures_ok",
                             "type": "array"
                         }
@@ -12443,6 +12509,7 @@
                                 "title": "put_corporations_corporation_id_structures_structure_id_new_schedule",
                                 "type": "object"
                             },
+                            "maxItems": 168,
                             "minItems": 1,
                             "title": "put_corporations_corporation_id_structures_structure_id_new_schedule",
                             "type": "array"
@@ -12540,7 +12607,7 @@
         },
         "/dogma/attributes/": {
             "get": {
-                "description": "Get a list of dogma attribute ids\n\n---\n\nAlternate route: `/v1/dogma/attributes/`\n\nAlternate route: `/legacy/dogma/attributes/`\n\nAlternate route: `/latest/dogma/attributes/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get a list of dogma attribute ids\n\n---\n\nAlternate route: `/v1/dogma/attributes/`\n\nAlternate route: `/legacy/dogma/attributes/`\n\nAlternate route: `/latest/dogma/attributes/`\n\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_dogma_attributes",
                 "parameters": [
                     {
@@ -12599,6 +12666,7 @@
                                 "title": "get_dogma_attributes_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 10000,
                             "title": "get_dogma_attributes_ok",
                             "type": "array"
                         }
@@ -12632,13 +12700,12 @@
                     "latest",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/dogma/attributes/{attribute_id}/": {
             "get": {
-                "description": "Get information on a dogma attribute\n\n---\n\nAlternate route: `/v1/dogma/attributes/{attribute_id}/`\n\nAlternate route: `/legacy/dogma/attributes/{attribute_id}/`\n\nAlternate route: `/latest/dogma/attributes/{attribute_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get information on a dogma attribute\n\n---\n\nAlternate route: `/v1/dogma/attributes/{attribute_id}/`\n\nAlternate route: `/legacy/dogma/attributes/{attribute_id}/`\n\nAlternate route: `/latest/dogma/attributes/{attribute_id}/`\n\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_dogma_attributes_attribute_id",
                 "parameters": [
                     {
@@ -12818,13 +12885,12 @@
                     "latest",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/dogma/effects/": {
             "get": {
-                "description": "Get a list of dogma effect ids\n\n---\n\nAlternate route: `/v1/dogma/effects/`\n\nAlternate route: `/legacy/dogma/effects/`\n\nAlternate route: `/latest/dogma/effects/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get a list of dogma effect ids\n\n---\n\nAlternate route: `/v1/dogma/effects/`\n\nAlternate route: `/legacy/dogma/effects/`\n\nAlternate route: `/latest/dogma/effects/`\n\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_dogma_effects",
                 "parameters": [
                     {
@@ -12883,6 +12949,7 @@
                                 "title": "get_dogma_effects_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 10000,
                             "title": "get_dogma_effects_ok",
                             "type": "array"
                         }
@@ -12916,13 +12983,12 @@
                     "latest",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/dogma/effects/{effect_id}/": {
             "get": {
-                "description": "Get information on a dogma effect\n\n---\n\nAlternate route: `/v1/dogma/effects/{effect_id}/`\n\nAlternate route: `/legacy/dogma/effects/{effect_id}/`\n\nAlternate route: `/latest/dogma/effects/{effect_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get information on a dogma effect\n\n---\n\nAlternate route: `/v2/dogma/effects/{effect_id}/`\n\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_dogma_effects_effect_id",
                 "parameters": [
                     {
@@ -13077,6 +13143,12 @@
                                                 "title": "get_dogma_effects_effect_id_domain",
                                                 "type": "string"
                                             },
+                                            "effect_id": {
+                                                "description": "effect_id integer",
+                                                "format": "int32",
+                                                "title": "get_dogma_effects_effect_id_effect_id",
+                                                "type": "integer"
+                                            },
                                             "func": {
                                                 "description": "func string",
                                                 "title": "get_dogma_effects_effect_id_func",
@@ -13103,14 +13175,12 @@
                                         },
                                         "required": [
                                             "func",
-                                            "domain",
-                                            "modified_attribute_id",
-                                            "modifying_attribute_id",
-                                            "operator"
+                                            "domain"
                                         ],
                                         "title": "get_dogma_effects_effect_id_modifier",
                                         "type": "object"
                                     },
+                                    "maxItems": 100,
                                     "title": "get_dogma_effects_effect_id_modifiers",
                                     "type": "array"
                                 },
@@ -13207,11 +13277,8 @@
                     "Dogma"
                 ],
                 "x-alternate-versions": [
-                    "latest",
-                    "legacy",
-                    "v1"
-                ],
-                "x-cached-seconds": 3600
+                    "v2"
+                ]
             }
         },
         "/fleets/{fleet_id}/": {
@@ -13749,6 +13816,7 @@
                                 "title": "get_fleets_fleet_id_members_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 256,
                             "title": "get_fleets_fleet_id_members_ok",
                             "type": "array"
                         }
@@ -14781,6 +14849,7 @@
                                             "title": "get_fleets_fleet_id_wings_squad",
                                             "type": "object"
                                         },
+                                        "maxItems": 25,
                                         "title": "get_fleets_fleet_id_wings_squads",
                                         "type": "array"
                                     }
@@ -14793,6 +14862,7 @@
                                 "title": "get_fleets_fleet_id_wings_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 25,
                             "title": "get_fleets_fleet_id_wings_ok",
                             "type": "array"
                         }
@@ -15563,7 +15633,7 @@
                                             "title": "get_incursions_infested_solar_system",
                                             "type": "integer"
                                         },
-                                        "maxItems": 10,
+                                        "maxItems": 100,
                                         "title": "get_incursions_infested_solar_systems",
                                         "type": "array"
                                     },
@@ -15608,7 +15678,7 @@
                                 "title": "get_incursions_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 10,
+                            "maxItems": 100,
                             "title": "get_incursions_ok",
                             "type": "array"
                         }
@@ -15756,6 +15826,7 @@
                                 "title": "get_industry_facilities_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10000,
                             "title": "get_industry_facilities_ok",
                             "type": "array"
                         }
@@ -15892,6 +15963,7 @@
                                             "title": "get_industry_systems_cost_indice",
                                             "type": "object"
                                         },
+                                        "maxItems": 10,
                                         "title": "get_industry_systems_cost_indices",
                                         "type": "array"
                                     },
@@ -15909,6 +15981,7 @@
                                 "title": "get_industry_systems_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10000,
                             "title": "get_industry_systems_ok",
                             "type": "array"
                         }
@@ -16069,6 +16142,7 @@
                                             "title": "get_insurance_prices_level",
                                             "type": "object"
                                         },
+                                        "maxItems": 6,
                                         "title": "get_insurance_prices_levels",
                                         "type": "array"
                                     },
@@ -16086,6 +16160,7 @@
                                 "title": "get_insurance_prices_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 1000,
                             "title": "get_insurance_prices_ok",
                             "type": "array"
                         }
@@ -16293,6 +16368,7 @@
                                         "title": "get_killmails_killmail_id_killmail_hash_attacker",
                                         "type": "object"
                                     },
+                                    "maxItems": 10000,
                                     "title": "get_killmails_killmail_id_killmail_hash_attackers",
                                     "type": "array"
                                 },
@@ -16414,6 +16490,7 @@
                                                             "title": "get_killmails_killmail_id_killmail_hash_item",
                                                             "type": "object"
                                                         },
+                                                        "maxItems": 10000,
                                                         "title": "get_killmails_killmail_id_killmail_hash_items",
                                                         "type": "array"
                                                     },
@@ -16444,6 +16521,7 @@
                                                 "title": "get_killmails_killmail_id_killmail_hash_item",
                                                 "type": "object"
                                             },
+                                            "maxItems": 10000,
                                             "title": "get_killmails_killmail_id_killmail_hash_items",
                                             "type": "array"
                                         },
@@ -16564,7 +16642,7 @@
         },
         "/loyalty/stores/{corporation_id}/offers/": {
             "get": {
-                "description": "Return a list of offers from a specific corporation's loyalty store\n\n---\n\nAlternate route: `/v1/loyalty/stores/{corporation_id}/offers/`\n\nAlternate route: `/legacy/loyalty/stores/{corporation_id}/offers/`\n\nAlternate route: `/latest/loyalty/stores/{corporation_id}/offers/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return a list of offers from a specific corporation's loyalty store\n\n---\n\nAlternate route: `/v1/loyalty/stores/{corporation_id}/offers/`\n\nAlternate route: `/legacy/loyalty/stores/{corporation_id}/offers/`\n\nAlternate route: `/latest/loyalty/stores/{corporation_id}/offers/`\n\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_loyalty_stores_corporation_id_offers",
                 "parameters": [
                     {
@@ -16695,6 +16773,7 @@
                                             "title": "get_loyalty_stores_corporation_id_offers_required_item",
                                             "type": "object"
                                         },
+                                        "maxItems": 100,
                                         "title": "get_loyalty_stores_corporation_id_offers_required_items",
                                         "type": "array"
                                     },
@@ -16716,6 +16795,7 @@
                                 "title": "get_loyalty_stores_corporation_id_offers_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10000,
                             "title": "get_loyalty_stores_corporation_id_offers_ok",
                             "type": "array"
                         }
@@ -16749,13 +16829,12 @@
                     "latest",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/markets/groups/": {
             "get": {
-                "description": "Get a list of item groups\n\n---\n\nAlternate route: `/v1/markets/groups/`\n\nAlternate route: `/legacy/markets/groups/`\n\nAlternate route: `/latest/markets/groups/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get a list of item groups\n\n---\n\nAlternate route: `/v1/markets/groups/`\n\nAlternate route: `/legacy/markets/groups/`\n\nAlternate route: `/latest/markets/groups/`\n\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_markets_groups",
                 "parameters": [
                     {
@@ -16814,6 +16893,7 @@
                                 "title": "get_markets_groups_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 5000,
                             "title": "get_markets_groups_ok",
                             "type": "array"
                         }
@@ -16847,13 +16927,12 @@
                     "latest",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/markets/groups/{market_group_id}/": {
             "get": {
-                "description": "Get information on an item group\n\n---\n\nAlternate route: `/v1/markets/groups/{market_group_id}/`\n\nAlternate route: `/legacy/markets/groups/{market_group_id}/`\n\nAlternate route: `/latest/markets/groups/{market_group_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get information on an item group\n\n---\n\nAlternate route: `/v1/markets/groups/{market_group_id}/`\n\nAlternate route: `/legacy/markets/groups/{market_group_id}/`\n\nAlternate route: `/latest/markets/groups/{market_group_id}/`\n\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_markets_groups_market_group_id",
                 "parameters": [
                     {
@@ -16977,6 +17056,7 @@
                                         "title": "get_markets_groups_market_group_id_type",
                                         "type": "integer"
                                     },
+                                    "maxItems": 5000,
                                     "title": "get_markets_groups_market_group_id_types",
                                     "type": "array"
                                 }
@@ -17040,8 +17120,7 @@
                     "latest",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/markets/prices/": {
@@ -17129,6 +17208,7 @@
                                 "title": "get_markets_prices_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 20000,
                             "title": "get_markets_prices_ok",
                             "type": "array"
                         }
@@ -17352,6 +17432,7 @@
                                 "title": "get_markets_structures_structure_id_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 5000,
                             "title": "get_markets_structures_structure_id_ok",
                             "type": "array"
                         }
@@ -17543,6 +17624,7 @@
                                 "title": "get_markets_region_id_history_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 500,
                             "title": "get_markets_region_id_history_ok",
                             "type": "array"
                         }
@@ -17801,6 +17883,7 @@
                                 "title": "get_markets_region_id_orders_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10000,
                             "title": "get_markets_region_id_orders_ok",
                             "type": "array"
                         }
@@ -17860,7 +17943,7 @@
         },
         "/opportunities/groups/": {
             "get": {
-                "description": "Return a list of opportunities groups\n\n---\n\nAlternate route: `/v1/opportunities/groups/`\n\nAlternate route: `/legacy/opportunities/groups/`\n\nAlternate route: `/latest/opportunities/groups/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return a list of opportunities groups\n\n---\n\nAlternate route: `/v1/opportunities/groups/`\n\nAlternate route: `/legacy/opportunities/groups/`\n\nAlternate route: `/latest/opportunities/groups/`\n\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_opportunities_groups",
                 "parameters": [
                     {
@@ -17920,6 +18003,7 @@
                                 "title": "get_opportunities_groups_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 50,
                             "title": "get_opportunities_groups_ok",
                             "type": "array"
                         }
@@ -17953,13 +18037,12 @@
                     "latest",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/opportunities/groups/{group_id}/": {
             "get": {
-                "description": "Return information of an opportunities group\n\n---\n\nAlternate route: `/v1/opportunities/groups/{group_id}/`\n\nAlternate route: `/legacy/opportunities/groups/{group_id}/`\n\nAlternate route: `/latest/opportunities/groups/{group_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return information of an opportunities group\n\n---\n\nAlternate route: `/v1/opportunities/groups/{group_id}/`\n\nAlternate route: `/legacy/opportunities/groups/{group_id}/`\n\nAlternate route: `/latest/opportunities/groups/{group_id}/`\n\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_opportunities_groups_group_id",
                 "parameters": [
                     {
@@ -18063,6 +18146,7 @@
                                         "title": "get_opportunities_groups_group_id_connected_group",
                                         "type": "integer"
                                     },
+                                    "maxItems": 50,
                                     "title": "get_opportunities_groups_group_id_connected_groups",
                                     "type": "array"
                                 },
@@ -18095,6 +18179,7 @@
                                         "title": "get_opportunities_groups_group_id_required_task",
                                         "type": "integer"
                                     },
+                                    "maxItems": 100,
                                     "title": "get_opportunities_groups_group_id_required_tasks",
                                     "type": "array"
                                 }
@@ -18140,13 +18225,12 @@
                     "latest",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/opportunities/tasks/": {
             "get": {
-                "description": "Return a list of opportunities tasks\n\n---\n\nAlternate route: `/v1/opportunities/tasks/`\n\nAlternate route: `/legacy/opportunities/tasks/`\n\nAlternate route: `/latest/opportunities/tasks/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return a list of opportunities tasks\n\n---\n\nAlternate route: `/v1/opportunities/tasks/`\n\nAlternate route: `/legacy/opportunities/tasks/`\n\nAlternate route: `/latest/opportunities/tasks/`\n\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_opportunities_tasks",
                 "parameters": [
                     {
@@ -18206,6 +18290,7 @@
                                 "title": "get_opportunities_tasks_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 100,
                             "title": "get_opportunities_tasks_ok",
                             "type": "array"
                         }
@@ -18239,13 +18324,12 @@
                     "latest",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/opportunities/tasks/{task_id}/": {
             "get": {
-                "description": "Return information of an opportunities task\n\n---\n\nAlternate route: `/v1/opportunities/tasks/{task_id}/`\n\nAlternate route: `/legacy/opportunities/tasks/{task_id}/`\n\nAlternate route: `/latest/opportunities/tasks/{task_id}/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return information of an opportunities task\n\n---\n\nAlternate route: `/v1/opportunities/tasks/{task_id}/`\n\nAlternate route: `/legacy/opportunities/tasks/{task_id}/`\n\nAlternate route: `/latest/opportunities/tasks/{task_id}/`\n\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_opportunities_tasks_task_id",
                 "parameters": [
                     {
@@ -18369,8 +18453,7 @@
                     "latest",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": 3600
+                ]
             }
         },
         "/route/{origin}/{destination}/": {
@@ -18494,6 +18577,7 @@
                                 "title": "Solar system ID",
                                 "type": "integer"
                             },
+                            "maxItems": 1000,
                             "title": "get_route_origin_destination_ok",
                             "type": "array"
                         }
@@ -18959,6 +19043,7 @@
                                             "title": "get_sovereignty_campaigns_participant",
                                             "type": "object"
                                         },
+                                        "maxItems": 5000,
                                         "title": "get_sovereignty_campaigns_participants",
                                         "type": "array"
                                     },
@@ -18992,6 +19077,7 @@
                                 "title": "get_sovereignty_campaigns_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10000,
                             "title": "get_sovereignty_campaigns_ok",
                             "type": "array"
                         }
@@ -19119,6 +19205,7 @@
                                 "title": "get_sovereignty_map_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10000,
                             "title": "get_sovereignty_map_ok",
                             "type": "array"
                         }
@@ -19272,6 +19359,7 @@
                                 "title": "get_sovereignty_structures_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10000,
                             "title": "get_sovereignty_structures_ok",
                             "type": "array"
                         }
@@ -20217,6 +20305,7 @@
                                 "title": "get_universe_bloodlines_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 100,
                             "title": "get_universe_bloodlines_ok",
                             "type": "array"
                         }
@@ -20314,6 +20403,7 @@
                                 "title": "get_universe_categories_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 10000,
                             "title": "get_universe_categories_ok",
                             "type": "array"
                         }
@@ -20460,6 +20550,7 @@
                                         "title": "get_universe_categories_category_id_group",
                                         "type": "integer"
                                     },
+                                    "maxItems": 10000,
                                     "title": "get_universe_categories_category_id_groups",
                                     "type": "array"
                                 },
@@ -20596,6 +20687,7 @@
                                 "title": "get_universe_constellations_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 10000,
                             "title": "get_universe_constellations_ok",
                             "type": "array"
                         }
@@ -20787,6 +20879,7 @@
                                         "title": "get_universe_constellations_constellation_id_system",
                                         "type": "integer"
                                     },
+                                    "maxItems": 10000,
                                     "title": "get_universe_constellations_constellation_id_systems",
                                     "type": "array"
                                 }
@@ -21019,6 +21112,7 @@
                                 "title": "get_universe_factions_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10000,
                             "title": "get_universe_factions_ok",
                             "type": "array"
                         }
@@ -21115,6 +21209,7 @@
                                 "title": "get_universe_graphics_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 10000,
                             "title": "get_universe_graphics_ok",
                             "type": "array"
                         }
@@ -21385,6 +21480,7 @@
                                 "title": "get_universe_groups_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 1000,
                             "title": "get_universe_groups_ok",
                             "type": "array"
                         }
@@ -21548,6 +21644,7 @@
                                         "title": "get_universe_groups_group_id_type",
                                         "type": "integer"
                                     },
+                                    "maxItems": 10000,
                                     "title": "get_universe_groups_group_id_types",
                                     "type": "array"
                                 }
@@ -21904,6 +22001,7 @@
                                 "title": "post_universe_names_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 1000,
                             "title": "post_universe_names_ok",
                             "type": "array"
                         }
@@ -22266,6 +22364,7 @@
                                 "title": "get_universe_races_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 4,
                             "title": "get_universe_races_ok",
                             "type": "array"
                         }
@@ -22362,6 +22461,7 @@
                                 "title": "get_universe_regions_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 1000,
                             "title": "get_universe_regions_ok",
                             "type": "array"
                         }
@@ -22501,6 +22601,7 @@
                                         "title": "get_universe_regions_region_id_constellation",
                                         "type": "integer"
                                     },
+                                    "maxItems": 1000,
                                     "title": "get_universe_regions_region_id_constellations",
                                     "type": "array"
                                 },
@@ -23130,6 +23231,7 @@
                                         "title": "get_universe_stations_station_id_service",
                                         "type": "string"
                                     },
+                                    "maxItems": 30,
                                     "title": "get_universe_stations_station_id_services",
                                     "type": "array"
                                 },
@@ -23281,6 +23383,7 @@
                                 "title": "get_universe_structures_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 10000,
                             "title": "get_universe_structures_ok",
                             "type": "array",
                             "uniqueItems": true
@@ -23526,7 +23629,7 @@
         },
         "/universe/system_jumps/": {
             "get": {
-                "description": "Get the number of jumps in solar systems within the last hour, excluding wormhole space. Only systems with jumps will be listed\n\n---\n\nAlternate route: `/v1/universe/system_jumps/`\n\nAlternate route: `/legacy/universe/system_jumps/`\n\nAlternate route: `/latest/universe/system_jumps/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get the number of jumps in solar systems within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with jumps will be listed\n\n---\n\nAlternate route: `/v1/universe/system_jumps/`\n\nAlternate route: `/legacy/universe/system_jumps/`\n\nAlternate route: `/latest/universe/system_jumps/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_universe_system_jumps",
                 "parameters": [
                     {
@@ -23603,6 +23706,7 @@
                                 "title": "get_universe_system_jumps_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10000,
                             "title": "get_universe_system_jumps_ok",
                             "type": "array"
                         }
@@ -23642,7 +23746,7 @@
         },
         "/universe/system_kills/": {
             "get": {
-                "description": "Get the number of ship, pod and NPC kills per solar system within the last hour, excluding wormhole space. Only systems with kills will be listed\n\n---\n\nAlternate route: `/v1/universe/system_kills/`\n\nAlternate route: `/legacy/universe/system_kills/`\n\nAlternate route: `/latest/universe/system_kills/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed\n\n---\n\nAlternate route: `/v2/universe/system_kills/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_universe_system_kills",
                 "parameters": [
                     {
@@ -23735,6 +23839,7 @@
                                 "title": "get_universe_system_kills_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 10000,
                             "title": "get_universe_system_kills_ok",
                             "type": "array"
                         }
@@ -23765,9 +23870,7 @@
                     "Universe"
                 ],
                 "x-alternate-versions": [
-                    "latest",
-                    "legacy",
-                    "v1"
+                    "v2"
                 ],
                 "x-cached-seconds": 3600
             }
@@ -23832,6 +23935,7 @@
                                 "title": "get_universe_systems_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 10000,
                             "title": "get_universe_systems_ok",
                             "type": "array"
                         }
@@ -24004,6 +24108,7 @@
                                                     "title": "get_universe_systems_system_id_moon",
                                                     "type": "integer"
                                                 },
+                                                "maxItems": 1000,
                                                 "title": "get_universe_systems_system_id_moons",
                                                 "type": "array"
                                             },
@@ -24020,6 +24125,7 @@
                                         "title": "get_universe_systems_system_id_planet",
                                         "type": "object"
                                     },
+                                    "maxItems": 1000,
                                     "title": "get_universe_systems_system_id_planets",
                                     "type": "array"
                                 },
@@ -24072,6 +24178,7 @@
                                         "title": "get_universe_systems_system_id_stargate",
                                         "type": "integer"
                                     },
+                                    "maxItems": 25,
                                     "title": "get_universe_systems_system_id_stargates",
                                     "type": "array"
                                 },
@@ -24216,6 +24323,7 @@
                                 "title": "get_universe_types_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 1000,
                             "title": "get_universe_types_ok",
                             "type": "array"
                         }
@@ -24381,6 +24489,7 @@
                                         "title": "get_universe_types_type_id_dogma_attribute",
                                         "type": "object"
                                     },
+                                    "maxItems": 1000,
                                     "title": "get_universe_types_type_id_dogma_attributes",
                                     "type": "array"
                                 },
@@ -24408,6 +24517,7 @@
                                         "title": "get_universe_types_type_id_dogma_effect",
                                         "type": "object"
                                     },
+                                    "maxItems": 1000,
                                     "title": "get_universe_types_type_id_dogma_effects",
                                     "type": "array"
                                 },
@@ -24576,7 +24686,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "A list of war IDs, 2000 at most, in decending order by war_id.",
+                        "description": "A list of war IDs, in decending order by war_id.",
                         "examples": {
                             "application/json": [
                                 3,
@@ -24606,6 +24716,7 @@
                                 "title": "get_wars_200_ok",
                                 "type": "integer"
                             },
+                            "maxItems": 2000,
                             "title": "get_wars_ok",
                             "type": "array"
                         }
@@ -24774,6 +24885,7 @@
                                         "title": "get_wars_war_id_ally",
                                         "type": "object"
                                     },
+                                    "maxItems": 10000,
                                     "title": "get_wars_war_id_allies",
                                     "type": "array"
                                 },
@@ -24936,7 +25048,7 @@
                     },
                     {
                         "default": 1,
-                        "description": "Which page to query, starting at 1, 2000 killmails per page.",
+                        "description": "Which page to query, starting at 1",
                         "format": "int32",
                         "in": "query",
                         "name": "page",
@@ -25017,6 +25129,7 @@
                                 "title": "get_wars_war_id_killmails_200_ok",
                                 "type": "object"
                             },
+                            "maxItems": 2000,
                             "title": "get_wars_war_id_killmails_ok",
                             "type": "array"
                         }
