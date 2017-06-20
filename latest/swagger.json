@@ -4202,6 +4202,707 @@
                 "x-cached-seconds": 300
             }
         },
+        "/characters/{character_id}/contracts/": {
+            "get": {
+                "description": "Returns available contracts to character\n\n---\n\nAlternate route: `/v1/characters/{character_id}/contracts/`\n\nAlternate route: `/legacy/characters/{character_id}/contracts/`\n\nAlternate route: `/dev/characters/{character_id}/contracts/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_contracts",
+                "parameters": [
+                    {
+                        "description": "ID for a character",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of contracts",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "acceptor_id": 0,
+                                    "assignee_id": 0,
+                                    "availability": "public",
+                                    "buyout": 10000000000.0,
+                                    "contract_id": 1,
+                                    "date_accepted": "2017-06-06T13:12:32Z",
+                                    "date_completed": "2017-06-06T13:12:32Z",
+                                    "date_expired": "2017-06-13T13:12:32Z",
+                                    "date_issued": "2017-06-06T13:12:32Z",
+                                    "days_to_complete": 0,
+                                    "end_location_id": 60014719,
+                                    "for_corporation": true,
+                                    "issuer_corporation_id": 456,
+                                    "issuer_id": 123,
+                                    "price": 1000000.0,
+                                    "reward": 0.0,
+                                    "start_location_id": 60014719,
+                                    "status": "outstanding",
+                                    "type": "auction",
+                                    "volume": 0.01
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "acceptor_id": {
+                                        "description": "Who will accept the contract. If assignee_id is same as acceptorID then character ID else corporation ID (The contract accepted by the corporation)",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_contracts_acceptor_id",
+                                        "type": "integer"
+                                    },
+                                    "assignee_id": {
+                                        "description": "ID to whom the contract is assigned, can be corporation or character ID",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_contracts_assignee_id",
+                                        "type": "integer"
+                                    },
+                                    "availability": {
+                                        "description": "To whom the contract is available",
+                                        "enum": [
+                                            "public",
+                                            "personal",
+                                            "corporation",
+                                            "alliance"
+                                        ],
+                                        "title": "get_characters_character_id_contracts_availability",
+                                        "type": "string"
+                                    },
+                                    "buyout": {
+                                        "description": "Buyout price (for Auctions only)",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_contracts_buyout",
+                                        "type": "number"
+                                    },
+                                    "collateral": {
+                                        "description": "Collateral price (for Couriers only)",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_contracts_collateral",
+                                        "type": "number"
+                                    },
+                                    "contract_id": {
+                                        "description": "contract_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_contracts_contract_id",
+                                        "type": "integer"
+                                    },
+                                    "date_accepted": {
+                                        "description": "Date of confirmation of contract",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_contracts_date_accepted",
+                                        "type": "string"
+                                    },
+                                    "date_completed": {
+                                        "description": "Date of completed of contract",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_contracts_date_completed",
+                                        "type": "string"
+                                    },
+                                    "date_expired": {
+                                        "description": "Expiration date of the contract",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_contracts_date_expired",
+                                        "type": "string"
+                                    },
+                                    "date_issued": {
+                                        "description": "\u0421reation date of the contract",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_contracts_date_issued",
+                                        "type": "string"
+                                    },
+                                    "days_to_complete": {
+                                        "description": "Number of days to perform the contract",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_contracts_days_to_complete",
+                                        "type": "integer"
+                                    },
+                                    "end_location_id": {
+                                        "description": "End location ID (for Couriers contract)",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_contracts_end_location_id",
+                                        "type": "integer"
+                                    },
+                                    "for_corporation": {
+                                        "description": "true if the contract was issued on behalf of the issuer's corporation",
+                                        "title": "get_characters_character_id_contracts_for_corporation",
+                                        "type": "boolean"
+                                    },
+                                    "issuer_corporation_id": {
+                                        "description": "Character's corporation ID for the issuer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_contracts_issuer_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "issuer_id": {
+                                        "description": "Character ID for the issuer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_contracts_issuer_id",
+                                        "type": "integer"
+                                    },
+                                    "price": {
+                                        "description": "Price of contract (for ItemsExchange and Auctions)",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_contracts_price",
+                                        "type": "number"
+                                    },
+                                    "reward": {
+                                        "description": "Remuneration for contract (for Couriers only)",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_contracts_reward",
+                                        "type": "number"
+                                    },
+                                    "start_location_id": {
+                                        "description": "Start location ID (for Couriers contract)",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_contracts_start_location_id",
+                                        "type": "integer"
+                                    },
+                                    "status": {
+                                        "description": "Status of the the contract",
+                                        "enum": [
+                                            "outstanding",
+                                            "in_progress",
+                                            "finished_issuer",
+                                            "finished_contractor",
+                                            "finished",
+                                            "cancelled",
+                                            "rejected",
+                                            "failed",
+                                            "deleted",
+                                            "reversed"
+                                        ],
+                                        "title": "get_characters_character_id_contracts_status",
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "description": "Title of the contract",
+                                        "title": "get_characters_character_id_contracts_title",
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "description": "Type of the contract",
+                                        "enum": [
+                                            "unknown",
+                                            "item_exchange",
+                                            "auction",
+                                            "courier",
+                                            "loan"
+                                        ],
+                                        "title": "get_characters_character_id_contracts_type",
+                                        "type": "string"
+                                    },
+                                    "volume": {
+                                        "description": "Volume of items in the contract",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_contracts_volume",
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "contract_id",
+                                    "issuer_id",
+                                    "issuer_corporation_id",
+                                    "assignee_id",
+                                    "acceptor_id",
+                                    "type",
+                                    "status",
+                                    "for_corporation",
+                                    "availability",
+                                    "date_issued",
+                                    "date_expired"
+                                ],
+                                "title": "get_characters_character_id_contracts_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 100,
+                            "title": "get_characters_character_id_contracts_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-contracts.read_character_contracts.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_contracts_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_contracts_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_contracts_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_contracts_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-contracts.read_character_contracts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get contracts",
+                "tags": [
+                    "Contracts"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/characters/{character_id}/contracts/{contract_id}/bids/": {
+            "get": {
+                "description": "Lists bids on a particular auction contract\n\n---\n\nAlternate route: `/v1/characters/{character_id}/contracts/{contract_id}/bids/`\n\nAlternate route: `/legacy/characters/{character_id}/contracts/{contract_id}/bids/`\n\nAlternate route: `/dev/characters/{character_id}/contracts/{contract_id}/bids/`\n\n\n---\n\nThis route is cached for up to 300 seconds",
+                "operationId": "get_characters_character_id_contracts_contract_id_bids",
+                "parameters": [
+                    {
+                        "description": "ID for a character",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "ID of a contract",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "contract_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of contracts",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "amount": 1.23,
+                                    "bid_id": 1,
+                                    "bidder_id": 123,
+                                    "date_bid": "2017-01-01T10:10:10Z"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "amount": {
+                                        "description": "The ammount bid",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_contracts_contract_id_bids_amount",
+                                        "type": "number"
+                                    },
+                                    "bid_id": {
+                                        "description": "Unique ID for the bid",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_contracts_contract_id_bids_bid_id",
+                                        "type": "integer"
+                                    },
+                                    "bidder_id": {
+                                        "description": "Character ID of the bidder",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_contracts_contract_id_bids_bidder_id",
+                                        "type": "integer"
+                                    },
+                                    "date_bid": {
+                                        "description": "Datetime when the bid was placed",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_contracts_contract_id_bids_date_bid",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "bid_id",
+                                    "bidder_id",
+                                    "date_bid",
+                                    "amount"
+                                ],
+                                "title": "get_characters_character_id_contracts_contract_id_bids_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 2000,
+                            "title": "get_characters_character_id_contracts_contract_id_bids_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-contracts.read_character_contracts.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_contracts_contract_id_bids_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_contracts_contract_id_bids_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_contracts_contract_id_bids_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_contracts_contract_id_bids_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-contracts.read_character_contracts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get contract bids",
+                "tags": [
+                    "Contracts"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 300
+            }
+        },
+        "/characters/{character_id}/contracts/{contract_id}/items/": {
+            "get": {
+                "description": "Lists Items and details of a particular contract\n\n---\n\nAlternate route: `/v1/characters/{character_id}/contracts/{contract_id}/items/`\n\nAlternate route: `/legacy/characters/{character_id}/contracts/{contract_id}/items/`\n\nAlternate route: `/dev/characters/{character_id}/contracts/{contract_id}/items/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_contracts_contract_id_items",
+                "parameters": [
+                    {
+                        "description": "ID for a character",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "ID of a contract",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "contract_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of contracts",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "is_included": true,
+                                    "is_singleton": false,
+                                    "quantity": 1,
+                                    "record_id": 123456,
+                                    "type_id": 587
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "is_included": {
+                                        "description": "true if the contract issuer has submitted this item with the contract, false if the isser is asking for this item in the contract.",
+                                        "title": "get_characters_character_id_contracts_contract_id_items_is_included",
+                                        "type": "boolean"
+                                    },
+                                    "is_singleton": {
+                                        "description": "is_singleton boolean",
+                                        "title": "get_characters_character_id_contracts_contract_id_items_is_singleton",
+                                        "type": "boolean"
+                                    },
+                                    "quantity": {
+                                        "description": "Number of items in the stack",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_contracts_contract_id_items_quantity",
+                                        "type": "integer"
+                                    },
+                                    "raw_quantity": {
+                                        "description": "-1 indicates that the item is a singleton (non-stackable). If the item happens to be a Blueprint, -1 is an Original and -2 is a Blueprint Copy",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_contracts_contract_id_items_raw_quantity",
+                                        "type": "integer"
+                                    },
+                                    "record_id": {
+                                        "description": "Unique ID for the item",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_contracts_contract_id_items_record_id",
+                                        "type": "integer"
+                                    },
+                                    "type_id": {
+                                        "description": "Type ID for item",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_contracts_contract_id_items_type_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "record_id",
+                                    "type_id",
+                                    "quantity",
+                                    "is_singleton",
+                                    "is_included"
+                                ],
+                                "title": "get_characters_character_id_contracts_contract_id_items_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 2000,
+                            "title": "get_characters_character_id_contracts_contract_id_items_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-contracts.read_character_contracts.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_contracts_contract_id_items_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_contracts_contract_id_items_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_contracts_contract_id_items_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_contracts_contract_id_items_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-contracts.read_character_contracts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get contract items",
+                "tags": [
+                    "Contracts"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
         "/characters/{character_id}/corporationhistory/": {
             "get": {
                 "description": "Get a list of all the corporations a character has been a member of\n\n---\n\nAlternate route: `/v1/characters/{character_id}/corporationhistory/`\n\nAlternate route: `/legacy/characters/{character_id}/corporationhistory/`\n\nAlternate route: `/dev/characters/{character_id}/corporationhistory/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -10033,7 +10734,7 @@
         },
         "/characters/{character_id}/skills/": {
             "get": {
-                "description": "List all trained skills for the given character\n\n---\n\nAlternate route: `/v3/characters/{character_id}/skills/`\n\nAlternate route: `/dev/characters/{character_id}/skills/`\n\n\n---\n\nThis route is cached for up to 120 seconds",
+                "description": "List all trained skills for the given character\n\n---\n\nAlternate route: `/v3/characters/{character_id}/skills/`\n\n\n---\n\nThis route is cached for up to 120 seconds",
                 "operationId": "get_characters_character_id_skills",
                 "parameters": [
                     {
@@ -10206,7 +10907,6 @@
                     "Skills"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "v3"
                 ],
                 "x-cached-seconds": 120
@@ -10546,6 +11246,254 @@
                     "v1"
                 ],
                 "x-cached-seconds": 120
+            }
+        },
+        "/characters/{character_id}/wallets/journal/": {
+            "get": {
+                "description": "Retrieve character wallet journal\n\n---\n\nAlternate route: `/v1/characters/{character_id}/wallets/journal/`\n\nAlternate route: `/legacy/characters/{character_id}/wallets/journal/`\n\nAlternate route: `/dev/characters/{character_id}/wallets/journal/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_wallets_journal",
+                "parameters": [
+                    {
+                        "description": "An EVE character ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "character_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "tranquility",
+                        "description": "The server name you would like data from",
+                        "enum": [
+                            "tranquility",
+                            "singularity"
+                        ],
+                        "in": "query",
+                        "name": "datasource",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Only show journal entries happened before the transaction referenced by this id",
+                        "format": "int64",
+                        "in": "query",
+                        "name": "from_id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Access token to use, if preferred over a header",
+                        "in": "query",
+                        "name": "token",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over headers",
+                        "in": "query",
+                        "name": "user_agent",
+                        "type": "string"
+                    },
+                    {
+                        "description": "Client identifier, takes precedence over User-Agent",
+                        "in": "header",
+                        "name": "X-User-Agent",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Journal entries",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "date": "2016-10-24T09:00:00Z",
+                                    "ref_id": 1234567890,
+                                    "ref_type_id": 1
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "Journal entries",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "amount": {
+                                        "description": "Transaction amount. Positive when value transferred to the first party. Negative otherwise",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_wallets_journal_amount",
+                                        "type": "number"
+                                    },
+                                    "argument_name": {
+                                        "description": "argument_name string",
+                                        "title": "get_characters_character_id_wallets_journal_argument_name",
+                                        "type": "string"
+                                    },
+                                    "argument_value": {
+                                        "description": "argument_value integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_wallets_journal_argument_value",
+                                        "type": "integer"
+                                    },
+                                    "balance": {
+                                        "description": "Wallet balance after transaction occurred",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_wallets_journal_balance",
+                                        "type": "number"
+                                    },
+                                    "date": {
+                                        "description": "Date and time of transaction",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_wallets_journal_date",
+                                        "type": "string"
+                                    },
+                                    "first_party_id": {
+                                        "description": "first_party_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_wallets_journal_first_party_id",
+                                        "type": "integer"
+                                    },
+                                    "first_party_type": {
+                                        "description": "first_party_type string",
+                                        "enum": [
+                                            "character",
+                                            "corporation",
+                                            "alliance",
+                                            "faction"
+                                        ],
+                                        "title": "get_characters_character_id_wallets_journal_first_party_type",
+                                        "type": "string"
+                                    },
+                                    "reason": {
+                                        "description": "reason string",
+                                        "title": "get_characters_character_id_wallets_journal_reason",
+                                        "type": "string"
+                                    },
+                                    "ref_id": {
+                                        "description": "Unique journal reference ID",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_wallets_journal_ref_id",
+                                        "type": "integer"
+                                    },
+                                    "ref_type_id": {
+                                        "description": "Transaction type",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_wallets_journal_ref_type_id",
+                                        "type": "integer"
+                                    },
+                                    "second_party_id": {
+                                        "description": "second_party_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_wallets_journal_second_party_id",
+                                        "type": "integer"
+                                    },
+                                    "second_party_type": {
+                                        "description": "second_party_type string",
+                                        "enum": [
+                                            "character",
+                                            "corporation",
+                                            "alliance",
+                                            "faction"
+                                        ],
+                                        "title": "get_characters_character_id_wallets_journal_second_party_type",
+                                        "type": "string"
+                                    },
+                                    "tax_amount": {
+                                        "description": "Tax amount received for tax related transactions",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_wallets_journal_tax_amount",
+                                        "type": "number"
+                                    },
+                                    "tax_reciever_id": {
+                                        "description": "For tax related transactions, gives the corporation ID of the entity receiving the tax",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_wallets_journal_tax_reciever_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "date",
+                                    "ref_id",
+                                    "ref_type_id"
+                                ],
+                                "title": "get_characters_character_id_wallets_journal_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 2500,
+                            "title": "get_characters_character_id_wallets_journal_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Token is not valid for scope(s): esi-wallet.read_character_wallet.v1"
+                            }
+                        },
+                        "schema": {
+                            "description": "Forbidden",
+                            "properties": {
+                                "error": {
+                                    "description": "Forbidden message",
+                                    "title": "get_characters_character_id_wallets_journal_403_forbidden",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_wallets_journal_forbidden",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "uncaught exception: IOError('out of memory')"
+                            }
+                        },
+                        "schema": {
+                            "description": "Internal server error",
+                            "properties": {
+                                "error": {
+                                    "description": "Internal server error message",
+                                    "title": "get_characters_character_id_wallets_journal_500_internal_server_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_wallets_journal_internal_server_error",
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-wallet.read_character_wallet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get character wallet journal",
+                "tags": [
+                    "Wallet"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/corporations/names/": {
@@ -23975,7 +24923,7 @@
         },
         "/universe/systems/{system_id}/": {
             "get": {
-                "description": "Get information on a solar system\n\n---\n\nAlternate route: `/v2/universe/systems/{system_id}/`\n\nAlternate route: `/dev/universe/systems/{system_id}/`\n\n\n---\n\nThis route expires daily at 11:05",
+                "description": "Get information on a solar system\n\n---\n\nAlternate route: `/v2/universe/systems/{system_id}/`\n\n\n---\n\nThis route expires daily at 11:05",
                 "operationId": "get_universe_systems_system_id",
                 "parameters": [
                     {
@@ -24249,7 +25197,6 @@
                     "Universe"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "v2"
                 ]
             }
@@ -25209,6 +26156,7 @@
                 "esi-characters.read_standings.v1": "EVE SSO scope esi-characters.read_standings.v1",
                 "esi-characters.write_contacts.v1": "EVE SSO scope esi-characters.write_contacts.v1",
                 "esi-clones.read_clones.v1": "EVE SSO scope esi-clones.read_clones.v1",
+                "esi-contracts.read_character_contracts.v1": "EVE SSO scope esi-contracts.read_character_contracts.v1",
                 "esi-corporations.read_corporation_membership.v1": "EVE SSO scope esi-corporations.read_corporation_membership.v1",
                 "esi-corporations.read_structures.v1": "EVE SSO scope esi-corporations.read_structures.v1",
                 "esi-corporations.write_structures.v1": "EVE SSO scope esi-corporations.write_structures.v1",
