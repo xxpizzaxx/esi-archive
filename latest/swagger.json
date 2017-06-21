@@ -18634,7 +18634,7 @@
                     },
                     {
                         "default": "all",
-                        "description": "Filter buy/sell orders, return all orders by default. If you query without type_id, we always return both buy and sell orders.\n",
+                        "description": "Filter buy/sell orders, return all orders by default. If you query without type_id, we always return both buy and sell orders.",
                         "enum": [
                             "buy",
                             "sell",
@@ -18647,7 +18647,7 @@
                     },
                     {
                         "default": 1,
-                        "description": "Which page to query, only used for querying without type_id. Starting at 1\n",
+                        "description": "Which page to query, only used for querying without type_id. Starting at 1",
                         "format": "int32",
                         "in": "query",
                         "name": "page",
@@ -18715,6 +18715,12 @@
                             "Last-Modified": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "number"
                             }
                         },
                         "schema": {
