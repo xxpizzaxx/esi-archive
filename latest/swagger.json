@@ -9216,7 +9216,7 @@
         },
         "/characters/{character_id}/planets/{planet_id}/": {
             "get": {
-                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.\n\n---\n\nAlternate route: `/v2/characters/{character_id}/planets/{planet_id}/`\n\nAlternate route: `/dev/characters/{character_id}/planets/{planet_id}/`\n\n\n---\n\nThis route is cached for up to 600 seconds",
+                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.\n\n---\n\nAlternate route: `/v2/characters/{character_id}/planets/{planet_id}/`\n\n\n---\n\nThis route is cached for up to 600 seconds",
                 "operationId": "get_characters_character_id_planets_planet_id",
                 "parameters": [
                     {
@@ -9678,7 +9678,6 @@
                     "Planetary Interaction"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "v2"
                 ],
                 "x-cached-seconds": 600
