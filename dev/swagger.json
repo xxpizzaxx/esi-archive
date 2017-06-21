@@ -109,14 +109,14 @@
         },
         "/alliances/names/": {
             "get": {
-                "description": "Resolve a set of alliance IDs to alliance names\n\n---\n\nAlternate route: `/v1/alliances/names/`\n\nAlternate route: `/legacy/alliances/names/`\n\nAlternate route: `/latest/alliances/names/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Resolve a set of alliance IDs to alliance names\n\n---\n\nAlternate route: `/v2/alliances/names/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_alliances_names",
                 "parameters": [
                     {
                         "description": "A comma separated list of alliance IDs",
                         "in": "query",
                         "items": {
-                            "format": "int64",
+                            "format": "int32",
                             "type": "integer"
                         },
                         "maxItems": 100,
@@ -229,9 +229,7 @@
                     "Alliance"
                 ],
                 "x-alternate-versions": [
-                    "latest",
-                    "legacy",
-                    "v1"
+                    "v2"
                 ],
                 "x-cached-seconds": 3600
             }
@@ -11524,14 +11522,14 @@
         },
         "/corporations/names/": {
             "get": {
-                "description": "Resolve a set of corporation IDs to corporation names\n\n---\n\nAlternate route: `/v1/corporations/names/`\n\nAlternate route: `/legacy/corporations/names/`\n\nAlternate route: `/latest/corporations/names/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Resolve a set of corporation IDs to corporation names\n\n---\n\nAlternate route: `/v2/corporations/names/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_names",
                 "parameters": [
                     {
                         "description": "A comma separated list of corporation IDs",
                         "in": "query",
                         "items": {
-                            "format": "int64",
+                            "format": "int32",
                             "type": "integer"
                         },
                         "maxItems": 100,
@@ -11644,9 +11642,7 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
-                    "latest",
-                    "legacy",
-                    "v1"
+                    "v2"
                 ],
                 "x-cached-seconds": 3600
             }
