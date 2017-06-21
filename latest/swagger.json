@@ -109,7 +109,7 @@
         },
         "/alliances/names/": {
             "get": {
-                "description": "Resolve a set of alliance IDs to alliance names\n\n---\n\nAlternate route: `/v1/alliances/names/`\n\nAlternate route: `/legacy/alliances/names/`\n\nAlternate route: `/dev/alliances/names/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Resolve a set of alliance IDs to alliance names\n\n---\n\nAlternate route: `/v1/alliances/names/`\n\nAlternate route: `/legacy/alliances/names/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_alliances_names",
                 "parameters": [
                     {
@@ -229,7 +229,6 @@
                     "Alliance"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ],
