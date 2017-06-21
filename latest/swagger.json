@@ -4204,7 +4204,7 @@
         },
         "/characters/{character_id}/contracts/": {
             "get": {
-                "description": "Returns available contracts to character\n\n---\n\nAlternate route: `/v1/characters/{character_id}/contracts/`\n\nAlternate route: `/legacy/characters/{character_id}/contracts/`\n\nAlternate route: `/dev/characters/{character_id}/contracts/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Returns contracts available to a character, only if the character is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is \"in_progress\".\n\n---\n\nAlternate route: `/v1/characters/{character_id}/contracts/`\n\nAlternate route: `/legacy/characters/{character_id}/contracts/`\n\nAlternate route: `/dev/characters/{character_id}/contracts/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_contracts",
                 "parameters": [
                     {
@@ -4462,7 +4462,7 @@
                                 "title": "get_characters_character_id_contracts_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 100,
+                            "maxItems": 10000,
                             "title": "get_characters_character_id_contracts_ok",
                             "type": "array"
                         }
