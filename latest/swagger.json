@@ -1,10 +1,34 @@
 {
     "basePath": "/latest",
+    "definitions": {
+        "forbidden": {
+            "description": "Forbidden model",
+            "properties": {
+                "error": {
+                    "description": "Forbidden message",
+                    "type": "string"
+                }
+            },
+            "title": "Forbidden",
+            "type": "object"
+        },
+        "internal_server_error": {
+            "description": "Internal server error model",
+            "properties": {
+                "error": {
+                    "description": "Internal server error message",
+                    "type": "string"
+                }
+            },
+            "title": "Internal server error",
+            "type": "object"
+        }
+    },
     "host": "esi.tech.ccp.is",
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.5.0"
+        "version": "0.5.1"
     },
     "paths": {
         "/alliances/": {
@@ -1520,40 +1544,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-assets.read_assets.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_assets_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_assets_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_assets_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_assets_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -2075,40 +2081,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-bookmarks.read_character_bookmarks.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_bookmarks_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_bookmarks_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_bookmarks_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_bookmarks_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -2235,40 +2223,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-bookmarks.read_character_bookmarks.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_bookmarks_folders_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_bookmarks_folders_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_bookmarks_folders_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_bookmarks_folders_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -2422,40 +2392,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-calendar.read_calendar_events.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_calendar_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_calendar_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_calendar_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_calendar_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -2646,40 +2598,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-calendar.read_calendar_events.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_calendar_event_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_calendar_event_id_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_calendar_event_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_calendar_event_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -2783,40 +2717,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-calendar.respond_calendar_events.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "put_characters_character_id_calendar_event_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_characters_character_id_calendar_event_id_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "put_characters_character_id_calendar_event_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_characters_character_id_calendar_event_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -3475,40 +3391,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-characters.write_contacts.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "delete_characters_character_id_contacts_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "delete_characters_character_id_contacts_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "delete_characters_character_id_contacts_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "delete_characters_character_id_contacts_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -3670,40 +3568,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-characters.read_contacts.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_contacts_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_contacts_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_contacts_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_contacts_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -3839,40 +3719,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-characters.write_contacts.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "post_characters_character_id_contacts_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_characters_character_id_contacts_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "post_characters_character_id_contacts_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_characters_character_id_contacts_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -3989,40 +3851,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-characters.write_contacts.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "put_characters_character_id_contacts_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_characters_character_id_contacts_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "put_characters_character_id_contacts_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_characters_character_id_contacts_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -4145,40 +3989,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-characters.read_contacts.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_contacts_labels_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_contacts_labels_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_contacts_labels_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_contacts_labels_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -5356,40 +5182,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-fittings.read_fittings.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_fittings_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_fittings_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_fittings_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_fittings_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -5557,40 +5365,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-fittings.write_fittings.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "post_characters_character_id_fittings_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_characters_character_id_fittings_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "post_characters_character_id_fittings_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_characters_character_id_fittings_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -5671,40 +5461,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-fittings.write_fittings.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "delete_characters_character_id_fittings_fitting_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "delete_characters_character_id_fittings_fitting_id_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "delete_characters_character_id_fittings_fitting_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "delete_characters_character_id_fittings_fitting_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -5988,40 +5760,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-industry.read_character_jobs.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_industry_jobs_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_industry_jobs_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_industry_jobs_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_industry_jobs_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -6167,40 +5921,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-killmails.read_killmails.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_killmails_recent_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_killmails_recent_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_killmails_recent_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_killmails_recent_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -6466,40 +6202,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-characters.read_loyalty.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_loyalty_points_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_loyalty_points_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_loyalty_points_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_loyalty_points_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -6719,40 +6437,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.read_mail.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_mail_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_mail_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_mail_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_mail_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -6924,40 +6624,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.send_mail.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "post_characters_character_id_mail_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_characters_character_id_mail_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "post_characters_character_id_mail_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_characters_character_id_mail_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -7136,40 +6818,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.read_mail.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_mail_labels_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_mail_labels_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_mail_labels_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_mail_labels_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -7297,40 +6961,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.organize_mail.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "post_characters_character_id_mail_labels_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_characters_character_id_mail_labels_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "post_characters_character_id_mail_labels_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_characters_character_id_mail_labels_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -7411,20 +7057,11 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.organize_mail.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "delete_characters_character_id_mail_labels_label_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "delete_characters_character_id_mail_labels_label_id_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "422": {
@@ -7451,20 +7088,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "delete_characters_character_id_mail_labels_label_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "delete_characters_character_id_mail_labels_label_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -7587,40 +7215,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.read_mail.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_mail_lists_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_mail_lists_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_mail_lists_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_mail_lists_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -7702,40 +7312,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.organize_mail.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "delete_characters_character_id_mail_mail_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "delete_characters_character_id_mail_mail_id_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "delete_characters_character_id_mail_mail_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "delete_characters_character_id_mail_mail_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -7925,20 +7517,11 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.read_mail.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_mail_mail_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_mail_mail_id_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "404": {
@@ -7965,20 +7548,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_mail_mail_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_mail_mail_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -8110,40 +7684,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-mail.organize_mail.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "put_characters_character_id_mail_mail_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_characters_character_id_mail_mail_id_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "put_characters_character_id_mail_mail_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_characters_character_id_mail_mail_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -8651,40 +8207,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-characters.read_opportunities.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_opportunities_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_opportunities_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_opportunities_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_opportunities_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -9158,40 +8696,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-planets.manage_planets.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_planets_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_planets_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_planets_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_planets_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -9609,20 +9129,11 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-planets.manage_planets.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_planets_planet_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_planets_planet_id_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "404": {
@@ -9649,20 +9160,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_planets_planet_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_planets_planet_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -9960,40 +9462,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-characters.read_corporation_roles.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_roles_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_roles_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_roles_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_roles_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -10305,40 +9789,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-search.search_structures.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_search_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_search_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_search_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_search_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -11190,40 +10656,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-wallet.read_character_wallet.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_wallets_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_wallets_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_wallets_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_wallets_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -11438,40 +10886,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-wallet.read_character_wallet.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_characters_character_id_wallets_journal_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_wallets_journal_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_characters_character_id_wallets_journal_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_wallets_journal_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -11594,20 +11024,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_corporations_names_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_corporations_names_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -11692,20 +11113,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_corporations_npccorps_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_corporations_npccorps_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -11899,20 +11311,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_corporations_corporation_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -12053,20 +11456,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_alliancehistory_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_corporations_corporation_id_alliancehistory_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -12190,20 +11584,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_icons_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_corporations_corporation_id_icons_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -12316,40 +11701,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-corporations.read_corporation_membership.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_corporations_corporation_id_members_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_corporations_corporation_id_members_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_members_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_corporations_corporation_id_members_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -12982,40 +12349,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-corporations.read_corporation_membership.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_corporations_corporation_id_roles_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_corporations_corporation_id_roles_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_roles_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_corporations_corporation_id_roles_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -13328,40 +12677,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-corporations.read_structures.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_corporations_corporation_id_structures_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_corporations_corporation_id_structures_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_corporations_corporation_id_structures_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_corporations_corporation_id_structures_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -13483,40 +12814,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-corporations.write_structures.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "put_corporations_corporation_id_structures_structure_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_corporations_corporation_id_structures_structure_id_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "put_corporations_corporation_id_structures_structure_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_corporations_corporation_id_structures_structure_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -13608,20 +12921,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_dogma_attributes_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_dogma_attributes_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -13793,20 +13097,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_dogma_attributes_attribute_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_dogma_attributes_attribute_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -13891,20 +13186,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_dogma_effects_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_dogma_effects_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -14185,20 +13471,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_dogma_effects_effect_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_dogma_effects_effect_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -14318,20 +13595,11 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-fleets.read_fleet.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_fleets_fleet_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_fleets_fleet_id_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "404": {
@@ -14358,20 +13626,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_fleets_fleet_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_fleets_fleet_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -14486,20 +13745,11 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "put_fleets_fleet_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_fleets_fleet_id_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "404": {
@@ -14526,20 +13776,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "put_fleets_fleet_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_fleets_fleet_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -14756,20 +13997,11 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-fleets.read_fleet.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_fleets_fleet_id_members_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_fleets_fleet_id_members_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "404": {
@@ -14796,20 +14028,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_fleets_fleet_id_members_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_fleets_fleet_id_members_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -14929,20 +14152,11 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "post_fleets_fleet_id_members_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_fleets_fleet_id_members_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "404": {
@@ -14989,20 +14203,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "post_fleets_fleet_id_members_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_fleets_fleet_id_members_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -15083,20 +14288,11 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "delete_fleets_fleet_id_members_member_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "delete_fleets_fleet_id_members_member_id_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "404": {
@@ -15123,20 +14319,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "delete_fleets_fleet_id_members_member_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "delete_fleets_fleet_id_members_member_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -15256,20 +14443,11 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "put_fleets_fleet_id_members_member_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_fleets_fleet_id_members_member_id_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "404": {
@@ -15316,20 +14494,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "put_fleets_fleet_id_members_member_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_fleets_fleet_id_members_member_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -15410,20 +14579,11 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "delete_fleets_fleet_id_squads_squad_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "delete_fleets_fleet_id_squads_squad_id_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "404": {
@@ -15450,20 +14610,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "delete_fleets_fleet_id_squads_squad_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "delete_fleets_fleet_id_squads_squad_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -15564,20 +14715,11 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "put_fleets_fleet_id_squads_squad_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_fleets_fleet_id_squads_squad_id_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "404": {
@@ -15604,20 +14746,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "put_fleets_fleet_id_squads_squad_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_fleets_fleet_id_squads_squad_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -15802,20 +14935,11 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-fleets.read_fleet.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "get_fleets_fleet_id_wings_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_fleets_fleet_id_wings_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "404": {
@@ -15842,20 +14966,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_fleets_fleet_id_wings_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_fleets_fleet_id_wings_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -15948,20 +15063,11 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "post_fleets_fleet_id_wings_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_fleets_fleet_id_wings_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "404": {
@@ -15988,20 +15094,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "post_fleets_fleet_id_wings_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_fleets_fleet_id_wings_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -16082,20 +15179,11 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "delete_fleets_fleet_id_wings_wing_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "delete_fleets_fleet_id_wings_wing_id_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "404": {
@@ -16122,20 +15210,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "delete_fleets_fleet_id_wings_wing_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "delete_fleets_fleet_id_wings_wing_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -16236,20 +15315,11 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "put_fleets_fleet_id_wings_wing_id_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_fleets_fleet_id_wings_wing_id_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "404": {
@@ -16276,20 +15346,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "put_fleets_fleet_id_wings_wing_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "put_fleets_fleet_id_wings_wing_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -16391,20 +15452,11 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-fleets.write_fleet.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "post_fleets_fleet_id_wings_wing_id_squads_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_fleets_fleet_id_wings_wing_id_squads_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "404": {
@@ -16431,20 +15483,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "post_fleets_fleet_id_wings_wing_id_squads_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_fleets_fleet_id_wings_wing_id_squads_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -16618,20 +15661,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_incursions_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_incursions_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -16766,20 +15800,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_industry_facilities_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_industry_facilities_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -16921,20 +15946,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_industry_systems_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_industry_systems_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -17100,20 +16116,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_insurance_prices_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_insurance_prices_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -17542,20 +16549,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_killmails_killmail_id_killmail_hash_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_killmails_killmail_id_killmail_hash_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -17735,20 +16733,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_loyalty_stores_corporation_id_offers_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_loyalty_stores_corporation_id_offers_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -18949,20 +17938,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_opportunities_groups_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_opportunities_groups_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -19137,20 +18117,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_opportunities_groups_group_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_opportunities_groups_group_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -19236,20 +18207,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_opportunities_tasks_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_opportunities_tasks_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -19365,20 +18327,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_opportunities_tasks_task_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_opportunities_tasks_task_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -19543,20 +18496,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_route_origin_destination_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_route_origin_destination_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -19834,20 +18778,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_search_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_search_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -20037,20 +18972,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_sovereignty_campaigns_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_sovereignty_campaigns_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -20165,20 +19091,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_sovereignty_map_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_sovereignty_map_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -20319,20 +19236,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_sovereignty_structures_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_sovereignty_structures_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -20439,20 +19347,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_status_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_status_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -20535,40 +19434,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-ui.write_waypoint.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "post_ui_autopilot_waypoint_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_ui_autopilot_waypoint_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "post_ui_autopilot_waypoint_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_ui_autopilot_waypoint_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -20640,40 +19521,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-ui.open_window.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "post_ui_openwindow_contract_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_ui_openwindow_contract_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "post_ui_openwindow_contract_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_ui_openwindow_contract_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -20746,40 +19609,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-ui.open_window.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "post_ui_openwindow_information_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_ui_openwindow_information_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "post_ui_openwindow_information_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_ui_openwindow_information_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -20852,40 +19697,22 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-ui.open_window.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "post_ui_openwindow_marketdetails_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_ui_openwindow_marketdetails_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "500": {
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "post_ui_openwindow_marketdetails_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_ui_openwindow_marketdetails_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -21005,20 +19832,11 @@
                         "description": "Forbidden",
                         "examples": {
                             "application/json": {
-                                "error": "Token is not valid for scope(s): esi-ui.open_window.v1"
+                                "error": "Forbidden message"
                             }
                         },
                         "schema": {
-                            "description": "Forbidden",
-                            "properties": {
-                                "error": {
-                                    "description": "Forbidden message",
-                                    "title": "post_ui_openwindow_newmail_403_forbidden",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_ui_openwindow_newmail_forbidden",
-                            "type": "object"
+                            "$ref": "#/definitions/forbidden"
                         }
                     },
                     "422": {
@@ -21045,20 +19863,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "post_ui_openwindow_newmail_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "post_ui_openwindow_newmail_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
@@ -23741,20 +22550,11 @@
                         "description": "Internal server error",
                         "examples": {
                             "application/json": {
-                                "error": "uncaught exception: IOError('out of memory')"
+                                "error": "Internal server error message"
                             }
                         },
                         "schema": {
-                            "description": "Internal server error",
-                            "properties": {
-                                "error": {
-                                    "description": "Internal server error message",
-                                    "title": "get_universe_schematics_schematic_id_500_internal_server_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_universe_schematics_schematic_id_internal_server_error",
-                            "type": "object"
+                            "$ref": "#/definitions/internal_server_error"
                         }
                     }
                 },
