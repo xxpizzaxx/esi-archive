@@ -10954,7 +10954,7 @@
         },
         "/corporations/{corporation_id}/alliancehistory/": {
             "get": {
-                "description": "Get a list of all the alliances a corporation has been a member of\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/alliancehistory/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/alliancehistory/`\n\nAlternate route: `/dev/corporations/{corporation_id}/alliancehistory/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get a list of all the alliances a corporation has been a member of\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/alliancehistory/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/alliancehistory/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id_alliancehistory",
                 "parameters": [
                     {
@@ -11091,7 +11091,6 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ],
