@@ -11227,7 +11227,7 @@
         },
         "/corporations/{corporation_id}/members/": {
             "get": {
-                "description": "Read the current list of members if the calling character is a member.\n\n---\n\nAlternate route: `/v2/corporations/{corporation_id}/members/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/members/`\n\nAlternate route: `/dev/corporations/{corporation_id}/members/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Read the current list of members if the calling character is a member.\n\n---\n\nAlternate route: `/v2/corporations/{corporation_id}/members/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/members/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id_members",
                 "parameters": [
                     {
@@ -11353,7 +11353,6 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v2"
                 ],
