@@ -4574,12 +4574,13 @@
                             "application/json": [
                                 {
                                     "corporation_id": 90000001,
-                                    "is_deleted": true,
+                                    "is_deleted": false,
                                     "record_id": 500,
                                     "start_date": "2016-06-26T20:00:00Z"
                                 },
                                 {
                                     "corporation_id": 90000002,
+                                    "is_deleted": false,
                                     "record_id": 501,
                                     "start_date": "2016-07-26T20:00:00Z"
                                 }
@@ -4628,15 +4629,10 @@
                                         "type": "string"
                                     }
                                 },
-                                "required": [
-                                    "start_date",
-                                    "corporation_id",
-                                    "record_id"
-                                ],
                                 "title": "get_characters_character_id_corporationhistory_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 10000,
+                            "maxItems": 1000,
                             "title": "get_characters_character_id_corporationhistory_ok",
                             "type": "array"
                         }
