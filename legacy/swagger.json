@@ -3788,7 +3788,7 @@
         },
         "/characters/{character_id}/contracts/": {
             "get": {
-                "description": "Returns contracts available to a character, only if the character is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is \"in_progress\".\n\n---\n\nAlternate route: `/v1/characters/{character_id}/contracts/`\n\nAlternate route: `/latest/characters/{character_id}/contracts/`\n\nAlternate route: `/dev/characters/{character_id}/contracts/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Returns contracts available to a character, only if the character is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is \"in_progress\".\n\n---\n\nAlternate route: `/v1/characters/{character_id}/contracts/`\n\nAlternate route: `/latest/characters/{character_id}/contracts/`\n\nAlternate route: `/dev/characters/{character_id}/contracts/`\n\n\n---\n\nThis route is cached for up to 300 seconds",
                 "operationId": "get_characters_character_id_contracts",
                 "parameters": [
                     {
@@ -4090,7 +4090,7 @@
                     "latest",
                     "v1"
                 ],
-                "x-cached-seconds": 3600
+                "x-cached-seconds": 300
             }
         },
         "/characters/{character_id}/contracts/{contract_id}/bids/": {
@@ -10729,7 +10729,7 @@
         },
         "/corporations/{corporation_id}/alliancehistory/": {
             "get": {
-                "description": "Get a list of all the alliances a corporation has been a member of\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/alliancehistory/`\n\nAlternate route: `/latest/corporations/{corporation_id}/alliancehistory/`\n\nAlternate route: `/dev/corporations/{corporation_id}/alliancehistory/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get a list of all the alliances a corporation has been a member of\n\n---\n\nAlternate route: `/v1/corporations/{corporation_id}/alliancehistory/`\n\nAlternate route: `/latest/corporations/{corporation_id}/alliancehistory/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id_alliancehistory",
                 "parameters": [
                     {
@@ -10866,7 +10866,6 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "latest",
                     "v1"
                 ],
@@ -11003,7 +11002,7 @@
         },
         "/corporations/{corporation_id}/members/": {
             "get": {
-                "description": "Read the current list of members if the calling character is a member.\n\n---\n\nAlternate route: `/v2/corporations/{corporation_id}/members/`\n\nAlternate route: `/latest/corporations/{corporation_id}/members/`\n\nAlternate route: `/dev/corporations/{corporation_id}/members/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Read the current list of members if the calling character is a member.\n\n---\n\nAlternate route: `/v2/corporations/{corporation_id}/members/`\n\nAlternate route: `/latest/corporations/{corporation_id}/members/`\n\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id_members",
                 "parameters": [
                     {
@@ -11129,7 +11128,6 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "latest",
                     "v2"
                 ],
