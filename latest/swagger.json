@@ -3342,7 +3342,7 @@
                                 {
                                     "contact_id": 123,
                                     "contact_type": "character",
-                                    "is_blocked": false,
+                                    "is_blocked": true,
                                     "is_watched": true,
                                     "standing": 10.0
                                 }
@@ -7170,7 +7170,7 @@
                                     2,
                                     32
                                 ],
-                                "read": false,
+                                "read": true,
                                 "subject": "test",
                                 "timestamp": "2015-09-30T16:07:00Z"
                             }
@@ -12614,7 +12614,6 @@
                                 "icon_id": 1389,
                                 "name": "speedFactor",
                                 "published": true,
-                                "stackable": false,
                                 "unit_id": 124
                             }
                         },
@@ -12872,20 +12871,14 @@
                         "examples": {
                             "application/json": {
                                 "description": "Requires a high power slot.",
-                                "disallow_auto_repeat": false,
                                 "display_name": "High power",
                                 "effect_category": 0,
                                 "effect_id": 12,
-                                "electronic_chance": false,
                                 "icon_id": 293,
-                                "is_assistance": false,
-                                "is_offensive": false,
-                                "is_warp_safe": false,
                                 "name": "hiPower",
                                 "post_expression": 131,
                                 "pre_expression": 131,
-                                "published": true,
-                                "range_chance": false
+                                "published": true
                             }
                         },
                         "headers": {
