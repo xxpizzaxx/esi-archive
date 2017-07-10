@@ -8862,7 +8862,7 @@
                                 "title": "get_characters_character_id_skillqueue_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 50,
+                            "maxItems": 51,
                             "title": "get_characters_character_id_skillqueue_ok",
                             "type": "array"
                         }
