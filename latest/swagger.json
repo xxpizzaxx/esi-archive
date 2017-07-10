@@ -5646,7 +5646,7 @@
                                             "title": "get_characters_character_id_mail_recipient",
                                             "type": "object"
                                         },
-                                        "maxItems": 50,
+                                        "maxItems": 52,
                                         "minItems": 1,
                                         "title": "get_characters_character_id_mail_recipients",
                                         "type": "array",
