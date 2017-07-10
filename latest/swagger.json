@@ -6576,7 +6576,7 @@
                                         "title": "get_characters_character_id_mail_mail_id_recipient",
                                         "type": "object"
                                     },
-                                    "maxItems": 50,
+                                    "maxItems": 52,
                                     "minItems": 1,
                                     "title": "get_characters_character_id_mail_mail_id_recipients",
                                     "type": "array",
