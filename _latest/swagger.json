@@ -28,7 +28,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.5.2"
+        "version": "0.5.3"
     },
     "parameters": {
         "X-User-Agent": {
@@ -6890,7 +6890,7 @@
         },
         "/v1/characters/{character_id}/wallet/": {
             "get": {
-                "description": "Returns a character's wallet_id and balance\n\n---\n\nThis route is cached for up to 120 seconds",
+                "description": "Returns a character's wallet balance\n\n---\n\nThis route is cached for up to 120 seconds",
                 "operationId": "get_characters_character_id_wallet",
                 "parameters": [
                     {
@@ -7276,7 +7276,6 @@
                     "Wallet"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ],
@@ -7473,7 +7472,7 @@
         },
         "/v1/characters/{character_id}/wallets/": {
             "get": {
-                "description": "List your wallets and their balances. Characters typically have only one wallet, with wallet_id 1000 being the master wallet.\n\n---\n\nThis route is cached for up to 120 seconds",
+                "description": "List your wallets and their balances. Characters typically have only one wallet, with wallet_id 1000 being the master wallet.\n\n---\n\nThis route is cached for up to 120 seconds\n\n---\nWarning: Since a character has only 1 wallet, this route will be moved to /characters/{character_id}/wallet, this route will be removed on 2017-07-31.",
                 "operationId": "get_characters_character_id_wallets",
                 "parameters": [
                     {
@@ -7586,7 +7585,7 @@
         },
         "/v1/characters/{character_id}/wallets/journal/": {
             "get": {
-                "description": "Retrieve character wallet journal\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Retrieve character wallet journal\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nWarning: Since a character has only 1 wallet, this route will be moved to /characters/{character_id}/wallet/journal, this route will be removed on 2017-07-31.",
                 "operationId": "get_characters_character_id_wallets_journal",
                 "parameters": [
                     {
