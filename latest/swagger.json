@@ -9193,7 +9193,7 @@
         },
         "/characters/{character_id}/wallet/": {
             "get": {
-                "description": "Returns a character's wallet balance\n\n---\nAlternate route: `/v1/characters/{character_id}/wallet/`\n\nAlternate route: `/legacy/characters/{character_id}/wallet/`\n\nAlternate route: `/dev/characters/{character_id}/wallet/`\n\n---\nThis route is cached for up to 120 seconds",
+                "description": "Returns a character's wallet_id and balance\n\n---\nAlternate route: `/v1/characters/{character_id}/wallet/`\n\nAlternate route: `/legacy/characters/{character_id}/wallet/`\n\nAlternate route: `/dev/characters/{character_id}/wallet/`\n\n---\nThis route is cached for up to 120 seconds",
                 "operationId": "get_characters_character_id_wallet",
                 "parameters": [
                     {
@@ -9283,7 +9283,7 @@
         },
         "/characters/{character_id}/wallet/journal/": {
             "get": {
-                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/v1/characters/{character_id}/wallet/journal/`\n\nAlternate route: `/legacy/characters/{character_id}/wallet/journal/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/v1/characters/{character_id}/wallet/journal/`\n\nAlternate route: `/legacy/characters/{character_id}/wallet/journal/`\n\nAlternate route: `/dev/characters/{character_id}/wallet/journal/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_wallet_journal",
                 "parameters": [
                     {
@@ -9579,6 +9579,7 @@
                     "Wallet"
                 ],
                 "x-alternate-versions": [
+                    "dev",
                     "legacy",
                     "v1"
                 ],
@@ -9775,7 +9776,7 @@
         },
         "/characters/{character_id}/wallets/": {
             "get": {
-                "description": "List your wallets and their balances. Characters typically have only one wallet, with wallet_id 1000 being the master wallet.\n\n---\nAlternate route: `/v1/characters/{character_id}/wallets/`\n\nAlternate route: `/legacy/characters/{character_id}/wallets/`\n\n---\nThis route is cached for up to 120 seconds\n\n---\nWarning: Since a character has only 1 wallet, this route will be moved to /characters/{character_id}/wallet, this route will be removed on 2017-07-31.",
+                "description": "List your wallets and their balances. Characters typically have only one wallet, with wallet_id 1000 being the master wallet.\n\n---\nAlternate route: `/v1/characters/{character_id}/wallets/`\n\nAlternate route: `/legacy/characters/{character_id}/wallets/`\n\n---\nThis route is cached for up to 120 seconds",
                 "operationId": "get_characters_character_id_wallets",
                 "parameters": [
                     {
@@ -9888,7 +9889,7 @@
         },
         "/characters/{character_id}/wallets/journal/": {
             "get": {
-                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/v1/characters/{character_id}/wallets/journal/`\n\nAlternate route: `/legacy/characters/{character_id}/wallets/journal/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: Since a character has only 1 wallet, this route will be moved to /characters/{character_id}/wallet/journal, this route will be removed on 2017-07-31.",
+                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/v1/characters/{character_id}/wallets/journal/`\n\nAlternate route: `/legacy/characters/{character_id}/wallets/journal/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_wallets_journal",
                 "parameters": [
                     {
