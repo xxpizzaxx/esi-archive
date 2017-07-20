@@ -8183,132 +8183,6 @@
                 ]
             }
         },
-        "/v1/corporations/{corporation_id}/alliancehistory/": {
-            "get": {
-                "description": "Get a list of all the alliances a corporation has been a member of\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_corporations_corporation_id_alliancehistory",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/corporation_id"
-                    },
-                    {
-                        "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "$ref": "#/parameters/user_agent"
-                    },
-                    {
-                        "$ref": "#/parameters/X-User-Agent"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Alliance history for the given corporation",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "alliance": {
-                                        "alliance_id": 99000006,
-                                        "is_deleted": false
-                                    },
-                                    "record_id": 23,
-                                    "start_date": "2016-10-25T14:46:00Z"
-                                },
-                                {
-                                    "record_id": 1,
-                                    "start_date": "2015-07-06T20:56:00Z"
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "alliance": {
-                                        "description": "alliance object",
-                                        "properties": {
-                                            "alliance_id": {
-                                                "description": "alliance_id integer",
-                                                "format": "int32",
-                                                "title": "get_corporations_corporation_id_alliancehistory_alliance_id",
-                                                "type": "integer"
-                                            },
-                                            "is_deleted": {
-                                                "description": "True if the alliance has been deleted",
-                                                "title": "get_corporations_corporation_id_alliancehistory_is_deleted",
-                                                "type": "boolean"
-                                            }
-                                        },
-                                        "required": [
-                                            "alliance_id",
-                                            "is_deleted"
-                                        ],
-                                        "title": "get_corporations_corporation_id_alliancehistory_alliance",
-                                        "type": "object"
-                                    },
-                                    "record_id": {
-                                        "description": "An incrementing ID that can be used to canonically establish order of records in cases where dates may be ambiguous",
-                                        "format": "int32",
-                                        "title": "get_corporations_corporation_id_alliancehistory_record_id",
-                                        "type": "integer"
-                                    },
-                                    "start_date": {
-                                        "description": "start_date string",
-                                        "format": "date-time",
-                                        "title": "get_corporations_corporation_id_alliancehistory_start_date",
-                                        "type": "string"
-                                    }
-                                },
-                                "required": [
-                                    "start_date",
-                                    "record_id"
-                                ],
-                                "title": "get_corporations_corporation_id_alliancehistory_200_ok",
-                                "type": "object"
-                            },
-                            "maxItems": 10000,
-                            "title": "get_corporations_corporation_id_alliancehistory_ok",
-                            "type": "array"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "Internal server error message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/internal_server_error"
-                        }
-                    }
-                },
-                "summary": "Get alliance history",
-                "tags": [
-                    "Corporation"
-                ],
-                "x-alternate-versions": [
-                    "legacy",
-                    "v1"
-                ],
-                "x-cached-seconds": 3600
-            }
-        },
         "/v1/corporations/{corporation_id}/icons/": {
             "get": {
                 "description": "Get the icon urls for a corporation\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -20319,6 +20193,119 @@
                     "v2"
                 ],
                 "x-cached-seconds": 120
+            }
+        },
+        "/v2/corporations/{corporation_id}/alliancehistory/": {
+            "get": {
+                "description": "Get a list of all the alliances a corporation has been a member of\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_corporation_id_alliancehistory",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/corporation_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Alliance history for the given corporation",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "alliance_id": 99000006,
+                                    "is_deleted": true,
+                                    "record_id": 23,
+                                    "start_date": "2016-10-25T14:46:00Z"
+                                },
+                                {
+                                    "record_id": 1,
+                                    "start_date": "2015-07-06T20:56:00Z"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "alliance_id": {
+                                        "description": "alliance_id integer",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_alliancehistory_alliance_id",
+                                        "type": "integer"
+                                    },
+                                    "is_deleted": {
+                                        "description": "True if the alliance has been closed",
+                                        "title": "get_corporations_corporation_id_alliancehistory_is_deleted",
+                                        "type": "boolean"
+                                    },
+                                    "record_id": {
+                                        "description": "An incrementing ID that can be used to canonically establish order of records in cases where dates may be ambiguous",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_alliancehistory_record_id",
+                                        "type": "integer"
+                                    },
+                                    "start_date": {
+                                        "description": "start_date string",
+                                        "format": "date-time",
+                                        "title": "get_corporations_corporation_id_alliancehistory_start_date",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "start_date",
+                                    "record_id"
+                                ],
+                                "title": "get_corporations_corporation_id_alliancehistory_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 10000,
+                            "title": "get_corporations_corporation_id_alliancehistory_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get alliance history",
+                "tags": [
+                    "Corporation"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v2"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/v2/corporations/{corporation_id}/members/": {
