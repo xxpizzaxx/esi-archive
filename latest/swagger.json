@@ -10666,7 +10666,7 @@
         },
         "/corporations/{corporation_id}/alliancehistory/": {
             "get": {
-                "description": "Get a list of all the alliances a corporation has been a member of\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/alliancehistory/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/alliancehistory/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Get a list of all the alliances a corporation has been a member of\n\n---\nAlternate route: `/v2/corporations/{corporation_id}/alliancehistory/`\n\nAlternate route: `/dev/corporations/{corporation_id}/alliancehistory/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id_alliancehistory",
                 "parameters": [
                     {
@@ -10688,10 +10688,8 @@
                         "examples": {
                             "application/json": [
                                 {
-                                    "alliance": {
-                                        "alliance_id": 99000006,
-                                        "is_deleted": false
-                                    },
+                                    "alliance_id": 99000006,
+                                    "is_deleted": true,
                                     "record_id": 23,
                                     "start_date": "2016-10-25T14:46:00Z"
                                 },
@@ -10720,27 +10718,16 @@
                             "items": {
                                 "description": "200 ok object",
                                 "properties": {
-                                    "alliance": {
-                                        "description": "alliance object",
-                                        "properties": {
-                                            "alliance_id": {
-                                                "description": "alliance_id integer",
-                                                "format": "int32",
-                                                "title": "get_corporations_corporation_id_alliancehistory_alliance_id",
-                                                "type": "integer"
-                                            },
-                                            "is_deleted": {
-                                                "description": "True if the alliance has been deleted",
-                                                "title": "get_corporations_corporation_id_alliancehistory_is_deleted",
-                                                "type": "boolean"
-                                            }
-                                        },
-                                        "required": [
-                                            "alliance_id",
-                                            "is_deleted"
-                                        ],
-                                        "title": "get_corporations_corporation_id_alliancehistory_alliance",
-                                        "type": "object"
+                                    "alliance_id": {
+                                        "description": "alliance_id integer",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_alliancehistory_alliance_id",
+                                        "type": "integer"
+                                    },
+                                    "is_deleted": {
+                                        "description": "True if the alliance has been closed",
+                                        "title": "get_corporations_corporation_id_alliancehistory_is_deleted",
+                                        "type": "boolean"
                                     },
                                     "record_id": {
                                         "description": "An incrementing ID that can be used to canonically establish order of records in cases where dates may be ambiguous",
@@ -10784,8 +10771,8 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
-                    "legacy",
-                    "v1"
+                    "dev",
+                    "v2"
                 ],
                 "x-cached-seconds": 3600
             }
