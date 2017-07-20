@@ -2875,6 +2875,185 @@
                 "x-cached-seconds": 300
             }
         },
+        "/characters/{character_id}/clones/": {
+            "get": {
+                "description": "A list of the character's clones\n\n---\nAlternate route: `/v2/characters/{character_id}/clones/`\n\n---\nThis route is cached for up to 120 seconds",
+                "operationId": "get_characters_character_id_clones",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Clone information for the given character",
+                        "examples": {
+                            "application/json": {
+                                "home_location": {
+                                    "location_id": 1021348135816,
+                                    "location_type": "structure"
+                                },
+                                "jump_clones": [
+                                    {
+                                        "implants": [
+                                            22118
+                                        ],
+                                        "location_id": 60003463,
+                                        "location_type": "station"
+                                    },
+                                    {
+                                        "implants": [],
+                                        "location_id": 1021348135816,
+                                        "location_type": "structure"
+                                    }
+                                ]
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "home_location": {
+                                    "description": "home_location object",
+                                    "properties": {
+                                        "location_id": {
+                                            "description": "location_id integer",
+                                            "format": "int64",
+                                            "title": "get_characters_character_id_clones_location_id",
+                                            "type": "integer"
+                                        },
+                                        "location_type": {
+                                            "description": "location_type string",
+                                            "enum": [
+                                                "station",
+                                                "structure"
+                                            ],
+                                            "title": "get_characters_character_id_clones_location_type",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "title": "get_characters_character_id_clones_home_location",
+                                    "type": "object"
+                                },
+                                "jump_clones": {
+                                    "description": "jump_clones array",
+                                    "items": {
+                                        "description": "jump_clone object",
+                                        "properties": {
+                                            "implants": {
+                                                "description": "implants array",
+                                                "items": {
+                                                    "description": "implant integer",
+                                                    "format": "int32",
+                                                    "title": "get_characters_character_id_clones_implant",
+                                                    "type": "integer"
+                                                },
+                                                "maxItems": 11,
+                                                "title": "get_characters_character_id_clones_implants",
+                                                "type": "array"
+                                            },
+                                            "location_id": {
+                                                "description": "location_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_clones_location_id",
+                                                "type": "integer"
+                                            },
+                                            "location_type": {
+                                                "description": "location_type string",
+                                                "enum": [
+                                                    "station",
+                                                    "structure"
+                                                ],
+                                                "title": "get_characters_character_id_clones_location_type",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "title": "get_characters_character_id_clones_jump_clone",
+                                        "type": "object"
+                                    },
+                                    "maxItems": 10,
+                                    "title": "get_characters_character_id_clones_jump_clones",
+                                    "type": "array"
+                                },
+                                "last_jump_date": {
+                                    "description": "last_jump_date string",
+                                    "format": "date-time",
+                                    "title": "get_characters_character_id_clones_last_jump_date",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "jump_clones"
+                            ],
+                            "title": "get_characters_character_id_clones_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-clones.read_clones.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get clones",
+                "tags": [
+                    "Clones"
+                ],
+                "x-alternate-versions": [
+                    "v2"
+                ],
+                "x-cached-seconds": 120
+            }
+        },
         "/characters/{character_id}/contacts/": {
             "delete": {
                 "description": "Bulk delete contacts\n\n---\nAlternate route: `/v1/characters/{character_id}/contacts/`\n\nAlternate route: `/legacy/characters/{character_id}/contacts/`\n",
@@ -22317,6 +22496,7 @@
                 "esi-characters.read_opportunities.v1": "EVE SSO scope esi-characters.read_opportunities.v1",
                 "esi-characters.read_standings.v1": "EVE SSO scope esi-characters.read_standings.v1",
                 "esi-characters.write_contacts.v1": "EVE SSO scope esi-characters.write_contacts.v1",
+                "esi-clones.read_clones.v1": "EVE SSO scope esi-clones.read_clones.v1",
                 "esi-clones.read_implants.v1": "EVE SSO scope esi-clones.read_implants.v1",
                 "esi-contracts.read_character_contracts.v1": "EVE SSO scope esi-contracts.read_character_contracts.v1",
                 "esi-corporations.read_corporation_membership.v1": "EVE SSO scope esi-corporations.read_corporation_membership.v1",
