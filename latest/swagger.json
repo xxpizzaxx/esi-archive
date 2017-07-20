@@ -7,8 +7,15 @@
                 "error": {
                     "description": "Forbidden message",
                     "type": "string"
+                },
+                "sso_status": {
+                    "description": "Status code received from SSO",
+                    "type": "integer"
                 }
             },
+            "required": [
+                "error"
+            ],
             "title": "Forbidden",
             "type": "object"
         },
@@ -20,6 +27,9 @@
                     "type": "string"
                 }
             },
+            "required": [
+                "error"
+            ],
             "title": "Internal server error",
             "type": "object"
         }
