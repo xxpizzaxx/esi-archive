@@ -1008,6 +1008,7 @@
                                             "SpecializedCommandCenterHold",
                                             "SpecializedPlanetaryCommoditiesHold",
                                             "SpecializedMaterialBay",
+                                            "SubSystemBay",
                                             "SubSystemSlot0",
                                             "SubSystemSlot1",
                                             "SubSystemSlot2",
