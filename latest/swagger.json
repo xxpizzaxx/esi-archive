@@ -4353,7 +4353,7 @@
         },
         "/characters/{character_id}/cspa/": {
             "post": {
-                "description": "Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost\n\n---\nAlternate route: `/v3/characters/{character_id}/cspa/`\n\nAlternate route: `/legacy/characters/{character_id}/cspa/`\n\nAlternate route: `/dev/characters/{character_id}/cspa/`\n",
+                "description": "Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost\n\n---\nAlternate route: `/v3/characters/{character_id}/cspa/`\n\nAlternate route: `/legacy/characters/{character_id}/cspa/`\n",
                 "operationId": "post_characters_character_id_cspa",
                 "parameters": [
                     {
@@ -4459,7 +4459,6 @@
                     "Character"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v3"
                 ]
