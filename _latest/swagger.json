@@ -7694,326 +7694,6 @@
                 "x-cached-seconds": 3600
             }
         },
-        "/v1/characters/{character_id}/wallets/": {
-            "get": {
-                "description": "List your wallets and their balances. Characters typically have only one wallet, with wallet_id 1000 being the master wallet.\n\n---\n\nThis route is cached for up to 120 seconds\n\n---\nWarning: Since a character has only 1 wallet, this route will be moved to /characters/{character_id}/wallet, this route will be removed on 2017-07-31.",
-                "operationId": "get_characters_character_id_wallets",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/character_id"
-                    },
-                    {
-                        "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "$ref": "#/parameters/token"
-                    },
-                    {
-                        "$ref": "#/parameters/user_agent"
-                    },
-                    {
-                        "$ref": "#/parameters/X-User-Agent"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Wallet data for selected user",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "balance": 295000,
-                                    "wallet_id": 1000
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "balance": {
-                                        "description": "Wallet's balance in ISK hundredths.",
-                                        "format": "int64",
-                                        "title": "get_characters_character_id_wallets_balance",
-                                        "type": "integer"
-                                    },
-                                    "wallet_id": {
-                                        "description": "wallet_id integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_wallets_wallet_id",
-                                        "type": "integer"
-                                    }
-                                },
-                                "title": "get_characters_character_id_wallets_200_ok",
-                                "type": "object"
-                            },
-                            "maxItems": 10,
-                            "title": "get_characters_character_id_wallets_ok",
-                            "type": "array"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Forbidden message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/forbidden"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "Internal server error message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/internal_server_error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-wallet.read_character_wallet.v1"
-                        ]
-                    }
-                ],
-                "summary": "List wallets and balances",
-                "tags": [
-                    "Wallet"
-                ],
-                "x-alternate-versions": [
-                    "legacy",
-                    "v1"
-                ],
-                "x-cached-seconds": 120
-            }
-        },
-        "/v1/characters/{character_id}/wallets/journal/": {
-            "get": {
-                "description": "Retrieve character wallet journal\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nWarning: Since a character has only 1 wallet, this route will be moved to /characters/{character_id}/wallet/journal, this route will be removed on 2017-07-31.",
-                "operationId": "get_characters_character_id_wallets_journal",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/character_id"
-                    },
-                    {
-                        "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "description": "Only show journal entries happened before the transaction referenced by this id",
-                        "format": "int64",
-                        "in": "query",
-                        "name": "from_id",
-                        "required": false,
-                        "type": "integer"
-                    },
-                    {
-                        "$ref": "#/parameters/token"
-                    },
-                    {
-                        "$ref": "#/parameters/user_agent"
-                    },
-                    {
-                        "$ref": "#/parameters/X-User-Agent"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Journal entries",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "date": "2016-10-24T09:00:00Z",
-                                    "ref_id": 1234567890,
-                                    "ref_type_id": 1
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "Journal entries",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "amount": {
-                                        "description": "Transaction amount. Positive when value transferred to the first party. Negative otherwise",
-                                        "format": "float",
-                                        "title": "get_characters_character_id_wallets_journal_amount",
-                                        "type": "number"
-                                    },
-                                    "argument_name": {
-                                        "description": "argument_name string",
-                                        "title": "get_characters_character_id_wallets_journal_argument_name",
-                                        "type": "string"
-                                    },
-                                    "argument_value": {
-                                        "description": "argument_value integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_wallets_journal_argument_value",
-                                        "type": "integer"
-                                    },
-                                    "balance": {
-                                        "description": "Wallet balance after transaction occurred",
-                                        "format": "float",
-                                        "title": "get_characters_character_id_wallets_journal_balance",
-                                        "type": "number"
-                                    },
-                                    "date": {
-                                        "description": "Date and time of transaction",
-                                        "format": "date-time",
-                                        "title": "get_characters_character_id_wallets_journal_date",
-                                        "type": "string"
-                                    },
-                                    "first_party_id": {
-                                        "description": "first_party_id integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_wallets_journal_first_party_id",
-                                        "type": "integer"
-                                    },
-                                    "first_party_type": {
-                                        "description": "first_party_type string",
-                                        "enum": [
-                                            "character",
-                                            "corporation",
-                                            "alliance",
-                                            "faction"
-                                        ],
-                                        "title": "get_characters_character_id_wallets_journal_first_party_type",
-                                        "type": "string"
-                                    },
-                                    "reason": {
-                                        "description": "reason string",
-                                        "title": "get_characters_character_id_wallets_journal_reason",
-                                        "type": "string"
-                                    },
-                                    "ref_id": {
-                                        "description": "Unique journal reference ID",
-                                        "format": "int64",
-                                        "title": "get_characters_character_id_wallets_journal_ref_id",
-                                        "type": "integer"
-                                    },
-                                    "ref_type_id": {
-                                        "description": "Transaction type",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_wallets_journal_ref_type_id",
-                                        "type": "integer"
-                                    },
-                                    "second_party_id": {
-                                        "description": "second_party_id integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_wallets_journal_second_party_id",
-                                        "type": "integer"
-                                    },
-                                    "second_party_type": {
-                                        "description": "second_party_type string",
-                                        "enum": [
-                                            "character",
-                                            "corporation",
-                                            "alliance",
-                                            "faction"
-                                        ],
-                                        "title": "get_characters_character_id_wallets_journal_second_party_type",
-                                        "type": "string"
-                                    },
-                                    "tax_amount": {
-                                        "description": "Tax amount received for tax related transactions",
-                                        "format": "float",
-                                        "title": "get_characters_character_id_wallets_journal_tax_amount",
-                                        "type": "number"
-                                    },
-                                    "tax_reciever_id": {
-                                        "description": "For tax related transactions, gives the corporation ID of the entity receiving the tax",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_wallets_journal_tax_reciever_id",
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "date",
-                                    "ref_id",
-                                    "ref_type_id"
-                                ],
-                                "title": "get_characters_character_id_wallets_journal_200_ok",
-                                "type": "object"
-                            },
-                            "maxItems": 2500,
-                            "title": "get_characters_character_id_wallets_journal_ok",
-                            "type": "array"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Forbidden message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/forbidden"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "Internal server error message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/internal_server_error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-wallet.read_character_wallet.v1"
-                        ]
-                    }
-                ],
-                "summary": "Get character wallet journal",
-                "tags": [
-                    "Wallet"
-                ],
-                "x-alternate-versions": [
-                    "legacy",
-                    "v1"
-                ],
-                "x-cached-seconds": 3600
-            }
-        },
         "/v1/corporations/names/": {
             "get": {
                 "description": "Resolve a set of corporation IDs to corporation names\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -9637,270 +9317,6 @@
                 ],
                 "x-alternate-versions": [
                     "dev",
-                    "legacy",
-                    "v1"
-                ]
-            }
-        },
-        "/v1/dogma/effects/{effect_id}/": {
-            "get": {
-                "description": "Get information on a dogma effect\n\n---\n\nThis route expires daily at 11:05",
-                "operationId": "get_dogma_effects_effect_id",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "description": "A dogma effect ID",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "effect_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "$ref": "#/parameters/user_agent"
-                    },
-                    {
-                        "$ref": "#/parameters/X-User-Agent"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Information about a dogma effect",
-                        "examples": {
-                            "application/json": {
-                                "description": "Requires a high power slot.",
-                                "display_name": "High power",
-                                "effect_category": 0,
-                                "effect_id": 12,
-                                "icon_id": 293,
-                                "name": "hiPower",
-                                "post_expression": 131,
-                                "pre_expression": 131,
-                                "published": true
-                            }
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok object",
-                            "properties": {
-                                "description": {
-                                    "description": "description string",
-                                    "title": "get_dogma_effects_effect_id_description",
-                                    "type": "string"
-                                },
-                                "disallow_auto_repeat": {
-                                    "description": "disallow_auto_repeat boolean",
-                                    "title": "get_dogma_effects_effect_id_disallow_auto_repeat",
-                                    "type": "boolean"
-                                },
-                                "discharge_attribute_id": {
-                                    "description": "discharge_attribute_id integer",
-                                    "format": "int32",
-                                    "title": "get_dogma_effects_effect_id_discharge_attribute_id",
-                                    "type": "integer"
-                                },
-                                "display_name": {
-                                    "description": "display_name string",
-                                    "title": "get_dogma_effects_effect_id_display_name",
-                                    "type": "string"
-                                },
-                                "duration_attribute_id": {
-                                    "description": "duration_attribute_id integer",
-                                    "format": "int32",
-                                    "title": "get_dogma_effects_effect_id_duration_attribute_id",
-                                    "type": "integer"
-                                },
-                                "effect_category": {
-                                    "description": "effect_category integer",
-                                    "format": "int32",
-                                    "title": "get_dogma_effects_effect_id_effect_category",
-                                    "type": "integer"
-                                },
-                                "effect_id": {
-                                    "description": "effect_id integer",
-                                    "format": "int32",
-                                    "title": "get_dogma_effects_effect_id_effect_id",
-                                    "type": "integer"
-                                },
-                                "electronic_chance": {
-                                    "description": "electronic_chance boolean",
-                                    "title": "get_dogma_effects_effect_id_electronic_chance",
-                                    "type": "boolean"
-                                },
-                                "falloff_attribute_id": {
-                                    "description": "falloff_attribute_id integer",
-                                    "format": "int32",
-                                    "title": "get_dogma_effects_effect_id_falloff_attribute_id",
-                                    "type": "integer"
-                                },
-                                "icon_id": {
-                                    "description": "icon_id integer",
-                                    "format": "int32",
-                                    "title": "get_dogma_effects_effect_id_icon_id",
-                                    "type": "integer"
-                                },
-                                "is_assistance": {
-                                    "description": "is_assistance boolean",
-                                    "title": "get_dogma_effects_effect_id_is_assistance",
-                                    "type": "boolean"
-                                },
-                                "is_offensive": {
-                                    "description": "is_offensive boolean",
-                                    "title": "get_dogma_effects_effect_id_is_offensive",
-                                    "type": "boolean"
-                                },
-                                "is_warp_safe": {
-                                    "description": "is_warp_safe boolean",
-                                    "title": "get_dogma_effects_effect_id_is_warp_safe",
-                                    "type": "boolean"
-                                },
-                                "modifiers": {
-                                    "description": "modifiers array",
-                                    "items": {
-                                        "description": "modifier object",
-                                        "properties": {
-                                            "domain": {
-                                                "description": "domain string",
-                                                "title": "get_dogma_effects_effect_id_domain",
-                                                "type": "string"
-                                            },
-                                            "func": {
-                                                "description": "func string",
-                                                "title": "get_dogma_effects_effect_id_func",
-                                                "type": "string"
-                                            },
-                                            "modified_attribute_id": {
-                                                "description": "modified_attribute_id integer",
-                                                "format": "int32",
-                                                "title": "get_dogma_effects_effect_id_modified_attribute_id",
-                                                "type": "integer"
-                                            },
-                                            "modifying_attribute_id": {
-                                                "description": "modifying_attribute_id integer",
-                                                "format": "int32",
-                                                "title": "get_dogma_effects_effect_id_modifying_attribute_id",
-                                                "type": "integer"
-                                            },
-                                            "operator": {
-                                                "description": "operator integer",
-                                                "format": "int32",
-                                                "title": "get_dogma_effects_effect_id_operator",
-                                                "type": "integer"
-                                            }
-                                        },
-                                        "required": [
-                                            "func",
-                                            "domain",
-                                            "modified_attribute_id",
-                                            "modifying_attribute_id",
-                                            "operator"
-                                        ],
-                                        "title": "get_dogma_effects_effect_id_modifier",
-                                        "type": "object"
-                                    },
-                                    "maxItems": 100,
-                                    "title": "get_dogma_effects_effect_id_modifiers",
-                                    "type": "array"
-                                },
-                                "name": {
-                                    "description": "name string",
-                                    "title": "get_dogma_effects_effect_id_name",
-                                    "type": "string"
-                                },
-                                "post_expression": {
-                                    "description": "post_expression integer",
-                                    "format": "int32",
-                                    "title": "get_dogma_effects_effect_id_post_expression",
-                                    "type": "integer"
-                                },
-                                "pre_expression": {
-                                    "description": "pre_expression integer",
-                                    "format": "int32",
-                                    "title": "get_dogma_effects_effect_id_pre_expression",
-                                    "type": "integer"
-                                },
-                                "published": {
-                                    "description": "published boolean",
-                                    "title": "get_dogma_effects_effect_id_published",
-                                    "type": "boolean"
-                                },
-                                "range_attribute_id": {
-                                    "description": "range_attribute_id integer",
-                                    "format": "int32",
-                                    "title": "get_dogma_effects_effect_id_range_attribute_id",
-                                    "type": "integer"
-                                },
-                                "range_chance": {
-                                    "description": "range_chance boolean",
-                                    "title": "get_dogma_effects_effect_id_range_chance",
-                                    "type": "boolean"
-                                },
-                                "tracking_speed_attribute_id": {
-                                    "description": "tracking_speed_attribute_id integer",
-                                    "format": "int32",
-                                    "title": "get_dogma_effects_effect_id_tracking_speed_attribute_id",
-                                    "type": "integer"
-                                }
-                            },
-                            "required": [
-                                "effect_id"
-                            ],
-                            "title": "get_dogma_effects_effect_id_ok",
-                            "type": "object"
-                        }
-                    },
-                    "404": {
-                        "description": "Dogma effect not found",
-                        "examples": {
-                            "application/json": {
-                                "error": "Not found message"
-                            }
-                        },
-                        "schema": {
-                            "description": "Not found",
-                            "properties": {
-                                "error": {
-                                    "description": "Not found message",
-                                    "title": "get_dogma_effects_effect_id_404_not_found",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_dogma_effects_effect_id_not_found",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "Internal server error message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/internal_server_error"
-                        }
-                    }
-                },
-                "summary": "Get effect information",
-                "tags": [
-                    "Dogma"
-                ],
-                "x-alternate-versions": [
                     "legacy",
                     "v1"
                 ]
@@ -18050,115 +17466,6 @@
                 "x-cached-seconds": 3600
             }
         },
-        "/v1/universe/system_kills/": {
-            "get": {
-                "description": "Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_universe_system_kills",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "$ref": "#/parameters/user_agent"
-                    },
-                    {
-                        "$ref": "#/parameters/X-User-Agent"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of systems and number of ship, pod and NPC kills",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "npc_kills": 0,
-                                    "pod_kills": 24,
-                                    "ship_kills": 42,
-                                    "system_id": 30002410
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "npc_kills": {
-                                        "description": "Number of NPC ships killed in this system",
-                                        "format": "int32",
-                                        "title": "get_universe_system_kills_npc_kills",
-                                        "type": "integer"
-                                    },
-                                    "pod_kills": {
-                                        "description": "Number of pods killed in this system",
-                                        "format": "int32",
-                                        "title": "get_universe_system_kills_pod_kills",
-                                        "type": "integer"
-                                    },
-                                    "ship_kills": {
-                                        "description": "Number of player and NPC ships killed in this system",
-                                        "format": "int32",
-                                        "title": "get_universe_system_kills_ship_kills",
-                                        "type": "integer"
-                                    },
-                                    "system_id": {
-                                        "description": "system_id integer",
-                                        "format": "int32",
-                                        "title": "get_universe_system_kills_system_id",
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "system_id",
-                                    "ship_kills",
-                                    "npc_kills",
-                                    "pod_kills"
-                                ],
-                                "title": "get_universe_system_kills_200_ok",
-                                "type": "object"
-                            },
-                            "maxItems": 10000,
-                            "title": "get_universe_system_kills_ok",
-                            "type": "array"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "Internal server error message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/internal_server_error"
-                        }
-                    }
-                },
-                "summary": "Get system kills",
-                "tags": [
-                    "Universe"
-                ],
-                "x-alternate-versions": [
-                    "legacy",
-                    "v1"
-                ],
-                "x-cached-seconds": 3600
-            }
-        },
         "/v1/universe/systems/": {
             "get": {
                 "description": "Get a list of solar systems\n\n---\n\nThis route expires daily at 11:05",
@@ -19070,6 +18377,7 @@
                     "Clones"
                 ],
                 "x-alternate-versions": [
+                    "legacy",
                     "v2"
                 ],
                 "x-cached-seconds": 120
@@ -20431,6 +19739,272 @@
                 "x-cached-seconds": 3600
             }
         },
+        "/v2/dogma/effects/{effect_id}/": {
+            "get": {
+                "description": "Get information on a dogma effect\n\n---\n\nThis route expires daily at 11:05",
+                "operationId": "get_dogma_effects_effect_id",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "A dogma effect ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "effect_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Information about a dogma effect",
+                        "examples": {
+                            "application/json": {
+                                "description": "Requires a high power slot.",
+                                "display_name": "High power",
+                                "effect_category": 0,
+                                "effect_id": 12,
+                                "icon_id": 293,
+                                "name": "hiPower",
+                                "post_expression": 131,
+                                "pre_expression": 131,
+                                "published": true
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "description": {
+                                    "description": "description string",
+                                    "title": "get_dogma_effects_effect_id_description",
+                                    "type": "string"
+                                },
+                                "disallow_auto_repeat": {
+                                    "description": "disallow_auto_repeat boolean",
+                                    "title": "get_dogma_effects_effect_id_disallow_auto_repeat",
+                                    "type": "boolean"
+                                },
+                                "discharge_attribute_id": {
+                                    "description": "discharge_attribute_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_discharge_attribute_id",
+                                    "type": "integer"
+                                },
+                                "display_name": {
+                                    "description": "display_name string",
+                                    "title": "get_dogma_effects_effect_id_display_name",
+                                    "type": "string"
+                                },
+                                "duration_attribute_id": {
+                                    "description": "duration_attribute_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_duration_attribute_id",
+                                    "type": "integer"
+                                },
+                                "effect_category": {
+                                    "description": "effect_category integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_effect_category",
+                                    "type": "integer"
+                                },
+                                "effect_id": {
+                                    "description": "effect_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_effect_id",
+                                    "type": "integer"
+                                },
+                                "electronic_chance": {
+                                    "description": "electronic_chance boolean",
+                                    "title": "get_dogma_effects_effect_id_electronic_chance",
+                                    "type": "boolean"
+                                },
+                                "falloff_attribute_id": {
+                                    "description": "falloff_attribute_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_falloff_attribute_id",
+                                    "type": "integer"
+                                },
+                                "icon_id": {
+                                    "description": "icon_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_icon_id",
+                                    "type": "integer"
+                                },
+                                "is_assistance": {
+                                    "description": "is_assistance boolean",
+                                    "title": "get_dogma_effects_effect_id_is_assistance",
+                                    "type": "boolean"
+                                },
+                                "is_offensive": {
+                                    "description": "is_offensive boolean",
+                                    "title": "get_dogma_effects_effect_id_is_offensive",
+                                    "type": "boolean"
+                                },
+                                "is_warp_safe": {
+                                    "description": "is_warp_safe boolean",
+                                    "title": "get_dogma_effects_effect_id_is_warp_safe",
+                                    "type": "boolean"
+                                },
+                                "modifiers": {
+                                    "description": "modifiers array",
+                                    "items": {
+                                        "description": "modifier object",
+                                        "properties": {
+                                            "domain": {
+                                                "description": "domain string",
+                                                "title": "get_dogma_effects_effect_id_domain",
+                                                "type": "string"
+                                            },
+                                            "effect_id": {
+                                                "description": "effect_id integer",
+                                                "format": "int32",
+                                                "title": "get_dogma_effects_effect_id_effect_id",
+                                                "type": "integer"
+                                            },
+                                            "func": {
+                                                "description": "func string",
+                                                "title": "get_dogma_effects_effect_id_func",
+                                                "type": "string"
+                                            },
+                                            "modified_attribute_id": {
+                                                "description": "modified_attribute_id integer",
+                                                "format": "int32",
+                                                "title": "get_dogma_effects_effect_id_modified_attribute_id",
+                                                "type": "integer"
+                                            },
+                                            "modifying_attribute_id": {
+                                                "description": "modifying_attribute_id integer",
+                                                "format": "int32",
+                                                "title": "get_dogma_effects_effect_id_modifying_attribute_id",
+                                                "type": "integer"
+                                            },
+                                            "operator": {
+                                                "description": "operator integer",
+                                                "format": "int32",
+                                                "title": "get_dogma_effects_effect_id_operator",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "func"
+                                        ],
+                                        "title": "get_dogma_effects_effect_id_modifier",
+                                        "type": "object"
+                                    },
+                                    "maxItems": 100,
+                                    "title": "get_dogma_effects_effect_id_modifiers",
+                                    "type": "array"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_dogma_effects_effect_id_name",
+                                    "type": "string"
+                                },
+                                "post_expression": {
+                                    "description": "post_expression integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_post_expression",
+                                    "type": "integer"
+                                },
+                                "pre_expression": {
+                                    "description": "pre_expression integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_pre_expression",
+                                    "type": "integer"
+                                },
+                                "published": {
+                                    "description": "published boolean",
+                                    "title": "get_dogma_effects_effect_id_published",
+                                    "type": "boolean"
+                                },
+                                "range_attribute_id": {
+                                    "description": "range_attribute_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_range_attribute_id",
+                                    "type": "integer"
+                                },
+                                "range_chance": {
+                                    "description": "range_chance boolean",
+                                    "title": "get_dogma_effects_effect_id_range_chance",
+                                    "type": "boolean"
+                                },
+                                "tracking_speed_attribute_id": {
+                                    "description": "tracking_speed_attribute_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_tracking_speed_attribute_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "effect_id"
+                            ],
+                            "title": "get_dogma_effects_effect_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Dogma effect not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_dogma_effects_effect_id_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_dogma_effects_effect_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get effect information",
+                "tags": [
+                    "Dogma"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v2"
+                ]
+            }
+        },
         "/v2/ui/autopilot/waypoint/": {
             "post": {
                 "description": "Set a solar system as autopilot waypoint\n\n---\n",
@@ -20925,6 +20499,115 @@
                 "x-cached-seconds": 300
             }
         },
+        "/v2/universe/system_kills/": {
+            "get": {
+                "description": "Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_system_kills",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of systems and number of ship, pod and NPC kills",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "npc_kills": 0,
+                                    "pod_kills": 24,
+                                    "ship_kills": 42,
+                                    "system_id": 30002410
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "npc_kills": {
+                                        "description": "Number of NPC ships killed in this system",
+                                        "format": "int32",
+                                        "title": "get_universe_system_kills_npc_kills",
+                                        "type": "integer"
+                                    },
+                                    "pod_kills": {
+                                        "description": "Number of pods killed in this system",
+                                        "format": "int32",
+                                        "title": "get_universe_system_kills_pod_kills",
+                                        "type": "integer"
+                                    },
+                                    "ship_kills": {
+                                        "description": "Number of player ships killed in this system",
+                                        "format": "int32",
+                                        "title": "get_universe_system_kills_ship_kills",
+                                        "type": "integer"
+                                    },
+                                    "system_id": {
+                                        "description": "system_id integer",
+                                        "format": "int32",
+                                        "title": "get_universe_system_kills_system_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "system_id",
+                                    "ship_kills",
+                                    "npc_kills",
+                                    "pod_kills"
+                                ],
+                                "title": "get_universe_system_kills_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 10000,
+                            "title": "get_universe_system_kills_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get system kills",
+                "tags": [
+                    "Universe"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v2"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
         "/v2/universe/systems/{system_id}/": {
             "get": {
                 "description": "Get information on a solar system\n\n---\n\nThis route expires daily at 11:05",
@@ -21412,6 +21095,7 @@
                     "Universe"
                 ],
                 "x-alternate-versions": [
+                    "legacy",
                     "v2"
                 ]
             }
