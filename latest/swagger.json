@@ -2888,7 +2888,7 @@
         },
         "/characters/{character_id}/clones/": {
             "get": {
-                "description": "A list of the character's clones\n\n---\nAlternate route: `/v2/characters/{character_id}/clones/`\n\n---\nThis route is cached for up to 120 seconds",
+                "description": "A list of the character's clones\n\n---\nAlternate route: `/v2/characters/{character_id}/clones/`\n\nAlternate route: `/legacy/characters/{character_id}/clones/`\n\n---\nThis route is cached for up to 120 seconds",
                 "operationId": "get_characters_character_id_clones",
                 "parameters": [
                     {
@@ -3060,6 +3060,7 @@
                     "Clones"
                 ],
                 "x-alternate-versions": [
+                    "legacy",
                     "v2"
                 ],
                 "x-cached-seconds": 120
@@ -9995,326 +9996,6 @@
                 "x-cached-seconds": 3600
             }
         },
-        "/characters/{character_id}/wallets/": {
-            "get": {
-                "description": "List your wallets and their balances. Characters typically have only one wallet, with wallet_id 1000 being the master wallet.\n\n---\nAlternate route: `/v1/characters/{character_id}/wallets/`\n\nAlternate route: `/legacy/characters/{character_id}/wallets/`\n\n---\nThis route is cached for up to 120 seconds\n\n---\nWarning: Since a character has only 1 wallet, this route will be moved to /characters/{character_id}/wallet, this route will be removed on 2017-07-31.",
-                "operationId": "get_characters_character_id_wallets",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/character_id"
-                    },
-                    {
-                        "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "$ref": "#/parameters/token"
-                    },
-                    {
-                        "$ref": "#/parameters/user_agent"
-                    },
-                    {
-                        "$ref": "#/parameters/X-User-Agent"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Wallet data for selected user",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "balance": 295000,
-                                    "wallet_id": 1000
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "balance": {
-                                        "description": "Wallet's balance in ISK hundredths.",
-                                        "format": "int64",
-                                        "title": "get_characters_character_id_wallets_balance",
-                                        "type": "integer"
-                                    },
-                                    "wallet_id": {
-                                        "description": "wallet_id integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_wallets_wallet_id",
-                                        "type": "integer"
-                                    }
-                                },
-                                "title": "get_characters_character_id_wallets_200_ok",
-                                "type": "object"
-                            },
-                            "maxItems": 10,
-                            "title": "get_characters_character_id_wallets_ok",
-                            "type": "array"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Forbidden message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/forbidden"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "Internal server error message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/internal_server_error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-wallet.read_character_wallet.v1"
-                        ]
-                    }
-                ],
-                "summary": "List wallets and balances",
-                "tags": [
-                    "Wallet"
-                ],
-                "x-alternate-versions": [
-                    "legacy",
-                    "v1"
-                ],
-                "x-cached-seconds": 120
-            }
-        },
-        "/characters/{character_id}/wallets/journal/": {
-            "get": {
-                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/v1/characters/{character_id}/wallets/journal/`\n\nAlternate route: `/legacy/characters/{character_id}/wallets/journal/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: Since a character has only 1 wallet, this route will be moved to /characters/{character_id}/wallet/journal, this route will be removed on 2017-07-31.",
-                "operationId": "get_characters_character_id_wallets_journal",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/character_id"
-                    },
-                    {
-                        "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "description": "Only show journal entries happened before the transaction referenced by this id",
-                        "format": "int64",
-                        "in": "query",
-                        "name": "from_id",
-                        "required": false,
-                        "type": "integer"
-                    },
-                    {
-                        "$ref": "#/parameters/token"
-                    },
-                    {
-                        "$ref": "#/parameters/user_agent"
-                    },
-                    {
-                        "$ref": "#/parameters/X-User-Agent"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Journal entries",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "date": "2016-10-24T09:00:00Z",
-                                    "ref_id": 1234567890,
-                                    "ref_type_id": 1
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "Journal entries",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "amount": {
-                                        "description": "Transaction amount. Positive when value transferred to the first party. Negative otherwise",
-                                        "format": "float",
-                                        "title": "get_characters_character_id_wallets_journal_amount",
-                                        "type": "number"
-                                    },
-                                    "argument_name": {
-                                        "description": "argument_name string",
-                                        "title": "get_characters_character_id_wallets_journal_argument_name",
-                                        "type": "string"
-                                    },
-                                    "argument_value": {
-                                        "description": "argument_value integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_wallets_journal_argument_value",
-                                        "type": "integer"
-                                    },
-                                    "balance": {
-                                        "description": "Wallet balance after transaction occurred",
-                                        "format": "float",
-                                        "title": "get_characters_character_id_wallets_journal_balance",
-                                        "type": "number"
-                                    },
-                                    "date": {
-                                        "description": "Date and time of transaction",
-                                        "format": "date-time",
-                                        "title": "get_characters_character_id_wallets_journal_date",
-                                        "type": "string"
-                                    },
-                                    "first_party_id": {
-                                        "description": "first_party_id integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_wallets_journal_first_party_id",
-                                        "type": "integer"
-                                    },
-                                    "first_party_type": {
-                                        "description": "first_party_type string",
-                                        "enum": [
-                                            "character",
-                                            "corporation",
-                                            "alliance",
-                                            "faction"
-                                        ],
-                                        "title": "get_characters_character_id_wallets_journal_first_party_type",
-                                        "type": "string"
-                                    },
-                                    "reason": {
-                                        "description": "reason string",
-                                        "title": "get_characters_character_id_wallets_journal_reason",
-                                        "type": "string"
-                                    },
-                                    "ref_id": {
-                                        "description": "Unique journal reference ID",
-                                        "format": "int64",
-                                        "title": "get_characters_character_id_wallets_journal_ref_id",
-                                        "type": "integer"
-                                    },
-                                    "ref_type_id": {
-                                        "description": "Transaction type",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_wallets_journal_ref_type_id",
-                                        "type": "integer"
-                                    },
-                                    "second_party_id": {
-                                        "description": "second_party_id integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_wallets_journal_second_party_id",
-                                        "type": "integer"
-                                    },
-                                    "second_party_type": {
-                                        "description": "second_party_type string",
-                                        "enum": [
-                                            "character",
-                                            "corporation",
-                                            "alliance",
-                                            "faction"
-                                        ],
-                                        "title": "get_characters_character_id_wallets_journal_second_party_type",
-                                        "type": "string"
-                                    },
-                                    "tax_amount": {
-                                        "description": "Tax amount received for tax related transactions",
-                                        "format": "float",
-                                        "title": "get_characters_character_id_wallets_journal_tax_amount",
-                                        "type": "number"
-                                    },
-                                    "tax_reciever_id": {
-                                        "description": "For tax related transactions, gives the corporation ID of the entity receiving the tax",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_wallets_journal_tax_reciever_id",
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "date",
-                                    "ref_id",
-                                    "ref_type_id"
-                                ],
-                                "title": "get_characters_character_id_wallets_journal_200_ok",
-                                "type": "object"
-                            },
-                            "maxItems": 2500,
-                            "title": "get_characters_character_id_wallets_journal_ok",
-                            "type": "array"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Forbidden message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/forbidden"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "Internal server error message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/internal_server_error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-wallet.read_character_wallet.v1"
-                        ]
-                    }
-                ],
-                "summary": "Get character wallet journal",
-                "tags": [
-                    "Wallet"
-                ],
-                "x-alternate-versions": [
-                    "legacy",
-                    "v1"
-                ],
-                "x-cached-seconds": 3600
-            }
-        },
         "/corporations/names/": {
             "get": {
                 "description": "Resolve a set of corporation IDs to corporation names\n\n---\nAlternate route: `/v1/corporations/names/`\n\nAlternate route: `/legacy/corporations/names/`\n\n---\nThis route is cached for up to 3600 seconds",
@@ -12349,7 +12030,7 @@
         },
         "/dogma/effects/{effect_id}/": {
             "get": {
-                "description": "Get information on a dogma effect\n\n---\nAlternate route: `/v1/dogma/effects/{effect_id}/`\n\nAlternate route: `/legacy/dogma/effects/{effect_id}/`\n\n---\nThis route expires daily at 11:05",
+                "description": "Get information on a dogma effect\n\n---\nAlternate route: `/v2/dogma/effects/{effect_id}/`\n\nAlternate route: `/dev/dogma/effects/{effect_id}/`\n\n---\nThis route expires daily at 11:05",
                 "operationId": "get_dogma_effects_effect_id",
                 "parameters": [
                     {
@@ -12484,6 +12165,12 @@
                                                 "title": "get_dogma_effects_effect_id_domain",
                                                 "type": "string"
                                             },
+                                            "effect_id": {
+                                                "description": "effect_id integer",
+                                                "format": "int32",
+                                                "title": "get_dogma_effects_effect_id_effect_id",
+                                                "type": "integer"
+                                            },
                                             "func": {
                                                 "description": "func string",
                                                 "title": "get_dogma_effects_effect_id_func",
@@ -12509,11 +12196,7 @@
                                             }
                                         },
                                         "required": [
-                                            "func",
-                                            "domain",
-                                            "modified_attribute_id",
-                                            "modifying_attribute_id",
-                                            "operator"
+                                            "func"
                                         ],
                                         "title": "get_dogma_effects_effect_id_modifier",
                                         "type": "object"
@@ -12606,8 +12289,8 @@
                     "Dogma"
                 ],
                 "x-alternate-versions": [
-                    "legacy",
-                    "v1"
+                    "dev",
+                    "v2"
                 ]
             }
         },
@@ -21251,7 +20934,7 @@
         },
         "/universe/system_kills/": {
             "get": {
-                "description": "Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed\n\n---\nAlternate route: `/v1/universe/system_kills/`\n\nAlternate route: `/legacy/universe/system_kills/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed\n\n---\nAlternate route: `/v2/universe/system_kills/`\n\nAlternate route: `/dev/universe/system_kills/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_universe_system_kills",
                 "parameters": [
                     {
@@ -21309,7 +20992,7 @@
                                         "type": "integer"
                                     },
                                     "ship_kills": {
-                                        "description": "Number of player and NPC ships killed in this system",
+                                        "description": "Number of player ships killed in this system",
                                         "format": "int32",
                                         "title": "get_universe_system_kills_ship_kills",
                                         "type": "integer"
@@ -21352,8 +21035,8 @@
                     "Universe"
                 ],
                 "x-alternate-versions": [
-                    "legacy",
-                    "v1"
+                    "dev",
+                    "v2"
                 ],
                 "x-cached-seconds": 3600
             }
@@ -21757,7 +21440,7 @@
         },
         "/universe/types/{type_id}/": {
             "get": {
-                "description": "Get information on a type\n\n---\nAlternate route: `/v2/universe/types/{type_id}/`\n\n---\nThis route expires daily at 11:05",
+                "description": "Get information on a type\n\n---\nAlternate route: `/v2/universe/types/{type_id}/`\n\nAlternate route: `/legacy/universe/types/{type_id}/`\n\n---\nThis route expires daily at 11:05",
                 "operationId": "get_universe_types_type_id",
                 "parameters": [
                     {
@@ -21997,6 +21680,7 @@
                     "Universe"
                 ],
                 "x-alternate-versions": [
+                    "legacy",
                     "v2"
                 ]
             }
