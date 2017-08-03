@@ -13877,6 +13877,272 @@
                 ]
             }
         },
+        "/fw/stats/": {
+            "get": {
+                "description": "Statistical overviews of factions involved in faction warfare\n\n---\nAlternate route: `/v1/fw/stats/`\n\nAlternate route: `/latest/fw/stats/`\n\nAlternate route: `/dev/fw/stats/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_fw_stats",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Per faction breakdown of faction warfare statistics",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "faction_id": 500001,
+                                    "kills": {
+                                        "last_week": 893,
+                                        "total": 684350,
+                                        "yesterday": 136
+                                    },
+                                    "pilots": 28863,
+                                    "systems_controlled": 20,
+                                    "victory_points": {
+                                        "last_week": 102640,
+                                        "total": 52658260,
+                                        "yesterday": 15980
+                                    }
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "faction_id": {
+                                        "description": "faction_id integer",
+                                        "format": "int32",
+                                        "title": "get_fw_stats_faction_id",
+                                        "type": "integer"
+                                    },
+                                    "kills": {
+                                        "description": "Summary of kills against an enemy faction for the given faction",
+                                        "properties": {
+                                            "last_week": {
+                                                "description": "Last week's total number of kills against enemy factions",
+                                                "format": "int32",
+                                                "title": "get_fw_stats_last_week",
+                                                "type": "integer"
+                                            },
+                                            "total": {
+                                                "description": "Total number of kills against enemy factions since faction warfare began",
+                                                "format": "int32",
+                                                "title": "get_fw_stats_total",
+                                                "type": "integer"
+                                            },
+                                            "yesterday": {
+                                                "description": "Yesterday's total number of kills against enemy factions",
+                                                "format": "int32",
+                                                "title": "get_fw_stats_yesterday",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "yesterday",
+                                            "last_week",
+                                            "total"
+                                        ],
+                                        "title": "get_fw_stats_kills",
+                                        "type": "object"
+                                    },
+                                    "pilots": {
+                                        "description": "How many pilots fight for the given faction",
+                                        "format": "int32",
+                                        "title": "get_fw_stats_pilots",
+                                        "type": "integer"
+                                    },
+                                    "systems_controlled": {
+                                        "description": "The number of solar systems controlled by the given faction",
+                                        "format": "int32",
+                                        "title": "get_fw_stats_systems_controlled",
+                                        "type": "integer"
+                                    },
+                                    "victory_points": {
+                                        "description": "Summary of victory points gained for the given faction",
+                                        "properties": {
+                                            "last_week": {
+                                                "description": "Last week's victory points gained",
+                                                "format": "int32",
+                                                "title": "get_fw_stats_last_week",
+                                                "type": "integer"
+                                            },
+                                            "total": {
+                                                "description": "Total victory points gained since faction warfare began",
+                                                "format": "int32",
+                                                "title": "get_fw_stats_total",
+                                                "type": "integer"
+                                            },
+                                            "yesterday": {
+                                                "description": "Yesterday's victory points gained",
+                                                "format": "int32",
+                                                "title": "get_fw_stats_yesterday",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "yesterday",
+                                            "last_week",
+                                            "total"
+                                        ],
+                                        "title": "get_fw_stats_victory_points",
+                                        "type": "object"
+                                    }
+                                },
+                                "required": [
+                                    "faction_id",
+                                    "pilots",
+                                    "systems_controlled",
+                                    "kills",
+                                    "victory_points"
+                                ],
+                                "title": "get_fw_stats_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 4,
+                            "title": "get_fw_stats_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "An overview of statistics about factions involved in faction warfare",
+                "tags": [
+                    "Faction Warfare"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ]
+            }
+        },
+        "/fw/wars/": {
+            "get": {
+                "description": "Data about which NPC factions are at war\n\n---\nAlternate route: `/v1/fw/wars/`\n\nAlternate route: `/latest/fw/wars/`\n\nAlternate route: `/dev/fw/wars/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_fw_wars",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of NPC factions at war",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "against_id": 500002,
+                                    "faction_id": 500001
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "List of factions at war",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "against_id": {
+                                        "description": "The faction ID of the enemy faction.",
+                                        "format": "int32",
+                                        "title": "get_fw_wars_against_id",
+                                        "type": "integer"
+                                    },
+                                    "faction_id": {
+                                        "description": "faction_id integer",
+                                        "format": "int32",
+                                        "title": "get_fw_wars_faction_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "faction_id",
+                                    "against_id"
+                                ],
+                                "title": "get_fw_wars_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 8,
+                            "title": "get_fw_wars_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Data about which NPC factions are at war",
+                "tags": [
+                    "Faction Warfare"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ]
+            }
+        },
         "/incursions/": {
             "get": {
                 "description": "Return a list of current incursions\n\n---\nAlternate route: `/v1/incursions/`\n\nAlternate route: `/latest/incursions/`\n\nAlternate route: `/dev/incursions/`\n\n---\nThis route is cached for up to 300 seconds",
