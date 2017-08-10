@@ -21046,12 +21046,6 @@
                                     "title": "get_universe_systems_system_id_security_status",
                                     "type": "number"
                                 },
-                                "star_id": {
-                                    "description": "star_id integer",
-                                    "format": "int32",
-                                    "title": "get_universe_systems_system_id_star_id",
-                                    "type": "integer"
-                                },
                                 "stargates": {
                                     "description": "stargates array",
                                     "items": {
