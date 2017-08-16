@@ -38,7 +38,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.5.3"
+        "version": "0.5.4"
     },
     "parameters": {
         "X-User-Agent": {
@@ -5483,7 +5483,7 @@
                         ]
                     }
                 ],
-                "summary": "List kills and losses",
+                "summary": "Get character kills and losses",
                 "tags": [
                     "Killmails"
                 ],
@@ -21671,6 +21671,12 @@
                                     "format": "float",
                                     "title": "get_universe_systems_system_id_security_status",
                                     "type": "number"
+                                },
+                                "star_id": {
+                                    "description": "star_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_systems_system_id_star_id",
+                                    "type": "integer"
                                 },
                                 "stargates": {
                                     "description": "stargates array",
