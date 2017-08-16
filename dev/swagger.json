@@ -7451,6 +7451,254 @@
                 "x-cached-seconds": 3600
             }
         },
+        "/characters/{character_id}/orders/": {
+            "get": {
+                "description": "List market orders placed by a character\n\n---\nAlternate route: `/v1/characters/{character_id}/orders/`\n\nAlternate route: `/legacy/characters/{character_id}/orders/`\n\nAlternate route: `/latest/characters/{character_id}/orders/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_orders",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Market orders placed by a character",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "account_id": 1000,
+                                    "duration": 30,
+                                    "escrow": 45.6,
+                                    "is_buy_order": true,
+                                    "is_corp": false,
+                                    "issued": "2016-09-03T05:12:25Z",
+                                    "location_id": 456,
+                                    "min_volume": 1,
+                                    "order_id": 123,
+                                    "price": 33.3,
+                                    "range": "station",
+                                    "region_id": 123,
+                                    "state": "open",
+                                    "type_id": 456,
+                                    "volume_remain": 4422,
+                                    "volume_total": 123456
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "account_id": {
+                                        "description": "Wallet division for the buyer or seller of this order. Always 1000 for characters. Currently 1000 through 1006 for corporations",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_orders_account_id",
+                                        "type": "integer"
+                                    },
+                                    "duration": {
+                                        "description": "Numer of days for which order is valid (starting from the issued date). An order expires at time issued + duration",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_orders_duration",
+                                        "type": "integer"
+                                    },
+                                    "escrow": {
+                                        "description": "For buy orders, the amount of ISK in escrow",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_orders_escrow",
+                                        "type": "number"
+                                    },
+                                    "is_buy_order": {
+                                        "description": "True for a bid (buy) order. False for an offer (sell) order",
+                                        "title": "get_characters_character_id_orders_is_buy_order",
+                                        "type": "boolean"
+                                    },
+                                    "is_corp": {
+                                        "description": "is_corp boolean",
+                                        "title": "get_characters_character_id_orders_is_corp",
+                                        "type": "boolean"
+                                    },
+                                    "issued": {
+                                        "description": "Date and time when this order was issued",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_orders_issued",
+                                        "type": "string"
+                                    },
+                                    "location_id": {
+                                        "description": "ID of the location where order was placed",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_orders_location_id",
+                                        "type": "integer"
+                                    },
+                                    "min_volume": {
+                                        "description": "For bids (buy orders), the minimum quantity that will be accepted in a matching offer (sell order)",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_orders_min_volume",
+                                        "type": "integer"
+                                    },
+                                    "order_id": {
+                                        "description": "Unique order ID",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_orders_order_id",
+                                        "type": "integer"
+                                    },
+                                    "price": {
+                                        "description": "Cost per unit for this order",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_orders_price",
+                                        "type": "number"
+                                    },
+                                    "range": {
+                                        "description": "Valid order range, numbers are ranges in jumps",
+                                        "enum": [
+                                            "station",
+                                            "region",
+                                            "solarsystem",
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "10",
+                                            "20",
+                                            "30",
+                                            "40"
+                                        ],
+                                        "title": "get_characters_character_id_orders_range",
+                                        "type": "string"
+                                    },
+                                    "region_id": {
+                                        "description": "ID of the region where order was placed",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_orders_region_id",
+                                        "type": "integer"
+                                    },
+                                    "state": {
+                                        "description": "Current order state",
+                                        "enum": [
+                                            "open",
+                                            "closed",
+                                            "expired",
+                                            "cancelled",
+                                            "pending",
+                                            "character_deleted"
+                                        ],
+                                        "title": "get_characters_character_id_orders_state",
+                                        "type": "string"
+                                    },
+                                    "type_id": {
+                                        "description": "The type ID of the item transacted in this order",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_orders_type_id",
+                                        "type": "integer"
+                                    },
+                                    "volume_remain": {
+                                        "description": "Quantity of items still required or offered",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_orders_volume_remain",
+                                        "type": "integer"
+                                    },
+                                    "volume_total": {
+                                        "description": "Quantity of items required or offered at time order was placed",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_orders_volume_total",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "order_id",
+                                    "type_id",
+                                    "region_id",
+                                    "location_id",
+                                    "range",
+                                    "is_buy_order",
+                                    "price",
+                                    "volume_total",
+                                    "volume_remain",
+                                    "issued",
+                                    "state",
+                                    "min_volume",
+                                    "account_id",
+                                    "duration",
+                                    "is_corp",
+                                    "escrow"
+                                ],
+                                "title": "get_characters_character_id_orders_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 500,
+                            "title": "get_characters_character_id_orders_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-markets.read_character_orders.v1"
+                        ]
+                    }
+                ],
+                "summary": "List orders from a character",
+                "tags": [
+                    "Market"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
         "/characters/{character_id}/planets/": {
             "get": {
                 "description": "Returns a list of all planetary colonies owned by a character.\n\n---\nAlternate route: `/v1/characters/{character_id}/planets/`\n\nAlternate route: `/legacy/characters/{character_id}/planets/`\n\nAlternate route: `/latest/characters/{character_id}/planets/`\n\n---\nThis route is cached for up to 600 seconds",
@@ -15350,6 +15598,947 @@
                 ]
             }
         },
+        "/markets/groups/": {
+            "get": {
+                "description": "Get a list of item groups\n\n---\nAlternate route: `/v1/markets/groups/`\n\nAlternate route: `/legacy/markets/groups/`\n\nAlternate route: `/latest/markets/groups/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_markets_groups",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of item group ids",
+                        "examples": {
+                            "application/json": [
+                                1,
+                                2,
+                                3
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_markets_groups_200_ok",
+                                "type": "integer"
+                            },
+                            "maxItems": 5000,
+                            "title": "get_markets_groups_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get item groups",
+                "tags": [
+                    "Market"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ]
+            }
+        },
+        "/markets/groups/{market_group_id}/": {
+            "get": {
+                "description": "Get information on an item group\n\n---\nAlternate route: `/v1/markets/groups/{market_group_id}/`\n\nAlternate route: `/legacy/markets/groups/{market_group_id}/`\n\nAlternate route: `/latest/markets/groups/{market_group_id}/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_markets_groups_market_group_id",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/language"
+                    },
+                    {
+                        "description": "An Eve item group ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "market_group_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Information about an item group",
+                        "examples": {
+                            "application/json": {
+                                "description": "Small, fast vessels suited to a variety of purposes.",
+                                "market_group_id": 5,
+                                "name": "Standard Frigates",
+                                "parent_group_id": 1361,
+                                "types": [
+                                    582,
+                                    583
+                                ]
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "description": {
+                                    "description": "description string",
+                                    "title": "get_markets_groups_market_group_id_description",
+                                    "type": "string"
+                                },
+                                "market_group_id": {
+                                    "description": "market_group_id integer",
+                                    "format": "int32",
+                                    "title": "get_markets_groups_market_group_id_market_group_id",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_markets_groups_market_group_id_name",
+                                    "type": "string"
+                                },
+                                "parent_group_id": {
+                                    "description": "parent_group_id integer",
+                                    "format": "int32",
+                                    "title": "get_markets_groups_market_group_id_parent_group_id",
+                                    "type": "integer"
+                                },
+                                "types": {
+                                    "description": "types array",
+                                    "items": {
+                                        "description": "type integer",
+                                        "format": "int32",
+                                        "title": "get_markets_groups_market_group_id_type",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 5000,
+                                    "title": "get_markets_groups_market_group_id_types",
+                                    "type": "array"
+                                }
+                            },
+                            "required": [
+                                "market_group_id",
+                                "name",
+                                "description",
+                                "types"
+                            ],
+                            "title": "get_markets_groups_market_group_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Market group not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_markets_groups_market_group_id_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_markets_groups_market_group_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get item group information",
+                "tags": [
+                    "Market"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ]
+            }
+        },
+        "/markets/prices/": {
+            "get": {
+                "description": "Return a list of prices\n\n---\nAlternate route: `/v1/markets/prices/`\n\nAlternate route: `/legacy/markets/prices/`\n\nAlternate route: `/latest/markets/prices/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_markets_prices",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of prices",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "adjusted_price": 306988.09,
+                                    "average_price": 306292.67,
+                                    "type_id": 32772
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "adjusted_price": {
+                                        "description": "adjusted_price number",
+                                        "format": "float",
+                                        "title": "get_markets_prices_adjusted_price",
+                                        "type": "number"
+                                    },
+                                    "average_price": {
+                                        "description": "average_price number",
+                                        "format": "float",
+                                        "title": "get_markets_prices_average_price",
+                                        "type": "number"
+                                    },
+                                    "type_id": {
+                                        "description": "type_id integer",
+                                        "format": "int32",
+                                        "title": "get_markets_prices_type_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "type_id"
+                                ],
+                                "title": "get_markets_prices_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 20000,
+                            "title": "get_markets_prices_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "List market prices",
+                "tags": [
+                    "Market"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/markets/structures/{structure_id}/": {
+            "get": {
+                "description": "Return all orders in a structure\n\n---\nAlternate route: `/v1/markets/structures/{structure_id}/`\n\nAlternate route: `/legacy/markets/structures/{structure_id}/`\n\nAlternate route: `/latest/markets/structures/{structure_id}/`\n\n---\nThis route is cached for up to 300 seconds",
+                "operationId": "get_markets_structures_structure_id",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/page"
+                    },
+                    {
+                        "description": "Return orders in this structure",
+                        "format": "int64",
+                        "in": "path",
+                        "name": "structure_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of orders",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "duration": 90,
+                                    "is_buy_order": false,
+                                    "issued": "2016-09-03T05:12:25Z",
+                                    "location_id": 60005599,
+                                    "min_volume": 1,
+                                    "order_id": 4623824223,
+                                    "price": 9.9,
+                                    "range": "region",
+                                    "type_id": 34,
+                                    "volume_remain": 1296000,
+                                    "volume_total": 2000000
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "duration": {
+                                        "description": "duration integer",
+                                        "format": "int32",
+                                        "title": "get_markets_structures_structure_id_duration",
+                                        "type": "integer"
+                                    },
+                                    "is_buy_order": {
+                                        "description": "is_buy_order boolean",
+                                        "title": "get_markets_structures_structure_id_is_buy_order",
+                                        "type": "boolean"
+                                    },
+                                    "issued": {
+                                        "description": "issued string",
+                                        "format": "date-time",
+                                        "title": "get_markets_structures_structure_id_issued",
+                                        "type": "string"
+                                    },
+                                    "location_id": {
+                                        "description": "location_id integer",
+                                        "format": "int64",
+                                        "title": "get_markets_structures_structure_id_location_id",
+                                        "type": "integer"
+                                    },
+                                    "min_volume": {
+                                        "description": "min_volume integer",
+                                        "format": "int32",
+                                        "title": "get_markets_structures_structure_id_min_volume",
+                                        "type": "integer"
+                                    },
+                                    "order_id": {
+                                        "description": "order_id integer",
+                                        "format": "int64",
+                                        "title": "get_markets_structures_structure_id_order_id",
+                                        "type": "integer"
+                                    },
+                                    "price": {
+                                        "description": "price number",
+                                        "format": "float",
+                                        "title": "get_markets_structures_structure_id_price",
+                                        "type": "number"
+                                    },
+                                    "range": {
+                                        "description": "range string",
+                                        "enum": [
+                                            "station",
+                                            "region",
+                                            "solarsystem",
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "10",
+                                            "20",
+                                            "30",
+                                            "40"
+                                        ],
+                                        "title": "get_markets_structures_structure_id_range",
+                                        "type": "string"
+                                    },
+                                    "type_id": {
+                                        "description": "type_id integer",
+                                        "format": "int32",
+                                        "title": "get_markets_structures_structure_id_type_id",
+                                        "type": "integer"
+                                    },
+                                    "volume_remain": {
+                                        "description": "volume_remain integer",
+                                        "format": "int32",
+                                        "title": "get_markets_structures_structure_id_volume_remain",
+                                        "type": "integer"
+                                    },
+                                    "volume_total": {
+                                        "description": "volume_total integer",
+                                        "format": "int32",
+                                        "title": "get_markets_structures_structure_id_volume_total",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "order_id",
+                                    "type_id",
+                                    "location_id",
+                                    "volume_total",
+                                    "volume_remain",
+                                    "min_volume",
+                                    "price",
+                                    "is_buy_order",
+                                    "duration",
+                                    "issued",
+                                    "range"
+                                ],
+                                "title": "get_markets_structures_structure_id_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 5000,
+                            "title": "get_markets_structures_structure_id_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-markets.structure_markets.v1"
+                        ]
+                    }
+                ],
+                "summary": "List orders in a structure",
+                "tags": [
+                    "Market"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 300
+            }
+        },
+        "/markets/{region_id}/history/": {
+            "get": {
+                "description": "Return a list of historical market statistics for the specified type in a region\n\n---\nAlternate route: `/v1/markets/{region_id}/history/`\n\nAlternate route: `/legacy/markets/{region_id}/history/`\n\nAlternate route: `/latest/markets/{region_id}/history/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_markets_region_id_history",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "Return statistics in this region",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "region_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Return statistics for this type",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "type_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of historical market statistics",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "average": 5.25,
+                                    "date": "2015-05-01",
+                                    "highest": 5.27,
+                                    "lowest": 5.11,
+                                    "order_count": 2267,
+                                    "volume": 16276782035
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "average": {
+                                        "description": "average number",
+                                        "format": "float",
+                                        "title": "get_markets_region_id_history_average",
+                                        "type": "number"
+                                    },
+                                    "date": {
+                                        "description": "The date of this historical statistic entry",
+                                        "format": "date",
+                                        "title": "get_markets_region_id_history_date",
+                                        "type": "string"
+                                    },
+                                    "highest": {
+                                        "description": "highest number",
+                                        "format": "float",
+                                        "title": "get_markets_region_id_history_highest",
+                                        "type": "number"
+                                    },
+                                    "lowest": {
+                                        "description": "lowest number",
+                                        "format": "float",
+                                        "title": "get_markets_region_id_history_lowest",
+                                        "type": "number"
+                                    },
+                                    "order_count": {
+                                        "description": "Total number of orders happened that day",
+                                        "format": "int64",
+                                        "title": "get_markets_region_id_history_order_count",
+                                        "type": "integer"
+                                    },
+                                    "volume": {
+                                        "description": "Total",
+                                        "format": "int64",
+                                        "title": "get_markets_region_id_history_volume",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "date",
+                                    "order_count",
+                                    "volume",
+                                    "highest",
+                                    "average",
+                                    "lowest"
+                                ],
+                                "title": "get_markets_region_id_history_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 500,
+                            "title": "get_markets_region_id_history_ok",
+                            "type": "array"
+                        }
+                    },
+                    "422": {
+                        "description": "Not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Unprocessable entity message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Unprocessable entity",
+                            "properties": {
+                                "error": {
+                                    "description": "Unprocessable entity message",
+                                    "title": "get_markets_region_id_history_422_unprocessable_entity",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_markets_region_id_history_unprocessable_entity",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "List historical market statistics in a region",
+                "tags": [
+                    "Market"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/markets/{region_id}/orders/": {
+            "get": {
+                "description": "Return a list of orders in a region\n\n---\nAlternate route: `/v1/markets/{region_id}/orders/`\n\nAlternate route: `/legacy/markets/{region_id}/orders/`\n\nAlternate route: `/latest/markets/{region_id}/orders/`\n\n---\nThis route is cached for up to 300 seconds",
+                "operationId": "get_markets_region_id_orders",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "default": "all",
+                        "description": "Filter buy/sell orders, return all orders by default. If you query without type_id, we always return both buy and sell orders.",
+                        "enum": [
+                            "buy",
+                            "sell",
+                            "all"
+                        ],
+                        "in": "query",
+                        "name": "order_type",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "$ref": "#/parameters/page"
+                    },
+                    {
+                        "description": "Return orders in this region",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "region_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Return orders only for this type",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "type_id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of orders",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "duration": 90,
+                                    "is_buy_order": false,
+                                    "issued": "2016-09-03T05:12:25Z",
+                                    "location_id": 60005599,
+                                    "min_volume": 1,
+                                    "order_id": 4623824223,
+                                    "price": 9.9,
+                                    "range": "region",
+                                    "type_id": 34,
+                                    "volume_remain": 1296000,
+                                    "volume_total": 2000000
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "duration": {
+                                        "description": "duration integer",
+                                        "format": "int32",
+                                        "title": "get_markets_region_id_orders_duration",
+                                        "type": "integer"
+                                    },
+                                    "is_buy_order": {
+                                        "description": "is_buy_order boolean",
+                                        "title": "get_markets_region_id_orders_is_buy_order",
+                                        "type": "boolean"
+                                    },
+                                    "issued": {
+                                        "description": "issued string",
+                                        "format": "date-time",
+                                        "title": "get_markets_region_id_orders_issued",
+                                        "type": "string"
+                                    },
+                                    "location_id": {
+                                        "description": "location_id integer",
+                                        "format": "int64",
+                                        "title": "get_markets_region_id_orders_location_id",
+                                        "type": "integer"
+                                    },
+                                    "min_volume": {
+                                        "description": "min_volume integer",
+                                        "format": "int32",
+                                        "title": "get_markets_region_id_orders_min_volume",
+                                        "type": "integer"
+                                    },
+                                    "order_id": {
+                                        "description": "order_id integer",
+                                        "format": "int64",
+                                        "title": "get_markets_region_id_orders_order_id",
+                                        "type": "integer"
+                                    },
+                                    "price": {
+                                        "description": "price number",
+                                        "format": "float",
+                                        "title": "get_markets_region_id_orders_price",
+                                        "type": "number"
+                                    },
+                                    "range": {
+                                        "description": "range string",
+                                        "enum": [
+                                            "station",
+                                            "region",
+                                            "solarsystem",
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "10",
+                                            "20",
+                                            "30",
+                                            "40"
+                                        ],
+                                        "title": "get_markets_region_id_orders_range",
+                                        "type": "string"
+                                    },
+                                    "type_id": {
+                                        "description": "type_id integer",
+                                        "format": "int32",
+                                        "title": "get_markets_region_id_orders_type_id",
+                                        "type": "integer"
+                                    },
+                                    "volume_remain": {
+                                        "description": "volume_remain integer",
+                                        "format": "int32",
+                                        "title": "get_markets_region_id_orders_volume_remain",
+                                        "type": "integer"
+                                    },
+                                    "volume_total": {
+                                        "description": "volume_total integer",
+                                        "format": "int32",
+                                        "title": "get_markets_region_id_orders_volume_total",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "order_id",
+                                    "type_id",
+                                    "location_id",
+                                    "volume_total",
+                                    "volume_remain",
+                                    "min_volume",
+                                    "price",
+                                    "is_buy_order",
+                                    "duration",
+                                    "issued",
+                                    "range"
+                                ],
+                                "title": "get_markets_region_id_orders_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 10000,
+                            "title": "get_markets_region_id_orders_ok",
+                            "type": "array"
+                        }
+                    },
+                    "422": {
+                        "description": "Not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Unprocessable entity message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Unprocessable entity",
+                            "properties": {
+                                "error": {
+                                    "description": "Unprocessable entity message",
+                                    "title": "get_markets_region_id_orders_422_unprocessable_entity",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_markets_region_id_orders_unprocessable_entity",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "List orders in a region",
+                "tags": [
+                    "Market"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 300
+            }
+        },
         "/opportunities/groups/": {
             "get": {
                 "description": "Return a list of opportunities groups\n\n---\nAlternate route: `/v1/opportunities/groups/`\n\nAlternate route: `/legacy/opportunities/groups/`\n\nAlternate route: `/latest/opportunities/groups/`\n\n---\nThis route expires daily at 11:05",
@@ -21419,6 +22608,8 @@
                 "esi-mail.organize_mail.v1": "EVE SSO scope esi-mail.organize_mail.v1",
                 "esi-mail.read_mail.v1": "EVE SSO scope esi-mail.read_mail.v1",
                 "esi-mail.send_mail.v1": "EVE SSO scope esi-mail.send_mail.v1",
+                "esi-markets.read_character_orders.v1": "EVE SSO scope esi-markets.read_character_orders.v1",
+                "esi-markets.structure_markets.v1": "EVE SSO scope esi-markets.structure_markets.v1",
                 "esi-planets.manage_planets.v1": "EVE SSO scope esi-planets.manage_planets.v1",
                 "esi-search.search_structures.v1": "EVE SSO scope esi-search.search_structures.v1",
                 "esi-skills.read_skillqueue.v1": "EVE SSO scope esi-skills.read_skillqueue.v1",
