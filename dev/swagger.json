@@ -10795,7 +10795,7 @@
                                 "title": "get_corporations_corporation_id_killmails_recent_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 5000,
+                            "maxItems": 1000,
                             "title": "get_corporations_corporation_id_killmails_recent_ok",
                             "type": "array"
                         }
