@@ -1,6 +1,24 @@
 {
     "basePath": "/dev",
     "definitions": {
+        "forbidden": {
+            "description": "Forbidden model",
+            "properties": {
+                "error": {
+                    "description": "Forbidden message",
+                    "type": "string"
+                },
+                "sso_status": {
+                    "description": "Status code received from SSO",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "error"
+            ],
+            "title": "Forbidden",
+            "type": "object"
+        },
         "internal_server_error": {
             "description": "Internal server error model",
             "properties": {
@@ -29,6 +47,22 @@
             "name": "X-User-Agent",
             "type": "string"
         },
+        "character_id": {
+            "description": "An EVE character ID",
+            "format": "int32",
+            "in": "path",
+            "name": "character_id",
+            "required": true,
+            "type": "integer"
+        },
+        "corporation_id": {
+            "description": "An EVE corporation ID",
+            "format": "int32",
+            "in": "path",
+            "name": "corporation_id",
+            "required": true,
+            "type": "integer"
+        },
         "datasource": {
             "default": "tranquility",
             "description": "The server name you would like data from",
@@ -55,6 +89,12 @@
             "name": "language",
             "type": "string"
         },
+        "token": {
+            "description": "Access token to use if unable to set a header",
+            "in": "query",
+            "name": "token",
+            "type": "string"
+        },
         "user_agent": {
             "description": "Client identifier, takes precedence over headers",
             "in": "query",
@@ -63,6 +103,2136 @@
         }
     },
     "paths": {
+        "/characters/affiliation/": {
+            "post": {
+                "description": "Bulk lookup of character IDs to corporation, alliance and faction\n\n---\nAlternate route: `/v1/characters/affiliation/`\n\nAlternate route: `/legacy/characters/affiliation/`\n\nAlternate route: `/latest/characters/affiliation/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "post_characters_affiliation",
+                "parameters": [
+                    {
+                        "description": "The character IDs to fetch affiliations for",
+                        "in": "body",
+                        "name": "characters",
+                        "required": true,
+                        "schema": {
+                            "description": "characters array",
+                            "items": {
+                                "description": "character integer",
+                                "format": "int32",
+                                "title": "post_characters_affiliation_character",
+                                "type": "integer"
+                            },
+                            "maxItems": 1000,
+                            "minItems": 1,
+                            "title": "post_characters_affiliation_characters",
+                            "type": "array",
+                            "uniqueItems": true
+                        }
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Character corporation, alliance and faction IDs",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "alliance_id": 434243723,
+                                    "character_id": 95538921,
+                                    "corporation_id": 109299958
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "alliance_id": {
+                                        "description": "The character's alliance ID, if their corporation is in an alliance",
+                                        "format": "int32",
+                                        "title": "post_characters_affiliation_alliance_id",
+                                        "type": "integer"
+                                    },
+                                    "character_id": {
+                                        "description": "The character's ID",
+                                        "format": "int32",
+                                        "title": "post_characters_affiliation_character_id",
+                                        "type": "integer"
+                                    },
+                                    "corporation_id": {
+                                        "description": "The character's corporation ID",
+                                        "format": "int32",
+                                        "title": "post_characters_affiliation_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "faction_id": {
+                                        "description": "The character's faction ID, if their corporation is in a faction",
+                                        "format": "int32",
+                                        "title": "post_characters_affiliation_faction_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "character_id",
+                                    "corporation_id"
+                                ],
+                                "title": "post_characters_affiliation_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 1000,
+                            "title": "post_characters_affiliation_ok",
+                            "type": "array"
+                        }
+                    },
+                    "422": {
+                        "description": "No valid character IDs found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Unprocessable entity message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Unprocessable entity",
+                            "properties": {
+                                "error": {
+                                    "description": "Unprocessable entity message",
+                                    "title": "post_characters_affiliation_422_unprocessable_entity",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_characters_affiliation_unprocessable_entity",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Character affiliation",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/characters/names/": {
+            "get": {
+                "description": "Resolve a set of character IDs to character names\n\n---\nAlternate route: `/v1/characters/names/`\n\nAlternate route: `/legacy/characters/names/`\n\nAlternate route: `/latest/characters/names/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_names",
+                "parameters": [
+                    {
+                        "description": "A comma separated list of character IDs",
+                        "in": "query",
+                        "items": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "maxItems": 1000,
+                        "minItems": 1,
+                        "name": "character_ids",
+                        "required": true,
+                        "type": "array"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of id/name associations",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "character_id": 95465499,
+                                    "character_name": "CCP Bartender"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "character_id": {
+                                        "description": "character_id integer",
+                                        "format": "int64",
+                                        "title": "get_characters_names_character_id",
+                                        "type": "integer"
+                                    },
+                                    "character_name": {
+                                        "description": "character_name string",
+                                        "title": "get_characters_names_character_name",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "character_id",
+                                    "character_name"
+                                ],
+                                "title": "get_characters_names_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 1000,
+                            "title": "get_characters_names_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get character names",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/characters/{character_id}/": {
+            "get": {
+                "description": "Public information about a character\n\n---\nAlternate route: `/v4/characters/{character_id}/`\n\nAlternate route: `/latest/characters/{character_id}/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Public data for the given character",
+                        "examples": {
+                            "application/json": {
+                                "ancestry_id": 19,
+                                "birthday": "2015-03-24T11:37:00Z",
+                                "bloodline_id": 3,
+                                "corporation_id": 109299958,
+                                "description": "",
+                                "gender": "male",
+                                "name": "CCP Bartender",
+                                "race_id": 2
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "alliance_id": {
+                                    "description": "The character's alliance ID",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_alliance_id",
+                                    "type": "integer"
+                                },
+                                "ancestry_id": {
+                                    "description": "ancestry_id integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_ancestry_id",
+                                    "type": "integer"
+                                },
+                                "birthday": {
+                                    "description": "Creation date of the character",
+                                    "format": "date-time",
+                                    "title": "get_characters_character_id_birthday",
+                                    "type": "string"
+                                },
+                                "bloodline_id": {
+                                    "description": "bloodline_id integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_bloodline_id",
+                                    "type": "integer"
+                                },
+                                "corporation_id": {
+                                    "description": "The character's corporation ID",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_corporation_id",
+                                    "type": "integer"
+                                },
+                                "description": {
+                                    "description": "description string",
+                                    "title": "get_characters_character_id_description",
+                                    "type": "string"
+                                },
+                                "gender": {
+                                    "description": "gender string",
+                                    "enum": [
+                                        "female",
+                                        "male"
+                                    ],
+                                    "title": "get_characters_character_id_gender",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_characters_character_id_name",
+                                    "type": "string"
+                                },
+                                "race_id": {
+                                    "description": "race_id integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_race_id",
+                                    "type": "integer"
+                                },
+                                "security_status": {
+                                    "description": "security_status number",
+                                    "format": "float",
+                                    "maximum": 10,
+                                    "minimum": -10,
+                                    "title": "get_characters_character_id_security_status",
+                                    "type": "number"
+                                }
+                            },
+                            "required": [
+                                "corporation_id",
+                                "birthday",
+                                "name",
+                                "gender",
+                                "race_id",
+                                "bloodline_id"
+                            ],
+                            "title": "get_characters_character_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Character not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_characters_character_id_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get character's public information",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "v4"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/characters/{character_id}/agents_research/": {
+            "get": {
+                "description": "Return a list of agents research information for a character. The formula for finding the current research points with an agent is: currentPoints = remainderPoints + pointsPerDay * days(currentTime - researchStartDate)\n\n---\nAlternate route: `/v1/characters/{character_id}/agents_research/`\n\nAlternate route: `/legacy/characters/{character_id}/agents_research/`\n\nAlternate route: `/latest/characters/{character_id}/agents_research/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_agents_research",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of agents research information",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "agent_id": 3009358,
+                                    "points_per_day": 53.5346162146776,
+                                    "remainder_points": 53604.0634303189,
+                                    "skill_type_id": 11450,
+                                    "started_at": "2017-03-23T14:47:00Z"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "agent_id": {
+                                        "description": "agent_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_agents_research_agent_id",
+                                        "type": "integer"
+                                    },
+                                    "points_per_day": {
+                                        "description": "points_per_day number",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_agents_research_points_per_day",
+                                        "type": "number"
+                                    },
+                                    "remainder_points": {
+                                        "description": "remainder_points number",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_agents_research_remainder_points",
+                                        "type": "number"
+                                    },
+                                    "skill_type_id": {
+                                        "description": "skill_type_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_agents_research_skill_type_id",
+                                        "type": "integer"
+                                    },
+                                    "started_at": {
+                                        "description": "started_at string",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_agents_research_started_at",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "agent_id",
+                                    "skill_type_id",
+                                    "started_at",
+                                    "points_per_day",
+                                    "remainder_points"
+                                ],
+                                "title": "get_characters_character_id_agents_research_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 1000,
+                            "title": "get_characters_character_id_agents_research_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_agents_research.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get agents research",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/characters/{character_id}/blueprints/": {
+            "get": {
+                "description": "Return a list of blueprints the character has\n\n---\nAlternate route: `/v1/characters/{character_id}/blueprints/`\n\nAlternate route: `/legacy/characters/{character_id}/blueprints/`\n\nAlternate route: `/latest/characters/{character_id}/blueprints/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_blueprints",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of blueprints",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "item_id": 1000000010495,
+                                    "location_flag": "Hangar",
+                                    "location_id": 60014719,
+                                    "material_efficiency": 0,
+                                    "quantity": 1,
+                                    "runs": -1,
+                                    "time_efficiency": 0,
+                                    "type_id": 691
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "item_id": {
+                                        "description": "Unique ID for this item. The ID of an item is stable if that item is not repackaged, stacked, detached from a stack, assembled, or otherwise altered. If an item is changed in one of these ways, then the ID will also change (see notes below).",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_blueprints_item_id",
+                                        "type": "integer"
+                                    },
+                                    "location_flag": {
+                                        "description": "Indicates something about this item's storage location. The flag is used to differentiate between hangar divisions, drone bay, fitting location, and similar.",
+                                        "enum": [
+                                            "AutoFit",
+                                            "Cargo",
+                                            "CorpseBay",
+                                            "DroneBay",
+                                            "FleetHangar",
+                                            "Deliveries",
+                                            "HiddenModifiers",
+                                            "Hangar",
+                                            "HangarAll",
+                                            "LoSlot0",
+                                            "LoSlot1",
+                                            "LoSlot2",
+                                            "LoSlot3",
+                                            "LoSlot4",
+                                            "LoSlot5",
+                                            "LoSlot6",
+                                            "LoSlot7",
+                                            "MedSlot0",
+                                            "MedSlot1",
+                                            "MedSlot2",
+                                            "MedSlot3",
+                                            "MedSlot4",
+                                            "MedSlot5",
+                                            "MedSlot6",
+                                            "MedSlot7",
+                                            "HiSlot0",
+                                            "HiSlot1",
+                                            "HiSlot2",
+                                            "HiSlot3",
+                                            "HiSlot4",
+                                            "HiSlot5",
+                                            "HiSlot6",
+                                            "HiSlot7",
+                                            "AssetSafety",
+                                            "Locked",
+                                            "Unlocked",
+                                            "Implant",
+                                            "QuafeBay",
+                                            "RigSlot0",
+                                            "RigSlot1",
+                                            "RigSlot2",
+                                            "RigSlot3",
+                                            "RigSlot4",
+                                            "RigSlot5",
+                                            "RigSlot6",
+                                            "RigSlot7",
+                                            "ShipHangar",
+                                            "SpecializedFuelBay",
+                                            "SpecializedOreHold",
+                                            "SpecializedGasHold",
+                                            "SpecializedMineralHold",
+                                            "SpecializedSalvageHold",
+                                            "SpecializedShipHold",
+                                            "SpecializedSmallShipHold",
+                                            "SpecializedMediumShipHold",
+                                            "SpecializedLargeShipHold",
+                                            "SpecializedIndustrialShipHold",
+                                            "SpecializedAmmoHold",
+                                            "SpecializedCommandCenterHold",
+                                            "SpecializedPlanetaryCommoditiesHold",
+                                            "SpecializedMaterialBay",
+                                            "SubSystemSlot0",
+                                            "SubSystemSlot1",
+                                            "SubSystemSlot2",
+                                            "SubSystemSlot3",
+                                            "SubSystemSlot4",
+                                            "SubSystemSlot5",
+                                            "SubSystemSlot6",
+                                            "SubSystemSlot7",
+                                            "FighterBay",
+                                            "FighterTube0",
+                                            "FighterTube1",
+                                            "FighterTube2",
+                                            "FighterTube3",
+                                            "FighterTube4",
+                                            "Module"
+                                        ],
+                                        "title": "get_characters_character_id_blueprints_location_flag",
+                                        "type": "string"
+                                    },
+                                    "location_id": {
+                                        "description": "References a solar system, station or itemID if this blueprint is located within a container. If an itemID the Character - AssetList API must be queried to find the container using the itemID, from which the correct location of the Blueprint can be derived.",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_blueprints_location_id",
+                                        "type": "integer"
+                                    },
+                                    "material_efficiency": {
+                                        "description": "Material Efficiency Level of the blueprint, can be any integer between 0 and 10.",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_blueprints_material_efficiency",
+                                        "type": "integer"
+                                    },
+                                    "quantity": {
+                                        "description": "Typically will be -1 or -2 designating a singleton item, where -1 is an original and -2 is a copy. It can be a positive integer if it is a stack of blueprint originals fresh from the market (no activities performed on them yet).",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_blueprints_quantity",
+                                        "type": "integer"
+                                    },
+                                    "runs": {
+                                        "description": "Number of runs remaining if the blueprint is a copy, -1 if it is an original.",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_blueprints_runs",
+                                        "type": "integer"
+                                    },
+                                    "time_efficiency": {
+                                        "description": "Time Efficiency Level of the blueprint, can be any even integer between 0 and 20.",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_blueprints_time_efficiency",
+                                        "type": "integer"
+                                    },
+                                    "type_id": {
+                                        "description": "type_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_blueprints_type_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "item_id",
+                                    "type_id",
+                                    "location_id",
+                                    "location_flag",
+                                    "quantity",
+                                    "time_efficiency",
+                                    "material_efficiency",
+                                    "runs"
+                                ],
+                                "title": "get_characters_character_id_blueprints_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 10000,
+                            "title": "get_characters_character_id_blueprints_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_blueprints.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get blueprints",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/characters/{character_id}/chat_channels/": {
+            "get": {
+                "description": "Return chat channels that a character is the owner or an operator of\n\n---\nAlternate route: `/v1/characters/{character_id}/chat_channels/`\n\nAlternate route: `/legacy/characters/{character_id}/chat_channels/`\n\nAlternate route: `/latest/characters/{character_id}/chat_channels/`\n\n---\nThis route is cached for up to 300 seconds",
+                "operationId": "get_characters_character_id_chat_channels",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of chat channels",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "allowed": [],
+                                    "blocked": [],
+                                    "channel_id": -69329950,
+                                    "comparison_key": "players'haven",
+                                    "has_password": false,
+                                    "motd": "<b>Feed pineapples to the cats!</b>",
+                                    "muted": [],
+                                    "name": "Players' Haven",
+                                    "operators": [],
+                                    "owner_id": 95578451
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "allowed": {
+                                        "description": "allowed array",
+                                        "items": {
+                                            "description": "allowed object",
+                                            "properties": {
+                                                "accessor_id": {
+                                                    "description": "ID of an allowed channel member",
+                                                    "format": "int32",
+                                                    "title": "get_characters_character_id_chat_channels_accessor_id",
+                                                    "type": "integer"
+                                                },
+                                                "accessor_type": {
+                                                    "description": "accessor_type string",
+                                                    "enum": [
+                                                        "character",
+                                                        "corporation",
+                                                        "alliance"
+                                                    ],
+                                                    "title": "get_characters_character_id_chat_channels_accessor_type",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "accessor_id",
+                                                "accessor_type"
+                                            ],
+                                            "title": "get_characters_character_id_chat_channels_allowed",
+                                            "type": "object"
+                                        },
+                                        "maxItems": 1000,
+                                        "title": "get_characters_character_id_chat_channels_allowed",
+                                        "type": "array"
+                                    },
+                                    "blocked": {
+                                        "description": "blocked array",
+                                        "items": {
+                                            "description": "blocked object",
+                                            "properties": {
+                                                "accessor_id": {
+                                                    "description": "ID of a blocked channel member",
+                                                    "format": "int32",
+                                                    "title": "get_characters_character_id_chat_channels_accessor_id",
+                                                    "type": "integer"
+                                                },
+                                                "accessor_type": {
+                                                    "description": "accessor_type string",
+                                                    "enum": [
+                                                        "character",
+                                                        "corporation",
+                                                        "alliance"
+                                                    ],
+                                                    "title": "get_characters_character_id_chat_channels_accessor_type",
+                                                    "type": "string"
+                                                },
+                                                "end_at": {
+                                                    "description": "Time at which this accessor will no longer be blocked",
+                                                    "format": "date-time",
+                                                    "title": "get_characters_character_id_chat_channels_end_at",
+                                                    "type": "string"
+                                                },
+                                                "reason": {
+                                                    "description": "Reason this accessor is blocked",
+                                                    "title": "get_characters_character_id_chat_channels_reason",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "accessor_id",
+                                                "accessor_type"
+                                            ],
+                                            "title": "get_characters_character_id_chat_channels_blocked",
+                                            "type": "object"
+                                        },
+                                        "maxItems": 1000,
+                                        "title": "get_characters_character_id_chat_channels_blocked",
+                                        "type": "array"
+                                    },
+                                    "channel_id": {
+                                        "description": "Unique channel ID. Always negative for player-created channels. Permanent (CCP created) channels have a positive ID, but don't appear in the API",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_chat_channels_channel_id",
+                                        "type": "integer"
+                                    },
+                                    "comparison_key": {
+                                        "description": "Normalized, unique string used to compare channel names",
+                                        "title": "get_characters_character_id_chat_channels_comparison_key",
+                                        "type": "string"
+                                    },
+                                    "has_password": {
+                                        "description": "Whether this is a password protected channel",
+                                        "title": "get_characters_character_id_chat_channels_has_password",
+                                        "type": "boolean"
+                                    },
+                                    "motd": {
+                                        "description": "Message of the day for this channel",
+                                        "title": "get_characters_character_id_chat_channels_motd",
+                                        "type": "string"
+                                    },
+                                    "muted": {
+                                        "description": "muted array",
+                                        "items": {
+                                            "description": "muted object",
+                                            "properties": {
+                                                "accessor_id": {
+                                                    "description": "ID of a muted channel member",
+                                                    "format": "int32",
+                                                    "title": "get_characters_character_id_chat_channels_accessor_id",
+                                                    "type": "integer"
+                                                },
+                                                "accessor_type": {
+                                                    "description": "accessor_type string",
+                                                    "enum": [
+                                                        "character",
+                                                        "corporation",
+                                                        "alliance"
+                                                    ],
+                                                    "title": "get_characters_character_id_chat_channels_accessor_type",
+                                                    "type": "string"
+                                                },
+                                                "end_at": {
+                                                    "description": "Time at which this accessor will no longer be muted",
+                                                    "format": "date-time",
+                                                    "title": "get_characters_character_id_chat_channels_end_at",
+                                                    "type": "string"
+                                                },
+                                                "reason": {
+                                                    "description": "Reason this accessor is muted",
+                                                    "title": "get_characters_character_id_chat_channels_reason",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "accessor_id",
+                                                "accessor_type"
+                                            ],
+                                            "title": "get_characters_character_id_chat_channels_muted",
+                                            "type": "object"
+                                        },
+                                        "maxItems": 1000,
+                                        "title": "get_characters_character_id_chat_channels_muted",
+                                        "type": "array"
+                                    },
+                                    "name": {
+                                        "description": "Displayed name of channel",
+                                        "title": "get_characters_character_id_chat_channels_name",
+                                        "type": "string"
+                                    },
+                                    "operators": {
+                                        "description": "operators array",
+                                        "items": {
+                                            "description": "operator object",
+                                            "properties": {
+                                                "accessor_id": {
+                                                    "description": "ID of a channel operator",
+                                                    "format": "int32",
+                                                    "title": "get_characters_character_id_chat_channels_accessor_id",
+                                                    "type": "integer"
+                                                },
+                                                "accessor_type": {
+                                                    "description": "accessor_type string",
+                                                    "enum": [
+                                                        "character",
+                                                        "corporation",
+                                                        "alliance"
+                                                    ],
+                                                    "title": "get_characters_character_id_chat_channels_accessor_type",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "accessor_id",
+                                                "accessor_type"
+                                            ],
+                                            "title": "get_characters_character_id_chat_channels_operator",
+                                            "type": "object"
+                                        },
+                                        "maxItems": 1000,
+                                        "title": "get_characters_character_id_chat_channels_operators",
+                                        "type": "array"
+                                    },
+                                    "owner_id": {
+                                        "description": "owner_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_chat_channels_owner_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "channel_id",
+                                    "name",
+                                    "owner_id",
+                                    "comparison_key",
+                                    "has_password",
+                                    "motd",
+                                    "allowed",
+                                    "operators",
+                                    "blocked",
+                                    "muted"
+                                ],
+                                "title": "get_characters_character_id_chat_channels_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 1000,
+                            "title": "get_characters_character_id_chat_channels_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_chat_channels.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get chat channels",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 300
+            }
+        },
+        "/characters/{character_id}/corporationhistory/": {
+            "get": {
+                "description": "Get a list of all the corporations a character has been a member of\n\n---\nAlternate route: `/v1/characters/{character_id}/corporationhistory/`\n\nAlternate route: `/legacy/characters/{character_id}/corporationhistory/`\n\nAlternate route: `/latest/characters/{character_id}/corporationhistory/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_corporationhistory",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Corporation history for the given character",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "corporation_id": 90000001,
+                                    "is_deleted": true,
+                                    "record_id": 500,
+                                    "start_date": "2016-06-26T20:00:00Z"
+                                },
+                                {
+                                    "corporation_id": 90000002,
+                                    "record_id": 501,
+                                    "start_date": "2016-07-26T20:00:00Z"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "corporation_id": {
+                                        "description": "corporation_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_corporationhistory_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "is_deleted": {
+                                        "description": "True if the corporation has been deleted",
+                                        "title": "get_characters_character_id_corporationhistory_is_deleted",
+                                        "type": "boolean"
+                                    },
+                                    "record_id": {
+                                        "description": "An incrementing ID that can be used to canonically establish order of records in cases where dates may be ambiguous",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_corporationhistory_record_id",
+                                        "type": "integer"
+                                    },
+                                    "start_date": {
+                                        "description": "start_date string",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_corporationhistory_start_date",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "start_date",
+                                    "corporation_id",
+                                    "record_id"
+                                ],
+                                "title": "get_characters_character_id_corporationhistory_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 10000,
+                            "title": "get_characters_character_id_corporationhistory_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get corporation history",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/characters/{character_id}/cspa/": {
+            "post": {
+                "description": "Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost\n\n---\nAlternate route: `/v4/characters/{character_id}/cspa/`\n",
+                "operationId": "post_characters_character_id_cspa",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "description": "The target characters to calculate the charge for",
+                        "in": "body",
+                        "name": "characters",
+                        "required": true,
+                        "schema": {
+                            "description": "characters array",
+                            "items": {
+                                "description": "character integer",
+                                "format": "int32",
+                                "title": "post_characters_character_id_cspa_character",
+                                "type": "integer"
+                            },
+                            "maxItems": 100,
+                            "minItems": 1,
+                            "title": "post_characters_character_id_cspa_characters",
+                            "type": "array",
+                            "uniqueItems": true
+                        }
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Aggregate cost of sending a mail from the source character to the target characters, in ISK",
+                        "examples": {
+                            "application/json": 2950.0
+                        },
+                        "schema": {
+                            "description": "201 created number",
+                            "format": "float",
+                            "title": "post_characters_character_id_cspa_created",
+                            "type": "number"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_contacts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Calculate a CSPA charge cost",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "v4"
+                ]
+            }
+        },
+        "/characters/{character_id}/fatigue/": {
+            "get": {
+                "description": "Return a character's jump activation and fatigue information\n\n---\nAlternate route: `/v1/characters/{character_id}/fatigue/`\n\nAlternate route: `/legacy/characters/{character_id}/fatigue/`\n\nAlternate route: `/latest/characters/{character_id}/fatigue/`\n\n---\nThis route is cached for up to 300 seconds",
+                "operationId": "get_characters_character_id_fatigue",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Jump activation and fatigue information",
+                        "examples": {
+                            "application/json": {
+                                "jump_fatigue_expire_date": "2017-07-06T15:47:00Z",
+                                "last_jump_date": "2017-07-05T15:47:00Z",
+                                "last_update_date": "2017-07-05T15:42:00Z"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "jump_fatigue_expire_date": {
+                                    "description": "Character's jump fatigue expiry",
+                                    "format": "date-time",
+                                    "title": "get_characters_character_id_fatigue_jump_fatigue_expire_date",
+                                    "type": "string"
+                                },
+                                "last_jump_date": {
+                                    "description": "Character's last jump activation",
+                                    "format": "date-time",
+                                    "title": "get_characters_character_id_fatigue_last_jump_date",
+                                    "type": "string"
+                                },
+                                "last_update_date": {
+                                    "description": "Character's last jump update",
+                                    "format": "date-time",
+                                    "title": "get_characters_character_id_fatigue_last_update_date",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_fatigue_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_fatigue.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get jump fatigue",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 300
+            }
+        },
+        "/characters/{character_id}/loyalty/points/": {
+            "get": {
+                "description": "Return a list of loyalty points for all corporations the character has worked for\n\n---\nAlternate route: `/v1/characters/{character_id}/loyalty/points/`\n\nAlternate route: `/legacy/characters/{character_id}/loyalty/points/`\n\nAlternate route: `/latest/characters/{character_id}/loyalty/points/`\n",
+                "operationId": "get_characters_character_id_loyalty_points",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of loyalty points",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "corporation_id": 123,
+                                    "loyalty_points": 100
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "corporation_id": {
+                                        "description": "corporation_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_loyalty_points_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "loyalty_points": {
+                                        "description": "loyalty_points integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_loyalty_points_loyalty_points",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "corporation_id",
+                                    "loyalty_points"
+                                ],
+                                "title": "get_characters_character_id_loyalty_points_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 500,
+                            "title": "get_characters_character_id_loyalty_points_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_loyalty.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get loyalty points",
+                "tags": [
+                    "Loyalty"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ]
+            }
+        },
+        "/characters/{character_id}/medals/": {
+            "get": {
+                "description": "Return a list of medals the character has\n\n---\nAlternate route: `/v1/characters/{character_id}/medals/`\n\nAlternate route: `/legacy/characters/{character_id}/medals/`\n\nAlternate route: `/latest/characters/{character_id}/medals/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_medals",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of medals",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "corporation_id": 98000001,
+                                    "date": "2017-03-16T15:01:45Z",
+                                    "description": "For 33 corp!",
+                                    "graphics": [
+                                        {
+                                            "color": -1,
+                                            "graphic": "gallente.1_1",
+                                            "layer": 0,
+                                            "part": 1
+                                        }
+                                    ],
+                                    "issuer_id": 2112000002,
+                                    "medal_id": 3,
+                                    "reason": "Thanks!",
+                                    "status": "private",
+                                    "title": "33 tester medal"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "corporation_id": {
+                                        "description": "corporation_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_medals_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "date": {
+                                        "description": "date string",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_medals_date",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "description string",
+                                        "title": "get_characters_character_id_medals_description",
+                                        "type": "string"
+                                    },
+                                    "graphics": {
+                                        "description": "graphics array",
+                                        "items": {
+                                            "description": "graphic object",
+                                            "properties": {
+                                                "color": {
+                                                    "description": "color integer",
+                                                    "format": "int32",
+                                                    "title": "get_characters_character_id_medals_color",
+                                                    "type": "integer"
+                                                },
+                                                "graphic": {
+                                                    "description": "graphic string",
+                                                    "title": "get_characters_character_id_medals_graphic",
+                                                    "type": "string"
+                                                },
+                                                "layer": {
+                                                    "description": "layer integer",
+                                                    "format": "int32",
+                                                    "title": "get_characters_character_id_medals_layer",
+                                                    "type": "integer"
+                                                },
+                                                "part": {
+                                                    "description": "part integer",
+                                                    "format": "int32",
+                                                    "title": "get_characters_character_id_medals_part",
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "required": [
+                                                "part",
+                                                "layer",
+                                                "graphic"
+                                            ],
+                                            "title": "get_characters_character_id_medals_graphic",
+                                            "type": "object"
+                                        },
+                                        "maxItems": 10,
+                                        "title": "get_characters_character_id_medals_graphics",
+                                        "type": "array"
+                                    },
+                                    "issuer_id": {
+                                        "description": "issuer_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_medals_issuer_id",
+                                        "type": "integer"
+                                    },
+                                    "medal_id": {
+                                        "description": "medal_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_medals_medal_id",
+                                        "type": "integer"
+                                    },
+                                    "reason": {
+                                        "description": "reason string",
+                                        "title": "get_characters_character_id_medals_reason",
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "description": "status string",
+                                        "enum": [
+                                            "public",
+                                            "private"
+                                        ],
+                                        "title": "get_characters_character_id_medals_status",
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "description": "title string",
+                                        "title": "get_characters_character_id_medals_title",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "medal_id",
+                                    "title",
+                                    "description",
+                                    "corporation_id",
+                                    "issuer_id",
+                                    "date",
+                                    "reason",
+                                    "status",
+                                    "graphics"
+                                ],
+                                "title": "get_characters_character_id_medals_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 1000,
+                            "title": "get_characters_character_id_medals_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_medals.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get medals",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/characters/{character_id}/opportunities/": {
+            "get": {
+                "description": "Return a list of tasks finished by a character\n\n---\nAlternate route: `/v1/characters/{character_id}/opportunities/`\n\nAlternate route: `/legacy/characters/{character_id}/opportunities/`\n\nAlternate route: `/latest/characters/{character_id}/opportunities/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_opportunities",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of opportunities task ids",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "completed_at": "2016-04-29T12:34:56Z",
+                                    "task_id": 1
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "completed_at": {
+                                        "description": "completed_at string",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_opportunities_completed_at",
+                                        "type": "string"
+                                    },
+                                    "task_id": {
+                                        "description": "task_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_opportunities_task_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "task_id",
+                                    "completed_at"
+                                ],
+                                "title": "get_characters_character_id_opportunities_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 100,
+                            "title": "get_characters_character_id_opportunities_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_opportunities.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get a character's completed tasks",
+                "tags": [
+                    "Opportunities"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/characters/{character_id}/portrait/": {
+            "get": {
+                "description": "Get portrait urls for a character\n\n---\nAlternate route: `/v2/characters/{character_id}/portrait/`\n\nAlternate route: `/latest/characters/{character_id}/portrait/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_portrait",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Public data for the given character",
+                        "examples": {
+                            "application/json": {
+                                "px128x128": "https://imageserver.eveonline.com/Character/95465499_128.jpg",
+                                "px256x256": "https://imageserver.eveonline.com/Character/95465499_256.jpg",
+                                "px512x512": "https://imageserver.eveonline.com/Character/95465499_512.jpg",
+                                "px64x64": "https://imageserver.eveonline.com/Character/95465499_64.jpg"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "px128x128": {
+                                    "description": "px128x128 string",
+                                    "title": "get_characters_character_id_portrait_px128x128",
+                                    "type": "string"
+                                },
+                                "px256x256": {
+                                    "description": "px256x256 string",
+                                    "title": "get_characters_character_id_portrait_px256x256",
+                                    "type": "string"
+                                },
+                                "px512x512": {
+                                    "description": "px512x512 string",
+                                    "title": "get_characters_character_id_portrait_px512x512",
+                                    "type": "string"
+                                },
+                                "px64x64": {
+                                    "description": "px64x64 string",
+                                    "title": "get_characters_character_id_portrait_px64x64",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_portrait_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "No image server for this datasource",
+                        "examples": {
+                            "application/json": {
+                                "error": "No image server for this datasource"
+                            }
+                        },
+                        "schema": {
+                            "description": "No image server for this datasource",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_characters_character_id_portrait_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_portrait_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get character portraits",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "v2"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/characters/{character_id}/standings/": {
+            "get": {
+                "description": "Return character standings from agents, NPC corporations, and factions\n\n---\nAlternate route: `/v1/characters/{character_id}/standings/`\n\nAlternate route: `/legacy/characters/{character_id}/standings/`\n\nAlternate route: `/latest/characters/{character_id}/standings/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_standings",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of standings",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "from_id": 3009841,
+                                    "from_type": "agent",
+                                    "standing": 0.1
+                                },
+                                {
+                                    "from_id": 1000061,
+                                    "from_type": "npc_corp",
+                                    "standing": 0
+                                },
+                                {
+                                    "from_id": 500003,
+                                    "from_type": "faction",
+                                    "standing": -1
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "from_id": {
+                                        "description": "from_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_standings_from_id",
+                                        "type": "integer"
+                                    },
+                                    "from_type": {
+                                        "description": "from_type string",
+                                        "enum": [
+                                            "agent",
+                                            "npc_corp",
+                                            "faction"
+                                        ],
+                                        "title": "get_characters_character_id_standings_from_type",
+                                        "type": "string"
+                                    },
+                                    "standing": {
+                                        "description": "standing number",
+                                        "format": "float",
+                                        "maximum": 10,
+                                        "minimum": -10,
+                                        "title": "get_characters_character_id_standings_standing",
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "from_id",
+                                    "from_type",
+                                    "standing"
+                                ],
+                                "title": "get_characters_character_id_standings_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 10000,
+                            "title": "get_characters_character_id_standings_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_standings.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get standings",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
         "/insurance/prices/": {
             "get": {
                 "description": "Return available insurance levels for all ship types\n\n---\nAlternate route: `/v1/insurance/prices/`\n\nAlternate route: `/legacy/insurance/prices/`\n\nAlternate route: `/latest/insurance/prices/`\n\n---\nThis route is cached for up to 3600 seconds",
@@ -207,6 +2377,581 @@
                 "x-cached-seconds": 3600
             }
         },
+        "/loyalty/stores/{corporation_id}/offers/": {
+            "get": {
+                "description": "Return a list of offers from a specific corporation's loyalty store\n\n---\nAlternate route: `/v1/loyalty/stores/{corporation_id}/offers/`\n\nAlternate route: `/legacy/loyalty/stores/{corporation_id}/offers/`\n\nAlternate route: `/latest/loyalty/stores/{corporation_id}/offers/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_loyalty_stores_corporation_id_offers",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/corporation_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of offers",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "isk_cost": 0,
+                                    "lp_cost": 100,
+                                    "offer_id": 1,
+                                    "quantity": 1,
+                                    "required_items": [],
+                                    "type_id": 123
+                                },
+                                {
+                                    "isk_cost": 1000,
+                                    "lp_cost": 100,
+                                    "offer_id": 2,
+                                    "quantity": 10,
+                                    "required_items": [
+                                        {
+                                            "quantity": 10,
+                                            "type_id": 1234
+                                        }
+                                    ],
+                                    "type_id": 1235
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "isk_cost": {
+                                        "description": "isk_cost number",
+                                        "format": "int32",
+                                        "title": "get_loyalty_stores_corporation_id_offers_isk_cost",
+                                        "type": "number"
+                                    },
+                                    "lp_cost": {
+                                        "description": "lp_cost integer",
+                                        "format": "int32",
+                                        "title": "get_loyalty_stores_corporation_id_offers_lp_cost",
+                                        "type": "integer"
+                                    },
+                                    "offer_id": {
+                                        "description": "offer_id integer",
+                                        "format": "int32",
+                                        "title": "get_loyalty_stores_corporation_id_offers_offer_id",
+                                        "type": "integer"
+                                    },
+                                    "quantity": {
+                                        "description": "quantity integer",
+                                        "format": "int32",
+                                        "title": "get_loyalty_stores_corporation_id_offers_quantity",
+                                        "type": "integer"
+                                    },
+                                    "required_items": {
+                                        "description": "required_items array",
+                                        "items": {
+                                            "description": "required_item object",
+                                            "properties": {
+                                                "quantity": {
+                                                    "description": "quantity integer",
+                                                    "format": "int32",
+                                                    "title": "get_loyalty_stores_corporation_id_offers_quantity",
+                                                    "type": "integer"
+                                                },
+                                                "type_id": {
+                                                    "description": "type_id integer",
+                                                    "format": "int32",
+                                                    "title": "get_loyalty_stores_corporation_id_offers_type_id",
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "required": [
+                                                "type_id",
+                                                "quantity"
+                                            ],
+                                            "title": "get_loyalty_stores_corporation_id_offers_required_item",
+                                            "type": "object"
+                                        },
+                                        "maxItems": 100,
+                                        "title": "get_loyalty_stores_corporation_id_offers_required_items",
+                                        "type": "array"
+                                    },
+                                    "type_id": {
+                                        "description": "type_id integer",
+                                        "format": "int32",
+                                        "title": "get_loyalty_stores_corporation_id_offers_type_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "offer_id",
+                                    "type_id",
+                                    "quantity",
+                                    "lp_cost",
+                                    "isk_cost",
+                                    "required_items"
+                                ],
+                                "title": "get_loyalty_stores_corporation_id_offers_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 10000,
+                            "title": "get_loyalty_stores_corporation_id_offers_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "List loyalty store offers",
+                "tags": [
+                    "Loyalty"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ]
+            }
+        },
+        "/opportunities/groups/": {
+            "get": {
+                "description": "Return a list of opportunities groups\n\n---\nAlternate route: `/v1/opportunities/groups/`\n\nAlternate route: `/legacy/opportunities/groups/`\n\nAlternate route: `/latest/opportunities/groups/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_opportunities_groups",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of opportunities group ids",
+                        "examples": {
+                            "application/json": [
+                                100,
+                                101,
+                                102,
+                                103
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_opportunities_groups_200_ok",
+                                "type": "integer"
+                            },
+                            "maxItems": 50,
+                            "title": "get_opportunities_groups_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get opportunities groups",
+                "tags": [
+                    "Opportunities"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ]
+            }
+        },
+        "/opportunities/groups/{group_id}/": {
+            "get": {
+                "description": "Return information of an opportunities group\n\n---\nAlternate route: `/v1/opportunities/groups/{group_id}/`\n\nAlternate route: `/legacy/opportunities/groups/{group_id}/`\n\nAlternate route: `/latest/opportunities/groups/{group_id}/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_opportunities_groups_group_id",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "ID of an opportunities group",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "group_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/language"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of an opportunities group",
+                        "examples": {
+                            "application/json": {
+                                "connected_groups": [
+                                    100
+                                ],
+                                "description": "As a capsuleer...",
+                                "group_id": 103,
+                                "name": "Welcome to New Eden",
+                                "notification": "Completed:<br>Welcome to New Eden",
+                                "required_tasks": [
+                                    19
+                                ]
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "connected_groups": {
+                                    "description": "The groups that are connected to this group on the opportunities map",
+                                    "items": {
+                                        "description": "connected_group integer",
+                                        "format": "int32",
+                                        "title": "get_opportunities_groups_group_id_connected_group",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 50,
+                                    "title": "get_opportunities_groups_group_id_connected_groups",
+                                    "type": "array"
+                                },
+                                "description": {
+                                    "description": "description string",
+                                    "title": "get_opportunities_groups_group_id_description",
+                                    "type": "string"
+                                },
+                                "group_id": {
+                                    "description": "group_id integer",
+                                    "format": "int32",
+                                    "title": "get_opportunities_groups_group_id_group_id",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_opportunities_groups_group_id_name",
+                                    "type": "string"
+                                },
+                                "notification": {
+                                    "description": "notification string",
+                                    "title": "get_opportunities_groups_group_id_notification",
+                                    "type": "string"
+                                },
+                                "required_tasks": {
+                                    "description": "Tasks need to complete for this group",
+                                    "items": {
+                                        "description": "required_task integer",
+                                        "format": "int32",
+                                        "title": "get_opportunities_groups_group_id_required_task",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 100,
+                                    "title": "get_opportunities_groups_group_id_required_tasks",
+                                    "type": "array"
+                                }
+                            },
+                            "required": [
+                                "group_id",
+                                "name",
+                                "description",
+                                "notification",
+                                "required_tasks",
+                                "connected_groups"
+                            ],
+                            "title": "get_opportunities_groups_group_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get opportunities group",
+                "tags": [
+                    "Opportunities"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ]
+            }
+        },
+        "/opportunities/tasks/": {
+            "get": {
+                "description": "Return a list of opportunities tasks\n\n---\nAlternate route: `/v1/opportunities/tasks/`\n\nAlternate route: `/legacy/opportunities/tasks/`\n\nAlternate route: `/latest/opportunities/tasks/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_opportunities_tasks",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of opportunities task ids",
+                        "examples": {
+                            "application/json": [
+                                1,
+                                2,
+                                3,
+                                4
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_opportunities_tasks_200_ok",
+                                "type": "integer"
+                            },
+                            "maxItems": 100,
+                            "title": "get_opportunities_tasks_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get opportunities tasks",
+                "tags": [
+                    "Opportunities"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ]
+            }
+        },
+        "/opportunities/tasks/{task_id}/": {
+            "get": {
+                "description": "Return information of an opportunities task\n\n---\nAlternate route: `/v1/opportunities/tasks/{task_id}/`\n\nAlternate route: `/legacy/opportunities/tasks/{task_id}/`\n\nAlternate route: `/latest/opportunities/tasks/{task_id}/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_opportunities_tasks_task_id",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "ID of an opportunities task",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "task_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of an opportunities task",
+                        "examples": {
+                            "application/json": {
+                                "description": "To use station services...",
+                                "name": "Dock in the station",
+                                "notification": "Completed:<br>Docked in a station!",
+                                "task_id": 10
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "description": {
+                                    "description": "description string",
+                                    "title": "get_opportunities_tasks_task_id_description",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_opportunities_tasks_task_id_name",
+                                    "type": "string"
+                                },
+                                "notification": {
+                                    "description": "notification string",
+                                    "title": "get_opportunities_tasks_task_id_notification",
+                                    "type": "string"
+                                },
+                                "task_id": {
+                                    "description": "task_id integer",
+                                    "format": "int32",
+                                    "title": "get_opportunities_tasks_task_id_task_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "task_id",
+                                "name",
+                                "description",
+                                "notification"
+                            ],
+                            "title": "get_opportunities_tasks_task_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get opportunities task",
+                "tags": [
+                    "Opportunities"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ]
+            }
+        },
         "/status/": {
             "get": {
                 "description": "EVE Server status\n\n---\nAlternate route: `/v1/status/`\n\nAlternate route: `/legacy/status/`\n\nAlternate route: `/latest/status/`\n\n---\nThis route is cached for up to 30 seconds",
@@ -311,5 +3056,23 @@
     "schemes": [
         "https"
     ],
+    "securityDefinitions": {
+        "evesso": {
+            "authorizationUrl": "https://login.eveonline.com/oauth/authorize",
+            "flow": "implicit",
+            "scopes": {
+                "esi-characters.read_agents_research.v1": "EVE SSO scope esi-characters.read_agents_research.v1",
+                "esi-characters.read_blueprints.v1": "EVE SSO scope esi-characters.read_blueprints.v1",
+                "esi-characters.read_chat_channels.v1": "EVE SSO scope esi-characters.read_chat_channels.v1",
+                "esi-characters.read_contacts.v1": "EVE SSO scope esi-characters.read_contacts.v1",
+                "esi-characters.read_fatigue.v1": "EVE SSO scope esi-characters.read_fatigue.v1",
+                "esi-characters.read_loyalty.v1": "EVE SSO scope esi-characters.read_loyalty.v1",
+                "esi-characters.read_medals.v1": "EVE SSO scope esi-characters.read_medals.v1",
+                "esi-characters.read_opportunities.v1": "EVE SSO scope esi-characters.read_opportunities.v1",
+                "esi-characters.read_standings.v1": "EVE SSO scope esi-characters.read_standings.v1"
+            },
+            "type": "oauth2"
+        }
+    },
     "swagger": "2.0"
 }
