@@ -47,6 +47,14 @@
             "name": "X-User-Agent",
             "type": "string"
         },
+        "alliance_id": {
+            "description": "An EVE alliance ID",
+            "format": "int32",
+            "in": "path",
+            "name": "alliance_id",
+            "required": true,
+            "type": "integer"
+        },
         "character_id": {
             "description": "An EVE character ID",
             "format": "int32",
@@ -103,6 +111,473 @@
         }
     },
     "paths": {
+        "/alliances/": {
+            "get": {
+                "description": "List all active player alliances\n\n---\nAlternate route: `/v1/alliances/`\n\nAlternate route: `/latest/alliances/`\n\nAlternate route: `/dev/alliances/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_alliances",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of Alliance IDs",
+                        "examples": {
+                            "application/json": [
+                                99000001,
+                                99000002
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "minimum": 0,
+                                "title": "get_alliances_200_ok",
+                                "type": "integer",
+                                "uniqueItems": true
+                            },
+                            "maxItems": 5000,
+                            "title": "get_alliances_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "List all alliances",
+                "tags": [
+                    "Alliance"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/alliances/names/": {
+            "get": {
+                "description": "Resolve a set of alliance IDs to alliance names\n\n---\nAlternate route: `/v1/alliances/names/`\n\nAlternate route: `/latest/alliances/names/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_alliances_names",
+                "parameters": [
+                    {
+                        "description": "A comma separated list of alliance IDs",
+                        "in": "query",
+                        "items": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "maxItems": 100,
+                        "minItems": 1,
+                        "name": "alliance_ids",
+                        "required": true,
+                        "type": "array"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of id/name associations",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "alliance_id": 1000171,
+                                    "alliance_name": "Republic University"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "alliance_id": {
+                                        "description": "alliance_id integer",
+                                        "format": "int32",
+                                        "title": "get_alliances_names_alliance_id",
+                                        "type": "integer"
+                                    },
+                                    "alliance_name": {
+                                        "description": "alliance_name string",
+                                        "title": "get_alliances_names_alliance_name",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "alliance_id",
+                                    "alliance_name"
+                                ],
+                                "title": "get_alliances_names_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 100,
+                            "title": "get_alliances_names_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get alliance names",
+                "tags": [
+                    "Alliance"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/alliances/{alliance_id}/": {
+            "get": {
+                "deprecated": true,
+                "description": "Public information about an alliance\n\n---\nAlternate route: `/v1/alliances/{alliance_id}/`\n\n\n---\nWarning: This endpoint is deprecated and will be removed on 2016-10-01.",
+                "operationId": "get_alliances_alliance_id",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/alliance_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Public data about an alliance",
+                        "examples": {
+                            "application/json": {
+                                "alliance_name": "C C P Alliance",
+                                "date_founded": "2016-06-26T21:00:00Z",
+                                "executor_corp": 98356193,
+                                "ticker": "<C C P>"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "alliance_name": {
+                                    "description": "the full name of the alliance",
+                                    "title": "get_alliances_alliance_id_alliance_name",
+                                    "type": "string"
+                                },
+                                "date_founded": {
+                                    "description": "date_founded string",
+                                    "format": "date-time",
+                                    "title": "get_alliances_alliance_id_date_founded",
+                                    "type": "string"
+                                },
+                                "executor_corp": {
+                                    "description": "the executor corporation ID, if this alliance is not closed",
+                                    "format": "int32",
+                                    "title": "get_alliances_alliance_id_executor_corp",
+                                    "type": "integer"
+                                },
+                                "logo_urls": {
+                                    "description": "logo_urls object",
+                                    "properties": {
+                                        "128x128": {
+                                            "description": "128x128 string",
+                                            "title": "get_alliances_alliance_id_128x128",
+                                            "type": "string"
+                                        },
+                                        "64x64": {
+                                            "description": "64x64 string",
+                                            "title": "get_alliances_alliance_id_64x64",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "title": "get_alliances_alliance_id_logo_urls",
+                                    "type": "object"
+                                },
+                                "ticker": {
+                                    "description": "the short name of the alliance",
+                                    "title": "get_alliances_alliance_id_ticker",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "alliance_name",
+                                "ticker",
+                                "date_founded"
+                            ],
+                            "title": "get_alliances_alliance_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get alliance information",
+                "tags": [
+                    "Alliance"
+                ],
+                "x-alternate-versions": [
+                    "v1"
+                ]
+            }
+        },
+        "/alliances/{alliance_id}/corporations/": {
+            "get": {
+                "description": "List all current member corporations of an alliance\n\n---\nAlternate route: `/v1/alliances/{alliance_id}/corporations/`\n\nAlternate route: `/latest/alliances/{alliance_id}/corporations/`\n\nAlternate route: `/dev/alliances/{alliance_id}/corporations/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_alliances_alliance_id_corporations",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/alliance_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of corporation IDs",
+                        "examples": {
+                            "application/json": [
+                                98000001
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "minimum": 0,
+                                "title": "get_alliances_alliance_id_corporations_200_ok",
+                                "type": "integer",
+                                "uniqueItems": true
+                            },
+                            "maxItems": 1000,
+                            "title": "get_alliances_alliance_id_corporations_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "List alliance's corporations",
+                "tags": [
+                    "Alliance"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/alliances/{alliance_id}/icons/": {
+            "get": {
+                "description": "Get the icon urls for a alliance\n\n---\nAlternate route: `/v1/alliances/{alliance_id}/icons/`\n\nAlternate route: `/latest/alliances/{alliance_id}/icons/`\n\nAlternate route: `/dev/alliances/{alliance_id}/icons/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_alliances_alliance_id_icons",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/alliance_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Urls for icons for the given alliance id and server",
+                        "examples": {
+                            "application/json": {
+                                "px128x128": "https://imageserver.eveonline.com/Alliance/503818424_128.png",
+                                "px64x64": "https://imageserver.eveonline.com/Alliance/503818424_64.png"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "px128x128": {
+                                    "description": "px128x128 string",
+                                    "title": "get_alliances_alliance_id_icons_px128x128",
+                                    "type": "string"
+                                },
+                                "px64x64": {
+                                    "description": "px64x64 string",
+                                    "title": "get_alliances_alliance_id_icons_px64x64",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_alliances_alliance_id_icons_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "No image server for this datasource",
+                        "examples": {
+                            "application/json": {
+                                "error": "No image server for this datasource"
+                            }
+                        },
+                        "schema": {
+                            "description": "No image server for this datasource",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_alliances_alliance_id_icons_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_alliances_alliance_id_icons_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get alliance icon",
+                "tags": [
+                    "Alliance"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
         "/characters/affiliation/": {
             "post": {
                 "description": "Bulk lookup of character IDs to corporation, alliance and faction\n\n---\nAlternate route: `/v1/characters/affiliation/`\n\nAlternate route: `/latest/characters/affiliation/`\n\nAlternate route: `/dev/characters/affiliation/`\n\n---\nThis route is cached for up to 3600 seconds",
@@ -903,6 +1378,753 @@
                     "v1"
                 ],
                 "x-cached-seconds": 3600
+            }
+        },
+        "/characters/{character_id}/bookmarks/": {
+            "get": {
+                "description": "List your character's personal bookmarks\n\n---\nAlternate route: `/v1/characters/{character_id}/bookmarks/`\n\nAlternate route: `/latest/characters/{character_id}/bookmarks/`\n\nAlternate route: `/dev/characters/{character_id}/bookmarks/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_bookmarks",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of bookmarks",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "bookmark_id": 32,
+                                    "create_date": "2016-08-09T11:57:47Z",
+                                    "creator_id": 90000001,
+                                    "folder_id": 5,
+                                    "memo": "aoeu ( Citadel )",
+                                    "note": "",
+                                    "owner_id": 90000001,
+                                    "target": {
+                                        "item": {
+                                            "item_id": 1000000012668,
+                                            "type_id": 35832
+                                        },
+                                        "location_id": 30000005
+                                    }
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "bookmark_id": {
+                                        "description": "bookmark_id integer",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_bookmarks_bookmark_id",
+                                        "type": "integer"
+                                    },
+                                    "create_date": {
+                                        "description": "create_date string",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_bookmarks_create_date",
+                                        "type": "string"
+                                    },
+                                    "creator_id": {
+                                        "description": "creator_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_bookmarks_creator_id",
+                                        "type": "integer"
+                                    },
+                                    "folder_id": {
+                                        "description": "folder_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_bookmarks_folder_id",
+                                        "type": "integer"
+                                    },
+                                    "memo": {
+                                        "description": "memo string",
+                                        "title": "get_characters_character_id_bookmarks_memo",
+                                        "type": "string"
+                                    },
+                                    "note": {
+                                        "description": "note string",
+                                        "title": "get_characters_character_id_bookmarks_note",
+                                        "type": "string"
+                                    },
+                                    "owner_id": {
+                                        "description": "owner_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_bookmarks_owner_id",
+                                        "type": "integer"
+                                    },
+                                    "target": {
+                                        "description": "target object",
+                                        "properties": {
+                                            "coordinates": {
+                                                "description": "coordinates object",
+                                                "properties": {
+                                                    "x": {
+                                                        "description": "x number",
+                                                        "format": "double",
+                                                        "title": "get_characters_character_id_bookmarks_x",
+                                                        "type": "number"
+                                                    },
+                                                    "y": {
+                                                        "description": "y number",
+                                                        "format": "double",
+                                                        "title": "get_characters_character_id_bookmarks_y",
+                                                        "type": "number"
+                                                    },
+                                                    "z": {
+                                                        "description": "z number",
+                                                        "format": "double",
+                                                        "title": "get_characters_character_id_bookmarks_z",
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "x",
+                                                    "y",
+                                                    "z"
+                                                ],
+                                                "title": "get_characters_character_id_bookmarks_coordinates",
+                                                "type": "object"
+                                            },
+                                            "item": {
+                                                "description": "item object",
+                                                "properties": {
+                                                    "item_id": {
+                                                        "description": "item_id integer",
+                                                        "format": "int64",
+                                                        "title": "get_characters_character_id_bookmarks_item_id",
+                                                        "type": "integer"
+                                                    },
+                                                    "type_id": {
+                                                        "description": "type_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_characters_character_id_bookmarks_type_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "item_id",
+                                                    "type_id"
+                                                ],
+                                                "title": "get_characters_character_id_bookmarks_item",
+                                                "type": "object"
+                                            },
+                                            "location_id": {
+                                                "description": "location_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_bookmarks_location_id",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "location_id"
+                                        ],
+                                        "title": "get_characters_character_id_bookmarks_target",
+                                        "type": "object"
+                                    }
+                                },
+                                "required": [
+                                    "bookmark_id",
+                                    "creator_id",
+                                    "owner_id",
+                                    "create_date",
+                                    "memo",
+                                    "note",
+                                    "target"
+                                ],
+                                "title": "get_characters_character_id_bookmarks_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 13000,
+                            "title": "get_characters_character_id_bookmarks_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-bookmarks.read_character_bookmarks.v1"
+                        ]
+                    }
+                ],
+                "summary": "List bookmarks",
+                "tags": [
+                    "Bookmarks"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/characters/{character_id}/bookmarks/folders/": {
+            "get": {
+                "description": "List your character's personal bookmark folders\n\n---\nAlternate route: `/v1/characters/{character_id}/bookmarks/folders/`\n\nAlternate route: `/latest/characters/{character_id}/bookmarks/folders/`\n\nAlternate route: `/dev/characters/{character_id}/bookmarks/folders/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_bookmarks_folders",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of bookmark folders",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "folder_id": 5,
+                                    "name": "Icecream",
+                                    "owner_id": 90000001
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "folder_id": {
+                                        "description": "folder_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_bookmarks_folders_folder_id",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "description": "name string",
+                                        "title": "get_characters_character_id_bookmarks_folders_name",
+                                        "type": "string"
+                                    },
+                                    "owner_id": {
+                                        "description": "owner_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_bookmarks_folders_owner_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "title": "get_characters_character_id_bookmarks_folders_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 10000,
+                            "title": "get_characters_character_id_bookmarks_folders_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-bookmarks.read_character_bookmarks.v1"
+                        ]
+                    }
+                ],
+                "summary": "List bookmark folders",
+                "tags": [
+                    "Bookmarks"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/characters/{character_id}/calendar/": {
+            "get": {
+                "description": "Get 50 event summaries from the calendar. If no event ID is given, the resource will return the next 50 chronological event summaries from now. If an event ID is specified, it will return the next 50 chronological event summaries from after that event.\n\n---\nAlternate route: `/v1/characters/{character_id}/calendar/`\n\nAlternate route: `/latest/characters/{character_id}/calendar/`\n\nAlternate route: `/dev/characters/{character_id}/calendar/`\n\n---\nThis route is cached for up to 5 seconds",
+                "operationId": "get_characters_character_id_calendar",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "The event ID to retrieve events from",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "from_event",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A collection of event summaries",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "event_date": "2016-06-26T20:00:00Z",
+                                    "event_id": 1386435,
+                                    "event_response": "accepted",
+                                    "importance": 0,
+                                    "title": "o7 The EVE Online Show"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "Up to 50 events from now or the event you requested",
+                            "items": {
+                                "description": "event",
+                                "properties": {
+                                    "event_date": {
+                                        "description": "event_date string",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_calendar_event_date",
+                                        "type": "string"
+                                    },
+                                    "event_id": {
+                                        "description": "event_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_calendar_event_id",
+                                        "type": "integer"
+                                    },
+                                    "event_response": {
+                                        "description": "event_response string",
+                                        "enum": [
+                                            "declined",
+                                            "not_responded",
+                                            "accepted",
+                                            "tentative"
+                                        ],
+                                        "title": "get_characters_character_id_calendar_event_response",
+                                        "type": "string"
+                                    },
+                                    "importance": {
+                                        "description": "importance integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_calendar_importance",
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "description": "title string",
+                                        "title": "get_characters_character_id_calendar_title",
+                                        "type": "string"
+                                    }
+                                },
+                                "title": "get_characters_character_id_calendar_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 50,
+                            "title": "get_characters_character_id_calendar_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-calendar.read_calendar_events.v1"
+                        ]
+                    }
+                ],
+                "summary": "List calendar event summaries",
+                "tags": [
+                    "Calendar"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 5
+            }
+        },
+        "/characters/{character_id}/calendar/{event_id}/": {
+            "get": {
+                "deprecated": true,
+                "description": "Get all the information for a specific event\n\n---\nAlternate route: `/v2/characters/{character_id}/calendar/{event_id}/`\n\n---\nThis route is cached for up to 5 seconds\n\n---\nWarning: This route is deprecated.",
+                "operationId": "get_characters_character_id_calendar_event_id",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "The id of the event requested",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "event_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Full details of a specific event",
+                        "examples": {
+                            "application/json": {
+                                "duration_in_minutes": 60,
+                                "event_date": "2016-06-26T21:00:00Z",
+                                "event_id": 1386435,
+                                "event_response": "Undecided",
+                                "event_text": "o7: The EVE Online Show features latest developer news, fast paced action, community overviews and a lot more with CCP Guard and CCP Mimic. Join the thrilling o7 live broadcast at 20:00 EVE time (=UTC) on <a href=\"http://www.twitch.tv/ccp\">EVE TV</a>. Don't miss it!",
+                                "importance": 1,
+                                "owner_id": 1,
+                                "owner_name": "EVE System",
+                                "owner_type_id": 0,
+                                "title": "o7 The EVE Online Show"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "Full details of a specific event",
+                            "properties": {
+                                "duration_in_minutes": {
+                                    "description": "duration_in_minutes integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_calendar_event_id_duration_in_minutes",
+                                    "type": "integer"
+                                },
+                                "event_date": {
+                                    "description": "event_date string",
+                                    "format": "date-time",
+                                    "title": "get_characters_character_id_calendar_event_id_event_date",
+                                    "type": "string"
+                                },
+                                "event_id": {
+                                    "description": "event_id integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_calendar_event_id_event_id",
+                                    "type": "integer"
+                                },
+                                "event_response": {
+                                    "description": "event_response string",
+                                    "title": "get_characters_character_id_calendar_event_id_event_response",
+                                    "type": "string"
+                                },
+                                "event_text": {
+                                    "description": "event_text string",
+                                    "title": "get_characters_character_id_calendar_event_id_event_text",
+                                    "type": "string"
+                                },
+                                "importance": {
+                                    "description": "importance integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_calendar_event_id_importance",
+                                    "type": "integer"
+                                },
+                                "owner_id": {
+                                    "description": "owner_id integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_calendar_event_id_owner_id",
+                                    "type": "integer"
+                                },
+                                "owner_name": {
+                                    "description": "owner_name string",
+                                    "title": "get_characters_character_id_calendar_event_id_owner_name",
+                                    "type": "string"
+                                },
+                                "owner_type_id": {
+                                    "description": "owner_type_id integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_calendar_event_id_owner_type_id",
+                                    "type": "integer"
+                                },
+                                "title": {
+                                    "description": "title string",
+                                    "title": "get_characters_character_id_calendar_event_id_title",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_calendar_event_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-calendar.read_calendar_events.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get an event",
+                "tags": [
+                    "Calendar"
+                ],
+                "x-alternate-versions": [
+                    "v2"
+                ],
+                "x-cached-seconds": 5
+            },
+            "put": {
+                "deprecated": true,
+                "description": "Set your response status to an event\n\n---\nAlternate route: `/v2/characters/{character_id}/calendar/{event_id}/`\n\n\n---\nWarning: This route is deprecated.",
+                "operationId": "put_characters_character_id_calendar_event_id",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "The ID of the event requested",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "event_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "The response value to set, overriding current value.",
+                        "enum": [
+                            "accepted",
+                            "declined",
+                            "tentative"
+                        ],
+                        "in": "query",
+                        "name": "response",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Event updated"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-calendar.respond_calendar_events.v1"
+                        ]
+                    }
+                ],
+                "summary": "Respond to an event",
+                "tags": [
+                    "Calendar"
+                ],
+                "x-alternate-versions": [
+                    "v2"
+                ]
             }
         },
         "/characters/{character_id}/chat_channels/": {
@@ -2248,6 +3470,272 @@
                 "x-cached-seconds": 3600
             }
         },
+        "/fw/stats/": {
+            "get": {
+                "description": "Statistical overviews of factions involved in faction warfare\n\n---\nAlternate route: `/v1/fw/stats/`\n\nAlternate route: `/latest/fw/stats/`\n\nAlternate route: `/dev/fw/stats/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_fw_stats",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Per faction breakdown of faction warfare statistics",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "faction_id": 500001,
+                                    "kills": {
+                                        "last_week": 893,
+                                        "total": 684350,
+                                        "yesterday": 136
+                                    },
+                                    "pilots": 28863,
+                                    "systems_controlled": 20,
+                                    "victory_points": {
+                                        "last_week": 102640,
+                                        "total": 52658260,
+                                        "yesterday": 15980
+                                    }
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "faction_id": {
+                                        "description": "faction_id integer",
+                                        "format": "int32",
+                                        "title": "get_fw_stats_faction_id",
+                                        "type": "integer"
+                                    },
+                                    "kills": {
+                                        "description": "Summary of kills against an enemy faction for the given faction",
+                                        "properties": {
+                                            "last_week": {
+                                                "description": "Last week's total number of kills against enemy factions",
+                                                "format": "int32",
+                                                "title": "get_fw_stats_last_week",
+                                                "type": "integer"
+                                            },
+                                            "total": {
+                                                "description": "Total number of kills against enemy factions since faction warfare began",
+                                                "format": "int32",
+                                                "title": "get_fw_stats_total",
+                                                "type": "integer"
+                                            },
+                                            "yesterday": {
+                                                "description": "Yesterday's total number of kills against enemy factions",
+                                                "format": "int32",
+                                                "title": "get_fw_stats_yesterday",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "yesterday",
+                                            "last_week",
+                                            "total"
+                                        ],
+                                        "title": "get_fw_stats_kills",
+                                        "type": "object"
+                                    },
+                                    "pilots": {
+                                        "description": "How many pilots fight for the given faction",
+                                        "format": "int32",
+                                        "title": "get_fw_stats_pilots",
+                                        "type": "integer"
+                                    },
+                                    "systems_controlled": {
+                                        "description": "The number of solar systems controlled by the given faction",
+                                        "format": "int32",
+                                        "title": "get_fw_stats_systems_controlled",
+                                        "type": "integer"
+                                    },
+                                    "victory_points": {
+                                        "description": "Summary of victory points gained for the given faction",
+                                        "properties": {
+                                            "last_week": {
+                                                "description": "Last week's victory points gained",
+                                                "format": "int32",
+                                                "title": "get_fw_stats_last_week",
+                                                "type": "integer"
+                                            },
+                                            "total": {
+                                                "description": "Total victory points gained since faction warfare began",
+                                                "format": "int32",
+                                                "title": "get_fw_stats_total",
+                                                "type": "integer"
+                                            },
+                                            "yesterday": {
+                                                "description": "Yesterday's victory points gained",
+                                                "format": "int32",
+                                                "title": "get_fw_stats_yesterday",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "yesterday",
+                                            "last_week",
+                                            "total"
+                                        ],
+                                        "title": "get_fw_stats_victory_points",
+                                        "type": "object"
+                                    }
+                                },
+                                "required": [
+                                    "faction_id",
+                                    "pilots",
+                                    "systems_controlled",
+                                    "kills",
+                                    "victory_points"
+                                ],
+                                "title": "get_fw_stats_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 4,
+                            "title": "get_fw_stats_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "An overview of statistics about factions involved in faction warfare",
+                "tags": [
+                    "Faction Warfare"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ]
+            }
+        },
+        "/fw/wars/": {
+            "get": {
+                "description": "Data about which NPC factions are at war\n\n---\nAlternate route: `/v1/fw/wars/`\n\nAlternate route: `/latest/fw/wars/`\n\nAlternate route: `/dev/fw/wars/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_fw_wars",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of NPC factions at war",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "against_id": 500002,
+                                    "faction_id": 500001
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "List of factions at war",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "against_id": {
+                                        "description": "The faction ID of the enemy faction.",
+                                        "format": "int32",
+                                        "title": "get_fw_wars_against_id",
+                                        "type": "integer"
+                                    },
+                                    "faction_id": {
+                                        "description": "faction_id integer",
+                                        "format": "int32",
+                                        "title": "get_fw_wars_faction_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "faction_id",
+                                    "against_id"
+                                ],
+                                "title": "get_fw_wars_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 8,
+                            "title": "get_fw_wars_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Data about which NPC factions are at war",
+                "tags": [
+                    "Faction Warfare"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ]
+            }
+        },
         "/insurance/prices/": {
             "get": {
                 "description": "Return available insurance levels for all ship types\n\n---\nAlternate route: `/v1/insurance/prices/`\n\nAlternate route: `/latest/insurance/prices/`\n\nAlternate route: `/dev/insurance/prices/`\n\n---\nThis route is cached for up to 3600 seconds",
@@ -3076,6 +4564,9 @@
             "authorizationUrl": "https://login.eveonline.com/oauth/authorize",
             "flow": "implicit",
             "scopes": {
+                "esi-bookmarks.read_character_bookmarks.v1": "EVE SSO scope esi-bookmarks.read_character_bookmarks.v1",
+                "esi-calendar.read_calendar_events.v1": "EVE SSO scope esi-calendar.read_calendar_events.v1",
+                "esi-calendar.respond_calendar_events.v1": "EVE SSO scope esi-calendar.respond_calendar_events.v1",
                 "esi-characters.read_agents_research.v1": "EVE SSO scope esi-characters.read_agents_research.v1",
                 "esi-characters.read_blueprints.v1": "EVE SSO scope esi-characters.read_blueprints.v1",
                 "esi-characters.read_chat_channels.v1": "EVE SSO scope esi-characters.read_chat_channels.v1",
