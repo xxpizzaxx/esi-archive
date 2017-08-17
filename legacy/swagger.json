@@ -97,6 +97,14 @@
             "name": "language",
             "type": "string"
         },
+        "page": {
+            "default": 1,
+            "description": "Which page of results to return",
+            "format": "int32",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+        },
         "token": {
             "description": "Access token to use if unable to set a header",
             "in": "query",
@@ -2435,6 +2443,775 @@
                 "x-cached-seconds": 300
             }
         },
+        "/characters/{character_id}/clones/": {
+            "get": {
+                "description": "A list of the character's clones\n\n---\nAlternate route: `/v2/characters/{character_id}/clones/`\n\nAlternate route: `/latest/characters/{character_id}/clones/`\n\n---\nThis route is cached for up to 120 seconds",
+                "operationId": "get_characters_character_id_clones",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Clone information for the given character",
+                        "examples": {
+                            "application/json": {
+                                "home_location": {
+                                    "location_id": 1021348135816,
+                                    "location_type": "structure"
+                                },
+                                "jump_clones": [
+                                    {
+                                        "implants": [
+                                            22118
+                                        ],
+                                        "location_id": 60003463,
+                                        "location_type": "station"
+                                    },
+                                    {
+                                        "implants": [],
+                                        "location_id": 1021348135816,
+                                        "location_type": "structure"
+                                    }
+                                ]
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "home_location": {
+                                    "description": "home_location object",
+                                    "properties": {
+                                        "location_id": {
+                                            "description": "location_id integer",
+                                            "format": "int64",
+                                            "title": "get_characters_character_id_clones_location_id",
+                                            "type": "integer"
+                                        },
+                                        "location_type": {
+                                            "description": "location_type string",
+                                            "enum": [
+                                                "station",
+                                                "structure"
+                                            ],
+                                            "title": "get_characters_character_id_clones_location_type",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "title": "get_characters_character_id_clones_home_location",
+                                    "type": "object"
+                                },
+                                "jump_clones": {
+                                    "description": "jump_clones array",
+                                    "items": {
+                                        "description": "jump_clone object",
+                                        "properties": {
+                                            "implants": {
+                                                "description": "implants array",
+                                                "items": {
+                                                    "description": "implant integer",
+                                                    "format": "int32",
+                                                    "title": "get_characters_character_id_clones_implant",
+                                                    "type": "integer"
+                                                },
+                                                "maxItems": 11,
+                                                "title": "get_characters_character_id_clones_implants",
+                                                "type": "array"
+                                            },
+                                            "location_id": {
+                                                "description": "location_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_clones_location_id",
+                                                "type": "integer"
+                                            },
+                                            "location_type": {
+                                                "description": "location_type string",
+                                                "enum": [
+                                                    "station",
+                                                    "structure"
+                                                ],
+                                                "title": "get_characters_character_id_clones_location_type",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "title": "get_characters_character_id_clones_jump_clone",
+                                        "type": "object"
+                                    },
+                                    "maxItems": 10,
+                                    "title": "get_characters_character_id_clones_jump_clones",
+                                    "type": "array"
+                                },
+                                "last_jump_date": {
+                                    "description": "last_jump_date string",
+                                    "format": "date-time",
+                                    "title": "get_characters_character_id_clones_last_jump_date",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "jump_clones"
+                            ],
+                            "title": "get_characters_character_id_clones_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-clones.read_clones.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get clones",
+                "tags": [
+                    "Clones"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "v2"
+                ],
+                "x-cached-seconds": 120
+            }
+        },
+        "/characters/{character_id}/contacts/": {
+            "delete": {
+                "description": "Bulk delete contacts\n\n---\nAlternate route: `/v1/characters/{character_id}/contacts/`\n\nAlternate route: `/latest/characters/{character_id}/contacts/`\n",
+                "operationId": "delete_characters_character_id_contacts",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "description": "A list of contacts to delete",
+                        "in": "body",
+                        "name": "contact_ids",
+                        "required": true,
+                        "schema": {
+                            "description": "contact_ids array",
+                            "items": {
+                                "description": "ID of the contact to delete",
+                                "format": "int32",
+                                "title": "delete_characters_character_id_contacts_contact_id",
+                                "type": "integer"
+                            },
+                            "maxItems": 100,
+                            "minItems": 1,
+                            "title": "delete_characters_character_id_contacts_contact_ids",
+                            "type": "array"
+                        }
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Contacts deleted"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.write_contacts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Delete contacts",
+                "tags": [
+                    "Contacts"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "v1"
+                ]
+            },
+            "get": {
+                "description": "Return contacts of a character\n\n---\nAlternate route: `/v1/characters/{character_id}/contacts/`\n\nAlternate route: `/latest/characters/{character_id}/contacts/`\n\nAlternate route: `/dev/characters/{character_id}/contacts/`\n\n---\nThis route is cached for up to 300 seconds",
+                "operationId": "get_characters_character_id_contacts",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/page"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of contacts",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "contact_id": 123,
+                                    "contact_type": "character",
+                                    "is_blocked": true,
+                                    "is_watched": true,
+                                    "standing": 10.0
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "contact_id": {
+                                        "description": "contact_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_contacts_contact_id",
+                                        "type": "integer"
+                                    },
+                                    "contact_type": {
+                                        "description": "contact_type string",
+                                        "enum": [
+                                            "character",
+                                            "corporation",
+                                            "alliance",
+                                            "faction"
+                                        ],
+                                        "title": "get_characters_character_id_contacts_contact_type",
+                                        "type": "string"
+                                    },
+                                    "is_blocked": {
+                                        "description": "Whether this contact is in the blocked list. Note a missing value denotes unknown, not true or false",
+                                        "title": "get_characters_character_id_contacts_is_blocked",
+                                        "type": "boolean"
+                                    },
+                                    "is_watched": {
+                                        "description": "Whether this contact is being watched",
+                                        "title": "get_characters_character_id_contacts_is_watched",
+                                        "type": "boolean"
+                                    },
+                                    "label_id": {
+                                        "description": "Custom label of the contact",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_contacts_label_id",
+                                        "type": "integer"
+                                    },
+                                    "standing": {
+                                        "description": "Standing of the contact",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_contacts_standing",
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "standing",
+                                    "contact_type",
+                                    "contact_id"
+                                ],
+                                "title": "get_characters_character_id_contacts_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 1024,
+                            "title": "get_characters_character_id_contacts_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_contacts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get contacts",
+                "tags": [
+                    "Contacts"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 300
+            },
+            "post": {
+                "description": "Bulk add contacts with same settings\n\n---\nAlternate route: `/v1/characters/{character_id}/contacts/`\n\nAlternate route: `/latest/characters/{character_id}/contacts/`\n\nAlternate route: `/dev/characters/{character_id}/contacts/`\n",
+                "operationId": "post_characters_character_id_contacts",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "description": "A list of contacts to add",
+                        "in": "body",
+                        "name": "contact_ids",
+                        "required": true,
+                        "schema": {
+                            "description": "contact_ids array",
+                            "items": {
+                                "description": "ID of the contact to add",
+                                "format": "int32",
+                                "title": "post_characters_character_id_contacts_contact_id",
+                                "type": "integer"
+                            },
+                            "maxItems": 100,
+                            "minItems": 1,
+                            "title": "post_characters_character_id_contacts_contact_ids",
+                            "type": "array"
+                        }
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "default": 0,
+                        "description": "Add a custom label to the new contact",
+                        "format": "int64",
+                        "in": "query",
+                        "name": "label_id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Standing for the new contact",
+                        "format": "float",
+                        "in": "query",
+                        "maximum": 10,
+                        "minimum": -10,
+                        "name": "standing",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "default": false,
+                        "description": "Whether the new contact should be watched, note this is only effective on characters",
+                        "in": "query",
+                        "name": "watched",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "A list of contact ids that successfully created",
+                        "examples": {
+                            "application/json": [
+                                123,
+                                456
+                            ]
+                        },
+                        "schema": {
+                            "description": "201 created array",
+                            "items": {
+                                "description": "201 created integer",
+                                "format": "int32",
+                                "title": "post_characters_character_id_contacts_201_created",
+                                "type": "integer"
+                            },
+                            "maxItems": 100,
+                            "title": "post_characters_character_id_contacts_created",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.write_contacts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Add contacts",
+                "tags": [
+                    "Contacts"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ]
+            },
+            "put": {
+                "description": "Bulk edit contacts with same settings\n\n---\nAlternate route: `/v1/characters/{character_id}/contacts/`\n\nAlternate route: `/latest/characters/{character_id}/contacts/`\n\nAlternate route: `/dev/characters/{character_id}/contacts/`\n",
+                "operationId": "put_characters_character_id_contacts",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "description": "A list of contacts to edit",
+                        "in": "body",
+                        "name": "contact_ids",
+                        "required": true,
+                        "schema": {
+                            "description": "contact_ids array",
+                            "items": {
+                                "description": "ID of the contact to edit",
+                                "format": "int32",
+                                "title": "put_characters_character_id_contacts_contact_id",
+                                "type": "integer"
+                            },
+                            "maxItems": 100,
+                            "minItems": 1,
+                            "title": "put_characters_character_id_contacts_contact_ids",
+                            "type": "array"
+                        }
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "default": 0,
+                        "description": "Add a custom label to the contact, use 0 for clearing label",
+                        "format": "int64",
+                        "in": "query",
+                        "name": "label_id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Standing for the contact",
+                        "format": "float",
+                        "in": "query",
+                        "maximum": 10,
+                        "minimum": -10,
+                        "name": "standing",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "default": false,
+                        "description": "Whether the contact should be watched, note this is only effective on characters",
+                        "in": "query",
+                        "name": "watched",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Contacts updated"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.write_contacts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Edit contacts",
+                "tags": [
+                    "Contacts"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ]
+            }
+        },
+        "/characters/{character_id}/contacts/labels/": {
+            "get": {
+                "description": "Return custom labels for contacts the character defined\n\n---\nAlternate route: `/v1/characters/{character_id}/contacts/labels/`\n\nAlternate route: `/latest/characters/{character_id}/contacts/labels/`\n\nAlternate route: `/dev/characters/{character_id}/contacts/labels/`\n\n---\nThis route is cached for up to 300 seconds",
+                "operationId": "get_characters_character_id_contacts_labels",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of contact labels",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "label_id": 123,
+                                    "label_name": "Friends"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "label_id": {
+                                        "description": "label_id integer",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_contacts_labels_label_id",
+                                        "type": "integer"
+                                    },
+                                    "label_name": {
+                                        "description": "label_name string",
+                                        "title": "get_characters_character_id_contacts_labels_label_name",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "label_id",
+                                    "label_name"
+                                ],
+                                "title": "get_characters_character_id_contacts_labels_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 64,
+                            "title": "get_characters_character_id_contacts_labels_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_contacts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get contact labels",
+                "tags": [
+                    "Contacts"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 300
+            }
+        },
         "/characters/{character_id}/corporationhistory/": {
             "get": {
                 "description": "Get a list of all the corporations a character has been a member of\n\n---\nAlternate route: `/v1/characters/{character_id}/corporationhistory/`\n\nAlternate route: `/latest/characters/{character_id}/corporationhistory/`\n\nAlternate route: `/dev/characters/{character_id}/corporationhistory/`\n\n---\nThis route is cached for up to 3600 seconds",
@@ -2777,6 +3554,221 @@
                 "x-cached-seconds": 300
             }
         },
+        "/characters/{character_id}/implants/": {
+            "get": {
+                "description": "Return implants on the active clone of a character\n\n---\nAlternate route: `/v1/characters/{character_id}/implants/`\n\nAlternate route: `/latest/characters/{character_id}/implants/`\n\nAlternate route: `/dev/characters/{character_id}/implants/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_implants",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of implant type ids",
+                        "examples": {
+                            "application/json": [
+                                1,
+                                2,
+                                3
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_characters_character_id_implants_200_ok",
+                                "type": "integer"
+                            },
+                            "maxItems": 11,
+                            "title": "get_characters_character_id_implants_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-clones.read_implants.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get active implants",
+                "tags": [
+                    "Clones"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/characters/{character_id}/location/": {
+            "get": {
+                "description": "Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable.\n\n---\nAlternate route: `/v1/characters/{character_id}/location/`\n\nAlternate route: `/latest/characters/{character_id}/location/`\n\nAlternate route: `/dev/characters/{character_id}/location/`\n\n---\nThis route is cached for up to 5 seconds",
+                "operationId": "get_characters_character_id_location",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable.",
+                        "examples": {
+                            "application/json": {
+                                "solar_system_id": 30002505,
+                                "structure_id": 1000000016989
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "solar_system_id": {
+                                    "description": "solar_system_id integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_location_solar_system_id",
+                                    "type": "integer"
+                                },
+                                "station_id": {
+                                    "description": "station_id integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_location_station_id",
+                                    "type": "integer"
+                                },
+                                "structure_id": {
+                                    "description": "structure_id integer",
+                                    "format": "int64",
+                                    "title": "get_characters_character_id_location_structure_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "solar_system_id"
+                            ],
+                            "title": "get_characters_character_id_location_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-location.read_location.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get character location",
+                "tags": [
+                    "Location"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 5
+            }
+        },
         "/characters/{character_id}/loyalty/points/": {
             "get": {
                 "description": "Return a list of loyalty points for all corporations the character has worked for\n\n---\nAlternate route: `/v1/characters/{character_id}/loyalty/points/`\n\nAlternate route: `/latest/characters/{character_id}/loyalty/points/`\n\nAlternate route: `/dev/characters/{character_id}/loyalty/points/`\n",
@@ -3096,6 +4088,94 @@
                 "x-cached-seconds": 3600
             }
         },
+        "/characters/{character_id}/online/": {
+            "get": {
+                "description": "Checks if the character is currently online\n\n---\nAlternate route: `/v1/characters/{character_id}/online/`\n\nAlternate route: `/latest/characters/{character_id}/online/`\n\n---\nThis route is cached for up to 60 seconds",
+                "operationId": "get_characters_character_id_online",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Boolean of if the character is currently online",
+                        "examples": {
+                            "application/json": true
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok boolean",
+                            "title": "get_characters_character_id_online_ok",
+                            "type": "boolean"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-location.read_online.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get character online",
+                "tags": [
+                    "Location"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 60
+            }
+        },
         "/characters/{character_id}/opportunities/": {
             "get": {
                 "description": "Return a list of tasks finished by a character\n\n---\nAlternate route: `/v1/characters/{character_id}/opportunities/`\n\nAlternate route: `/latest/characters/{character_id}/opportunities/`\n\nAlternate route: `/dev/characters/{character_id}/opportunities/`\n\n---\nThis route is cached for up to 3600 seconds",
@@ -3214,6 +4294,619 @@
                 "x-cached-seconds": 3600
             }
         },
+        "/characters/{character_id}/planets/": {
+            "get": {
+                "description": "Returns a list of all planetary colonies owned by a character.\n\n---\nAlternate route: `/v1/characters/{character_id}/planets/`\n\nAlternate route: `/latest/characters/{character_id}/planets/`\n\nAlternate route: `/dev/characters/{character_id}/planets/`\n\n---\nThis route is cached for up to 600 seconds",
+                "operationId": "get_characters_character_id_planets",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of colonies",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "last_update": "2016-11-28T16:42:51Z",
+                                    "num_pins": 1,
+                                    "owner_id": 90000001,
+                                    "planet_id": 40023691,
+                                    "planet_type": "plasma",
+                                    "solar_system_id": 30000379,
+                                    "upgrade_level": 0
+                                },
+                                {
+                                    "last_update": "2016-11-28T16:41:54Z",
+                                    "num_pins": 1,
+                                    "owner_id": 90000001,
+                                    "planet_id": 40023697,
+                                    "planet_type": "barren",
+                                    "solar_system_id": 30000379,
+                                    "upgrade_level": 0
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "last_update": {
+                                        "description": "last_update string",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_planets_last_update",
+                                        "type": "string"
+                                    },
+                                    "num_pins": {
+                                        "description": "num_pins integer",
+                                        "format": "int32",
+                                        "minimum": 1,
+                                        "title": "get_characters_character_id_planets_num_pins",
+                                        "type": "integer"
+                                    },
+                                    "owner_id": {
+                                        "description": "owner_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_planets_owner_id",
+                                        "type": "integer"
+                                    },
+                                    "planet_id": {
+                                        "description": "planet_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_planets_planet_id",
+                                        "type": "integer"
+                                    },
+                                    "planet_type": {
+                                        "description": "planet_type string",
+                                        "enum": [
+                                            "temperate",
+                                            "barren",
+                                            "oceanic",
+                                            "ice",
+                                            "gas",
+                                            "lava",
+                                            "storm",
+                                            "plasma"
+                                        ],
+                                        "title": "get_characters_character_id_planets_planet_type",
+                                        "type": "string"
+                                    },
+                                    "solar_system_id": {
+                                        "description": "solar_system_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_planets_solar_system_id",
+                                        "type": "integer"
+                                    },
+                                    "upgrade_level": {
+                                        "description": "upgrade_level integer",
+                                        "format": "int32",
+                                        "maximum": 5,
+                                        "minimum": 0,
+                                        "title": "get_characters_character_id_planets_upgrade_level",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "solar_system_id",
+                                    "planet_id",
+                                    "planet_type",
+                                    "owner_id",
+                                    "last_update",
+                                    "upgrade_level",
+                                    "num_pins"
+                                ],
+                                "title": "get_characters_character_id_planets_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 10,
+                            "title": "get_characters_character_id_planets_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-planets.manage_planets.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get colonies",
+                "tags": [
+                    "Planetary Interaction"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 600
+            }
+        },
+        "/characters/{character_id}/planets/{planet_id}/": {
+            "get": {
+                "deprecated": true,
+                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.\n\n---\nAlternate route: `/v1/characters/{character_id}/planets/{planet_id}/`\n\n---\nThis route is cached for up to 600 seconds\n\n---\nWarning: This route is deprecated.",
+                "operationId": "get_characters_character_id_planets_planet_id",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "Planet id of the target planet",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "planet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Colony layout",
+                        "examples": {
+                            "application/json": {
+                                "links": [
+                                    {
+                                        "destination_pin_id": 1000000017022,
+                                        "link_level": 0,
+                                        "source_pin_id": 1000000017021
+                                    }
+                                ],
+                                "pins": [
+                                    {
+                                        "is_running": true,
+                                        "latitude": 1.55087844973,
+                                        "longitude": 0.717145933308,
+                                        "pin_id": 1000000017021,
+                                        "type_id": 2254
+                                    },
+                                    {
+                                        "is_running": true,
+                                        "latitude": 1.53360639935,
+                                        "longitude": 0.709775584394,
+                                        "pin_id": 1000000017022,
+                                        "type_id": 2256
+                                    }
+                                ],
+                                "routes": [
+                                    {
+                                        "content_type_id": 2393,
+                                        "destination_pin_id": 1000000017030,
+                                        "quantity": 20,
+                                        "route_id": 4,
+                                        "source_pin_id": 1000000017029
+                                    }
+                                ]
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "links": {
+                                    "description": "links array",
+                                    "items": {
+                                        "description": "link object",
+                                        "properties": {
+                                            "destination_pin_id": {
+                                                "description": "destination_pin_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_planets_planet_id_destination_pin_id",
+                                                "type": "integer"
+                                            },
+                                            "link_level": {
+                                                "description": "link_level integer",
+                                                "format": "int32",
+                                                "maximum": 10,
+                                                "minimum": 0,
+                                                "title": "get_characters_character_id_planets_planet_id_link_level",
+                                                "type": "integer"
+                                            },
+                                            "source_pin_id": {
+                                                "description": "source_pin_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_planets_planet_id_source_pin_id",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "source_pin_id",
+                                            "destination_pin_id",
+                                            "link_level"
+                                        ],
+                                        "title": "get_characters_character_id_planets_planet_id_link",
+                                        "type": "object"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_characters_character_id_planets_planet_id_links",
+                                    "type": "array"
+                                },
+                                "pins": {
+                                    "description": "pins array",
+                                    "items": {
+                                        "description": "pin object",
+                                        "properties": {
+                                            "expiry_time": {
+                                                "description": "expiry_time string",
+                                                "format": "date-time",
+                                                "title": "get_characters_character_id_planets_planet_id_expiry_time",
+                                                "type": "string"
+                                            },
+                                            "extractor_details": {
+                                                "description": "extractor_details object",
+                                                "properties": {
+                                                    "cycle_time": {
+                                                        "description": "in seconds",
+                                                        "format": "int32",
+                                                        "title": "get_characters_character_id_planets_planet_id_cycle_time",
+                                                        "type": "integer"
+                                                    },
+                                                    "head_radius": {
+                                                        "description": "head_radius number",
+                                                        "format": "float",
+                                                        "title": "get_characters_character_id_planets_planet_id_head_radius",
+                                                        "type": "number"
+                                                    },
+                                                    "heads": {
+                                                        "description": "heads array",
+                                                        "items": {
+                                                            "description": "head object",
+                                                            "properties": {
+                                                                "head_id": {
+                                                                    "description": "head_id integer",
+                                                                    "format": "int32",
+                                                                    "maximum": 9,
+                                                                    "minimum": 0,
+                                                                    "title": "get_characters_character_id_planets_planet_id_head_id",
+                                                                    "type": "integer"
+                                                                },
+                                                                "latitude": {
+                                                                    "description": "latitude number",
+                                                                    "format": "float",
+                                                                    "title": "get_characters_character_id_planets_planet_id_latitude",
+                                                                    "type": "number"
+                                                                },
+                                                                "longitude": {
+                                                                    "description": "longitude number",
+                                                                    "format": "float",
+                                                                    "title": "get_characters_character_id_planets_planet_id_longitude",
+                                                                    "type": "number"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "head_id",
+                                                                "latitude",
+                                                                "longitude"
+                                                            ],
+                                                            "title": "get_characters_character_id_planets_planet_id_head",
+                                                            "type": "object"
+                                                        },
+                                                        "maxItems": 10,
+                                                        "title": "get_characters_character_id_planets_planet_id_heads",
+                                                        "type": "array"
+                                                    },
+                                                    "product_type_id": {
+                                                        "description": "product_type_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_characters_character_id_planets_planet_id_product_type_id",
+                                                        "type": "integer"
+                                                    },
+                                                    "qty_per_cycle": {
+                                                        "description": "qty_per_cycle integer",
+                                                        "format": "int32",
+                                                        "title": "get_characters_character_id_planets_planet_id_qty_per_cycle",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "heads",
+                                                    "product_type_id",
+                                                    "cycle_time",
+                                                    "head_radius",
+                                                    "qty_per_cycle"
+                                                ],
+                                                "title": "get_characters_character_id_planets_planet_id_extractor_details",
+                                                "type": "object"
+                                            },
+                                            "factory_details": {
+                                                "description": "factory_details object",
+                                                "properties": {
+                                                    "schematic_id": {
+                                                        "description": "schematic_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_characters_character_id_planets_planet_id_schematic_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "schematic_id"
+                                                ],
+                                                "title": "get_characters_character_id_planets_planet_id_factory_details",
+                                                "type": "object"
+                                            },
+                                            "install_time": {
+                                                "description": "install_time string",
+                                                "format": "date-time",
+                                                "title": "get_characters_character_id_planets_planet_id_install_time",
+                                                "type": "string"
+                                            },
+                                            "last_cycle_start": {
+                                                "description": "last_cycle_start string",
+                                                "format": "date-time",
+                                                "title": "get_characters_character_id_planets_planet_id_last_cycle_start",
+                                                "type": "string"
+                                            },
+                                            "latitude": {
+                                                "description": "latitude number",
+                                                "format": "float",
+                                                "title": "get_characters_character_id_planets_planet_id_latitude",
+                                                "type": "number"
+                                            },
+                                            "longitude": {
+                                                "description": "longitude number",
+                                                "format": "float",
+                                                "title": "get_characters_character_id_planets_planet_id_longitude",
+                                                "type": "number"
+                                            },
+                                            "pin_id": {
+                                                "description": "pin_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_planets_planet_id_pin_id",
+                                                "type": "integer"
+                                            },
+                                            "schematic_id": {
+                                                "description": "schematic_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_planets_planet_id_schematic_id",
+                                                "type": "integer"
+                                            },
+                                            "type_id": {
+                                                "description": "type_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_planets_planet_id_type_id",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "pin_id",
+                                            "type_id",
+                                            "latitude",
+                                            "longitude"
+                                        ],
+                                        "title": "get_characters_character_id_planets_planet_id_pin",
+                                        "type": "object"
+                                    },
+                                    "maxItems": 100,
+                                    "title": "get_characters_character_id_planets_planet_id_pins",
+                                    "type": "array"
+                                },
+                                "routes": {
+                                    "description": "routes array",
+                                    "items": {
+                                        "description": "route object",
+                                        "properties": {
+                                            "content_type_id": {
+                                                "description": "content_type_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_planets_planet_id_content_type_id",
+                                                "type": "integer"
+                                            },
+                                            "destination_pin_id": {
+                                                "description": "destination_pin_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_planets_planet_id_destination_pin_id",
+                                                "type": "integer"
+                                            },
+                                            "quantity": {
+                                                "description": "quantity integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_planets_planet_id_quantity",
+                                                "type": "integer"
+                                            },
+                                            "route_id": {
+                                                "description": "route_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_planets_planet_id_route_id",
+                                                "type": "integer"
+                                            },
+                                            "source_pin_id": {
+                                                "description": "source_pin_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_planets_planet_id_source_pin_id",
+                                                "type": "integer"
+                                            },
+                                            "waypoints": {
+                                                "description": "waypoints array",
+                                                "items": {
+                                                    "description": "waypoint object",
+                                                    "properties": {
+                                                        "order": {
+                                                            "description": "order integer",
+                                                            "format": "int32",
+                                                            "maximum": 5,
+                                                            "minimum": 1,
+                                                            "title": "get_characters_character_id_planets_planet_id_order",
+                                                            "type": "integer"
+                                                        },
+                                                        "pin_id": {
+                                                            "description": "pin_id integer",
+                                                            "format": "int64",
+                                                            "title": "get_characters_character_id_planets_planet_id_pin_id",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "pin_id",
+                                                        "order"
+                                                    ],
+                                                    "title": "get_characters_character_id_planets_planet_id_waypoint",
+                                                    "type": "object"
+                                                },
+                                                "maxItems": 5,
+                                                "title": "get_characters_character_id_planets_planet_id_waypoints",
+                                                "type": "array"
+                                            }
+                                        },
+                                        "required": [
+                                            "route_id",
+                                            "source_pin_id",
+                                            "destination_pin_id",
+                                            "content_type_id",
+                                            "quantity"
+                                        ],
+                                        "title": "get_characters_character_id_planets_planet_id_route",
+                                        "type": "object"
+                                    },
+                                    "maxItems": 1000,
+                                    "title": "get_characters_character_id_planets_planet_id_routes",
+                                    "type": "array"
+                                }
+                            },
+                            "required": [
+                                "links",
+                                "pins",
+                                "routes"
+                            ],
+                            "title": "get_characters_character_id_planets_planet_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "404": {
+                        "description": "Colony not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Colony not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "Colony not found",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_characters_character_id_planets_planet_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_planets_planet_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-planets.manage_planets.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get colony layout",
+                "tags": [
+                    "Planetary Interaction"
+                ],
+                "x-alternate-versions": [
+                    "v1"
+                ],
+                "x-cached-seconds": 600
+            }
+        },
         "/characters/{character_id}/portrait/": {
             "get": {
                 "deprecated": true,
@@ -3326,6 +5019,123 @@
                     "v1"
                 ],
                 "x-cached-seconds": 3600
+            }
+        },
+        "/characters/{character_id}/ship/": {
+            "get": {
+                "description": "Get the current ship type, name and id\n\n---\nAlternate route: `/v1/characters/{character_id}/ship/`\n\nAlternate route: `/latest/characters/{character_id}/ship/`\n\nAlternate route: `/dev/characters/{character_id}/ship/`\n\n---\nThis route is cached for up to 5 seconds",
+                "operationId": "get_characters_character_id_ship",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get the current ship type, name and id",
+                        "examples": {
+                            "application/json": {
+                                "ship_item_id": 1000000016991,
+                                "ship_name": "SPACESHIPS!!!",
+                                "ship_type_id": 1233
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "ship_item_id": {
+                                    "description": "Item id's are unique to a ship and persist until it is repackaged. This value can be used to track repeated uses of a ship, or detect when a pilot changes into a different instance of the same ship type.",
+                                    "format": "int64",
+                                    "title": "get_characters_character_id_ship_ship_item_id",
+                                    "type": "integer"
+                                },
+                                "ship_name": {
+                                    "description": "ship_name string",
+                                    "title": "get_characters_character_id_ship_ship_name",
+                                    "type": "string"
+                                },
+                                "ship_type_id": {
+                                    "description": "ship_type_id integer",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_ship_ship_type_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "ship_type_id",
+                                "ship_item_id",
+                                "ship_name"
+                            ],
+                            "title": "get_characters_character_id_ship_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-location.read_ship_type.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get current ship",
+                "tags": [
+                    "Location"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 5
             }
         },
         "/characters/{character_id}/standings/": {
@@ -3468,6 +5278,581 @@
                     "v1"
                 ],
                 "x-cached-seconds": 3600
+            }
+        },
+        "/dogma/attributes/": {
+            "get": {
+                "description": "Get a list of dogma attribute ids\n\n---\nAlternate route: `/v1/dogma/attributes/`\n\nAlternate route: `/latest/dogma/attributes/`\n\nAlternate route: `/dev/dogma/attributes/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_dogma_attributes",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of dogma attribute ids",
+                        "examples": {
+                            "application/json": [
+                                1,
+                                2,
+                                3
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_dogma_attributes_200_ok",
+                                "type": "integer"
+                            },
+                            "maxItems": 10000,
+                            "title": "get_dogma_attributes_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get attributes",
+                "tags": [
+                    "Dogma"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ]
+            }
+        },
+        "/dogma/attributes/{attribute_id}/": {
+            "get": {
+                "description": "Get information on a dogma attribute\n\n---\nAlternate route: `/v1/dogma/attributes/{attribute_id}/`\n\nAlternate route: `/latest/dogma/attributes/{attribute_id}/`\n\nAlternate route: `/dev/dogma/attributes/{attribute_id}/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_dogma_attributes_attribute_id",
+                "parameters": [
+                    {
+                        "description": "A dogma attribute ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "attribute_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Information about a dogma attribute",
+                        "examples": {
+                            "application/json": {
+                                "attribute_id": 20,
+                                "default_value": 1,
+                                "description": "Factor by which topspeed increases.",
+                                "display_name": "Maximum Velocity Bonus",
+                                "high_is_good": true,
+                                "icon_id": 1389,
+                                "name": "speedFactor",
+                                "published": true,
+                                "unit_id": 124
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "attribute_id": {
+                                    "description": "attribute_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_attributes_attribute_id_attribute_id",
+                                    "type": "integer"
+                                },
+                                "default_value": {
+                                    "description": "default_value number",
+                                    "format": "float",
+                                    "title": "get_dogma_attributes_attribute_id_default_value",
+                                    "type": "number"
+                                },
+                                "description": {
+                                    "description": "description string",
+                                    "title": "get_dogma_attributes_attribute_id_description",
+                                    "type": "string"
+                                },
+                                "display_name": {
+                                    "description": "display_name string",
+                                    "title": "get_dogma_attributes_attribute_id_display_name",
+                                    "type": "string"
+                                },
+                                "high_is_good": {
+                                    "description": "high_is_good boolean",
+                                    "title": "get_dogma_attributes_attribute_id_high_is_good",
+                                    "type": "boolean"
+                                },
+                                "icon_id": {
+                                    "description": "icon_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_attributes_attribute_id_icon_id",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_dogma_attributes_attribute_id_name",
+                                    "type": "string"
+                                },
+                                "published": {
+                                    "description": "published boolean",
+                                    "title": "get_dogma_attributes_attribute_id_published",
+                                    "type": "boolean"
+                                },
+                                "stackable": {
+                                    "description": "stackable boolean",
+                                    "title": "get_dogma_attributes_attribute_id_stackable",
+                                    "type": "boolean"
+                                },
+                                "unit_id": {
+                                    "description": "unit_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_attributes_attribute_id_unit_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "attribute_id"
+                            ],
+                            "title": "get_dogma_attributes_attribute_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Dogma attribute not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_dogma_attributes_attribute_id_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_dogma_attributes_attribute_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get attribute information",
+                "tags": [
+                    "Dogma"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ]
+            }
+        },
+        "/dogma/effects/": {
+            "get": {
+                "description": "Get a list of dogma effect ids\n\n---\nAlternate route: `/v1/dogma/effects/`\n\nAlternate route: `/latest/dogma/effects/`\n\nAlternate route: `/dev/dogma/effects/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_dogma_effects",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of dogma effect ids",
+                        "examples": {
+                            "application/json": [
+                                1,
+                                2,
+                                3
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_dogma_effects_200_ok",
+                                "type": "integer"
+                            },
+                            "maxItems": 10000,
+                            "title": "get_dogma_effects_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get effects",
+                "tags": [
+                    "Dogma"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ]
+            }
+        },
+        "/dogma/effects/{effect_id}/": {
+            "get": {
+                "deprecated": true,
+                "description": "Get information on a dogma effect\n\n---\nAlternate route: `/v1/dogma/effects/{effect_id}/`\n\n---\nThis route expires daily at 11:05\n\n---\nWarning: This route is deprecated.",
+                "operationId": "get_dogma_effects_effect_id",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "A dogma effect ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "effect_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Information about a dogma effect",
+                        "examples": {
+                            "application/json": {
+                                "description": "Requires a high power slot.",
+                                "display_name": "High power",
+                                "effect_category": 0,
+                                "effect_id": 12,
+                                "icon_id": 293,
+                                "name": "hiPower",
+                                "post_expression": 131,
+                                "pre_expression": 131,
+                                "published": true
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "description": {
+                                    "description": "description string",
+                                    "title": "get_dogma_effects_effect_id_description",
+                                    "type": "string"
+                                },
+                                "disallow_auto_repeat": {
+                                    "description": "disallow_auto_repeat boolean",
+                                    "title": "get_dogma_effects_effect_id_disallow_auto_repeat",
+                                    "type": "boolean"
+                                },
+                                "discharge_attribute_id": {
+                                    "description": "discharge_attribute_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_discharge_attribute_id",
+                                    "type": "integer"
+                                },
+                                "display_name": {
+                                    "description": "display_name string",
+                                    "title": "get_dogma_effects_effect_id_display_name",
+                                    "type": "string"
+                                },
+                                "duration_attribute_id": {
+                                    "description": "duration_attribute_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_duration_attribute_id",
+                                    "type": "integer"
+                                },
+                                "effect_category": {
+                                    "description": "effect_category integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_effect_category",
+                                    "type": "integer"
+                                },
+                                "effect_id": {
+                                    "description": "effect_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_effect_id",
+                                    "type": "integer"
+                                },
+                                "electronic_chance": {
+                                    "description": "electronic_chance boolean",
+                                    "title": "get_dogma_effects_effect_id_electronic_chance",
+                                    "type": "boolean"
+                                },
+                                "falloff_attribute_id": {
+                                    "description": "falloff_attribute_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_falloff_attribute_id",
+                                    "type": "integer"
+                                },
+                                "icon_id": {
+                                    "description": "icon_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_icon_id",
+                                    "type": "integer"
+                                },
+                                "is_assistance": {
+                                    "description": "is_assistance boolean",
+                                    "title": "get_dogma_effects_effect_id_is_assistance",
+                                    "type": "boolean"
+                                },
+                                "is_offensive": {
+                                    "description": "is_offensive boolean",
+                                    "title": "get_dogma_effects_effect_id_is_offensive",
+                                    "type": "boolean"
+                                },
+                                "is_warp_safe": {
+                                    "description": "is_warp_safe boolean",
+                                    "title": "get_dogma_effects_effect_id_is_warp_safe",
+                                    "type": "boolean"
+                                },
+                                "modifiers": {
+                                    "description": "modifiers array",
+                                    "items": {
+                                        "description": "modifier object",
+                                        "properties": {
+                                            "domain": {
+                                                "description": "domain string",
+                                                "title": "get_dogma_effects_effect_id_domain",
+                                                "type": "string"
+                                            },
+                                            "func": {
+                                                "description": "func string",
+                                                "title": "get_dogma_effects_effect_id_func",
+                                                "type": "string"
+                                            },
+                                            "modified_attribute_id": {
+                                                "description": "modified_attribute_id integer",
+                                                "format": "int32",
+                                                "title": "get_dogma_effects_effect_id_modified_attribute_id",
+                                                "type": "integer"
+                                            },
+                                            "modifying_attribute_id": {
+                                                "description": "modifying_attribute_id integer",
+                                                "format": "int32",
+                                                "title": "get_dogma_effects_effect_id_modifying_attribute_id",
+                                                "type": "integer"
+                                            },
+                                            "operator": {
+                                                "description": "operator integer",
+                                                "format": "int32",
+                                                "title": "get_dogma_effects_effect_id_operator",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "func",
+                                            "domain",
+                                            "modified_attribute_id",
+                                            "modifying_attribute_id",
+                                            "operator"
+                                        ],
+                                        "title": "get_dogma_effects_effect_id_modifier",
+                                        "type": "object"
+                                    },
+                                    "maxItems": 100,
+                                    "title": "get_dogma_effects_effect_id_modifiers",
+                                    "type": "array"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_dogma_effects_effect_id_name",
+                                    "type": "string"
+                                },
+                                "post_expression": {
+                                    "description": "post_expression integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_post_expression",
+                                    "type": "integer"
+                                },
+                                "pre_expression": {
+                                    "description": "pre_expression integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_pre_expression",
+                                    "type": "integer"
+                                },
+                                "published": {
+                                    "description": "published boolean",
+                                    "title": "get_dogma_effects_effect_id_published",
+                                    "type": "boolean"
+                                },
+                                "range_attribute_id": {
+                                    "description": "range_attribute_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_range_attribute_id",
+                                    "type": "integer"
+                                },
+                                "range_chance": {
+                                    "description": "range_chance boolean",
+                                    "title": "get_dogma_effects_effect_id_range_chance",
+                                    "type": "boolean"
+                                },
+                                "tracking_speed_attribute_id": {
+                                    "description": "tracking_speed_attribute_id integer",
+                                    "format": "int32",
+                                    "title": "get_dogma_effects_effect_id_tracking_speed_attribute_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "effect_id"
+                            ],
+                            "title": "get_dogma_effects_effect_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Dogma effect not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_dogma_effects_effect_id_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_dogma_effects_effect_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get effect information",
+                "tags": [
+                    "Dogma"
+                ],
+                "x-alternate-versions": [
+                    "v1"
+                ]
             }
         },
         "/fw/stats/": {
@@ -3734,6 +6119,164 @@
                     "latest",
                     "v1"
                 ]
+            }
+        },
+        "/incursions/": {
+            "get": {
+                "description": "Return a list of current incursions\n\n---\nAlternate route: `/v1/incursions/`\n\nAlternate route: `/latest/incursions/`\n\nAlternate route: `/dev/incursions/`\n\n---\nThis route is cached for up to 300 seconds",
+                "operationId": "get_incursions",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of incursions",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "constellation_id": 20000607,
+                                    "faction_id": 500019,
+                                    "has_boss": true,
+                                    "infested_solar_systems": [
+                                        30004148,
+                                        30004149,
+                                        30004150,
+                                        30004151,
+                                        30004152,
+                                        30004153,
+                                        30004154
+                                    ],
+                                    "influence": 1.0,
+                                    "staging_solar_system_id": 30004154,
+                                    "state": "mobilizing",
+                                    "type": "Incursion"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "constellation_id": {
+                                        "description": "The constellation id in which this incursion takes place",
+                                        "format": "int32",
+                                        "title": "get_incursions_constellation_id",
+                                        "type": "integer"
+                                    },
+                                    "faction_id": {
+                                        "description": "The attacking faction's id",
+                                        "format": "int32",
+                                        "title": "get_incursions_faction_id",
+                                        "type": "integer"
+                                    },
+                                    "has_boss": {
+                                        "description": "Whether the final encounter has boss or not",
+                                        "title": "get_incursions_has_boss",
+                                        "type": "boolean"
+                                    },
+                                    "infested_solar_systems": {
+                                        "description": "A list of infested solar system ids that are a part of this incursion",
+                                        "items": {
+                                            "description": "infested_solar_system integer",
+                                            "format": "int32",
+                                            "title": "get_incursions_infested_solar_system",
+                                            "type": "integer"
+                                        },
+                                        "maxItems": 100,
+                                        "title": "get_incursions_infested_solar_systems",
+                                        "type": "array"
+                                    },
+                                    "influence": {
+                                        "description": "Influence of this incursion as a float from 0 to 1",
+                                        "format": "float",
+                                        "title": "get_incursions_influence",
+                                        "type": "number"
+                                    },
+                                    "staging_solar_system_id": {
+                                        "description": "Staging solar system for this incursion",
+                                        "format": "int32",
+                                        "title": "get_incursions_staging_solar_system_id",
+                                        "type": "integer"
+                                    },
+                                    "state": {
+                                        "description": "The state of this incursion",
+                                        "enum": [
+                                            "withdrawing",
+                                            "mobilizing",
+                                            "established"
+                                        ],
+                                        "title": "get_incursions_state",
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "description": "The type of this incursion",
+                                        "title": "get_incursions_type",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "type",
+                                    "state",
+                                    "influence",
+                                    "has_boss",
+                                    "faction_id",
+                                    "constellation_id",
+                                    "staging_solar_system_id",
+                                    "infested_solar_systems"
+                                ],
+                                "title": "get_incursions_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 100,
+                            "title": "get_incursions_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "List incursions",
+                "tags": [
+                    "Incursions"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 300
             }
         },
         "/insurance/prices/": {
@@ -4455,6 +6998,579 @@
                 ]
             }
         },
+        "/route/{origin}/{destination}/": {
+            "get": {
+                "description": "Get the systems between origin and destination\n\n---\nAlternate route: `/latest/route/{origin}/{destination}/`\n\nAlternate route: `/dev/route/{origin}/{destination}/`\n\nAlternate route: `/v1/route/{origin}/{destination}/`\n\n---\nThis route is cached for up to 86400 seconds",
+                "operationId": "get_route_origin_destination",
+                "parameters": [
+                    {
+                        "description": "avoid solar system ID(s)",
+                        "in": "query",
+                        "items": {
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "maxItems": 100,
+                        "name": "avoid",
+                        "type": "array",
+                        "uniqueItems": true
+                    },
+                    {
+                        "description": "connected solar system pairs",
+                        "in": "query",
+                        "items": {
+                            "collectionFormat": "pipes",
+                            "items": {
+                                "format": "int32",
+                                "type": "integer"
+                            },
+                            "maxItems": 2,
+                            "minItems": 2,
+                            "type": "array",
+                            "uniqueItems": true
+                        },
+                        "maxItems": 100,
+                        "name": "connections",
+                        "type": "array",
+                        "uniqueItems": true
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "destination solar system ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "destination",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "shortest",
+                        "description": "route security preference",
+                        "enum": [
+                            "shortest",
+                            "secure",
+                            "insecure"
+                        ],
+                        "in": "query",
+                        "name": "flag",
+                        "type": "string"
+                    },
+                    {
+                        "description": "origin solar system ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "origin",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Solar systems in route from origin to destination",
+                        "examples": {
+                            "application/json": [
+                                30002771,
+                                30002770,
+                                30002769,
+                                30002772
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "Solar systems in route",
+                            "items": {
+                                "description": "Solar system in route",
+                                "format": "int32",
+                                "title": "Solar system ID",
+                                "type": "integer"
+                            },
+                            "maxItems": 1000,
+                            "title": "get_route_origin_destination_ok",
+                            "type": "array"
+                        }
+                    },
+                    "404": {
+                        "description": "No route found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_route_origin_destination_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_route_origin_destination_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get route",
+                "tags": [
+                    "Routes"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 86400
+            }
+        },
+        "/sovereignty/campaigns/": {
+            "get": {
+                "description": "Shows sovereignty data for campaigns.\n\n---\nAlternate route: `/v1/sovereignty/campaigns/`\n\nAlternate route: `/latest/sovereignty/campaigns/`\n\nAlternate route: `/dev/sovereignty/campaigns/`\n\n---\nThis route is cached for up to 5 seconds",
+                "operationId": "get_sovereignty_campaigns",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of sovereignty campaigns",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "attackers_score": 0.4,
+                                    "campaign_id": 32833,
+                                    "constellation_id": 20000125,
+                                    "defender_id": 1695357456,
+                                    "defender_score": 0.6,
+                                    "event_type": "station_defense",
+                                    "solar_system_id": 30000856,
+                                    "start_time": "2016-10-29T14:34:40Z",
+                                    "structure_id": 61001096
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "attackers_score": {
+                                        "description": "Score for all attacking parties, only present in Defense Events.\n",
+                                        "format": "float",
+                                        "title": "get_sovereignty_campaigns_attackers_score",
+                                        "type": "number"
+                                    },
+                                    "campaign_id": {
+                                        "description": "Unique ID for this campaign.",
+                                        "format": "int32",
+                                        "title": "get_sovereignty_campaigns_campaign_id",
+                                        "type": "integer"
+                                    },
+                                    "constellation_id": {
+                                        "description": "The constellation in which the campaign will take place.\n",
+                                        "format": "int32",
+                                        "title": "get_sovereignty_campaigns_constellation_id",
+                                        "type": "integer"
+                                    },
+                                    "defender_id": {
+                                        "description": "Defending alliance, only present in Defense Events\n",
+                                        "format": "int32",
+                                        "title": "get_sovereignty_campaigns_defender_id",
+                                        "type": "integer"
+                                    },
+                                    "defender_score": {
+                                        "description": "Score for the defending alliance, only present in Defense Events.\n",
+                                        "format": "float",
+                                        "title": "get_sovereignty_campaigns_defender_score",
+                                        "type": "number"
+                                    },
+                                    "event_type": {
+                                        "description": "Type of event this campaign is for. tcu_defense, ihub_defense and station_defense are referred to as \"Defense Events\", station_freeport as \"Freeport Events\".\n",
+                                        "enum": [
+                                            "tcu_defense",
+                                            "ihub_defense",
+                                            "station_defense",
+                                            "station_freeport"
+                                        ],
+                                        "title": "get_sovereignty_campaigns_event_type",
+                                        "type": "string"
+                                    },
+                                    "participants": {
+                                        "description": "Alliance participating and their respective scores, only present in Freeport Events.\n",
+                                        "items": {
+                                            "description": "participant object",
+                                            "properties": {
+                                                "alliance_id": {
+                                                    "description": "alliance_id integer",
+                                                    "format": "int32",
+                                                    "title": "get_sovereignty_campaigns_alliance_id",
+                                                    "type": "integer"
+                                                },
+                                                "score": {
+                                                    "description": "score number",
+                                                    "format": "float",
+                                                    "title": "get_sovereignty_campaigns_score",
+                                                    "type": "number"
+                                                }
+                                            },
+                                            "required": [
+                                                "alliance_id",
+                                                "score"
+                                            ],
+                                            "title": "get_sovereignty_campaigns_participant",
+                                            "type": "object"
+                                        },
+                                        "maxItems": 5000,
+                                        "title": "get_sovereignty_campaigns_participants",
+                                        "type": "array"
+                                    },
+                                    "solar_system_id": {
+                                        "description": "The solar system the structure is located in.\n",
+                                        "format": "int32",
+                                        "title": "get_sovereignty_campaigns_solar_system_id",
+                                        "type": "integer"
+                                    },
+                                    "start_time": {
+                                        "description": "Time the event is scheduled to start.\n",
+                                        "format": "date-time",
+                                        "title": "get_sovereignty_campaigns_start_time",
+                                        "type": "string"
+                                    },
+                                    "structure_id": {
+                                        "description": "The structure item ID that is related to this campaign.\n",
+                                        "format": "int64",
+                                        "title": "get_sovereignty_campaigns_structure_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "campaign_id",
+                                    "structure_id",
+                                    "solar_system_id",
+                                    "constellation_id",
+                                    "event_type",
+                                    "start_time"
+                                ],
+                                "title": "get_sovereignty_campaigns_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 10000,
+                            "title": "get_sovereignty_campaigns_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "List sovereignty campaigns",
+                "tags": [
+                    "Sovereignty"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 5
+            }
+        },
+        "/sovereignty/map/": {
+            "get": {
+                "description": "Shows sovereignty information for solar systems\n\n---\nAlternate route: `/v1/sovereignty/map/`\n\nAlternate route: `/latest/sovereignty/map/`\n\nAlternate route: `/dev/sovereignty/map/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_sovereignty_map",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of sovereignty information for solar systems in New Eden",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "faction_id": 500001,
+                                    "system_id": 30045334
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "alliance_id": {
+                                        "description": "alliance_id integer",
+                                        "format": "int32",
+                                        "title": "get_sovereignty_map_alliance_id",
+                                        "type": "integer"
+                                    },
+                                    "corporation_id": {
+                                        "description": "corporation_id integer",
+                                        "format": "int32",
+                                        "title": "get_sovereignty_map_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "faction_id": {
+                                        "description": "faction_id integer",
+                                        "format": "int32",
+                                        "title": "get_sovereignty_map_faction_id",
+                                        "type": "integer"
+                                    },
+                                    "system_id": {
+                                        "description": "system_id integer",
+                                        "format": "int32",
+                                        "title": "get_sovereignty_map_system_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "system_id"
+                                ],
+                                "title": "get_sovereignty_map_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 10000,
+                            "title": "get_sovereignty_map_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "List sovereignty of systems",
+                "tags": [
+                    "Sovereignty"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/sovereignty/structures/": {
+            "get": {
+                "description": "Shows sovereignty data for structures.\n\n---\nAlternate route: `/v1/sovereignty/structures/`\n\nAlternate route: `/latest/sovereignty/structures/`\n\nAlternate route: `/dev/sovereignty/structures/`\n\n---\nThis route is cached for up to 120 seconds",
+                "operationId": "get_sovereignty_structures",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of sovereignty structures",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "alliance_id": 498125261,
+                                    "solar_system_id": 30000570,
+                                    "structure_id": 1018253388776,
+                                    "structure_type_id": 32226,
+                                    "vulnerability_occupancy_level": 2,
+                                    "vulnerable_end_time": "2016-10-29T05:30:00Z",
+                                    "vulnerable_start_time": "2016-10-28T20:30:00Z"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "alliance_id": {
+                                        "description": "The alliance that owns the structure.\n",
+                                        "format": "int32",
+                                        "title": "get_sovereignty_structures_alliance_id",
+                                        "type": "integer"
+                                    },
+                                    "solar_system_id": {
+                                        "description": "Solar system in which the structure is located.\n",
+                                        "format": "int32",
+                                        "title": "get_sovereignty_structures_solar_system_id",
+                                        "type": "integer"
+                                    },
+                                    "structure_id": {
+                                        "description": "Unique item ID for this structure.",
+                                        "format": "int64",
+                                        "title": "get_sovereignty_structures_structure_id",
+                                        "type": "integer"
+                                    },
+                                    "structure_type_id": {
+                                        "description": "A reference to the type of structure this is.\n",
+                                        "format": "int32",
+                                        "title": "get_sovereignty_structures_structure_type_id",
+                                        "type": "integer"
+                                    },
+                                    "vulnerability_occupancy_level": {
+                                        "description": "The occupancy level for the next or current vulnerability window. This takes into account all development indexes and capital system bonuses. Also known as Activity Defense Multiplier from in the client. It increases the time that attackers must spend using their entosis links on the structure.\n",
+                                        "format": "float",
+                                        "title": "get_sovereignty_structures_vulnerability_occupancy_level",
+                                        "type": "number"
+                                    },
+                                    "vulnerable_end_time": {
+                                        "description": "The time at which the next or current vulnerability window ends. At the end of a vulnerability window the next window is recalculated and locked in along with the vulnerabilityOccupancyLevel. If the structure is not in 100% entosis control of the defender, it will go in to 'overtime' and stay vulnerable for as long as that situation persists. Only once the defenders have 100% entosis control and has the vulnerableEndTime passed does the vulnerability interval expire and a new one is calculated.\n",
+                                        "format": "date-time",
+                                        "title": "get_sovereignty_structures_vulnerable_end_time",
+                                        "type": "string"
+                                    },
+                                    "vulnerable_start_time": {
+                                        "description": "The next time at which the structure will become vulnerable. Or the start time of the current window if current time is between this and vulnerableEndTime.\n",
+                                        "format": "date-time",
+                                        "title": "get_sovereignty_structures_vulnerable_start_time",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "alliance_id",
+                                    "solar_system_id",
+                                    "structure_id",
+                                    "structure_type_id"
+                                ],
+                                "title": "get_sovereignty_structures_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 10000,
+                            "title": "get_sovereignty_structures_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "List sovereignty structures",
+                "tags": [
+                    "Sovereignty"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 120
+            }
+        },
         "/status/": {
             "get": {
                 "description": "EVE Server status\n\n---\nAlternate route: `/v1/status/`\n\nAlternate route: `/latest/status/`\n\nAlternate route: `/dev/status/`\n\n---\nThis route is cached for up to 30 seconds",
@@ -4551,6 +7667,556 @@
                 ],
                 "x-cached-seconds": 30
             }
+        },
+        "/ui/autopilot/waypoint/": {
+            "post": {
+                "deprecated": true,
+                "description": "Set a solar system as autopilot waypoint\n\n---\nAlternate route: `/v1/ui/autopilot/waypoint/`\n\n\n---\nWarning: This endpoint is deprecated and will be removed on 2016-12-23.",
+                "operationId": "post_ui_autopilot_waypoint",
+                "parameters": [
+                    {
+                        "default": false,
+                        "description": "Whether this solar system should be added to the beginning of all waypoints",
+                        "in": "query",
+                        "name": "add_to_beginning",
+                        "required": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "default": false,
+                        "description": "Whether clean other waypoints beforing adding this one",
+                        "in": "query",
+                        "name": "clear_other_waypoints",
+                        "required": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "The solar system to set as autopilot waypoint",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "solar_system_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Open window request received"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-ui.write_waypoint.v1"
+                        ]
+                    }
+                ],
+                "summary": "Set Autopilot Waypoint",
+                "tags": [
+                    "User Interface"
+                ],
+                "x-alternate-versions": [
+                    "v1"
+                ]
+            }
+        },
+        "/ui/openwindow/contract/": {
+            "post": {
+                "description": "Open the contract window inside the client\n\n---\nAlternate route: `/v1/ui/openwindow/contract/`\n\nAlternate route: `/latest/ui/openwindow/contract/`\n\nAlternate route: `/dev/ui/openwindow/contract/`\n",
+                "operationId": "post_ui_openwindow_contract",
+                "parameters": [
+                    {
+                        "description": "The contract to open",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "contract_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Open window request received"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-ui.open_window.v1"
+                        ]
+                    }
+                ],
+                "summary": "Open Contract Window",
+                "tags": [
+                    "User Interface"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ]
+            }
+        },
+        "/ui/openwindow/information/": {
+            "post": {
+                "description": "Open the information window for a character, corporation or alliance inside the client\n\n---\nAlternate route: `/v1/ui/openwindow/information/`\n\nAlternate route: `/latest/ui/openwindow/information/`\n\nAlternate route: `/dev/ui/openwindow/information/`\n",
+                "operationId": "post_ui_openwindow_information",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "The target to open",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "target_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Open window request received"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-ui.open_window.v1"
+                        ]
+                    }
+                ],
+                "summary": "Open Information Window",
+                "tags": [
+                    "User Interface"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ]
+            }
+        },
+        "/ui/openwindow/marketdetails/": {
+            "post": {
+                "description": "Open the market details window for a specific typeID inside the client\n\n---\nAlternate route: `/v1/ui/openwindow/marketdetails/`\n\nAlternate route: `/latest/ui/openwindow/marketdetails/`\n\nAlternate route: `/dev/ui/openwindow/marketdetails/`\n",
+                "operationId": "post_ui_openwindow_marketdetails",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "description": "The item type to open in market window",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "type_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Open window request received"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-ui.open_window.v1"
+                        ]
+                    }
+                ],
+                "summary": "Open Market Details",
+                "tags": [
+                    "User Interface"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ]
+            }
+        },
+        "/ui/openwindow/newmail/": {
+            "post": {
+                "description": "Open the New Mail window, according to settings from the request if applicable\n\n---\nAlternate route: `/v1/ui/openwindow/newmail/`\n\nAlternate route: `/latest/ui/openwindow/newmail/`\n\nAlternate route: `/dev/ui/openwindow/newmail/`\n",
+                "operationId": "post_ui_openwindow_newmail",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "The details of mail to create",
+                        "in": "body",
+                        "name": "new_mail",
+                        "required": true,
+                        "schema": {
+                            "description": "new_mail object",
+                            "properties": {
+                                "body": {
+                                    "description": "body string",
+                                    "maxLength": 10000,
+                                    "title": "post_ui_openwindow_newmail_body",
+                                    "type": "string"
+                                },
+                                "recipients": {
+                                    "description": "recipients array",
+                                    "items": {
+                                        "description": "recipient integer",
+                                        "format": "int32",
+                                        "title": "post_ui_openwindow_newmail_recipient",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 50,
+                                    "minItems": 1,
+                                    "title": "post_ui_openwindow_newmail_recipients",
+                                    "type": "array"
+                                },
+                                "subject": {
+                                    "description": "subject string",
+                                    "maxLength": 1000,
+                                    "title": "post_ui_openwindow_newmail_subject",
+                                    "type": "string"
+                                },
+                                "to_corp_or_alliance_id": {
+                                    "description": "to_corp_or_alliance_id integer",
+                                    "format": "int32",
+                                    "title": "post_ui_openwindow_newmail_to_corp_or_alliance_id",
+                                    "type": "integer"
+                                },
+                                "to_mailing_list_id": {
+                                    "description": "Corporations, alliances and mailing lists are all types of mailing groups. You may only send to one mailing group, at a time, so you may fill out either this field or the to_corp_or_alliance_ids field",
+                                    "format": "int32",
+                                    "title": "post_ui_openwindow_newmail_to_mailing_list_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "subject",
+                                "body",
+                                "recipients"
+                            ],
+                            "title": "post_ui_openwindow_newmail_new_mail",
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Open window request received"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "422": {
+                        "description": "Invalid request",
+                        "examples": {
+                            "application/json": {
+                                "error": "Unprocessable entity message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Unprocessable entity",
+                            "properties": {
+                                "error": {
+                                    "description": "Unprocessable entity message",
+                                    "title": "post_ui_openwindow_newmail_422_unprocessable_entity",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "post_ui_openwindow_newmail_unprocessable_entity",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-ui.open_window.v1"
+                        ]
+                    }
+                ],
+                "summary": "Open New Mail Window",
+                "tags": [
+                    "User Interface"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ]
+            }
+        },
+        "/universe/schematics/{schematic_id}/": {
+            "get": {
+                "description": "Get information on a planetary factory schematic\n\n---\nAlternate route: `/v1/universe/schematics/{schematic_id}/`\n\nAlternate route: `/latest/universe/schematics/{schematic_id}/`\n\nAlternate route: `/dev/universe/schematics/{schematic_id}/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_universe_schematics_schematic_id",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "A PI schematic ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "schematic_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Public data about a schematic",
+                        "examples": {
+                            "application/json": {
+                                "cycle_time": 1800,
+                                "schematic_name": "Bacteria"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "cycle_time": {
+                                    "description": "Time in seconds to process a run",
+                                    "format": "int32",
+                                    "title": "get_universe_schematics_schematic_id_cycle_time",
+                                    "type": "integer"
+                                },
+                                "schematic_name": {
+                                    "description": "schematic_name string",
+                                    "title": "get_universe_schematics_schematic_id_schematic_name",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "schematic_name",
+                                "cycle_time"
+                            ],
+                            "title": "get_universe_schematics_schematic_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Schematic not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Schematic not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "Schematic not found",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_universe_schematics_schematic_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_universe_schematics_schematic_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get schematic information",
+                "tags": [
+                    "Planetary Interaction"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
         }
     },
     "produces": [
@@ -4575,7 +8241,16 @@
                 "esi-characters.read_loyalty.v1": "EVE SSO scope esi-characters.read_loyalty.v1",
                 "esi-characters.read_medals.v1": "EVE SSO scope esi-characters.read_medals.v1",
                 "esi-characters.read_opportunities.v1": "EVE SSO scope esi-characters.read_opportunities.v1",
-                "esi-characters.read_standings.v1": "EVE SSO scope esi-characters.read_standings.v1"
+                "esi-characters.read_standings.v1": "EVE SSO scope esi-characters.read_standings.v1",
+                "esi-characters.write_contacts.v1": "EVE SSO scope esi-characters.write_contacts.v1",
+                "esi-clones.read_clones.v1": "EVE SSO scope esi-clones.read_clones.v1",
+                "esi-clones.read_implants.v1": "EVE SSO scope esi-clones.read_implants.v1",
+                "esi-location.read_location.v1": "EVE SSO scope esi-location.read_location.v1",
+                "esi-location.read_online.v1": "EVE SSO scope esi-location.read_online.v1",
+                "esi-location.read_ship_type.v1": "EVE SSO scope esi-location.read_ship_type.v1",
+                "esi-planets.manage_planets.v1": "EVE SSO scope esi-planets.manage_planets.v1",
+                "esi-ui.open_window.v1": "EVE SSO scope esi-ui.open_window.v1",
+                "esi-ui.write_waypoint.v1": "EVE SSO scope esi-ui.write_waypoint.v1"
             },
             "type": "oauth2"
         }
