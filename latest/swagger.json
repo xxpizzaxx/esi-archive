@@ -9094,6 +9094,588 @@
                 "x-cached-seconds": 3600
             }
         },
+        "/characters/{character_id}/wallet/": {
+            "get": {
+                "description": "Returns a character's wallet balance\n\n---\nAlternate route: `/v1/characters/{character_id}/wallet/`\n\nAlternate route: `/legacy/characters/{character_id}/wallet/`\n\nAlternate route: `/dev/characters/{character_id}/wallet/`\n\n---\nThis route is cached for up to 120 seconds",
+                "operationId": "get_characters_character_id_wallet",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Wallet balance",
+                        "examples": {
+                            "application/json": 29500.0
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "Wallet balance",
+                            "format": "float",
+                            "title": "get_characters_character_id_wallet_ok",
+                            "type": "number"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-wallet.read_character_wallet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get a character's wallet balance",
+                "tags": [
+                    "Wallet"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 120
+            }
+        },
+        "/characters/{character_id}/wallet/journal/": {
+            "get": {
+                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/v1/characters/{character_id}/wallet/journal/`\n\nAlternate route: `/legacy/characters/{character_id}/wallet/journal/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_wallet_journal",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "Only show journal entries happened before the transaction referenced by this id",
+                        "format": "int64",
+                        "in": "query",
+                        "name": "from_id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Journal entries",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "date": "2016-10-24T09:00:00Z",
+                                    "ref_id": 1234567890,
+                                    "ref_type": "player_trading"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "Journal entries",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "amount": {
+                                        "description": "Transaction amount. Positive when value transferred to the first party. Negative otherwise",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_wallet_journal_amount",
+                                        "type": "number"
+                                    },
+                                    "balance": {
+                                        "description": "Wallet balance after transaction occurred",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_wallet_journal_balance",
+                                        "type": "number"
+                                    },
+                                    "date": {
+                                        "description": "Date and time of transaction",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_wallet_journal_date",
+                                        "type": "string"
+                                    },
+                                    "extra_info": {
+                                        "description": "Extra information for different type of transaction",
+                                        "properties": {
+                                            "alliance_id": {
+                                                "description": "alliance_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_wallet_journal_alliance_id",
+                                                "type": "integer"
+                                            },
+                                            "character_id": {
+                                                "description": "character_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_wallet_journal_character_id",
+                                                "type": "integer"
+                                            },
+                                            "contract_id": {
+                                                "description": "contract_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_wallet_journal_contract_id",
+                                                "type": "integer"
+                                            },
+                                            "corporation_id": {
+                                                "description": "corporation_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_wallet_journal_corporation_id",
+                                                "type": "integer"
+                                            },
+                                            "destroyed_ship_type_id": {
+                                                "description": "destroyed_ship_type_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_wallet_journal_destroyed_ship_type_id",
+                                                "type": "integer"
+                                            },
+                                            "job_id": {
+                                                "description": "job_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_wallet_journal_job_id",
+                                                "type": "integer"
+                                            },
+                                            "location_id": {
+                                                "description": "location_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_wallet_journal_location_id",
+                                                "type": "integer"
+                                            },
+                                            "npc_id": {
+                                                "description": "npc_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_wallet_journal_npc_id",
+                                                "type": "integer"
+                                            },
+                                            "npc_name": {
+                                                "description": "npc_name string",
+                                                "title": "get_characters_character_id_wallet_journal_npc_name",
+                                                "type": "string"
+                                            },
+                                            "planet_id": {
+                                                "description": "planet_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_wallet_journal_planet_id",
+                                                "type": "integer"
+                                            },
+                                            "system_id": {
+                                                "description": "system_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_wallet_journal_system_id",
+                                                "type": "integer"
+                                            },
+                                            "transaction_id": {
+                                                "description": "transaction_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_wallet_journal_transaction_id",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "title": "get_characters_character_id_wallet_journal_extra_info",
+                                        "type": "object"
+                                    },
+                                    "first_party_id": {
+                                        "description": "first_party_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_wallet_journal_first_party_id",
+                                        "type": "integer"
+                                    },
+                                    "first_party_type": {
+                                        "description": "first_party_type string",
+                                        "enum": [
+                                            "character",
+                                            "corporation",
+                                            "alliance",
+                                            "faction"
+                                        ],
+                                        "title": "get_characters_character_id_wallet_journal_first_party_type",
+                                        "type": "string"
+                                    },
+                                    "reason": {
+                                        "description": "reason string",
+                                        "title": "get_characters_character_id_wallet_journal_reason",
+                                        "type": "string"
+                                    },
+                                    "ref_id": {
+                                        "description": "Unique journal reference ID",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_wallet_journal_ref_id",
+                                        "type": "integer"
+                                    },
+                                    "ref_type": {
+                                        "description": "Transaction type, different type of transaction will populate different fields in `extra_info`",
+                                        "enum": [
+                                            "player_trading",
+                                            "market_transaction",
+                                            "player_donation",
+                                            "office_rental_fee",
+                                            "bounty_prize_historical",
+                                            "insurance",
+                                            "mission_reward",
+                                            "mission_reward_bonus",
+                                            "cspa",
+                                            "corp_account_withdrawal",
+                                            "logo_change_fee",
+                                            "market_escrow",
+                                            "broker_fee",
+                                            "alliance_maintenance_fee",
+                                            "sales_tax",
+                                            "jump_clone_installation_fee",
+                                            "manufacturing",
+                                            "contract",
+                                            "bounty_prizes",
+                                            "medal_creation_fee",
+                                            "medal_issuing_fee",
+                                            "customs_office_import_duty",
+                                            "customs_office_export_duty",
+                                            "corporate_reward_payout",
+                                            "industry_facility_tax",
+                                            "project_discovery_reward",
+                                            "reprocessing_fee",
+                                            "jump_clone_activation_fee",
+                                            "unknown"
+                                        ],
+                                        "title": "get_characters_character_id_wallet_journal_ref_type",
+                                        "type": "string"
+                                    },
+                                    "second_party_id": {
+                                        "description": "second_party_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_wallet_journal_second_party_id",
+                                        "type": "integer"
+                                    },
+                                    "second_party_type": {
+                                        "description": "second_party_type string",
+                                        "enum": [
+                                            "character",
+                                            "corporation",
+                                            "alliance",
+                                            "faction"
+                                        ],
+                                        "title": "get_characters_character_id_wallet_journal_second_party_type",
+                                        "type": "string"
+                                    },
+                                    "tax": {
+                                        "description": "Tax amount received for tax related transactions",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_wallet_journal_tax",
+                                        "type": "number"
+                                    },
+                                    "tax_reciever_id": {
+                                        "description": "the corporation ID receiving any tax paid",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_wallet_journal_tax_reciever_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "date",
+                                    "ref_id",
+                                    "ref_type"
+                                ],
+                                "title": "get_characters_character_id_wallet_journal_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 2500,
+                            "title": "get_characters_character_id_wallet_journal_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-wallet.read_character_wallet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get character wallet journal",
+                "tags": [
+                    "Wallet"
+                ],
+                "x-alternate-versions": [
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/characters/{character_id}/wallet/transactions/": {
+            "get": {
+                "description": "Get wallet transactions of a character\n\n---\nAlternate route: `/v1/characters/{character_id}/wallet/transactions/`\n\nAlternate route: `/legacy/characters/{character_id}/wallet/transactions/`\n\nAlternate route: `/dev/characters/{character_id}/wallet/transactions/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_wallet_transactions",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "Only show transactions happened before the one referenced by this id",
+                        "format": "int64",
+                        "in": "query",
+                        "name": "from_id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Wallet transactions",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "client_id": 54321,
+                                    "date": "2016-10-24T09:00:00Z",
+                                    "is_buy": true,
+                                    "is_personal": true,
+                                    "journal_ref_id": 67890,
+                                    "location_id": 60014719,
+                                    "quantity": 1,
+                                    "transaction_id": 1234567890,
+                                    "type_id": 587,
+                                    "unit_price": 1
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "Wallet transactions",
+                            "items": {
+                                "description": "wallet transaction",
+                                "properties": {
+                                    "client_id": {
+                                        "description": "client_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_wallet_transactions_client_id",
+                                        "type": "integer"
+                                    },
+                                    "date": {
+                                        "description": "Date and time of transaction",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_wallet_transactions_date",
+                                        "type": "string"
+                                    },
+                                    "is_buy": {
+                                        "description": "is_buy boolean",
+                                        "title": "get_characters_character_id_wallet_transactions_is_buy",
+                                        "type": "boolean"
+                                    },
+                                    "is_personal": {
+                                        "description": "is_personal boolean",
+                                        "title": "get_characters_character_id_wallet_transactions_is_personal",
+                                        "type": "boolean"
+                                    },
+                                    "journal_ref_id": {
+                                        "description": "journal_ref_id integer",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_wallet_transactions_journal_ref_id",
+                                        "type": "integer"
+                                    },
+                                    "location_id": {
+                                        "description": "location_id integer",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_wallet_transactions_location_id",
+                                        "type": "integer"
+                                    },
+                                    "quantity": {
+                                        "description": "quantity integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_wallet_transactions_quantity",
+                                        "type": "integer"
+                                    },
+                                    "transaction_id": {
+                                        "description": "Unique transaction ID",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_wallet_transactions_transaction_id",
+                                        "type": "integer"
+                                    },
+                                    "type_id": {
+                                        "description": "type_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_wallet_transactions_type_id",
+                                        "type": "integer"
+                                    },
+                                    "unit_price": {
+                                        "description": "Amount paid per unit",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_wallet_transactions_unit_price",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "transaction_id",
+                                    "date",
+                                    "location_id",
+                                    "type_id",
+                                    "unit_price",
+                                    "quantity",
+                                    "client_id",
+                                    "is_buy",
+                                    "is_personal",
+                                    "journal_ref_id"
+                                ],
+                                "title": "get_characters_character_id_wallet_transactions_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 2500,
+                            "title": "get_characters_character_id_wallet_transactions_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-wallet.read_character_wallet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get wallet transactions",
+                "tags": [
+                    "Wallet"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
         "/corporations/names/": {
             "get": {
                 "description": "Resolve a set of corporation IDs to corporation names\n\n---\nAlternate route: `/v1/corporations/names/`\n\nAlternate route: `/legacy/corporations/names/`\n\n---\nThis route is cached for up to 3600 seconds",
@@ -21427,7 +22009,8 @@
                 "esi-skills.read_skills.v1": "EVE SSO scope esi-skills.read_skills.v1",
                 "esi-ui.open_window.v1": "EVE SSO scope esi-ui.open_window.v1",
                 "esi-ui.write_waypoint.v1": "EVE SSO scope esi-ui.write_waypoint.v1",
-                "esi-universe.read_structures.v1": "EVE SSO scope esi-universe.read_structures.v1"
+                "esi-universe.read_structures.v1": "EVE SSO scope esi-universe.read_structures.v1",
+                "esi-wallet.read_character_wallet.v1": "EVE SSO scope esi-wallet.read_character_wallet.v1"
             },
             "type": "oauth2"
         }
