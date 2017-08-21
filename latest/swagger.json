@@ -20449,6 +20449,236 @@
                 ]
             }
         },
+        "/universe/stars/{star_id}/": {
+            "get": {
+                "description": "Get information on a star\n\n---\nAlternate route: `/v1/universe/stars/{star_id}/`\n\nAlternate route: `/legacy/universe/stars/{star_id}/`\n\nAlternate route: `/dev/universe/stars/{star_id}/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_universe_stars_star_id",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "star_id integer",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "star_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Information about a star",
+                        "examples": {
+                            "application/json": {
+                                "age": 9398686722,
+                                "luminosity": 0.06615000218153,
+                                "name": "BKG-Q2 - Star",
+                                "radius": 346600000,
+                                "solar_system_id": 30004333,
+                                "spectral_class": "K2 V",
+                                "temperature": 3953,
+                                "type_id": 45033
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "age": {
+                                    "description": "Age of star in years",
+                                    "format": "int64",
+                                    "title": "get_universe_stars_star_id_age",
+                                    "type": "integer"
+                                },
+                                "luminosity": {
+                                    "description": "luminosity number",
+                                    "format": "float",
+                                    "title": "get_universe_stars_star_id_luminosity",
+                                    "type": "number"
+                                },
+                                "name": {
+                                    "description": "name string",
+                                    "title": "get_universe_stars_star_id_name",
+                                    "type": "string"
+                                },
+                                "radius": {
+                                    "description": "radius integer",
+                                    "format": "int64",
+                                    "title": "get_universe_stars_star_id_radius",
+                                    "type": "integer"
+                                },
+                                "solar_system_id": {
+                                    "description": "solar_system_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_stars_star_id_solar_system_id",
+                                    "type": "integer"
+                                },
+                                "spectral_class": {
+                                    "description": "spectral_class string",
+                                    "enum": [
+                                        "K2 V",
+                                        "K4 V",
+                                        "G2 V",
+                                        "G8 V",
+                                        "M7 V",
+                                        "K7 V",
+                                        "M2 V",
+                                        "K5 V",
+                                        "M3 V",
+                                        "G0 V",
+                                        "G7 V",
+                                        "G3 V",
+                                        "F9 V",
+                                        "G5 V",
+                                        "F6 V",
+                                        "K8 V",
+                                        "K9 V",
+                                        "K6 V",
+                                        "G9 V",
+                                        "G6 V",
+                                        "G4 VI",
+                                        "G4 V",
+                                        "F8 V",
+                                        "F2 V",
+                                        "F1 V",
+                                        "K3 V",
+                                        "F0 VI",
+                                        "G1 VI",
+                                        "G0 VI",
+                                        "K1 V",
+                                        "M4 V",
+                                        "M1 V",
+                                        "M6 V",
+                                        "M0 V",
+                                        "K2 IV",
+                                        "G2 VI",
+                                        "K0 V",
+                                        "K5 IV",
+                                        "F5 VI",
+                                        "G6 VI",
+                                        "F6 VI",
+                                        "F2 IV",
+                                        "G3 VI",
+                                        "M8 V",
+                                        "F1 VI",
+                                        "K1 IV",
+                                        "F7 V",
+                                        "G5 VI",
+                                        "M5 V",
+                                        "G7 VI",
+                                        "F5 V",
+                                        "F4 VI",
+                                        "F8 VI",
+                                        "K3 IV",
+                                        "F4 IV",
+                                        "F0 V",
+                                        "G7 IV",
+                                        "G8 VI",
+                                        "F2 VI",
+                                        "F4 V",
+                                        "F7 VI",
+                                        "F3 V",
+                                        "G1 V",
+                                        "G9 VI",
+                                        "F3 IV",
+                                        "F9 VI",
+                                        "M9 V",
+                                        "K0 IV",
+                                        "F1 IV",
+                                        "G4 IV",
+                                        "F3 VI",
+                                        "K4 IV",
+                                        "G5 IV",
+                                        "G3 IV",
+                                        "G1 IV",
+                                        "K7 IV",
+                                        "G0 IV",
+                                        "K6 IV",
+                                        "K9 IV",
+                                        "G2 IV",
+                                        "F9 IV",
+                                        "F0 IV",
+                                        "K8 IV",
+                                        "G8 IV",
+                                        "F6 IV",
+                                        "F5 IV",
+                                        "A0",
+                                        "A0IV",
+                                        "A0IV2"
+                                    ],
+                                    "title": "get_universe_stars_star_id_spectral_class",
+                                    "type": "string"
+                                },
+                                "temperature": {
+                                    "description": "temperature integer",
+                                    "format": "int32",
+                                    "title": "get_universe_stars_star_id_temperature",
+                                    "type": "integer"
+                                },
+                                "type_id": {
+                                    "description": "type_id integer",
+                                    "format": "int32",
+                                    "title": "get_universe_stars_star_id_type_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "type_id",
+                                "age",
+                                "luminosity",
+                                "radius",
+                                "spectral_class",
+                                "temperature",
+                                "solar_system_id"
+                            ],
+                            "title": "get_universe_stars_star_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get star information",
+                "tags": [
+                    "Universe"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ]
+            }
+        },
         "/universe/stations/{station_id}/": {
             "get": {
                 "description": "Get information on a station\n\n---\nAlternate route: `/v2/universe/stations/{station_id}/`\n\nAlternate route: `/dev/universe/stations/{station_id}/`\n\n---\nThis route is cached for up to 300 seconds",
@@ -21289,6 +21519,7 @@
                                 },
                                 "security_class": "B",
                                 "security_status": 0.8462923765182495,
+                                "star_id": 40000040,
                                 "stargates": [
                                     50000342
                                 ],
@@ -21436,6 +21667,7 @@
                                 }
                             },
                             "required": [
+                                "star_id",
                                 "system_id",
                                 "name",
                                 "position",
