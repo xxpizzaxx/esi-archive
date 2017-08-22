@@ -302,7 +302,7 @@
         },
         "/alliances/{alliance_id}/": {
             "get": {
-                "description": "Public information about an alliance\n\n---\nAlternate route: `/v1/alliances/{alliance_id}/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Public information about an alliance\n\n---\nAlternate route: `/v3/alliances/{alliance_id}/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_alliances_alliance_id",
                 "parameters": [
                     {
@@ -324,6 +324,8 @@
                         "examples": {
                             "application/json": {
                                 "alliance_name": "C C P Alliance",
+                                "creator_corporation_id": 45678,
+                                "creator_id": 12345,
                                 "date_founded": "2016-06-26T21:00:00Z",
                                 "executor_corporation_id": 98356193,
                                 "ticker": "<C C P>"
@@ -351,6 +353,18 @@
                                     "title": "get_alliances_alliance_id_alliance_name",
                                     "type": "string"
                                 },
+                                "creator_corporation_id": {
+                                    "description": "ID of the corporation that created the alliance",
+                                    "format": "int32",
+                                    "title": "get_alliances_alliance_id_creator_corporation_id",
+                                    "type": "integer"
+                                },
+                                "creator_id": {
+                                    "description": "ID of the character that created the alliance",
+                                    "format": "int32",
+                                    "title": "get_alliances_alliance_id_creator_id",
+                                    "type": "integer"
+                                },
                                 "date_founded": {
                                     "description": "date_founded string",
                                     "format": "date-time",
@@ -363,6 +377,12 @@
                                     "title": "get_alliances_alliance_id_executor_corporation_id",
                                     "type": "integer"
                                 },
+                                "faction_id": {
+                                    "description": "Faction ID this alliance is fighting for, if this alliance is enlisted in factional warfare",
+                                    "format": "int32",
+                                    "title": "get_alliances_alliance_id_faction_id",
+                                    "type": "integer"
+                                },
                                 "ticker": {
                                     "description": "the short name of the alliance",
                                     "title": "get_alliances_alliance_id_ticker",
@@ -371,6 +391,8 @@
                             },
                             "required": [
                                 "alliance_name",
+                                "creator_id",
+                                "creator_corporation_id",
                                 "ticker",
                                 "date_founded"
                             ],
@@ -382,15 +404,15 @@
                         "description": "Alliance not found",
                         "examples": {
                             "application/json": {
-                                "error": "Alliance not found"
+                                "error": "Not found message"
                             }
                         },
                         "schema": {
-                            "description": "Alliance not found",
+                            "description": "Not found",
                             "properties": {
                                 "error": {
-                                    "description": "error message",
-                                    "title": "get_alliances_alliance_id_error",
+                                    "description": "Not found message",
+                                    "title": "get_alliances_alliance_id_404_not_found",
                                     "type": "string"
                                 }
                             },
@@ -415,7 +437,7 @@
                     "Alliance"
                 ],
                 "x-alternate-versions": [
-                    "v1"
+                    "v3"
                 ],
                 "x-cached-seconds": 3600
             }
