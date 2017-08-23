@@ -14069,6 +14069,933 @@
                 ]
             }
         },
+        "/fw/leaderboards/": {
+            "get": {
+                "description": "Top 4 leaderboard of factions for kills and victory points separated by total, last week and yesterday.\n\n---\nAlternate route: `/v1/fw/leaderboards/`\n\nAlternate route: `/legacy/fw/leaderboards/`\n\nAlternate route: `/dev/fw/leaderboards/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_fw_leaderboards",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Corporation leaderboard of kills and victory points within faction warfare.",
+                        "examples": {
+                            "application/json": {
+                                "kills": {
+                                    "active_total": [
+                                        {
+                                            "amount": 832273,
+                                            "faction_id": 500004
+                                        },
+                                        {
+                                            "amount": 687915,
+                                            "faction_id": 500001
+                                        }
+                                    ],
+                                    "last_week": [
+                                        {
+                                            "amount": 730,
+                                            "faction_id": 500001
+                                        },
+                                        {
+                                            "amount": 671,
+                                            "faction_id": 500004
+                                        }
+                                    ],
+                                    "yesterday": [
+                                        {
+                                            "amount": 100,
+                                            "faction_id": 500001
+                                        },
+                                        {
+                                            "amount": 50,
+                                            "faction_id": 500004
+                                        }
+                                    ]
+                                },
+                                "victory_points": {
+                                    "active_total": [
+                                        {
+                                            "amount": 53130500,
+                                            "faction_id": 500001
+                                        },
+                                        {
+                                            "amount": 50964263,
+                                            "faction_id": 500004
+                                        }
+                                    ],
+                                    "last_week": [
+                                        {
+                                            "amount": 97360,
+                                            "faction_id": 500001
+                                        },
+                                        {
+                                            "amount": 84980,
+                                            "faction_id": 500004
+                                        }
+                                    ],
+                                    "yesterday": [
+                                        {
+                                            "amount": 5000,
+                                            "faction_id": 500002
+                                        },
+                                        {
+                                            "amount": 3500,
+                                            "faction_id": 500003
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "kills": {
+                                    "description": "Top 4 rankings of factions by number of kills from yesterday, last week and in total.",
+                                    "properties": {
+                                        "active_total": {
+                                            "description": "Top 4 ranking of factions active in faction warfare by total kills. A faction is considered \"active\" if they have participated in faction warfare in the past 14 days.",
+                                            "items": {
+                                                "description": "active_total object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of kills",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "faction_id": {
+                                                        "description": "faction_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_faction_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_active_total",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 4,
+                                            "title": "get_fw_leaderboards_active_total",
+                                            "type": "array"
+                                        },
+                                        "last_week": {
+                                            "description": "Top 4 ranking of factions by kills in the past week",
+                                            "items": {
+                                                "description": "last_week object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of kills",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "faction_id": {
+                                                        "description": "faction_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_faction_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_last_week",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 4,
+                                            "title": "get_fw_leaderboards_last_week",
+                                            "type": "array"
+                                        },
+                                        "yesterday": {
+                                            "description": "Top 4 ranking of factions by kills in the past day",
+                                            "items": {
+                                                "description": "yesterday object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of kills",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "faction_id": {
+                                                        "description": "faction_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_faction_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_yesterday",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 4,
+                                            "title": "get_fw_leaderboards_yesterday",
+                                            "type": "array"
+                                        }
+                                    },
+                                    "required": [
+                                        "yesterday",
+                                        "last_week",
+                                        "active_total"
+                                    ],
+                                    "title": "get_fw_leaderboards_kills",
+                                    "type": "object"
+                                },
+                                "victory_points": {
+                                    "description": "Top 4 rankings of factions by victory points from yesterday, last week and in total",
+                                    "properties": {
+                                        "active_total": {
+                                            "description": "Top 4 ranking of factions active in faction warfare by total victory points. A faction is considered \"active\" if they have participated in faction warfare in the past 14 days.",
+                                            "items": {
+                                                "description": "active_total object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of victory points",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "faction_id": {
+                                                        "description": "faction_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_faction_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_active_total",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 4,
+                                            "title": "get_fw_leaderboards_active_total",
+                                            "type": "array"
+                                        },
+                                        "last_week": {
+                                            "description": "Top 4 ranking of factions by victory points in the past week",
+                                            "items": {
+                                                "description": "last_week object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of victory points",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "faction_id": {
+                                                        "description": "faction_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_faction_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_last_week",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 4,
+                                            "title": "get_fw_leaderboards_last_week",
+                                            "type": "array"
+                                        },
+                                        "yesterday": {
+                                            "description": "Top 4 ranking of factions by victory points in the past day",
+                                            "items": {
+                                                "description": "yesterday object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of victory points",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "faction_id": {
+                                                        "description": "faction_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_faction_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_yesterday",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 4,
+                                            "title": "get_fw_leaderboards_yesterday",
+                                            "type": "array"
+                                        }
+                                    },
+                                    "required": [
+                                        "yesterday",
+                                        "last_week",
+                                        "active_total"
+                                    ],
+                                    "title": "get_fw_leaderboards_victory_points",
+                                    "type": "object"
+                                }
+                            },
+                            "required": [
+                                "kills",
+                                "victory_points"
+                            ],
+                            "title": "get_fw_leaderboards_ok",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "List of the top factions in faction warfare",
+                "tags": [
+                    "Faction Warfare"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ]
+            }
+        },
+        "/fw/leaderboards/characters/": {
+            "get": {
+                "description": "Top 100 leaderboard of pilots for kills and victory points separated by total, last week and yesterday.\n\n---\nAlternate route: `/v1/fw/leaderboards/characters/`\n\nAlternate route: `/legacy/fw/leaderboards/characters/`\n\nAlternate route: `/dev/fw/leaderboards/characters/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_fw_leaderboards_characters",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Character leaderboard of kills and victory points within faction warfare.",
+                        "examples": {
+                            "application/json": {
+                                "kills": {
+                                    "active_total": [
+                                        {
+                                            "amount": 10000,
+                                            "character_id": 2112625428
+                                        },
+                                        {
+                                            "amount": 8500,
+                                            "character_id": 95465499
+                                        }
+                                    ],
+                                    "last_week": [
+                                        {
+                                            "amount": 100,
+                                            "character_id": 2112625428
+                                        },
+                                        {
+                                            "amount": 70,
+                                            "character_id": 95465499
+                                        }
+                                    ],
+                                    "yesterday": [
+                                        {
+                                            "amount": 34,
+                                            "character_id": 2112625428
+                                        },
+                                        {
+                                            "amount": 20,
+                                            "character_id": 95465499
+                                        }
+                                    ]
+                                },
+                                "victory_points": {
+                                    "active_total": [
+                                        {
+                                            "amount": 1239158,
+                                            "character_id": 2112625428
+                                        },
+                                        {
+                                            "amount": 1139029,
+                                            "character_id": 95465499
+                                        }
+                                    ],
+                                    "last_week": [
+                                        {
+                                            "amount": 2660,
+                                            "character_id": 2112625428
+                                        },
+                                        {
+                                            "amount": 2000,
+                                            "character_id": 95465499
+                                        }
+                                    ],
+                                    "yesterday": [
+                                        {
+                                            "amount": 620,
+                                            "character_id": 2112625428
+                                        },
+                                        {
+                                            "amount": 550,
+                                            "character_id": 95465499
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "kills": {
+                                    "description": "Top 100 rankings of pilots by number of kills from yesterday, last week and in total.",
+                                    "properties": {
+                                        "active_total": {
+                                            "description": "Top 100 ranking of pilots active in faction warfare by total kills. A pilot is considered \"active\" if they have participated in faction warfare in the past 14 days.",
+                                            "items": {
+                                                "description": "active_total object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of kills",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_characters_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "character_id": {
+                                                        "description": "character_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_characters_character_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_characters_active_total",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 100,
+                                            "title": "get_fw_leaderboards_characters_active_total",
+                                            "type": "array"
+                                        },
+                                        "last_week": {
+                                            "description": "Top 100 ranking of pilots by kills in the past week",
+                                            "items": {
+                                                "description": "last_week object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of kills",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_characters_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "character_id": {
+                                                        "description": "character_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_characters_character_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_characters_last_week",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 100,
+                                            "title": "get_fw_leaderboards_characters_last_week",
+                                            "type": "array"
+                                        },
+                                        "yesterday": {
+                                            "description": "Top 100 ranking of pilots by kills in the past day",
+                                            "items": {
+                                                "description": "yesterday object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of kills",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_characters_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "character_id": {
+                                                        "description": "character_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_characters_character_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_characters_yesterday",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 100,
+                                            "title": "get_fw_leaderboards_characters_yesterday",
+                                            "type": "array"
+                                        }
+                                    },
+                                    "required": [
+                                        "yesterday",
+                                        "last_week",
+                                        "active_total"
+                                    ],
+                                    "title": "get_fw_leaderboards_characters_kills",
+                                    "type": "object"
+                                },
+                                "victory_points": {
+                                    "description": "Top 100 rankings of pilots by victory points from yesterday, last week and in total",
+                                    "properties": {
+                                        "active_total": {
+                                            "description": "Top 100 ranking of pilots active in faction warfare by total victory points. A pilot is considered \"active\" if they have participated in faction warfare in the past 14 days.",
+                                            "items": {
+                                                "description": "active_total object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of victory points",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_characters_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "character_id": {
+                                                        "description": "character_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_characters_character_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_characters_active_total",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 100,
+                                            "title": "get_fw_leaderboards_characters_active_total",
+                                            "type": "array"
+                                        },
+                                        "last_week": {
+                                            "description": "Top 100 ranking of pilots by victory points in the past week",
+                                            "items": {
+                                                "description": "last_week object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of victory points",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_characters_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "character_id": {
+                                                        "description": "character_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_characters_character_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_characters_last_week",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 100,
+                                            "title": "get_fw_leaderboards_characters_last_week",
+                                            "type": "array"
+                                        },
+                                        "yesterday": {
+                                            "description": "Top 100 ranking of pilots by victory points in the past day",
+                                            "items": {
+                                                "description": "yesterday object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of victory points",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_characters_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "character_id": {
+                                                        "description": "character_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_characters_character_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_characters_yesterday",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 100,
+                                            "title": "get_fw_leaderboards_characters_yesterday",
+                                            "type": "array"
+                                        }
+                                    },
+                                    "required": [
+                                        "yesterday",
+                                        "last_week",
+                                        "active_total"
+                                    ],
+                                    "title": "get_fw_leaderboards_characters_victory_points",
+                                    "type": "object"
+                                }
+                            },
+                            "required": [
+                                "kills",
+                                "victory_points"
+                            ],
+                            "title": "get_fw_leaderboards_characters_ok",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "List of the top pilots in faction warfare",
+                "tags": [
+                    "Faction Warfare"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ]
+            }
+        },
+        "/fw/leaderboards/corporations/": {
+            "get": {
+                "description": "Top 10 leaderboard of corporations for kills and victory points separated by total, last week and yesterday.\n\n---\nAlternate route: `/v1/fw/leaderboards/corporations/`\n\nAlternate route: `/legacy/fw/leaderboards/corporations/`\n\nAlternate route: `/dev/fw/leaderboards/corporations/`\n\n---\nThis route expires daily at 11:05",
+                "operationId": "get_fw_leaderboards_corporations",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Corporation leaderboard of kills and victory points within faction warfare.",
+                        "examples": {
+                            "application/json": {
+                                "kills": {
+                                    "active_total": [
+                                        {
+                                            "amount": 81692,
+                                            "corporation_id": 1000180
+                                        },
+                                        {
+                                            "amount": 76793,
+                                            "corporation_id": 1000182
+                                        }
+                                    ],
+                                    "last_week": [
+                                        {
+                                            "amount": 290,
+                                            "corporation_id": 1000180
+                                        },
+                                        {
+                                            "amount": 169,
+                                            "corporation_id": 1000182
+                                        }
+                                    ],
+                                    "yesterday": [
+                                        {
+                                            "amount": 51,
+                                            "corporation_id": 1000180
+                                        },
+                                        {
+                                            "amount": 39,
+                                            "corporation_id": 1000182
+                                        }
+                                    ]
+                                },
+                                "victory_points": {
+                                    "active_total": [
+                                        {
+                                            "amount": 18640927,
+                                            "corporation_id": 1000180
+                                        },
+                                        {
+                                            "amount": 18078265,
+                                            "corporation_id": 1000181
+                                        }
+                                    ],
+                                    "last_week": [
+                                        {
+                                            "amount": 91980,
+                                            "corporation_id": 1000180
+                                        },
+                                        {
+                                            "amount": 58920,
+                                            "corporation_id": 1000181
+                                        }
+                                    ],
+                                    "yesterday": [
+                                        {
+                                            "amount": 12600,
+                                            "corporation_id": 1000180
+                                        },
+                                        {
+                                            "amount": 8240,
+                                            "corporation_id": 1000181
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "kills": {
+                                    "description": "Top 10 rankings of corporations by number of kills from yesterday, last week and in total.",
+                                    "properties": {
+                                        "active_total": {
+                                            "description": "Top 10 ranking of corporations active in faction warfare by total kills. A corporation is considered \"active\" if they have participated in faction warfare in the past 14 days.",
+                                            "items": {
+                                                "description": "active_total object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of kills",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_corporations_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "corporation_id": {
+                                                        "description": "corporation_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_corporations_corporation_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_corporations_active_total",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 10,
+                                            "title": "get_fw_leaderboards_corporations_active_total",
+                                            "type": "array"
+                                        },
+                                        "last_week": {
+                                            "description": "Top 10 ranking of corporations by kills in the past week",
+                                            "items": {
+                                                "description": "last_week object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of kills",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_corporations_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "corporation_id": {
+                                                        "description": "corporation_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_corporations_corporation_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_corporations_last_week",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 10,
+                                            "title": "get_fw_leaderboards_corporations_last_week",
+                                            "type": "array"
+                                        },
+                                        "yesterday": {
+                                            "description": "Top 10 ranking of corporations by kills in the past day",
+                                            "items": {
+                                                "description": "yesterday object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of kills",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_corporations_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "corporation_id": {
+                                                        "description": "corporation_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_corporations_corporation_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_corporations_yesterday",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 10,
+                                            "title": "get_fw_leaderboards_corporations_yesterday",
+                                            "type": "array"
+                                        }
+                                    },
+                                    "required": [
+                                        "yesterday",
+                                        "last_week",
+                                        "active_total"
+                                    ],
+                                    "title": "get_fw_leaderboards_corporations_kills",
+                                    "type": "object"
+                                },
+                                "victory_points": {
+                                    "description": "Top 10 rankings of corporations by victory points from yesterday, last week and in total",
+                                    "properties": {
+                                        "active_total": {
+                                            "description": "Top 10 ranking of corporations active in faction warfare by total victory points. A corporation is considered \"active\" if they have participated in faction warfare in the past 14 days.",
+                                            "items": {
+                                                "description": "active_total object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of victory points",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_corporations_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "corporation_id": {
+                                                        "description": "corporation_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_corporations_corporation_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_corporations_active_total",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 10,
+                                            "title": "get_fw_leaderboards_corporations_active_total",
+                                            "type": "array"
+                                        },
+                                        "last_week": {
+                                            "description": "Top 10 ranking of corporations by victory points in the past week",
+                                            "items": {
+                                                "description": "last_week object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of victory points",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_corporations_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "corporation_id": {
+                                                        "description": "corporation_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_corporations_corporation_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_corporations_last_week",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 10,
+                                            "title": "get_fw_leaderboards_corporations_last_week",
+                                            "type": "array"
+                                        },
+                                        "yesterday": {
+                                            "description": "Top 10 ranking of corporations by victory points in the past day",
+                                            "items": {
+                                                "description": "yesterday object",
+                                                "properties": {
+                                                    "amount": {
+                                                        "description": "Amount of victory points",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_corporations_amount",
+                                                        "type": "integer"
+                                                    },
+                                                    "corporation_id": {
+                                                        "description": "corporation_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_fw_leaderboards_corporations_corporation_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "title": "get_fw_leaderboards_corporations_yesterday",
+                                                "type": "object"
+                                            },
+                                            "maxItems": 10,
+                                            "title": "get_fw_leaderboards_corporations_yesterday",
+                                            "type": "array"
+                                        }
+                                    },
+                                    "required": [
+                                        "yesterday",
+                                        "last_week",
+                                        "active_total"
+                                    ],
+                                    "title": "get_fw_leaderboards_corporations_victory_points",
+                                    "type": "object"
+                                }
+                            },
+                            "required": [
+                                "kills",
+                                "victory_points"
+                            ],
+                            "title": "get_fw_leaderboards_corporations_ok",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "List of the top corporations in faction warfare",
+                "tags": [
+                    "Faction Warfare"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ]
+            }
+        },
         "/fw/stats/": {
             "get": {
                 "description": "Statistical overviews of factions involved in faction warfare\n\n---\nAlternate route: `/v1/fw/stats/`\n\nAlternate route: `/legacy/fw/stats/`\n\nAlternate route: `/dev/fw/stats/`\n\n---\nThis route expires daily at 11:05",
@@ -14240,6 +15167,131 @@
                     "legacy",
                     "v1"
                 ]
+            }
+        },
+        "/fw/systems/": {
+            "get": {
+                "description": "An overview of the current ownership of faction warfare solar systems\n\n---\nAlternate route: `/v1/fw/systems/`\n\nAlternate route: `/legacy/fw/systems/`\n\nAlternate route: `/dev/fw/systems/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_fw_systems",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All faction war solar systems",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "contested": true,
+                                    "occupier_faction_id": 500001,
+                                    "owner_faction_id": 500001,
+                                    "solar_system_id": 30002096,
+                                    "victory_points": 60,
+                                    "victory_points_threshold": 3000
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "contested": {
+                                        "description": "contested boolean",
+                                        "title": "get_fw_systems_contested",
+                                        "type": "boolean"
+                                    },
+                                    "occupier_faction_id": {
+                                        "description": "occupier_faction_id integer",
+                                        "format": "int32",
+                                        "title": "get_fw_systems_occupier_faction_id",
+                                        "type": "integer"
+                                    },
+                                    "owner_faction_id": {
+                                        "description": "owner_faction_id integer",
+                                        "format": "int32",
+                                        "title": "get_fw_systems_owner_faction_id",
+                                        "type": "integer"
+                                    },
+                                    "solar_system_id": {
+                                        "description": "solar_system_id integer",
+                                        "format": "int32",
+                                        "title": "get_fw_systems_solar_system_id",
+                                        "type": "integer"
+                                    },
+                                    "victory_points": {
+                                        "description": "victory_points integer",
+                                        "format": "int32",
+                                        "title": "get_fw_systems_victory_points",
+                                        "type": "integer"
+                                    },
+                                    "victory_points_threshold": {
+                                        "description": "victory_points_threshold integer",
+                                        "format": "int32",
+                                        "title": "get_fw_systems_victory_points_threshold",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "solar_system_id",
+                                    "occupier_faction_id",
+                                    "owner_faction_id",
+                                    "victory_points",
+                                    "victory_points_threshold",
+                                    "contested"
+                                ],
+                                "title": "get_fw_systems_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 171,
+                            "title": "get_fw_systems_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Ownership of faction warfare systems",
+                "tags": [
+                    "Faction Warfare"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/fw/wars/": {
