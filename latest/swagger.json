@@ -10689,6 +10689,165 @@
                 "x-cached-seconds": 3600
             }
         },
+        "/corporations/{corporation_id}/membertracking/": {
+            "get": {
+                "description": "Read the current list of members if the calling character is a member.\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/membertracking/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/membertracking/`\n\nAlternate route: `/dev/corporations/{corporation_id}/membertracking/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_corporation_id_membertracking",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/corporation_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of member character IDs",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "character_id": 2112000001,
+                                    "location_id": 30003657,
+                                    "logoff_date": "2017-08-03T14:31:16Z",
+                                    "logon_date": "2017-08-03T14:22:03Z",
+                                    "ship_type_id": 22464,
+                                    "start_date": "2017-07-10T14:46:00Z"
+                                },
+                                {
+                                    "character_id": 2112000002,
+                                    "location_id": 30003657,
+                                    "logoff_date": "2017-07-25T11:07:40Z",
+                                    "logon_date": "2017-07-25T10:54:00Z",
+                                    "ship_type_id": 670,
+                                    "start_date": "2017-07-10T14:50:00Z"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "base_id": {
+                                        "description": "base_id integer",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_membertracking_base_id",
+                                        "type": "integer"
+                                    },
+                                    "character_id": {
+                                        "description": "character_id integer",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_membertracking_character_id",
+                                        "type": "integer"
+                                    },
+                                    "location_id": {
+                                        "description": "location_id integer",
+                                        "format": "int64",
+                                        "title": "get_corporations_corporation_id_membertracking_location_id",
+                                        "type": "integer"
+                                    },
+                                    "logoff_date": {
+                                        "description": "logoff_date string",
+                                        "format": "date-time",
+                                        "title": "get_corporations_corporation_id_membertracking_logoff_date",
+                                        "type": "string"
+                                    },
+                                    "logon_date": {
+                                        "description": "logon_date string",
+                                        "format": "date-time",
+                                        "title": "get_corporations_corporation_id_membertracking_logon_date",
+                                        "type": "string"
+                                    },
+                                    "ship_type_id": {
+                                        "description": "ship_type_id integer",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_membertracking_ship_type_id",
+                                        "type": "integer"
+                                    },
+                                    "start_date": {
+                                        "description": "start_date string",
+                                        "format": "date-time",
+                                        "title": "get_corporations_corporation_id_membertracking_start_date",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "character_id"
+                                ],
+                                "title": "get_corporations_corporation_id_membertracking_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 12601,
+                            "title": "get_corporations_corporation_id_membertracking_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-corporations.track_members.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get corporation members",
+                "tags": [
+                    "Corporation"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
         "/corporations/{corporation_id}/roles/": {
             "get": {
                 "description": "Return the roles of all members if the character has the personnel manager role or any grantable role.\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/roles/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/roles/`\n\nAlternate route: `/dev/corporations/{corporation_id}/roles/`\n\n---\nThis route is cached for up to 3600 seconds",
@@ -23595,6 +23754,7 @@
                 "esi-contracts.read_character_contracts.v1": "EVE SSO scope esi-contracts.read_character_contracts.v1",
                 "esi-corporations.read_corporation_membership.v1": "EVE SSO scope esi-corporations.read_corporation_membership.v1",
                 "esi-corporations.read_structures.v1": "EVE SSO scope esi-corporations.read_structures.v1",
+                "esi-corporations.track_members.v1": "EVE SSO scope esi-corporations.track_members.v1",
                 "esi-corporations.write_structures.v1": "EVE SSO scope esi-corporations.write_structures.v1",
                 "esi-fittings.read_fittings.v1": "EVE SSO scope esi-fittings.read_fittings.v1",
                 "esi-fittings.write_fittings.v1": "EVE SSO scope esi-fittings.write_fittings.v1",
