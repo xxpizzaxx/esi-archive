@@ -323,11 +323,11 @@
                         "description": "Public data about an alliance",
                         "examples": {
                             "application/json": {
-                                "alliance_name": "C C P Alliance",
                                 "creator_corporation_id": 45678,
                                 "creator_id": 12345,
                                 "date_founded": "2016-06-26T21:00:00Z",
                                 "executor_corporation_id": 98356193,
+                                "name": "C C P Alliance",
                                 "ticker": "<C C P>"
                             }
                         },
@@ -348,11 +348,6 @@
                         "schema": {
                             "description": "200 ok object",
                             "properties": {
-                                "alliance_name": {
-                                    "description": "the full name of the alliance",
-                                    "title": "get_alliances_alliance_id_alliance_name",
-                                    "type": "string"
-                                },
                                 "creator_corporation_id": {
                                     "description": "ID of the corporation that created the alliance",
                                     "format": "int32",
@@ -383,6 +378,11 @@
                                     "title": "get_alliances_alliance_id_faction_id",
                                     "type": "integer"
                                 },
+                                "name": {
+                                    "description": "the full name of the alliance",
+                                    "title": "get_alliances_alliance_id_name",
+                                    "type": "string"
+                                },
                                 "ticker": {
                                     "description": "the short name of the alliance",
                                     "title": "get_alliances_alliance_id_ticker",
@@ -390,7 +390,7 @@
                                 }
                             },
                             "required": [
-                                "alliance_name",
+                                "name",
                                 "creator_id",
                                 "creator_corporation_id",
                                 "ticker",
