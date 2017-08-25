@@ -20357,435 +20357,6 @@
                 ]
             }
         },
-        "/v2/characters/{character_id}/planets/{planet_id}/": {
-            "get": {
-                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.\n\n---\n\nThis route is cached for up to 600 seconds",
-                "operationId": "get_characters_character_id_planets_planet_id",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/character_id"
-                    },
-                    {
-                        "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "description": "Planet id of the target planet",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "planet_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "$ref": "#/parameters/token"
-                    },
-                    {
-                        "$ref": "#/parameters/user_agent"
-                    },
-                    {
-                        "$ref": "#/parameters/X-User-Agent"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Colony layout",
-                        "examples": {
-                            "application/json": {
-                                "links": [
-                                    {
-                                        "destination_pin_id": 1000000017022,
-                                        "link_level": 0,
-                                        "source_pin_id": 1000000017021
-                                    }
-                                ],
-                                "pins": [
-                                    {
-                                        "is_running": true,
-                                        "latitude": 1.55087844973,
-                                        "longitude": 0.717145933308,
-                                        "pin_id": 1000000017021,
-                                        "type_id": 2254
-                                    },
-                                    {
-                                        "is_running": true,
-                                        "latitude": 1.53360639935,
-                                        "longitude": 0.709775584394,
-                                        "pin_id": 1000000017022,
-                                        "type_id": 2256
-                                    }
-                                ],
-                                "routes": [
-                                    {
-                                        "content_type_id": 2393,
-                                        "destination_pin_id": 1000000017030,
-                                        "quantity": 20,
-                                        "route_id": 4,
-                                        "source_pin_id": 1000000017029
-                                    }
-                                ]
-                            }
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok object",
-                            "properties": {
-                                "links": {
-                                    "description": "links array",
-                                    "items": {
-                                        "description": "link object",
-                                        "properties": {
-                                            "destination_pin_id": {
-                                                "description": "destination_pin_id integer",
-                                                "format": "int64",
-                                                "title": "get_characters_character_id_planets_planet_id_destination_pin_id",
-                                                "type": "integer"
-                                            },
-                                            "link_level": {
-                                                "description": "link_level integer",
-                                                "format": "int32",
-                                                "maximum": 10,
-                                                "minimum": 0,
-                                                "title": "get_characters_character_id_planets_planet_id_link_level",
-                                                "type": "integer"
-                                            },
-                                            "source_pin_id": {
-                                                "description": "source_pin_id integer",
-                                                "format": "int64",
-                                                "title": "get_characters_character_id_planets_planet_id_source_pin_id",
-                                                "type": "integer"
-                                            }
-                                        },
-                                        "required": [
-                                            "source_pin_id",
-                                            "destination_pin_id",
-                                            "link_level"
-                                        ],
-                                        "title": "get_characters_character_id_planets_planet_id_link",
-                                        "type": "object"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_planets_planet_id_links",
-                                    "type": "array"
-                                },
-                                "pins": {
-                                    "description": "pins array",
-                                    "items": {
-                                        "description": "pin object",
-                                        "properties": {
-                                            "expiry_time": {
-                                                "description": "expiry_time string",
-                                                "format": "date-time",
-                                                "title": "get_characters_character_id_planets_planet_id_expiry_time",
-                                                "type": "string"
-                                            },
-                                            "extractor_details": {
-                                                "description": "extractor_details object",
-                                                "properties": {
-                                                    "cycle_time": {
-                                                        "description": "in seconds",
-                                                        "format": "int32",
-                                                        "title": "get_characters_character_id_planets_planet_id_cycle_time",
-                                                        "type": "integer"
-                                                    },
-                                                    "head_radius": {
-                                                        "description": "head_radius number",
-                                                        "format": "float",
-                                                        "title": "get_characters_character_id_planets_planet_id_head_radius",
-                                                        "type": "number"
-                                                    },
-                                                    "heads": {
-                                                        "description": "heads array",
-                                                        "items": {
-                                                            "description": "head object",
-                                                            "properties": {
-                                                                "head_id": {
-                                                                    "description": "head_id integer",
-                                                                    "format": "int32",
-                                                                    "maximum": 9,
-                                                                    "minimum": 0,
-                                                                    "title": "get_characters_character_id_planets_planet_id_head_id",
-                                                                    "type": "integer"
-                                                                },
-                                                                "latitude": {
-                                                                    "description": "latitude number",
-                                                                    "format": "float",
-                                                                    "title": "get_characters_character_id_planets_planet_id_latitude",
-                                                                    "type": "number"
-                                                                },
-                                                                "longitude": {
-                                                                    "description": "longitude number",
-                                                                    "format": "float",
-                                                                    "title": "get_characters_character_id_planets_planet_id_longitude",
-                                                                    "type": "number"
-                                                                }
-                                                            },
-                                                            "required": [
-                                                                "head_id",
-                                                                "latitude",
-                                                                "longitude"
-                                                            ],
-                                                            "title": "get_characters_character_id_planets_planet_id_head",
-                                                            "type": "object"
-                                                        },
-                                                        "maxItems": 10,
-                                                        "title": "get_characters_character_id_planets_planet_id_heads",
-                                                        "type": "array"
-                                                    },
-                                                    "product_type_id": {
-                                                        "description": "product_type_id integer",
-                                                        "format": "int32",
-                                                        "title": "get_characters_character_id_planets_planet_id_product_type_id",
-                                                        "type": "integer"
-                                                    },
-                                                    "qty_per_cycle": {
-                                                        "description": "qty_per_cycle integer",
-                                                        "format": "int32",
-                                                        "title": "get_characters_character_id_planets_planet_id_qty_per_cycle",
-                                                        "type": "integer"
-                                                    }
-                                                },
-                                                "required": [
-                                                    "heads"
-                                                ],
-                                                "title": "get_characters_character_id_planets_planet_id_extractor_details",
-                                                "type": "object"
-                                            },
-                                            "factory_details": {
-                                                "description": "factory_details object",
-                                                "properties": {
-                                                    "schematic_id": {
-                                                        "description": "schematic_id integer",
-                                                        "format": "int32",
-                                                        "title": "get_characters_character_id_planets_planet_id_schematic_id",
-                                                        "type": "integer"
-                                                    }
-                                                },
-                                                "required": [
-                                                    "schematic_id"
-                                                ],
-                                                "title": "get_characters_character_id_planets_planet_id_factory_details",
-                                                "type": "object"
-                                            },
-                                            "install_time": {
-                                                "description": "install_time string",
-                                                "format": "date-time",
-                                                "title": "get_characters_character_id_planets_planet_id_install_time",
-                                                "type": "string"
-                                            },
-                                            "last_cycle_start": {
-                                                "description": "last_cycle_start string",
-                                                "format": "date-time",
-                                                "title": "get_characters_character_id_planets_planet_id_last_cycle_start",
-                                                "type": "string"
-                                            },
-                                            "latitude": {
-                                                "description": "latitude number",
-                                                "format": "float",
-                                                "title": "get_characters_character_id_planets_planet_id_latitude",
-                                                "type": "number"
-                                            },
-                                            "longitude": {
-                                                "description": "longitude number",
-                                                "format": "float",
-                                                "title": "get_characters_character_id_planets_planet_id_longitude",
-                                                "type": "number"
-                                            },
-                                            "pin_id": {
-                                                "description": "pin_id integer",
-                                                "format": "int64",
-                                                "title": "get_characters_character_id_planets_planet_id_pin_id",
-                                                "type": "integer"
-                                            },
-                                            "schematic_id": {
-                                                "description": "schematic_id integer",
-                                                "format": "int32",
-                                                "title": "get_characters_character_id_planets_planet_id_schematic_id",
-                                                "type": "integer"
-                                            },
-                                            "type_id": {
-                                                "description": "type_id integer",
-                                                "format": "int32",
-                                                "title": "get_characters_character_id_planets_planet_id_type_id",
-                                                "type": "integer"
-                                            }
-                                        },
-                                        "required": [
-                                            "pin_id",
-                                            "type_id",
-                                            "latitude",
-                                            "longitude"
-                                        ],
-                                        "title": "get_characters_character_id_planets_planet_id_pin",
-                                        "type": "object"
-                                    },
-                                    "maxItems": 100,
-                                    "title": "get_characters_character_id_planets_planet_id_pins",
-                                    "type": "array"
-                                },
-                                "routes": {
-                                    "description": "routes array",
-                                    "items": {
-                                        "description": "route object",
-                                        "properties": {
-                                            "content_type_id": {
-                                                "description": "content_type_id integer",
-                                                "format": "int32",
-                                                "title": "get_characters_character_id_planets_planet_id_content_type_id",
-                                                "type": "integer"
-                                            },
-                                            "destination_pin_id": {
-                                                "description": "destination_pin_id integer",
-                                                "format": "int64",
-                                                "title": "get_characters_character_id_planets_planet_id_destination_pin_id",
-                                                "type": "integer"
-                                            },
-                                            "quantity": {
-                                                "description": "quantity number",
-                                                "format": "float",
-                                                "title": "get_characters_character_id_planets_planet_id_quantity",
-                                                "type": "number"
-                                            },
-                                            "route_id": {
-                                                "description": "route_id integer",
-                                                "format": "int64",
-                                                "title": "get_characters_character_id_planets_planet_id_route_id",
-                                                "type": "integer"
-                                            },
-                                            "source_pin_id": {
-                                                "description": "source_pin_id integer",
-                                                "format": "int64",
-                                                "title": "get_characters_character_id_planets_planet_id_source_pin_id",
-                                                "type": "integer"
-                                            },
-                                            "waypoints": {
-                                                "description": "waypoints array",
-                                                "items": {
-                                                    "description": "waypoint object",
-                                                    "properties": {
-                                                        "order": {
-                                                            "description": "order integer",
-                                                            "format": "int32",
-                                                            "maximum": 5,
-                                                            "minimum": 1,
-                                                            "title": "get_characters_character_id_planets_planet_id_order",
-                                                            "type": "integer"
-                                                        },
-                                                        "pin_id": {
-                                                            "description": "pin_id integer",
-                                                            "format": "int64",
-                                                            "title": "get_characters_character_id_planets_planet_id_pin_id",
-                                                            "type": "integer"
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "pin_id",
-                                                        "order"
-                                                    ],
-                                                    "title": "get_characters_character_id_planets_planet_id_waypoint",
-                                                    "type": "object"
-                                                },
-                                                "maxItems": 5,
-                                                "title": "get_characters_character_id_planets_planet_id_waypoints",
-                                                "type": "array"
-                                            }
-                                        },
-                                        "required": [
-                                            "route_id",
-                                            "source_pin_id",
-                                            "destination_pin_id",
-                                            "content_type_id",
-                                            "quantity"
-                                        ],
-                                        "title": "get_characters_character_id_planets_planet_id_route",
-                                        "type": "object"
-                                    },
-                                    "maxItems": 1000,
-                                    "title": "get_characters_character_id_planets_planet_id_routes",
-                                    "type": "array"
-                                }
-                            },
-                            "required": [
-                                "links",
-                                "pins",
-                                "routes"
-                            ],
-                            "title": "get_characters_character_id_planets_planet_id_ok",
-                            "type": "object"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Forbidden message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/forbidden"
-                        }
-                    },
-                    "404": {
-                        "description": "Colony not found",
-                        "examples": {
-                            "application/json": {
-                                "error": "Colony not found"
-                            }
-                        },
-                        "schema": {
-                            "description": "Colony not found",
-                            "properties": {
-                                "error": {
-                                    "description": "error message",
-                                    "title": "get_characters_character_id_planets_planet_id_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_characters_character_id_planets_planet_id_not_found",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "Internal server error message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/internal_server_error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-planets.manage_planets.v1"
-                        ]
-                    }
-                ],
-                "summary": "Get colony layout",
-                "tags": [
-                    "Planetary Interaction"
-                ],
-                "x-alternate-versions": [
-                    "v2"
-                ],
-                "x-cached-seconds": 600
-            }
-        },
         "/v2/characters/{character_id}/portrait/": {
             "get": {
                 "description": "Get portrait urls for a character\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -23521,6 +23092,446 @@
                     "v3"
                 ],
                 "x-cached-seconds": 30
+            }
+        },
+        "/v3/characters/{character_id}/planets/{planet_id}/": {
+            "get": {
+                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.\n\n---\n\nThis route is cached for up to 600 seconds",
+                "operationId": "get_characters_character_id_planets_planet_id",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "Planet id of the target planet",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "planet_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Colony layout",
+                        "examples": {
+                            "application/json": {
+                                "links": [
+                                    {
+                                        "destination_pin_id": 1000000017022,
+                                        "link_level": 0,
+                                        "source_pin_id": 1000000017021
+                                    }
+                                ],
+                                "pins": [
+                                    {
+                                        "is_running": true,
+                                        "latitude": 1.55087844973,
+                                        "longitude": 0.717145933308,
+                                        "pin_id": 1000000017021,
+                                        "type_id": 2254
+                                    },
+                                    {
+                                        "is_running": true,
+                                        "latitude": 1.53360639935,
+                                        "longitude": 0.709775584394,
+                                        "pin_id": 1000000017022,
+                                        "type_id": 2256
+                                    }
+                                ],
+                                "routes": [
+                                    {
+                                        "content_type_id": 2393,
+                                        "destination_pin_id": 1000000017030,
+                                        "quantity": 20,
+                                        "route_id": 4,
+                                        "source_pin_id": 1000000017029
+                                    }
+                                ]
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "links": {
+                                    "description": "links array",
+                                    "items": {
+                                        "description": "link object",
+                                        "properties": {
+                                            "destination_pin_id": {
+                                                "description": "destination_pin_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_planets_planet_id_destination_pin_id",
+                                                "type": "integer"
+                                            },
+                                            "link_level": {
+                                                "description": "link_level integer",
+                                                "format": "int32",
+                                                "maximum": 10,
+                                                "minimum": 0,
+                                                "title": "get_characters_character_id_planets_planet_id_link_level",
+                                                "type": "integer"
+                                            },
+                                            "source_pin_id": {
+                                                "description": "source_pin_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_planets_planet_id_source_pin_id",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "source_pin_id",
+                                            "destination_pin_id",
+                                            "link_level"
+                                        ],
+                                        "title": "get_characters_character_id_planets_planet_id_link",
+                                        "type": "object"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_characters_character_id_planets_planet_id_links",
+                                    "type": "array"
+                                },
+                                "pins": {
+                                    "description": "pins array",
+                                    "items": {
+                                        "description": "pin object",
+                                        "properties": {
+                                            "contents": {
+                                                "description": "contents array",
+                                                "items": {
+                                                    "description": "content object",
+                                                    "properties": {
+                                                        "amount": {
+                                                            "description": "amount integer",
+                                                            "format": "int64",
+                                                            "title": "get_characters_character_id_planets_planet_id_amount",
+                                                            "type": "integer"
+                                                        },
+                                                        "type_id": {
+                                                            "description": "type_id integer",
+                                                            "format": "int32",
+                                                            "title": "get_characters_character_id_planets_planet_id_type_id",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "type_id",
+                                                        "amount"
+                                                    ],
+                                                    "title": "get_characters_character_id_planets_planet_id_content",
+                                                    "type": "object"
+                                                },
+                                                "maxItems": 90,
+                                                "title": "get_characters_character_id_planets_planet_id_contents",
+                                                "type": "array"
+                                            },
+                                            "expiry_time": {
+                                                "description": "expiry_time string",
+                                                "format": "date-time",
+                                                "title": "get_characters_character_id_planets_planet_id_expiry_time",
+                                                "type": "string"
+                                            },
+                                            "extractor_details": {
+                                                "description": "extractor_details object",
+                                                "properties": {
+                                                    "cycle_time": {
+                                                        "description": "in seconds",
+                                                        "format": "int32",
+                                                        "title": "get_characters_character_id_planets_planet_id_cycle_time",
+                                                        "type": "integer"
+                                                    },
+                                                    "head_radius": {
+                                                        "description": "head_radius number",
+                                                        "format": "float",
+                                                        "title": "get_characters_character_id_planets_planet_id_head_radius",
+                                                        "type": "number"
+                                                    },
+                                                    "heads": {
+                                                        "description": "heads array",
+                                                        "items": {
+                                                            "description": "head object",
+                                                            "properties": {
+                                                                "head_id": {
+                                                                    "description": "head_id integer",
+                                                                    "format": "int32",
+                                                                    "maximum": 9,
+                                                                    "minimum": 0,
+                                                                    "title": "get_characters_character_id_planets_planet_id_head_id",
+                                                                    "type": "integer"
+                                                                },
+                                                                "latitude": {
+                                                                    "description": "latitude number",
+                                                                    "format": "float",
+                                                                    "title": "get_characters_character_id_planets_planet_id_latitude",
+                                                                    "type": "number"
+                                                                },
+                                                                "longitude": {
+                                                                    "description": "longitude number",
+                                                                    "format": "float",
+                                                                    "title": "get_characters_character_id_planets_planet_id_longitude",
+                                                                    "type": "number"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "head_id",
+                                                                "latitude",
+                                                                "longitude"
+                                                            ],
+                                                            "title": "get_characters_character_id_planets_planet_id_head",
+                                                            "type": "object"
+                                                        },
+                                                        "maxItems": 10,
+                                                        "title": "get_characters_character_id_planets_planet_id_heads",
+                                                        "type": "array"
+                                                    },
+                                                    "product_type_id": {
+                                                        "description": "product_type_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_characters_character_id_planets_planet_id_product_type_id",
+                                                        "type": "integer"
+                                                    },
+                                                    "qty_per_cycle": {
+                                                        "description": "qty_per_cycle integer",
+                                                        "format": "int32",
+                                                        "title": "get_characters_character_id_planets_planet_id_qty_per_cycle",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "heads"
+                                                ],
+                                                "title": "get_characters_character_id_planets_planet_id_extractor_details",
+                                                "type": "object"
+                                            },
+                                            "factory_details": {
+                                                "description": "factory_details object",
+                                                "properties": {
+                                                    "schematic_id": {
+                                                        "description": "schematic_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_characters_character_id_planets_planet_id_schematic_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "schematic_id"
+                                                ],
+                                                "title": "get_characters_character_id_planets_planet_id_factory_details",
+                                                "type": "object"
+                                            },
+                                            "install_time": {
+                                                "description": "install_time string",
+                                                "format": "date-time",
+                                                "title": "get_characters_character_id_planets_planet_id_install_time",
+                                                "type": "string"
+                                            },
+                                            "last_cycle_start": {
+                                                "description": "last_cycle_start string",
+                                                "format": "date-time",
+                                                "title": "get_characters_character_id_planets_planet_id_last_cycle_start",
+                                                "type": "string"
+                                            },
+                                            "latitude": {
+                                                "description": "latitude number",
+                                                "format": "float",
+                                                "title": "get_characters_character_id_planets_planet_id_latitude",
+                                                "type": "number"
+                                            },
+                                            "longitude": {
+                                                "description": "longitude number",
+                                                "format": "float",
+                                                "title": "get_characters_character_id_planets_planet_id_longitude",
+                                                "type": "number"
+                                            },
+                                            "pin_id": {
+                                                "description": "pin_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_planets_planet_id_pin_id",
+                                                "type": "integer"
+                                            },
+                                            "schematic_id": {
+                                                "description": "schematic_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_planets_planet_id_schematic_id",
+                                                "type": "integer"
+                                            },
+                                            "type_id": {
+                                                "description": "type_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_planets_planet_id_type_id",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "pin_id",
+                                            "type_id",
+                                            "latitude",
+                                            "longitude"
+                                        ],
+                                        "title": "get_characters_character_id_planets_planet_id_pin",
+                                        "type": "object"
+                                    },
+                                    "maxItems": 100,
+                                    "title": "get_characters_character_id_planets_planet_id_pins",
+                                    "type": "array"
+                                },
+                                "routes": {
+                                    "description": "routes array",
+                                    "items": {
+                                        "description": "route object",
+                                        "properties": {
+                                            "content_type_id": {
+                                                "description": "content_type_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_planets_planet_id_content_type_id",
+                                                "type": "integer"
+                                            },
+                                            "destination_pin_id": {
+                                                "description": "destination_pin_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_planets_planet_id_destination_pin_id",
+                                                "type": "integer"
+                                            },
+                                            "quantity": {
+                                                "description": "quantity number",
+                                                "format": "float",
+                                                "title": "get_characters_character_id_planets_planet_id_quantity",
+                                                "type": "number"
+                                            },
+                                            "route_id": {
+                                                "description": "route_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_planets_planet_id_route_id",
+                                                "type": "integer"
+                                            },
+                                            "source_pin_id": {
+                                                "description": "source_pin_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_planets_planet_id_source_pin_id",
+                                                "type": "integer"
+                                            },
+                                            "waypoints": {
+                                                "description": "list of pin ID waypoints",
+                                                "items": {
+                                                    "description": "waypoint integer",
+                                                    "format": "int64",
+                                                    "title": "get_characters_character_id_planets_planet_id_waypoint",
+                                                    "type": "integer"
+                                                },
+                                                "maxItems": 5,
+                                                "title": "get_characters_character_id_planets_planet_id_waypoints",
+                                                "type": "array"
+                                            }
+                                        },
+                                        "required": [
+                                            "route_id",
+                                            "source_pin_id",
+                                            "destination_pin_id",
+                                            "content_type_id",
+                                            "quantity"
+                                        ],
+                                        "title": "get_characters_character_id_planets_planet_id_route",
+                                        "type": "object"
+                                    },
+                                    "maxItems": 1000,
+                                    "title": "get_characters_character_id_planets_planet_id_routes",
+                                    "type": "array"
+                                }
+                            },
+                            "required": [
+                                "links",
+                                "pins",
+                                "routes"
+                            ],
+                            "title": "get_characters_character_id_planets_planet_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "404": {
+                        "description": "Colony not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Colony not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "Colony not found",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_characters_character_id_planets_planet_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_planets_planet_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-planets.manage_planets.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get colony layout",
+                "tags": [
+                    "Planetary Interaction"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v3"
+                ],
+                "x-cached-seconds": 600
             }
         },
         "/v3/characters/{character_id}/skills/": {
