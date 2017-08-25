@@ -609,7 +609,7 @@
                 "operationId": "post_characters_affiliation",
                 "parameters": [
                     {
-                        "description": "The character IDs to fetch affiliations for",
+                        "description": "The character IDs to fetch affiliations for. All characters must exist, or none will be returned.",
                         "in": "body",
                         "name": "characters",
                         "required": true,
@@ -706,23 +706,23 @@
                             "type": "array"
                         }
                     },
-                    "422": {
-                        "description": "No valid character IDs found",
+                    "404": {
+                        "description": "No characters found!",
                         "examples": {
                             "application/json": {
-                                "error": "Unprocessable entity message"
+                                "error": "Not found message"
                             }
                         },
                         "schema": {
-                            "description": "Unprocessable entity",
+                            "description": "Not found",
                             "properties": {
                                 "error": {
-                                    "description": "Unprocessable entity message",
-                                    "title": "post_characters_affiliation_422_unprocessable_entity",
+                                    "description": "Not found message",
+                                    "title": "post_characters_affiliation_404_not_found",
                                     "type": "string"
                                 }
                             },
-                            "title": "post_characters_affiliation_unprocessable_entity",
+                            "title": "post_characters_affiliation_not_found",
                             "type": "object"
                         }
                     },
@@ -21041,7 +21041,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "List of id/name associations for a set of ID's. ID's that cannot be resolved are not returned.",
+                        "description": "List of id/name associations for a set of ID's. All ID's must resolve to a name, or nothing will be returned.",
                         "examples": {
                             "application/json": [
                                 {
@@ -21102,7 +21102,7 @@
                         }
                     },
                     "404": {
-                        "description": "no valid IDs found",
+                        "description": "Ensure all IDs are valid before resolving.",
                         "examples": {
                             "application/json": {
                                 "error": "Not found message"
