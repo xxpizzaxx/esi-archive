@@ -7858,7 +7858,7 @@
         },
         "/characters/{character_id}/planets/{planet_id}/": {
             "get": {
-                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.\n\n---\nAlternate route: `/v2/characters/{character_id}/planets/{planet_id}/`\n\n---\nThis route is cached for up to 600 seconds",
+                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.\n\n---\nAlternate route: `/v3/characters/{character_id}/planets/{planet_id}/`\n\nAlternate route: `/dev/characters/{character_id}/planets/{planet_id}/`\n\n---\nThis route is cached for up to 600 seconds",
                 "operationId": "get_characters_character_id_planets_planet_id",
                 "parameters": [
                     {
@@ -7984,6 +7984,35 @@
                                     "items": {
                                         "description": "pin object",
                                         "properties": {
+                                            "contents": {
+                                                "description": "contents array",
+                                                "items": {
+                                                    "description": "content object",
+                                                    "properties": {
+                                                        "amount": {
+                                                            "description": "amount integer",
+                                                            "format": "int64",
+                                                            "title": "get_characters_character_id_planets_planet_id_amount",
+                                                            "type": "integer"
+                                                        },
+                                                        "type_id": {
+                                                            "description": "type_id integer",
+                                                            "format": "int32",
+                                                            "title": "get_characters_character_id_planets_planet_id_type_id",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "type_id",
+                                                        "amount"
+                                                    ],
+                                                    "title": "get_characters_character_id_planets_planet_id_content",
+                                                    "type": "object"
+                                                },
+                                                "maxItems": 90,
+                                                "title": "get_characters_character_id_planets_planet_id_contents",
+                                                "type": "array"
+                                            },
                                             "expiry_time": {
                                                 "description": "expiry_time string",
                                                 "format": "date-time",
@@ -8170,31 +8199,12 @@
                                                 "type": "integer"
                                             },
                                             "waypoints": {
-                                                "description": "waypoints array",
+                                                "description": "list of pin ID waypoints",
                                                 "items": {
-                                                    "description": "waypoint object",
-                                                    "properties": {
-                                                        "order": {
-                                                            "description": "order integer",
-                                                            "format": "int32",
-                                                            "maximum": 5,
-                                                            "minimum": 1,
-                                                            "title": "get_characters_character_id_planets_planet_id_order",
-                                                            "type": "integer"
-                                                        },
-                                                        "pin_id": {
-                                                            "description": "pin_id integer",
-                                                            "format": "int64",
-                                                            "title": "get_characters_character_id_planets_planet_id_pin_id",
-                                                            "type": "integer"
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "pin_id",
-                                                        "order"
-                                                    ],
+                                                    "description": "waypoint integer",
+                                                    "format": "int64",
                                                     "title": "get_characters_character_id_planets_planet_id_waypoint",
-                                                    "type": "object"
+                                                    "type": "integer"
                                                 },
                                                 "maxItems": 5,
                                                 "title": "get_characters_character_id_planets_planet_id_waypoints",
@@ -8280,7 +8290,8 @@
                     "Planetary Interaction"
                 ],
                 "x-alternate-versions": [
-                    "v2"
+                    "dev",
+                    "v3"
                 ],
                 "x-cached-seconds": 600
             }
