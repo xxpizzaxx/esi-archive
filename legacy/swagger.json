@@ -7865,7 +7865,7 @@
         "/characters/{character_id}/planets/{planet_id}/": {
             "get": {
                 "deprecated": true,
-                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.\n\n---\nAlternate route: `/v1/characters/{character_id}/planets/{planet_id}/`\n\n---\nThis route is cached for up to 600 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.\n\n---\nAlternate route: `/v2/characters/{character_id}/planets/{planet_id}/`\n\n---\nThis route is cached for up to 600 seconds\n\n---\nWarning: This route is deprecated.",
                 "operationId": "get_characters_character_id_planets_planet_id",
                 "parameters": [
                     {
@@ -8064,11 +8064,7 @@
                                                     }
                                                 },
                                                 "required": [
-                                                    "heads",
-                                                    "product_type_id",
-                                                    "cycle_time",
-                                                    "head_radius",
-                                                    "qty_per_cycle"
+                                                    "heads"
                                                 ],
                                                 "title": "get_characters_character_id_planets_planet_id_extractor_details",
                                                 "type": "object"
@@ -8163,10 +8159,10 @@
                                                 "type": "integer"
                                             },
                                             "quantity": {
-                                                "description": "quantity integer",
-                                                "format": "int64",
+                                                "description": "quantity number",
+                                                "format": "float",
                                                 "title": "get_characters_character_id_planets_planet_id_quantity",
-                                                "type": "integer"
+                                                "type": "number"
                                             },
                                             "route_id": {
                                                 "description": "route_id integer",
@@ -8291,7 +8287,7 @@
                     "Planetary Interaction"
                 ],
                 "x-alternate-versions": [
-                    "v1"
+                    "v2"
                 ],
                 "x-cached-seconds": 600
             }
