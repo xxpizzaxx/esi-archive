@@ -6846,7 +6846,6 @@
                     "Character"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ],
@@ -12502,7 +12501,7 @@
         },
         "/v1/fw/systems/": {
             "get": {
-                "description": "An overview of the current ownership of faction warfare solar systems\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "An overview of the current ownership of faction warfare solar systems\n\n---\n\nThis route is cached for up to 1800 seconds",
                 "operationId": "get_fw_systems",
                 "parameters": [
                     {
@@ -12622,7 +12621,7 @@
                     "legacy",
                     "v1"
                 ],
-                "x-cached-seconds": 3600
+                "x-cached-seconds": 1800
             }
         },
         "/v1/fw/wars/": {
