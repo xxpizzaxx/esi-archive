@@ -7223,6 +7223,147 @@
                 "x-cached-seconds": 3600
             }
         },
+        "/characters/{character_id}/notifications/contacts/": {
+            "get": {
+                "description": "Return notifications about having been added to someone's contact list\n\n---\nAlternate route: `/v1/characters/{character_id}/notifications/contacts/`\n\nAlternate route: `/legacy/characters/{character_id}/notifications/contacts/`\n\nAlternate route: `/dev/characters/{character_id}/notifications/contacts/`\n\n---\nThis route is cached for up to 600 seconds",
+                "operationId": "get_characters_character_id_notifications_contacts",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of contact notifications",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "message": "hello friend :3",
+                                    "notification_id": 1,
+                                    "send_date": "2017-08-16T10:08:00Z",
+                                    "sender_character_id": 95465499,
+                                    "standing_level": 1.5
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "message": {
+                                        "description": "message string",
+                                        "title": "get_characters_character_id_notifications_contacts_message",
+                                        "type": "string"
+                                    },
+                                    "notification_id": {
+                                        "description": "notification_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_notifications_contacts_notification_id",
+                                        "type": "integer"
+                                    },
+                                    "send_date": {
+                                        "description": "send_date string",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_notifications_contacts_send_date",
+                                        "type": "string"
+                                    },
+                                    "sender_character_id": {
+                                        "description": "sender_character_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_notifications_contacts_sender_character_id",
+                                        "type": "integer"
+                                    },
+                                    "standing_level": {
+                                        "description": "A number representing the standing level the receiver has been added at by the sender. The standing levels are as follows: -10 -> Terrible | -5 -> Bad |  0 -> Neutral |  5 -> Good |  10 -> Excellent",
+                                        "format": "float",
+                                        "title": "get_characters_character_id_notifications_contacts_standing_level",
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "notification_id",
+                                    "send_date",
+                                    "standing_level",
+                                    "message",
+                                    "sender_character_id"
+                                ],
+                                "title": "get_characters_character_id_notifications_contacts_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 50,
+                            "title": "get_characters_character_id_notifications_contacts_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.character_notifications.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get new contact notifications",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 600
+            }
+        },
         "/characters/{character_id}/online/": {
             "get": {
                 "description": "Checks if the character is currently online\n\n---\nAlternate route: `/v1/characters/{character_id}/online/`\n\nAlternate route: `/legacy/characters/{character_id}/online/`\n\n---\nThis route is cached for up to 60 seconds",
@@ -24035,6 +24176,7 @@
                 "esi-bookmarks.read_character_bookmarks.v1": "EVE SSO scope esi-bookmarks.read_character_bookmarks.v1",
                 "esi-calendar.read_calendar_events.v1": "EVE SSO scope esi-calendar.read_calendar_events.v1",
                 "esi-calendar.respond_calendar_events.v1": "EVE SSO scope esi-calendar.respond_calendar_events.v1",
+                "esi-characters.character_notifications.v1": "EVE SSO scope esi-characters.character_notifications.v1",
                 "esi-characters.read_agents_research.v1": "EVE SSO scope esi-characters.read_agents_research.v1",
                 "esi-characters.read_blueprints.v1": "EVE SSO scope esi-characters.read_blueprints.v1",
                 "esi-characters.read_chat_channels.v1": "EVE SSO scope esi-characters.read_chat_channels.v1",
