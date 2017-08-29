@@ -8184,7 +8184,7 @@
                                                         "order": {
                                                             "description": "order integer",
                                                             "format": "int32",
-                                                            "maximum": 6,
+                                                            "maximum": 5,
                                                             "minimum": 1,
                                                             "title": "get_characters_character_id_planets_planet_id_order",
                                                             "type": "integer"
@@ -8408,7 +8408,7 @@
         },
         "/characters/{character_id}/roles/": {
             "get": {
-                "description": "Returns a character's corporation roles\n\n---\nAlternate route: `/v1/characters/{character_id}/roles/`\n\nAlternate route: `/latest/characters/{character_id}/roles/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Returns a character's corporation roles\n\n---\nAlternate route: `/v1/characters/{character_id}/roles/`\n\nAlternate route: `/latest/characters/{character_id}/roles/`\n\nAlternate route: `/dev/characters/{character_id}/roles/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_roles",
                 "parameters": [
                     {
@@ -8550,6 +8550,7 @@
                     "Character"
                 ],
                 "x-alternate-versions": [
+                    "dev",
                     "latest",
                     "v1"
                 ],
@@ -15277,7 +15278,7 @@
         },
         "/fw/systems/": {
             "get": {
-                "description": "An overview of the current ownership of faction warfare solar systems\n\n---\nAlternate route: `/v1/fw/systems/`\n\nAlternate route: `/latest/fw/systems/`\n\nAlternate route: `/dev/fw/systems/`\n\n---\nThis route is cached for up to 1800 seconds",
+                "description": "An overview of the current ownership of faction warfare solar systems\n\n---\nAlternate route: `/v1/fw/systems/`\n\nAlternate route: `/latest/fw/systems/`\n\nAlternate route: `/dev/fw/systems/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_fw_systems",
                 "parameters": [
                     {
@@ -15397,7 +15398,7 @@
                     "latest",
                     "v1"
                 ],
-                "x-cached-seconds": 1800
+                "x-cached-seconds": 3600
             }
         },
         "/fw/wars/": {
