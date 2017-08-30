@@ -10329,7 +10329,7 @@
         },
         "/corporations/{corporation_id}/": {
             "get": {
-                "description": "Public information about a corporation\n\n---\nAlternate route: `/v3/corporations/{corporation_id}/`\n\nAlternate route: `/dev/corporations/{corporation_id}/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Public information about a corporation\n\n---\nAlternate route: `/v3/corporations/{corporation_id}/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id",
                 "parameters": [
                     {
@@ -10500,7 +10500,6 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "v3"
                 ],
                 "x-cached-seconds": 3600
