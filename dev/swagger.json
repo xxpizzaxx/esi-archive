@@ -11084,7 +11084,7 @@
         },
         "/corporations/{corporation_id}/killmails/recent/": {
             "get": {
-                "description": "Get a list of corporation's recent kills and losses\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/killmails/recent/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Get a list of corporation's recent kills and losses\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/killmails/recent/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/killmails/recent/`\n\nAlternate route: `/latest/corporations/{corporation_id}/killmails/recent/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id_killmails_recent",
                 "parameters": [
                     {
@@ -11204,6 +11204,8 @@
                     "Killmails"
                 ],
                 "x-alternate-versions": [
+                    "latest",
+                    "legacy",
                     "v1"
                 ],
                 "x-cached-seconds": 3600
