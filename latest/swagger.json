@@ -10727,6 +10727,135 @@
                 "x-cached-seconds": 3600
             }
         },
+        "/corporations/{corporation_id}/killmails/recent/": {
+            "get": {
+                "description": "Get a list of corporation's recent kills and losses\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/killmails/recent/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/killmails/recent/`\n\nAlternate route: `/dev/corporations/{corporation_id}/killmails/recent/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_corporation_id_killmails_recent",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/corporation_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "Only return killmails with ID smaller than this",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "max_kill_id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of killmail IDs and hashes",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "killmail_hash": "8eef5e8fb6b88fe3407c489df33822b2e3b57a5e",
+                                    "killmail_id": 2
+                                },
+                                {
+                                    "killmail_hash": "b41ccb498ece33d64019f64c0db392aa3aa701fb",
+                                    "killmail_id": 1
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "killmail_hash": {
+                                        "description": "A hash of this killmail",
+                                        "title": "get_corporations_corporation_id_killmails_recent_killmail_hash",
+                                        "type": "string"
+                                    },
+                                    "killmail_id": {
+                                        "description": "ID of this killmail",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_killmails_recent_killmail_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "killmail_id",
+                                    "killmail_hash"
+                                ],
+                                "title": "get_corporations_corporation_id_killmails_recent_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 1000,
+                            "title": "get_corporations_corporation_id_killmails_recent_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-killmails.read_corporation_killmails.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get corporation kills and losses",
+                "tags": [
+                    "Killmails"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
         "/corporations/{corporation_id}/members/": {
             "get": {
                 "description": "Read the current list of members if the calling character is a member.\n\n---\nAlternate route: `/v2/corporations/{corporation_id}/members/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/members/`\n\n---\nThis route is cached for up to 3600 seconds",
@@ -24597,6 +24726,7 @@
                 "esi-fleets.read_fleet.v1": "EVE SSO scope esi-fleets.read_fleet.v1",
                 "esi-fleets.write_fleet.v1": "EVE SSO scope esi-fleets.write_fleet.v1",
                 "esi-industry.read_character_jobs.v1": "EVE SSO scope esi-industry.read_character_jobs.v1",
+                "esi-killmails.read_corporation_killmails.v1": "EVE SSO scope esi-killmails.read_corporation_killmails.v1",
                 "esi-killmails.read_killmails.v1": "EVE SSO scope esi-killmails.read_killmails.v1",
                 "esi-location.read_location.v1": "EVE SSO scope esi-location.read_location.v1",
                 "esi-location.read_online.v1": "EVE SSO scope esi-location.read_online.v1",
