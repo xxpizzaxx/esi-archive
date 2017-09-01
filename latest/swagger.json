@@ -10970,7 +10970,7 @@
         },
         "/corporations/{corporation_id}/membertracking/": {
             "get": {
-                "description": "Read the current list of members if the calling character is a member.\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/membertracking/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/membertracking/`\n\nAlternate route: `/dev/corporations/{corporation_id}/membertracking/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Returns additional information about a corporation's members which helps tracking their activities, requires Director role in-game\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/membertracking/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/membertracking/`\n\nAlternate route: `/dev/corporations/{corporation_id}/membertracking/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id_membertracking",
                 "parameters": [
                     {
@@ -11115,7 +11115,7 @@
                         ]
                     }
                 ],
-                "summary": "Get corporation members",
+                "summary": "Track corporation members",
                 "tags": [
                     "Corporation"
                 ],
