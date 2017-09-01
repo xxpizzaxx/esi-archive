@@ -23645,7 +23645,7 @@
         },
         "/universe/systems/{system_id}/": {
             "get": {
-                "description": "Get information on a solar system\n\n---\nAlternate route: `/v2/universe/systems/{system_id}/`\n\n---\nThis route expires daily at 11:05",
+                "description": "Get information on a solar system\n\n---\nAlternate route: `/v3/universe/systems/{system_id}/`\n\nAlternate route: `/dev/universe/systems/{system_id}/`\n\n---\nThis route expires daily at 11:05",
                 "operationId": "get_universe_systems_system_id",
                 "parameters": [
                     {
@@ -23834,6 +23834,18 @@
                                     "title": "get_universe_systems_system_id_stargates",
                                     "type": "array"
                                 },
+                                "stations": {
+                                    "description": "stations array",
+                                    "items": {
+                                        "description": "station integer",
+                                        "format": "int32",
+                                        "title": "get_universe_systems_system_id_station",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 25,
+                                    "title": "get_universe_systems_system_id_stations",
+                                    "type": "array"
+                                },
                                 "system_id": {
                                     "description": "system_id integer",
                                     "format": "int32",
@@ -23848,8 +23860,7 @@
                                 "position",
                                 "security_status",
                                 "constellation_id",
-                                "planets",
-                                "stargates"
+                                "planets"
                             ],
                             "title": "get_universe_systems_system_id_ok",
                             "type": "object"
@@ -23892,7 +23903,8 @@
                     "Universe"
                 ],
                 "x-alternate-versions": [
-                    "v2"
+                    "dev",
+                    "v3"
                 ]
             }
         },
