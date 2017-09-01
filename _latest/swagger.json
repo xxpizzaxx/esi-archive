@@ -8254,7 +8254,7 @@
         },
         "/v1/corporations/{corporation_id}/membertracking/": {
             "get": {
-                "description": "Returns additional information about a corporation's members which helps tracking their activities, requires Director role in-game\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Returns additional information about a corporation's members which helps tracking their activities\n\n---\n\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id_membertracking",
                 "parameters": [
                     {
@@ -8408,7 +8408,10 @@
                     "legacy",
                     "v1"
                 ],
-                "x-cached-seconds": 3600
+                "x-cached-seconds": 3600,
+                "x-required-roles": [
+                    "Director"
+                ]
             }
         },
         "/v1/corporations/{corporation_id}/roles/": {
