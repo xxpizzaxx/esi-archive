@@ -1580,7 +1580,7 @@
         },
         "/characters/{character_id}/blueprints/": {
             "get": {
-                "description": "Return a list of blueprints the character has\n\n---\nAlternate route: `/v1/characters/{character_id}/blueprints/`\n\nAlternate route: `/legacy/characters/{character_id}/blueprints/`\n\nAlternate route: `/latest/characters/{character_id}/blueprints/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Return a list of blueprints the character owns\n\n---\nAlternate route: `/v2/characters/{character_id}/blueprints/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_blueprints",
                 "parameters": [
                     {
@@ -1588,6 +1588,9 @@
                     },
                     {
                         "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/page"
                     },
                     {
                         "$ref": "#/parameters/token"
@@ -1628,6 +1631,12 @@
                             "Last-Modified": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
                             }
                         },
                         "schema": {
@@ -1636,13 +1645,13 @@
                                 "description": "200 ok object",
                                 "properties": {
                                     "item_id": {
-                                        "description": "Unique ID for this item. The ID of an item is stable if that item is not repackaged, stacked, detached from a stack, assembled, or otherwise altered. If an item is changed in one of these ways, then the ID will also change (see notes below).",
+                                        "description": "Unique ID for this item.",
                                         "format": "int64",
                                         "title": "get_characters_character_id_blueprints_item_id",
                                         "type": "integer"
                                     },
                                     "location_flag": {
-                                        "description": "Indicates something about this item's storage location. The flag is used to differentiate between hangar divisions, drone bay, fitting location, and similar.",
+                                        "description": "Type of the location_id",
                                         "enum": [
                                             "AutoFit",
                                             "Cargo",
@@ -1725,32 +1734,38 @@
                                         "type": "string"
                                     },
                                     "location_id": {
-                                        "description": "References a solar system, station or itemID if this blueprint is located within a container. If an itemID the Character - AssetList API must be queried to find the container using the itemID, from which the correct location of the Blueprint can be derived.",
+                                        "description": "References a solar system, station or item_id if this blueprint is located within a container. If the return value is an item_id, then the Character AssetList API must be queried to find the container using the given item_id to determine the correct location of the Blueprint.",
                                         "format": "int64",
                                         "title": "get_characters_character_id_blueprints_location_id",
                                         "type": "integer"
                                     },
                                     "material_efficiency": {
-                                        "description": "Material Efficiency Level of the blueprint, can be any integer between 0 and 10.",
+                                        "description": "Material Efficiency Level of the blueprint.",
                                         "format": "int32",
+                                        "maximum": 10,
+                                        "minimum": 0,
                                         "title": "get_characters_character_id_blueprints_material_efficiency",
                                         "type": "integer"
                                     },
                                     "quantity": {
-                                        "description": "Typically will be -1 or -2 designating a singleton item, where -1 is an original and -2 is a copy. It can be a positive integer if it is a stack of blueprint originals fresh from the market (no activities performed on them yet).",
+                                        "description": "A range of numbers with a minimum of -2 and no maximum value where -1 is an original and -2 is a copy. It can be a positive integer if it is a stack of blueprint originals fresh from the market (e.g. no activities performed on them yet).",
                                         "format": "int32",
+                                        "minimum": -2,
                                         "title": "get_characters_character_id_blueprints_quantity",
                                         "type": "integer"
                                     },
                                     "runs": {
                                         "description": "Number of runs remaining if the blueprint is a copy, -1 if it is an original.",
                                         "format": "int32",
+                                        "minimum": -1,
                                         "title": "get_characters_character_id_blueprints_runs",
                                         "type": "integer"
                                     },
                                     "time_efficiency": {
-                                        "description": "Time Efficiency Level of the blueprint, can be any even integer between 0 and 20.",
+                                        "description": "Time Efficiency Level of the blueprint.",
                                         "format": "int32",
+                                        "maximum": 10,
+                                        "minimum": 0,
                                         "title": "get_characters_character_id_blueprints_time_efficiency",
                                         "type": "integer"
                                     },
@@ -1774,7 +1789,7 @@
                                 "title": "get_characters_character_id_blueprints_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 10000,
+                            "maxItems": 1000,
                             "title": "get_characters_character_id_blueprints_ok",
                             "type": "array"
                         }
@@ -1814,9 +1829,7 @@
                     "Character"
                 ],
                 "x-alternate-versions": [
-                    "latest",
-                    "legacy",
-                    "v1"
+                    "v2"
                 ],
                 "x-cached-seconds": 3600
             }
@@ -13028,7 +13041,7 @@
                         ]
                     }
                 ],
-                "summary": "Get character wallet journal",
+                "summary": "Get corporation wallet journal",
                 "tags": [
                     "Wallet"
                 ],
@@ -16885,7 +16898,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "A list of prices",
+                        "description": "A list of facilities",
                         "examples": {
                             "application/json": [
                                 {
