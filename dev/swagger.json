@@ -1764,7 +1764,7 @@
                                     "time_efficiency": {
                                         "description": "Time Efficiency Level of the blueprint.",
                                         "format": "int32",
-                                        "maximum": 20,
+                                        "maximum": 10,
                                         "minimum": 0,
                                         "title": "get_characters_character_id_blueprints_time_efficiency",
                                         "type": "integer"
