@@ -16120,6 +16120,18 @@
                                 "description": "The caching mechanism used",
                                 "type": "string"
                             },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
                             "Expires": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
@@ -21228,6 +21240,18 @@
                         "headers": {
                             "Cache-Control": {
                                 "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
                                 "type": "string"
                             },
                             "Expires": {
