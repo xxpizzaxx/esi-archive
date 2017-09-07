@@ -11527,7 +11527,10 @@
                     "legacy",
                     "v1"
                 ],
-                "x-cached-seconds": 3600
+                "x-cached-seconds": 3600,
+                "x-required-roles": [
+                    "Director"
+                ]
             }
         },
         "/corporations/{corporation_id}/members/": {
