@@ -8556,7 +8556,10 @@
                     "legacy",
                     "v1"
                 ],
-                "x-cached-seconds": 3600
+                "x-cached-seconds": 3600,
+                "x-required-roles": [
+                    "Director"
+                ]
             }
         },
         "/v1/corporations/{corporation_id}/members/limit/": {
