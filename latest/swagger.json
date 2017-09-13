@@ -7246,6 +7246,337 @@
                 "x-cached-seconds": 3600
             }
         },
+        "/characters/{character_id}/notifications/": {
+            "get": {
+                "description": "Return character notifications\n\n---\nAlternate route: `/v1/characters/{character_id}/notifications/`\n\nAlternate route: `/legacy/characters/{character_id}/notifications/`\n\nAlternate route: `/dev/characters/{character_id}/notifications/`\n\n---\nThis route is cached for up to 1800 seconds",
+                "operationId": "get_characters_character_id_notifications",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns your recent notifications",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "is_read": true,
+                                    "notification_id": 1,
+                                    "sender_id": 1000132,
+                                    "sender_type": "corporation",
+                                    "text": "amount: 3731016.4000000004\nitemID: 1024881021663\npayout: 1\n",
+                                    "timestamp": "2017-08-16T10:08:00Z",
+                                    "type": "InsurancePayoutMsg"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "is_read": {
+                                        "description": "is_read boolean",
+                                        "title": "get_characters_character_id_notifications_is_read",
+                                        "type": "boolean"
+                                    },
+                                    "notification_id": {
+                                        "description": "notification_id integer",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_notifications_notification_id",
+                                        "type": "integer"
+                                    },
+                                    "sender_id": {
+                                        "description": "sender_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_notifications_sender_id",
+                                        "type": "integer"
+                                    },
+                                    "sender_type": {
+                                        "description": "sender_type string",
+                                        "enum": [
+                                            "character",
+                                            "corporation",
+                                            "alliance",
+                                            "faction"
+                                        ],
+                                        "title": "get_characters_character_id_notifications_sender_type",
+                                        "type": "string"
+                                    },
+                                    "text": {
+                                        "description": "text string",
+                                        "title": "get_characters_character_id_notifications_text",
+                                        "type": "string"
+                                    },
+                                    "timestamp": {
+                                        "description": "timestamp string",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_notifications_timestamp",
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "description": "type string",
+                                        "enum": [
+                                            "AcceptedAlly",
+                                            "AcceptedSurrender",
+                                            "AllAnchoringMsg",
+                                            "AllMaintenanceBillMsg",
+                                            "AllStrucInvulnerableMsg",
+                                            "AllStructVulnerableMsg",
+                                            "AllWarCorpJoinedAllianceMsg",
+                                            "AllWarDeclaredMsg",
+                                            "AllWarInvalidatedMsg",
+                                            "AllWarRetractedMsg",
+                                            "AllWarSurrenderMsg",
+                                            "AllianceCapitalChanged",
+                                            "AllyContractCancelled",
+                                            "AllyJoinedWarAggressorMsg",
+                                            "AllyJoinedWarAllyMsg",
+                                            "AllyJoinedWarDefenderMsg",
+                                            "BattlePunishFriendlyFire",
+                                            "BillOutOfMoneyMsg",
+                                            "BillPaidCorpAllMsg",
+                                            "BountyClaimMsg",
+                                            "BountyESSShared",
+                                            "BountyESSTaken",
+                                            "BountyPlacedAlliance",
+                                            "BountyPlacedChar",
+                                            "BountyPlacedCorp",
+                                            "BountyYourBountyClaimed",
+                                            "BuddyConnectContactAdd",
+                                            "CharAppAcceptMsg",
+                                            "CharAppRejectMsg",
+                                            "CharAppWithdrawMsg",
+                                            "CharLeftCorpMsg",
+                                            "CharMedalMsg",
+                                            "CharTerminationMsg",
+                                            "CloneActivationMsg",
+                                            "CloneActivationMsg2",
+                                            "CloneMovedMsg",
+                                            "CloneRevokedMsg1",
+                                            "CloneRevokedMsg2",
+                                            "ContactAdd",
+                                            "ContactEdit",
+                                            "ContainerPasswordMsg",
+                                            "CorpAllBillMsg",
+                                            "CorpAppAcceptMsg",
+                                            "CorpAppInvitedMsg",
+                                            "CorpAppNewMsg",
+                                            "CorpAppRejectCustomMsg",
+                                            "CorpAppRejectMsg",
+                                            "CorpDividendMsg",
+                                            "CorpFriendlyFireDisableTimerCompleted",
+                                            "CorpFriendlyFireDisableTimerStarted",
+                                            "CorpFriendlyFireEnableTimerCompleted",
+                                            "CorpFriendlyFireEnableTimerStarted",
+                                            "CorpKicked",
+                                            "CorpLiquidationMsg",
+                                            "CorpNewCEOMsg",
+                                            "CorpNewsMsg",
+                                            "CorpOfficeExpirationMsg",
+                                            "CorpStructLostMsg",
+                                            "CorpTaxChangeMsg",
+                                            "CorpVoteCEORevokedMsg",
+                                            "CorpVoteMsg",
+                                            "CorpWarDeclaredMsg",
+                                            "CorpWarFightingLegalMsg",
+                                            "CorpWarInvalidatedMsg",
+                                            "CorpWarRetractedMsg",
+                                            "CorpWarSurrenderMsg",
+                                            "CustomsMsg",
+                                            "DeclareWar",
+                                            "DistrictAttacked",
+                                            "DustAppAcceptedMsg",
+                                            "EntosisCaptureStarted",
+                                            "FWAllianceKickMsg",
+                                            "FWAllianceWarningMsg",
+                                            "FWCharKickMsg",
+                                            "FWCharRankGainMsg",
+                                            "FWCharRankLossMsg",
+                                            "FWCharWarningMsg",
+                                            "FWCorpJoinMsg",
+                                            "FWCorpKickMsg",
+                                            "FWCorpLeaveMsg",
+                                            "FWCorpWarningMsg",
+                                            "FacWarCorpJoinRequestMsg",
+                                            "FacWarCorpJoinWithdrawMsg",
+                                            "FacWarCorpLeaveRequestMsg",
+                                            "FacWarCorpLeaveWithdrawMsg",
+                                            "FacWarLPDisqualifiedEvent",
+                                            "FacWarLPDisqualifiedKill",
+                                            "FacWarLPPayoutEvent",
+                                            "FacWarLPPayoutKill",
+                                            "GameTimeAdded",
+                                            "GameTimeReceived",
+                                            "GameTimeSent",
+                                            "GiftReceived",
+                                            "IHubDestroyedByBillFailure",
+                                            "IncursionCompletedMsg",
+                                            "IndustryTeamAuctionLost",
+                                            "IndustryTeamAuctionWon",
+                                            "InfrastructureHubBillAboutToExpire",
+                                            "InsuranceExpirationMsg",
+                                            "InsuranceFirstShipMsg",
+                                            "InsuranceInvalidatedMsg",
+                                            "InsuranceIssuedMsg",
+                                            "InsurancePayoutMsg",
+                                            "JumpCloneDeletedMsg1",
+                                            "JumpCloneDeletedMsg2",
+                                            "KillReportFinalBlow",
+                                            "KillReportVictim",
+                                            "KillRightAvailable",
+                                            "KillRightAvailableOpen",
+                                            "KillRightEarned",
+                                            "KillRightUnavailable",
+                                            "KillRightUnavailableOpen",
+                                            "KillRightUsed",
+                                            "LocateCharMsg",
+                                            "MadeWarMutual",
+                                            "MercOfferedNegotiationMsg",
+                                            "MissionOfferExpirationMsg",
+                                            "MissionTimeoutMsg",
+                                            "NPCStandingsGained",
+                                            "NPCStandingsLost",
+                                            "OfferedSurrender",
+                                            "OfferedToAlly",
+                                            "OldLscMessages",
+                                            "OperationFinished",
+                                            "OrbitalAttacked",
+                                            "OrbitalReinforced",
+                                            "OwnershipTransferred",
+                                            "ReimbursementMsg",
+                                            "ResearchMissionAvailableMsg",
+                                            "RetractsWar",
+                                            "SeasonalChallengeCompleted",
+                                            "SovAllClaimAquiredMsg",
+                                            "SovAllClaimLostMsg",
+                                            "SovCommandNodeEventStarted",
+                                            "SovCorpBillLateMsg",
+                                            "SovCorpClaimFailMsg",
+                                            "SovDisruptorMsg",
+                                            "SovStationEnteredFreeport",
+                                            "SovStructureDestroyed",
+                                            "SovStructureReinforced",
+                                            "SovStructureSelfDestructCancel",
+                                            "SovStructureSelfDestructFinished",
+                                            "SovStructureSelfDestructRequested",
+                                            "SovereigntyIHDamageMsg",
+                                            "SovereigntySBUDamageMsg",
+                                            "SovereigntyTCUDamageMsg",
+                                            "StationAggressionMsg1",
+                                            "StationAggressionMsg2",
+                                            "StationConquerMsg",
+                                            "StationServiceDisabled",
+                                            "StationServiceEnabled",
+                                            "StationStateChangeMsg",
+                                            "StoryLineMissionAvailableMsg",
+                                            "StructureAnchoring",
+                                            "StructureCourierContractChanged",
+                                            "StructureDestroyed",
+                                            "StructureFuelAlert",
+                                            "StructureItemsDelivered",
+                                            "StructureLostArmor",
+                                            "StructureLostShields",
+                                            "StructureOnline",
+                                            "StructureServicesOffline",
+                                            "StructureUnanchoring",
+                                            "StructureUnderAttack",
+                                            "TowerAlertMsg",
+                                            "TowerResourceAlertMsg",
+                                            "TransactionReversalMsg",
+                                            "TutorialMsg",
+                                            "WarAllyOfferDeclinedMsg",
+                                            "WarSurrenderDeclinedMsg",
+                                            "WarSurrenderOfferMsg"
+                                        ],
+                                        "title": "get_characters_character_id_notifications_type",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "notification_id",
+                                    "type",
+                                    "sender_id",
+                                    "sender_type",
+                                    "timestamp"
+                                ],
+                                "title": "get_characters_character_id_notifications_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 200,
+                            "title": "get_characters_character_id_notifications_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-characters.read_notifications.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get character notifications",
+                "tags": [
+                    "Character"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 1800
+            }
+        },
         "/characters/{character_id}/notifications/contacts/": {
             "get": {
                 "description": "Return notifications about having been added to someone's contact list\n\n---\nAlternate route: `/v1/characters/{character_id}/notifications/contacts/`\n\nAlternate route: `/legacy/characters/{character_id}/notifications/contacts/`\n\nAlternate route: `/dev/characters/{character_id}/notifications/contacts/`\n\n---\nThis route is cached for up to 600 seconds",
