@@ -7530,7 +7530,7 @@
                                 "title": "get_characters_character_id_notifications_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 200,
+                            "maxItems": 500,
                             "title": "get_characters_character_id_notifications_ok",
                             "type": "array"
                         }
