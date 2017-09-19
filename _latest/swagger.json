@@ -1873,7 +1873,7 @@
         },
         "/v1/characters/{character_id}/calendar/": {
             "get": {
-                "description": "Get 50 event summaries from the calendar. If no event ID is given, the resource will return the next 50 chronological event summaries from now. If an event ID is specified, it will return the next 50 chronological event summaries from after that event.\n\n---\n\nThis route is cached for up to 5 seconds",
+                "description": "Get 50 event summaries from the calendar. If no from_event ID is given, the resource will return the next 50 chronological event summaries from now. If a from_event ID is specified, it will return the next 50 chronological event summaries from after that event.\n\n---\n\nThis route is cached for up to 5 seconds",
                 "operationId": "get_characters_character_id_calendar",
                 "parameters": [
                     {
