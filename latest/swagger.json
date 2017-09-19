@@ -2586,6 +2586,137 @@
                 ]
             }
         },
+        "/characters/{character_id}/calendar/{event_id}/attendees/": {
+            "get": {
+                "description": "Get all invited attendees for a given event\n\n---\nAlternate route: `/v1/characters/{character_id}/calendar/{event_id}/attendees/`\n\nAlternate route: `/dev/characters/{character_id}/calendar/{event_id}/attendees/`\n\nAlternate route: `/legacy/characters/{character_id}/calendar/{event_id}/attendees/`\n\n---\nThis route is cached for up to 600 seconds",
+                "operationId": "get_characters_character_id_calendar_event_id_attendees",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "The id of the event requested",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "event_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of attendees",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "character_id": 2112625428,
+                                    "event_response": "accepted"
+                                },
+                                {
+                                    "character_id": 95465499,
+                                    "event_response": "tentative"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "List of attendees for a given event",
+                            "items": {
+                                "description": "character_id and response of an attendee",
+                                "properties": {
+                                    "character_id": {
+                                        "description": "character_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_calendar_event_id_attendees_character_id",
+                                        "type": "integer"
+                                    },
+                                    "event_response": {
+                                        "description": "event_response string",
+                                        "enum": [
+                                            "declined",
+                                            "not_responded",
+                                            "accepted",
+                                            "tentative"
+                                        ],
+                                        "title": "get_characters_character_id_calendar_event_id_attendees_event_response",
+                                        "type": "string"
+                                    }
+                                },
+                                "title": "get_characters_character_id_calendar_event_id_attendees_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 100,
+                            "title": "get_characters_character_id_calendar_event_id_attendees_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-calendar.read_calendar_events.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get attendees",
+                "tags": [
+                    "Calendar"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 600
+            }
+        },
         "/characters/{character_id}/chat_channels/": {
             "get": {
                 "description": "Return chat channels that a character is the owner or an operator of\n\n---\nAlternate route: `/v1/characters/{character_id}/chat_channels/`\n\nAlternate route: `/legacy/characters/{character_id}/chat_channels/`\n\nAlternate route: `/dev/characters/{character_id}/chat_channels/`\n\n---\nThis route is cached for up to 300 seconds",
