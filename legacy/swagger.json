@@ -1392,6 +1392,267 @@
                 "x-cached-seconds": 3600
             }
         },
+        "/characters/{character_id}/assets/locations/": {
+            "post": {
+                "description": "Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/v1/characters/{character_id}/assets/locations/`\n\nAlternate route: `/latest/characters/{character_id}/assets/locations/`\n\nAlternate route: `/dev/characters/{character_id}/assets/locations/`\n",
+                "operationId": "post_characters_character_id_assets_locations",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "A list of item ids",
+                        "in": "body",
+                        "name": "item_ids",
+                        "required": true,
+                        "schema": {
+                            "description": "item_ids array",
+                            "items": {
+                                "description": "item_id integer",
+                                "format": "int64",
+                                "title": "post_characters_character_id_assets_locations_item_id",
+                                "type": "integer"
+                            },
+                            "maxItems": 1000,
+                            "minItems": 1,
+                            "title": "post_characters_character_id_assets_locations_item_ids",
+                            "type": "array",
+                            "uniqueItems": true
+                        }
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of asset locations",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "item_id": 12345,
+                                    "x": 1.2,
+                                    "y": 2.3,
+                                    "z": -3.4
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "item_id": {
+                                        "description": "item_id integer",
+                                        "format": "int64",
+                                        "title": "post_characters_character_id_assets_locations_item_id",
+                                        "type": "integer"
+                                    },
+                                    "x": {
+                                        "description": "x number",
+                                        "format": "double",
+                                        "title": "post_characters_character_id_assets_locations_x",
+                                        "type": "number"
+                                    },
+                                    "y": {
+                                        "description": "y number",
+                                        "format": "double",
+                                        "title": "post_characters_character_id_assets_locations_y",
+                                        "type": "number"
+                                    },
+                                    "z": {
+                                        "description": "z number",
+                                        "format": "double",
+                                        "title": "post_characters_character_id_assets_locations_z",
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "item_id",
+                                    "x",
+                                    "y",
+                                    "z"
+                                ],
+                                "title": "post_characters_character_id_assets_locations_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 1000,
+                            "title": "post_characters_character_id_assets_locations_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-assets.read_assets.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get character asset locations",
+                "tags": [
+                    "Assets"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ]
+            }
+        },
+        "/characters/{character_id}/assets/names/": {
+            "post": {
+                "description": "Return names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships.\n\n---\nAlternate route: `/v1/characters/{character_id}/assets/names/`\n\nAlternate route: `/latest/characters/{character_id}/assets/names/`\n\nAlternate route: `/dev/characters/{character_id}/assets/names/`\n",
+                "operationId": "post_characters_character_id_assets_names",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "A list of item ids",
+                        "in": "body",
+                        "name": "item_ids",
+                        "required": true,
+                        "schema": {
+                            "description": "item_ids array",
+                            "items": {
+                                "description": "item_id integer",
+                                "format": "int64",
+                                "title": "post_characters_character_id_assets_names_item_id",
+                                "type": "integer"
+                            },
+                            "maxItems": 1000,
+                            "minItems": 1,
+                            "title": "post_characters_character_id_assets_names_item_ids",
+                            "type": "array",
+                            "uniqueItems": true
+                        }
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of asset names",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "item_id": 12345,
+                                    "name": "Awesome Name"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "item_id": {
+                                        "description": "item_id integer",
+                                        "format": "int64",
+                                        "title": "post_characters_character_id_assets_names_item_id",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "description": "name string",
+                                        "title": "post_characters_character_id_assets_names_name",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "item_id",
+                                    "name"
+                                ],
+                                "title": "post_characters_character_id_assets_names_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 1000,
+                            "title": "post_characters_character_id_assets_names_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-assets.read_assets.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get character asset names",
+                "tags": [
+                    "Assets"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "latest",
+                    "v1"
+                ]
+            }
+        },
         "/characters/{character_id}/attributes/": {
             "get": {
                 "description": "Return attributes of a character\n\n---\nAlternate route: `/v1/characters/{character_id}/attributes/`\n\nAlternate route: `/latest/characters/{character_id}/attributes/`\n\nAlternate route: `/dev/characters/{character_id}/attributes/`\n\n---\nThis route is cached for up to 3600 seconds",
