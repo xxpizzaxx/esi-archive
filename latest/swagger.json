@@ -520,7 +520,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Urls for icons for the given alliance id and server",
+                        "description": "Icon URLs for the given alliance id and server",
                         "examples": {
                             "application/json": {
                                 "px128x128": "https://imageserver.eveonline.com/Alliance/503818424_128.png",
@@ -1885,7 +1885,7 @@
                                 "description": "200 ok object",
                                 "properties": {
                                     "item_id": {
-                                        "description": "Unique ID for this item. The ID of an item is stable if that item is not repackaged, stacked, detached from a stack, assembled, or otherwise altered. If an item is changed in one of these ways, then the ID will also change (see notes below).",
+                                        "description": "Unique ID for this item. The ID of an item is stable if that item is not repackaged, stacked, detached from a stack, assembled, or otherwise altered. If an item is changed in one of these ways, then the ID will also change.",
                                         "format": "int64",
                                         "title": "get_characters_character_id_blueprints_item_id",
                                         "type": "integer"
@@ -2980,7 +2980,7 @@
         },
         "/characters/{character_id}/chat_channels/": {
             "get": {
-                "description": "Return chat channels that a character is the owner or an operator of\n\n---\nAlternate route: `/v1/characters/{character_id}/chat_channels/`\n\nAlternate route: `/legacy/characters/{character_id}/chat_channels/`\n\nAlternate route: `/dev/characters/{character_id}/chat_channels/`\n\n---\nThis route is cached for up to 300 seconds",
+                "description": "Return chat channels that a character is the owner or operator of\n\n---\nAlternate route: `/v1/characters/{character_id}/chat_channels/`\n\nAlternate route: `/legacy/characters/{character_id}/chat_channels/`\n\nAlternate route: `/dev/characters/{character_id}/chat_channels/`\n\n---\nThis route is cached for up to 300 seconds",
                 "operationId": "get_characters_character_id_chat_channels",
                 "parameters": [
                     {
@@ -3126,7 +3126,7 @@
                                         "type": "string"
                                     },
                                     "has_password": {
-                                        "description": "Whether this is a password protected channel",
+                                        "description": "If this is a password protected channel",
                                         "title": "get_characters_character_id_chat_channels_has_password",
                                         "type": "boolean"
                                     },
@@ -6585,24 +6585,24 @@
                                                 "default": "#ffffff",
                                                 "description": "color string",
                                                 "enum": [
-                                                    "#ffffff",
-                                                    "#ffff01",
-                                                    "#ff6600",
-                                                    "#fe0000",
-                                                    "#9a0000",
-                                                    "#660066",
                                                     "#0000fe",
-                                                    "#0099ff",
-                                                    "#01ffff",
-                                                    "#00ff33",
-                                                    "#349800",
                                                     "#006634",
+                                                    "#0099ff",
+                                                    "#00ff33",
+                                                    "#01ffff",
+                                                    "#349800",
+                                                    "#660066",
                                                     "#666666",
                                                     "#999999",
-                                                    "#e6e6e6",
-                                                    "#ffffcd",
                                                     "#99ffff",
-                                                    "#ccff9a"
+                                                    "#9a0000",
+                                                    "#ccff9a",
+                                                    "#e6e6e6",
+                                                    "#fe0000",
+                                                    "#ff6600",
+                                                    "#ffff01",
+                                                    "#ffffcd",
+                                                    "#ffffff"
                                                 ],
                                                 "title": "get_characters_character_id_mail_labels_color",
                                                 "type": "string"
@@ -6706,26 +6706,26 @@
                             "properties": {
                                 "color": {
                                     "default": "#ffffff",
-                                    "description": "Hexadecimal string representing label color,\nin RGB format\n",
+                                    "description": "Hexadecimal string representing label color, in RGB format",
                                     "enum": [
-                                        "#ffffff",
-                                        "#ffff01",
-                                        "#ff6600",
-                                        "#fe0000",
-                                        "#9a0000",
-                                        "#660066",
                                         "#0000fe",
-                                        "#0099ff",
-                                        "#01ffff",
-                                        "#00ff33",
-                                        "#349800",
                                         "#006634",
+                                        "#0099ff",
+                                        "#00ff33",
+                                        "#01ffff",
+                                        "#349800",
+                                        "#660066",
                                         "#666666",
                                         "#999999",
-                                        "#e6e6e6",
-                                        "#ffffcd",
                                         "#99ffff",
-                                        "#ccff9a"
+                                        "#9a0000",
+                                        "#ccff9a",
+                                        "#e6e6e6",
+                                        "#fe0000",
+                                        "#ff6600",
+                                        "#ffff01",
+                                        "#ffffcd",
+                                        "#ffffff"
                                     ],
                                     "title": "post_characters_character_id_mail_labels_color",
                                     "type": "string"
@@ -6905,7 +6905,7 @@
         },
         "/characters/{character_id}/mail/lists/": {
             "get": {
-                "description": "Return all mailing lists that the character is subscribed to\n\n\n---\nAlternate route: `/v1/characters/{character_id}/mail/lists/`\n\nAlternate route: `/legacy/characters/{character_id}/mail/lists/`\n\nAlternate route: `/dev/characters/{character_id}/mail/lists/`\n\n---\nThis route is cached for up to 120 seconds",
+                "description": "Return all mailing lists that the character is subscribed to\n\n---\nAlternate route: `/v1/characters/{character_id}/mail/lists/`\n\nAlternate route: `/legacy/characters/{character_id}/mail/lists/`\n\nAlternate route: `/dev/characters/{character_id}/mail/lists/`\n\n---\nThis route is cached for up to 120 seconds",
                 "operationId": "get_characters_character_id_mail_lists",
                 "parameters": [
                     {
@@ -7669,7 +7669,7 @@
                                     "notification_id": 1,
                                     "sender_id": 1000132,
                                     "sender_type": "corporation",
-                                    "text": "amount: 3731016.4000000004\nitemID: 1024881021663\npayout: 1\n",
+                                    "text": "amount: 3731016.4000000004\\nitemID: 1024881021663\\npayout: 1\\n",
                                     "timestamp": "2017-08-16T10:08:00Z",
                                     "type": "InsurancePayoutMsg"
                                 }
@@ -16352,7 +16352,7 @@
                 "x-cached-seconds": 5
             },
             "post": {
-                "description": "Invite a character into the fleet, if a character has a CSPA charge set, it is not possible to invite them to the fleet using ESI\n\n---\nAlternate route: `/v1/fleets/{fleet_id}/members/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/members/`\n\nAlternate route: `/dev/fleets/{fleet_id}/members/`\n",
+                "description": "Invite a character into the fleet. If a character has a CSPA charge set it is not possible to invite them to the fleet using ESI\n\n---\nAlternate route: `/v1/fleets/{fleet_id}/members/`\n\nAlternate route: `/legacy/fleets/{fleet_id}/members/`\n\nAlternate route: `/dev/fleets/{fleet_id}/members/`\n",
                 "operationId": "post_fleets_fleet_id_members",
                 "parameters": [
                     {
@@ -16381,7 +16381,7 @@
                                     "type": "integer"
                                 },
                                 "role": {
-                                    "description": "- If a character is invited with the `fleet_commander` role, neither `wing_id` or `squad_id` should be specified - If a character is invited with the `wing_commander` role, only `wing_id` should be specified - If a character is invited with the `squad_commander` role, both `wing_id` and `squad_id` should be specified - If a character is invited with the `squad_member` role, `wing_id` and `squad_id` should either both be specified or not specified at all. If they aren\u2019t specified, the invited character will join any squad with available positions\n",
+                                    "description": "If a character is invited with the `fleet_commander` role, neither `wing_id` or `squad_id` should be specified. If a character is invited with the `wing_commander` role, only `wing_id` should be specified. If a character is invited with the `squad_commander` role, both `wing_id` and `squad_id` should be specified. If a character is invited with the `squad_member` role, `wing_id` and `squad_id` should either both be specified or not specified at all. If they aren\u2019t specified, the invited character will join any squad with available positions.",
                                     "enum": [
                                         "fleet_commander",
                                         "wing_commander",
@@ -16639,7 +16639,7 @@
                             "description": "movement object",
                             "properties": {
                                 "role": {
-                                    "description": "- If a character is moved to the `fleet_commander` role, neither `wing_id` or `squad_id` should be specified - If a character is moved to the `wing_commander` role, only `wing_id` should be specified - If a character is moved to the `squad_commander` role, both `wing_id` and `squad_id` should be specified - If a character is moved to the `squad_member` role, both `wing_id` and `squad_id` should be specified\n",
+                                    "description": "If a character is moved to the `fleet_commander` role, neither `wing_id` or `squad_id` should be specified. If a character is moved to the `wing_commander` role, only `wing_id` should be specified. If a character is moved to the `squad_commander` role, both `wing_id` and `squad_id` should be specified. If a character is moved to the `squad_member` role, both `wing_id` and `squad_id` should be specified.",
                                     "enum": [
                                         "fleet_commander",
                                         "wing_commander",
