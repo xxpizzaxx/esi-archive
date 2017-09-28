@@ -38,7 +38,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.5.6"
+        "version": "0.6.0"
     },
     "parameters": {
         "X-User-Agent": {
@@ -1074,7 +1074,7 @@
                             "application/json": [
                                 {
                                     "agent_id": 3009358,
-                                    "points_per_day": 53.5346162146776,
+                                    "points_per_day": 53.5346162147,
                                     "remainder_points": 53604.0634303189,
                                     "skill_type_id": 11450,
                                     "started_at": "2017-03-23T14:47:00Z"
@@ -2338,7 +2338,7 @@
         },
         "/characters/{character_id}/bookmarks/folders/": {
             "get": {
-                "description": "List your character's personal bookmark folders\n\n---\nAlternate route: `/v1/characters/{character_id}/bookmarks/folders/`\n\nAlternate route: `/legacy/characters/{character_id}/bookmarks/folders/`\n\nAlternate route: `/latest/characters/{character_id}/bookmarks/folders/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "A list of your character's personal bookmark folders\n\n---\nAlternate route: `/v2/characters/{character_id}/bookmarks/folders/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_bookmarks_folders",
                 "parameters": [
                     {
@@ -2346,6 +2346,9 @@
                     },
                     {
                         "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/page"
                     },
                     {
                         "$ref": "#/parameters/token"
@@ -2364,8 +2367,7 @@
                             "application/json": [
                                 {
                                     "folder_id": 5,
-                                    "name": "Icecream",
-                                    "owner_id": 90000001
+                                    "name": "Icecream"
                                 }
                             ]
                         },
@@ -2381,6 +2383,12 @@
                             "Last-Modified": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
                             }
                         },
                         "schema": {
@@ -2398,18 +2406,16 @@
                                         "description": "name string",
                                         "title": "get_characters_character_id_bookmarks_folders_name",
                                         "type": "string"
-                                    },
-                                    "owner_id": {
-                                        "description": "owner_id integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_bookmarks_folders_owner_id",
-                                        "type": "integer"
                                     }
                                 },
+                                "required": [
+                                    "folder_id",
+                                    "name"
+                                ],
                                 "title": "get_characters_character_id_bookmarks_folders_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 10000,
+                            "maxItems": 1000,
                             "title": "get_characters_character_id_bookmarks_folders_ok",
                             "type": "array"
                         }
@@ -2449,9 +2455,7 @@
                     "Bookmarks"
                 ],
                 "x-alternate-versions": [
-                    "latest",
-                    "legacy",
-                    "v1"
+                    "v2"
                 ],
                 "x-cached-seconds": 3600
             }
@@ -8500,18 +8504,18 @@
                                     "range": {
                                         "description": "Valid order range, numbers are ranges in jumps",
                                         "enum": [
-                                            "station",
+                                            "1",
+                                            "10",
+                                            "2",
+                                            "20",
+                                            "3",
+                                            "30",
+                                            "4",
+                                            "40",
+                                            "5",
                                             "region",
                                             "solarsystem",
-                                            "1",
-                                            "2",
-                                            "3",
-                                            "4",
-                                            "5",
-                                            "10",
-                                            "20",
-                                            "30",
-                                            "40"
+                                            "station"
                                         ],
                                         "title": "get_characters_character_id_orders_range",
                                         "type": "string"
@@ -8525,12 +8529,12 @@
                                     "state": {
                                         "description": "Current order state",
                                         "enum": [
-                                            "open",
+                                            "cancelled",
+                                            "character_deleted",
                                             "closed",
                                             "expired",
-                                            "cancelled",
-                                            "pending",
-                                            "character_deleted"
+                                            "open",
+                                            "pending"
                                         ],
                                         "title": "get_characters_character_id_orders_state",
                                         "type": "string"
@@ -8845,15 +8849,15 @@
                                 "pins": [
                                     {
                                         "is_running": true,
-                                        "latitude": 1.55087844973,
-                                        "longitude": 0.717145933308,
+                                        "latitude": 1.5508784497,
+                                        "longitude": 0.7171459333,
                                         "pin_id": 1000000017021,
                                         "type_id": 2254
                                     },
                                     {
                                         "is_running": true,
-                                        "latitude": 1.53360639935,
-                                        "longitude": 0.709775584394,
+                                        "latitude": 1.5336063994,
+                                        "longitude": 0.7097755844,
                                         "pin_id": 1000000017022,
                                         "type_id": 2256
                                     }
@@ -19589,7 +19593,7 @@
                                     "cost_indices": [
                                         {
                                             "activity": "invention",
-                                            "cost_index": 0.00480411064973412
+                                            "cost_index": 0.0048041106
                                         }
                                     ],
                                     "solar_system_id": 30011392
@@ -25659,7 +25663,7 @@
                         "examples": {
                             "application/json": {
                                 "age": 9398686722,
-                                "luminosity": 0.06615000218153,
+                                "luminosity": 0.0661500022,
                                 "name": "BKG-Q2 - Star",
                                 "radius": 346600000,
                                 "solar_system_id": 30004333,
@@ -26699,7 +26703,7 @@
                                     "z": -56482824383339900
                                 },
                                 "security_class": "B",
-                                "security_status": 0.8462923765182495,
+                                "security_status": 0.8462923765,
                                 "star_id": 40000040,
                                 "stargates": [
                                     50000342
