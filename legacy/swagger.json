@@ -7722,7 +7722,8 @@
                                             "character",
                                             "corporation",
                                             "alliance",
-                                            "faction"
+                                            "faction",
+                                            "other"
                                         ],
                                         "title": "get_characters_character_id_notifications_sender_type",
                                         "type": "string"
