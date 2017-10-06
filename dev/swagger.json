@@ -1850,7 +1850,7 @@
         },
         "/characters/{character_id}/blueprints/": {
             "get": {
-                "description": "Return a list of blueprints the character owns\n\n---\nAlternate route: `/v2/characters/{character_id}/blueprints/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Return a list of blueprints the character owns\n\n---\nAlternate route: `/v2/characters/{character_id}/blueprints/`\n\nAlternate route: `/latest/characters/{character_id}/blueprints/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_blueprints",
                 "parameters": [
                     {
@@ -2099,6 +2099,7 @@
                     "Character"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v2"
                 ],
                 "x-cached-seconds": 3600
@@ -10565,7 +10566,7 @@
         },
         "/characters/{character_id}/wallet/journal/": {
             "get": {
-                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/v2/characters/{character_id}/wallet/journal/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/v2/characters/{character_id}/wallet/journal/`\n\nAlternate route: `/latest/characters/{character_id}/wallet/journal/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_wallet_journal",
                 "parameters": [
                     {
@@ -10944,6 +10945,7 @@
                     "Wallet"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v2"
                 ],
                 "x-cached-seconds": 3600
@@ -26875,7 +26877,7 @@
         },
         "/universe/types/{type_id}/": {
             "get": {
-                "description": "Get information on a type\n\n---\nAlternate route: `/v3/universe/types/{type_id}/`\n\n---\nThis route expires daily at 11:05",
+                "description": "Get information on a type\n\n---\nAlternate route: `/v3/universe/types/{type_id}/`\n\nAlternate route: `/latest/universe/types/{type_id}/`\n\n---\nThis route expires daily at 11:05",
                 "operationId": "get_universe_types_type_id",
                 "parameters": [
                     {
@@ -27127,6 +27129,7 @@
                     "Universe"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v3"
                 ]
             }
