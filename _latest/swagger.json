@@ -1,5 +1,4 @@
 {
-    "basePath": "/",
     "definitions": {
         "forbidden": {
             "description": "Forbidden model",
