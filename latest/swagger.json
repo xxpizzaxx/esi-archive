@@ -10938,7 +10938,7 @@
                                         "description": "Amount paid per unit",
                                         "format": "float",
                                         "title": "get_characters_character_id_wallet_transactions_unit_price",
-                                        "type": "number"
+                                        "type": "integer"
                                     }
                                 },
                                 "required": [
@@ -15306,7 +15306,7 @@
                                         "description": "Amount paid per unit",
                                         "format": "float",
                                         "title": "get_corporations_corporation_id_wallets_division_transactions_unit_price",
-                                        "type": "number"
+                                        "type": "integer"
                                     }
                                 },
                                 "required": [
