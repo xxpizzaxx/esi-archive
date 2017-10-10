@@ -2086,7 +2086,7 @@
         },
         "/characters/{character_id}/bookmarks/": {
             "get": {
-                "description": "List your character's personal bookmarks\n\n---\nAlternate route: `/v1/characters/{character_id}/bookmarks/`\n\nAlternate route: `/legacy/characters/{character_id}/bookmarks/`\n\nAlternate route: `/dev/characters/{character_id}/bookmarks/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "List your character's personal bookmarks\n\n---\nAlternate route: `/v1/characters/{character_id}/bookmarks/`\n\nAlternate route: `/legacy/characters/{character_id}/bookmarks/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_bookmarks",
                 "parameters": [
                     {
@@ -2309,7 +2309,6 @@
                     "Bookmarks"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ],
@@ -12059,6 +12058,373 @@
                 "x-required-roles": [
                     "Director"
                 ]
+            }
+        },
+        "/corporations/{corporation_id}/bookmarks/": {
+            "get": {
+                "description": "A list of your corporation's bookmarks\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/bookmarks/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/bookmarks/`\n\nAlternate route: `/dev/corporations/{corporation_id}/bookmarks/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_corporation_id_bookmarks",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/corporation_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/page"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of corporation owned bookmarks",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "bookmark_id": 4,
+                                    "created": "2016-08-09T11:57:47Z",
+                                    "creator_id": 2112625428,
+                                    "folder_id": 5,
+                                    "item": {
+                                        "item_id": 50006722,
+                                        "type_id": 29633
+                                    },
+                                    "label": "Stargate",
+                                    "location_id": 30003430,
+                                    "notes": "This is a stargate"
+                                },
+                                {
+                                    "bookmark_id": 5,
+                                    "coordinates": {
+                                        "x": -2958928814000,
+                                        "y": -338367275823,
+                                        "z": 2114538075090
+                                    },
+                                    "created": "2016-08-09T11:57:47Z",
+                                    "creator_id": 2112625428,
+                                    "folder_id": 5,
+                                    "label": "Random location",
+                                    "location_id": 30003430,
+                                    "notes": "This is a random location in space"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "bookmark_id": {
+                                        "description": "bookmark_id integer",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_bookmarks_bookmark_id",
+                                        "type": "integer"
+                                    },
+                                    "coordinates": {
+                                        "description": "Optional object that is returned if a bookmark was made on a planet or a random location in space.",
+                                        "properties": {
+                                            "x": {
+                                                "description": "x number",
+                                                "format": "double",
+                                                "title": "get_corporations_corporation_id_bookmarks_x",
+                                                "type": "number"
+                                            },
+                                            "y": {
+                                                "description": "y number",
+                                                "format": "double",
+                                                "title": "get_corporations_corporation_id_bookmarks_y",
+                                                "type": "number"
+                                            },
+                                            "z": {
+                                                "description": "z number",
+                                                "format": "double",
+                                                "title": "get_corporations_corporation_id_bookmarks_z",
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "x",
+                                            "y",
+                                            "z"
+                                        ],
+                                        "title": "get_corporations_corporation_id_bookmarks_coordinates",
+                                        "type": "object"
+                                    },
+                                    "created": {
+                                        "description": "created string",
+                                        "format": "date-time",
+                                        "title": "get_corporations_corporation_id_bookmarks_created",
+                                        "type": "string"
+                                    },
+                                    "creator_id": {
+                                        "description": "creator_id integer",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_bookmarks_creator_id",
+                                        "type": "integer"
+                                    },
+                                    "folder_id": {
+                                        "description": "folder_id integer",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_bookmarks_folder_id",
+                                        "type": "integer"
+                                    },
+                                    "item": {
+                                        "description": "Optional object that is returned if a bookmark was made on a particular item.",
+                                        "properties": {
+                                            "item_id": {
+                                                "description": "item_id integer",
+                                                "format": "int64",
+                                                "title": "get_corporations_corporation_id_bookmarks_item_id",
+                                                "type": "integer"
+                                            },
+                                            "type_id": {
+                                                "description": "type_id integer",
+                                                "format": "int32",
+                                                "title": "get_corporations_corporation_id_bookmarks_type_id",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "item_id",
+                                            "type_id"
+                                        ],
+                                        "title": "get_corporations_corporation_id_bookmarks_item",
+                                        "type": "object"
+                                    },
+                                    "label": {
+                                        "description": "label string",
+                                        "title": "get_corporations_corporation_id_bookmarks_label",
+                                        "type": "string"
+                                    },
+                                    "location_id": {
+                                        "description": "location_id integer",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_bookmarks_location_id",
+                                        "type": "integer"
+                                    },
+                                    "notes": {
+                                        "description": "notes string",
+                                        "title": "get_corporations_corporation_id_bookmarks_notes",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "bookmark_id",
+                                    "creator_id",
+                                    "created",
+                                    "label",
+                                    "notes",
+                                    "location_id"
+                                ],
+                                "title": "get_corporations_corporation_id_bookmarks_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 1000,
+                            "title": "get_corporations_corporation_id_bookmarks_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-bookmarks.read_corporation_bookmarks.v1"
+                        ]
+                    }
+                ],
+                "summary": "List corporation bookmarks",
+                "tags": [
+                    "Bookmarks"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/corporations/{corporation_id}/bookmarks/folders/": {
+            "get": {
+                "description": "A list of your corporation's bookmark folders\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/bookmarks/folders/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/bookmarks/folders/`\n\nAlternate route: `/dev/corporations/{corporation_id}/bookmarks/folders/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_corporation_id_bookmarks_folders",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/corporation_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/page"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of corporation owned bookmark folders",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "folder_id": 5,
+                                    "name": "Important Locations"
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "creator_id": {
+                                        "description": "creator_id integer",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_bookmarks_folders_creator_id",
+                                        "type": "integer"
+                                    },
+                                    "folder_id": {
+                                        "description": "folder_id integer",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_bookmarks_folders_folder_id",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "description": "name string",
+                                        "title": "get_corporations_corporation_id_bookmarks_folders_name",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "folder_id",
+                                    "name"
+                                ],
+                                "title": "get_corporations_corporation_id_bookmarks_folders_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 1000,
+                            "title": "get_corporations_corporation_id_bookmarks_folders_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-bookmarks.read_corporation_bookmarks.v1"
+                        ]
+                    }
+                ],
+                "summary": "List corporation bookmark folders",
+                "tags": [
+                    "Bookmarks"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/corporations/{corporation_id}/contacts/": {
@@ -27503,6 +27869,7 @@
                 "esi-assets.read_assets.v1": "EVE SSO scope esi-assets.read_assets.v1",
                 "esi-assets.read_corporation_assets.v1": "EVE SSO scope esi-assets.read_corporation_assets.v1",
                 "esi-bookmarks.read_character_bookmarks.v1": "EVE SSO scope esi-bookmarks.read_character_bookmarks.v1",
+                "esi-bookmarks.read_corporation_bookmarks.v1": "EVE SSO scope esi-bookmarks.read_corporation_bookmarks.v1",
                 "esi-calendar.read_calendar_events.v1": "EVE SSO scope esi-calendar.read_calendar_events.v1",
                 "esi-calendar.respond_calendar_events.v1": "EVE SSO scope esi-calendar.respond_calendar_events.v1",
                 "esi-characters.read_agents_research.v1": "EVE SSO scope esi-characters.read_agents_research.v1",
