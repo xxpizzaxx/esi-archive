@@ -6241,7 +6241,7 @@
         },
         "/v1/characters/{character_id}/notifications/": {
             "get": {
-                "description": "Return character notifications\n\n---\n\nThis route is cached for up to 1800 seconds",
+                "description": "Return character notifications\n\n---\n\nThis route is cached for up to 600 seconds",
                 "operationId": "get_characters_character_id_notifications",
                 "parameters": [
                     {
@@ -6456,6 +6456,10 @@
                                             "MercOfferedNegotiationMsg",
                                             "MissionOfferExpirationMsg",
                                             "MissionTimeoutMsg",
+                                            "MoonminingAutomaticFracture",
+                                            "MoonminingExtractionCancelled",
+                                            "MoonminingExtractionFinished",
+                                            "MoonminingLaserFired",
                                             "NPCStandingsGained",
                                             "NPCStandingsLost",
                                             "OfferedSurrender",
@@ -6508,7 +6512,8 @@
                                             "TutorialMsg",
                                             "WarAllyOfferDeclinedMsg",
                                             "WarSurrenderDeclinedMsg",
-                                            "WarSurrenderOfferMsg"
+                                            "WarSurrenderOfferMsg",
+                                            "notificationTypeMoonminingExtractionStarted"
                                         ],
                                         "title": "get_characters_character_id_notifications_type",
                                         "type": "string"
@@ -6568,7 +6573,7 @@
                     "legacy",
                     "v1"
                 ],
-                "x-cached-seconds": 1800
+                "x-cached-seconds": 600
             }
         },
         "/v1/characters/{character_id}/notifications/contacts/": {
@@ -23013,6 +23018,12 @@
                             "Last-Modified": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
                             }
                         },
                         "schema": {
