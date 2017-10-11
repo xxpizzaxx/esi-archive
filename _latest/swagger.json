@@ -6456,6 +6456,10 @@
                                             "MercOfferedNegotiationMsg",
                                             "MissionOfferExpirationMsg",
                                             "MissionTimeoutMsg",
+                                            "MoonminingAutomaticFracture",
+                                            "MoonminingExtractionCancelled",
+                                            "MoonminingExtractionFinished",
+                                            "MoonminingLaserFired",
                                             "NPCStandingsGained",
                                             "NPCStandingsLost",
                                             "OfferedSurrender",
@@ -6508,7 +6512,8 @@
                                             "TutorialMsg",
                                             "WarAllyOfferDeclinedMsg",
                                             "WarSurrenderDeclinedMsg",
-                                            "WarSurrenderOfferMsg"
+                                            "WarSurrenderOfferMsg",
+                                            "notificationTypeMoonminingExtractionStarted"
                                         ],
                                         "title": "get_characters_character_id_notifications_type",
                                         "type": "string"
@@ -23013,6 +23018,12 @@
                             "Last-Modified": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
                             }
                         },
                         "schema": {
