@@ -7644,7 +7644,7 @@
         },
         "/characters/{character_id}/notifications/": {
             "get": {
-                "description": "Return character notifications\n\n---\nAlternate route: `/v1/characters/{character_id}/notifications/`\n\nAlternate route: `/latest/characters/{character_id}/notifications/`\n\nAlternate route: `/dev/characters/{character_id}/notifications/`\n\n---\nThis route is cached for up to 1800 seconds",
+                "description": "Return character notifications\n\n---\nAlternate route: `/v1/characters/{character_id}/notifications/`\n\nAlternate route: `/latest/characters/{character_id}/notifications/`\n\nAlternate route: `/dev/characters/{character_id}/notifications/`\n\n---\nThis route is cached for up to 600 seconds",
                 "operationId": "get_characters_character_id_notifications",
                 "parameters": [
                     {
@@ -7976,7 +7976,7 @@
                     "latest",
                     "v1"
                 ],
-                "x-cached-seconds": 1800
+                "x-cached-seconds": 600
             }
         },
         "/characters/{character_id}/notifications/contacts/": {
