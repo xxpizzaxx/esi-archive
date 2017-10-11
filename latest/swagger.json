@@ -7868,6 +7868,10 @@
                                             "MercOfferedNegotiationMsg",
                                             "MissionOfferExpirationMsg",
                                             "MissionTimeoutMsg",
+                                            "MoonminingAutomaticFracture",
+                                            "MoonminingExtractionCancelled",
+                                            "MoonminingExtractionFinished",
+                                            "MoonminingLaserFired",
                                             "NPCStandingsGained",
                                             "NPCStandingsLost",
                                             "OfferedSurrender",
@@ -7920,7 +7924,8 @@
                                             "TutorialMsg",
                                             "WarAllyOfferDeclinedMsg",
                                             "WarSurrenderDeclinedMsg",
-                                            "WarSurrenderOfferMsg"
+                                            "WarSurrenderOfferMsg",
+                                            "notificationTypeMoonminingExtractionStarted"
                                         ],
                                         "title": "get_characters_character_id_notifications_type",
                                         "type": "string"
