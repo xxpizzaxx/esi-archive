@@ -3650,6 +3650,12 @@
                             "Last-Modified": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
                             }
                         },
                         "schema": {
@@ -5418,6 +5424,157 @@
                     "legacy",
                     "v1"
                 ]
+            }
+        },
+        "/characters/{character_id}/fleet/": {
+            "get": {
+                "description": "Return the fleet ID the character is in, if any.\n\n---\nAlternate route: `/v1/characters/{character_id}/fleet/`\n\nAlternate route: `/legacy/characters/{character_id}/fleet/`\n\nAlternate route: `/latest/characters/{character_id}/fleet/`\n\n---\nThis route is cached for up to 60 seconds",
+                "operationId": "get_characters_character_id_fleet",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about the character's fleet",
+                        "examples": {
+                            "application/json": {
+                                "fleet_id": 1234567890,
+                                "role": "fleet_commander",
+                                "squad_id": -1,
+                                "wing_id": -1
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "fleet_id": {
+                                    "description": "The character's current fleet ID",
+                                    "format": "int64",
+                                    "title": "get_characters_character_id_fleet_fleet_id",
+                                    "type": "integer"
+                                },
+                                "role": {
+                                    "description": "Member\u2019s role in fleet",
+                                    "enum": [
+                                        "fleet_commander",
+                                        "squad_commander",
+                                        "squad_member",
+                                        "wing_commander"
+                                    ],
+                                    "title": "get_characters_character_id_fleet_role",
+                                    "type": "string"
+                                },
+                                "squad_id": {
+                                    "description": "ID of the squad the member is in. If not applicable, will be set to -1",
+                                    "format": "int64",
+                                    "title": "get_characters_character_id_fleet_squad_id",
+                                    "type": "integer"
+                                },
+                                "wing_id": {
+                                    "description": "ID of the wing the member is in. If not applicable, will be set to -1",
+                                    "format": "int64",
+                                    "title": "get_characters_character_id_fleet_wing_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "fleet_id",
+                                "wing_id",
+                                "squad_id",
+                                "role"
+                            ],
+                            "title": "get_characters_character_id_fleet_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "404": {
+                        "description": "The character is not in a fleet",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_characters_character_id_fleet_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_characters_character_id_fleet_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-fleets.read_fleet.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get character fleet info",
+                "tags": [
+                    "Fleets"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 60
             }
         },
         "/characters/{character_id}/implants/": {
@@ -13014,6 +13171,12 @@
                             "Last-Modified": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
                             }
                         },
                         "schema": {
@@ -22910,6 +23073,12 @@
                             "Last-Modified": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
                             }
                         },
                         "schema": {
@@ -26410,6 +26579,12 @@
                             "Last-Modified": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
                             }
                         },
                         "schema": {
@@ -29046,6 +29221,12 @@
                             "Last-Modified": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
                             }
                         },
                         "schema": {
