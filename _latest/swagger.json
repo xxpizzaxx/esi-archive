@@ -9748,6 +9748,359 @@
                 "x-required-roles": []
             }
         },
+        "/v1/corporations/{corporation_id}/containers/logs/": {
+            "get": {
+                "description": "Returns logs recorded in the past seven days from all audit log secure containers (ALSC) owned by a given corporation\n\n---\n\nThis route is cached for up to 600 seconds",
+                "operationId": "get_corporations_corporation_id_containers_logs",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/corporation_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/page"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of corporation ALSC logs",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "action": "set_password",
+                                    "character_id": 2112625428,
+                                    "container_id": 1000000012279,
+                                    "container_type_id": 17365,
+                                    "location_flag": "CorpSAG1",
+                                    "location_id": 1000000012278,
+                                    "logged_at": "2017-10-10T14:00:00Z",
+                                    "password_type": "general"
+                                },
+                                {
+                                    "action": "lock",
+                                    "character_id": 2112625428,
+                                    "container_id": 1000000012279,
+                                    "container_type_id": 17365,
+                                    "location_flag": "CorpSAG1",
+                                    "location_id": 1000000012278,
+                                    "logged_at": "2017-10-11T12:04:33",
+                                    "quantity": 30,
+                                    "type_id": 1230
+                                },
+                                {
+                                    "action": "configure",
+                                    "character_id": 2112625428,
+                                    "container_id": 1000000012279,
+                                    "container_type_id": 17365,
+                                    "location_flag": "CorpSAG2",
+                                    "location_id": 1000000012278,
+                                    "logged_at": "2017-10-11T12:06:29Z",
+                                    "new_config_bitmask": 31,
+                                    "old_config_bitmask": 23
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "action": {
+                                        "description": "action string",
+                                        "enum": [
+                                            "add",
+                                            "assemble",
+                                            "configure",
+                                            "enter_password",
+                                            "lock",
+                                            "move",
+                                            "repackage",
+                                            "set_name",
+                                            "set_password",
+                                            "unlock"
+                                        ],
+                                        "title": "get_corporations_corporation_id_containers_logs_action",
+                                        "type": "string"
+                                    },
+                                    "character_id": {
+                                        "description": "ID of the character who performed the action.",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_containers_logs_character_id",
+                                        "type": "integer"
+                                    },
+                                    "container_id": {
+                                        "description": "ID of the container",
+                                        "format": "int64",
+                                        "title": "get_corporations_corporation_id_containers_logs_container_id",
+                                        "type": "integer"
+                                    },
+                                    "container_type_id": {
+                                        "description": "Type ID of the container",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_containers_logs_container_type_id",
+                                        "type": "integer"
+                                    },
+                                    "location_flag": {
+                                        "description": "location_flag string",
+                                        "enum": [
+                                            "AssetSafety",
+                                            "AutoFit",
+                                            "Bonus",
+                                            "Booster",
+                                            "BoosterBay",
+                                            "Capsule",
+                                            "Cargo",
+                                            "CorpDeliveries",
+                                            "CorpSAG1",
+                                            "CorpSAG2",
+                                            "CorpSAG3",
+                                            "CorpSAG4",
+                                            "CorpSAG5",
+                                            "CorpSAG6",
+                                            "CorpSAG7",
+                                            "CrateLoot",
+                                            "Deliveries",
+                                            "DroneBay",
+                                            "DustBattle",
+                                            "DustDatabank",
+                                            "FighterBay",
+                                            "FighterTube0",
+                                            "FighterTube1",
+                                            "FighterTube2",
+                                            "FighterTube3",
+                                            "FighterTube4",
+                                            "FleetHangar",
+                                            "Hangar",
+                                            "HangarAll",
+                                            "HiSlot0",
+                                            "HiSlot1",
+                                            "HiSlot2",
+                                            "HiSlot3",
+                                            "HiSlot4",
+                                            "HiSlot5",
+                                            "HiSlot6",
+                                            "HiSlot7",
+                                            "HiddenModifers",
+                                            "Implant",
+                                            "Impounded",
+                                            "JunkyardReprocessed",
+                                            "JunkyardTrashed",
+                                            "LoSlot0",
+                                            "LoSlot1",
+                                            "LoSlot2",
+                                            "LoSlot3",
+                                            "LoSlot4",
+                                            "LoSlot5",
+                                            "LoSlot6",
+                                            "LoSlot7",
+                                            "Locked",
+                                            "MedSlot0",
+                                            "MedSlot1",
+                                            "MedSlot2",
+                                            "MedSlot3",
+                                            "MedSlot4",
+                                            "MedSlot5",
+                                            "MedSlot6",
+                                            "MedSlot7",
+                                            "OfficeFolder",
+                                            "Pilot",
+                                            "PlanetSurface",
+                                            "QuafeBay",
+                                            "Reward",
+                                            "RigSlot0",
+                                            "RigSlot1",
+                                            "RigSlot2",
+                                            "RigSlot3",
+                                            "RigSlot4",
+                                            "RigSlot5",
+                                            "RigSlot6",
+                                            "RigSlot7",
+                                            "SecondaryStorage",
+                                            "ServiceSlot0",
+                                            "ServiceSlot1",
+                                            "ServiceSlot2",
+                                            "ServiceSlot3",
+                                            "ServiceSlot4",
+                                            "ServiceSlot5",
+                                            "ServiceSlot6",
+                                            "ServiceSlot7",
+                                            "ShipHangar",
+                                            "ShipOffline",
+                                            "Skill",
+                                            "SkillInTraining",
+                                            "SpecializedAmmoHold",
+                                            "SpecializedCommandCenterHold",
+                                            "SpecializedFuelBay",
+                                            "SpecializedGasHold",
+                                            "SpecializedIndustrialShipHold",
+                                            "SpecializedLargeShipHold",
+                                            "SpecializedMaterialBay",
+                                            "SpecializedMediumShipHold",
+                                            "SpecializedMineralHold",
+                                            "SpecializedOreHold",
+                                            "SpecializedPlanetaryCommoditiesHold",
+                                            "SpecializedSalvageHold",
+                                            "SpecializedShipHold",
+                                            "SpecializedSmallShipHold",
+                                            "StructureActive",
+                                            "StructureFuel",
+                                            "StructureInactive",
+                                            "StructureOffline",
+                                            "SubSystemSlot0",
+                                            "SubSystemSlot1",
+                                            "SubSystemSlot2",
+                                            "SubSystemSlot3",
+                                            "SubSystemSlot4",
+                                            "SubSystemSlot5",
+                                            "SubSystemSlot6",
+                                            "SubSystemSlot7",
+                                            "SubsystemBay",
+                                            "Unlocked",
+                                            "Wallet",
+                                            "Wardrobe"
+                                        ],
+                                        "title": "get_corporations_corporation_id_containers_logs_location_flag",
+                                        "type": "string"
+                                    },
+                                    "location_id": {
+                                        "description": "location_id integer",
+                                        "format": "int64",
+                                        "title": "get_corporations_corporation_id_containers_logs_location_id",
+                                        "type": "integer"
+                                    },
+                                    "logged_at": {
+                                        "description": "Timestamp when this log was created",
+                                        "format": "date-time",
+                                        "title": "get_corporations_corporation_id_containers_logs_logged_at",
+                                        "type": "string"
+                                    },
+                                    "new_config_bitmask": {
+                                        "description": "new_config_bitmask integer",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_containers_logs_new_config_bitmask",
+                                        "type": "integer"
+                                    },
+                                    "old_config_bitmask": {
+                                        "description": "old_config_bitmask integer",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_containers_logs_old_config_bitmask",
+                                        "type": "integer"
+                                    },
+                                    "password_type": {
+                                        "description": "Type of password set if action is of type SetPassword or EnterPassword",
+                                        "enum": [
+                                            "config",
+                                            "general"
+                                        ],
+                                        "title": "get_corporations_corporation_id_containers_logs_password_type",
+                                        "type": "string"
+                                    },
+                                    "quantity": {
+                                        "description": "Quantity of the item being acted upon",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_containers_logs_quantity",
+                                        "type": "integer"
+                                    },
+                                    "type_id": {
+                                        "description": "Type ID of the item being acted upon",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_containers_logs_type_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "logged_at",
+                                    "container_id",
+                                    "container_type_id",
+                                    "character_id",
+                                    "location_id",
+                                    "action",
+                                    "location_flag"
+                                ],
+                                "title": "get_corporations_corporation_id_containers_logs_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 1000,
+                            "title": "get_corporations_corporation_id_containers_logs_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-corporations.read_container_logs.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get all corporation ALSC logs",
+                "tags": [
+                    "Corporation"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 600,
+                "x-required-roles": [
+                    "Director"
+                ]
+            }
+        },
         "/v1/corporations/{corporation_id}/contracts/": {
             "get": {
                 "description": "Returns contracts available to a coporation, only if the corporation is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is \"in_progress\".\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -29795,6 +30148,7 @@
                 "esi-contracts.read_corporation_contracts.v1": "EVE SSO scope esi-contracts.read_corporation_contracts.v1",
                 "esi-corporations.read_blueprints.v1": "EVE SSO scope esi-corporations.read_blueprints.v1",
                 "esi-corporations.read_contacts.v1": "EVE SSO scope esi-corporations.read_contacts.v1",
+                "esi-corporations.read_container_logs.v1": "EVE SSO scope esi-corporations.read_container_logs.v1",
                 "esi-corporations.read_corporation_membership.v1": "EVE SSO scope esi-corporations.read_corporation_membership.v1",
                 "esi-corporations.read_divisions.v1": "EVE SSO scope esi-corporations.read_divisions.v1",
                 "esi-corporations.read_standings.v1": "EVE SSO scope esi-corporations.read_standings.v1",
