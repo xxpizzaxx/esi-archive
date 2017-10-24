@@ -18946,14 +18946,15 @@
                                                 "activity": {
                                                     "description": "activity string",
                                                     "enum": [
-                                                        "none",
-                                                        "manufacturing",
-                                                        "researching_technology",
-                                                        "researching_time_efficiency",
-                                                        "researching_material_efficiency",
                                                         "copying",
                                                         "duplicating",
                                                         "invention",
+                                                        "manufacturing",
+                                                        "none",
+                                                        "reaction",
+                                                        "researching_material_efficiency",
+                                                        "researching_technology",
+                                                        "researching_time_efficiency",
                                                         "reverse_engineering"
                                                     ],
                                                     "title": "get_industry_systems_activity",
