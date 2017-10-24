@@ -7945,10 +7945,7 @@
                     "latest",
                     "v1"
                 ],
-                "x-cached-seconds": 600,
-                "x-required-roles": [
-                    "Accountant"
-                ]
+                "x-cached-seconds": 600
             }
         },
         "/characters/{character_id}/notifications/": {
