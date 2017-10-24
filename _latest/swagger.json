@@ -6542,7 +6542,10 @@
                     "legacy",
                     "v1"
                 ],
-                "x-cached-seconds": 600
+                "x-cached-seconds": 600,
+                "x-required-roles": [
+                    "Accountant"
+                ]
             }
         },
         "/v1/characters/{character_id}/notifications/": {
