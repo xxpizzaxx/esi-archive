@@ -38,7 +38,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.6.2"
+        "version": "0.7.0"
     },
     "parameters": {
         "X-User-Agent": {
@@ -419,6 +419,152 @@
                     "v2"
                 ],
                 "x-cached-seconds": 3600
+            }
+        },
+        "/alliances/{alliance_id}/contacts/": {
+            "get": {
+                "description": "Return contacts of an alliance\n\n---\nAlternate route: `/v1/alliances/{alliance_id}/contacts/`\n\nAlternate route: `/legacy/alliances/{alliance_id}/contacts/`\n\nAlternate route: `/dev/alliances/{alliance_id}/contacts/`\n\n---\nThis route is cached for up to 300 seconds",
+                "operationId": "get_alliances_alliance_id_contacts",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/alliance_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/page"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of contacts",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "contact_id": 2112625428,
+                                    "contact_type": "character",
+                                    "standing": 10.0
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "contact_id": {
+                                        "description": "contact_id integer",
+                                        "format": "int32",
+                                        "title": "get_alliances_alliance_id_contacts_contact_id",
+                                        "type": "integer"
+                                    },
+                                    "contact_type": {
+                                        "description": "contact_type string",
+                                        "enum": [
+                                            "character",
+                                            "corporation",
+                                            "alliance",
+                                            "faction"
+                                        ],
+                                        "title": "get_alliances_alliance_id_contacts_contact_type",
+                                        "type": "string"
+                                    },
+                                    "label_id": {
+                                        "description": "Custom label of the contact",
+                                        "format": "int64",
+                                        "title": "get_alliances_alliance_id_contacts_label_id",
+                                        "type": "integer"
+                                    },
+                                    "standing": {
+                                        "description": "Standing of the contact",
+                                        "format": "float",
+                                        "title": "get_alliances_alliance_id_contacts_standing",
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "standing",
+                                    "contact_type",
+                                    "contact_id"
+                                ],
+                                "title": "get_alliances_alliance_id_contacts_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 1000,
+                            "title": "get_alliances_alliance_id_contacts_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-alliances.read_contacts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get alliance contacts",
+                "tags": [
+                    "Contacts"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 300
             }
         },
         "/alliances/{alliance_id}/corporations/": {
@@ -17982,7 +18128,11 @@
                     "legacy",
                     "v1"
                 ],
-                "x-cached-seconds": 300
+                "x-cached-seconds": 300,
+                "x-required-roles": [
+                    "Accountant",
+                    "Junior_Accountant"
+                ]
             }
         },
         "/corporations/{corporation_id}/wallets/{division}/journal/": {
@@ -18380,7 +18530,11 @@
                     "legacy",
                     "v1"
                 ],
-                "x-cached-seconds": 3600
+                "x-cached-seconds": 3600,
+                "x-required-roles": [
+                    "Accountant",
+                    "Junior_Accountant"
+                ]
             }
         },
         "/corporations/{corporation_id}/wallets/{division}/transactions/": {
@@ -18571,7 +18725,11 @@
                     "legacy",
                     "v1"
                 ],
-                "x-cached-seconds": 3600
+                "x-cached-seconds": 3600,
+                "x-required-roles": [
+                    "Accountant",
+                    "Junior_Accountant"
+                ]
             }
         },
         "/dogma/attributes/": {
@@ -30729,6 +30887,7 @@
             "authorizationUrl": "https://login.eveonline.com/oauth/authorize",
             "flow": "implicit",
             "scopes": {
+                "esi-alliances.read_contacts.v1": "EVE SSO scope esi-alliances.read_contacts.v1",
                 "esi-assets.read_assets.v1": "EVE SSO scope esi-assets.read_assets.v1",
                 "esi-assets.read_corporation_assets.v1": "EVE SSO scope esi-assets.read_corporation_assets.v1",
                 "esi-bookmarks.read_character_bookmarks.v1": "EVE SSO scope esi-bookmarks.read_character_bookmarks.v1",
