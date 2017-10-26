@@ -29383,8 +29383,8 @@
                         "description": "List of public structure IDs",
                         "examples": {
                             "application/json": [
-                                1000000017013,
-                                1000000025062
+                                1020988381992,
+                                1020988381991
                             ]
                         },
                         "headers": {
