@@ -24021,7 +24021,7 @@
                                     "duration": 90,
                                     "is_buy_order": false,
                                     "issued": "2016-09-03T05:12:25Z",
-                                    "location_id": 60005599,
+                                    "location_id": 1020988381992,
                                     "min_volume": 1,
                                     "order_id": 4623824223,
                                     "price": 9.9,
@@ -29383,8 +29383,8 @@
                         "description": "List of public structure IDs",
                         "examples": {
                             "application/json": [
-                                1000000017013,
-                                1000000025062
+                                1020988381992,
+                                1020988381991
                             ]
                         },
                         "headers": {
