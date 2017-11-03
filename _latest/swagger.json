@@ -17198,7 +17198,6 @@
                     "Wallet"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ],
@@ -29806,7 +29805,6 @@
                     "Wallet"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "v2"
                 ],
                 "x-cached-seconds": 3600
