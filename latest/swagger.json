@@ -11206,7 +11206,7 @@
         },
         "/characters/{character_id}/wallet/journal/": {
             "get": {
-                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/v2/characters/{character_id}/wallet/journal/`\n\nAlternate route: `/dev/characters/{character_id}/wallet/journal/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/v2/characters/{character_id}/wallet/journal/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_wallet_journal",
                 "parameters": [
                     {
@@ -11585,7 +11585,6 @@
                     "Wallet"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "v2"
                 ],
                 "x-cached-seconds": 3600
@@ -20188,7 +20187,7 @@
         },
         "/corporations/{corporation_id}/wallets/{division}/journal/": {
             "get": {
-                "description": "Retrieve corporation wallet journal\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/wallets/{division}/journal/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/wallets/{division}/journal/`\n\nAlternate route: `/dev/corporations/{corporation_id}/wallets/{division}/journal/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Retrieve corporation wallet journal\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/wallets/{division}/journal/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/wallets/{division}/journal/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id_wallets_division_journal",
                 "parameters": [
                     {
@@ -20577,7 +20576,6 @@
                     "Wallet"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ],
