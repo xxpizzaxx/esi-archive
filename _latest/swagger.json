@@ -37,7 +37,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.7.0"
+        "version": "0.7.1"
     },
     "parameters": {
         "X-User-Agent": {
