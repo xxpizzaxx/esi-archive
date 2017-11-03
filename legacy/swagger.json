@@ -19880,7 +19880,7 @@
         },
         "/corporations/{corporation_id}/wallets/{division}/journal/": {
             "get": {
-                "description": "Retrieve corporation wallet journal\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/wallets/{division}/journal/`\n\nAlternate route: `/latest/corporations/{corporation_id}/wallets/{division}/journal/`\n\nAlternate route: `/dev/corporations/{corporation_id}/wallets/{division}/journal/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Retrieve corporation wallet journal\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/wallets/{division}/journal/`\n\nAlternate route: `/latest/corporations/{corporation_id}/wallets/{division}/journal/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id_wallets_division_journal",
                 "parameters": [
                     {
@@ -20269,7 +20269,6 @@
                     "Wallet"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "latest",
                     "v1"
                 ],
