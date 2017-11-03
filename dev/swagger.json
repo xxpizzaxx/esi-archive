@@ -29324,7 +29324,7 @@
         },
         "/universe/factions/": {
             "get": {
-                "description": "Get a list of factions\n\n---\nAlternate route: `/v1/universe/factions/`\n\nAlternate route: `/legacy/universe/factions/`\n\nAlternate route: `/latest/universe/factions/`\n\n---\nThis route expires daily at 11:05",
+                "description": "Get a list of factions\n\n---\nAlternate route: `/v2/universe/factions/`\n\n---\nThis route expires daily at 11:05",
                 "operationId": "get_universe_factions",
                 "parameters": [
                     {
@@ -29451,8 +29451,6 @@
                                     "faction_id",
                                     "name",
                                     "description",
-                                    "solar_system_id",
-                                    "corporation_id",
                                     "size_factor",
                                     "station_count",
                                     "station_system_count",
@@ -29483,9 +29481,7 @@
                     "Universe"
                 ],
                 "x-alternate-versions": [
-                    "latest",
-                    "legacy",
-                    "v1"
+                    "v2"
                 ]
             }
         },
