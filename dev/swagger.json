@@ -29314,7 +29314,7 @@
         },
         "/universe/factions/": {
             "get": {
-                "description": "Get a list of factions\n\n---\nAlternate route: `/v2/universe/factions/`\n\n---\nThis route expires daily at 11:05",
+                "description": "Get a list of factions\n\n---\nAlternate route: `/latest/universe/factions/`\n\nAlternate route: `/v2/universe/factions/`\n\n---\nThis route expires daily at 11:05",
                 "operationId": "get_universe_factions",
                 "parameters": [
                     {
@@ -29471,6 +29471,7 @@
                     "Universe"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v2"
                 ]
             }
