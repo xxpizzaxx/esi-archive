@@ -2238,7 +2238,7 @@
         },
         "/characters/{character_id}/bookmarks/": {
             "get": {
-                "description": "A list of your character's personal bookmarks\n\n---\nAlternate route: `/dev/characters/{character_id}/bookmarks/`\n\nAlternate route: `/v2/characters/{character_id}/bookmarks/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "List your character's personal bookmarks\n\n---\nAlternate route: `/legacy/characters/{character_id}/bookmarks/`\n\nAlternate route: `/v1/characters/{character_id}/bookmarks/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_bookmarks",
                 "parameters": [
                     {
@@ -2246,9 +2246,6 @@
                     },
                     {
                         "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "$ref": "#/parameters/page"
                     },
                     {
                         "$ref": "#/parameters/token"
@@ -2266,31 +2263,20 @@
                         "examples": {
                             "application/json": [
                                 {
-                                    "bookmark_id": 4,
-                                    "created": "2016-08-09T11:57:47Z",
-                                    "creator_id": 2112625428,
+                                    "bookmark_id": 32,
+                                    "create_date": "2016-08-09T11:57:47Z",
+                                    "creator_id": 90000001,
                                     "folder_id": 5,
-                                    "item": {
-                                        "item_id": 50006722,
-                                        "type_id": 29633
-                                    },
-                                    "label": "Stargate",
-                                    "location_id": 30003430,
-                                    "notes": "This is a stargate"
-                                },
-                                {
-                                    "bookmark_id": 5,
-                                    "coordinates": {
-                                        "x": -2958928814000,
-                                        "y": -338367275823,
-                                        "z": 2114538075090
-                                    },
-                                    "created": "2016-08-09T11:57:47Z",
-                                    "creator_id": 2112625428,
-                                    "folder_id": 5,
-                                    "label": "Random location",
-                                    "location_id": 30003430,
-                                    "notes": "This is a random location in space"
+                                    "memo": "aoeu ( Citadel )",
+                                    "note": "",
+                                    "owner_id": 90000001,
+                                    "target": {
+                                        "item": {
+                                            "item_id": 1000000012668,
+                                            "type_id": 35832
+                                        },
+                                        "location_id": 30000005
+                                    }
                                 }
                             ]
                         },
@@ -2306,12 +2292,6 @@
                             "Last-Modified": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
-                            },
-                            "X-Pages": {
-                                "default": 1,
-                                "description": "Maximum page number",
-                                "format": "int32",
-                                "type": "integer"
                             }
                         },
                         "schema": {
@@ -2321,44 +2301,14 @@
                                 "properties": {
                                     "bookmark_id": {
                                         "description": "bookmark_id integer",
-                                        "format": "int32",
+                                        "format": "int64",
                                         "title": "get_characters_character_id_bookmarks_bookmark_id",
                                         "type": "integer"
                                     },
-                                    "coordinates": {
-                                        "description": "Optional object that is returned if a bookmark was made on a planet or a random location in space.",
-                                        "properties": {
-                                            "x": {
-                                                "description": "x number",
-                                                "format": "double",
-                                                "title": "get_characters_character_id_bookmarks_x",
-                                                "type": "number"
-                                            },
-                                            "y": {
-                                                "description": "y number",
-                                                "format": "double",
-                                                "title": "get_characters_character_id_bookmarks_y",
-                                                "type": "number"
-                                            },
-                                            "z": {
-                                                "description": "z number",
-                                                "format": "double",
-                                                "title": "get_characters_character_id_bookmarks_z",
-                                                "type": "number"
-                                            }
-                                        },
-                                        "required": [
-                                            "x",
-                                            "y",
-                                            "z"
-                                        ],
-                                        "title": "get_characters_character_id_bookmarks_coordinates",
-                                        "type": "object"
-                                    },
-                                    "created": {
-                                        "description": "created string",
+                                    "create_date": {
+                                        "description": "create_date string",
                                         "format": "date-time",
-                                        "title": "get_characters_character_id_bookmarks_created",
+                                        "title": "get_characters_character_id_bookmarks_create_date",
                                         "type": "string"
                                     },
                                     "creator_id": {
@@ -2373,58 +2323,105 @@
                                         "title": "get_characters_character_id_bookmarks_folder_id",
                                         "type": "integer"
                                     },
-                                    "item": {
-                                        "description": "Optional object that is returned if a bookmark was made on a particular item.",
+                                    "memo": {
+                                        "description": "memo string",
+                                        "title": "get_characters_character_id_bookmarks_memo",
+                                        "type": "string"
+                                    },
+                                    "note": {
+                                        "description": "note string",
+                                        "title": "get_characters_character_id_bookmarks_note",
+                                        "type": "string"
+                                    },
+                                    "owner_id": {
+                                        "description": "owner_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_bookmarks_owner_id",
+                                        "type": "integer"
+                                    },
+                                    "target": {
+                                        "description": "target object",
                                         "properties": {
-                                            "item_id": {
-                                                "description": "item_id integer",
-                                                "format": "int64",
-                                                "title": "get_characters_character_id_bookmarks_item_id",
-                                                "type": "integer"
+                                            "coordinates": {
+                                                "description": "coordinates object",
+                                                "properties": {
+                                                    "x": {
+                                                        "description": "x number",
+                                                        "format": "double",
+                                                        "title": "get_characters_character_id_bookmarks_x",
+                                                        "type": "number"
+                                                    },
+                                                    "y": {
+                                                        "description": "y number",
+                                                        "format": "double",
+                                                        "title": "get_characters_character_id_bookmarks_y",
+                                                        "type": "number"
+                                                    },
+                                                    "z": {
+                                                        "description": "z number",
+                                                        "format": "double",
+                                                        "title": "get_characters_character_id_bookmarks_z",
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "x",
+                                                    "y",
+                                                    "z"
+                                                ],
+                                                "title": "get_characters_character_id_bookmarks_coordinates",
+                                                "type": "object"
                                             },
-                                            "type_id": {
-                                                "description": "type_id integer",
-                                                "format": "int32",
-                                                "title": "get_characters_character_id_bookmarks_type_id",
+                                            "item": {
+                                                "description": "item object",
+                                                "properties": {
+                                                    "item_id": {
+                                                        "description": "item_id integer",
+                                                        "format": "int64",
+                                                        "title": "get_characters_character_id_bookmarks_item_id",
+                                                        "type": "integer"
+                                                    },
+                                                    "type_id": {
+                                                        "description": "type_id integer",
+                                                        "format": "int32",
+                                                        "title": "get_characters_character_id_bookmarks_type_id",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "item_id",
+                                                    "type_id"
+                                                ],
+                                                "title": "get_characters_character_id_bookmarks_item",
+                                                "type": "object"
+                                            },
+                                            "location_id": {
+                                                "description": "location_id integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_bookmarks_location_id",
                                                 "type": "integer"
                                             }
                                         },
                                         "required": [
-                                            "item_id",
-                                            "type_id"
+                                            "location_id"
                                         ],
-                                        "title": "get_characters_character_id_bookmarks_item",
+                                        "title": "get_characters_character_id_bookmarks_target",
                                         "type": "object"
-                                    },
-                                    "label": {
-                                        "description": "label string",
-                                        "title": "get_characters_character_id_bookmarks_label",
-                                        "type": "string"
-                                    },
-                                    "location_id": {
-                                        "description": "location_id integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_bookmarks_location_id",
-                                        "type": "integer"
-                                    },
-                                    "notes": {
-                                        "description": "notes string",
-                                        "title": "get_characters_character_id_bookmarks_notes",
-                                        "type": "string"
                                     }
                                 },
                                 "required": [
                                     "bookmark_id",
-                                    "created",
-                                    "label",
-                                    "notes",
-                                    "location_id",
-                                    "creator_id"
+                                    "creator_id",
+                                    "owner_id",
+                                    "create_date",
+                                    "memo",
+                                    "note",
+                                    "target"
                                 ],
                                 "title": "get_characters_character_id_bookmarks_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 1000,
+                            "maxItems": 13000,
                             "title": "get_characters_character_id_bookmarks_ok",
                             "type": "array"
                         }
@@ -2464,15 +2461,15 @@
                     "Bookmarks"
                 ],
                 "x-alternate-versions": [
-                    "dev",
-                    "v2"
+                    "legacy",
+                    "v1"
                 ],
                 "x-cached-seconds": 3600
             }
         },
         "/characters/{character_id}/bookmarks/folders/": {
             "get": {
-                "description": "A list of your character's personal bookmark folders\n\n---\nAlternate route: `/dev/characters/{character_id}/bookmarks/folders/`\n\nAlternate route: `/v2/characters/{character_id}/bookmarks/folders/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "List your character's personal bookmark folders\n\n---\nAlternate route: `/legacy/characters/{character_id}/bookmarks/folders/`\n\nAlternate route: `/v1/characters/{character_id}/bookmarks/folders/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_bookmarks_folders",
                 "parameters": [
                     {
@@ -2480,9 +2477,6 @@
                     },
                     {
                         "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "$ref": "#/parameters/page"
                     },
                     {
                         "$ref": "#/parameters/token"
@@ -2501,7 +2495,8 @@
                             "application/json": [
                                 {
                                     "folder_id": 5,
-                                    "name": "Icecream"
+                                    "name": "Icecream",
+                                    "owner_id": 90000001
                                 }
                             ]
                         },
@@ -2517,12 +2512,6 @@
                             "Last-Modified": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
-                            },
-                            "X-Pages": {
-                                "default": 1,
-                                "description": "Maximum page number",
-                                "format": "int32",
-                                "type": "integer"
                             }
                         },
                         "schema": {
@@ -2540,16 +2529,18 @@
                                         "description": "name string",
                                         "title": "get_characters_character_id_bookmarks_folders_name",
                                         "type": "string"
+                                    },
+                                    "owner_id": {
+                                        "description": "owner_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_bookmarks_folders_owner_id",
+                                        "type": "integer"
                                     }
                                 },
-                                "required": [
-                                    "folder_id",
-                                    "name"
-                                ],
                                 "title": "get_characters_character_id_bookmarks_folders_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 1000,
+                            "maxItems": 10000,
                             "title": "get_characters_character_id_bookmarks_folders_ok",
                             "type": "array"
                         }
@@ -2589,8 +2580,8 @@
                     "Bookmarks"
                 ],
                 "x-alternate-versions": [
-                    "dev",
-                    "v2"
+                    "legacy",
+                    "v1"
                 ],
                 "x-cached-seconds": 3600
             }
