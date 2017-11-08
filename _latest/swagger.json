@@ -37,7 +37,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.7.1"
+        "version": "0.7.2"
     },
     "parameters": {
         "X-User-Agent": {
@@ -4777,12 +4777,6 @@
                     "dev",
                     "legacy",
                     "v1"
-                ],
-                "x-cached-seconds": [
-                    "status",
-                    "start_time",
-                    86400,
-                    39900
                 ]
             }
         },
@@ -5082,10 +5076,10 @@
                                         "description": "status string",
                                         "enum": [
                                             "active",
+                                            "cancelled",
+                                            "delivered",
                                             "paused",
                                             "ready",
-                                            "delivered",
-                                            "cancelled",
                                             "reverted"
                                         ],
                                         "title": "get_characters_character_id_industry_jobs_status",
@@ -12448,12 +12442,6 @@
                     "legacy",
                     "v1"
                 ],
-                "x-cached-seconds": [
-                    "status",
-                    "start_time",
-                    86400,
-                    39900
-                ],
                 "x-required-roles": []
             }
         },
@@ -12772,10 +12760,10 @@
                                         "description": "status string",
                                         "enum": [
                                             "active",
+                                            "cancelled",
+                                            "delivered",
                                             "paused",
                                             "ready",
-                                            "delivered",
-                                            "cancelled",
                                             "reverted"
                                         ],
                                         "title": "get_corporations_corporation_id_industry_jobs_status",
