@@ -2195,8 +2195,7 @@
         },
         "/characters/{character_id}/bookmarks/": {
             "get": {
-                "deprecated": true,
-                "description": "List your character's personal bookmarks\n\n---\nAlternate route: `/v1/characters/{character_id}/bookmarks/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "List your character's personal bookmarks\n\n---\nAlternate route: `/latest/characters/{character_id}/bookmarks/`\n\nAlternate route: `/v1/characters/{character_id}/bookmarks/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_bookmarks",
                 "parameters": [
                     {
@@ -2419,6 +2418,7 @@
                     "Bookmarks"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v1"
                 ],
                 "x-cached-seconds": 3600
@@ -2426,8 +2426,7 @@
         },
         "/characters/{character_id}/bookmarks/folders/": {
             "get": {
-                "deprecated": true,
-                "description": "List your character's personal bookmark folders\n\n---\nAlternate route: `/v1/characters/{character_id}/bookmarks/folders/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "List your character's personal bookmark folders\n\n---\nAlternate route: `/latest/characters/{character_id}/bookmarks/folders/`\n\nAlternate route: `/v1/characters/{character_id}/bookmarks/folders/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_bookmarks_folders",
                 "parameters": [
                     {
@@ -2538,6 +2537,7 @@
                     "Bookmarks"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v1"
                 ],
                 "x-cached-seconds": 3600
