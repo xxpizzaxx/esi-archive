@@ -11,8 +11,15 @@ function archive {
   if [ $NEWDATE -gt $LASTDATE ];
   then
     echo "new content found for $1"
-    git add swagger.json headers.txt
-    git commit --author "ESI Archiver <archive@pizza.moe>" -m "new $1 swagger definition at `grep "Last-Modified:" headers.txt | sed 's/^Last-Modified: //g'`"
+    git status --porcelain | grep "swagger.json"
+    NEWSWAGGER=$?
+    if [ $NEWSWAGGER -eq 0 ]; then
+      git add swagger.json headers.txt
+      git commit --author "ESI Archiver <archive@pizza.moe>" -m "new $1 swagger definition at `grep "Last-Modified:" headers.txt | sed 's/^Last-Modified: //g'`"
+    else
+      echo "only the headers changed"
+      git checkout -- headers.txt
+    fi
   else
     echo "no new content found for $1"
     git checkout -- headers.txt swagger.json
@@ -25,4 +32,4 @@ archive _latest
 archive dev
 archive legacy
 
-git push
+#git push
