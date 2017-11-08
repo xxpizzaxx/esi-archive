@@ -15,7 +15,7 @@ function archive {
     NEWSWAGGER=$?
     if [ $NEWSWAGGER -eq 0 ]; then
       git add swagger.json headers.txt
-      git commit --author "ESI Archiver <archive@pizza.moe>" -m "new $1 swagger definition at `grep "Last-Modified:" headers.txt | sed 's/^Last-Modified: //g'`"
+      git commit --author "ESI Archiver <archive@pizza.moe>" -m "$1 at `grep "Last-Modified:" headers.txt | sed 's/^Last-Modified: //g'`"
     else
       echo "only the headers changed"
       git checkout -- headers.txt
@@ -32,4 +32,4 @@ archive _latest
 archive dev
 archive legacy
 
-#git push
+git push
