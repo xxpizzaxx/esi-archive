@@ -1342,7 +1342,7 @@
         },
         "/characters/{character_id}/assets/": {
             "get": {
-                "description": "Return a list of the characters assets\n\n---\nAlternate route: `/latest/characters/{character_id}/assets/`\n\nAlternate route: `/legacy/characters/{character_id}/assets/`\n\nAlternate route: `/v1/characters/{character_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Return a list of the characters assets\n\n---\nAlternate route: `/v2/characters/{character_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_assets",
                 "parameters": [
                     {
@@ -1460,7 +1460,6 @@
                                             "MedSlot5",
                                             "MedSlot6",
                                             "MedSlot7",
-                                            "Module",
                                             "QuafeBay",
                                             "RigSlot0",
                                             "RigSlot1",
@@ -1471,6 +1470,7 @@
                                             "RigSlot6",
                                             "RigSlot7",
                                             "ShipHangar",
+                                            "Skill",
                                             "SpecializedAmmoHold",
                                             "SpecializedCommandCenterHold",
                                             "SpecializedFuelBay",
@@ -1580,9 +1580,7 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "latest",
-                    "legacy",
-                    "v1"
+                    "v2"
                 ],
                 "x-cached-seconds": 3600
             }
@@ -11630,7 +11628,8 @@
                                             "character",
                                             "corporation",
                                             "alliance",
-                                            "faction"
+                                            "faction",
+                                            "system"
                                         ],
                                         "title": "get_characters_character_id_wallet_journal_first_party_type",
                                         "type": "string"
@@ -11647,120 +11646,125 @@
                                         "type": "integer"
                                     },
                                     "ref_type": {
-                                        "description": "Transaction type, different type of transaction will populate different fields in `extra_info`",
+                                        "description": "Transaction type, different type of transaction will populate different fields in `extra_info` Note: If you have an existing XML API application that is using ref_types, you will need to know which string ESI ref_type maps to which integer. You can use the following gist to see string->int mappings: https://gist.github.com/ccp-zoetrope/c03db66d90c2148724c06171bc52e0ec",
                                         "enum": [
-                                            "player_trading",
-                                            "market_transaction",
-                                            "gm_cash_transfer",
-                                            "mission_reward",
-                                            "clone_activation",
-                                            "inheritance",
-                                            "player_donation",
-                                            "corporation_payment",
-                                            "docking_fee",
-                                            "office_rental_fee",
-                                            "factory_slot_rental_fee",
-                                            "repair_bill",
-                                            "bounty",
-                                            "bounty_prize",
-                                            "insurance",
-                                            "mission_expiration",
-                                            "mission_completion",
-                                            "shares",
-                                            "courier_mission_escrow",
-                                            "mission_cost",
-                                            "agent_miscellaneous",
-                                            "lp_store",
-                                            "agent_location_services",
+                                            "acceleration_gate_fee",
+                                            "advertisement_listing_fee",
                                             "agent_donation",
-                                            "agent_security_services",
+                                            "agent_location_services",
+                                            "agent_miscellaneous",
                                             "agent_mission_collateral_paid",
                                             "agent_mission_collateral_refunded",
-                                            "agents_preward",
                                             "agent_mission_reward",
+                                            "agent_mission_reward_corporation_tax",
                                             "agent_mission_time_bonus_reward",
-                                            "cspa",
-                                            "cspaofflinerefund",
-                                            "corporation_account_withdrawal",
-                                            "corporation_dividend_payment",
-                                            "corporation_registration_fee",
-                                            "corporation_logo_change_cost",
-                                            "release_of_impounded_property",
-                                            "market_escrow",
+                                            "agent_mission_time_bonus_reward_corporation_tax",
+                                            "agent_security_services",
                                             "agent_services_rendered",
-                                            "market_fine_paid",
-                                            "corporation_liquidation",
-                                            "brokers_fee",
-                                            "corporation_bulk_payment",
-                                            "alliance_registration_fee",
-                                            "war_fee",
+                                            "agents_preward",
                                             "alliance_maintainance_fee",
-                                            "contraband_fine",
+                                            "alliance_registration_fee",
+                                            "asset_safety_recovery_tax",
+                                            "bounty",
+                                            "bounty_prize",
+                                            "bounty_prize_corporation_tax",
+                                            "bounty_prizes",
+                                            "bounty_reimbursement",
+                                            "bounty_surcharge",
+                                            "brokers_fee",
+                                            "clone_activation",
                                             "clone_transfer",
-                                            "acceleration_gate_fee",
-                                            "transaction_tax",
-                                            "jump_clone_installation_fee",
-                                            "manufacturing",
-                                            "researching_technology",
-                                            "researching_time_productivity",
-                                            "researching_material_productivity",
-                                            "copying",
-                                            "reverse_engineering",
+                                            "contraband_fine",
                                             "contract_auction_bid",
-                                            "contract_auction_bid_refund",
-                                            "contract_collateral",
-                                            "contract_reward_refund",
-                                            "contract_auction_sold",
-                                            "contract_reward",
-                                            "contract_collateral_refund",
-                                            "contract_collateral_payout",
-                                            "contract_price",
-                                            "contract_brokers_fee",
-                                            "contract_sales_tax",
-                                            "contract_deposit",
-                                            "contract_deposit_sales_tax",
                                             "contract_auction_bid_corp",
-                                            "contract_collateral_deposited_corp",
-                                            "contract_price_payment_corp",
+                                            "contract_auction_bid_refund",
+                                            "contract_auction_sold",
+                                            "contract_brokers_fee",
                                             "contract_brokers_fee_corp",
+                                            "contract_collateral",
+                                            "contract_collateral_deposited_corp",
+                                            "contract_collateral_payout",
+                                            "contract_collateral_refund",
+                                            "contract_deposit",
                                             "contract_deposit_corp",
                                             "contract_deposit_refund",
+                                            "contract_deposit_sales_tax",
+                                            "contract_price",
+                                            "contract_price_payment_corp",
+                                            "contract_reversal",
+                                            "contract_reward",
                                             "contract_reward_deposited",
                                             "contract_reward_deposited_corp",
-                                            "bounty_prizes",
-                                            "advertisement_listing_fee",
-                                            "medal_creation",
-                                            "medal_issued",
-                                            "dna_modification_fee",
-                                            "sovereignity_bill",
-                                            "bounty_prize_corporation_tax",
-                                            "agent_mission_reward_corporation_tax",
-                                            "agent_mission_time_bonus_reward_corporation_tax",
-                                            "upkeep_adjustment_fee",
-                                            "planetary_import_tax",
-                                            "planetary_export_tax",
-                                            "planetary_construction",
+                                            "contract_reward_refund",
+                                            "contract_sales_tax",
+                                            "copying",
                                             "corporate_reward_payout",
-                                            "bounty_surcharge",
-                                            "contract_reversal",
                                             "corporate_reward_tax",
-                                            "store_purchase",
-                                            "store_purchase_refund",
+                                            "corporation_account_withdrawal",
+                                            "corporation_bulk_payment",
+                                            "corporation_dividend_payment",
+                                            "corporation_liquidation",
+                                            "corporation_logo_change_cost",
+                                            "corporation_payment",
+                                            "corporation_registration_fee",
+                                            "courier_mission_escrow",
+                                            "cspa",
+                                            "cspaofflinerefund",
                                             "datacore_fee",
-                                            "war_fee_surrender",
-                                            "war_ally_contract",
-                                            "bounty_reimbursement",
-                                            "kill_right_fee",
-                                            "security_processing_fee",
+                                            "dna_modification_fee",
+                                            "docking_fee",
+                                            "duel_wager_escrow",
+                                            "duel_wager_payment",
+                                            "duel_wager_refund",
+                                            "factory_slot_rental_fee",
+                                            "gm_cash_transfer",
                                             "industry_job_tax",
                                             "infrastructure_hub_maintenance",
-                                            "asset_safety_recovery_tax",
+                                            "inheritance",
+                                            "insurance",
+                                            "jump_clone_activation_fee",
+                                            "jump_clone_installation_fee",
+                                            "kill_right_fee",
+                                            "lp_store",
+                                            "manufacturing",
+                                            "market_escrow",
+                                            "market_fine_paid",
+                                            "market_transaction",
+                                            "medal_creation",
+                                            "medal_issued",
+                                            "mission_completion",
+                                            "mission_cost",
+                                            "mission_expiration",
+                                            "mission_reward",
+                                            "office_rental_fee",
+                                            "operation_bonus",
                                             "opportunity_reward",
+                                            "planetary_construction",
+                                            "planetary_export_tax",
+                                            "planetary_import_tax",
+                                            "player_donation",
+                                            "player_trading",
                                             "project_discovery_reward",
                                             "project_discovery_tax",
+                                            "reaction",
+                                            "release_of_impounded_property",
+                                            "repair_bill",
                                             "reprocessing_tax",
-                                            "jump_clone_activation_fee",
-                                            "operation_bonus"
+                                            "researching_material_productivity",
+                                            "researching_technology",
+                                            "researching_time_productivity",
+                                            "resource_wars_reward",
+                                            "reverse_engineering",
+                                            "security_processing_fee",
+                                            "shares",
+                                            "sovereignity_bill",
+                                            "store_purchase",
+                                            "store_purchase_refund",
+                                            "transaction_tax",
+                                            "upkeep_adjustment_fee",
+                                            "war_ally_contract",
+                                            "war_fee",
+                                            "war_fee_surrender"
                                         ],
                                         "title": "get_characters_character_id_wallet_journal_ref_type",
                                         "type": "string"
@@ -11777,7 +11781,8 @@
                                             "character",
                                             "corporation",
                                             "alliance",
-                                            "faction"
+                                            "faction",
+                                            "system"
                                         ],
                                         "title": "get_characters_character_id_wallet_journal_second_party_type",
                                         "type": "string"
@@ -14378,7 +14383,7 @@
                                     "container_type_id": 17365,
                                     "location_flag": "CorpSAG1",
                                     "location_id": 1000000012278,
-                                    "logged_at": "2017-10-11T12:04:33",
+                                    "logged_at": "2017-10-11T12:04:33Z",
                                     "quantity": 30,
                                     "type_id": 1230
                                 },
@@ -16381,7 +16386,7 @@
         },
         "/corporations/{corporation_id}/killmails/recent/": {
             "get": {
-                "description": "Get a list of corporation's recent kills and losses\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/killmails/recent/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/killmails/recent/`\n\nAlternate route: `/v1/corporations/{corporation_id}/killmails/recent/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Get a list of corporation's recent kills and losses\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/killmails/recent/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/killmails/recent/`\n\nAlternate route: `/v1/corporations/{corporation_id}/killmails/recent/`\n\n---\nThis route is cached for up to 300 seconds",
                 "operationId": "get_corporations_corporation_id_killmails_recent",
                 "parameters": [
                     {
@@ -16505,7 +16510,7 @@
                     "legacy",
                     "v1"
                 ],
-                "x-cached-seconds": 3600,
+                "x-cached-seconds": 300,
                 "x-required-roles": [
                     "Director"
                 ]
@@ -17560,6 +17565,405 @@
                 "x-required-roles": [
                     "Accountant",
                     "Trader"
+                ]
+            }
+        },
+        "/corporations/{corporation_id}/outposts/": {
+            "get": {
+                "description": "Get a list of corporation outpost IDs Note: This endpoint will be removed once outposts are migrated to Citadels as talked about in this blog: https://community.eveonline.com/news/dev-blogs/the-next-steps-in-structure-transition/\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/outposts/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/outposts/`\n\nAlternate route: `/v1/corporations/{corporation_id}/outposts/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_corporation_id_outposts",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/corporation_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/page"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of corporation outpost IDs",
+                        "examples": {
+                            "application/json": [
+                                61001146,
+                                61001147,
+                                61001148
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int32",
+                                "title": "get_corporations_corporation_id_outposts_200_ok",
+                                "type": "integer"
+                            },
+                            "maxItems": 1000,
+                            "title": "get_corporations_corporation_id_outposts_ok",
+                            "type": "array",
+                            "uniqueItems": true
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-corporations.read_outposts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get corporation outposts",
+                "tags": [
+                    "Corporation"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600,
+                "x-required-roles": [
+                    "Director"
+                ]
+            }
+        },
+        "/corporations/{corporation_id}/outposts/{outpost_id}/": {
+            "get": {
+                "description": "Get details about a given outpost. Note: This endpoint will be removed once outposts are migrated to Citadels as talked about in this blog: https://community.eveonline.com/news/dev-blogs/the-next-steps-in-structure-transition/\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/outposts/{outpost_id}/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/outposts/{outpost_id}/`\n\nAlternate route: `/v1/corporations/{corporation_id}/outposts/{outpost_id}/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_corporations_corporation_id_outposts_outpost_id",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/corporation_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "description": "A station (outpost) ID",
+                        "format": "int32",
+                        "in": "path",
+                        "name": "outpost_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about the given outpost",
+                        "examples": {
+                            "application/json": {
+                                "coordinates": {
+                                    "x": -102478848000,
+                                    "y": -18310963200,
+                                    "z": -9660456960
+                                },
+                                "docking_cost_per_ship_volume": 0,
+                                "office_rental_cost": 100,
+                                "owner_id": 98000002,
+                                "reprocessing_efficiency": 0.5,
+                                "reprocessing_station_take": 0.01,
+                                "services": [
+                                    {
+                                        "discount_per_good_standing": 10,
+                                        "minimum_standing": 0,
+                                        "owner_id": 98000002,
+                                        "service_name": "Reprocessing Plant",
+                                        "surcharge_per_bad_standing": 0
+                                    }
+                                ],
+                                "standing_owner_id": 99003581,
+                                "system_id": 30000657,
+                                "type_id": 21644
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "coordinates": {
+                                    "description": "coordinates object",
+                                    "properties": {
+                                        "x": {
+                                            "description": "x number",
+                                            "format": "double",
+                                            "title": "get_corporations_corporation_id_outposts_outpost_id_x",
+                                            "type": "number"
+                                        },
+                                        "y": {
+                                            "description": "y number",
+                                            "format": "double",
+                                            "title": "get_corporations_corporation_id_outposts_outpost_id_y",
+                                            "type": "number"
+                                        },
+                                        "z": {
+                                            "description": "z number",
+                                            "format": "double",
+                                            "title": "get_corporations_corporation_id_outposts_outpost_id_z",
+                                            "type": "number"
+                                        }
+                                    },
+                                    "required": [
+                                        "x",
+                                        "y",
+                                        "z"
+                                    ],
+                                    "title": "get_corporations_corporation_id_outposts_outpost_id_coordinates",
+                                    "type": "object"
+                                },
+                                "docking_cost_per_ship_volume": {
+                                    "description": "docking_cost_per_ship_volume number",
+                                    "format": "float",
+                                    "title": "get_corporations_corporation_id_outposts_outpost_id_docking_cost_per_ship_volume",
+                                    "type": "number"
+                                },
+                                "office_rental_cost": {
+                                    "description": "office_rental_cost integer",
+                                    "format": "int64",
+                                    "title": "get_corporations_corporation_id_outposts_outpost_id_office_rental_cost",
+                                    "type": "integer"
+                                },
+                                "owner_id": {
+                                    "description": "The entity that owns the station (e.g. the entity whose logo is on the station services bar)",
+                                    "format": "int32",
+                                    "title": "get_corporations_corporation_id_outposts_outpost_id_owner_id",
+                                    "type": "integer"
+                                },
+                                "reprocessing_efficiency": {
+                                    "description": "reprocessing_efficiency number",
+                                    "format": "float",
+                                    "title": "get_corporations_corporation_id_outposts_outpost_id_reprocessing_efficiency",
+                                    "type": "number"
+                                },
+                                "reprocessing_station_take": {
+                                    "description": "reprocessing_station_take number",
+                                    "format": "float",
+                                    "title": "get_corporations_corporation_id_outposts_outpost_id_reprocessing_station_take",
+                                    "type": "number"
+                                },
+                                "services": {
+                                    "description": "A list of services the given outpost provides",
+                                    "items": {
+                                        "description": "service object",
+                                        "properties": {
+                                            "discount_per_good_standing": {
+                                                "description": "discount_per_good_standing number",
+                                                "format": "double",
+                                                "title": "get_corporations_corporation_id_outposts_outpost_id_discount_per_good_standing",
+                                                "type": "number"
+                                            },
+                                            "minimum_standing": {
+                                                "description": "minimum_standing number",
+                                                "format": "double",
+                                                "title": "get_corporations_corporation_id_outposts_outpost_id_minimum_standing",
+                                                "type": "number"
+                                            },
+                                            "service_name": {
+                                                "description": "service_name string",
+                                                "enum": [
+                                                    "Bounty Missions",
+                                                    "Assassination Missions",
+                                                    "Courier Missions",
+                                                    "Interbus",
+                                                    "Reprocessing Plant",
+                                                    "Refinery",
+                                                    "Market",
+                                                    "Black Market",
+                                                    "Stock Exchange",
+                                                    "Cloning",
+                                                    "Surgery",
+                                                    "DNA Therapy",
+                                                    "Repair Facilities",
+                                                    "Factory",
+                                                    "Laboratory",
+                                                    "Gambling",
+                                                    "Fitting",
+                                                    "Paintshop",
+                                                    "News",
+                                                    "Storage",
+                                                    "Insurance",
+                                                    "Docking",
+                                                    "Office Rental",
+                                                    "Jump Clone Facility",
+                                                    "Loyalty Point Store",
+                                                    "Navy Offices",
+                                                    "Security Office"
+                                                ],
+                                                "title": "get_corporations_corporation_id_outposts_outpost_id_service_name",
+                                                "type": "string"
+                                            },
+                                            "surcharge_per_bad_standing": {
+                                                "description": "surcharge_per_bad_standing number",
+                                                "format": "double",
+                                                "title": "get_corporations_corporation_id_outposts_outpost_id_surcharge_per_bad_standing",
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "service_name",
+                                            "minimum_standing",
+                                            "surcharge_per_bad_standing",
+                                            "discount_per_good_standing"
+                                        ],
+                                        "title": "get_corporations_corporation_id_outposts_outpost_id_service",
+                                        "type": "object"
+                                    },
+                                    "maxItems": 27,
+                                    "title": "get_corporations_corporation_id_outposts_outpost_id_services",
+                                    "type": "array"
+                                },
+                                "standing_owner_id": {
+                                    "description": "The owner ID that sets the ability for someone to dock based on standings.",
+                                    "format": "int32",
+                                    "title": "get_corporations_corporation_id_outposts_outpost_id_standing_owner_id",
+                                    "type": "integer"
+                                },
+                                "system_id": {
+                                    "description": "The ID of the solar system the outpost rests in",
+                                    "format": "int32",
+                                    "title": "get_corporations_corporation_id_outposts_outpost_id_system_id",
+                                    "type": "integer"
+                                },
+                                "type_id": {
+                                    "description": "The type ID of the given outpost",
+                                    "format": "int32",
+                                    "title": "get_corporations_corporation_id_outposts_outpost_id_type_id",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "owner_id",
+                                "system_id",
+                                "docking_cost_per_ship_volume",
+                                "office_rental_cost",
+                                "type_id",
+                                "reprocessing_efficiency",
+                                "reprocessing_station_take",
+                                "standing_owner_id",
+                                "coordinates",
+                                "services"
+                            ],
+                            "title": "get_corporations_corporation_id_outposts_outpost_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-corporations.read_outposts.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get corporation outpost details",
+                "tags": [
+                    "Corporation"
+                ],
+                "x-alternate-versions": [
+                    "latest",
+                    "legacy",
+                    "v1"
+                ],
+                "x-cached-seconds": 3600,
+                "x-required-roles": [
+                    "Director"
                 ]
             }
         },
@@ -20604,7 +21008,8 @@
                                             "character",
                                             "corporation",
                                             "alliance",
-                                            "faction"
+                                            "faction",
+                                            "system"
                                         ],
                                         "title": "get_corporations_corporation_id_wallets_division_journal_first_party_type",
                                         "type": "string"
@@ -20621,120 +21026,125 @@
                                         "type": "integer"
                                     },
                                     "ref_type": {
-                                        "description": "Transaction type, different type of transaction will populate different fields in `extra_info`",
+                                        "description": "Transaction type, different type of transaction will populate different fields in `extra_info` Note: If you have an existing XML API application that is using ref_types, you will need to know which string ESI ref_type maps to which integer. You can use the following gist to see string->int mappings: https://gist.github.com/ccp-zoetrope/c03db66d90c2148724c06171bc52e0ec",
                                         "enum": [
-                                            "player_trading",
-                                            "market_transaction",
-                                            "gm_cash_transfer",
-                                            "mission_reward",
-                                            "clone_activation",
-                                            "inheritance",
-                                            "player_donation",
-                                            "corporation_payment",
-                                            "docking_fee",
-                                            "office_rental_fee",
-                                            "factory_slot_rental_fee",
-                                            "repair_bill",
-                                            "bounty",
-                                            "bounty_prize",
-                                            "insurance",
-                                            "mission_expiration",
-                                            "mission_completion",
-                                            "shares",
-                                            "courier_mission_escrow",
-                                            "mission_cost",
-                                            "agent_miscellaneous",
-                                            "lp_store",
-                                            "agent_location_services",
+                                            "acceleration_gate_fee",
+                                            "advertisement_listing_fee",
                                             "agent_donation",
-                                            "agent_security_services",
+                                            "agent_location_services",
+                                            "agent_miscellaneous",
                                             "agent_mission_collateral_paid",
                                             "agent_mission_collateral_refunded",
-                                            "agents_preward",
                                             "agent_mission_reward",
+                                            "agent_mission_reward_corporation_tax",
                                             "agent_mission_time_bonus_reward",
-                                            "cspa",
-                                            "cspaofflinerefund",
-                                            "corporation_account_withdrawal",
-                                            "corporation_dividend_payment",
-                                            "corporation_registration_fee",
-                                            "corporation_logo_change_cost",
-                                            "release_of_impounded_property",
-                                            "market_escrow",
+                                            "agent_mission_time_bonus_reward_corporation_tax",
+                                            "agent_security_services",
                                             "agent_services_rendered",
-                                            "market_fine_paid",
-                                            "corporation_liquidation",
-                                            "brokers_fee",
-                                            "corporation_bulk_payment",
-                                            "alliance_registration_fee",
-                                            "war_fee",
+                                            "agents_preward",
                                             "alliance_maintainance_fee",
-                                            "contraband_fine",
+                                            "alliance_registration_fee",
+                                            "asset_safety_recovery_tax",
+                                            "bounty",
+                                            "bounty_prize",
+                                            "bounty_prize_corporation_tax",
+                                            "bounty_prizes",
+                                            "bounty_reimbursement",
+                                            "bounty_surcharge",
+                                            "brokers_fee",
+                                            "clone_activation",
                                             "clone_transfer",
-                                            "acceleration_gate_fee",
-                                            "transaction_tax",
-                                            "jump_clone_installation_fee",
-                                            "manufacturing",
-                                            "researching_technology",
-                                            "researching_time_productivity",
-                                            "researching_material_productivity",
-                                            "copying",
-                                            "reverse_engineering",
+                                            "contraband_fine",
                                             "contract_auction_bid",
-                                            "contract_auction_bid_refund",
-                                            "contract_collateral",
-                                            "contract_reward_refund",
-                                            "contract_auction_sold",
-                                            "contract_reward",
-                                            "contract_collateral_refund",
-                                            "contract_collateral_payout",
-                                            "contract_price",
-                                            "contract_brokers_fee",
-                                            "contract_sales_tax",
-                                            "contract_deposit",
-                                            "contract_deposit_sales_tax",
                                             "contract_auction_bid_corp",
-                                            "contract_collateral_deposited_corp",
-                                            "contract_price_payment_corp",
+                                            "contract_auction_bid_refund",
+                                            "contract_auction_sold",
+                                            "contract_brokers_fee",
                                             "contract_brokers_fee_corp",
+                                            "contract_collateral",
+                                            "contract_collateral_deposited_corp",
+                                            "contract_collateral_payout",
+                                            "contract_collateral_refund",
+                                            "contract_deposit",
                                             "contract_deposit_corp",
                                             "contract_deposit_refund",
+                                            "contract_deposit_sales_tax",
+                                            "contract_price",
+                                            "contract_price_payment_corp",
+                                            "contract_reversal",
+                                            "contract_reward",
                                             "contract_reward_deposited",
                                             "contract_reward_deposited_corp",
-                                            "bounty_prizes",
-                                            "advertisement_listing_fee",
-                                            "medal_creation",
-                                            "medal_issued",
-                                            "dna_modification_fee",
-                                            "sovereignity_bill",
-                                            "bounty_prize_corporation_tax",
-                                            "agent_mission_reward_corporation_tax",
-                                            "agent_mission_time_bonus_reward_corporation_tax",
-                                            "upkeep_adjustment_fee",
-                                            "planetary_import_tax",
-                                            "planetary_export_tax",
-                                            "planetary_construction",
+                                            "contract_reward_refund",
+                                            "contract_sales_tax",
+                                            "copying",
                                             "corporate_reward_payout",
-                                            "bounty_surcharge",
-                                            "contract_reversal",
                                             "corporate_reward_tax",
-                                            "store_purchase",
-                                            "store_purchase_refund",
+                                            "corporation_account_withdrawal",
+                                            "corporation_bulk_payment",
+                                            "corporation_dividend_payment",
+                                            "corporation_liquidation",
+                                            "corporation_logo_change_cost",
+                                            "corporation_payment",
+                                            "corporation_registration_fee",
+                                            "courier_mission_escrow",
+                                            "cspa",
+                                            "cspaofflinerefund",
                                             "datacore_fee",
-                                            "war_fee_surrender",
-                                            "war_ally_contract",
-                                            "bounty_reimbursement",
-                                            "kill_right_fee",
-                                            "security_processing_fee",
+                                            "dna_modification_fee",
+                                            "docking_fee",
+                                            "duel_wager_escrow",
+                                            "duel_wager_payment",
+                                            "duel_wager_refund",
+                                            "factory_slot_rental_fee",
+                                            "gm_cash_transfer",
                                             "industry_job_tax",
                                             "infrastructure_hub_maintenance",
-                                            "asset_safety_recovery_tax",
+                                            "inheritance",
+                                            "insurance",
+                                            "jump_clone_activation_fee",
+                                            "jump_clone_installation_fee",
+                                            "kill_right_fee",
+                                            "lp_store",
+                                            "manufacturing",
+                                            "market_escrow",
+                                            "market_fine_paid",
+                                            "market_transaction",
+                                            "medal_creation",
+                                            "medal_issued",
+                                            "mission_completion",
+                                            "mission_cost",
+                                            "mission_expiration",
+                                            "mission_reward",
+                                            "office_rental_fee",
+                                            "operation_bonus",
                                             "opportunity_reward",
+                                            "planetary_construction",
+                                            "planetary_export_tax",
+                                            "planetary_import_tax",
+                                            "player_donation",
+                                            "player_trading",
                                             "project_discovery_reward",
                                             "project_discovery_tax",
+                                            "reaction",
+                                            "release_of_impounded_property",
+                                            "repair_bill",
                                             "reprocessing_tax",
-                                            "jump_clone_activation_fee",
-                                            "operation_bonus"
+                                            "researching_material_productivity",
+                                            "researching_technology",
+                                            "researching_time_productivity",
+                                            "resource_wars_reward",
+                                            "reverse_engineering",
+                                            "security_processing_fee",
+                                            "shares",
+                                            "sovereignity_bill",
+                                            "store_purchase",
+                                            "store_purchase_refund",
+                                            "transaction_tax",
+                                            "upkeep_adjustment_fee",
+                                            "war_ally_contract",
+                                            "war_fee",
+                                            "war_fee_surrender"
                                         ],
                                         "title": "get_corporations_corporation_id_wallets_division_journal_ref_type",
                                         "type": "string"
@@ -20751,7 +21161,8 @@
                                             "character",
                                             "corporation",
                                             "alliance",
-                                            "faction"
+                                            "faction",
+                                            "system"
                                         ],
                                         "title": "get_corporations_corporation_id_wallets_division_journal_second_party_type",
                                         "type": "string"
@@ -33192,6 +33603,7 @@
                 "esi-corporations.read_facilities.v1": "EVE SSO scope esi-corporations.read_facilities.v1",
                 "esi-corporations.read_fw_stats.v1": "EVE SSO scope esi-corporations.read_fw_stats.v1",
                 "esi-corporations.read_medals.v1": "EVE SSO scope esi-corporations.read_medals.v1",
+                "esi-corporations.read_outposts.v1": "EVE SSO scope esi-corporations.read_outposts.v1",
                 "esi-corporations.read_standings.v1": "EVE SSO scope esi-corporations.read_standings.v1",
                 "esi-corporations.read_starbases.v1": "EVE SSO scope esi-corporations.read_starbases.v1",
                 "esi-corporations.read_structures.v1": "EVE SSO scope esi-corporations.read_structures.v1",
