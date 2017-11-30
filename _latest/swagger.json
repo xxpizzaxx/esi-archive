@@ -13080,7 +13080,7 @@
         },
         "/v1/corporations/{corporation_id}/orders/": {
             "get": {
-                "description": "List market orders placed on behalf of a corporation\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "List market orders placed on behalf of a corporation\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Trader",
                 "operationId": "get_corporations_corporation_id_orders",
                 "parameters": [
                     {
