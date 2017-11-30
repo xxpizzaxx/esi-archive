@@ -8202,7 +8202,7 @@
         },
         "/v1/corporation/{corporation_id}/mining/extractions/": {
             "get": {
-                "description": "Extraction timers for all moon chunks being extracted by refineries belonging to a corporation.\n\n---\n\nThis route is cached for up to 1800 seconds",
+                "description": "Extraction timers for all moon chunks being extracted by refineries belonging to a corporation.\n\n---\n\nThis route is cached for up to 1800 seconds\n\n---\nRequires one of the following EVE corporation role(s): Structure_manager",
                 "operationId": "get_corporation_corporation_id_mining_extractions",
                 "parameters": [
                     {
@@ -8347,7 +8347,7 @@
         },
         "/v1/corporation/{corporation_id}/mining/observers/": {
             "get": {
-                "description": "Paginated list of all entities capable of observing and recording mining for a corporation\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Paginated list of all entities capable of observing and recording mining for a corporation\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant",
                 "operationId": "get_corporation_corporation_id_mining_observers",
                 "parameters": [
                     {
@@ -8487,7 +8487,7 @@
         },
         "/v1/corporation/{corporation_id}/mining/observers/{observer_id}/": {
             "get": {
-                "description": "Paginated record of all mining seen by an observer\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Paginated record of all mining seen by an observer\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant",
                 "operationId": "get_corporation_corporation_id_mining_observers_observer_id",
                 "parameters": [
                     {
@@ -8829,7 +8829,7 @@
         },
         "/v1/corporations/{corporation_id}/assets/": {
             "get": {
-                "description": "Return a list of the corporation assets\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return a list of the corporation assets\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "get_corporations_corporation_id_assets",
                 "parameters": [
                     {
@@ -9115,7 +9115,7 @@
         },
         "/v1/corporations/{corporation_id}/assets/locations/": {
             "post": {
-                "description": "Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\n",
+                "description": "Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\n\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "post_corporations_corporation_id_assets_locations",
                 "parameters": [
                     {
@@ -9257,7 +9257,7 @@
         },
         "/v1/corporations/{corporation_id}/assets/names/": {
             "post": {
-                "description": "Return names for a set of item ids, which you can get from corporation assets endpoint. Only valid for items that can customize names, like containers or ships.\n\n---\n",
+                "description": "Return names for a set of item ids, which you can get from corporation assets endpoint. Only valid for items that can customize names, like containers or ships.\n\n---\n\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "post_corporations_corporation_id_assets_names",
                 "parameters": [
                     {
@@ -9382,7 +9382,7 @@
         },
         "/v1/corporations/{corporation_id}/blueprints/": {
             "get": {
-                "description": "Returns a list of blueprints the corporation owns\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Returns a list of blueprints the corporation owns\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "get_corporations_corporation_id_blueprints",
                 "parameters": [
                     {
@@ -10202,7 +10202,7 @@
         },
         "/v1/corporations/{corporation_id}/containers/logs/": {
             "get": {
-                "description": "Returns logs recorded in the past seven days from all audit log secure containers (ALSC) owned by a given corporation\n\n---\n\nThis route is cached for up to 600 seconds",
+                "description": "Returns logs recorded in the past seven days from all audit log secure containers (ALSC) owned by a given corporation\n\n---\n\nThis route is cached for up to 600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "get_corporations_corporation_id_containers_logs",
                 "parameters": [
                     {
@@ -11148,7 +11148,7 @@
         },
         "/v1/corporations/{corporation_id}/customs_offices/": {
             "get": {
-                "description": "List customs offices owned by a corporation\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "List customs offices owned by a corporation\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "get_corporations_corporation_id_customs_offices",
                 "parameters": [
                     {
@@ -11372,7 +11372,7 @@
         },
         "/v1/corporations/{corporation_id}/divisions/": {
             "get": {
-                "description": "Return corporation hangar and wallet division names, only show if a division is not using the default name\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return corporation hangar and wallet division names, only show if a division is not using the default name\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "get_corporations_corporation_id_divisions",
                 "parameters": [
                     {
@@ -11533,7 +11533,7 @@
         },
         "/v1/corporations/{corporation_id}/facilities/": {
             "get": {
-                "description": "Return a corporation's facilities\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return a corporation's facilities\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Factory_Manager",
                 "operationId": "get_corporations_corporation_id_facilities",
                 "parameters": [
                     {
@@ -11958,7 +11958,7 @@
         },
         "/v1/corporations/{corporation_id}/industry/jobs/": {
             "get": {
-                "description": "List industry jobs run by a corporation\n\n---\n\nThis route is cached for up to 300 seconds",
+                "description": "List industry jobs run by a corporation\n\n---\n\nThis route is cached for up to 300 seconds\n\n---\nRequires one of the following EVE corporation role(s): FactoryManager",
                 "operationId": "get_corporations_corporation_id_industry_jobs",
                 "parameters": [
                     {
@@ -12249,7 +12249,7 @@
         },
         "/v1/corporations/{corporation_id}/killmails/recent/": {
             "get": {
-                "description": "Get a list of corporation's recent kills and losses\n\n---\n\nThis route is cached for up to 300 seconds",
+                "description": "Get a list of corporation's recent kills and losses\n\n---\n\nThis route is cached for up to 300 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "get_corporations_corporation_id_killmails_recent",
                 "parameters": [
                     {
@@ -12533,7 +12533,7 @@
         },
         "/v1/corporations/{corporation_id}/medals/issued/": {
             "get": {
-                "description": "Returns medals issued by a corporation\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Returns medals issued by a corporation\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "get_corporations_corporation_id_medals_issued",
                 "parameters": [
                     {
@@ -12698,7 +12698,7 @@
         },
         "/v1/corporations/{corporation_id}/members/limit/": {
             "get": {
-                "description": "Return a corporation's member limit, not including CEO himself\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return a corporation's member limit, not including CEO himself\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "get_corporations_corporation_id_members_limit",
                 "parameters": [
                     {
@@ -12791,7 +12791,7 @@
         },
         "/v1/corporations/{corporation_id}/members/titles/": {
             "get": {
-                "description": "Returns a corporation's members' titles\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Returns a corporation's members' titles\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "get_corporations_corporation_id_members_titles",
                 "parameters": [
                     {
@@ -12918,7 +12918,7 @@
         },
         "/v1/corporations/{corporation_id}/membertracking/": {
             "get": {
-                "description": "Returns additional information about a corporation's members which helps tracking their activities\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Returns additional information about a corporation's members which helps tracking their activities\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "get_corporations_corporation_id_membertracking",
                 "parameters": [
                     {
@@ -13336,7 +13336,7 @@
         },
         "/v1/corporations/{corporation_id}/outposts/": {
             "get": {
-                "description": "Get a list of corporation outpost IDs Note: This endpoint will be removed once outposts are migrated to Citadels as talked about in this blog: https://community.eveonline.com/news/dev-blogs/the-next-steps-in-structure-transition/\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get a list of corporation outpost IDs Note: This endpoint will be removed once outposts are migrated to Citadels as talked about in this blog: https://community.eveonline.com/news/dev-blogs/the-next-steps-in-structure-transition/\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "get_corporations_corporation_id_outposts",
                 "parameters": [
                     {
@@ -13449,7 +13449,7 @@
         },
         "/v1/corporations/{corporation_id}/outposts/{outpost_id}/": {
             "get": {
-                "description": "Get details about a given outpost. Note: This endpoint will be removed once outposts are migrated to Citadels as talked about in this blog: https://community.eveonline.com/news/dev-blogs/the-next-steps-in-structure-transition/\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get details about a given outpost. Note: This endpoint will be removed once outposts are migrated to Citadels as talked about in this blog: https://community.eveonline.com/news/dev-blogs/the-next-steps-in-structure-transition/\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "get_corporations_corporation_id_outposts_outpost_id",
                 "parameters": [
                     {
@@ -14361,7 +14361,7 @@
         },
         "/v1/corporations/{corporation_id}/roles/history/": {
             "get": {
-                "description": "Return how roles have changed for a coporation's members, up to a month\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return how roles have changed for a coporation's members, up to a month\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "get_corporations_corporation_id_roles_history",
                 "parameters": [
                     {
@@ -14957,7 +14957,7 @@
         },
         "/v1/corporations/{corporation_id}/starbases/": {
             "get": {
-                "description": "Returns list of corporation starbases (POSes)\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Returns list of corporation starbases (POSes)\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "get_corporations_corporation_id_starbases",
                 "parameters": [
                     {
@@ -15131,7 +15131,7 @@
         },
         "/v1/corporations/{corporation_id}/starbases/{starbase_id}/": {
             "get": {
-                "description": "Returns various settings and fuels of a starbase (POS)\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Returns various settings and fuels of a starbase (POS)\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "get_corporations_corporation_id_starbases_starbase_id",
                 "parameters": [
                     {
@@ -15407,7 +15407,7 @@
         },
         "/v1/corporations/{corporation_id}/structures/": {
             "get": {
-                "description": "Get a list of corporation structures\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Get a list of corporation structures\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): StationManager",
                 "operationId": "get_corporations_corporation_id_structures",
                 "parameters": [
                     {
@@ -15818,7 +15818,7 @@
         },
         "/v1/corporations/{corporation_id}/titles/": {
             "get": {
-                "description": "Returns a corporation's titles\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Returns a corporation's titles\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "get_corporations_corporation_id_titles",
                 "parameters": [
                     {
