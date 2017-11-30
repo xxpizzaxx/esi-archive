@@ -1342,7 +1342,7 @@
         },
         "/characters/{character_id}/assets/": {
             "get": {
-                "description": "Return a list of the characters assets\n\n---\nAlternate route: `/v2/characters/{character_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Return a list of the characters assets\n\n---\nAlternate route: `/v3/characters/{character_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_assets",
                 "parameters": [
                     {
@@ -1375,6 +1375,7 @@
                                     "location_flag": "Hangar",
                                     "location_id": 60002959,
                                     "location_type": "station",
+                                    "quantity": 1,
                                     "type_id": 3516
                                 }
                             ]
@@ -1531,6 +1532,7 @@
                                 },
                                 "required": [
                                     "type_id",
+                                    "quantity",
                                     "location_id",
                                     "location_type",
                                     "item_id",
@@ -1540,7 +1542,7 @@
                                 "title": "get_characters_character_id_assets_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 5000,
+                            "maxItems": 1000,
                             "title": "get_characters_character_id_assets_ok",
                             "type": "array"
                         }
@@ -1580,7 +1582,7 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "v2"
+                    "v3"
                 ],
                 "x-cached-seconds": 3600
             }
@@ -12965,7 +12967,7 @@
         },
         "/corporations/{corporation_id}/assets/": {
             "get": {
-                "description": "Return a list of the corporation assets\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/assets/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/assets/`\n\nAlternate route: `/v1/corporations/{corporation_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Return a list of the corporation assets\n\n---\nAlternate route: `/v2/corporations/{corporation_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id_assets",
                 "parameters": [
                     {
@@ -12998,6 +13000,7 @@
                                     "location_flag": "Hangar",
                                     "location_id": 60002959,
                                     "location_type": "station",
+                                    "quantity": 1,
                                     "type_id": 3516
                                 }
                             ]
@@ -13191,6 +13194,7 @@
                                 },
                                 "required": [
                                     "type_id",
+                                    "quantity",
                                     "location_id",
                                     "location_type",
                                     "item_id",
@@ -13200,7 +13204,7 @@
                                 "title": "get_corporations_corporation_id_assets_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 5000,
+                            "maxItems": 1000,
                             "title": "get_corporations_corporation_id_assets_ok",
                             "type": "array"
                         }
@@ -13240,9 +13244,7 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "latest",
-                    "legacy",
-                    "v1"
+                    "v2"
                 ],
                 "x-cached-seconds": 3600,
                 "x-required-roles": [
