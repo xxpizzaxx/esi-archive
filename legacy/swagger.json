@@ -16747,7 +16747,7 @@
         },
         "/corporations/{corporation_id}/orders/": {
             "get": {
-                "description": "List market orders placed on behalf of a corporation\n\n---\nAlternate route: `/dev/corporations/{corporation_id}/orders/`\n\nAlternate route: `/latest/corporations/{corporation_id}/orders/`\n\nAlternate route: `/v1/corporations/{corporation_id}/orders/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Trader\n",
+                "description": "List market orders placed on behalf of a corporation\n\n---\nAlternate route: `/dev/corporations/{corporation_id}/orders/`\n\nAlternate route: `/latest/corporations/{corporation_id}/orders/`\n\nAlternate route: `/v1/corporations/{corporation_id}/orders/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id_orders",
                 "parameters": [
                     {
