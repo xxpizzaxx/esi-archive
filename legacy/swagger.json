@@ -16747,7 +16747,7 @@
         },
         "/corporations/{corporation_id}/orders/": {
             "get": {
-                "description": "List market orders placed on behalf of a corporation\n\n---\nAlternate route: `/dev/corporations/{corporation_id}/orders/`\n\nAlternate route: `/latest/corporations/{corporation_id}/orders/`\n\nAlternate route: `/v1/corporations/{corporation_id}/orders/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "List market orders placed on behalf of a corporation\n\n---\nAlternate route: `/dev/corporations/{corporation_id}/orders/`\n\nAlternate route: `/latest/corporations/{corporation_id}/orders/`\n\nAlternate route: `/v1/corporations/{corporation_id}/orders/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Trader\n",
                 "operationId": "get_corporations_corporation_id_orders",
                 "parameters": [
                     {
@@ -20117,7 +20117,7 @@
         },
         "/corporations/{corporation_id}/wallets/": {
             "get": {
-                "description": "Get a corporation's wallets\n\n---\nAlternate route: `/dev/corporations/{corporation_id}/wallets/`\n\nAlternate route: `/latest/corporations/{corporation_id}/wallets/`\n\nAlternate route: `/v1/corporations/{corporation_id}/wallets/`\n\n---\nThis route is cached for up to 300 seconds",
+                "description": "Get a corporation's wallets\n\n---\nAlternate route: `/dev/corporations/{corporation_id}/wallets/`\n\nAlternate route: `/latest/corporations/{corporation_id}/wallets/`\n\nAlternate route: `/v1/corporations/{corporation_id}/wallets/`\n\n---\nThis route is cached for up to 300 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Junior_Accountant\n",
                 "operationId": "get_corporations_corporation_id_wallets",
                 "parameters": [
                     {
@@ -20265,7 +20265,7 @@
         },
         "/corporations/{corporation_id}/wallets/{division}/journal/": {
             "get": {
-                "description": "Retrieve corporation wallet journal\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/wallets/{division}/journal/`\n\nAlternate route: `/v1/corporations/{corporation_id}/wallets/{division}/journal/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Retrieve corporation wallet journal\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/wallets/{division}/journal/`\n\nAlternate route: `/v1/corporations/{corporation_id}/wallets/{division}/journal/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Junior_Accountant\n",
                 "operationId": "get_corporations_corporation_id_wallets_division_journal",
                 "parameters": [
                     {
@@ -20673,7 +20673,7 @@
         },
         "/corporations/{corporation_id}/wallets/{division}/transactions/": {
             "get": {
-                "description": "Get wallet transactions of a corporation\n\n---\nAlternate route: `/dev/corporations/{corporation_id}/wallets/{division}/transactions/`\n\nAlternate route: `/latest/corporations/{corporation_id}/wallets/{division}/transactions/`\n\nAlternate route: `/v1/corporations/{corporation_id}/wallets/{division}/transactions/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Get wallet transactions of a corporation\n\n---\nAlternate route: `/dev/corporations/{corporation_id}/wallets/{division}/transactions/`\n\nAlternate route: `/latest/corporations/{corporation_id}/wallets/{division}/transactions/`\n\nAlternate route: `/v1/corporations/{corporation_id}/wallets/{division}/transactions/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Junior_Accountant\n",
                 "operationId": "get_corporations_corporation_id_wallets_division_transactions",
                 "parameters": [
                     {
