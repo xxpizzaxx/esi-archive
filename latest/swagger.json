@@ -1321,7 +1321,7 @@
         },
         "/characters/{character_id}/assets/": {
             "get": {
-                "description": "Return a list of the characters assets\n\n---\nAlternate route: `/legacy/characters/{character_id}/assets/`\n\nAlternate route: `/v1/characters/{character_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Return a list of the characters assets\n\n---\nAlternate route: `/v2/characters/{character_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_assets",
                 "parameters": [
                     {
@@ -1439,7 +1439,6 @@
                                             "MedSlot5",
                                             "MedSlot6",
                                             "MedSlot7",
-                                            "Module",
                                             "QuafeBay",
                                             "RigSlot0",
                                             "RigSlot1",
@@ -1450,6 +1449,7 @@
                                             "RigSlot6",
                                             "RigSlot7",
                                             "ShipHangar",
+                                            "Skill",
                                             "SpecializedAmmoHold",
                                             "SpecializedCommandCenterHold",
                                             "SpecializedFuelBay",
@@ -1559,8 +1559,7 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "legacy",
-                    "v1"
+                    "v2"
                 ],
                 "x-cached-seconds": 3600
             }
@@ -12707,7 +12706,7 @@
         },
         "/corporations/{corporation_id}/assets/": {
             "get": {
-                "description": "Return a list of the corporation assets\n\n---\nAlternate route: `/dev/corporations/{corporation_id}/assets/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/assets/`\n\nAlternate route: `/v1/corporations/{corporation_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Return a list of the corporation assets\n\n---\nAlternate route: `/legacy/corporations/{corporation_id}/assets/`\n\nAlternate route: `/v1/corporations/{corporation_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id_assets",
                 "parameters": [
                     {
@@ -12982,7 +12981,6 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ],
