@@ -1023,252 +1023,6 @@
                 "x-cached-seconds": 3600
             }
         },
-        "/v1/characters/{character_id}/assets/": {
-            "get": {
-                "description": "Return a list of the characters assets\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_characters_character_id_assets",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/character_id"
-                    },
-                    {
-                        "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "$ref": "#/parameters/page"
-                    },
-                    {
-                        "$ref": "#/parameters/token"
-                    },
-                    {
-                        "$ref": "#/parameters/user_agent"
-                    },
-                    {
-                        "$ref": "#/parameters/X-User-Agent"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A flat list of the users assets",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "is_singleton": true,
-                                    "item_id": 1000000016835,
-                                    "location_flag": "Hangar",
-                                    "location_id": 60002959,
-                                    "location_type": "station",
-                                    "type_id": 3516
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "X-Pages": {
-                                "default": 1,
-                                "description": "Maximum page number",
-                                "format": "int32",
-                                "type": "integer"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "is_singleton": {
-                                        "description": "is_singleton boolean",
-                                        "title": "get_characters_character_id_assets_is_singleton",
-                                        "type": "boolean"
-                                    },
-                                    "item_id": {
-                                        "description": "item_id integer",
-                                        "format": "int64",
-                                        "title": "get_characters_character_id_assets_item_id",
-                                        "type": "integer"
-                                    },
-                                    "location_flag": {
-                                        "description": "location_flag string",
-                                        "enum": [
-                                            "AssetSafety",
-                                            "AutoFit",
-                                            "Cargo",
-                                            "CorpseBay",
-                                            "Deliveries",
-                                            "DroneBay",
-                                            "FighterBay",
-                                            "FighterTube0",
-                                            "FighterTube1",
-                                            "FighterTube2",
-                                            "FighterTube3",
-                                            "FighterTube4",
-                                            "FleetHangar",
-                                            "Hangar",
-                                            "HangarAll",
-                                            "HiSlot0",
-                                            "HiSlot1",
-                                            "HiSlot2",
-                                            "HiSlot3",
-                                            "HiSlot4",
-                                            "HiSlot5",
-                                            "HiSlot6",
-                                            "HiSlot7",
-                                            "HiddenModifiers",
-                                            "Implant",
-                                            "LoSlot0",
-                                            "LoSlot1",
-                                            "LoSlot2",
-                                            "LoSlot3",
-                                            "LoSlot4",
-                                            "LoSlot5",
-                                            "LoSlot6",
-                                            "LoSlot7",
-                                            "Locked",
-                                            "MedSlot0",
-                                            "MedSlot1",
-                                            "MedSlot2",
-                                            "MedSlot3",
-                                            "MedSlot4",
-                                            "MedSlot5",
-                                            "MedSlot6",
-                                            "MedSlot7",
-                                            "Module",
-                                            "QuafeBay",
-                                            "RigSlot0",
-                                            "RigSlot1",
-                                            "RigSlot2",
-                                            "RigSlot3",
-                                            "RigSlot4",
-                                            "RigSlot5",
-                                            "RigSlot6",
-                                            "RigSlot7",
-                                            "ShipHangar",
-                                            "SpecializedAmmoHold",
-                                            "SpecializedCommandCenterHold",
-                                            "SpecializedFuelBay",
-                                            "SpecializedGasHold",
-                                            "SpecializedIndustrialShipHold",
-                                            "SpecializedLargeShipHold",
-                                            "SpecializedMaterialBay",
-                                            "SpecializedMediumShipHold",
-                                            "SpecializedMineralHold",
-                                            "SpecializedOreHold",
-                                            "SpecializedPlanetaryCommoditiesHold",
-                                            "SpecializedSalvageHold",
-                                            "SpecializedShipHold",
-                                            "SpecializedSmallShipHold",
-                                            "SubSystemBay",
-                                            "SubSystemSlot0",
-                                            "SubSystemSlot1",
-                                            "SubSystemSlot2",
-                                            "SubSystemSlot3",
-                                            "SubSystemSlot4",
-                                            "SubSystemSlot5",
-                                            "SubSystemSlot6",
-                                            "SubSystemSlot7",
-                                            "Unlocked",
-                                            "Wardrobe"
-                                        ],
-                                        "title": "get_characters_character_id_assets_location_flag",
-                                        "type": "string"
-                                    },
-                                    "location_id": {
-                                        "description": "location_id integer",
-                                        "format": "int64",
-                                        "title": "get_characters_character_id_assets_location_id",
-                                        "type": "integer"
-                                    },
-                                    "location_type": {
-                                        "description": "location_type string",
-                                        "enum": [
-                                            "station",
-                                            "solar_system",
-                                            "other"
-                                        ],
-                                        "title": "get_characters_character_id_assets_location_type",
-                                        "type": "string"
-                                    },
-                                    "quantity": {
-                                        "description": "quantity integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_assets_quantity",
-                                        "type": "integer"
-                                    },
-                                    "type_id": {
-                                        "description": "type_id integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_assets_type_id",
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "type_id",
-                                    "location_id",
-                                    "location_type",
-                                    "item_id",
-                                    "location_flag",
-                                    "is_singleton"
-                                ],
-                                "title": "get_characters_character_id_assets_200_ok",
-                                "type": "object"
-                            },
-                            "maxItems": 5000,
-                            "title": "get_characters_character_id_assets_ok",
-                            "type": "array"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Forbidden message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/forbidden"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "Internal server error message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/internal_server_error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-assets.read_assets.v1"
-                        ]
-                    }
-                ],
-                "summary": "Get character assets",
-                "tags": [
-                    "Assets"
-                ],
-                "x-alternate-versions": [
-                    "legacy",
-                    "v1"
-                ],
-                "x-cached-seconds": 3600
-            }
-        },
         "/v1/characters/{character_id}/assets/locations/": {
             "post": {
                 "description": "Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\n",
@@ -9350,7 +9104,6 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ],
@@ -28142,6 +27895,251 @@
                 "summary": "Get alliance information",
                 "tags": [
                     "Alliance"
+                ],
+                "x-alternate-versions": [
+                    "v2"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/v2/characters/{character_id}/assets/": {
+            "get": {
+                "description": "Return a list of the characters assets\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_assets",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/page"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A flat list of the users assets",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "is_singleton": true,
+                                    "item_id": 1000000016835,
+                                    "location_flag": "Hangar",
+                                    "location_id": 60002959,
+                                    "location_type": "station",
+                                    "type_id": 3516
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "is_singleton": {
+                                        "description": "is_singleton boolean",
+                                        "title": "get_characters_character_id_assets_is_singleton",
+                                        "type": "boolean"
+                                    },
+                                    "item_id": {
+                                        "description": "item_id integer",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_assets_item_id",
+                                        "type": "integer"
+                                    },
+                                    "location_flag": {
+                                        "description": "location_flag string",
+                                        "enum": [
+                                            "AssetSafety",
+                                            "AutoFit",
+                                            "Cargo",
+                                            "CorpseBay",
+                                            "Deliveries",
+                                            "DroneBay",
+                                            "FighterBay",
+                                            "FighterTube0",
+                                            "FighterTube1",
+                                            "FighterTube2",
+                                            "FighterTube3",
+                                            "FighterTube4",
+                                            "FleetHangar",
+                                            "Hangar",
+                                            "HangarAll",
+                                            "HiSlot0",
+                                            "HiSlot1",
+                                            "HiSlot2",
+                                            "HiSlot3",
+                                            "HiSlot4",
+                                            "HiSlot5",
+                                            "HiSlot6",
+                                            "HiSlot7",
+                                            "HiddenModifiers",
+                                            "Implant",
+                                            "LoSlot0",
+                                            "LoSlot1",
+                                            "LoSlot2",
+                                            "LoSlot3",
+                                            "LoSlot4",
+                                            "LoSlot5",
+                                            "LoSlot6",
+                                            "LoSlot7",
+                                            "Locked",
+                                            "MedSlot0",
+                                            "MedSlot1",
+                                            "MedSlot2",
+                                            "MedSlot3",
+                                            "MedSlot4",
+                                            "MedSlot5",
+                                            "MedSlot6",
+                                            "MedSlot7",
+                                            "QuafeBay",
+                                            "RigSlot0",
+                                            "RigSlot1",
+                                            "RigSlot2",
+                                            "RigSlot3",
+                                            "RigSlot4",
+                                            "RigSlot5",
+                                            "RigSlot6",
+                                            "RigSlot7",
+                                            "ShipHangar",
+                                            "Skill",
+                                            "SpecializedAmmoHold",
+                                            "SpecializedCommandCenterHold",
+                                            "SpecializedFuelBay",
+                                            "SpecializedGasHold",
+                                            "SpecializedIndustrialShipHold",
+                                            "SpecializedLargeShipHold",
+                                            "SpecializedMaterialBay",
+                                            "SpecializedMediumShipHold",
+                                            "SpecializedMineralHold",
+                                            "SpecializedOreHold",
+                                            "SpecializedPlanetaryCommoditiesHold",
+                                            "SpecializedSalvageHold",
+                                            "SpecializedShipHold",
+                                            "SpecializedSmallShipHold",
+                                            "SubSystemBay",
+                                            "SubSystemSlot0",
+                                            "SubSystemSlot1",
+                                            "SubSystemSlot2",
+                                            "SubSystemSlot3",
+                                            "SubSystemSlot4",
+                                            "SubSystemSlot5",
+                                            "SubSystemSlot6",
+                                            "SubSystemSlot7",
+                                            "Unlocked",
+                                            "Wardrobe"
+                                        ],
+                                        "title": "get_characters_character_id_assets_location_flag",
+                                        "type": "string"
+                                    },
+                                    "location_id": {
+                                        "description": "location_id integer",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_assets_location_id",
+                                        "type": "integer"
+                                    },
+                                    "location_type": {
+                                        "description": "location_type string",
+                                        "enum": [
+                                            "station",
+                                            "solar_system",
+                                            "other"
+                                        ],
+                                        "title": "get_characters_character_id_assets_location_type",
+                                        "type": "string"
+                                    },
+                                    "quantity": {
+                                        "description": "quantity integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_assets_quantity",
+                                        "type": "integer"
+                                    },
+                                    "type_id": {
+                                        "description": "type_id integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_assets_type_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "type_id",
+                                    "location_id",
+                                    "location_type",
+                                    "item_id",
+                                    "location_flag",
+                                    "is_singleton"
+                                ],
+                                "title": "get_characters_character_id_assets_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 5000,
+                            "title": "get_characters_character_id_assets_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-assets.read_assets.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get character assets",
+                "tags": [
+                    "Assets"
                 ],
                 "x-alternate-versions": [
                     "v2"
