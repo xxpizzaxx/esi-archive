@@ -19523,7 +19523,7 @@
                                     },
                                     "fuel_expires": {
                                         "description": "Date on which the structure will run out of fuel",
-                                        "format": "date",
+                                        "format": "date-time",
                                         "title": "get_corporations_corporation_id_structures_fuel_expires",
                                         "type": "string"
                                     },
@@ -19596,13 +19596,13 @@
                                     },
                                     "state_timer_end": {
                                         "description": "Date at which the structure will move to it's next state",
-                                        "format": "date",
+                                        "format": "date-time",
                                         "title": "get_corporations_corporation_id_structures_state_timer_end",
                                         "type": "string"
                                     },
                                     "state_timer_start": {
                                         "description": "Date at which the structure entered it's current state",
-                                        "format": "date",
+                                        "format": "date-time",
                                         "title": "get_corporations_corporation_id_structures_state_timer_start",
                                         "type": "string"
                                     },
@@ -19626,7 +19626,7 @@
                                     },
                                     "unanchors_at": {
                                         "description": "Date at which the structure will unanchor",
-                                        "format": "date",
+                                        "format": "date-time",
                                         "title": "get_corporations_corporation_id_structures_unanchors_at",
                                         "type": "string"
                                     }
