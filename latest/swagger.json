@@ -11788,7 +11788,7 @@
         },
         "/corporation/{corporation_id}/mining/extractions/": {
             "get": {
-                "description": "Extraction timers for all moon chunks being extracted by refineries belonging to a corporation.\n\n\n---\nAlternate route: `/dev/corporation/{corporation_id}/mining/extractions/`\n\nAlternate route: `/legacy/corporation/{corporation_id}/mining/extractions/`\n\nAlternate route: `/v1/corporation/{corporation_id}/mining/extractions/`\n\n---\nThis route is cached for up to 1800 seconds",
+                "description": "Extraction timers for all moon chunks being extracted by refineries belonging to a corporation.\n\n\n---\nAlternate route: `/dev/corporation/{corporation_id}/mining/extractions/`\n\nAlternate route: `/legacy/corporation/{corporation_id}/mining/extractions/`\n\nAlternate route: `/v1/corporation/{corporation_id}/mining/extractions/`\n\n---\nThis route is cached for up to 1800 seconds\n\n---\nRequires one of the following EVE corporation role(s): Structure_manager\n",
                 "operationId": "get_corporation_corporation_id_mining_extractions",
                 "parameters": [
                     {
@@ -11933,7 +11933,7 @@
         },
         "/corporation/{corporation_id}/mining/observers/": {
             "get": {
-                "description": "Paginated list of all entities capable of observing and recording mining for a corporation\n\n\n---\nAlternate route: `/dev/corporation/{corporation_id}/mining/observers/`\n\nAlternate route: `/legacy/corporation/{corporation_id}/mining/observers/`\n\nAlternate route: `/v1/corporation/{corporation_id}/mining/observers/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Paginated list of all entities capable of observing and recording mining for a corporation\n\n\n---\nAlternate route: `/dev/corporation/{corporation_id}/mining/observers/`\n\nAlternate route: `/legacy/corporation/{corporation_id}/mining/observers/`\n\nAlternate route: `/v1/corporation/{corporation_id}/mining/observers/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant\n",
                 "operationId": "get_corporation_corporation_id_mining_observers",
                 "parameters": [
                     {
@@ -12073,7 +12073,7 @@
         },
         "/corporation/{corporation_id}/mining/observers/{observer_id}/": {
             "get": {
-                "description": "Paginated record of all mining seen by an observer\n\n\n---\nAlternate route: `/dev/corporation/{corporation_id}/mining/observers/{observer_id}/`\n\nAlternate route: `/legacy/corporation/{corporation_id}/mining/observers/{observer_id}/`\n\nAlternate route: `/v1/corporation/{corporation_id}/mining/observers/{observer_id}/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Paginated record of all mining seen by an observer\n\n\n---\nAlternate route: `/dev/corporation/{corporation_id}/mining/observers/{observer_id}/`\n\nAlternate route: `/legacy/corporation/{corporation_id}/mining/observers/{observer_id}/`\n\nAlternate route: `/v1/corporation/{corporation_id}/mining/observers/{observer_id}/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant\n",
                 "operationId": "get_corporation_corporation_id_mining_observers_observer_id",
                 "parameters": [
                     {
@@ -15835,7 +15835,7 @@
         },
         "/corporations/{corporation_id}/industry/jobs/": {
             "get": {
-                "description": "List industry jobs run by a corporation\n\n---\nAlternate route: `/dev/corporations/{corporation_id}/industry/jobs/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/industry/jobs/`\n\nAlternate route: `/v1/corporations/{corporation_id}/industry/jobs/`\n\n---\nThis route is cached for up to 300 seconds",
+                "description": "List industry jobs run by a corporation\n\n---\nAlternate route: `/dev/corporations/{corporation_id}/industry/jobs/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/industry/jobs/`\n\nAlternate route: `/v1/corporations/{corporation_id}/industry/jobs/`\n\n---\nThis route is cached for up to 300 seconds\n\n---\nRequires one of the following EVE corporation role(s): FactoryManager\n",
                 "operationId": "get_corporations_corporation_id_industry_jobs",
                 "parameters": [
                     {
