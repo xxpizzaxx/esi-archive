@@ -474,7 +474,7 @@
                                 {
                                     "contact_id": 2112625428,
                                     "contact_type": "character",
-                                    "standing": 10.0
+                                    "standing": 9.9
                                 }
                             ]
                         },
@@ -1589,7 +1589,7 @@
         },
         "/characters/{character_id}/assets/locations/": {
             "post": {
-                "description": "Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/latest/characters/{character_id}/assets/locations/`\n\nAlternate route: `/legacy/characters/{character_id}/assets/locations/`\n\nAlternate route: `/v1/characters/{character_id}/assets/locations/`\n",
+                "description": "Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/v2/characters/{character_id}/assets/locations/`\n",
                 "operationId": "post_characters_character_id_assets_locations",
                 "parameters": [
                     {
@@ -1635,9 +1635,11 @@
                             "application/json": [
                                 {
                                     "item_id": 12345,
-                                    "x": 1.2,
-                                    "y": 2.3,
-                                    "z": -3.4
+                                    "position": {
+                                        "x": 1.2,
+                                        "y": 2.3,
+                                        "z": -3.4
+                                    }
                                 }
                             ]
                         },
@@ -1652,30 +1654,40 @@
                                         "title": "post_characters_character_id_assets_locations_item_id",
                                         "type": "integer"
                                     },
-                                    "x": {
-                                        "description": "x number",
-                                        "format": "double",
-                                        "title": "post_characters_character_id_assets_locations_x",
-                                        "type": "number"
-                                    },
-                                    "y": {
-                                        "description": "y number",
-                                        "format": "double",
-                                        "title": "post_characters_character_id_assets_locations_y",
-                                        "type": "number"
-                                    },
-                                    "z": {
-                                        "description": "z number",
-                                        "format": "double",
-                                        "title": "post_characters_character_id_assets_locations_z",
-                                        "type": "number"
+                                    "position": {
+                                        "description": "position object",
+                                        "properties": {
+                                            "x": {
+                                                "description": "x number",
+                                                "format": "float",
+                                                "title": "post_characters_character_id_assets_locations_x",
+                                                "type": "number"
+                                            },
+                                            "y": {
+                                                "description": "y number",
+                                                "format": "float",
+                                                "title": "post_characters_character_id_assets_locations_y",
+                                                "type": "number"
+                                            },
+                                            "z": {
+                                                "description": "z number",
+                                                "format": "float",
+                                                "title": "post_characters_character_id_assets_locations_z",
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "x",
+                                            "y",
+                                            "z"
+                                        ],
+                                        "title": "post_characters_character_id_assets_locations_position",
+                                        "type": "object"
                                     }
                                 },
                                 "required": [
                                     "item_id",
-                                    "x",
-                                    "y",
-                                    "z"
+                                    "position"
                                 ],
                                 "title": "post_characters_character_id_assets_locations_200_ok",
                                 "type": "object"
@@ -1720,9 +1732,7 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "latest",
-                    "legacy",
-                    "v1"
+                    "v2"
                 ]
             }
         },
@@ -3788,7 +3798,7 @@
                                     "contact_type": "character",
                                     "is_blocked": true,
                                     "is_watched": true,
-                                    "standing": 10.0
+                                    "standing": 9.9
                                 }
                             ]
                         },
@@ -6064,7 +6074,7 @@
                                     "blueprint_id": 1015116533326,
                                     "blueprint_location_id": 60006382,
                                     "blueprint_type_id": 2047,
-                                    "cost": 118.0,
+                                    "cost": 118.01,
                                     "duration": 548,
                                     "end_date": "2014-07-19T15:56:14Z",
                                     "facility_id": 60006382,
@@ -11397,7 +11407,7 @@
                     "200": {
                         "description": "Wallet balance",
                         "examples": {
-                            "application/json": 29500.0
+                            "application/json": 29500.01
                         },
                         "headers": {
                             "Cache-Control": {
@@ -13254,7 +13264,7 @@
         },
         "/corporations/{corporation_id}/assets/locations/": {
             "post": {
-                "description": "Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/assets/locations/`\n\nAlternate route: `/legacy/corporations/{corporation_id}/assets/locations/`\n\nAlternate route: `/v1/corporations/{corporation_id}/assets/locations/`\n\n\n---\nRequires one of the following EVE corporation role(s): Director\n",
+                "description": "Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/v2/corporations/{corporation_id}/assets/locations/`\n\n\n---\nRequires one of the following EVE corporation role(s): Director\n",
                 "operationId": "post_corporations_corporation_id_assets_locations",
                 "parameters": [
                     {
@@ -13300,9 +13310,11 @@
                             "application/json": [
                                 {
                                     "item_id": 12345,
-                                    "x": 1.2,
-                                    "y": 2.3,
-                                    "z": -3.4
+                                    "position": {
+                                        "x": 1.2,
+                                        "y": 2.3,
+                                        "z": -3.4
+                                    }
                                 }
                             ]
                         },
@@ -13317,30 +13329,40 @@
                                         "title": "post_corporations_corporation_id_assets_locations_item_id",
                                         "type": "integer"
                                     },
-                                    "x": {
-                                        "description": "x number",
-                                        "format": "double",
-                                        "title": "post_corporations_corporation_id_assets_locations_x",
-                                        "type": "number"
-                                    },
-                                    "y": {
-                                        "description": "y number",
-                                        "format": "double",
-                                        "title": "post_corporations_corporation_id_assets_locations_y",
-                                        "type": "number"
-                                    },
-                                    "z": {
-                                        "description": "z number",
-                                        "format": "double",
-                                        "title": "post_corporations_corporation_id_assets_locations_z",
-                                        "type": "number"
+                                    "position": {
+                                        "description": "position object",
+                                        "properties": {
+                                            "x": {
+                                                "description": "x number",
+                                                "format": "float",
+                                                "title": "post_corporations_corporation_id_assets_locations_x",
+                                                "type": "number"
+                                            },
+                                            "y": {
+                                                "description": "y number",
+                                                "format": "float",
+                                                "title": "post_corporations_corporation_id_assets_locations_y",
+                                                "type": "number"
+                                            },
+                                            "z": {
+                                                "description": "z number",
+                                                "format": "float",
+                                                "title": "post_corporations_corporation_id_assets_locations_z",
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "x",
+                                            "y",
+                                            "z"
+                                        ],
+                                        "title": "post_corporations_corporation_id_assets_locations_position",
+                                        "type": "object"
                                     }
                                 },
                                 "required": [
                                     "item_id",
-                                    "x",
-                                    "y",
-                                    "z"
+                                    "position"
                                 ],
                                 "title": "post_corporations_corporation_id_assets_locations_200_ok",
                                 "type": "object"
@@ -13385,9 +13407,7 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "latest",
-                    "legacy",
-                    "v1"
+                    "v2"
                 ],
                 "x-required-roles": [
                     "Director"
@@ -14219,7 +14239,7 @@
                                     "contact_id": 123,
                                     "contact_type": "character",
                                     "is_watched": true,
-                                    "standing": 10.0
+                                    "standing": 9.9
                                 }
                             ]
                         },
@@ -16137,7 +16157,7 @@
                                     "blueprint_id": 1015116533326,
                                     "blueprint_location_id": 60006382,
                                     "blueprint_type_id": 2047,
-                                    "cost": 118.0,
+                                    "cost": 118.01,
                                     "duration": 548,
                                     "end_date": "2014-07-19T15:56:14Z",
                                     "facility_id": 60006382,
@@ -25137,7 +25157,7 @@
                                         30004153,
                                         30004154
                                     ],
-                                    "influence": 1.0,
+                                    "influence": 0.9,
                                     "staging_solar_system_id": 30004154,
                                     "state": "mobilizing",
                                     "type": "Incursion"
@@ -25546,9 +25566,9 @@
                                 {
                                     "levels": [
                                         {
-                                            "cost": 10.0,
+                                            "cost": 10.01,
                                             "name": "Basic",
-                                            "payout": 20.0
+                                            "payout": 20.01
                                         }
                                     ],
                                     "type_id": 1
