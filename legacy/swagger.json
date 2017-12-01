@@ -436,7 +436,7 @@
                                 {
                                     "contact_id": 2112625428,
                                     "contact_type": "character",
-                                    "standing": 10.0
+                                    "standing": 9.9
                                 }
                             ]
                         },
@@ -3672,7 +3672,7 @@
                                     "contact_type": "character",
                                     "is_blocked": true,
                                     "is_watched": true,
-                                    "standing": 10.0
+                                    "standing": 9.9
                                 }
                             ]
                         },
@@ -13635,7 +13635,7 @@
                                     "contact_id": 123,
                                     "contact_type": "character",
                                     "is_watched": true,
-                                    "standing": 10.0
+                                    "standing": 9.9
                                 }
                             ]
                         },
@@ -24976,9 +24976,9 @@
                                 {
                                     "levels": [
                                         {
-                                            "cost": 10.0,
+                                            "cost": 10.01,
                                             "name": "Basic",
-                                            "payout": 20.0
+                                            "payout": 20.01
                                         }
                                     ],
                                     "type_id": 1
