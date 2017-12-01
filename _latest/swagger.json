@@ -332,7 +332,7 @@
                                 {
                                     "contact_id": 2112625428,
                                     "contact_type": "character",
-                                    "standing": 10.0
+                                    "standing": 9.9
                                 }
                             ]
                         },
@@ -1156,7 +1156,6 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ]
@@ -2138,7 +2137,7 @@
                                     "contact_type": "character",
                                     "is_blocked": true,
                                     "is_watched": true,
-                                    "standing": 10.0
+                                    "standing": 9.9
                                 }
                             ]
                         },
@@ -4321,7 +4320,7 @@
                                     "blueprint_id": 1015116533326,
                                     "blueprint_location_id": 60006382,
                                     "blueprint_type_id": 2047,
-                                    "cost": 118.0,
+                                    "cost": 118.01,
                                     "duration": 548,
                                     "end_date": "2014-07-19T15:56:14Z",
                                     "facility_id": 60006382,
@@ -7947,7 +7946,7 @@
                     "200": {
                         "description": "Wallet balance",
                         "examples": {
-                            "application/json": 29500.0
+                            "application/json": 29500.01
                         },
                         "headers": {
                             "Cache-Control": {
@@ -9246,7 +9245,6 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ],
@@ -10080,7 +10078,7 @@
                                     "contact_id": 123,
                                     "contact_type": "character",
                                     "is_watched": true,
-                                    "standing": 10.0
+                                    "standing": 9.9
                                 }
                             ]
                         },
@@ -11998,7 +11996,7 @@
                                     "blueprint_id": 1015116533326,
                                     "blueprint_location_id": 60006382,
                                     "blueprint_type_id": 2047,
-                                    "cost": 118.0,
+                                    "cost": 118.01,
                                     "duration": 548,
                                     "end_date": "2014-07-19T15:56:14Z",
                                     "facility_id": 60006382,
@@ -20636,7 +20634,7 @@
                                         30004153,
                                         30004154
                                     ],
-                                    "influence": 1.0,
+                                    "influence": 0.9,
                                     "staging_solar_system_id": 30004154,
                                     "state": "mobilizing",
                                     "type": "Incursion"
@@ -21045,9 +21043,9 @@
                                 {
                                     "levels": [
                                         {
-                                            "cost": 10.0,
+                                            "cost": 10.01,
                                             "name": "Basic",
-                                            "payout": 20.0
+                                            "payout": 20.01
                                         }
                                     ],
                                     "type_id": 1
