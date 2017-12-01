@@ -1539,7 +1539,7 @@
         },
         "/characters/{character_id}/assets/locations/": {
             "post": {
-                "description": "Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/dev/characters/{character_id}/assets/locations/`\n\nAlternate route: `/latest/characters/{character_id}/assets/locations/`\n\nAlternate route: `/v1/characters/{character_id}/assets/locations/`\n",
+                "description": "Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/latest/characters/{character_id}/assets/locations/`\n\nAlternate route: `/v1/characters/{character_id}/assets/locations/`\n",
                 "operationId": "post_characters_character_id_assets_locations",
                 "parameters": [
                     {
@@ -1670,7 +1670,6 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "latest",
                     "v1"
                 ]
@@ -5968,7 +5967,7 @@
                                     "blueprint_id": 1015116533326,
                                     "blueprint_location_id": 60006382,
                                     "blueprint_type_id": 2047,
-                                    "cost": 118.0,
+                                    "cost": 118.01,
                                     "duration": 548,
                                     "end_date": "2014-07-19T15:56:14Z",
                                     "facility_id": 60006382,
@@ -10943,7 +10942,7 @@
                     "200": {
                         "description": "Wallet balance",
                         "examples": {
-                            "application/json": 29500.0
+                            "application/json": 29500.01
                         },
                         "headers": {
                             "Cache-Control": {
@@ -12670,7 +12669,7 @@
         },
         "/corporations/{corporation_id}/assets/locations/": {
             "post": {
-                "description": "Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/dev/corporations/{corporation_id}/assets/locations/`\n\nAlternate route: `/latest/corporations/{corporation_id}/assets/locations/`\n\nAlternate route: `/v1/corporations/{corporation_id}/assets/locations/`\n\n\n---\nRequires one of the following EVE corporation role(s): Director\n",
+                "description": "Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/assets/locations/`\n\nAlternate route: `/v1/corporations/{corporation_id}/assets/locations/`\n\n\n---\nRequires one of the following EVE corporation role(s): Director\n",
                 "operationId": "post_corporations_corporation_id_assets_locations",
                 "parameters": [
                     {
@@ -12801,7 +12800,6 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "latest",
                     "v1"
                 ],
@@ -15553,7 +15551,7 @@
                                     "blueprint_id": 1015116533326,
                                     "blueprint_location_id": 60006382,
                                     "blueprint_type_id": 2047,
-                                    "cost": 118.0,
+                                    "cost": 118.01,
                                     "duration": 548,
                                     "end_date": "2014-07-19T15:56:14Z",
                                     "facility_id": 60006382,
@@ -24567,7 +24565,7 @@
                                         30004153,
                                         30004154
                                     ],
-                                    "influence": 1.0,
+                                    "influence": 0.9,
                                     "staging_solar_system_id": 30004154,
                                     "state": "mobilizing",
                                     "type": "Incursion"
