@@ -1659,19 +1659,19 @@
                                         "properties": {
                                             "x": {
                                                 "description": "x number",
-                                                "format": "float",
+                                                "format": "double",
                                                 "title": "post_characters_character_id_assets_locations_x",
                                                 "type": "number"
                                             },
                                             "y": {
                                                 "description": "y number",
-                                                "format": "float",
+                                                "format": "double",
                                                 "title": "post_characters_character_id_assets_locations_y",
                                                 "type": "number"
                                             },
                                             "z": {
                                                 "description": "z number",
-                                                "format": "float",
+                                                "format": "double",
                                                 "title": "post_characters_character_id_assets_locations_z",
                                                 "type": "number"
                                             }
@@ -13334,19 +13334,19 @@
                                         "properties": {
                                             "x": {
                                                 "description": "x number",
-                                                "format": "float",
+                                                "format": "double",
                                                 "title": "post_corporations_corporation_id_assets_locations_x",
                                                 "type": "number"
                                             },
                                             "y": {
                                                 "description": "y number",
-                                                "format": "float",
+                                                "format": "double",
                                                 "title": "post_corporations_corporation_id_assets_locations_y",
                                                 "type": "number"
                                             },
                                             "z": {
                                                 "description": "z number",
-                                                "format": "float",
+                                                "format": "double",
                                                 "title": "post_corporations_corporation_id_assets_locations_z",
                                                 "type": "number"
                                             }
