@@ -1,0 +1,21 @@
+HTTP/1.1 200 OK
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Headers: Content-Type,Authorization,X-User-Agent
+Access-Control-Allow-Methods: OPTIONS,GET,OPTIONS
+Access-Control-Allow-Origin: *
+Access-Control-Expose-Headers: Content-Type,Warning,X-Pages,X-ESI-Error-Limit-Remain,X-ESI-Error-Limit-Reset
+Access-Control-Max-Age: 600
+Cache-Control: public
+Content-Length: 630897
+Content-Type: application/json
+Date: Mon, 04 Dec 2017 00:13:59 GMT
+Etag: W/"cf2a12131fb3c99359603ae68e13c9a2"
+Expires: Mon, 04 Dec 2017 00:14:59 GMT
+Last-Modified: Mon, 04 Dec 2017 00:13:59 GMT
+Strict-Transport-Security: max-age=31536000
+Vary: Accept-Encoding
+X-Esi-Error-Limit-Remain: 99
+X-Esi-Error-Limit-Reset: 1
+Via: 1.1 google
+Alt-Svc: clear
+
