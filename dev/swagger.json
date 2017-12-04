@@ -26002,19 +26002,19 @@
                                             "properties": {
                                                 "x": {
                                                     "description": "x number",
-                                                    "format": "float",
+                                                    "format": "double",
                                                     "title": "get_killmails_killmail_id_killmail_hash_x",
                                                     "type": "number"
                                                 },
                                                 "y": {
                                                     "description": "y number",
-                                                    "format": "float",
+                                                    "format": "double",
                                                     "title": "get_killmails_killmail_id_killmail_hash_y",
                                                     "type": "number"
                                                 },
                                                 "z": {
                                                     "description": "z number",
-                                                    "format": "float",
+                                                    "format": "double",
                                                     "title": "get_killmails_killmail_id_killmail_hash_z",
                                                     "type": "number"
                                                 }
@@ -29647,19 +29647,19 @@
                                     "properties": {
                                         "x": {
                                             "description": "x number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_constellations_constellation_id_x",
                                             "type": "number"
                                         },
                                         "y": {
                                             "description": "y number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_constellations_constellation_id_y",
                                             "type": "number"
                                         },
                                         "z": {
                                             "description": "z number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_constellations_constellation_id_z",
                                             "type": "number"
                                         }
@@ -30439,19 +30439,19 @@
                                     "properties": {
                                         "x": {
                                             "description": "x number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_moons_moon_id_x",
                                             "type": "number"
                                         },
                                         "y": {
                                             "description": "y number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_moons_moon_id_y",
                                             "type": "number"
                                         },
                                         "z": {
                                             "description": "z number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_moons_moon_id_z",
                                             "type": "number"
                                         }
@@ -30739,19 +30739,19 @@
                                     "properties": {
                                         "x": {
                                             "description": "x number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_planets_planet_id_x",
                                             "type": "number"
                                         },
                                         "y": {
                                             "description": "y number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_planets_planet_id_y",
                                             "type": "number"
                                         },
                                         "z": {
                                             "description": "z number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_planets_planet_id_z",
                                             "type": "number"
                                         }
@@ -31383,19 +31383,19 @@
                                     "properties": {
                                         "x": {
                                             "description": "x number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_stargates_stargate_id_x",
                                             "type": "number"
                                         },
                                         "y": {
                                             "description": "y number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_stargates_stargate_id_y",
                                             "type": "number"
                                         },
                                         "z": {
                                             "description": "z number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_stargates_stargate_id_z",
                                             "type": "number"
                                         }
@@ -31816,19 +31816,19 @@
                                     "properties": {
                                         "x": {
                                             "description": "x number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_stations_station_id_x",
                                             "type": "number"
                                         },
                                         "y": {
                                             "description": "y number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_stations_station_id_y",
                                             "type": "number"
                                         },
                                         "z": {
                                             "description": "z number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_stations_station_id_z",
                                             "type": "number"
                                         }
@@ -32116,19 +32116,19 @@
                                     "properties": {
                                         "x": {
                                             "description": "x number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_structures_structure_id_x",
                                             "type": "number"
                                         },
                                         "y": {
                                             "description": "y number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_structures_structure_id_y",
                                             "type": "number"
                                         },
                                         "z": {
                                             "description": "z number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_structures_structure_id_z",
                                             "type": "number"
                                         }
@@ -32638,19 +32638,19 @@
                                     "properties": {
                                         "x": {
                                             "description": "x number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_systems_system_id_x",
                                             "type": "number"
                                         },
                                         "y": {
                                             "description": "y number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_systems_system_id_y",
                                             "type": "number"
                                         },
                                         "z": {
                                             "description": "z number",
-                                            "format": "float",
+                                            "format": "double",
                                             "title": "get_universe_systems_system_id_z",
                                             "type": "number"
                                         }
