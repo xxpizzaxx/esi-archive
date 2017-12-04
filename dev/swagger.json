@@ -9170,7 +9170,7 @@
                                     },
                                     "price": {
                                         "description": "Cost per unit for this order",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_characters_character_id_orders_price",
                                         "type": "number"
                                     },
@@ -11425,7 +11425,7 @@
                         },
                         "schema": {
                             "description": "Wallet balance",
-                            "format": "float",
+                            "format": "double",
                             "title": "get_characters_character_id_wallet_ok",
                             "type": "number"
                         }
@@ -11534,13 +11534,13 @@
                                 "properties": {
                                     "amount": {
                                         "description": "Transaction amount. Positive when value transferred to the first party. Negative otherwise",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_characters_character_id_wallet_journal_amount",
                                         "type": "number"
                                     },
                                     "balance": {
                                         "description": "Wallet balance after transaction occurred",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_characters_character_id_wallet_journal_balance",
                                         "type": "number"
                                     },
@@ -11801,7 +11801,7 @@
                                     },
                                     "tax": {
                                         "description": "Tax amount received for tax related transactions",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_characters_character_id_wallet_journal_tax",
                                         "type": "number"
                                     },
@@ -11986,7 +11986,7 @@
                                     },
                                     "unit_price": {
                                         "description": "Amount paid per unit",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_characters_character_id_wallet_transactions_unit_price",
                                         "type": "number"
                                     }
@@ -17450,7 +17450,7 @@
                                     },
                                     "price": {
                                         "description": "Cost per unit for this order",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_corporations_corporation_id_orders_price",
                                         "type": "number"
                                     },
@@ -20781,7 +20781,7 @@
                                 "properties": {
                                     "balance": {
                                         "description": "balance number",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_corporations_corporation_id_wallets_balance",
                                         "type": "number"
                                     },
@@ -20924,13 +20924,13 @@
                                 "properties": {
                                     "amount": {
                                         "description": "Transaction amount. Positive when value transferred to the first party. Negative otherwise",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_corporations_corporation_id_wallets_division_journal_amount",
                                         "type": "number"
                                     },
                                     "balance": {
                                         "description": "Wallet balance after transaction occurred",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_corporations_corporation_id_wallets_division_journal_balance",
                                         "type": "number"
                                     },
@@ -21191,7 +21191,7 @@
                                     },
                                     "tax": {
                                         "description": "Tax amount received for tax related transactions",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_corporations_corporation_id_wallets_division_journal_tax",
                                         "type": "number"
                                     },
@@ -21384,7 +21384,7 @@
                                     },
                                     "unit_price": {
                                         "description": "Amount paid per unit",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_corporations_corporation_id_wallets_division_transactions_unit_price",
                                         "type": "number"
                                     }
@@ -26548,13 +26548,13 @@
                                 "properties": {
                                     "adjusted_price": {
                                         "description": "adjusted_price number",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_markets_prices_adjusted_price",
                                         "type": "number"
                                     },
                                     "average_price": {
                                         "description": "average_price number",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_markets_prices_average_price",
                                         "type": "number"
                                     },
@@ -26711,7 +26711,7 @@
                                     },
                                     "price": {
                                         "description": "price number",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_markets_structures_structure_id_price",
                                         "type": "number"
                                     },
@@ -26883,7 +26883,7 @@
                                 "properties": {
                                     "average": {
                                         "description": "average number",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_markets_region_id_history_average",
                                         "type": "number"
                                     },
@@ -26895,13 +26895,13 @@
                                     },
                                     "highest": {
                                         "description": "highest number",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_markets_region_id_history_highest",
                                         "type": "number"
                                     },
                                     "lowest": {
                                         "description": "lowest number",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_markets_region_id_history_lowest",
                                         "type": "number"
                                     },
@@ -27107,7 +27107,7 @@
                                     },
                                     "price": {
                                         "description": "price number",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_markets_region_id_orders_price",
                                         "type": "number"
                                     },
