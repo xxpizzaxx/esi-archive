@@ -13136,7 +13136,7 @@
                                     "material_efficiency": {
                                         "description": "Material Efficiency Level of the blueprint.",
                                         "format": "int32",
-                                        "maximum": 10,
+                                        "maximum": 25,
                                         "minimum": 0,
                                         "title": "get_corporations_corporation_id_blueprints_material_efficiency",
                                         "type": "integer"
