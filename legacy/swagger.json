@@ -304,7 +304,7 @@
         "/alliances/{alliance_id}/": {
             "get": {
                 "deprecated": true,
-                "description": "Public information about an alliance\n\n---\nAlternate route: `/v1/alliances/{alliance_id}/`\n\n\n---\nWarning: This endpoint is deprecated and will be removed on 2017-08-31.",
+                "description": "Public information about an alliance\n\n---\nAlternate route: `/v1/alliances/{alliance_id}/`\n\n\n---\nWarning: This endpoint is deprecated and will be removed on 2017-08-31.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/alliances/{alliance_id}/)",
                 "operationId": "get_alliances_alliance_id",
                 "parameters": [
                     {
@@ -988,7 +988,7 @@
         "/characters/{character_id}/": {
             "get": {
                 "deprecated": true,
-                "description": "Public information about a character\n\n---\nAlternate route: `/v3/characters/{character_id}/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "Public information about a character\n\n---\nAlternate route: `/v3/characters/{character_id}/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/)",
                 "operationId": "get_characters_character_id",
                 "parameters": [
                     {
@@ -1294,7 +1294,7 @@
         "/characters/{character_id}/assets/": {
             "get": {
                 "deprecated": true,
-                "description": "Return a list of the characters assets\n\n---\nAlternate route: `/v1/characters/{character_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "Return a list of the characters assets\n\n---\nAlternate route: `/v1/characters/{character_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/assets/)",
                 "operationId": "get_characters_character_id_assets",
                 "parameters": [
                     {
@@ -1952,7 +1952,7 @@
         "/characters/{character_id}/blueprints/": {
             "get": {
                 "deprecated": true,
-                "description": "Return a list of blueprints the character has\n\n---\nAlternate route: `/v1/characters/{character_id}/blueprints/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "Return a list of blueprints the character has\n\n---\nAlternate route: `/v1/characters/{character_id}/blueprints/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/blueprints/)",
                 "operationId": "get_characters_character_id_blueprints",
                 "parameters": [
                     {
@@ -2194,7 +2194,7 @@
         "/characters/{character_id}/bookmarks/": {
             "get": {
                 "deprecated": true,
-                "description": "List your character's personal bookmarks\n\n---\nAlternate route: `/v1/characters/{character_id}/bookmarks/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "List your character's personal bookmarks\n\n---\nAlternate route: `/v1/characters/{character_id}/bookmarks/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/bookmarks/)",
                 "operationId": "get_characters_character_id_bookmarks",
                 "parameters": [
                     {
@@ -2425,7 +2425,7 @@
         "/characters/{character_id}/bookmarks/folders/": {
             "get": {
                 "deprecated": true,
-                "description": "List your character's personal bookmark folders\n\n---\nAlternate route: `/v1/characters/{character_id}/bookmarks/folders/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "List your character's personal bookmark folders\n\n---\nAlternate route: `/v1/characters/{character_id}/bookmarks/folders/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/bookmarks/folders/)",
                 "operationId": "get_characters_character_id_bookmarks_folders",
                 "parameters": [
                     {
@@ -2691,7 +2691,7 @@
         "/characters/{character_id}/calendar/{event_id}/": {
             "get": {
                 "deprecated": true,
-                "description": "Get all the information for a specific event\n\n---\nAlternate route: `/v2/characters/{character_id}/calendar/{event_id}/`\n\n---\nThis route is cached for up to 5 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "Get all the information for a specific event\n\n---\nAlternate route: `/v2/characters/{character_id}/calendar/{event_id}/`\n\n---\nThis route is cached for up to 5 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/calendar/{event_id}/)",
                 "operationId": "get_characters_character_id_calendar_event_id",
                 "parameters": [
                     {
@@ -2854,7 +2854,7 @@
             },
             "put": {
                 "deprecated": true,
-                "description": "Set your response status to an event\n\n---\nAlternate route: `/v2/characters/{character_id}/calendar/{event_id}/`\n\n\n---\nWarning: This route is deprecated.",
+                "description": "Set your response status to an event\n\n---\nAlternate route: `/v2/characters/{character_id}/calendar/{event_id}/`\n\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#PUT-/characters/{character_id}/calendar/{event_id}/)",
                 "operationId": "put_characters_character_id_calendar_event_id",
                 "parameters": [
                     {
@@ -6960,7 +6960,7 @@
         "/characters/{character_id}/mail/labels/": {
             "get": {
                 "deprecated": true,
-                "description": "Return a list of the users mail labels\n\n---\nAlternate route: `/v2/characters/{character_id}/mail/labels/`\n\n---\nThis route is cached for up to 30 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "Return a list of the users mail labels\n\n---\nAlternate route: `/v2/characters/{character_id}/mail/labels/`\n\n---\nThis route is cached for up to 30 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/mail/labels/)",
                 "operationId": "get_characters_character_id_mail_labels",
                 "parameters": [
                     {
@@ -7433,7 +7433,7 @@
         "/characters/{character_id}/mail/unread/": {
             "get": {
                 "deprecated": true,
-                "description": "Return the number of unread mails for the character\n\n---\nAlternate route: `/v1/characters/{character_id}/mail/unread/`\n\n---\nThis route is cached for up to 5 seconds\n\n---\nWarning: This endpoint is deprecated and will be removed on 2016-10-10.",
+                "description": "Return the number of unread mails for the character\n\n---\nAlternate route: `/v1/characters/{character_id}/mail/unread/`\n\n---\nThis route is cached for up to 5 seconds\n\n---\nWarning: This endpoint is deprecated and will be removed on 2016-10-10.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/mail/unread/)",
                 "operationId": "get_characters_character_id_mail_unread",
                 "parameters": [
                     {
@@ -9401,7 +9401,7 @@
         "/characters/{character_id}/planets/{planet_id}/": {
             "get": {
                 "deprecated": true,
-                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.\n\n---\nAlternate route: `/v2/characters/{character_id}/planets/{planet_id}/`\n\n---\nThis route is cached for up to 600 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.\n\n---\nAlternate route: `/v2/characters/{character_id}/planets/{planet_id}/`\n\n---\nThis route is cached for up to 600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/planets/{planet_id}/)",
                 "operationId": "get_characters_character_id_planets_planet_id",
                 "parameters": [
                     {
@@ -9831,7 +9831,7 @@
         "/characters/{character_id}/portrait/": {
             "get": {
                 "deprecated": true,
-                "description": "Get portrait urls for a character\n\n---\nAlternate route: `/v1/characters/{character_id}/portrait/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This endpoint is deprecated and will be removed on 2016-10-01.",
+                "description": "Get portrait urls for a character\n\n---\nAlternate route: `/v1/characters/{character_id}/portrait/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This endpoint is deprecated and will be removed on 2016-10-01.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/portrait/)",
                 "operationId": "get_characters_character_id_portrait",
                 "parameters": [
                     {
@@ -10095,7 +10095,7 @@
         "/characters/{character_id}/search/": {
             "get": {
                 "deprecated": true,
-                "description": "Search for entities that match a given sub-string.\n\n---\nAlternate route: `/v1/characters/{character_id}/search/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "Search for entities that match a given sub-string.\n\n---\nAlternate route: `/v1/characters/{character_id}/search/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/search/)",
                 "operationId": "get_characters_character_id_search",
                 "parameters": [
                     {
@@ -10540,7 +10540,7 @@
         "/characters/{character_id}/skills/": {
             "get": {
                 "deprecated": true,
-                "description": "List all trained skills for the given character\n\n---\nAlternate route: `/v2/characters/{character_id}/skills/`\n\n---\nThis route is cached for up to 120 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "List all trained skills for the given character\n\n---\nAlternate route: `/v2/characters/{character_id}/skills/`\n\n---\nThis route is cached for up to 120 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/skills/)",
                 "operationId": "get_characters_character_id_skills",
                 "parameters": [
                     {
@@ -11010,7 +11010,7 @@
         "/characters/{character_id}/wallet/journal/": {
             "get": {
                 "deprecated": true,
-                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/v1/characters/{character_id}/wallet/journal/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/v1/characters/{character_id}/wallet/journal/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/wallet/journal/)",
                 "operationId": "get_characters_character_id_wallet_journal",
                 "parameters": [
                     {
@@ -12129,7 +12129,7 @@
         "/corporations/{corporation_id}/": {
             "get": {
                 "deprecated": true,
-                "description": "Public information about a corporation\n\n---\nAlternate route: `/v2/corporations/{corporation_id}/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "Public information about a corporation\n\n---\nAlternate route: `/v2/corporations/{corporation_id}/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/corporations/{corporation_id}/)",
                 "operationId": "get_corporations_corporation_id",
                 "parameters": [
                     {
@@ -12258,7 +12258,7 @@
         "/corporations/{corporation_id}/alliancehistory/": {
             "get": {
                 "deprecated": true,
-                "description": "Get a list of all the alliances a corporation has been a member of\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/alliancehistory/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "Get a list of all the alliances a corporation has been a member of\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/alliancehistory/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/corporations/{corporation_id}/alliancehistory/)",
                 "operationId": "get_corporations_corporation_id_alliancehistory",
                 "parameters": [
                     {
@@ -21178,7 +21178,7 @@
         "/dogma/effects/{effect_id}/": {
             "get": {
                 "deprecated": true,
-                "description": "Get information on a dogma effect\n\n---\nAlternate route: `/v1/dogma/effects/{effect_id}/`\n\n---\nThis route expires daily at 11:05\n\n---\nWarning: This route is deprecated.",
+                "description": "Get information on a dogma effect\n\n---\nAlternate route: `/v1/dogma/effects/{effect_id}/`\n\n---\nThis route expires daily at 11:05\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/dogma/effects/{effect_id}/)",
                 "operationId": "get_dogma_effects_effect_id",
                 "parameters": [
                     {
@@ -28066,7 +28066,7 @@
         "/ui/autopilot/waypoint/": {
             "post": {
                 "deprecated": true,
-                "description": "Set a solar system as autopilot waypoint\n\n---\nAlternate route: `/v1/ui/autopilot/waypoint/`\n\n\n---\nWarning: This endpoint is deprecated and will be removed on 2016-12-23.",
+                "description": "Set a solar system as autopilot waypoint\n\n---\nAlternate route: `/v1/ui/autopilot/waypoint/`\n\n\n---\nWarning: This endpoint is deprecated and will be removed on 2016-12-23.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#POST-/ui/autopilot/waypoint/)",
                 "operationId": "post_ui_autopilot_waypoint",
                 "parameters": [
                     {
@@ -29170,7 +29170,7 @@
         "/universe/factions/": {
             "get": {
                 "deprecated": true,
-                "description": "Get a list of factions\n\n---\nAlternate route: `/v1/universe/factions/`\n\n---\nThis route expires daily at 11:05\n\n---\nWarning: This route is deprecated.",
+                "description": "Get a list of factions\n\n---\nAlternate route: `/v1/universe/factions/`\n\n---\nThis route expires daily at 11:05\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/universe/factions/)",
                 "operationId": "get_universe_factions",
                 "parameters": [
                     {
@@ -29951,7 +29951,7 @@
         "/universe/names/": {
             "post": {
                 "deprecated": true,
-                "description": "Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types.\n\n---\nAlternate route: `/v1/universe/names/`\n\n\n---\nWarning: This route is deprecated.",
+                "description": "Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types.\n\n---\nAlternate route: `/v1/universe/names/`\n\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#POST-/universe/names/)",
                 "operationId": "post_universe_names",
                 "parameters": [
                     {
@@ -31144,7 +31144,7 @@
         "/universe/stations/{station_id}/": {
             "get": {
                 "deprecated": true,
-                "description": "Public information on stations\n\n---\nAlternate route: `/v1/universe/stations/{station_id}/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "Public information on stations\n\n---\nAlternate route: `/v1/universe/stations/{station_id}/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/universe/stations/{station_id}/)",
                 "operationId": "get_universe_stations_station_id",
                 "parameters": [
                     {
@@ -31573,7 +31573,7 @@
         "/universe/system_kills/": {
             "get": {
                 "deprecated": true,
-                "description": "Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed\n\n---\nAlternate route: `/v1/universe/system_kills/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.",
+                "description": "Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed\n\n---\nAlternate route: `/v1/universe/system_kills/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/universe/system_kills/)",
                 "operationId": "get_universe_system_kills",
                 "parameters": [
                     {
@@ -31756,7 +31756,7 @@
         "/universe/systems/{system_id}/": {
             "get": {
                 "deprecated": true,
-                "description": "Get information on a solar system\n\n---\nAlternate route: `/v2/universe/systems/{system_id}/`\n\n---\nThis route expires daily at 11:05\n\n---\nWarning: This route is deprecated.",
+                "description": "Get information on a solar system\n\n---\nAlternate route: `/v2/universe/systems/{system_id}/`\n\n---\nThis route expires daily at 11:05\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/universe/systems/{system_id}/)",
                 "operationId": "get_universe_systems_system_id",
                 "parameters": [
                     {
@@ -32094,7 +32094,7 @@
         "/universe/types/{type_id}/": {
             "get": {
                 "deprecated": true,
-                "description": "Get information on a type\n\n---\nAlternate route: `/v2/universe/types/{type_id}/`\n\n---\nThis route expires daily at 11:05\n\n---\nWarning: This route is deprecated.",
+                "description": "Get information on a type\n\n---\nAlternate route: `/v2/universe/types/{type_id}/`\n\n---\nThis route expires daily at 11:05\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/universe/types/{type_id}/)",
                 "operationId": "get_universe_types_type_id",
                 "parameters": [
                     {
