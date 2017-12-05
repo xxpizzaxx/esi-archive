@@ -197,7 +197,7 @@
         },
         "/v1/alliances/names/": {
             "get": {
-                "description": "Resolve a set of alliance IDs to alliance names\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Resolve a set of alliance IDs to alliance names\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/alliances/names/)",
                 "operationId": "get_alliances_names",
                 "parameters": [
                     {
@@ -1025,7 +1025,7 @@
         },
         "/v1/characters/{character_id}/assets/locations/": {
             "post": {
-                "description": "Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\n",
+                "description": "Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\n\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#POST-/characters/{character_id}/assets/locations/)",
                 "operationId": "post_characters_character_id_assets_locations",
                 "parameters": [
                     {
@@ -2023,7 +2023,7 @@
         },
         "/v1/characters/{character_id}/contacts/": {
             "delete": {
-                "description": "Bulk delete contacts\n\n---\n",
+                "description": "Bulk delete contacts\n\n---\n\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#DELETE-/characters/{character_id}/contacts/)",
                 "operationId": "delete_characters_character_id_contacts",
                 "parameters": [
                     {
@@ -6768,7 +6768,7 @@
         },
         "/v1/characters/{character_id}/online/": {
             "get": {
-                "description": "Checks if the character is currently online\n\n---\n\nThis route is cached for up to 60 seconds",
+                "description": "Checks if the character is currently online\n\n---\n\nThis route is cached for up to 60 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/online/)",
                 "operationId": "get_characters_character_id_online",
                 "parameters": [
                     {
@@ -7401,7 +7401,7 @@
         },
         "/v1/characters/{character_id}/roles/": {
             "get": {
-                "description": "Returns a character's corporation roles\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Returns a character's corporation roles\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/roles/)",
                 "operationId": "get_characters_character_id_roles",
                 "parameters": [
                     {
@@ -8648,7 +8648,7 @@
         },
         "/v1/corporations/names/": {
             "get": {
-                "description": "Resolve a set of corporation IDs to corporation names\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Resolve a set of corporation IDs to corporation names\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/corporations/names/)",
                 "operationId": "get_corporations_names",
                 "parameters": [
                     {
@@ -8828,7 +8828,7 @@
         },
         "/v1/corporations/{corporation_id}/assets/": {
             "get": {
-                "description": "Return a list of the corporation assets\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
+                "description": "Return a list of the corporation assets\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/corporations/{corporation_id}/assets/)",
                 "operationId": "get_corporations_corporation_id_assets",
                 "parameters": [
                     {
@@ -9114,7 +9114,7 @@
         },
         "/v1/corporations/{corporation_id}/assets/locations/": {
             "post": {
-                "description": "Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\n\nRequires one of the following EVE corporation role(s): Director",
+                "description": "Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\n\nRequires one of the following EVE corporation role(s): Director\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#POST-/corporations/{corporation_id}/assets/locations/)",
                 "operationId": "post_corporations_corporation_id_assets_locations",
                 "parameters": [
                     {
@@ -16596,7 +16596,7 @@
         },
         "/v1/corporations/{corporation_id}/wallets/{division}/journal/": {
             "get": {
-                "description": "Retrieve corporation wallet journal\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Junior_Accountant",
+                "description": "Retrieve corporation wallet journal\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Junior_Accountant\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/corporations/{corporation_id}/wallets/{division}/journal/)",
                 "operationId": "get_corporations_corporation_id_wallets_division_journal",
                 "parameters": [
                     {
@@ -23353,7 +23353,7 @@
         },
         "/v1/search/": {
             "get": {
-                "description": "Search for entities that match a given sub-string.\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Search for entities that match a given sub-string.\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/search/)",
                 "operationId": "get_search",
                 "parameters": [
                     {
@@ -27782,7 +27782,7 @@
         },
         "/v2/alliances/{alliance_id}/": {
             "get": {
-                "description": "Public information about an alliance\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Public information about an alliance\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/alliances/{alliance_id}/)",
                 "operationId": "get_alliances_alliance_id",
                 "parameters": [
                     {
@@ -27902,7 +27902,7 @@
         },
         "/v2/characters/{character_id}/assets/": {
             "get": {
-                "description": "Return a list of the characters assets\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return a list of the characters assets\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/assets/)",
                 "operationId": "get_characters_character_id_assets",
                 "parameters": [
                     {
@@ -28763,7 +28763,7 @@
         },
         "/v2/characters/{character_id}/clones/": {
             "get": {
-                "description": "A list of the character's clones\n\n---\n\nThis route is cached for up to 120 seconds",
+                "description": "A list of the character's clones\n\n---\n\nThis route is cached for up to 120 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/clones/)",
                 "operationId": "get_characters_character_id_clones",
                 "parameters": [
                     {
@@ -29180,7 +29180,7 @@
         },
         "/v2/characters/{character_id}/search/": {
             "get": {
-                "description": "Search for entities that match a given sub-string.\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Search for entities that match a given sub-string.\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/search/)",
                 "operationId": "get_characters_character_id_search",
                 "parameters": [
                     {
@@ -29657,7 +29657,7 @@
         },
         "/v2/characters/{character_id}/wallet/journal/": {
             "get": {
-                "description": "Retrieve character wallet journal\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Retrieve character wallet journal\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/wallet/journal/)",
                 "operationId": "get_characters_character_id_wallet_journal",
                 "parameters": [
                     {
@@ -30163,7 +30163,7 @@
         },
         "/v2/corporations/{corporation_id}/members/": {
             "get": {
-                "description": "Read the current list of members if the calling character is a member.\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Read the current list of members if the calling character is a member.\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/corporations/{corporation_id}/members/)",
                 "operationId": "get_corporations_corporation_id_members",
                 "parameters": [
                     {
@@ -31587,7 +31587,7 @@
         },
         "/v3/characters/{character_id}/cspa/": {
             "post": {
-                "description": "Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost\n\n---\n",
+                "description": "Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost\n\n---\n\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#POST-/characters/{character_id}/cspa/)",
                 "operationId": "post_characters_character_id_cspa",
                 "parameters": [
                     {
@@ -32312,7 +32312,7 @@
         },
         "/v3/characters/{character_id}/skills/": {
             "get": {
-                "description": "List all trained skills for the given character\n\n---\n\nThis route is cached for up to 120 seconds",
+                "description": "List all trained skills for the given character\n\n---\n\nThis route is cached for up to 120 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/skills/)",
                 "operationId": "get_characters_character_id_skills",
                 "parameters": [
                     {
@@ -32452,7 +32452,7 @@
         },
         "/v3/corporations/{corporation_id}/": {
             "get": {
-                "description": "Public information about a corporation\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Public information about a corporation\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/corporations/{corporation_id}/)",
                 "operationId": "get_corporations_corporation_id",
                 "parameters": [
                     {
