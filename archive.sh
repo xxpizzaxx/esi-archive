@@ -29,6 +29,7 @@ function archive {
     popd
   else
     git checkout -- headers.txt swagger.json
+    popd
   fi
 }
 
