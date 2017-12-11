@@ -4307,7 +4307,7 @@
                                     "acceptor_id": 0,
                                     "assignee_id": 0,
                                     "availability": "public",
-                                    "buyout": 10000000000.0,
+                                    "buyout": 10000000000.01,
                                     "contract_id": 1,
                                     "date_accepted": "2017-06-06T13:12:32Z",
                                     "date_completed": "2017-06-06T13:12:32Z",
@@ -4318,8 +4318,8 @@
                                     "for_corporation": true,
                                     "issuer_corporation_id": 456,
                                     "issuer_id": 123,
-                                    "price": 1000000.0,
-                                    "reward": 0.0,
+                                    "price": 1000000.01,
+                                    "reward": 0.01,
                                     "start_location_id": 60014719,
                                     "status": "outstanding",
                                     "type": "auction",
@@ -4371,13 +4371,13 @@
                                     },
                                     "buyout": {
                                         "description": "Buyout price (for Auctions only)",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_characters_character_id_contracts_buyout",
                                         "type": "number"
                                     },
                                     "collateral": {
                                         "description": "Collateral price (for Couriers only)",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_characters_character_id_contracts_collateral",
                                         "type": "number"
                                     },
@@ -4442,13 +4442,13 @@
                                     },
                                     "price": {
                                         "description": "Price of contract (for ItemsExchange and Auctions)",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_characters_character_id_contracts_price",
                                         "type": "number"
                                     },
                                     "reward": {
                                         "description": "Remuneration for contract (for Couriers only)",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_characters_character_id_contracts_reward",
                                         "type": "number"
                                     },
@@ -6146,7 +6146,7 @@
                                     },
                                     "cost": {
                                         "description": "The sume of job installation fee and industry facility tax",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_characters_character_id_industry_jobs_cost",
                                         "type": "number"
                                     },
@@ -9130,7 +9130,7 @@
                                     },
                                     "escrow": {
                                         "description": "For buy orders, the amount of ISK in escrow",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_characters_character_id_orders_escrow",
                                         "type": "number"
                                     },
@@ -14742,7 +14742,7 @@
                                     "acceptor_id": 0,
                                     "assignee_id": 0,
                                     "availability": "public",
-                                    "buyout": 10000000000.0,
+                                    "buyout": 10000000000.01,
                                     "contract_id": 1,
                                     "date_accepted": "2017-06-06T13:12:32Z",
                                     "date_completed": "2017-06-06T13:12:32Z",
@@ -14753,8 +14753,8 @@
                                     "for_corporation": true,
                                     "issuer_corporation_id": 456,
                                     "issuer_id": 123,
-                                    "price": 1000000.0,
-                                    "reward": 0.0,
+                                    "price": 1000000.01,
+                                    "reward": 0.01,
                                     "start_location_id": 60014719,
                                     "status": "outstanding",
                                     "type": "auction",
@@ -14806,13 +14806,13 @@
                                     },
                                     "buyout": {
                                         "description": "Buyout price (for Auctions only)",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_corporations_corporation_id_contracts_buyout",
                                         "type": "number"
                                     },
                                     "collateral": {
                                         "description": "Collateral price (for Couriers only)",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_corporations_corporation_id_contracts_collateral",
                                         "type": "number"
                                     },
@@ -14877,13 +14877,13 @@
                                     },
                                     "price": {
                                         "description": "Price of contract (for ItemsExchange and Auctions)",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_corporations_corporation_id_contracts_price",
                                         "type": "number"
                                     },
                                     "reward": {
                                         "description": "Remuneration for contract (for Couriers only)",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_corporations_corporation_id_contracts_reward",
                                         "type": "number"
                                     },
@@ -16235,7 +16235,7 @@
                                     },
                                     "cost": {
                                         "description": "The sume of job installation fee and industry facility tax",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_corporations_corporation_id_industry_jobs_cost",
                                         "type": "number"
                                     },
@@ -17415,7 +17415,7 @@
                                     },
                                     "escrow": {
                                         "description": "For buy orders, the amount of ISK in escrow",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_corporations_corporation_id_orders_escrow",
                                         "type": "number"
                                     },
