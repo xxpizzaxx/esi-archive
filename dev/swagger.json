@@ -9130,7 +9130,7 @@
                                     },
                                     "escrow": {
                                         "description": "For buy orders, the amount of ISK in escrow",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_characters_character_id_orders_escrow",
                                         "type": "number"
                                     },
@@ -17415,7 +17415,7 @@
                                     },
                                     "escrow": {
                                         "description": "For buy orders, the amount of ISK in escrow",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_corporations_corporation_id_orders_escrow",
                                         "type": "number"
                                     },
