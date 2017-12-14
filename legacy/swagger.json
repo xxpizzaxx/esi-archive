@@ -10806,7 +10806,7 @@
         },
         "/characters/{character_id}/stats/": {
             "get": {
-                "description": "Returns aggregate yearly stats for a character\n\n---\nAlternate route: `/dev/characters/{character_id}/stats/`\n\nAlternate route: `/latest/characters/{character_id}/stats/`\n\nAlternate route: `/v1/characters/{character_id}/stats/`\n\n---\nThis route is cached for up to 86400 seconds",
+                "description": "Returns aggregate yearly stats for a character\n\n---\nAlternate route: `/latest/characters/{character_id}/stats/`\n\nAlternate route: `/v1/characters/{character_id}/stats/`\n\n---\nThis route is cached for up to 86400 seconds",
                 "operationId": "get_characters_character_id_stats",
                 "parameters": [
                     {
@@ -12658,7 +12658,6 @@
                     "Character"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "latest",
                     "v1"
                 ],
