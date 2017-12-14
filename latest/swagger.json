@@ -11003,7 +11003,7 @@
         },
         "/characters/{character_id}/stats/": {
             "get": {
-                "description": "Returns aggregate yearly stats for a character\n\n---\nAlternate route: `/dev/characters/{character_id}/stats/`\n\nAlternate route: `/legacy/characters/{character_id}/stats/`\n\nAlternate route: `/v1/characters/{character_id}/stats/`\n\n---\nThis route is cached for up to 86400 seconds",
+                "description": "Returns aggregate yearly stats for a character\n\n---\nAlternate route: `/legacy/characters/{character_id}/stats/`\n\nAlternate route: `/v1/characters/{character_id}/stats/`\n\n---\nThis route is cached for up to 86400 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/stats/)",
                 "operationId": "get_characters_character_id_stats",
                 "parameters": [
                     {
@@ -12855,7 +12855,6 @@
                     "Character"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ],
