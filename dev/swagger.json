@@ -11720,6 +11720,12 @@
                                                 "title": "get_characters_character_id_stats_drone_engage",
                                                 "type": "integer"
                                             },
+                                            "dscans": {
+                                                "description": "dscans integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_stats_dscans",
+                                                "type": "integer"
+                                            },
                                             "duel_requested": {
                                                 "description": "duel_requested integer",
                                                 "format": "int64",
@@ -11790,6 +11796,12 @@
                                                 "description": "npc_flag_set integer",
                                                 "format": "int64",
                                                 "title": "get_characters_character_id_stats_npc_flag_set",
+                                                "type": "integer"
+                                            },
+                                            "probe_scans": {
+                                                "description": "probe_scans integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_stats_probe_scans",
                                                 "type": "integer"
                                             },
                                             "pvp_flag_set": {
@@ -11920,25 +11932,6 @@
                                             }
                                         },
                                         "title": "get_characters_character_id_stats_combat",
-                                        "type": "object"
-                                    },
-                                    "dscan": {
-                                        "description": "dscan object",
-                                        "properties": {
-                                            "cone_scans": {
-                                                "description": "cone_scans integer",
-                                                "format": "int64",
-                                                "title": "get_characters_character_id_stats_cone_scans",
-                                                "type": "integer"
-                                            },
-                                            "request_scans": {
-                                                "description": "request_scans integer",
-                                                "format": "int64",
-                                                "title": "get_characters_character_id_stats_request_scans",
-                                                "type": "integer"
-                                            }
-                                        },
-                                        "title": "get_characters_character_id_stats_dscan",
                                         "type": "object"
                                     },
                                     "industry": {
