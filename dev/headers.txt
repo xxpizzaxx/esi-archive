@@ -7,14 +7,14 @@ Access-Control-Expose-Headers: Content-Type,Warning,X-Pages,X-ESI-Error-Limit-Re
 Access-Control-Max-Age: 600
 Content-Length: 704087
 Content-Type: application/json
-Date: Sun, 17 Dec 2017 22:13:57 GMT
+Date: Sun, 17 Dec 2017 22:14:37 GMT
 ETag: W/"19737dd8472a1d25bc0a199a070c1b64"
-Expires: Sun, 17 Dec 2017 22:14:54 GMT
-Last-Modified: Sun, 17 Dec 2017 20:16:38 GMT
+Expires: Sun, 17 Dec 2017 22:15:33 GMT
+Last-Modified: Sun, 17 Dec 2017 20:30:01 GMT
 Strict-Transport-Security: max-age=31536000
 Vary: Accept-Encoding
 X-Esi-Error-Limit-Remain: 100
-X-Esi-Error-Limit-Reset: 20
+X-Esi-Error-Limit-Reset: 54
 Via: 1.1 google
 Cache-Control: public
 Age: 0
