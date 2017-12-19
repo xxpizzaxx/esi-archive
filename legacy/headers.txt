@@ -6,16 +6,16 @@ Access-Control-Allow-Origin: *
 Access-Control-Expose-Headers: Content-Type,Warning,X-Pages,X-ESI-Error-Limit-Remain,X-ESI-Error-Limit-Reset
 Access-Control-Max-Age: 600
 Cache-Control: public
-Content-Length: 695837
+Content-Length: 702204
 Content-Type: application/json
-Date: Thu, 14 Dec 2017 18:54:06 GMT
-Etag: W/"2c0c1bcc09e643448812fffea9bb11db"
-Expires: Thu, 14 Dec 2017 18:55:05 GMT
-Last-Modified: Thu, 14 Dec 2017 18:54:05 GMT
+Date: Tue, 19 Dec 2017 20:21:36 GMT
+Etag: W/"0414cd9532d09bdc1a69671875ed13d5"
+Expires: Tue, 19 Dec 2017 20:22:35 GMT
+Last-Modified: Tue, 19 Dec 2017 20:21:35 GMT
 Strict-Transport-Security: max-age=31536000
 Vary: Accept-Encoding
 X-Esi-Error-Limit-Remain: 100
-X-Esi-Error-Limit-Reset: 55
+X-Esi-Error-Limit-Reset: 25
 Via: 1.1 google
 Alt-Svc: clear
 
