@@ -4969,7 +4969,7 @@
         },
         "/characters/{character_id}/cspa/": {
             "post": {
-                "description": "Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost\n\n---\nAlternate route: `/legacy/characters/{character_id}/cspa/`\n\nAlternate route: `/v3/characters/{character_id}/cspa/`\n\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#POST-/characters/{character_id}/cspa/)",
+                "description": "Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost\n\n---\nAlternate route: `/dev/characters/{character_id}/cspa/`\n\nAlternate route: `/v4/characters/{character_id}/cspa/`\n",
                 "operationId": "post_characters_character_id_cspa",
                 "parameters": [
                     {
@@ -4981,28 +4981,18 @@
                         "name": "characters",
                         "required": true,
                         "schema": {
-                            "description": "characters object",
-                            "properties": {
-                                "characters": {
-                                    "description": "characters array",
-                                    "items": {
-                                        "description": "character integer",
-                                        "format": "int32",
-                                        "title": "post_characters_character_id_cspa_character",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 100,
-                                    "minItems": 1,
-                                    "title": "post_characters_character_id_cspa_characters",
-                                    "type": "array",
-                                    "uniqueItems": true
-                                }
+                            "description": "characters array",
+                            "items": {
+                                "description": "character integer",
+                                "format": "int32",
+                                "title": "post_characters_character_id_cspa_character",
+                                "type": "integer"
                             },
-                            "required": [
-                                "characters"
-                            ],
+                            "maxItems": 100,
+                            "minItems": 1,
                             "title": "post_characters_character_id_cspa_characters",
-                            "type": "object"
+                            "type": "array",
+                            "uniqueItems": true
                         }
                     },
                     {
@@ -5020,24 +5010,15 @@
                 ],
                 "responses": {
                     "201": {
-                        "description": "Aggregate cost of sending a mail from the source character to the target characters, in ISK hundredths",
+                        "description": "Aggregate cost of sending a mail from the source character to the target characters, in ISK",
                         "examples": {
-                            "application/json": {
-                                "cost": 295000
-                            }
+                            "application/json": 2950.0
                         },
                         "schema": {
-                            "description": "201 created object",
-                            "properties": {
-                                "cost": {
-                                    "description": "cost integer",
-                                    "format": "int64",
-                                    "title": "post_characters_character_id_cspa_cost",
-                                    "type": "integer"
-                                }
-                            },
+                            "description": "201 created number",
+                            "format": "float",
                             "title": "post_characters_character_id_cspa_created",
-                            "type": "object"
+                            "type": "number"
                         }
                     },
                     "403": {
@@ -5075,8 +5056,8 @@
                     "Character"
                 ],
                 "x-alternate-versions": [
-                    "legacy",
-                    "v3"
+                    "dev",
+                    "v4"
                 ]
             }
         },
@@ -10015,7 +9996,7 @@
         },
         "/characters/{character_id}/roles/": {
             "get": {
-                "description": "Returns a character's corporation roles\n\n---\nAlternate route: `/legacy/characters/{character_id}/roles/`\n\nAlternate route: `/v1/characters/{character_id}/roles/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/roles/)",
+                "description": "Returns a character's corporation roles\n\n---\nAlternate route: `/dev/characters/{character_id}/roles/`\n\nAlternate route: `/v2/characters/{character_id}/roles/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_roles",
                 "parameters": [
                     {
@@ -10038,10 +10019,12 @@
                     "200": {
                         "description": "The character's roles in thier corporation",
                         "examples": {
-                            "application/json": [
-                                "Director",
-                                "Station_Manager"
-                            ]
+                            "application/json": {
+                                "roles": [
+                                    "Director",
+                                    "Station_Manager"
+                                ]
+                            }
                         },
                         "headers": {
                             "Cache-Control": {
@@ -10058,68 +10041,267 @@
                             }
                         },
                         "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok string",
-                                "enum": [
-                                    "Account_Take_1",
-                                    "Account_Take_2",
-                                    "Account_Take_3",
-                                    "Account_Take_4",
-                                    "Account_Take_5",
-                                    "Account_Take_6",
-                                    "Account_Take_7",
-                                    "Accountant",
-                                    "Auditor",
-                                    "Communications_Officer",
-                                    "Config_Equipment",
-                                    "Config_Starbase_Equipment",
-                                    "Container_Take_1",
-                                    "Container_Take_2",
-                                    "Container_Take_3",
-                                    "Container_Take_4",
-                                    "Container_Take_5",
-                                    "Container_Take_6",
-                                    "Container_Take_7",
-                                    "Contract_Manager",
-                                    "Diplomat",
-                                    "Director",
-                                    "Factory_Manager",
-                                    "Fitting_Manager",
-                                    "Hangar_Query_1",
-                                    "Hangar_Query_2",
-                                    "Hangar_Query_3",
-                                    "Hangar_Query_4",
-                                    "Hangar_Query_5",
-                                    "Hangar_Query_6",
-                                    "Hangar_Query_7",
-                                    "Hangar_Take_1",
-                                    "Hangar_Take_2",
-                                    "Hangar_Take_3",
-                                    "Hangar_Take_4",
-                                    "Hangar_Take_5",
-                                    "Hangar_Take_6",
-                                    "Hangar_Take_7",
-                                    "Junior_Accountant",
-                                    "Personnel_Manager",
-                                    "Rent_Factory_Facility",
-                                    "Rent_Office",
-                                    "Rent_Research_Facility",
-                                    "Security_Officer",
-                                    "Starbase_Defense_Operator",
-                                    "Starbase_Fuel_Technician",
-                                    "Station_Manager",
-                                    "Terrestrial_Combat_Officer",
-                                    "Terrestrial_Logistics_Officer",
-                                    "Trader"
-                                ],
-                                "title": "get_characters_character_id_roles_200_ok",
-                                "type": "string"
+                            "description": "200 ok object",
+                            "properties": {
+                                "roles": {
+                                    "description": "roles array",
+                                    "items": {
+                                        "description": "role string",
+                                        "enum": [
+                                            "Account_Take_1",
+                                            "Account_Take_2",
+                                            "Account_Take_3",
+                                            "Account_Take_4",
+                                            "Account_Take_5",
+                                            "Account_Take_6",
+                                            "Account_Take_7",
+                                            "Accountant",
+                                            "Auditor",
+                                            "Communications_Officer",
+                                            "Config_Equipment",
+                                            "Config_Starbase_Equipment",
+                                            "Container_Take_1",
+                                            "Container_Take_2",
+                                            "Container_Take_3",
+                                            "Container_Take_4",
+                                            "Container_Take_5",
+                                            "Container_Take_6",
+                                            "Container_Take_7",
+                                            "Contract_Manager",
+                                            "Diplomat",
+                                            "Director",
+                                            "Factory_Manager",
+                                            "Fitting_Manager",
+                                            "Hangar_Query_1",
+                                            "Hangar_Query_2",
+                                            "Hangar_Query_3",
+                                            "Hangar_Query_4",
+                                            "Hangar_Query_5",
+                                            "Hangar_Query_6",
+                                            "Hangar_Query_7",
+                                            "Hangar_Take_1",
+                                            "Hangar_Take_2",
+                                            "Hangar_Take_3",
+                                            "Hangar_Take_4",
+                                            "Hangar_Take_5",
+                                            "Hangar_Take_6",
+                                            "Hangar_Take_7",
+                                            "Junior_Accountant",
+                                            "Personnel_Manager",
+                                            "Rent_Factory_Facility",
+                                            "Rent_Office",
+                                            "Rent_Research_Facility",
+                                            "Security_Officer",
+                                            "Starbase_Defense_Operator",
+                                            "Starbase_Fuel_Technician",
+                                            "Station_Manager",
+                                            "Terrestrial_Combat_Officer",
+                                            "Terrestrial_Logistics_Officer",
+                                            "Trader"
+                                        ],
+                                        "title": "get_characters_character_id_roles_role",
+                                        "type": "string",
+                                        "uniqueItems": true
+                                    },
+                                    "maxItems": 50,
+                                    "title": "get_characters_character_id_roles_roles",
+                                    "type": "array"
+                                },
+                                "roles_at_base": {
+                                    "description": "roles_at_base array",
+                                    "items": {
+                                        "description": "roles_at_base string",
+                                        "enum": [
+                                            "Account_Take_1",
+                                            "Account_Take_2",
+                                            "Account_Take_3",
+                                            "Account_Take_4",
+                                            "Account_Take_5",
+                                            "Account_Take_6",
+                                            "Account_Take_7",
+                                            "Accountant",
+                                            "Auditor",
+                                            "Communications_Officer",
+                                            "Config_Equipment",
+                                            "Config_Starbase_Equipment",
+                                            "Container_Take_1",
+                                            "Container_Take_2",
+                                            "Container_Take_3",
+                                            "Container_Take_4",
+                                            "Container_Take_5",
+                                            "Container_Take_6",
+                                            "Container_Take_7",
+                                            "Contract_Manager",
+                                            "Diplomat",
+                                            "Director",
+                                            "Factory_Manager",
+                                            "Fitting_Manager",
+                                            "Hangar_Query_1",
+                                            "Hangar_Query_2",
+                                            "Hangar_Query_3",
+                                            "Hangar_Query_4",
+                                            "Hangar_Query_5",
+                                            "Hangar_Query_6",
+                                            "Hangar_Query_7",
+                                            "Hangar_Take_1",
+                                            "Hangar_Take_2",
+                                            "Hangar_Take_3",
+                                            "Hangar_Take_4",
+                                            "Hangar_Take_5",
+                                            "Hangar_Take_6",
+                                            "Hangar_Take_7",
+                                            "Junior_Accountant",
+                                            "Personnel_Manager",
+                                            "Rent_Factory_Facility",
+                                            "Rent_Office",
+                                            "Rent_Research_Facility",
+                                            "Security_Officer",
+                                            "Starbase_Defense_Operator",
+                                            "Starbase_Fuel_Technician",
+                                            "Station_Manager",
+                                            "Terrestrial_Combat_Officer",
+                                            "Terrestrial_Logistics_Officer",
+                                            "Trader"
+                                        ],
+                                        "title": "get_characters_character_id_roles_roles_at_base",
+                                        "type": "string",
+                                        "uniqueItems": true
+                                    },
+                                    "maxItems": 50,
+                                    "title": "get_characters_character_id_roles_roles_at_base",
+                                    "type": "array"
+                                },
+                                "roles_at_hq": {
+                                    "description": "roles_at_hq array",
+                                    "items": {
+                                        "description": "roles_at_hq string",
+                                        "enum": [
+                                            "Account_Take_1",
+                                            "Account_Take_2",
+                                            "Account_Take_3",
+                                            "Account_Take_4",
+                                            "Account_Take_5",
+                                            "Account_Take_6",
+                                            "Account_Take_7",
+                                            "Accountant",
+                                            "Auditor",
+                                            "Communications_Officer",
+                                            "Config_Equipment",
+                                            "Config_Starbase_Equipment",
+                                            "Container_Take_1",
+                                            "Container_Take_2",
+                                            "Container_Take_3",
+                                            "Container_Take_4",
+                                            "Container_Take_5",
+                                            "Container_Take_6",
+                                            "Container_Take_7",
+                                            "Contract_Manager",
+                                            "Diplomat",
+                                            "Director",
+                                            "Factory_Manager",
+                                            "Fitting_Manager",
+                                            "Hangar_Query_1",
+                                            "Hangar_Query_2",
+                                            "Hangar_Query_3",
+                                            "Hangar_Query_4",
+                                            "Hangar_Query_5",
+                                            "Hangar_Query_6",
+                                            "Hangar_Query_7",
+                                            "Hangar_Take_1",
+                                            "Hangar_Take_2",
+                                            "Hangar_Take_3",
+                                            "Hangar_Take_4",
+                                            "Hangar_Take_5",
+                                            "Hangar_Take_6",
+                                            "Hangar_Take_7",
+                                            "Junior_Accountant",
+                                            "Personnel_Manager",
+                                            "Rent_Factory_Facility",
+                                            "Rent_Office",
+                                            "Rent_Research_Facility",
+                                            "Security_Officer",
+                                            "Starbase_Defense_Operator",
+                                            "Starbase_Fuel_Technician",
+                                            "Station_Manager",
+                                            "Terrestrial_Combat_Officer",
+                                            "Terrestrial_Logistics_Officer",
+                                            "Trader"
+                                        ],
+                                        "title": "get_characters_character_id_roles_roles_at_hq",
+                                        "type": "string",
+                                        "uniqueItems": true
+                                    },
+                                    "maxItems": 50,
+                                    "title": "get_characters_character_id_roles_roles_at_hq",
+                                    "type": "array"
+                                },
+                                "roles_at_other": {
+                                    "description": "roles_at_other array",
+                                    "items": {
+                                        "description": "roles_at_other string",
+                                        "enum": [
+                                            "Account_Take_1",
+                                            "Account_Take_2",
+                                            "Account_Take_3",
+                                            "Account_Take_4",
+                                            "Account_Take_5",
+                                            "Account_Take_6",
+                                            "Account_Take_7",
+                                            "Accountant",
+                                            "Auditor",
+                                            "Communications_Officer",
+                                            "Config_Equipment",
+                                            "Config_Starbase_Equipment",
+                                            "Container_Take_1",
+                                            "Container_Take_2",
+                                            "Container_Take_3",
+                                            "Container_Take_4",
+                                            "Container_Take_5",
+                                            "Container_Take_6",
+                                            "Container_Take_7",
+                                            "Contract_Manager",
+                                            "Diplomat",
+                                            "Director",
+                                            "Factory_Manager",
+                                            "Fitting_Manager",
+                                            "Hangar_Query_1",
+                                            "Hangar_Query_2",
+                                            "Hangar_Query_3",
+                                            "Hangar_Query_4",
+                                            "Hangar_Query_5",
+                                            "Hangar_Query_6",
+                                            "Hangar_Query_7",
+                                            "Hangar_Take_1",
+                                            "Hangar_Take_2",
+                                            "Hangar_Take_3",
+                                            "Hangar_Take_4",
+                                            "Hangar_Take_5",
+                                            "Hangar_Take_6",
+                                            "Hangar_Take_7",
+                                            "Junior_Accountant",
+                                            "Personnel_Manager",
+                                            "Rent_Factory_Facility",
+                                            "Rent_Office",
+                                            "Rent_Research_Facility",
+                                            "Security_Officer",
+                                            "Starbase_Defense_Operator",
+                                            "Starbase_Fuel_Technician",
+                                            "Station_Manager",
+                                            "Terrestrial_Combat_Officer",
+                                            "Terrestrial_Logistics_Officer",
+                                            "Trader"
+                                        ],
+                                        "title": "get_characters_character_id_roles_roles_at_other",
+                                        "type": "string",
+                                        "uniqueItems": true
+                                    },
+                                    "maxItems": 50,
+                                    "title": "get_characters_character_id_roles_roles_at_other",
+                                    "type": "array"
+                                }
                             },
-                            "maxItems": 50,
                             "title": "get_characters_character_id_roles_ok",
-                            "type": "array",
-                            "uniqueItems": true
+                            "type": "object"
                         }
                     },
                     "403": {
@@ -10157,8 +10339,8 @@
                     "Character"
                 ],
                 "x-alternate-versions": [
-                    "legacy",
-                    "v1"
+                    "dev",
+                    "v2"
                 ],
                 "x-cached-seconds": 3600
             }
