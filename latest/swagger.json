@@ -10981,7 +10981,7 @@
         },
         "/characters/{character_id}/skills/": {
             "get": {
-                "description": "List all trained skills for the given character\n\n---\nAlternate route: `/v3/characters/{character_id}/skills/`\n\n---\nThis route is cached for up to 120 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/skills/)",
+                "description": "List all trained skills for the given character\n\n---\nAlternate route: `/dev/characters/{character_id}/skills/`\n\nAlternate route: `/v4/characters/{character_id}/skills/`\n\n---\nThis route is cached for up to 120 seconds",
                 "operationId": "get_characters_character_id_skills",
                 "parameters": [
                     {
@@ -11007,14 +11007,16 @@
                             "application/json": {
                                 "skills": [
                                     {
-                                        "current_skill_level": 1,
+                                        "active_skill_level": 3,
                                         "skill_id": 1,
-                                        "skillpoints_in_skill": 10000
+                                        "skillpoints_in_skill": 10000,
+                                        "trained_skill_level": 4
                                     },
                                     {
-                                        "current_skill_level": 1,
+                                        "active_skill_level": 1,
                                         "skill_id": 2,
-                                        "skillpoints_in_skill": 10000
+                                        "skillpoints_in_skill": 10000,
+                                        "trained_skill_level": 1
                                     }
                                 ],
                                 "total_sp": 20000
@@ -11042,10 +11044,10 @@
                                     "items": {
                                         "description": "skill object",
                                         "properties": {
-                                            "current_skill_level": {
-                                                "description": "current_skill_level integer",
+                                            "active_skill_level": {
+                                                "description": "active_skill_level integer",
                                                 "format": "int32",
-                                                "title": "get_characters_character_id_skills_current_skill_level",
+                                                "title": "get_characters_character_id_skills_active_skill_level",
                                                 "type": "integer"
                                             },
                                             "skill_id": {
@@ -11059,8 +11061,20 @@
                                                 "format": "int64",
                                                 "title": "get_characters_character_id_skills_skillpoints_in_skill",
                                                 "type": "integer"
+                                            },
+                                            "trained_skill_level": {
+                                                "description": "trained_skill_level integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_skills_trained_skill_level",
+                                                "type": "integer"
                                             }
                                         },
+                                        "required": [
+                                            "skill_id",
+                                            "skillpoints_in_skill",
+                                            "trained_skill_level",
+                                            "active_skill_level"
+                                        ],
                                         "title": "get_characters_character_id_skills_skill",
                                         "type": "object"
                                     },
@@ -11073,8 +11087,18 @@
                                     "format": "int64",
                                     "title": "get_characters_character_id_skills_total_sp",
                                     "type": "integer"
+                                },
+                                "unallocated_sp": {
+                                    "description": "Skill points available to be assigned",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_skills_unallocated_sp",
+                                    "type": "integer"
                                 }
                             },
+                            "required": [
+                                "skills",
+                                "total_sp"
+                            ],
                             "title": "get_characters_character_id_skills_ok",
                             "type": "object"
                         }
@@ -11114,7 +11138,8 @@
                     "Skills"
                 ],
                 "x-alternate-versions": [
-                    "v3"
+                    "dev",
+                    "v4"
                 ],
                 "x-cached-seconds": 120
             }
