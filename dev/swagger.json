@@ -3696,7 +3696,7 @@
         },
         "/characters/{character_id}/contacts/": {
             "delete": {
-                "description": "Bulk delete contacts\n\n---\nAlternate route: `/v2/characters/{character_id}/contacts/`\n",
+                "description": "Bulk delete contacts\n\n---\nAlternate route: `/latest/characters/{character_id}/contacts/`\n\nAlternate route: `/v2/characters/{character_id}/contacts/`\n",
                 "operationId": "delete_characters_character_id_contacts",
                 "parameters": [
                     {
@@ -3767,6 +3767,7 @@
                     "Contacts"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v2"
                 ]
             },
@@ -13441,7 +13442,7 @@
         },
         "/characters/{character_id}/wallet/journal/": {
             "get": {
-                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/v3/characters/{character_id}/wallet/journal/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/latest/characters/{character_id}/wallet/journal/`\n\nAlternate route: `/v3/characters/{character_id}/wallet/journal/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_wallet_journal",
                 "parameters": [
                     {
@@ -13827,6 +13828,7 @@
                     "Wallet"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v3"
                 ],
                 "x-cached-seconds": 3600
@@ -22823,7 +22825,7 @@
         },
         "/corporations/{corporation_id}/wallets/{division}/journal/": {
             "get": {
-                "description": "Retrieve corporation wallet journal\n\n---\nAlternate route: `/v2/corporations/{corporation_id}/wallets/{division}/journal/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Junior_Accountant\n",
+                "description": "Retrieve corporation wallet journal\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/wallets/{division}/journal/`\n\nAlternate route: `/v2/corporations/{corporation_id}/wallets/{division}/journal/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Junior_Accountant\n",
                 "operationId": "get_corporations_corporation_id_wallets_division_journal",
                 "parameters": [
                     {
@@ -23219,6 +23221,7 @@
                     "Wallet"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v2"
                 ],
                 "x-cached-seconds": 3600,
