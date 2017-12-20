@@ -4980,7 +4980,7 @@
         },
         "/characters/{character_id}/cspa/": {
             "post": {
-                "description": "Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost\n\n---\nAlternate route: `/v4/characters/{character_id}/cspa/`\n",
+                "description": "Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost\n\n---\nAlternate route: `/latest/characters/{character_id}/cspa/`\n\nAlternate route: `/v4/characters/{character_id}/cspa/`\n",
                 "operationId": "post_characters_character_id_cspa",
                 "parameters": [
                     {
@@ -5067,6 +5067,7 @@
                     "Character"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v4"
                 ]
             }
@@ -10038,7 +10039,7 @@
         },
         "/characters/{character_id}/roles/": {
             "get": {
-                "description": "Returns a character's corporation roles\n\n---\nAlternate route: `/v2/characters/{character_id}/roles/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Returns a character's corporation roles\n\n---\nAlternate route: `/latest/characters/{character_id}/roles/`\n\nAlternate route: `/v2/characters/{character_id}/roles/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_roles",
                 "parameters": [
                     {
@@ -10381,6 +10382,7 @@
                     "Character"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v2"
                 ],
                 "x-cached-seconds": 3600
