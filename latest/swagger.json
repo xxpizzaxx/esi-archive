@@ -8828,7 +8828,7 @@
         },
         "/characters/{character_id}/online/": {
             "get": {
-                "description": "Checks if the character is currently online\n\n---\nAlternate route: `/dev/characters/{character_id}/online/`\n\nAlternate route: `/v2/characters/{character_id}/online/`\n\n---\nThis route is cached for up to 60 seconds",
+                "description": "Checks if the character is currently online\n\n---\nAlternate route: `/legacy/characters/{character_id}/online/`\n\nAlternate route: `/v1/characters/{character_id}/online/`\n\n---\nThis route is cached for up to 60 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/online/)",
                 "operationId": "get_characters_character_id_online",
                 "parameters": [
                     {
@@ -8849,14 +8849,9 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Object describing the character's online status",
+                        "description": "Boolean of if the character is currently online",
                         "examples": {
-                            "application/json": {
-                                "last_login": "2017-01-02T03:04:05Z",
-                                "last_logout": "2017-01-02T04:05:06Z",
-                                "logins": 9001,
-                                "online": true
-                            }
+                            "application/json": true
                         },
                         "headers": {
                             "Cache-Control": {
@@ -8873,37 +8868,9 @@
                             }
                         },
                         "schema": {
-                            "description": "200 ok object",
-                            "properties": {
-                                "last_login": {
-                                    "description": "Timestamp of the last login",
-                                    "format": "date-time",
-                                    "title": "get_characters_character_id_online_last_login",
-                                    "type": "string"
-                                },
-                                "last_logout": {
-                                    "description": "Timestamp of the last logout",
-                                    "format": "date-time",
-                                    "title": "get_characters_character_id_online_last_logout",
-                                    "type": "string"
-                                },
-                                "logins": {
-                                    "description": "Total number of times the character has logged in",
-                                    "format": "int32",
-                                    "title": "get_characters_character_id_online_logins",
-                                    "type": "integer"
-                                },
-                                "online": {
-                                    "description": "If the character is online",
-                                    "title": "get_characters_character_id_online_online",
-                                    "type": "boolean"
-                                }
-                            },
-                            "required": [
-                                "online"
-                            ],
+                            "description": "200 ok boolean",
                             "title": "get_characters_character_id_online_ok",
-                            "type": "object"
+                            "type": "boolean"
                         }
                     },
                     "403": {
@@ -8941,8 +8908,8 @@
                     "Location"
                 ],
                 "x-alternate-versions": [
-                    "dev",
-                    "v2"
+                    "legacy",
+                    "v1"
                 ],
                 "x-cached-seconds": 60
             }
