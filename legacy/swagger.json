@@ -14082,7 +14082,8 @@
         },
         "/corporations/names/": {
             "get": {
-                "description": "Resolve a set of corporation IDs to corporation names\n\n---\nAlternate route: `/latest/corporations/names/`\n\nAlternate route: `/v1/corporations/names/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "deprecated": true,
+                "description": "Resolve a set of corporation IDs to corporation names\n\n---\nAlternate route: `/v1/corporations/names/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/corporations/names/)",
                 "operationId": "get_corporations_names",
                 "parameters": [
                     {
@@ -14179,7 +14180,6 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
-                    "latest",
                     "v1"
                 ],
                 "x-cached-seconds": 3600
@@ -14263,7 +14263,7 @@
         "/corporations/{corporation_id}/": {
             "get": {
                 "deprecated": true,
-                "description": "Public information about a corporation\n\n---\nAlternate route: `/v2/corporations/{corporation_id}/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/corporations/{corporation_id}/)",
+                "description": "Public information about a corporation\n\n---\nAlternate route: `/v3/corporations/{corporation_id}/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/corporations/{corporation_id}/)",
                 "operationId": "get_corporations_corporation_id",
                 "parameters": [
                     {
@@ -14286,9 +14286,14 @@
                             "application/json": {
                                 "alliance_id": 434243723,
                                 "ceo_id": 180548812,
+                                "corporation_description": "This is a corporation description, it's basically just a string",
                                 "corporation_name": "C C P",
+                                "creation_date": "2004-11-28T16:42:51Z",
+                                "creator_id": 180548812,
                                 "member_count": 656,
-                                "ticker": "-CCP-"
+                                "tax_rate": 0.256,
+                                "ticker": "-CCP-",
+                                "url": "http://www.eveonline.com"
                             }
                         },
                         "headers": {
@@ -14320,9 +14325,37 @@
                                     "title": "get_corporations_corporation_id_ceo_id",
                                     "type": "integer"
                                 },
+                                "corporation_description": {
+                                    "description": "corporation_description string",
+                                    "title": "get_corporations_corporation_id_corporation_description",
+                                    "type": "string"
+                                },
                                 "corporation_name": {
                                     "description": "the full name of the corporation",
                                     "title": "get_corporations_corporation_id_corporation_name",
+                                    "type": "string"
+                                },
+                                "creation_date": {
+                                    "description": "creation_date string",
+                                    "format": "date-time",
+                                    "title": "get_corporations_corporation_id_creation_date",
+                                    "type": "string"
+                                },
+                                "creator_id": {
+                                    "description": "creator_id integer",
+                                    "format": "int32",
+                                    "title": "get_corporations_corporation_id_creator_id",
+                                    "type": "integer"
+                                },
+                                "faction": {
+                                    "description": "faction string",
+                                    "enum": [
+                                        "Minmatar",
+                                        "Gallente",
+                                        "Caldari",
+                                        "Amarr"
+                                    ],
+                                    "title": "get_corporations_corporation_id_faction",
                                     "type": "string"
                                 },
                                 "member_count": {
@@ -14331,9 +14364,22 @@
                                     "title": "get_corporations_corporation_id_member_count",
                                     "type": "integer"
                                 },
+                                "tax_rate": {
+                                    "description": "tax_rate number",
+                                    "format": "float",
+                                    "maximum": 1,
+                                    "minimum": 0,
+                                    "title": "get_corporations_corporation_id_tax_rate",
+                                    "type": "number"
+                                },
                                 "ticker": {
                                     "description": "the short name of the corporation",
                                     "title": "get_corporations_corporation_id_ticker",
+                                    "type": "string"
+                                },
+                                "url": {
+                                    "description": "url string",
+                                    "title": "get_corporations_corporation_id_url",
                                     "type": "string"
                                 }
                             },
@@ -14341,7 +14387,11 @@
                                 "corporation_name",
                                 "ticker",
                                 "member_count",
-                                "ceo_id"
+                                "ceo_id",
+                                "corporation_description",
+                                "tax_rate",
+                                "creator_id",
+                                "url"
                             ],
                             "title": "get_corporations_corporation_id_ok",
                             "type": "object"
@@ -14384,7 +14434,7 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
-                    "v2"
+                    "v3"
                 ],
                 "x-cached-seconds": 3600
             }
@@ -18385,7 +18435,8 @@
         },
         "/corporations/{corporation_id}/members/": {
             "get": {
-                "description": "Read the current list of members if the calling character is a member.\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/members/`\n\nAlternate route: `/v2/corporations/{corporation_id}/members/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "deprecated": true,
+                "description": "Read the current list of members if the calling character is a member.\n\n---\nAlternate route: `/v2/corporations/{corporation_id}/members/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/corporations/{corporation_id}/members/)",
                 "operationId": "get_corporations_corporation_id_members",
                 "parameters": [
                     {
@@ -18489,7 +18540,6 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
-                    "latest",
                     "v2"
                 ],
                 "x-cached-seconds": 3600
