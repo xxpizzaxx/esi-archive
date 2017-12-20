@@ -10974,7 +10974,7 @@
         },
         "/characters/{character_id}/skills/": {
             "get": {
-                "description": "List all trained skills for the given character\n\n---\nAlternate route: `/v4/characters/{character_id}/skills/`\n\n---\nThis route is cached for up to 120 seconds",
+                "description": "List all trained skills for the given character\n\n---\nAlternate route: `/latest/characters/{character_id}/skills/`\n\nAlternate route: `/v4/characters/{character_id}/skills/`\n\n---\nThis route is cached for up to 120 seconds",
                 "operationId": "get_characters_character_id_skills",
                 "parameters": [
                     {
@@ -11131,6 +11131,7 @@
                     "Skills"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v4"
                 ],
                 "x-cached-seconds": 120
