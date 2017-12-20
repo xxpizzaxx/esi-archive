@@ -14471,7 +14471,7 @@
         },
         "/corporations/names/": {
             "get": {
-                "description": "Resolve a set of corporation IDs to corporation names\n\n---\nAlternate route: `/v2/corporations/names/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Resolve a set of corporation IDs to corporation names\n\n---\nAlternate route: `/latest/corporations/names/`\n\nAlternate route: `/v2/corporations/names/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_names",
                 "parameters": [
                     {
@@ -14568,6 +14568,7 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v2"
                 ],
                 "x-cached-seconds": 3600
@@ -14650,7 +14651,7 @@
         },
         "/corporations/{corporation_id}/": {
             "get": {
-                "description": "Public information about a corporation\n\n---\nAlternate route: `/v4/corporations/{corporation_id}/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Public information about a corporation\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/`\n\nAlternate route: `/v4/corporations/{corporation_id}/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id",
                 "parameters": [
                     {
@@ -14826,6 +14827,7 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v4"
                 ],
                 "x-cached-seconds": 3600
@@ -18828,7 +18830,7 @@
         },
         "/corporations/{corporation_id}/members/": {
             "get": {
-                "description": "Return the current member list of a corporation, the token's character need to be a member of the corporation.\n\n---\nAlternate route: `/v3/corporations/{corporation_id}/members/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Return the current member list of a corporation, the token's character need to be a member of the corporation.\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/members/`\n\nAlternate route: `/v3/corporations/{corporation_id}/members/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id_members",
                 "parameters": [
                     {
@@ -18918,6 +18920,7 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v3"
                 ],
                 "x-cached-seconds": 3600
