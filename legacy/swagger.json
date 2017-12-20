@@ -10708,7 +10708,7 @@
         "/characters/{character_id}/skills/": {
             "get": {
                 "deprecated": true,
-                "description": "List all trained skills for the given character\n\n---\nAlternate route: `/v2/characters/{character_id}/skills/`\n\n---\nThis route is cached for up to 120 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/skills/)",
+                "description": "List all trained skills for the given character\n\n---\nAlternate route: `/v3/characters/{character_id}/skills/`\n\n---\nThis route is cached for up to 120 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/skills/)",
                 "operationId": "get_characters_character_id_skills",
                 "parameters": [
                     {
@@ -10731,18 +10731,21 @@
                     "200": {
                         "description": "Known skills for the character",
                         "examples": {
-                            "application/json": [
-                                {
-                                    "current_skill_level": 1,
-                                    "skill_id": 1,
-                                    "skillpoints_in_skill": 10000
-                                },
-                                {
-                                    "current_skill_level": 1,
-                                    "skill_id": 2,
-                                    "skillpoints_in_skill": 10000
-                                }
-                            ]
+                            "application/json": {
+                                "skills": [
+                                    {
+                                        "current_skill_level": 1,
+                                        "skill_id": 1,
+                                        "skillpoints_in_skill": 10000
+                                    },
+                                    {
+                                        "current_skill_level": 1,
+                                        "skill_id": 2,
+                                        "skillpoints_in_skill": 10000
+                                    }
+                                ],
+                                "total_sp": 20000
+                            }
                         },
                         "headers": {
                             "Cache-Control": {
@@ -10759,35 +10762,48 @@
                             }
                         },
                         "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "current_skill_level": {
-                                        "description": "current_skill_level integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_skills_current_skill_level",
-                                        "type": "integer"
+                            "description": "200 ok object",
+                            "properties": {
+                                "skills": {
+                                    "description": "skills array",
+                                    "items": {
+                                        "description": "skill object",
+                                        "properties": {
+                                            "current_skill_level": {
+                                                "description": "current_skill_level integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_skills_current_skill_level",
+                                                "type": "integer"
+                                            },
+                                            "skill_id": {
+                                                "description": "skill_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_skills_skill_id",
+                                                "type": "integer"
+                                            },
+                                            "skillpoints_in_skill": {
+                                                "description": "skillpoints_in_skill integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_skills_skillpoints_in_skill",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "title": "get_characters_character_id_skills_skill",
+                                        "type": "object"
                                     },
-                                    "skill_id": {
-                                        "description": "skill_id integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_skills_skill_id",
-                                        "type": "integer"
-                                    },
-                                    "skillpoints_in_skill": {
-                                        "description": "skillpoints_in_skill integer",
-                                        "format": "int64",
-                                        "title": "get_characters_character_id_skills_skillpoints_in_skill",
-                                        "type": "integer"
-                                    }
+                                    "maxItems": 1000,
+                                    "title": "get_characters_character_id_skills_skills",
+                                    "type": "array"
                                 },
-                                "title": "get_characters_character_id_skills_200_ok",
-                                "type": "object"
+                                "total_sp": {
+                                    "description": "total_sp integer",
+                                    "format": "int64",
+                                    "title": "get_characters_character_id_skills_total_sp",
+                                    "type": "integer"
+                                }
                             },
-                            "maxItems": 1000,
                             "title": "get_characters_character_id_skills_ok",
-                            "type": "array"
+                            "type": "object"
                         }
                     },
                     "403": {
@@ -10825,7 +10841,7 @@
                     "Skills"
                 ],
                 "x-alternate-versions": [
-                    "v2"
+                    "v3"
                 ],
                 "x-cached-seconds": 120
             }
