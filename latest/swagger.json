@@ -14374,14 +14374,14 @@
         },
         "/corporations/names/": {
             "get": {
-                "description": "Resolve a set of corporation IDs to corporation names\n\n---\nAlternate route: `/legacy/corporations/names/`\n\nAlternate route: `/v1/corporations/names/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/corporations/names/)",
+                "description": "Resolve a set of corporation IDs to corporation names\n\n---\nAlternate route: `/dev/corporations/names/`\n\nAlternate route: `/v2/corporations/names/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_names",
                 "parameters": [
                     {
                         "description": "A comma separated list of corporation IDs",
                         "in": "query",
                         "items": {
-                            "format": "int64",
+                            "format": "int32",
                             "type": "integer"
                         },
                         "maxItems": 100,
@@ -14471,8 +14471,8 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
-                    "legacy",
-                    "v1"
+                    "dev",
+                    "v2"
                 ],
                 "x-cached-seconds": 3600
             }
@@ -14554,7 +14554,7 @@
         },
         "/corporations/{corporation_id}/": {
             "get": {
-                "description": "Public information about a corporation\n\n---\nAlternate route: `/v3/corporations/{corporation_id}/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/corporations/{corporation_id}/)",
+                "description": "Public information about a corporation\n\n---\nAlternate route: `/dev/corporations/{corporation_id}/`\n\nAlternate route: `/v4/corporations/{corporation_id}/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id",
                 "parameters": [
                     {
@@ -14572,16 +14572,16 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Public data about a corporation",
+                        "description": "Public information about a corporation",
                         "examples": {
                             "application/json": {
                                 "alliance_id": 434243723,
                                 "ceo_id": 180548812,
-                                "corporation_description": "This is a corporation description, it's basically just a string",
-                                "corporation_name": "C C P",
-                                "creation_date": "2004-11-28T16:42:51Z",
                                 "creator_id": 180548812,
+                                "date_founded": "2004-11-28T16:42:51Z",
+                                "description": "This is a corporation description, it's basically just a string",
                                 "member_count": 656,
+                                "name": "C C P",
                                 "tax_rate": 0.256,
                                 "ticker": "-CCP-",
                                 "url": "http://www.eveonline.com"
@@ -14605,7 +14605,7 @@
                             "description": "200 ok object",
                             "properties": {
                                 "alliance_id": {
-                                    "description": "id of alliance that corporation is a member of, if any",
+                                    "description": "ID of the alliance that corporation is a member of, if any",
                                     "format": "int32",
                                     "title": "get_corporations_corporation_id_alliance_id",
                                     "type": "integer"
@@ -14616,43 +14616,50 @@
                                     "title": "get_corporations_corporation_id_ceo_id",
                                     "type": "integer"
                                 },
-                                "corporation_description": {
-                                    "description": "corporation_description string",
-                                    "title": "get_corporations_corporation_id_corporation_description",
-                                    "type": "string"
-                                },
-                                "corporation_name": {
-                                    "description": "the full name of the corporation",
-                                    "title": "get_corporations_corporation_id_corporation_name",
-                                    "type": "string"
-                                },
-                                "creation_date": {
-                                    "description": "creation_date string",
-                                    "format": "date-time",
-                                    "title": "get_corporations_corporation_id_creation_date",
-                                    "type": "string"
-                                },
                                 "creator_id": {
                                     "description": "creator_id integer",
                                     "format": "int32",
                                     "title": "get_corporations_corporation_id_creator_id",
                                     "type": "integer"
                                 },
-                                "faction": {
-                                    "description": "faction string",
-                                    "enum": [
-                                        "Minmatar",
-                                        "Gallente",
-                                        "Caldari",
-                                        "Amarr"
-                                    ],
-                                    "title": "get_corporations_corporation_id_faction",
+                                "date_founded": {
+                                    "description": "date_founded string",
+                                    "format": "date-time",
+                                    "title": "get_corporations_corporation_id_date_founded",
                                     "type": "string"
+                                },
+                                "description": {
+                                    "description": "description string",
+                                    "title": "get_corporations_corporation_id_description",
+                                    "type": "string"
+                                },
+                                "faction_id": {
+                                    "description": "faction_id integer",
+                                    "format": "int32",
+                                    "title": "get_corporations_corporation_id_faction_id",
+                                    "type": "integer"
+                                },
+                                "home_station_id": {
+                                    "description": "home_station_id integer",
+                                    "format": "int32",
+                                    "title": "get_corporations_corporation_id_home_station_id",
+                                    "type": "integer"
                                 },
                                 "member_count": {
                                     "description": "member_count integer",
                                     "format": "int32",
                                     "title": "get_corporations_corporation_id_member_count",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "the full name of the corporation",
+                                    "title": "get_corporations_corporation_id_name",
+                                    "type": "string"
+                                },
+                                "shares": {
+                                    "description": "shares integer",
+                                    "format": "int64",
+                                    "title": "get_corporations_corporation_id_shares",
                                     "type": "integer"
                                 },
                                 "tax_rate": {
@@ -14675,14 +14682,12 @@
                                 }
                             },
                             "required": [
-                                "corporation_name",
+                                "name",
                                 "ticker",
                                 "member_count",
                                 "ceo_id",
-                                "corporation_description",
                                 "tax_rate",
-                                "creator_id",
-                                "url"
+                                "creator_id"
                             ],
                             "title": "get_corporations_corporation_id_ok",
                             "type": "object"
@@ -14725,7 +14730,8 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
-                    "v3"
+                    "dev",
+                    "v4"
                 ],
                 "x-cached-seconds": 3600
             }
@@ -18727,7 +18733,7 @@
         },
         "/corporations/{corporation_id}/members/": {
             "get": {
-                "description": "Read the current list of members if the calling character is a member.\n\n---\nAlternate route: `/legacy/corporations/{corporation_id}/members/`\n\nAlternate route: `/v2/corporations/{corporation_id}/members/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/corporations/{corporation_id}/members/)",
+                "description": "Return the current member list of a corporation, the token's character need to be a member of the corporation.\n\n---\nAlternate route: `/dev/corporations/{corporation_id}/members/`\n\nAlternate route: `/v3/corporations/{corporation_id}/members/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_corporations_corporation_id_members",
                 "parameters": [
                     {
@@ -18751,12 +18757,8 @@
                         "description": "List of member character IDs",
                         "examples": {
                             "application/json": [
-                                {
-                                    "character_id": 90000001
-                                },
-                                {
-                                    "character_id": 90000002
-                                }
+                                90000001,
+                                90000002
                             ]
                         },
                         "headers": {
@@ -18774,22 +18776,12 @@
                             }
                         },
                         "schema": {
-                            "description": "200 ok array",
+                            "description": "A list of character IDs",
                             "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "character_id": {
-                                        "description": "character_id integer",
-                                        "format": "int32",
-                                        "title": "get_corporations_corporation_id_members_character_id",
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "character_id"
-                                ],
+                                "description": "200 ok integer",
+                                "format": "int32",
                                 "title": "get_corporations_corporation_id_members_200_ok",
-                                "type": "object"
+                                "type": "integer"
                             },
                             "maxItems": 12601,
                             "title": "get_corporations_corporation_id_members_ok",
@@ -18831,8 +18823,8 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
-                    "legacy",
-                    "v2"
+                    "dev",
+                    "v3"
                 ],
                 "x-cached-seconds": 3600
             }
