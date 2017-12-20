@@ -13351,7 +13351,7 @@
         },
         "/characters/{character_id}/wallet/journal/": {
             "get": {
-                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/v2/characters/{character_id}/wallet/journal/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/wallet/journal/)",
+                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/dev/characters/{character_id}/wallet/journal/`\n\nAlternate route: `/v3/characters/{character_id}/wallet/journal/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_wallet_journal",
                 "parameters": [
                     {
@@ -13682,10 +13682,10 @@
                                         "title": "get_characters_character_id_wallet_journal_tax",
                                         "type": "number"
                                     },
-                                    "tax_reciever_id": {
+                                    "tax_receiver_id": {
                                         "description": "the corporation ID receiving any tax paid",
                                         "format": "int32",
-                                        "title": "get_characters_character_id_wallet_journal_tax_reciever_id",
+                                        "title": "get_characters_character_id_wallet_journal_tax_receiver_id",
                                         "type": "integer"
                                     }
                                 },
@@ -13737,7 +13737,8 @@
                     "Wallet"
                 ],
                 "x-alternate-versions": [
-                    "v2"
+                    "dev",
+                    "v3"
                 ],
                 "x-cached-seconds": 3600
             }
@@ -22744,7 +22745,7 @@
         },
         "/corporations/{corporation_id}/wallets/{division}/journal/": {
             "get": {
-                "description": "Retrieve corporation wallet journal\n\n---\nAlternate route: `/legacy/corporations/{corporation_id}/wallets/{division}/journal/`\n\nAlternate route: `/v1/corporations/{corporation_id}/wallets/{division}/journal/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Junior_Accountant\n\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/corporations/{corporation_id}/wallets/{division}/journal/)",
+                "description": "Retrieve corporation wallet journal\n\n---\nAlternate route: `/dev/corporations/{corporation_id}/wallets/{division}/journal/`\n\nAlternate route: `/v2/corporations/{corporation_id}/wallets/{division}/journal/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Junior_Accountant\n",
                 "operationId": "get_corporations_corporation_id_wallets_division_journal",
                 "parameters": [
                     {
@@ -23085,10 +23086,10 @@
                                         "title": "get_corporations_corporation_id_wallets_division_journal_tax",
                                         "type": "number"
                                     },
-                                    "tax_reciever_id": {
+                                    "tax_receiver_id": {
                                         "description": "the corporation ID receiving any tax paid",
                                         "format": "int32",
-                                        "title": "get_corporations_corporation_id_wallets_division_journal_tax_reciever_id",
+                                        "title": "get_corporations_corporation_id_wallets_division_journal_tax_receiver_id",
                                         "type": "integer"
                                     }
                                 },
@@ -23140,8 +23141,8 @@
                     "Wallet"
                 ],
                 "x-alternate-versions": [
-                    "legacy",
-                    "v1"
+                    "dev",
+                    "v2"
                 ],
                 "x-cached-seconds": 3600,
                 "x-required-roles": [
