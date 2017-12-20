@@ -34707,146 +34707,6 @@
                 "x-cached-seconds": 3600
             }
         },
-        "/v3/characters/{character_id}/skills/": {
-            "get": {
-                "description": "List all trained skills for the given character\n\n---\n\nThis route is cached for up to 120 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/skills/)",
-                "operationId": "get_characters_character_id_skills",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/character_id"
-                    },
-                    {
-                        "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "$ref": "#/parameters/token"
-                    },
-                    {
-                        "$ref": "#/parameters/user_agent"
-                    },
-                    {
-                        "$ref": "#/parameters/X-User-Agent"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Known skills for the character",
-                        "examples": {
-                            "application/json": {
-                                "skills": [
-                                    {
-                                        "current_skill_level": 1,
-                                        "skill_id": 1,
-                                        "skillpoints_in_skill": 10000
-                                    },
-                                    {
-                                        "current_skill_level": 1,
-                                        "skill_id": 2,
-                                        "skillpoints_in_skill": 10000
-                                    }
-                                ],
-                                "total_sp": 20000
-                            }
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok object",
-                            "properties": {
-                                "skills": {
-                                    "description": "skills array",
-                                    "items": {
-                                        "description": "skill object",
-                                        "properties": {
-                                            "current_skill_level": {
-                                                "description": "current_skill_level integer",
-                                                "format": "int32",
-                                                "title": "get_characters_character_id_skills_current_skill_level",
-                                                "type": "integer"
-                                            },
-                                            "skill_id": {
-                                                "description": "skill_id integer",
-                                                "format": "int32",
-                                                "title": "get_characters_character_id_skills_skill_id",
-                                                "type": "integer"
-                                            },
-                                            "skillpoints_in_skill": {
-                                                "description": "skillpoints_in_skill integer",
-                                                "format": "int64",
-                                                "title": "get_characters_character_id_skills_skillpoints_in_skill",
-                                                "type": "integer"
-                                            }
-                                        },
-                                        "title": "get_characters_character_id_skills_skill",
-                                        "type": "object"
-                                    },
-                                    "maxItems": 1000,
-                                    "title": "get_characters_character_id_skills_skills",
-                                    "type": "array"
-                                },
-                                "total_sp": {
-                                    "description": "total_sp integer",
-                                    "format": "int64",
-                                    "title": "get_characters_character_id_skills_total_sp",
-                                    "type": "integer"
-                                }
-                            },
-                            "title": "get_characters_character_id_skills_ok",
-                            "type": "object"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Forbidden message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/forbidden"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "Internal server error message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/internal_server_error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-skills.read_skills.v1"
-                        ]
-                    }
-                ],
-                "summary": "Get character skills",
-                "tags": [
-                    "Skills"
-                ],
-                "x-alternate-versions": [
-                    "v3"
-                ],
-                "x-cached-seconds": 120
-            }
-        },
         "/v3/corporations/{corporation_id}/": {
             "get": {
                 "description": "Public information about a corporation\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/corporations/{corporation_id}/)",
@@ -35816,6 +35676,171 @@
                     "dev",
                     "v4"
                 ]
+            }
+        },
+        "/v4/characters/{character_id}/skills/": {
+            "get": {
+                "description": "List all trained skills for the given character\n\n---\n\nThis route is cached for up to 120 seconds",
+                "operationId": "get_characters_character_id_skills",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Known skills for the character",
+                        "examples": {
+                            "application/json": {
+                                "skills": [
+                                    {
+                                        "active_skill_level": 3,
+                                        "skill_id": 1,
+                                        "skillpoints_in_skill": 10000,
+                                        "trained_skill_level": 4
+                                    },
+                                    {
+                                        "active_skill_level": 1,
+                                        "skill_id": 2,
+                                        "skillpoints_in_skill": 10000,
+                                        "trained_skill_level": 1
+                                    }
+                                ],
+                                "total_sp": 20000
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "skills": {
+                                    "description": "skills array",
+                                    "items": {
+                                        "description": "skill object",
+                                        "properties": {
+                                            "active_skill_level": {
+                                                "description": "active_skill_level integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_skills_active_skill_level",
+                                                "type": "integer"
+                                            },
+                                            "skill_id": {
+                                                "description": "skill_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_skills_skill_id",
+                                                "type": "integer"
+                                            },
+                                            "skillpoints_in_skill": {
+                                                "description": "skillpoints_in_skill integer",
+                                                "format": "int64",
+                                                "title": "get_characters_character_id_skills_skillpoints_in_skill",
+                                                "type": "integer"
+                                            },
+                                            "trained_skill_level": {
+                                                "description": "trained_skill_level integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_skills_trained_skill_level",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "skill_id",
+                                            "skillpoints_in_skill",
+                                            "trained_skill_level",
+                                            "active_skill_level"
+                                        ],
+                                        "title": "get_characters_character_id_skills_skill",
+                                        "type": "object"
+                                    },
+                                    "maxItems": 1000,
+                                    "title": "get_characters_character_id_skills_skills",
+                                    "type": "array"
+                                },
+                                "total_sp": {
+                                    "description": "total_sp integer",
+                                    "format": "int64",
+                                    "title": "get_characters_character_id_skills_total_sp",
+                                    "type": "integer"
+                                },
+                                "unallocated_sp": {
+                                    "description": "Skill points available to be assigned",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_skills_unallocated_sp",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "skills",
+                                "total_sp"
+                            ],
+                            "title": "get_characters_character_id_skills_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-skills.read_skills.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get character skills",
+                "tags": [
+                    "Skills"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v4"
+                ],
+                "x-cached-seconds": 120
             }
         }
     },
