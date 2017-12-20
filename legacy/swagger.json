@@ -3395,7 +3395,8 @@
         },
         "/characters/{character_id}/clones/": {
             "get": {
-                "description": "A list of the character's clones\n\n---\nAlternate route: `/latest/characters/{character_id}/clones/`\n\nAlternate route: `/v2/characters/{character_id}/clones/`\n\n---\nThis route is cached for up to 120 seconds",
+                "deprecated": true,
+                "description": "A list of the character's clones\n\n---\nAlternate route: `/v2/characters/{character_id}/clones/`\n\n---\nThis route is cached for up to 120 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/clones/)",
                 "operationId": "get_characters_character_id_clones",
                 "parameters": [
                     {
@@ -3567,7 +3568,6 @@
                     "Clones"
                 ],
                 "x-alternate-versions": [
-                    "latest",
                     "v2"
                 ],
                 "x-cached-seconds": 120
