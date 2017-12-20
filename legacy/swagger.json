@@ -198,7 +198,8 @@
         },
         "/alliances/names/": {
             "get": {
-                "description": "Resolve a set of alliance IDs to alliance names\n\n---\nAlternate route: `/latest/alliances/names/`\n\nAlternate route: `/v1/alliances/names/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "deprecated": true,
+                "description": "Resolve a set of alliance IDs to alliance names\n\n---\nAlternate route: `/v1/alliances/names/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/alliances/names/)",
                 "operationId": "get_alliances_names",
                 "parameters": [
                     {
@@ -295,7 +296,6 @@
                     "Alliance"
                 ],
                 "x-alternate-versions": [
-                    "latest",
                     "v1"
                 ],
                 "x-cached-seconds": 3600
@@ -304,7 +304,7 @@
         "/alliances/{alliance_id}/": {
             "get": {
                 "deprecated": true,
-                "description": "Public information about an alliance\n\n---\nAlternate route: `/v1/alliances/{alliance_id}/`\n\n\n---\nWarning: This endpoint is deprecated and will be removed on 2017-08-31.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/alliances/{alliance_id}/)",
+                "description": "Public information about an alliance\n\n---\nAlternate route: `/v2/alliances/{alliance_id}/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/alliances/{alliance_id}/)",
                 "operationId": "get_alliances_alliance_id",
                 "parameters": [
                     {
@@ -331,6 +331,20 @@
                                 "ticker": "<C C P>"
                             }
                         },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
                             "description": "200 ok object",
                             "properties": {
@@ -351,23 +365,6 @@
                                     "title": "get_alliances_alliance_id_executor_corp",
                                     "type": "integer"
                                 },
-                                "logo_urls": {
-                                    "description": "logo_urls object",
-                                    "properties": {
-                                        "128x128": {
-                                            "description": "128x128 string",
-                                            "title": "get_alliances_alliance_id_128x128",
-                                            "type": "string"
-                                        },
-                                        "64x64": {
-                                            "description": "64x64 string",
-                                            "title": "get_alliances_alliance_id_64x64",
-                                            "type": "string"
-                                        }
-                                    },
-                                    "title": "get_alliances_alliance_id_logo_urls",
-                                    "type": "object"
-                                },
                                 "ticker": {
                                     "description": "the short name of the alliance",
                                     "title": "get_alliances_alliance_id_ticker",
@@ -380,6 +377,26 @@
                                 "date_founded"
                             ],
                             "title": "get_alliances_alliance_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Alliance not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Alliance not found"
+                            }
+                        },
+                        "schema": {
+                            "description": "Alliance not found",
+                            "properties": {
+                                "error": {
+                                    "description": "error message",
+                                    "title": "get_alliances_alliance_id_error",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_alliances_alliance_id_not_found",
                             "type": "object"
                         }
                     },
@@ -400,8 +417,9 @@
                     "Alliance"
                 ],
                 "x-alternate-versions": [
-                    "v1"
-                ]
+                    "v2"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/alliances/{alliance_id}/contacts/": {
