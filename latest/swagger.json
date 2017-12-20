@@ -10399,7 +10399,7 @@
         },
         "/characters/{character_id}/search/": {
             "get": {
-                "description": "Search for entities that match a given sub-string.\n\n---\nAlternate route: `/v2/characters/{character_id}/search/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/search/)",
+                "description": "Search for entities that match a given sub-string.\n\n---\nAlternate route: `/dev/characters/{character_id}/search/`\n\nAlternate route: `/v3/characters/{character_id}/search/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_search",
                 "parameters": [
                     {
@@ -10413,16 +10413,15 @@
                                 "constellation",
                                 "corporation",
                                 "faction",
-                                "inventorytype",
+                                "inventory_type",
                                 "region",
-                                "solarsystem",
+                                "solar_system",
                                 "station",
-                                "structure",
-                                "wormhole"
+                                "structure"
                             ],
                             "type": "string"
                         },
-                        "maxItems": 12,
+                        "maxItems": 11,
                         "minItems": 1,
                         "name": "categories",
                         "required": true,
@@ -10468,7 +10467,7 @@
                         "description": "A list of search results",
                         "examples": {
                             "application/json": {
-                                "solarsystem": [
+                                "solar_system": [
                                     30002510
                                 ],
                                 "station": [
@@ -10583,16 +10582,16 @@
                                     "title": "get_characters_character_id_search_faction",
                                     "type": "array"
                                 },
-                                "inventorytype": {
-                                    "description": "inventorytype array",
+                                "inventory_type": {
+                                    "description": "inventory_type array",
                                     "items": {
-                                        "description": "inventorytype integer",
+                                        "description": "inventory_type integer",
                                         "format": "int32",
-                                        "title": "get_characters_character_id_search_inventorytype",
+                                        "title": "get_characters_character_id_search_inventory_type",
                                         "type": "integer"
                                     },
                                     "maxItems": 500,
-                                    "title": "get_characters_character_id_search_inventorytype",
+                                    "title": "get_characters_character_id_search_inventory_type",
                                     "type": "array"
                                 },
                                 "region": {
@@ -10607,16 +10606,16 @@
                                     "title": "get_characters_character_id_search_region",
                                     "type": "array"
                                 },
-                                "solarsystem": {
-                                    "description": "solarsystem array",
+                                "solar_system": {
+                                    "description": "solar_system array",
                                     "items": {
-                                        "description": "solarsystem integer",
+                                        "description": "solar_system integer",
                                         "format": "int32",
-                                        "title": "get_characters_character_id_search_solarsystem",
+                                        "title": "get_characters_character_id_search_solar_system",
                                         "type": "integer"
                                     },
                                     "maxItems": 500,
-                                    "title": "get_characters_character_id_search_solarsystem",
+                                    "title": "get_characters_character_id_search_solar_system",
                                     "type": "array"
                                 },
                                 "station": {
@@ -10641,18 +10640,6 @@
                                     },
                                     "maxItems": 500,
                                     "title": "get_characters_character_id_search_structure",
-                                    "type": "array"
-                                },
-                                "wormhole": {
-                                    "description": "wormhole array",
-                                    "items": {
-                                        "description": "wormhole integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_wormhole",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_wormhole",
                                     "type": "array"
                                 }
                             },
@@ -10695,7 +10682,8 @@
                     "Search"
                 ],
                 "x-alternate-versions": [
-                    "v2"
+                    "dev",
+                    "v3"
                 ],
                 "x-cached-seconds": 3600
             }
@@ -29754,7 +29742,7 @@
         },
         "/search/": {
             "get": {
-                "description": "Search for entities that match a given sub-string.\n\n---\nAlternate route: `/legacy/search/`\n\nAlternate route: `/v1/search/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/search/)",
+                "description": "Search for entities that match a given sub-string.\n\n---\nAlternate route: `/dev/search/`\n\nAlternate route: `/v2/search/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_search",
                 "parameters": [
                     {
@@ -29768,11 +29756,10 @@
                                 "constellation",
                                 "corporation",
                                 "faction",
-                                "inventorytype",
+                                "inventory_type",
                                 "region",
-                                "solarsystem",
-                                "station",
-                                "wormhole"
+                                "solar_system",
+                                "station"
                             ],
                             "type": "string"
                         },
@@ -29816,7 +29803,7 @@
                         "description": "A list of search results",
                         "examples": {
                             "application/json": {
-                                "solarsystem": [
+                                "solar_system": [
                                     30002510
                                 ],
                                 "station": [
@@ -29931,16 +29918,16 @@
                                     "title": "get_search_faction",
                                     "type": "array"
                                 },
-                                "inventorytype": {
-                                    "description": "inventorytype array",
+                                "inventory_type": {
+                                    "description": "inventory_type array",
                                     "items": {
-                                        "description": "inventorytype integer",
+                                        "description": "inventory_type integer",
                                         "format": "int32",
-                                        "title": "get_search_inventorytype",
+                                        "title": "get_search_inventory_type",
                                         "type": "integer"
                                     },
                                     "maxItems": 500,
-                                    "title": "get_search_inventorytype",
+                                    "title": "get_search_inventory_type",
                                     "type": "array"
                                 },
                                 "region": {
@@ -29955,16 +29942,16 @@
                                     "title": "get_search_region",
                                     "type": "array"
                                 },
-                                "solarsystem": {
-                                    "description": "solarsystem array",
+                                "solar_system": {
+                                    "description": "solar_system array",
                                     "items": {
-                                        "description": "solarsystem integer",
+                                        "description": "solar_system integer",
                                         "format": "int32",
-                                        "title": "get_search_solarsystem",
+                                        "title": "get_search_solar_system",
                                         "type": "integer"
                                     },
                                     "maxItems": 500,
-                                    "title": "get_search_solarsystem",
+                                    "title": "get_search_solar_system",
                                     "type": "array"
                                 },
                                 "station": {
@@ -29977,18 +29964,6 @@
                                     },
                                     "maxItems": 500,
                                     "title": "get_search_station",
-                                    "type": "array"
-                                },
-                                "wormhole": {
-                                    "description": "wormhole array",
-                                    "items": {
-                                        "description": "wormhole integer",
-                                        "format": "int32",
-                                        "title": "get_search_wormhole",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_search_wormhole",
                                     "type": "array"
                                 }
                             },
@@ -30013,8 +29988,8 @@
                     "Search"
                 ],
                 "x-alternate-versions": [
-                    "legacy",
-                    "v1"
+                    "dev",
+                    "v2"
                 ],
                 "x-cached-seconds": 3600
             }
