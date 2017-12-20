@@ -1344,7 +1344,7 @@
         },
         "/characters/{character_id}/assets/": {
             "get": {
-                "description": "Return a list of the characters assets\n\n---\nAlternate route: `/v3/characters/{character_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Return a list of the characters assets\n\n---\nAlternate route: `/latest/characters/{character_id}/assets/`\n\nAlternate route: `/v3/characters/{character_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_assets",
                 "parameters": [
                     {
@@ -1584,6 +1584,7 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v3"
                 ],
                 "x-cached-seconds": 3600
@@ -1591,7 +1592,7 @@
         },
         "/characters/{character_id}/assets/locations/": {
             "post": {
-                "description": "Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/v2/characters/{character_id}/assets/locations/`\n",
+                "description": "Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/latest/characters/{character_id}/assets/locations/`\n\nAlternate route: `/v2/characters/{character_id}/assets/locations/`\n",
                 "operationId": "post_characters_character_id_assets_locations",
                 "parameters": [
                     {
@@ -1734,6 +1735,7 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v2"
                 ]
             }
@@ -14936,7 +14938,7 @@
         },
         "/corporations/{corporation_id}/assets/": {
             "get": {
-                "description": "Return a list of the corporation assets\n\n---\nAlternate route: `/v2/corporations/{corporation_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director\n",
+                "description": "Return a list of the corporation assets\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/assets/`\n\nAlternate route: `/v2/corporations/{corporation_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director\n",
                 "operationId": "get_corporations_corporation_id_assets",
                 "parameters": [
                     {
@@ -15213,6 +15215,7 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v2"
                 ],
                 "x-cached-seconds": 3600,
@@ -15223,7 +15226,7 @@
         },
         "/corporations/{corporation_id}/assets/locations/": {
             "post": {
-                "description": "Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/v2/corporations/{corporation_id}/assets/locations/`\n\n\n---\nRequires one of the following EVE corporation role(s): Director\n",
+                "description": "Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/assets/locations/`\n\nAlternate route: `/v2/corporations/{corporation_id}/assets/locations/`\n\n\n---\nRequires one of the following EVE corporation role(s): Director\n",
                 "operationId": "post_corporations_corporation_id_assets_locations",
                 "parameters": [
                     {
@@ -15366,6 +15369,7 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v2"
                 ],
                 "x-required-roles": [
