@@ -6523,94 +6523,6 @@
                 "x-cached-seconds": 600
             }
         },
-        "/v1/characters/{character_id}/online/": {
-            "get": {
-                "description": "Checks if the character is currently online\n\n---\n\nThis route is cached for up to 60 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/online/)",
-                "operationId": "get_characters_character_id_online",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/character_id"
-                    },
-                    {
-                        "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "$ref": "#/parameters/token"
-                    },
-                    {
-                        "$ref": "#/parameters/user_agent"
-                    },
-                    {
-                        "$ref": "#/parameters/X-User-Agent"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Boolean of if the character is currently online",
-                        "examples": {
-                            "application/json": true
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok boolean",
-                            "title": "get_characters_character_id_online_ok",
-                            "type": "boolean"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Forbidden message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/forbidden"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "Internal server error message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/internal_server_error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-location.read_online.v1"
-                        ]
-                    }
-                ],
-                "summary": "Get character online",
-                "tags": [
-                    "Location"
-                ],
-                "x-alternate-versions": [
-                    "legacy",
-                    "v1"
-                ],
-                "x-cached-seconds": 60
-            }
-        },
         "/v1/characters/{character_id}/opportunities/": {
             "get": {
                 "description": "Return a list of tasks finished by a character\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -24391,273 +24303,6 @@
                 "x-cached-seconds": 86400
             }
         },
-        "/v1/search/": {
-            "get": {
-                "description": "Search for entities that match a given sub-string.\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/search/)",
-                "operationId": "get_search",
-                "parameters": [
-                    {
-                        "description": "Type of entities to search for",
-                        "in": "query",
-                        "items": {
-                            "enum": [
-                                "agent",
-                                "alliance",
-                                "character",
-                                "constellation",
-                                "corporation",
-                                "faction",
-                                "inventorytype",
-                                "region",
-                                "solarsystem",
-                                "station",
-                                "wormhole"
-                            ],
-                            "type": "string"
-                        },
-                        "maxItems": 10,
-                        "minItems": 1,
-                        "name": "categories",
-                        "required": true,
-                        "type": "array",
-                        "uniqueItems": true
-                    },
-                    {
-                        "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "$ref": "#/parameters/language"
-                    },
-                    {
-                        "description": "The string to search on",
-                        "in": "query",
-                        "minLength": 3,
-                        "name": "search",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "default": false,
-                        "description": "Whether the search should be a strict match",
-                        "in": "query",
-                        "name": "strict",
-                        "type": "boolean"
-                    },
-                    {
-                        "$ref": "#/parameters/user_agent"
-                    },
-                    {
-                        "$ref": "#/parameters/X-User-Agent"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of search results",
-                        "examples": {
-                            "application/json": {
-                                "solarsystem": [
-                                    30002510
-                                ],
-                                "station": [
-                                    60004588,
-                                    60004594,
-                                    60005725,
-                                    60009106,
-                                    60012721,
-                                    60012724,
-                                    60012727
-                                ]
-                            }
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Content-Language": {
-                                "description": "The language used in the response",
-                                "enum": [
-                                    "de",
-                                    "en-us",
-                                    "fr",
-                                    "ja",
-                                    "ru",
-                                    "zh"
-                                ],
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok object",
-                            "properties": {
-                                "agent": {
-                                    "description": "agent array",
-                                    "items": {
-                                        "description": "agent integer",
-                                        "format": "int32",
-                                        "title": "get_search_agent",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_search_agent",
-                                    "type": "array"
-                                },
-                                "alliance": {
-                                    "description": "alliance array",
-                                    "items": {
-                                        "description": "alliance integer",
-                                        "format": "int32",
-                                        "title": "get_search_alliance",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_search_alliance",
-                                    "type": "array"
-                                },
-                                "character": {
-                                    "description": "character array",
-                                    "items": {
-                                        "description": "character integer",
-                                        "format": "int32",
-                                        "title": "get_search_character",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_search_character",
-                                    "type": "array"
-                                },
-                                "constellation": {
-                                    "description": "constellation array",
-                                    "items": {
-                                        "description": "constellation integer",
-                                        "format": "int32",
-                                        "title": "get_search_constellation",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_search_constellation",
-                                    "type": "array"
-                                },
-                                "corporation": {
-                                    "description": "corporation array",
-                                    "items": {
-                                        "description": "corporation integer",
-                                        "format": "int32",
-                                        "title": "get_search_corporation",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_search_corporation",
-                                    "type": "array"
-                                },
-                                "faction": {
-                                    "description": "faction array",
-                                    "items": {
-                                        "description": "faction integer",
-                                        "format": "int32",
-                                        "title": "get_search_faction",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_search_faction",
-                                    "type": "array"
-                                },
-                                "inventorytype": {
-                                    "description": "inventorytype array",
-                                    "items": {
-                                        "description": "inventorytype integer",
-                                        "format": "int32",
-                                        "title": "get_search_inventorytype",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_search_inventorytype",
-                                    "type": "array"
-                                },
-                                "region": {
-                                    "description": "region array",
-                                    "items": {
-                                        "description": "region integer",
-                                        "format": "int32",
-                                        "title": "get_search_region",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_search_region",
-                                    "type": "array"
-                                },
-                                "solarsystem": {
-                                    "description": "solarsystem array",
-                                    "items": {
-                                        "description": "solarsystem integer",
-                                        "format": "int32",
-                                        "title": "get_search_solarsystem",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_search_solarsystem",
-                                    "type": "array"
-                                },
-                                "station": {
-                                    "description": "station array",
-                                    "items": {
-                                        "description": "station integer",
-                                        "format": "int32",
-                                        "title": "get_search_station",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_search_station",
-                                    "type": "array"
-                                },
-                                "wormhole": {
-                                    "description": "wormhole array",
-                                    "items": {
-                                        "description": "wormhole integer",
-                                        "format": "int32",
-                                        "title": "get_search_wormhole",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_search_wormhole",
-                                    "type": "array"
-                                }
-                            },
-                            "title": "get_search_ok",
-                            "type": "object"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "Internal server error message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/internal_server_error"
-                        }
-                    }
-                },
-                "summary": "Search on a string",
-                "tags": [
-                    "Search"
-                ],
-                "x-alternate-versions": [
-                    "legacy",
-                    "v1"
-                ],
-                "x-cached-seconds": 3600
-            }
-        },
         "/v1/sovereignty/campaigns/": {
             "get": {
                 "description": "Shows sovereignty data for campaigns.\n\n---\n\nThis route is cached for up to 5 seconds",
@@ -30184,6 +29829,127 @@
                 ]
             }
         },
+        "/v2/characters/{character_id}/online/": {
+            "get": {
+                "description": "Checks if the character is currently online\n\n---\n\nThis route is cached for up to 60 seconds",
+                "operationId": "get_characters_character_id_online",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Object describing the character's online status",
+                        "examples": {
+                            "application/json": {
+                                "last_login": "2017-01-02T03:04:05Z",
+                                "last_logout": "2017-01-02T04:05:06Z",
+                                "logins": 9001,
+                                "online": true
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "last_login": {
+                                    "description": "Timestamp of the last login",
+                                    "format": "date-time",
+                                    "title": "get_characters_character_id_online_last_login",
+                                    "type": "string"
+                                },
+                                "last_logout": {
+                                    "description": "Timestamp of the last logout",
+                                    "format": "date-time",
+                                    "title": "get_characters_character_id_online_last_logout",
+                                    "type": "string"
+                                },
+                                "logins": {
+                                    "description": "Total number of times the character has logged in",
+                                    "format": "int32",
+                                    "title": "get_characters_character_id_online_logins",
+                                    "type": "integer"
+                                },
+                                "online": {
+                                    "description": "If the character is online",
+                                    "title": "get_characters_character_id_online_online",
+                                    "type": "boolean"
+                                }
+                            },
+                            "required": [
+                                "online"
+                            ],
+                            "title": "get_characters_character_id_online_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-location.read_online.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get character online",
+                "tags": [
+                    "Location"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v2"
+                ],
+                "x-cached-seconds": 60
+            }
+        },
         "/v2/characters/{character_id}/portrait/": {
             "get": {
                 "description": "Get portrait urls for a character\n\n---\n\nThis route is cached for up to 3600 seconds",
@@ -30644,309 +30410,6 @@
                 ],
                 "x-alternate-versions": [
                     "dev",
-                    "v2"
-                ],
-                "x-cached-seconds": 3600
-            }
-        },
-        "/v2/characters/{character_id}/search/": {
-            "get": {
-                "description": "Search for entities that match a given sub-string.\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/search/)",
-                "operationId": "get_characters_character_id_search",
-                "parameters": [
-                    {
-                        "description": "Type of entities to search for",
-                        "in": "query",
-                        "items": {
-                            "enum": [
-                                "agent",
-                                "alliance",
-                                "character",
-                                "constellation",
-                                "corporation",
-                                "faction",
-                                "inventorytype",
-                                "region",
-                                "solarsystem",
-                                "station",
-                                "structure",
-                                "wormhole"
-                            ],
-                            "type": "string"
-                        },
-                        "maxItems": 12,
-                        "minItems": 1,
-                        "name": "categories",
-                        "required": true,
-                        "type": "array",
-                        "uniqueItems": true
-                    },
-                    {
-                        "$ref": "#/parameters/character_id"
-                    },
-                    {
-                        "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "$ref": "#/parameters/language"
-                    },
-                    {
-                        "description": "The string to search on",
-                        "in": "query",
-                        "minLength": 3,
-                        "name": "search",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "default": false,
-                        "description": "Whether the search should be a strict match",
-                        "in": "query",
-                        "name": "strict",
-                        "type": "boolean"
-                    },
-                    {
-                        "$ref": "#/parameters/token"
-                    },
-                    {
-                        "$ref": "#/parameters/user_agent"
-                    },
-                    {
-                        "$ref": "#/parameters/X-User-Agent"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of search results",
-                        "examples": {
-                            "application/json": {
-                                "solarsystem": [
-                                    30002510
-                                ],
-                                "station": [
-                                    60004588,
-                                    60004594,
-                                    60005725,
-                                    60009106,
-                                    60012721,
-                                    60012724,
-                                    60012727
-                                ]
-                            }
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Content-Language": {
-                                "description": "The language used in the response",
-                                "enum": [
-                                    "de",
-                                    "en-us",
-                                    "fr",
-                                    "ja",
-                                    "ru",
-                                    "zh"
-                                ],
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok object",
-                            "properties": {
-                                "agent": {
-                                    "description": "agent array",
-                                    "items": {
-                                        "description": "agent integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_agent",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_agent",
-                                    "type": "array"
-                                },
-                                "alliance": {
-                                    "description": "alliance array",
-                                    "items": {
-                                        "description": "alliance integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_alliance",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_alliance",
-                                    "type": "array"
-                                },
-                                "character": {
-                                    "description": "character array",
-                                    "items": {
-                                        "description": "character integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_character",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_character",
-                                    "type": "array"
-                                },
-                                "constellation": {
-                                    "description": "constellation array",
-                                    "items": {
-                                        "description": "constellation integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_constellation",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_constellation",
-                                    "type": "array"
-                                },
-                                "corporation": {
-                                    "description": "corporation array",
-                                    "items": {
-                                        "description": "corporation integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_corporation",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_corporation",
-                                    "type": "array"
-                                },
-                                "faction": {
-                                    "description": "faction array",
-                                    "items": {
-                                        "description": "faction integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_faction",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_faction",
-                                    "type": "array"
-                                },
-                                "inventorytype": {
-                                    "description": "inventorytype array",
-                                    "items": {
-                                        "description": "inventorytype integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_inventorytype",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_inventorytype",
-                                    "type": "array"
-                                },
-                                "region": {
-                                    "description": "region array",
-                                    "items": {
-                                        "description": "region integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_region",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_region",
-                                    "type": "array"
-                                },
-                                "solarsystem": {
-                                    "description": "solarsystem array",
-                                    "items": {
-                                        "description": "solarsystem integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_solarsystem",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_solarsystem",
-                                    "type": "array"
-                                },
-                                "station": {
-                                    "description": "station array",
-                                    "items": {
-                                        "description": "station integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_station",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_station",
-                                    "type": "array"
-                                },
-                                "structure": {
-                                    "description": "structure array",
-                                    "items": {
-                                        "description": "structure integer",
-                                        "format": "int64",
-                                        "title": "get_characters_character_id_search_structure",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_structure",
-                                    "type": "array"
-                                },
-                                "wormhole": {
-                                    "description": "wormhole array",
-                                    "items": {
-                                        "description": "wormhole integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_wormhole",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_wormhole",
-                                    "type": "array"
-                                }
-                            },
-                            "title": "get_characters_character_id_search_ok",
-                            "type": "object"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Forbidden message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/forbidden"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "Internal server error message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/internal_server_error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-search.search_structures.v1"
-                        ]
-                    }
-                ],
-                "summary": "Search on a string",
-                "tags": [
-                    "Search"
-                ],
-                "x-alternate-versions": [
                     "v2"
                 ],
                 "x-cached-seconds": 3600
@@ -32449,6 +31912,260 @@
                     "dev",
                     "v2"
                 ]
+            }
+        },
+        "/v2/search/": {
+            "get": {
+                "description": "Search for entities that match a given sub-string.\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_search",
+                "parameters": [
+                    {
+                        "description": "Type of entities to search for",
+                        "in": "query",
+                        "items": {
+                            "enum": [
+                                "agent",
+                                "alliance",
+                                "character",
+                                "constellation",
+                                "corporation",
+                                "faction",
+                                "inventory_type",
+                                "region",
+                                "solar_system",
+                                "station"
+                            ],
+                            "type": "string"
+                        },
+                        "maxItems": 10,
+                        "minItems": 1,
+                        "name": "categories",
+                        "required": true,
+                        "type": "array",
+                        "uniqueItems": true
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/language"
+                    },
+                    {
+                        "description": "The string to search on",
+                        "in": "query",
+                        "minLength": 3,
+                        "name": "search",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "default": false,
+                        "description": "Whether the search should be a strict match",
+                        "in": "query",
+                        "name": "strict",
+                        "type": "boolean"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of search results",
+                        "examples": {
+                            "application/json": {
+                                "solar_system": [
+                                    30002510
+                                ],
+                                "station": [
+                                    60004588,
+                                    60004594,
+                                    60005725,
+                                    60009106,
+                                    60012721,
+                                    60012724,
+                                    60012727
+                                ]
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "agent": {
+                                    "description": "agent array",
+                                    "items": {
+                                        "description": "agent integer",
+                                        "format": "int32",
+                                        "title": "get_search_agent",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_search_agent",
+                                    "type": "array"
+                                },
+                                "alliance": {
+                                    "description": "alliance array",
+                                    "items": {
+                                        "description": "alliance integer",
+                                        "format": "int32",
+                                        "title": "get_search_alliance",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_search_alliance",
+                                    "type": "array"
+                                },
+                                "character": {
+                                    "description": "character array",
+                                    "items": {
+                                        "description": "character integer",
+                                        "format": "int32",
+                                        "title": "get_search_character",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_search_character",
+                                    "type": "array"
+                                },
+                                "constellation": {
+                                    "description": "constellation array",
+                                    "items": {
+                                        "description": "constellation integer",
+                                        "format": "int32",
+                                        "title": "get_search_constellation",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_search_constellation",
+                                    "type": "array"
+                                },
+                                "corporation": {
+                                    "description": "corporation array",
+                                    "items": {
+                                        "description": "corporation integer",
+                                        "format": "int32",
+                                        "title": "get_search_corporation",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_search_corporation",
+                                    "type": "array"
+                                },
+                                "faction": {
+                                    "description": "faction array",
+                                    "items": {
+                                        "description": "faction integer",
+                                        "format": "int32",
+                                        "title": "get_search_faction",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_search_faction",
+                                    "type": "array"
+                                },
+                                "inventory_type": {
+                                    "description": "inventory_type array",
+                                    "items": {
+                                        "description": "inventory_type integer",
+                                        "format": "int32",
+                                        "title": "get_search_inventory_type",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_search_inventory_type",
+                                    "type": "array"
+                                },
+                                "region": {
+                                    "description": "region array",
+                                    "items": {
+                                        "description": "region integer",
+                                        "format": "int32",
+                                        "title": "get_search_region",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_search_region",
+                                    "type": "array"
+                                },
+                                "solar_system": {
+                                    "description": "solar_system array",
+                                    "items": {
+                                        "description": "solar_system integer",
+                                        "format": "int32",
+                                        "title": "get_search_solar_system",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_search_solar_system",
+                                    "type": "array"
+                                },
+                                "station": {
+                                    "description": "station array",
+                                    "items": {
+                                        "description": "station integer",
+                                        "format": "int32",
+                                        "title": "get_search_station",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_search_station",
+                                    "type": "array"
+                                }
+                            },
+                            "title": "get_search_ok",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Search on a string",
+                "tags": [
+                    "Search"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v2"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/v2/ui/autopilot/waypoint/": {
@@ -34697,6 +34414,297 @@
                     "v3"
                 ],
                 "x-cached-seconds": 600
+            }
+        },
+        "/v3/characters/{character_id}/search/": {
+            "get": {
+                "description": "Search for entities that match a given sub-string.\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_search",
+                "parameters": [
+                    {
+                        "description": "Type of entities to search for",
+                        "in": "query",
+                        "items": {
+                            "enum": [
+                                "agent",
+                                "alliance",
+                                "character",
+                                "constellation",
+                                "corporation",
+                                "faction",
+                                "inventory_type",
+                                "region",
+                                "solar_system",
+                                "station",
+                                "structure"
+                            ],
+                            "type": "string"
+                        },
+                        "maxItems": 11,
+                        "minItems": 1,
+                        "name": "categories",
+                        "required": true,
+                        "type": "array",
+                        "uniqueItems": true
+                    },
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/language"
+                    },
+                    {
+                        "description": "The string to search on",
+                        "in": "query",
+                        "minLength": 3,
+                        "name": "search",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "default": false,
+                        "description": "Whether the search should be a strict match",
+                        "in": "query",
+                        "name": "strict",
+                        "type": "boolean"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of search results",
+                        "examples": {
+                            "application/json": {
+                                "solar_system": [
+                                    30002510
+                                ],
+                                "station": [
+                                    60004588,
+                                    60004594,
+                                    60005725,
+                                    60009106,
+                                    60012721,
+                                    60012724,
+                                    60012727
+                                ]
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "agent": {
+                                    "description": "agent array",
+                                    "items": {
+                                        "description": "agent integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_agent",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_characters_character_id_search_agent",
+                                    "type": "array"
+                                },
+                                "alliance": {
+                                    "description": "alliance array",
+                                    "items": {
+                                        "description": "alliance integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_alliance",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_characters_character_id_search_alliance",
+                                    "type": "array"
+                                },
+                                "character": {
+                                    "description": "character array",
+                                    "items": {
+                                        "description": "character integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_character",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_characters_character_id_search_character",
+                                    "type": "array"
+                                },
+                                "constellation": {
+                                    "description": "constellation array",
+                                    "items": {
+                                        "description": "constellation integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_constellation",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_characters_character_id_search_constellation",
+                                    "type": "array"
+                                },
+                                "corporation": {
+                                    "description": "corporation array",
+                                    "items": {
+                                        "description": "corporation integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_corporation",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_characters_character_id_search_corporation",
+                                    "type": "array"
+                                },
+                                "faction": {
+                                    "description": "faction array",
+                                    "items": {
+                                        "description": "faction integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_faction",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_characters_character_id_search_faction",
+                                    "type": "array"
+                                },
+                                "inventory_type": {
+                                    "description": "inventory_type array",
+                                    "items": {
+                                        "description": "inventory_type integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_inventory_type",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_characters_character_id_search_inventory_type",
+                                    "type": "array"
+                                },
+                                "region": {
+                                    "description": "region array",
+                                    "items": {
+                                        "description": "region integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_region",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_characters_character_id_search_region",
+                                    "type": "array"
+                                },
+                                "solar_system": {
+                                    "description": "solar_system array",
+                                    "items": {
+                                        "description": "solar_system integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_solar_system",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_characters_character_id_search_solar_system",
+                                    "type": "array"
+                                },
+                                "station": {
+                                    "description": "station array",
+                                    "items": {
+                                        "description": "station integer",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_search_station",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_characters_character_id_search_station",
+                                    "type": "array"
+                                },
+                                "structure": {
+                                    "description": "structure array",
+                                    "items": {
+                                        "description": "structure integer",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_search_structure",
+                                        "type": "integer"
+                                    },
+                                    "maxItems": 500,
+                                    "title": "get_characters_character_id_search_structure",
+                                    "type": "array"
+                                }
+                            },
+                            "title": "get_characters_character_id_search_ok",
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-search.search_structures.v1"
+                        ]
+                    }
+                ],
+                "summary": "Search on a string",
+                "tags": [
+                    "Search"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v3"
+                ],
+                "x-cached-seconds": 3600
             }
         },
         "/v3/characters/{character_id}/skills/": {
