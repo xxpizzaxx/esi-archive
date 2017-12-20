@@ -3575,7 +3575,8 @@
         },
         "/characters/{character_id}/contacts/": {
             "delete": {
-                "description": "Bulk delete contacts\n\n---\nAlternate route: `/latest/characters/{character_id}/contacts/`\n\nAlternate route: `/v1/characters/{character_id}/contacts/`\n",
+                "deprecated": true,
+                "description": "Bulk delete contacts\n\n---\nAlternate route: `/v1/characters/{character_id}/contacts/`\n\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#DELETE-/characters/{character_id}/contacts/)",
                 "operationId": "delete_characters_character_id_contacts",
                 "parameters": [
                     {
@@ -3652,7 +3653,6 @@
                     "Contacts"
                 ],
                 "x-alternate-versions": [
-                    "latest",
                     "v1"
                 ]
             },
@@ -13054,7 +13054,7 @@
         "/characters/{character_id}/wallet/journal/": {
             "get": {
                 "deprecated": true,
-                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/v1/characters/{character_id}/wallet/journal/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/wallet/journal/)",
+                "description": "Retrieve character wallet journal\n\n---\nAlternate route: `/v2/characters/{character_id}/wallet/journal/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/wallet/journal/)",
                 "operationId": "get_characters_character_id_wallet_journal",
                 "parameters": [
                     {
@@ -13220,7 +13220,8 @@
                                             "character",
                                             "corporation",
                                             "alliance",
-                                            "faction"
+                                            "faction",
+                                            "system"
                                         ],
                                         "title": "get_characters_character_id_wallet_journal_first_party_type",
                                         "type": "string"
@@ -13237,37 +13238,125 @@
                                         "type": "integer"
                                     },
                                     "ref_type": {
-                                        "description": "Transaction type, different type of transaction will populate different fields in `extra_info`",
+                                        "description": "Transaction type, different type of transaction will populate different fields in `extra_info` Note: If you have an existing XML API application that is using ref_types, you will need to know which string ESI ref_type maps to which integer. You can use the following gist to see string->int mappings: https://gist.github.com/ccp-zoetrope/c03db66d90c2148724c06171bc52e0ec",
                                         "enum": [
-                                            "player_trading",
-                                            "market_transaction",
-                                            "player_donation",
-                                            "office_rental_fee",
-                                            "bounty_prize_historical",
-                                            "insurance",
-                                            "mission_reward",
-                                            "mission_reward_bonus",
-                                            "cspa",
-                                            "corp_account_withdrawal",
-                                            "logo_change_fee",
-                                            "market_escrow",
-                                            "broker_fee",
-                                            "alliance_maintenance_fee",
-                                            "sales_tax",
-                                            "jump_clone_installation_fee",
-                                            "manufacturing",
-                                            "contract",
+                                            "acceleration_gate_fee",
+                                            "advertisement_listing_fee",
+                                            "agent_donation",
+                                            "agent_location_services",
+                                            "agent_miscellaneous",
+                                            "agent_mission_collateral_paid",
+                                            "agent_mission_collateral_refunded",
+                                            "agent_mission_reward",
+                                            "agent_mission_reward_corporation_tax",
+                                            "agent_mission_time_bonus_reward",
+                                            "agent_mission_time_bonus_reward_corporation_tax",
+                                            "agent_security_services",
+                                            "agent_services_rendered",
+                                            "agents_preward",
+                                            "alliance_maintainance_fee",
+                                            "alliance_registration_fee",
+                                            "asset_safety_recovery_tax",
+                                            "bounty",
+                                            "bounty_prize",
+                                            "bounty_prize_corporation_tax",
                                             "bounty_prizes",
-                                            "medal_creation_fee",
-                                            "medal_issuing_fee",
-                                            "customs_office_import_duty",
-                                            "customs_office_export_duty",
+                                            "bounty_reimbursement",
+                                            "bounty_surcharge",
+                                            "brokers_fee",
+                                            "clone_activation",
+                                            "clone_transfer",
+                                            "contraband_fine",
+                                            "contract_auction_bid",
+                                            "contract_auction_bid_corp",
+                                            "contract_auction_bid_refund",
+                                            "contract_auction_sold",
+                                            "contract_brokers_fee",
+                                            "contract_brokers_fee_corp",
+                                            "contract_collateral",
+                                            "contract_collateral_deposited_corp",
+                                            "contract_collateral_payout",
+                                            "contract_collateral_refund",
+                                            "contract_deposit",
+                                            "contract_deposit_corp",
+                                            "contract_deposit_refund",
+                                            "contract_deposit_sales_tax",
+                                            "contract_price",
+                                            "contract_price_payment_corp",
+                                            "contract_reversal",
+                                            "contract_reward",
+                                            "contract_reward_deposited",
+                                            "contract_reward_deposited_corp",
+                                            "contract_reward_refund",
+                                            "contract_sales_tax",
+                                            "copying",
                                             "corporate_reward_payout",
-                                            "industry_facility_tax",
-                                            "project_discovery_reward",
-                                            "reprocessing_fee",
+                                            "corporate_reward_tax",
+                                            "corporation_account_withdrawal",
+                                            "corporation_bulk_payment",
+                                            "corporation_dividend_payment",
+                                            "corporation_liquidation",
+                                            "corporation_logo_change_cost",
+                                            "corporation_payment",
+                                            "corporation_registration_fee",
+                                            "courier_mission_escrow",
+                                            "cspa",
+                                            "cspaofflinerefund",
+                                            "datacore_fee",
+                                            "dna_modification_fee",
+                                            "docking_fee",
+                                            "duel_wager_escrow",
+                                            "duel_wager_payment",
+                                            "duel_wager_refund",
+                                            "factory_slot_rental_fee",
+                                            "gm_cash_transfer",
+                                            "industry_job_tax",
+                                            "infrastructure_hub_maintenance",
+                                            "inheritance",
+                                            "insurance",
                                             "jump_clone_activation_fee",
-                                            "unknown"
+                                            "jump_clone_installation_fee",
+                                            "kill_right_fee",
+                                            "lp_store",
+                                            "manufacturing",
+                                            "market_escrow",
+                                            "market_fine_paid",
+                                            "market_transaction",
+                                            "medal_creation",
+                                            "medal_issued",
+                                            "mission_completion",
+                                            "mission_cost",
+                                            "mission_expiration",
+                                            "mission_reward",
+                                            "office_rental_fee",
+                                            "operation_bonus",
+                                            "opportunity_reward",
+                                            "planetary_construction",
+                                            "planetary_export_tax",
+                                            "planetary_import_tax",
+                                            "player_donation",
+                                            "player_trading",
+                                            "project_discovery_reward",
+                                            "project_discovery_tax",
+                                            "reaction",
+                                            "release_of_impounded_property",
+                                            "repair_bill",
+                                            "reprocessing_tax",
+                                            "researching_material_productivity",
+                                            "researching_technology",
+                                            "researching_time_productivity",
+                                            "resource_wars_reward",
+                                            "reverse_engineering",
+                                            "security_processing_fee",
+                                            "shares",
+                                            "sovereignity_bill",
+                                            "store_purchase",
+                                            "store_purchase_refund",
+                                            "transaction_tax",
+                                            "upkeep_adjustment_fee",
+                                            "war_ally_contract",
+                                            "war_fee",
+                                            "war_fee_surrender"
                                         ],
                                         "title": "get_characters_character_id_wallet_journal_ref_type",
                                         "type": "string"
@@ -13284,7 +13373,8 @@
                                             "character",
                                             "corporation",
                                             "alliance",
-                                            "faction"
+                                            "faction",
+                                            "system"
                                         ],
                                         "title": "get_characters_character_id_wallet_journal_second_party_type",
                                         "type": "string"
@@ -13350,7 +13440,7 @@
                     "Wallet"
                 ],
                 "x-alternate-versions": [
-                    "v1"
+                    "v2"
                 ],
                 "x-cached-seconds": 3600
             }
@@ -22307,7 +22397,8 @@
         },
         "/corporations/{corporation_id}/wallets/{division}/journal/": {
             "get": {
-                "description": "Retrieve corporation wallet journal\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/wallets/{division}/journal/`\n\nAlternate route: `/v1/corporations/{corporation_id}/wallets/{division}/journal/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Junior_Accountant\n",
+                "deprecated": true,
+                "description": "Retrieve corporation wallet journal\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/wallets/{division}/journal/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Junior_Accountant\n\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/corporations/{corporation_id}/wallets/{division}/journal/)",
                 "operationId": "get_corporations_corporation_id_wallets_division_journal",
                 "parameters": [
                     {
@@ -22703,7 +22794,6 @@
                     "Wallet"
                 ],
                 "x-alternate-versions": [
-                    "latest",
                     "v1"
                 ],
                 "x-cached-seconds": 3600,
