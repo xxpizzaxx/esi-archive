@@ -10113,7 +10113,7 @@
         "/characters/{character_id}/search/": {
             "get": {
                 "deprecated": true,
-                "description": "Search for entities that match a given sub-string.\n\n---\nAlternate route: `/v2/characters/{character_id}/search/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/search/)",
+                "description": "Search for entities that match a given sub-string.\n\n---\nAlternate route: `/v1/characters/{character_id}/search/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/search/)",
                 "operationId": "get_characters_character_id_search",
                 "parameters": [
                     {
@@ -10161,13 +10161,6 @@
                         "type": "string"
                     },
                     {
-                        "default": false,
-                        "description": "Whether the search should be a strict match",
-                        "in": "query",
-                        "name": "strict",
-                        "type": "boolean"
-                    },
-                    {
                         "$ref": "#/parameters/token"
                     },
                     {
@@ -10181,20 +10174,16 @@
                     "200": {
                         "description": "A list of search results",
                         "examples": {
-                            "application/json": {
-                                "solarsystem": [
-                                    30002510
-                                ],
-                                "station": [
-                                    60004588,
-                                    60004594,
-                                    60005725,
-                                    60009106,
-                                    60012721,
-                                    60012724,
-                                    60012727
-                                ]
-                            }
+                            "application/json": [
+                                60004588,
+                                60004594,
+                                60005725,
+                                60009106,
+                                60012721,
+                                60012724,
+                                60012727,
+                                30002510
+                            ]
                         },
                         "headers": {
                             "Cache-Control": {
@@ -10223,155 +10212,16 @@
                             }
                         },
                         "schema": {
-                            "description": "200 ok object",
-                            "properties": {
-                                "agent": {
-                                    "description": "agent array",
-                                    "items": {
-                                        "description": "agent integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_agent",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_agent",
-                                    "type": "array"
-                                },
-                                "alliance": {
-                                    "description": "alliance array",
-                                    "items": {
-                                        "description": "alliance integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_alliance",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_alliance",
-                                    "type": "array"
-                                },
-                                "character": {
-                                    "description": "character array",
-                                    "items": {
-                                        "description": "character integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_character",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_character",
-                                    "type": "array"
-                                },
-                                "constellation": {
-                                    "description": "constellation array",
-                                    "items": {
-                                        "description": "constellation integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_constellation",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_constellation",
-                                    "type": "array"
-                                },
-                                "corporation": {
-                                    "description": "corporation array",
-                                    "items": {
-                                        "description": "corporation integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_corporation",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_corporation",
-                                    "type": "array"
-                                },
-                                "faction": {
-                                    "description": "faction array",
-                                    "items": {
-                                        "description": "faction integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_faction",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_faction",
-                                    "type": "array"
-                                },
-                                "inventorytype": {
-                                    "description": "inventorytype array",
-                                    "items": {
-                                        "description": "inventorytype integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_inventorytype",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_inventorytype",
-                                    "type": "array"
-                                },
-                                "region": {
-                                    "description": "region array",
-                                    "items": {
-                                        "description": "region integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_region",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_region",
-                                    "type": "array"
-                                },
-                                "solarsystem": {
-                                    "description": "solarsystem array",
-                                    "items": {
-                                        "description": "solarsystem integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_solarsystem",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_solarsystem",
-                                    "type": "array"
-                                },
-                                "station": {
-                                    "description": "station array",
-                                    "items": {
-                                        "description": "station integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_station",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_station",
-                                    "type": "array"
-                                },
-                                "structure": {
-                                    "description": "structure array",
-                                    "items": {
-                                        "description": "structure integer",
-                                        "format": "int64",
-                                        "title": "get_characters_character_id_search_structure",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_structure",
-                                    "type": "array"
-                                },
-                                "wormhole": {
-                                    "description": "wormhole array",
-                                    "items": {
-                                        "description": "wormhole integer",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_search_wormhole",
-                                        "type": "integer"
-                                    },
-                                    "maxItems": 500,
-                                    "title": "get_characters_character_id_search_wormhole",
-                                    "type": "array"
-                                }
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok integer",
+                                "format": "int64",
+                                "title": "get_characters_character_id_search_200_ok",
+                                "type": "integer"
                             },
+                            "maxItems": 500,
                             "title": "get_characters_character_id_search_ok",
-                            "type": "object"
+                            "type": "array"
                         }
                     },
                     "403": {
@@ -10409,7 +10259,7 @@
                     "Search"
                 ],
                 "x-alternate-versions": [
-                    "v2"
+                    "v1"
                 ],
                 "x-cached-seconds": 3600
             }
@@ -29312,8 +29162,7 @@
         },
         "/search/": {
             "get": {
-                "deprecated": true,
-                "description": "Search for entities that match a given sub-string.\n\n---\nAlternate route: `/v1/search/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/search/)",
+                "description": "Search for entities that match a given sub-string.\n\n---\nAlternate route: `/latest/search/`\n\nAlternate route: `/v1/search/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_search",
                 "parameters": [
                     {
@@ -29572,6 +29421,7 @@
                     "Search"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v1"
                 ],
                 "x-cached-seconds": 3600
