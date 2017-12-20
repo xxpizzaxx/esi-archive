@@ -195,111 +195,6 @@
                 "x-cached-seconds": 3600
             }
         },
-        "/v1/alliances/names/": {
-            "get": {
-                "description": "Resolve a set of alliance IDs to alliance names\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/alliances/names/)",
-                "operationId": "get_alliances_names",
-                "parameters": [
-                    {
-                        "description": "A comma separated list of alliance IDs",
-                        "in": "query",
-                        "items": {
-                            "format": "int64",
-                            "type": "integer"
-                        },
-                        "maxItems": 100,
-                        "minItems": 1,
-                        "name": "alliance_ids",
-                        "required": true,
-                        "type": "array"
-                    },
-                    {
-                        "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "$ref": "#/parameters/user_agent"
-                    },
-                    {
-                        "$ref": "#/parameters/X-User-Agent"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of id/name associations",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "alliance_id": 1000171,
-                                    "alliance_name": "Republic University"
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "alliance_id": {
-                                        "description": "alliance_id integer",
-                                        "format": "int32",
-                                        "title": "get_alliances_names_alliance_id",
-                                        "type": "integer"
-                                    },
-                                    "alliance_name": {
-                                        "description": "alliance_name string",
-                                        "title": "get_alliances_names_alliance_name",
-                                        "type": "string"
-                                    }
-                                },
-                                "required": [
-                                    "alliance_id",
-                                    "alliance_name"
-                                ],
-                                "title": "get_alliances_names_200_ok",
-                                "type": "object"
-                            },
-                            "maxItems": 100,
-                            "title": "get_alliances_names_ok",
-                            "type": "array"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "Internal server error message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/internal_server_error"
-                        }
-                    }
-                },
-                "summary": "Get alliance names",
-                "tags": [
-                    "Alliance"
-                ],
-                "x-alternate-versions": [
-                    "legacy",
-                    "v1"
-                ],
-                "x-cached-seconds": 3600
-            }
-        },
         "/v1/alliances/{alliance_id}/contacts/": {
             "get": {
                 "description": "Return contacts of an alliance\n\n---\n\nThis route is cached for up to 300 seconds",
@@ -30010,13 +29905,23 @@
                 "x-cached-seconds": 3600
             }
         },
-        "/v2/alliances/{alliance_id}/": {
+        "/v2/alliances/names/": {
             "get": {
-                "description": "Public information about an alliance\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/alliances/{alliance_id}/)",
-                "operationId": "get_alliances_alliance_id",
+                "description": "Resolve a set of alliance IDs to alliance names\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_alliances_names",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/alliance_id"
+                        "description": "A comma separated list of alliance IDs",
+                        "in": "query",
+                        "items": {
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "maxItems": 100,
+                        "minItems": 1,
+                        "name": "alliance_ids",
+                        "required": true,
+                        "type": "array"
                     },
                     {
                         "$ref": "#/parameters/datasource"
@@ -30030,14 +29935,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Public data about an alliance",
+                        "description": "List of id/name associations",
                         "examples": {
-                            "application/json": {
-                                "alliance_name": "C C P Alliance",
-                                "date_founded": "2016-06-26T21:00:00Z",
-                                "executor_corp": 98356193,
-                                "ticker": "<C C P>"
-                            }
+                            "application/json": [
+                                {
+                                    "alliance_id": 1000171,
+                                    "alliance_name": "Republic University"
+                                }
+                            ]
                         },
                         "headers": {
                             "Cache-Control": {
@@ -30054,58 +29959,32 @@
                             }
                         },
                         "schema": {
-                            "description": "200 ok object",
-                            "properties": {
-                                "alliance_name": {
-                                    "description": "the full name of the alliance",
-                                    "title": "get_alliances_alliance_id_alliance_name",
-                                    "type": "string"
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "alliance_id": {
+                                        "description": "alliance_id integer",
+                                        "format": "int32",
+                                        "title": "get_alliances_names_alliance_id",
+                                        "type": "integer"
+                                    },
+                                    "alliance_name": {
+                                        "description": "alliance_name string",
+                                        "title": "get_alliances_names_alliance_name",
+                                        "type": "string"
+                                    }
                                 },
-                                "date_founded": {
-                                    "description": "date_founded string",
-                                    "format": "date-time",
-                                    "title": "get_alliances_alliance_id_date_founded",
-                                    "type": "string"
-                                },
-                                "executor_corp": {
-                                    "description": "the executor corporation ID, if this alliance is not closed",
-                                    "format": "int32",
-                                    "title": "get_alliances_alliance_id_executor_corp",
-                                    "type": "integer"
-                                },
-                                "ticker": {
-                                    "description": "the short name of the alliance",
-                                    "title": "get_alliances_alliance_id_ticker",
-                                    "type": "string"
-                                }
+                                "required": [
+                                    "alliance_id",
+                                    "alliance_name"
+                                ],
+                                "title": "get_alliances_names_200_ok",
+                                "type": "object"
                             },
-                            "required": [
-                                "alliance_name",
-                                "ticker",
-                                "date_founded"
-                            ],
-                            "title": "get_alliances_alliance_id_ok",
-                            "type": "object"
-                        }
-                    },
-                    "404": {
-                        "description": "Alliance not found",
-                        "examples": {
-                            "application/json": {
-                                "error": "Alliance not found"
-                            }
-                        },
-                        "schema": {
-                            "description": "Alliance not found",
-                            "properties": {
-                                "error": {
-                                    "description": "error message",
-                                    "title": "get_alliances_alliance_id_error",
-                                    "type": "string"
-                                }
-                            },
-                            "title": "get_alliances_alliance_id_not_found",
-                            "type": "object"
+                            "maxItems": 100,
+                            "title": "get_alliances_names_ok",
+                            "type": "array"
                         }
                     },
                     "500": {
@@ -30120,11 +29999,12 @@
                         }
                     }
                 },
-                "summary": "Get alliance information",
+                "summary": "Get alliance names",
                 "tags": [
                     "Alliance"
                 ],
                 "x-alternate-versions": [
+                    "dev",
                     "v2"
                 ],
                 "x-cached-seconds": 3600
@@ -33532,6 +33412,149 @@
                 "x-alternate-versions": [
                     "dev",
                     "v2"
+                ],
+                "x-cached-seconds": 3600
+            }
+        },
+        "/v3/alliances/{alliance_id}/": {
+            "get": {
+                "description": "Public information about an alliance\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_alliances_alliance_id",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/alliance_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Public data about an alliance",
+                        "examples": {
+                            "application/json": {
+                                "creator_corporation_id": 45678,
+                                "creator_id": 12345,
+                                "date_founded": "2016-06-26T21:00:00Z",
+                                "executor_corporation_id": 98356193,
+                                "name": "C C P Alliance",
+                                "ticker": "<C C P>"
+                            }
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok object",
+                            "properties": {
+                                "creator_corporation_id": {
+                                    "description": "ID of the corporation that created the alliance",
+                                    "format": "int32",
+                                    "title": "get_alliances_alliance_id_creator_corporation_id",
+                                    "type": "integer"
+                                },
+                                "creator_id": {
+                                    "description": "ID of the character that created the alliance",
+                                    "format": "int32",
+                                    "title": "get_alliances_alliance_id_creator_id",
+                                    "type": "integer"
+                                },
+                                "date_founded": {
+                                    "description": "date_founded string",
+                                    "format": "date-time",
+                                    "title": "get_alliances_alliance_id_date_founded",
+                                    "type": "string"
+                                },
+                                "executor_corporation_id": {
+                                    "description": "the executor corporation ID, if this alliance is not closed",
+                                    "format": "int32",
+                                    "title": "get_alliances_alliance_id_executor_corporation_id",
+                                    "type": "integer"
+                                },
+                                "faction_id": {
+                                    "description": "Faction ID this alliance is fighting for, if this alliance is enlisted in factional warfare",
+                                    "format": "int32",
+                                    "title": "get_alliances_alliance_id_faction_id",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "the full name of the alliance",
+                                    "title": "get_alliances_alliance_id_name",
+                                    "type": "string"
+                                },
+                                "ticker": {
+                                    "description": "the short name of the alliance",
+                                    "title": "get_alliances_alliance_id_ticker",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "creator_id",
+                                "creator_corporation_id",
+                                "ticker",
+                                "date_founded"
+                            ],
+                            "title": "get_alliances_alliance_id_ok",
+                            "type": "object"
+                        }
+                    },
+                    "404": {
+                        "description": "Alliance not found",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_alliances_alliance_id_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_alliances_alliance_id_not_found",
+                            "type": "object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get alliance information",
+                "tags": [
+                    "Alliance"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v3"
                 ],
                 "x-cached-seconds": 3600
             }
