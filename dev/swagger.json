@@ -198,7 +198,7 @@
         },
         "/alliances/names/": {
             "get": {
-                "description": "Resolve a set of alliance IDs to alliance names\n\n---\nAlternate route: `/v2/alliances/names/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Resolve a set of alliance IDs to alliance names\n\n---\nAlternate route: `/latest/alliances/names/`\n\nAlternate route: `/v2/alliances/names/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_alliances_names",
                 "parameters": [
                     {
@@ -295,6 +295,7 @@
                     "Alliance"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v2"
                 ],
                 "x-cached-seconds": 3600
@@ -302,7 +303,7 @@
         },
         "/alliances/{alliance_id}/": {
             "get": {
-                "description": "Public information about an alliance\n\n---\nAlternate route: `/v3/alliances/{alliance_id}/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Public information about an alliance\n\n---\nAlternate route: `/latest/alliances/{alliance_id}/`\n\nAlternate route: `/v3/alliances/{alliance_id}/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_alliances_alliance_id",
                 "parameters": [
                     {
@@ -437,6 +438,7 @@
                     "Alliance"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v3"
                 ],
                 "x-cached-seconds": 3600
