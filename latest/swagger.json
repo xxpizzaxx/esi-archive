@@ -3696,7 +3696,7 @@
         },
         "/characters/{character_id}/contacts/": {
             "delete": {
-                "description": "Bulk delete contacts\n\n---\nAlternate route: `/legacy/characters/{character_id}/contacts/`\n\nAlternate route: `/v1/characters/{character_id}/contacts/`\n\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#DELETE-/characters/{character_id}/contacts/)",
+                "description": "Bulk delete contacts\n\n---\nAlternate route: `/dev/characters/{character_id}/contacts/`\n\nAlternate route: `/v2/characters/{character_id}/contacts/`\n",
                 "operationId": "delete_characters_character_id_contacts",
                 "parameters": [
                     {
@@ -3704,22 +3704,16 @@
                     },
                     {
                         "description": "A list of contacts to delete",
-                        "in": "body",
+                        "in": "query",
+                        "items": {
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "maxItems": 100,
+                        "minItems": 1,
                         "name": "contact_ids",
                         "required": true,
-                        "schema": {
-                            "description": "contact_ids array",
-                            "items": {
-                                "description": "ID of the contact to delete",
-                                "format": "int32",
-                                "title": "delete_characters_character_id_contacts_contact_id",
-                                "type": "integer"
-                            },
-                            "maxItems": 100,
-                            "minItems": 1,
-                            "title": "delete_characters_character_id_contacts_contact_ids",
-                            "type": "array"
-                        }
+                        "type": "array"
                     },
                     {
                         "$ref": "#/parameters/datasource"
@@ -3773,8 +3767,8 @@
                     "Contacts"
                 ],
                 "x-alternate-versions": [
-                    "legacy",
-                    "v1"
+                    "dev",
+                    "v2"
                 ]
             },
             "get": {
