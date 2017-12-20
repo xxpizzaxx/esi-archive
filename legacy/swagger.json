@@ -1312,7 +1312,7 @@
         "/characters/{character_id}/assets/": {
             "get": {
                 "deprecated": true,
-                "description": "Return a list of the characters assets\n\n---\nAlternate route: `/v1/characters/{character_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/assets/)",
+                "description": "Return a list of the characters assets\n\n---\nAlternate route: `/v2/characters/{character_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/assets/)",
                 "operationId": "get_characters_character_id_assets",
                 "parameters": [
                     {
@@ -1430,7 +1430,6 @@
                                             "MedSlot5",
                                             "MedSlot6",
                                             "MedSlot7",
-                                            "Module",
                                             "QuafeBay",
                                             "RigSlot0",
                                             "RigSlot1",
@@ -1441,6 +1440,7 @@
                                             "RigSlot6",
                                             "RigSlot7",
                                             "ShipHangar",
+                                            "Skill",
                                             "SpecializedAmmoHold",
                                             "SpecializedCommandCenterHold",
                                             "SpecializedFuelBay",
@@ -1550,14 +1550,15 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "v1"
+                    "v2"
                 ],
                 "x-cached-seconds": 3600
             }
         },
         "/characters/{character_id}/assets/locations/": {
             "post": {
-                "description": "Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/latest/characters/{character_id}/assets/locations/`\n\nAlternate route: `/v1/characters/{character_id}/assets/locations/`\n",
+                "deprecated": true,
+                "description": "Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/v1/characters/{character_id}/assets/locations/`\n\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#POST-/characters/{character_id}/assets/locations/)",
                 "operationId": "post_characters_character_id_assets_locations",
                 "parameters": [
                     {
@@ -1688,7 +1689,6 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "latest",
                     "v1"
                 ]
             }
@@ -14261,7 +14261,8 @@
         },
         "/corporations/{corporation_id}/assets/": {
             "get": {
-                "description": "Return a list of the corporation assets\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/assets/`\n\nAlternate route: `/v1/corporations/{corporation_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director\n",
+                "deprecated": true,
+                "description": "Return a list of the corporation assets\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director\n\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/corporations/{corporation_id}/assets/)",
                 "operationId": "get_corporations_corporation_id_assets",
                 "parameters": [
                     {
@@ -14536,7 +14537,6 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "latest",
                     "v1"
                 ],
                 "x-cached-seconds": 3600,
@@ -14547,7 +14547,8 @@
         },
         "/corporations/{corporation_id}/assets/locations/": {
             "post": {
-                "description": "Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/latest/corporations/{corporation_id}/assets/locations/`\n\nAlternate route: `/v1/corporations/{corporation_id}/assets/locations/`\n\n\n---\nRequires one of the following EVE corporation role(s): Director\n",
+                "deprecated": true,
+                "description": "Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/v1/corporations/{corporation_id}/assets/locations/`\n\n\n---\nRequires one of the following EVE corporation role(s): Director\n\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#POST-/corporations/{corporation_id}/assets/locations/)",
                 "operationId": "post_corporations_corporation_id_assets_locations",
                 "parameters": [
                     {
@@ -14678,7 +14679,6 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "latest",
                     "v1"
                 ],
                 "x-required-roles": [
