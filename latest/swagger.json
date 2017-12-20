@@ -1344,7 +1344,7 @@
         },
         "/characters/{character_id}/assets/": {
             "get": {
-                "description": "Return a list of the characters assets\n\n---\nAlternate route: `/v2/characters/{character_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/assets/)",
+                "description": "Return a list of the characters assets\n\n---\nAlternate route: `/dev/characters/{character_id}/assets/`\n\nAlternate route: `/v3/characters/{character_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_assets",
                 "parameters": [
                     {
@@ -1377,6 +1377,7 @@
                                     "location_flag": "Hangar",
                                     "location_id": 60002959,
                                     "location_type": "station",
+                                    "quantity": 1,
                                     "type_id": 3516
                                 }
                             ]
@@ -1533,6 +1534,7 @@
                                 },
                                 "required": [
                                     "type_id",
+                                    "quantity",
                                     "location_id",
                                     "location_type",
                                     "item_id",
@@ -1542,7 +1544,7 @@
                                 "title": "get_characters_character_id_assets_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 5000,
+                            "maxItems": 1000,
                             "title": "get_characters_character_id_assets_ok",
                             "type": "array"
                         }
@@ -1582,14 +1584,15 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "v2"
+                    "dev",
+                    "v3"
                 ],
                 "x-cached-seconds": 3600
             }
         },
         "/characters/{character_id}/assets/locations/": {
             "post": {
-                "description": "Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/legacy/characters/{character_id}/assets/locations/`\n\nAlternate route: `/v1/characters/{character_id}/assets/locations/`\n\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#POST-/characters/{character_id}/assets/locations/)",
+                "description": "Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/dev/characters/{character_id}/assets/locations/`\n\nAlternate route: `/v2/characters/{character_id}/assets/locations/`\n",
                 "operationId": "post_characters_character_id_assets_locations",
                 "parameters": [
                     {
@@ -1635,9 +1638,11 @@
                             "application/json": [
                                 {
                                     "item_id": 12345,
-                                    "x": 1.2,
-                                    "y": 2.3,
-                                    "z": -3.4
+                                    "position": {
+                                        "x": 1.2,
+                                        "y": 2.3,
+                                        "z": -3.4
+                                    }
                                 }
                             ]
                         },
@@ -1652,30 +1657,40 @@
                                         "title": "post_characters_character_id_assets_locations_item_id",
                                         "type": "integer"
                                     },
-                                    "x": {
-                                        "description": "x number",
-                                        "format": "double",
-                                        "title": "post_characters_character_id_assets_locations_x",
-                                        "type": "number"
-                                    },
-                                    "y": {
-                                        "description": "y number",
-                                        "format": "double",
-                                        "title": "post_characters_character_id_assets_locations_y",
-                                        "type": "number"
-                                    },
-                                    "z": {
-                                        "description": "z number",
-                                        "format": "double",
-                                        "title": "post_characters_character_id_assets_locations_z",
-                                        "type": "number"
+                                    "position": {
+                                        "description": "position object",
+                                        "properties": {
+                                            "x": {
+                                                "description": "x number",
+                                                "format": "double",
+                                                "title": "post_characters_character_id_assets_locations_x",
+                                                "type": "number"
+                                            },
+                                            "y": {
+                                                "description": "y number",
+                                                "format": "double",
+                                                "title": "post_characters_character_id_assets_locations_y",
+                                                "type": "number"
+                                            },
+                                            "z": {
+                                                "description": "z number",
+                                                "format": "double",
+                                                "title": "post_characters_character_id_assets_locations_z",
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "x",
+                                            "y",
+                                            "z"
+                                        ],
+                                        "title": "post_characters_character_id_assets_locations_position",
+                                        "type": "object"
                                     }
                                 },
                                 "required": [
                                     "item_id",
-                                    "x",
-                                    "y",
-                                    "z"
+                                    "position"
                                 ],
                                 "title": "post_characters_character_id_assets_locations_200_ok",
                                 "type": "object"
@@ -1720,8 +1735,8 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "legacy",
-                    "v1"
+                    "dev",
+                    "v2"
                 ]
             }
         },
@@ -14588,7 +14603,7 @@
         },
         "/corporations/{corporation_id}/assets/": {
             "get": {
-                "description": "Return a list of the corporation assets\n\n---\nAlternate route: `/legacy/corporations/{corporation_id}/assets/`\n\nAlternate route: `/v1/corporations/{corporation_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director\n\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/corporations/{corporation_id}/assets/)",
+                "description": "Return a list of the corporation assets\n\n---\nAlternate route: `/dev/corporations/{corporation_id}/assets/`\n\nAlternate route: `/v2/corporations/{corporation_id}/assets/`\n\n---\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director\n",
                 "operationId": "get_corporations_corporation_id_assets",
                 "parameters": [
                     {
@@ -14621,6 +14636,7 @@
                                     "location_flag": "Hangar",
                                     "location_id": 60002959,
                                     "location_type": "station",
+                                    "quantity": 1,
                                     "type_id": 3516
                                 }
                             ]
@@ -14814,6 +14830,7 @@
                                 },
                                 "required": [
                                     "type_id",
+                                    "quantity",
                                     "location_id",
                                     "location_type",
                                     "item_id",
@@ -14823,7 +14840,7 @@
                                 "title": "get_corporations_corporation_id_assets_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 5000,
+                            "maxItems": 1000,
                             "title": "get_corporations_corporation_id_assets_ok",
                             "type": "array"
                         }
@@ -14863,8 +14880,8 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "legacy",
-                    "v1"
+                    "dev",
+                    "v2"
                 ],
                 "x-cached-seconds": 3600,
                 "x-required-roles": [
@@ -14874,7 +14891,7 @@
         },
         "/corporations/{corporation_id}/assets/locations/": {
             "post": {
-                "description": "Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/legacy/corporations/{corporation_id}/assets/locations/`\n\nAlternate route: `/v1/corporations/{corporation_id}/assets/locations/`\n\n\n---\nRequires one of the following EVE corporation role(s): Director\n\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#POST-/corporations/{corporation_id}/assets/locations/)",
+                "description": "Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)\n\n---\nAlternate route: `/dev/corporations/{corporation_id}/assets/locations/`\n\nAlternate route: `/v2/corporations/{corporation_id}/assets/locations/`\n\n\n---\nRequires one of the following EVE corporation role(s): Director\n",
                 "operationId": "post_corporations_corporation_id_assets_locations",
                 "parameters": [
                     {
@@ -14920,9 +14937,11 @@
                             "application/json": [
                                 {
                                     "item_id": 12345,
-                                    "x": 1.2,
-                                    "y": 2.3,
-                                    "z": -3.4
+                                    "position": {
+                                        "x": 1.2,
+                                        "y": 2.3,
+                                        "z": -3.4
+                                    }
                                 }
                             ]
                         },
@@ -14937,30 +14956,40 @@
                                         "title": "post_corporations_corporation_id_assets_locations_item_id",
                                         "type": "integer"
                                     },
-                                    "x": {
-                                        "description": "x number",
-                                        "format": "double",
-                                        "title": "post_corporations_corporation_id_assets_locations_x",
-                                        "type": "number"
-                                    },
-                                    "y": {
-                                        "description": "y number",
-                                        "format": "double",
-                                        "title": "post_corporations_corporation_id_assets_locations_y",
-                                        "type": "number"
-                                    },
-                                    "z": {
-                                        "description": "z number",
-                                        "format": "double",
-                                        "title": "post_corporations_corporation_id_assets_locations_z",
-                                        "type": "number"
+                                    "position": {
+                                        "description": "position object",
+                                        "properties": {
+                                            "x": {
+                                                "description": "x number",
+                                                "format": "double",
+                                                "title": "post_corporations_corporation_id_assets_locations_x",
+                                                "type": "number"
+                                            },
+                                            "y": {
+                                                "description": "y number",
+                                                "format": "double",
+                                                "title": "post_corporations_corporation_id_assets_locations_y",
+                                                "type": "number"
+                                            },
+                                            "z": {
+                                                "description": "z number",
+                                                "format": "double",
+                                                "title": "post_corporations_corporation_id_assets_locations_z",
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "x",
+                                            "y",
+                                            "z"
+                                        ],
+                                        "title": "post_corporations_corporation_id_assets_locations_position",
+                                        "type": "object"
                                     }
                                 },
                                 "required": [
                                     "item_id",
-                                    "x",
-                                    "y",
-                                    "z"
+                                    "position"
                                 ],
                                 "title": "post_corporations_corporation_id_assets_locations_200_ok",
                                 "type": "object"
@@ -15005,8 +15034,8 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "legacy",
-                    "v1"
+                    "dev",
+                    "v2"
                 ],
                 "x-required-roles": [
                     "Director"
