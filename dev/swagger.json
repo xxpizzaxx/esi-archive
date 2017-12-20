@@ -8821,7 +8821,7 @@
         },
         "/characters/{character_id}/online/": {
             "get": {
-                "description": "Checks if the character is currently online\n\n---\nAlternate route: `/v2/characters/{character_id}/online/`\n\n---\nThis route is cached for up to 60 seconds",
+                "description": "Checks if the character is currently online\n\n---\nAlternate route: `/latest/characters/{character_id}/online/`\n\nAlternate route: `/v2/characters/{character_id}/online/`\n\n---\nThis route is cached for up to 60 seconds",
                 "operationId": "get_characters_character_id_online",
                 "parameters": [
                     {
@@ -8934,6 +8934,7 @@
                     "Location"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v2"
                 ],
                 "x-cached-seconds": 60
@@ -10391,7 +10392,7 @@
         },
         "/characters/{character_id}/search/": {
             "get": {
-                "description": "Search for entities that match a given sub-string.\n\n---\nAlternate route: `/v3/characters/{character_id}/search/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Search for entities that match a given sub-string.\n\n---\nAlternate route: `/latest/characters/{character_id}/search/`\n\nAlternate route: `/v3/characters/{character_id}/search/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_characters_character_id_search",
                 "parameters": [
                     {
@@ -10674,6 +10675,7 @@
                     "Search"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v3"
                 ],
                 "x-cached-seconds": 3600
@@ -29842,7 +29844,7 @@
         },
         "/search/": {
             "get": {
-                "description": "Search for entities that match a given sub-string.\n\n---\nAlternate route: `/v2/search/`\n\n---\nThis route is cached for up to 3600 seconds",
+                "description": "Search for entities that match a given sub-string.\n\n---\nAlternate route: `/latest/search/`\n\nAlternate route: `/v2/search/`\n\n---\nThis route is cached for up to 3600 seconds",
                 "operationId": "get_search",
                 "parameters": [
                     {
@@ -30088,6 +30090,7 @@
                     "Search"
                 ],
                 "x-alternate-versions": [
+                    "latest",
                     "v2"
                 ],
                 "x-cached-seconds": 3600
