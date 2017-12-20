@@ -3497,7 +3497,7 @@
         },
         "/characters/{character_id}/clones/": {
             "get": {
-                "description": "A list of the character's clones\n\n---\nAlternate route: `/legacy/characters/{character_id}/clones/`\n\nAlternate route: `/v2/characters/{character_id}/clones/`\n\n---\nThis route is cached for up to 120 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/clones/)",
+                "description": "A list of the character's clones\n\n---\nAlternate route: `/dev/characters/{character_id}/clones/`\n\nAlternate route: `/v3/characters/{character_id}/clones/`\n\n---\nThis route is cached for up to 120 seconds",
                 "operationId": "get_characters_character_id_clones",
                 "parameters": [
                     {
@@ -3530,13 +3530,9 @@
                                         "implants": [
                                             22118
                                         ],
+                                        "jump_clone_id": 12345,
                                         "location_id": 60003463,
                                         "location_type": "station"
-                                    },
-                                    {
-                                        "implants": [],
-                                        "location_id": 1021348135816,
-                                        "location_type": "structure"
                                     }
                                 ]
                             }
@@ -3597,6 +3593,12 @@
                                                 "title": "get_characters_character_id_clones_implants",
                                                 "type": "array"
                                             },
+                                            "jump_clone_id": {
+                                                "description": "jump_clone_id integer",
+                                                "format": "int32",
+                                                "title": "get_characters_character_id_clones_jump_clone_id",
+                                                "type": "integer"
+                                            },
                                             "location_id": {
                                                 "description": "location_id integer",
                                                 "format": "int64",
@@ -3611,8 +3613,19 @@
                                                 ],
                                                 "title": "get_characters_character_id_clones_location_type",
                                                 "type": "string"
+                                            },
+                                            "name": {
+                                                "description": "name string",
+                                                "title": "get_characters_character_id_clones_name",
+                                                "type": "string"
                                             }
                                         },
+                                        "required": [
+                                            "jump_clone_id",
+                                            "location_id",
+                                            "location_type",
+                                            "implants"
+                                        ],
                                         "title": "get_characters_character_id_clones_jump_clone",
                                         "type": "object"
                                     },
@@ -3620,10 +3633,16 @@
                                     "title": "get_characters_character_id_clones_jump_clones",
                                     "type": "array"
                                 },
-                                "last_jump_date": {
-                                    "description": "last_jump_date string",
+                                "last_clone_jump_date": {
+                                    "description": "last_clone_jump_date string",
                                     "format": "date-time",
-                                    "title": "get_characters_character_id_clones_last_jump_date",
+                                    "title": "get_characters_character_id_clones_last_clone_jump_date",
+                                    "type": "string"
+                                },
+                                "last_station_change_date": {
+                                    "description": "last_station_change_date string",
+                                    "format": "date-time",
+                                    "title": "get_characters_character_id_clones_last_station_change_date",
                                     "type": "string"
                                 }
                             },
@@ -3669,8 +3688,8 @@
                     "Clones"
                 ],
                 "x-alternate-versions": [
-                    "legacy",
-                    "v2"
+                    "dev",
+                    "v3"
                 ],
                 "x-cached-seconds": 120
             }
