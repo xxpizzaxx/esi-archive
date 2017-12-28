@@ -10990,7 +10990,8 @@
         },
         "/characters/{character_id}/stats/": {
             "get": {
-                "description": "Returns aggregate yearly stats for a character\n\n---\nAlternate route: `/latest/characters/{character_id}/stats/`\n\nAlternate route: `/v1/characters/{character_id}/stats/`\n\n---\nThis route is cached for up to 86400 seconds",
+                "deprecated": true,
+                "description": "Returns aggregate yearly stats for a character\n\n---\nAlternate route: `/v1/characters/{character_id}/stats/`\n\n---\nThis route is cached for up to 86400 seconds\n\n---\nWarning: This route is deprecated.\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/legacy/latest/#GET-/characters/{character_id}/stats/)",
                 "operationId": "get_characters_character_id_stats",
                 "parameters": [
                     {
@@ -12842,7 +12843,6 @@
                     "Character"
                 ],
                 "x-alternate-versions": [
-                    "latest",
                     "v1"
                 ],
                 "x-cached-seconds": 86400
