@@ -8,14 +8,14 @@ Access-Control-Max-Age: 600
 Cache-Control: public
 Content-Length: 711093
 Content-Type: application/json
-Date: Thu, 28 Dec 2017 14:42:54 GMT
+Date: Thu, 28 Dec 2017 14:44:42 GMT
 Etag: W/"3f3dd78f33418daed09fb4acd8ce71fb"
-Expires: Thu, 28 Dec 2017 14:43:53 GMT
-Last-Modified: Thu, 28 Dec 2017 14:42:53 GMT
+Expires: Thu, 28 Dec 2017 14:45:42 GMT
+Last-Modified: Thu, 28 Dec 2017 14:44:42 GMT
 Strict-Transport-Security: max-age=31536000
 Vary: Accept-Encoding
 X-Esi-Error-Limit-Remain: 100
-X-Esi-Error-Limit-Reset: 7
+X-Esi-Error-Limit-Reset: 19
 Via: 1.1 google
 Alt-Svc: clear
 
