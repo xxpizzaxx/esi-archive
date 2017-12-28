@@ -36,6 +36,8 @@ function archive {
 archive latest
 archive _latest
 archive dev
+archive _dev
 archive legacy
+archive _legacy
 
 git push
