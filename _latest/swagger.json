@@ -37,7 +37,7 @@
     "info": {
         "description": "An OpenAPI for EVE Online",
         "title": "EVE Swagger Interface",
-        "version": "0.7.3"
+        "version": "0.7.5"
     },
     "parameters": {
         "X-User-Agent": {
@@ -50,6 +50,7 @@
             "description": "An EVE alliance ID",
             "format": "int32",
             "in": "path",
+            "minimum": 1,
             "name": "alliance_id",
             "required": true,
             "type": "integer"
@@ -58,6 +59,7 @@
             "description": "An EVE character ID",
             "format": "int32",
             "in": "path",
+            "minimum": 1,
             "name": "character_id",
             "required": true,
             "type": "integer"
@@ -66,6 +68,7 @@
             "description": "An EVE corporation ID",
             "format": "int32",
             "in": "path",
+            "minimum": 1,
             "name": "corporation_id",
             "required": true,
             "type": "integer"
@@ -2303,6 +2306,9 @@
                         "$ref": "#/parameters/datasource"
                     },
                     {
+                        "$ref": "#/parameters/page"
+                    },
+                    {
                         "$ref": "#/parameters/token"
                     },
                     {
@@ -2353,6 +2359,12 @@
                             "Last-Modified": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
                             }
                         },
                         "schema": {
@@ -2508,7 +2520,7 @@
                                     },
                                     "volume": {
                                         "description": "Volume of items in the contract",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_characters_character_id_contracts_volume",
                                         "type": "number"
                                     }
@@ -2529,7 +2541,7 @@
                                 "title": "get_characters_character_id_contracts_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 10000,
+                            "maxItems": 1000,
                             "title": "get_characters_character_id_contracts_ok",
                             "type": "array"
                         }
@@ -3290,6 +3302,7 @@
                         "description": "Details about the new fitting",
                         "in": "body",
                         "name": "fitting",
+                        "required": true,
                         "schema": {
                             "description": "fitting object",
                             "properties": {
@@ -4836,7 +4849,7 @@
                         "name": "mail",
                         "required": true,
                         "schema": {
-                            "description": "mail schema",
+                            "description": "mail object",
                             "properties": {
                                 "approved_cost": {
                                     "default": 0,
@@ -4898,7 +4911,8 @@
                                 "subject",
                                 "body"
                             ],
-                            "title": "post_characters_character_id_mail_mail"
+                            "title": "post_characters_character_id_mail_mail",
+                            "type": "object"
                         }
                     },
                     {
@@ -5631,9 +5645,21 @@
                                     "graphics": [
                                         {
                                             "color": -1,
-                                            "graphic": "gallente.1_1",
+                                            "graphic": "caldari.1_1",
                                             "layer": 0,
                                             "part": 1
+                                        },
+                                        {
+                                            "color": -330271,
+                                            "graphic": "caldari.1_2",
+                                            "layer": 1,
+                                            "part": 1
+                                        },
+                                        {
+                                            "color": -1,
+                                            "graphic": "compass.1_2",
+                                            "layer": 0,
+                                            "part": 2
                                         }
                                     ],
                                     "issuer_id": 2112000002,
@@ -5717,7 +5743,8 @@
                                             "title": "get_characters_character_id_medals_graphic",
                                             "type": "object"
                                         },
-                                        "maxItems": 10,
+                                        "maxItems": 9,
+                                        "minItems": 3,
                                         "title": "get_characters_character_id_medals_graphics",
                                         "type": "array"
                                     },
@@ -5965,7 +5992,7 @@
         },
         "/v1/characters/{character_id}/notifications/": {
             "get": {
-                "description": "Return character notifications\n\n---\n\nThis route is cached for up to 600 seconds",
+                "description": "Return character notifications\n\n---\n\nThis route is cached for up to 600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/notifications/)",
                 "operationId": "get_characters_character_id_notifications",
                 "parameters": [
                     {
@@ -6293,7 +6320,6 @@
                     "Character"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ],
@@ -6559,16 +6585,19 @@
                 "x-cached-seconds": 3600
             }
         },
-        "/v1/characters/{character_id}/orders/": {
+        "/v1/characters/{character_id}/orders/history/": {
             "get": {
-                "description": "List market orders placed by a character\n\n---\n\nThis route is cached for up to 3600 seconds",
-                "operationId": "get_characters_character_id_orders",
+                "description": "List cancelled and expired market orders placed by a character up to 90 days in the past.\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "operationId": "get_characters_character_id_orders_history",
                 "parameters": [
                     {
                         "$ref": "#/parameters/character_id"
                     },
                     {
                         "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/page"
                     },
                     {
                         "$ref": "#/parameters/token"
@@ -6582,15 +6611,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Market orders placed by a character",
+                        "description": "Expired and cancelled market orders placed by a character",
                         "examples": {
                             "application/json": [
                                 {
-                                    "account_id": 1000,
                                     "duration": 30,
                                     "escrow": 45.6,
                                     "is_buy_order": true,
-                                    "is_corp": false,
+                                    "is_corporation": false,
                                     "issued": "2016-09-03T05:12:25Z",
                                     "location_id": 456,
                                     "min_volume": 1,
@@ -6598,7 +6626,7 @@
                                     "price": 33.3,
                                     "range": "station",
                                     "region_id": 123,
-                                    "state": "open",
+                                    "state": "expired",
                                     "type_id": 456,
                                     "volume_remain": 4422,
                                     "volume_total": 123456
@@ -6617,6 +6645,12 @@
                             "Last-Modified": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
                             }
                         },
                         "schema": {
@@ -6624,62 +6658,56 @@
                             "items": {
                                 "description": "200 ok object",
                                 "properties": {
-                                    "account_id": {
-                                        "description": "Wallet division for the buyer or seller of this order. Always 1000 for characters. Currently 1000 through 1006 for corporations",
-                                        "format": "int32",
-                                        "title": "get_characters_character_id_orders_account_id",
-                                        "type": "integer"
-                                    },
                                     "duration": {
-                                        "description": "Numer of days for which order is valid (starting from the issued date). An order expires at time issued + duration",
+                                        "description": "Number of days the order was valid for (starting from the issued date). An order expires at time issued + duration",
                                         "format": "int32",
-                                        "title": "get_characters_character_id_orders_duration",
+                                        "title": "get_characters_character_id_orders_history_duration",
                                         "type": "integer"
                                     },
                                     "escrow": {
                                         "description": "For buy orders, the amount of ISK in escrow",
                                         "format": "double",
-                                        "title": "get_characters_character_id_orders_escrow",
+                                        "title": "get_characters_character_id_orders_history_escrow",
                                         "type": "number"
                                     },
                                     "is_buy_order": {
-                                        "description": "True for a bid (buy) order. False for an offer (sell) order",
-                                        "title": "get_characters_character_id_orders_is_buy_order",
+                                        "description": "True if the order is a bid (buy) order",
+                                        "title": "get_characters_character_id_orders_history_is_buy_order",
                                         "type": "boolean"
                                     },
-                                    "is_corp": {
-                                        "description": "is_corp boolean",
-                                        "title": "get_characters_character_id_orders_is_corp",
+                                    "is_corporation": {
+                                        "description": "Signifies whether the buy/sell order was placed on behalf of a corporation.",
+                                        "title": "get_characters_character_id_orders_history_is_corporation",
                                         "type": "boolean"
                                     },
                                     "issued": {
                                         "description": "Date and time when this order was issued",
                                         "format": "date-time",
-                                        "title": "get_characters_character_id_orders_issued",
+                                        "title": "get_characters_character_id_orders_history_issued",
                                         "type": "string"
                                     },
                                     "location_id": {
                                         "description": "ID of the location where order was placed",
                                         "format": "int64",
-                                        "title": "get_characters_character_id_orders_location_id",
+                                        "title": "get_characters_character_id_orders_history_location_id",
                                         "type": "integer"
                                     },
                                     "min_volume": {
-                                        "description": "For bids (buy orders), the minimum quantity that will be accepted in a matching offer (sell order)",
+                                        "description": "For buy orders, the minimum quantity that will be accepted in a matching sell order",
                                         "format": "int32",
-                                        "title": "get_characters_character_id_orders_min_volume",
+                                        "title": "get_characters_character_id_orders_history_min_volume",
                                         "type": "integer"
                                     },
                                     "order_id": {
                                         "description": "Unique order ID",
                                         "format": "int64",
-                                        "title": "get_characters_character_id_orders_order_id",
+                                        "title": "get_characters_character_id_orders_history_order_id",
                                         "type": "integer"
                                     },
                                     "price": {
                                         "description": "Cost per unit for this order",
                                         "format": "double",
-                                        "title": "get_characters_character_id_orders_price",
+                                        "title": "get_characters_character_id_orders_history_price",
                                         "type": "number"
                                     },
                                     "range": {
@@ -6698,70 +6726,62 @@
                                             "solarsystem",
                                             "station"
                                         ],
-                                        "title": "get_characters_character_id_orders_range",
+                                        "title": "get_characters_character_id_orders_history_range",
                                         "type": "string"
                                     },
                                     "region_id": {
                                         "description": "ID of the region where order was placed",
                                         "format": "int32",
-                                        "title": "get_characters_character_id_orders_region_id",
+                                        "title": "get_characters_character_id_orders_history_region_id",
                                         "type": "integer"
                                     },
                                     "state": {
                                         "description": "Current order state",
                                         "enum": [
                                             "cancelled",
-                                            "character_deleted",
-                                            "closed",
-                                            "expired",
-                                            "open",
-                                            "pending"
+                                            "expired"
                                         ],
-                                        "title": "get_characters_character_id_orders_state",
+                                        "title": "get_characters_character_id_orders_history_state",
                                         "type": "string"
                                     },
                                     "type_id": {
                                         "description": "The type ID of the item transacted in this order",
                                         "format": "int32",
-                                        "title": "get_characters_character_id_orders_type_id",
+                                        "title": "get_characters_character_id_orders_history_type_id",
                                         "type": "integer"
                                     },
                                     "volume_remain": {
                                         "description": "Quantity of items still required or offered",
                                         "format": "int32",
-                                        "title": "get_characters_character_id_orders_volume_remain",
+                                        "title": "get_characters_character_id_orders_history_volume_remain",
                                         "type": "integer"
                                     },
                                     "volume_total": {
                                         "description": "Quantity of items required or offered at time order was placed",
                                         "format": "int32",
-                                        "title": "get_characters_character_id_orders_volume_total",
+                                        "title": "get_characters_character_id_orders_history_volume_total",
                                         "type": "integer"
                                     }
                                 },
                                 "required": [
+                                    "is_corporation",
+                                    "duration",
+                                    "state",
                                     "order_id",
                                     "type_id",
                                     "region_id",
                                     "location_id",
                                     "range",
-                                    "is_buy_order",
                                     "price",
                                     "volume_total",
                                     "volume_remain",
-                                    "issued",
-                                    "state",
-                                    "min_volume",
-                                    "account_id",
-                                    "duration",
-                                    "is_corp",
-                                    "escrow"
+                                    "issued"
                                 ],
-                                "title": "get_characters_character_id_orders_200_ok",
+                                "title": "get_characters_character_id_orders_history_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 500,
-                            "title": "get_characters_character_id_orders_ok",
+                            "maxItems": 1000,
+                            "title": "get_characters_character_id_orders_history_ok",
                             "type": "array"
                         }
                     },
@@ -6795,7 +6815,7 @@
                         ]
                     }
                 ],
-                "summary": "List orders from a character",
+                "summary": "List historical orders by a character",
                 "tags": [
                     "Market"
                 ],
@@ -7648,6 +7668,9 @@
                         "$ref": "#/parameters/datasource"
                     },
                     {
+                        "$ref": "#/parameters/page"
+                    },
+                    {
                         "$ref": "#/parameters/token"
                     },
                     {
@@ -7683,6 +7706,12 @@
                             "Last-Modified": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
                             }
                         },
                         "schema": {
@@ -8285,7 +8314,7 @@
         },
         "/v1/corporations/{corporation_id}/blueprints/": {
             "get": {
-                "description": "Returns a list of blueprints the corporation owns\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
+                "description": "Returns a list of blueprints the corporation owns\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/corporations/{corporation_id}/blueprints/)",
                 "operationId": "get_corporations_corporation_id_blueprints",
                 "parameters": [
                     {
@@ -8573,7 +8602,6 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ],
@@ -9105,7 +9133,7 @@
         },
         "/v1/corporations/{corporation_id}/containers/logs/": {
             "get": {
-                "description": "Returns logs recorded in the past seven days from all audit log secure containers (ALSC) owned by a given corporation\n\n---\n\nThis route is cached for up to 600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
+                "description": "Returns logs recorded in the past seven days from all audit log secure containers (ALSC) owned by a given corporation\n\n---\n\nThis route is cached for up to 600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/corporations/{corporation_id}/containers/logs/)",
                 "operationId": "get_corporations_corporation_id_containers_logs",
                 "parameters": [
                     {
@@ -9446,7 +9474,6 @@
                     "Corporation"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "legacy",
                     "v1"
                 ],
@@ -9458,7 +9485,7 @@
         },
         "/v1/corporations/{corporation_id}/contracts/": {
             "get": {
-                "description": "Returns contracts available to a coporation, only if the corporation is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is \"in_progress\".\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Returns contracts available to a coporation, only if the corporation is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is \"in_progress\".\n\n---\n\nThis route is cached for up to 300 seconds",
                 "operationId": "get_corporations_corporation_id_contracts",
                 "parameters": [
                     {
@@ -9466,6 +9493,9 @@
                     },
                     {
                         "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/page"
                     },
                     {
                         "$ref": "#/parameters/token"
@@ -9488,8 +9518,6 @@
                                     "availability": "public",
                                     "buyout": 10000000000.01,
                                     "contract_id": 1,
-                                    "date_accepted": "2017-06-06T13:12:32Z",
-                                    "date_completed": "2017-06-06T13:12:32Z",
                                     "date_expired": "2017-06-13T13:12:32Z",
                                     "date_issued": "2017-06-06T13:12:32Z",
                                     "days_to_complete": 0,
@@ -9518,6 +9546,12 @@
                             "Last-Modified": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
                             }
                         },
                         "schema": {
@@ -9673,7 +9707,7 @@
                                     },
                                     "volume": {
                                         "description": "Volume of items in the contract",
-                                        "format": "float",
+                                        "format": "double",
                                         "title": "get_corporations_corporation_id_contracts_volume",
                                         "type": "number"
                                     }
@@ -9694,7 +9728,7 @@
                                 "title": "get_corporations_corporation_id_contracts_200_ok",
                                 "type": "object"
                             },
-                            "maxItems": 10000,
+                            "maxItems": 1000,
                             "title": "get_corporations_corporation_id_contracts_ok",
                             "type": "array"
                         }
@@ -9738,7 +9772,7 @@
                     "legacy",
                     "v1"
                 ],
-                "x-cached-seconds": 3600,
+                "x-cached-seconds": 300,
                 "x-required-roles": []
             }
         },
@@ -11981,10 +12015,10 @@
                 ]
             }
         },
-        "/v1/corporations/{corporation_id}/orders/": {
+        "/v1/corporations/{corporation_id}/orders/history/": {
             "get": {
-                "description": "List market orders placed on behalf of a corporation\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Trader",
-                "operationId": "get_corporations_corporation_id_orders",
+                "description": "List cancelled and expired market orders placed on behalf of a corporation up to 90 days in the past.\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Trader",
+                "operationId": "get_corporations_corporation_id_orders_history",
                 "parameters": [
                     {
                         "$ref": "#/parameters/corporation_id"
@@ -12007,7 +12041,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "A list of market orders",
+                        "description": "Expired and cancelled market orders placed on behalf of a corporation",
                         "examples": {
                             "application/json": [
                                 {
@@ -12021,7 +12055,7 @@
                                     "price": 33.3,
                                     "range": "station",
                                     "region_id": 123,
-                                    "state": "open",
+                                    "state": "expired",
                                     "type_id": 456,
                                     "volume_remain": 4422,
                                     "volume_total": 123456,
@@ -12055,50 +12089,50 @@
                                 "description": "200 ok object",
                                 "properties": {
                                     "duration": {
-                                        "description": "Numer of days for which order is valid (starting from the issued date). An order expires at time issued + duration",
+                                        "description": "Number of days the order was valid for (starting from the issued date). An order expires at time issued + duration",
                                         "format": "int32",
-                                        "title": "get_corporations_corporation_id_orders_duration",
+                                        "title": "get_corporations_corporation_id_orders_history_duration",
                                         "type": "integer"
                                     },
                                     "escrow": {
                                         "description": "For buy orders, the amount of ISK in escrow",
                                         "format": "double",
-                                        "title": "get_corporations_corporation_id_orders_escrow",
+                                        "title": "get_corporations_corporation_id_orders_history_escrow",
                                         "type": "number"
                                     },
                                     "is_buy_order": {
-                                        "description": "True for a bid (buy) order. False for an offer (sell) order",
-                                        "title": "get_corporations_corporation_id_orders_is_buy_order",
+                                        "description": "True if the order is a bid (buy) order",
+                                        "title": "get_corporations_corporation_id_orders_history_is_buy_order",
                                         "type": "boolean"
                                     },
                                     "issued": {
                                         "description": "Date and time when this order was issued",
                                         "format": "date-time",
-                                        "title": "get_corporations_corporation_id_orders_issued",
+                                        "title": "get_corporations_corporation_id_orders_history_issued",
                                         "type": "string"
                                     },
                                     "location_id": {
                                         "description": "ID of the location where order was placed",
                                         "format": "int64",
-                                        "title": "get_corporations_corporation_id_orders_location_id",
+                                        "title": "get_corporations_corporation_id_orders_history_location_id",
                                         "type": "integer"
                                     },
                                     "min_volume": {
-                                        "description": "For bids (buy orders), the minimum quantity that will be accepted in a matching offer (sell order)",
+                                        "description": "For buy orders, the minimum quantity that will be accepted in a matching sell order",
                                         "format": "int32",
-                                        "title": "get_corporations_corporation_id_orders_min_volume",
+                                        "title": "get_corporations_corporation_id_orders_history_min_volume",
                                         "type": "integer"
                                     },
                                     "order_id": {
                                         "description": "Unique order ID",
                                         "format": "int64",
-                                        "title": "get_corporations_corporation_id_orders_order_id",
+                                        "title": "get_corporations_corporation_id_orders_history_order_id",
                                         "type": "integer"
                                     },
                                     "price": {
                                         "description": "Cost per unit for this order",
                                         "format": "double",
-                                        "title": "get_corporations_corporation_id_orders_price",
+                                        "title": "get_corporations_corporation_id_orders_history_price",
                                         "type": "number"
                                     },
                                     "range": {
@@ -12117,77 +12151,70 @@
                                             "solarsystem",
                                             "station"
                                         ],
-                                        "title": "get_corporations_corporation_id_orders_range",
+                                        "title": "get_corporations_corporation_id_orders_history_range",
                                         "type": "string"
                                     },
                                     "region_id": {
                                         "description": "ID of the region where order was placed",
                                         "format": "int32",
-                                        "title": "get_corporations_corporation_id_orders_region_id",
+                                        "title": "get_corporations_corporation_id_orders_history_region_id",
                                         "type": "integer"
                                     },
                                     "state": {
                                         "description": "Current order state",
                                         "enum": [
                                             "cancelled",
-                                            "character_deleted",
-                                            "closed",
-                                            "expired",
-                                            "open",
-                                            "pending"
+                                            "expired"
                                         ],
-                                        "title": "get_corporations_corporation_id_orders_state",
+                                        "title": "get_corporations_corporation_id_orders_history_state",
                                         "type": "string"
                                     },
                                     "type_id": {
                                         "description": "The type ID of the item transacted in this order",
                                         "format": "int32",
-                                        "title": "get_corporations_corporation_id_orders_type_id",
+                                        "title": "get_corporations_corporation_id_orders_history_type_id",
                                         "type": "integer"
                                     },
                                     "volume_remain": {
                                         "description": "Quantity of items still required or offered",
                                         "format": "int32",
-                                        "title": "get_corporations_corporation_id_orders_volume_remain",
+                                        "title": "get_corporations_corporation_id_orders_history_volume_remain",
                                         "type": "integer"
                                     },
                                     "volume_total": {
                                         "description": "Quantity of items required or offered at time order was placed",
                                         "format": "int32",
-                                        "title": "get_corporations_corporation_id_orders_volume_total",
+                                        "title": "get_corporations_corporation_id_orders_history_volume_total",
                                         "type": "integer"
                                     },
                                     "wallet_division": {
-                                        "description": "Wallet division of which this order used",
+                                        "description": "The corporation wallet division used for this order.",
                                         "format": "int32",
                                         "maximum": 7,
                                         "minimum": 1,
-                                        "title": "get_corporations_corporation_id_orders_wallet_division",
+                                        "title": "get_corporations_corporation_id_orders_history_wallet_division",
                                         "type": "integer"
                                     }
                                 },
                                 "required": [
+                                    "wallet_division",
+                                    "duration",
+                                    "state",
                                     "order_id",
                                     "type_id",
                                     "region_id",
                                     "location_id",
                                     "range",
-                                    "is_buy_order",
                                     "price",
                                     "volume_total",
                                     "volume_remain",
-                                    "issued",
-                                    "state",
-                                    "min_volume",
-                                    "wallet_division",
-                                    "duration",
-                                    "escrow"
+                                    "issued"
                                 ],
-                                "title": "get_corporations_corporation_id_orders_200_ok",
+                                "title": "get_corporations_corporation_id_orders_history_200_ok",
                                 "type": "object"
                             },
                             "maxItems": 1000,
-                            "title": "get_corporations_corporation_id_orders_ok",
+                            "title": "get_corporations_corporation_id_orders_history_ok",
                             "type": "array"
                         }
                     },
@@ -12221,7 +12248,7 @@
                         ]
                     }
                 ],
-                "summary": "List orders from a corporation",
+                "summary": "List historical orders from a corporation",
                 "tags": [
                     "Market"
                 ],
@@ -13555,7 +13582,7 @@
         },
         "/v1/corporations/{corporation_id}/shareholders/": {
             "get": {
-                "description": "Return the current member list of a corporation, the token's character need to be a member of the corporation.\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return the current shareholders of a corporation.\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
                 "operationId": "get_corporations_corporation_id_shareholders",
                 "parameters": [
                     {
@@ -13579,7 +13606,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "List of member character IDs",
+                        "description": "List of shareholders",
                         "examples": {
                             "application/json": [
                                 {
@@ -13625,7 +13652,7 @@
                             }
                         },
                         "schema": {
-                            "description": "A list of character IDs",
+                            "description": "List of shareholders",
                             "items": {
                                 "description": "200 ok object",
                                 "properties": {
@@ -13694,7 +13721,7 @@
                         ]
                     }
                 ],
-                "summary": "Get corporation members",
+                "summary": "Get corporation shareholders",
                 "tags": [
                     "Corporation"
                 ],
@@ -13703,7 +13730,10 @@
                     "legacy",
                     "v1"
                 ],
-                "x-cached-seconds": 3600
+                "x-cached-seconds": 3600,
+                "x-required-roles": [
+                    "Director"
+                ]
             }
         },
         "/v1/corporations/{corporation_id}/standings/": {
@@ -14044,9 +14074,6 @@
                         "$ref": "#/parameters/datasource"
                     },
                     {
-                        "$ref": "#/parameters/page"
-                    },
-                    {
                         "description": "An EVE starbase (POS) ID",
                         "format": "int64",
                         "in": "path",
@@ -14102,12 +14129,6 @@
                             "Last-Modified": {
                                 "description": "RFC7231 formatted datetime string",
                                 "type": "string"
-                            },
-                            "X-Pages": {
-                                "default": 1,
-                                "description": "Maximum page number",
-                                "format": "int32",
-                                "type": "integer"
                             }
                         },
                         "schema": {
@@ -14305,417 +14326,6 @@
                 "x-cached-seconds": 3600,
                 "x-required-roles": [
                     "Director"
-                ]
-            }
-        },
-        "/v1/corporations/{corporation_id}/structures/": {
-            "get": {
-                "description": "Get a list of corporation structures\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): StationManager",
-                "operationId": "get_corporations_corporation_id_structures",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/corporation_id"
-                    },
-                    {
-                        "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "$ref": "#/parameters/language"
-                    },
-                    {
-                        "$ref": "#/parameters/page"
-                    },
-                    {
-                        "$ref": "#/parameters/token"
-                    },
-                    {
-                        "$ref": "#/parameters/user_agent"
-                    },
-                    {
-                        "$ref": "#/parameters/X-User-Agent"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of corporation structures' information",
-                        "examples": {
-                            "application/json": [
-                                {
-                                    "corporation_id": 667531913,
-                                    "current_vul": [
-                                        {
-                                            "day": 1,
-                                            "hour": 2
-                                        }
-                                    ],
-                                    "next_vul": [
-                                        {
-                                            "day": 3,
-                                            "hour": 4
-                                        }
-                                    ],
-                                    "profile_id": 11237,
-                                    "structure_id": 1021975535893,
-                                    "system_id": 30004763,
-                                    "type_id": 35833
-                                }
-                            ]
-                        },
-                        "headers": {
-                            "Cache-Control": {
-                                "description": "The caching mechanism used",
-                                "type": "string"
-                            },
-                            "Content-Language": {
-                                "description": "The language used in the response",
-                                "enum": [
-                                    "de",
-                                    "en-us",
-                                    "fr",
-                                    "ja",
-                                    "ru",
-                                    "zh"
-                                ],
-                                "type": "string"
-                            },
-                            "Expires": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "Last-Modified": {
-                                "description": "RFC7231 formatted datetime string",
-                                "type": "string"
-                            },
-                            "X-Pages": {
-                                "default": 1,
-                                "description": "Maximum page number",
-                                "format": "int32",
-                                "type": "integer"
-                            }
-                        },
-                        "schema": {
-                            "description": "200 ok array",
-                            "items": {
-                                "description": "200 ok object",
-                                "properties": {
-                                    "corporation_id": {
-                                        "description": "ID of the corporation that owns the structure",
-                                        "format": "int32",
-                                        "title": "get_corporations_corporation_id_structures_corporation_id",
-                                        "type": "integer"
-                                    },
-                                    "current_vul": {
-                                        "description": "This week's vulnerability windows, Monday is day 0",
-                                        "items": {
-                                            "description": "current_vul object",
-                                            "properties": {
-                                                "day": {
-                                                    "description": "day integer",
-                                                    "format": "int32",
-                                                    "title": "get_corporations_corporation_id_structures_day",
-                                                    "type": "integer"
-                                                },
-                                                "hour": {
-                                                    "description": "hour integer",
-                                                    "format": "int32",
-                                                    "title": "get_corporations_corporation_id_structures_hour",
-                                                    "type": "integer"
-                                                }
-                                            },
-                                            "required": [
-                                                "day",
-                                                "hour"
-                                            ],
-                                            "title": "get_corporations_corporation_id_structures_current_vul",
-                                            "type": "object"
-                                        },
-                                        "maxItems": 168,
-                                        "title": "get_corporations_corporation_id_structures_current_vul",
-                                        "type": "array"
-                                    },
-                                    "fuel_expires": {
-                                        "description": "Date on which the structure will run out of fuel",
-                                        "format": "date-time",
-                                        "title": "get_corporations_corporation_id_structures_fuel_expires",
-                                        "type": "string"
-                                    },
-                                    "next_vul": {
-                                        "description": "Next week's vulnerability windows, Monday is day 0",
-                                        "items": {
-                                            "description": "next_vul object",
-                                            "properties": {
-                                                "day": {
-                                                    "description": "day integer",
-                                                    "format": "int32",
-                                                    "title": "get_corporations_corporation_id_structures_day",
-                                                    "type": "integer"
-                                                },
-                                                "hour": {
-                                                    "description": "hour integer",
-                                                    "format": "int32",
-                                                    "title": "get_corporations_corporation_id_structures_hour",
-                                                    "type": "integer"
-                                                }
-                                            },
-                                            "required": [
-                                                "day",
-                                                "hour"
-                                            ],
-                                            "title": "get_corporations_corporation_id_structures_next_vul",
-                                            "type": "object"
-                                        },
-                                        "maxItems": 168,
-                                        "title": "get_corporations_corporation_id_structures_next_vul",
-                                        "type": "array"
-                                    },
-                                    "profile_id": {
-                                        "description": "The id of the ACL profile for this citadel",
-                                        "format": "int32",
-                                        "title": "get_corporations_corporation_id_structures_profile_id",
-                                        "type": "integer"
-                                    },
-                                    "services": {
-                                        "description": "Contains a list of service upgrades, and their state",
-                                        "items": {
-                                            "description": "service object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "name string",
-                                                    "title": "get_corporations_corporation_id_structures_name",
-                                                    "type": "string"
-                                                },
-                                                "state": {
-                                                    "description": "state string",
-                                                    "enum": [
-                                                        "online",
-                                                        "offline",
-                                                        "cleanup"
-                                                    ],
-                                                    "title": "get_corporations_corporation_id_structures_state",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name",
-                                                "state"
-                                            ],
-                                            "title": "get_corporations_corporation_id_structures_service",
-                                            "type": "object"
-                                        },
-                                        "maxItems": 10,
-                                        "title": "get_corporations_corporation_id_structures_services",
-                                        "type": "array"
-                                    },
-                                    "state_timer_end": {
-                                        "description": "Date at which the structure will move to it's next state",
-                                        "format": "date-time",
-                                        "title": "get_corporations_corporation_id_structures_state_timer_end",
-                                        "type": "string"
-                                    },
-                                    "state_timer_start": {
-                                        "description": "Date at which the structure entered it's current state",
-                                        "format": "date-time",
-                                        "title": "get_corporations_corporation_id_structures_state_timer_start",
-                                        "type": "string"
-                                    },
-                                    "structure_id": {
-                                        "description": "The Item ID of the structure",
-                                        "format": "int64",
-                                        "title": "get_corporations_corporation_id_structures_structure_id",
-                                        "type": "integer"
-                                    },
-                                    "system_id": {
-                                        "description": "The solar system the structure is in",
-                                        "format": "int32",
-                                        "title": "get_corporations_corporation_id_structures_system_id",
-                                        "type": "integer"
-                                    },
-                                    "type_id": {
-                                        "description": "The type id of the structure",
-                                        "format": "int32",
-                                        "title": "get_corporations_corporation_id_structures_type_id",
-                                        "type": "integer"
-                                    },
-                                    "unanchors_at": {
-                                        "description": "Date at which the structure will unanchor",
-                                        "format": "date-time",
-                                        "title": "get_corporations_corporation_id_structures_unanchors_at",
-                                        "type": "string"
-                                    }
-                                },
-                                "required": [
-                                    "structure_id",
-                                    "type_id",
-                                    "corporation_id",
-                                    "system_id",
-                                    "profile_id",
-                                    "current_vul",
-                                    "next_vul"
-                                ],
-                                "title": "get_corporations_corporation_id_structures_200_ok",
-                                "type": "object"
-                            },
-                            "maxItems": 250,
-                            "title": "get_corporations_corporation_id_structures_ok",
-                            "type": "array"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Forbidden message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/forbidden"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "Internal server error message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/internal_server_error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-corporations.read_structures.v1"
-                        ]
-                    }
-                ],
-                "summary": "Get corporation structures",
-                "tags": [
-                    "Corporation"
-                ],
-                "x-alternate-versions": [
-                    "dev",
-                    "legacy",
-                    "v1"
-                ],
-                "x-cached-seconds": 3600,
-                "x-required-roles": [
-                    "StationManager"
-                ]
-            }
-        },
-        "/v1/corporations/{corporation_id}/structures/{structure_id}/": {
-            "put": {
-                "description": "Update the vulnerability window schedule of a corporation structure\n\n---\n",
-                "operationId": "put_corporations_corporation_id_structures_structure_id",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/corporation_id"
-                    },
-                    {
-                        "$ref": "#/parameters/datasource"
-                    },
-                    {
-                        "description": "New vulnerability window schedule for the structure",
-                        "in": "body",
-                        "name": "new_schedule",
-                        "required": true,
-                        "schema": {
-                            "description": "new_schedule array",
-                            "items": {
-                                "description": "new_schedule object",
-                                "properties": {
-                                    "day": {
-                                        "description": "Day of the week, zero-indexed to Monday",
-                                        "format": "int32",
-                                        "maximum": 6,
-                                        "minimum": 0,
-                                        "title": "put_corporations_corporation_id_structures_structure_id_day",
-                                        "type": "integer"
-                                    },
-                                    "hour": {
-                                        "description": "Hour of the day evetime, zero-indexed to midnight",
-                                        "format": "int32",
-                                        "maximum": 23,
-                                        "minimum": 0,
-                                        "title": "put_corporations_corporation_id_structures_structure_id_hour",
-                                        "type": "integer"
-                                    }
-                                },
-                                "required": [
-                                    "day",
-                                    "hour"
-                                ],
-                                "title": "put_corporations_corporation_id_structures_structure_id_new_schedule",
-                                "type": "object"
-                            },
-                            "maxItems": 168,
-                            "minItems": 1,
-                            "title": "put_corporations_corporation_id_structures_structure_id_new_schedule",
-                            "type": "array"
-                        }
-                    },
-                    {
-                        "description": "A structure ID",
-                        "format": "int64",
-                        "in": "path",
-                        "name": "structure_id",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "$ref": "#/parameters/token"
-                    },
-                    {
-                        "$ref": "#/parameters/user_agent"
-                    },
-                    {
-                        "$ref": "#/parameters/X-User-Agent"
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "Structure vulnerability window updated"
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "examples": {
-                            "application/json": {
-                                "error": "Forbidden message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/forbidden"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "examples": {
-                            "application/json": {
-                                "error": "Internal server error message"
-                            }
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/internal_server_error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "evesso": [
-                            "esi-corporations.write_structures.v1"
-                        ]
-                    }
-                ],
-                "summary": "Update structure vulnerability schedule",
-                "tags": [
-                    "Corporation"
-                ],
-                "x-alternate-versions": [
-                    "dev",
-                    "legacy",
-                    "v1"
                 ]
             }
         },
@@ -19405,7 +19015,7 @@
                                     "cost_indices": [
                                         {
                                             "activity": "invention",
-                                            "cost_index": 0.00480411064973412
+                                            "cost_index": 0.0048
                                         }
                                     ],
                                     "solar_system_id": 30011392
@@ -19660,7 +19270,7 @@
         },
         "/v1/killmails/{killmail_id}/{killmail_hash}/": {
             "get": {
-                "description": "Return a single killmail from its ID and hash\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Return a single killmail from its ID and hash\n\n---\n\nThis route is cached for up to 1209600 seconds",
                 "operationId": "get_killmails_killmail_id_killmail_hash",
                 "parameters": [
                     {
@@ -20074,7 +19684,7 @@
                     "legacy",
                     "v1"
                 ],
-                "x-cached-seconds": 3600
+                "x-cached-seconds": 1209600
             }
         },
         "/v1/loyalty/stores/{corporation_id}/offers/": {
@@ -20101,6 +19711,7 @@
                         "examples": {
                             "application/json": [
                                 {
+                                    "ak_cost": 35000,
                                     "isk_cost": 0,
                                     "lp_cost": 100,
                                     "offer_id": 1,
@@ -20142,11 +19753,17 @@
                             "items": {
                                 "description": "200 ok object",
                                 "properties": {
-                                    "isk_cost": {
-                                        "description": "isk_cost number",
+                                    "ak_cost": {
+                                        "description": "Analysis kredit cost",
                                         "format": "int32",
+                                        "title": "get_loyalty_stores_corporation_id_offers_ak_cost",
+                                        "type": "integer"
+                                    },
+                                    "isk_cost": {
+                                        "description": "isk_cost integer",
+                                        "format": "int64",
                                         "title": "get_loyalty_stores_corporation_id_offers_isk_cost",
-                                        "type": "number"
+                                        "type": "integer"
                                     },
                                     "lp_cost": {
                                         "description": "lp_cost integer",
@@ -20216,6 +19833,26 @@
                             "maxItems": 10000,
                             "title": "get_loyalty_stores_corporation_id_offers_ok",
                             "type": "array"
+                        }
+                    },
+                    "404": {
+                        "description": "No loyalty point store found for the provided corporation",
+                        "examples": {
+                            "application/json": {
+                                "error": "Not found message"
+                            }
+                        },
+                        "schema": {
+                            "description": "Not found",
+                            "properties": {
+                                "error": {
+                                    "description": "Not found message",
+                                    "title": "get_loyalty_stores_corporation_id_offers_404_not_found",
+                                    "type": "string"
+                                }
+                            },
+                            "title": "get_loyalty_stores_corporation_id_offers_not_found",
+                            "type": "object"
                         }
                     },
                     "500": {
@@ -22705,6 +22342,140 @@
                 "summary": "Open New Mail Window",
                 "tags": [
                     "User Interface"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "legacy",
+                    "v1"
+                ]
+            }
+        },
+        "/v1/universe/ancestries/": {
+            "get": {
+                "description": "Get all character ancestries\n\n---\n\nThis route expires daily at 11:05",
+                "operationId": "get_universe_ancestries",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/language"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of ancestries",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "bloodline_id": 1,
+                                    "description": "Acutely aware of the small population...",
+                                    "id": 12,
+                                    "name": "Tube Child",
+                                    "short_description": "Manufactured citizens of the State."
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "bloodline_id": {
+                                        "description": "The bloodline associated with this ancestry",
+                                        "format": "int32",
+                                        "title": "get_universe_ancestries_bloodline_id",
+                                        "type": "integer"
+                                    },
+                                    "description": {
+                                        "description": "description string",
+                                        "title": "get_universe_ancestries_description",
+                                        "type": "string"
+                                    },
+                                    "icon_id": {
+                                        "description": "icon_id integer",
+                                        "format": "int32",
+                                        "title": "get_universe_ancestries_icon_id",
+                                        "type": "integer"
+                                    },
+                                    "id": {
+                                        "description": "id integer",
+                                        "format": "int32",
+                                        "title": "get_universe_ancestries_id",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "description": "name string",
+                                        "title": "get_universe_ancestries_name",
+                                        "type": "string"
+                                    },
+                                    "short_description": {
+                                        "description": "short_description string",
+                                        "title": "get_universe_ancestries_short_description",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "id",
+                                    "name",
+                                    "bloodline_id",
+                                    "description"
+                                ],
+                                "title": "get_universe_ancestries_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 42,
+                            "title": "get_universe_ancestries_ok",
+                            "type": "array"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "summary": "Get ancestries",
+                "tags": [
+                    "Universe"
                 ],
                 "x-alternate-versions": [
                     "dev",
@@ -27266,7 +27037,7 @@
                             "format": "int32",
                             "type": "integer"
                         },
-                        "maxItems": 100,
+                        "maxItems": 20,
                         "minItems": 1,
                         "name": "contact_ids",
                         "required": true,
@@ -27344,6 +27115,7 @@
                         "description": "Label to create",
                         "in": "body",
                         "name": "label",
+                        "required": true,
                         "schema": {
                             "description": "label object",
                             "properties": {
@@ -27571,6 +27343,227 @@
                     "v2"
                 ],
                 "x-cached-seconds": 60
+            }
+        },
+        "/v2/characters/{character_id}/orders/": {
+            "get": {
+                "description": "List open market orders placed by a character\n\n---\n\nThis route is cached for up to 1200 seconds",
+                "operationId": "get_characters_character_id_orders",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/character_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Open market orders placed by a character",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "duration": 30,
+                                    "escrow": 45.6,
+                                    "is_buy_order": true,
+                                    "is_corporation": false,
+                                    "issued": "2016-09-03T05:12:25Z",
+                                    "location_id": 456,
+                                    "min_volume": 1,
+                                    "order_id": 123,
+                                    "price": 33.3,
+                                    "range": "station",
+                                    "region_id": 123,
+                                    "type_id": 456,
+                                    "volume_remain": 4422,
+                                    "volume_total": 123456
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "duration": {
+                                        "description": "Number of days for which order is valid (starting from the issued date). An order expires at time issued + duration",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_orders_duration",
+                                        "type": "integer"
+                                    },
+                                    "escrow": {
+                                        "description": "For buy orders, the amount of ISK in escrow",
+                                        "format": "double",
+                                        "title": "get_characters_character_id_orders_escrow",
+                                        "type": "number"
+                                    },
+                                    "is_buy_order": {
+                                        "description": "True if the order is a bid (buy) order",
+                                        "title": "get_characters_character_id_orders_is_buy_order",
+                                        "type": "boolean"
+                                    },
+                                    "is_corporation": {
+                                        "description": "Signifies whether the buy/sell order was placed on behalf of a corporation.",
+                                        "title": "get_characters_character_id_orders_is_corporation",
+                                        "type": "boolean"
+                                    },
+                                    "issued": {
+                                        "description": "Date and time when this order was issued",
+                                        "format": "date-time",
+                                        "title": "get_characters_character_id_orders_issued",
+                                        "type": "string"
+                                    },
+                                    "location_id": {
+                                        "description": "ID of the location where order was placed",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_orders_location_id",
+                                        "type": "integer"
+                                    },
+                                    "min_volume": {
+                                        "description": "For buy orders, the minimum quantity that will be accepted in a matching sell order",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_orders_min_volume",
+                                        "type": "integer"
+                                    },
+                                    "order_id": {
+                                        "description": "Unique order ID",
+                                        "format": "int64",
+                                        "title": "get_characters_character_id_orders_order_id",
+                                        "type": "integer"
+                                    },
+                                    "price": {
+                                        "description": "Cost per unit for this order",
+                                        "format": "double",
+                                        "title": "get_characters_character_id_orders_price",
+                                        "type": "number"
+                                    },
+                                    "range": {
+                                        "description": "Valid order range, numbers are ranges in jumps",
+                                        "enum": [
+                                            "1",
+                                            "10",
+                                            "2",
+                                            "20",
+                                            "3",
+                                            "30",
+                                            "4",
+                                            "40",
+                                            "5",
+                                            "region",
+                                            "solarsystem",
+                                            "station"
+                                        ],
+                                        "title": "get_characters_character_id_orders_range",
+                                        "type": "string"
+                                    },
+                                    "region_id": {
+                                        "description": "ID of the region where order was placed",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_orders_region_id",
+                                        "type": "integer"
+                                    },
+                                    "type_id": {
+                                        "description": "The type ID of the item transacted in this order",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_orders_type_id",
+                                        "type": "integer"
+                                    },
+                                    "volume_remain": {
+                                        "description": "Quantity of items still required or offered",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_orders_volume_remain",
+                                        "type": "integer"
+                                    },
+                                    "volume_total": {
+                                        "description": "Quantity of items required or offered at time order was placed",
+                                        "format": "int32",
+                                        "title": "get_characters_character_id_orders_volume_total",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "is_corporation",
+                                    "duration",
+                                    "order_id",
+                                    "type_id",
+                                    "region_id",
+                                    "location_id",
+                                    "range",
+                                    "price",
+                                    "volume_total",
+                                    "volume_remain",
+                                    "issued"
+                                ],
+                                "title": "get_characters_character_id_orders_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 305,
+                            "title": "get_characters_character_id_orders_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-markets.read_character_orders.v1"
+                        ]
+                    }
+                ],
+                "summary": "List open orders from a character",
+                "tags": [
+                    "Market"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v2"
+                ],
+                "x-cached-seconds": 1200
             }
         },
         "/v2/characters/{character_id}/portrait/": {
@@ -30390,7 +30383,7 @@
         },
         "/v2/corporations/{corporation_id}/assets/": {
             "get": {
-                "description": "Return a list of the corporation assets\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director",
+                "description": "Return a list of the corporation assets\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Director\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/corporations/{corporation_id}/assets/)",
                 "operationId": "get_corporations_corporation_id_assets",
                 "parameters": [
                     {
@@ -30667,7 +30660,6 @@
                     "Assets"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "v2"
                 ],
                 "x-cached-seconds": 3600,
@@ -30829,9 +30821,533 @@
                 ]
             }
         },
+        "/v2/corporations/{corporation_id}/orders/": {
+            "get": {
+                "description": "List open market orders placed on behalf of a corporation\n\n---\n\nThis route is cached for up to 1200 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Trader",
+                "operationId": "get_corporations_corporation_id_orders",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/corporation_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/page"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of open market orders",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "duration": 30,
+                                    "escrow": 45.6,
+                                    "is_buy_order": true,
+                                    "issued": "2016-09-03T05:12:25Z",
+                                    "location_id": 456,
+                                    "min_volume": 1,
+                                    "order_id": 123,
+                                    "price": 33.3,
+                                    "range": "station",
+                                    "region_id": 123,
+                                    "type_id": 456,
+                                    "volume_remain": 4422,
+                                    "volume_total": 123456,
+                                    "wallet_division": 1
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "duration": {
+                                        "description": "Number of days for which order is valid (starting from the issued date). An order expires at time issued + duration",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_orders_duration",
+                                        "type": "integer"
+                                    },
+                                    "escrow": {
+                                        "description": "For buy orders, the amount of ISK in escrow",
+                                        "format": "double",
+                                        "title": "get_corporations_corporation_id_orders_escrow",
+                                        "type": "number"
+                                    },
+                                    "is_buy_order": {
+                                        "description": "True if the order is a bid (buy) order",
+                                        "title": "get_corporations_corporation_id_orders_is_buy_order",
+                                        "type": "boolean"
+                                    },
+                                    "issued": {
+                                        "description": "Date and time when this order was issued",
+                                        "format": "date-time",
+                                        "title": "get_corporations_corporation_id_orders_issued",
+                                        "type": "string"
+                                    },
+                                    "location_id": {
+                                        "description": "ID of the location where order was placed",
+                                        "format": "int64",
+                                        "title": "get_corporations_corporation_id_orders_location_id",
+                                        "type": "integer"
+                                    },
+                                    "min_volume": {
+                                        "description": "For buy orders, the minimum quantity that will be accepted in a matching sell order",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_orders_min_volume",
+                                        "type": "integer"
+                                    },
+                                    "order_id": {
+                                        "description": "Unique order ID",
+                                        "format": "int64",
+                                        "title": "get_corporations_corporation_id_orders_order_id",
+                                        "type": "integer"
+                                    },
+                                    "price": {
+                                        "description": "Cost per unit for this order",
+                                        "format": "double",
+                                        "title": "get_corporations_corporation_id_orders_price",
+                                        "type": "number"
+                                    },
+                                    "range": {
+                                        "description": "Valid order range, numbers are ranges in jumps",
+                                        "enum": [
+                                            "1",
+                                            "10",
+                                            "2",
+                                            "20",
+                                            "3",
+                                            "30",
+                                            "4",
+                                            "40",
+                                            "5",
+                                            "region",
+                                            "solarsystem",
+                                            "station"
+                                        ],
+                                        "title": "get_corporations_corporation_id_orders_range",
+                                        "type": "string"
+                                    },
+                                    "region_id": {
+                                        "description": "ID of the region where order was placed",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_orders_region_id",
+                                        "type": "integer"
+                                    },
+                                    "type_id": {
+                                        "description": "The type ID of the item transacted in this order",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_orders_type_id",
+                                        "type": "integer"
+                                    },
+                                    "volume_remain": {
+                                        "description": "Quantity of items still required or offered",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_orders_volume_remain",
+                                        "type": "integer"
+                                    },
+                                    "volume_total": {
+                                        "description": "Quantity of items required or offered at time order was placed",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_orders_volume_total",
+                                        "type": "integer"
+                                    },
+                                    "wallet_division": {
+                                        "description": "The corporation wallet division used for this order.",
+                                        "format": "int32",
+                                        "maximum": 7,
+                                        "minimum": 1,
+                                        "title": "get_corporations_corporation_id_orders_wallet_division",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "duration",
+                                    "wallet_division",
+                                    "order_id",
+                                    "type_id",
+                                    "region_id",
+                                    "location_id",
+                                    "range",
+                                    "price",
+                                    "volume_total",
+                                    "volume_remain",
+                                    "issued"
+                                ],
+                                "title": "get_corporations_corporation_id_orders_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 1000,
+                            "title": "get_corporations_corporation_id_orders_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-markets.read_corporation_orders.v1"
+                        ]
+                    }
+                ],
+                "summary": "List open orders from a corporation",
+                "tags": [
+                    "Market"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v2"
+                ],
+                "x-cached-seconds": 1200,
+                "x-required-roles": [
+                    "Accountant",
+                    "Trader"
+                ]
+            }
+        },
+        "/v2/corporations/{corporation_id}/structures/": {
+            "get": {
+                "description": "Get a list of corporation structures. This route's version includes the changes to structures detailed in this blog: https://www.eveonline.com/article/upwell-2.0-structures-changes-coming-on-february-13th\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): StationManager",
+                "operationId": "get_corporations_corporation_id_structures",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/corporation_id"
+                    },
+                    {
+                        "$ref": "#/parameters/datasource"
+                    },
+                    {
+                        "$ref": "#/parameters/language"
+                    },
+                    {
+                        "$ref": "#/parameters/page"
+                    },
+                    {
+                        "$ref": "#/parameters/token"
+                    },
+                    {
+                        "$ref": "#/parameters/user_agent"
+                    },
+                    {
+                        "$ref": "#/parameters/X-User-Agent"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of corporation structures' information",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "corporation_id": 667531913,
+                                    "profile_id": 11237,
+                                    "reinforce_hour": 22,
+                                    "reinforce_weekday": 2,
+                                    "state": "shield_vulnerable",
+                                    "structure_id": 1021975535893,
+                                    "system_id": 30004763,
+                                    "type_id": 35833
+                                }
+                            ]
+                        },
+                        "headers": {
+                            "Cache-Control": {
+                                "description": "The caching mechanism used",
+                                "type": "string"
+                            },
+                            "Content-Language": {
+                                "description": "The language used in the response",
+                                "enum": [
+                                    "de",
+                                    "en-us",
+                                    "fr",
+                                    "ja",
+                                    "ru",
+                                    "zh"
+                                ],
+                                "type": "string"
+                            },
+                            "Expires": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "Last-Modified": {
+                                "description": "RFC7231 formatted datetime string",
+                                "type": "string"
+                            },
+                            "X-Pages": {
+                                "default": 1,
+                                "description": "Maximum page number",
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        },
+                        "schema": {
+                            "description": "200 ok array",
+                            "items": {
+                                "description": "200 ok object",
+                                "properties": {
+                                    "corporation_id": {
+                                        "description": "ID of the corporation that owns the structure",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_structures_corporation_id",
+                                        "type": "integer"
+                                    },
+                                    "fuel_expires": {
+                                        "description": "Date on which the structure will run out of fuel",
+                                        "format": "date-time",
+                                        "title": "get_corporations_corporation_id_structures_fuel_expires",
+                                        "type": "string"
+                                    },
+                                    "next_reinforce_apply": {
+                                        "description": "The date and time when the structure's newly requested reinforcement times (e.g. next_reinforce_hour and next_reinforce_day) will take effect.",
+                                        "format": "date-time",
+                                        "title": "get_corporations_corporation_id_structures_next_reinforce_apply",
+                                        "type": "string"
+                                    },
+                                    "next_reinforce_hour": {
+                                        "description": "The requested change to reinforce_hour that will take effect at the time shown by next_reinforce_apply.",
+                                        "format": "int32",
+                                        "maximum": 23,
+                                        "minimum": 0,
+                                        "title": "get_corporations_corporation_id_structures_next_reinforce_hour",
+                                        "type": "integer"
+                                    },
+                                    "next_reinforce_weekday": {
+                                        "description": "The requested change to reinforce_weekday that will take effect at the time shown by next_reinforce_apply.",
+                                        "format": "int32",
+                                        "maximum": 6,
+                                        "minimum": 0,
+                                        "title": "get_corporations_corporation_id_structures_next_reinforce_weekday",
+                                        "type": "integer"
+                                    },
+                                    "profile_id": {
+                                        "description": "The id of the ACL profile for this citadel",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_structures_profile_id",
+                                        "type": "integer"
+                                    },
+                                    "reinforce_hour": {
+                                        "description": "The hour of day that determines the four hour window when the structure will randomly exit its reinforcement periods and become vulnerable to attack against its armor and/or hull. The structure will become vulnerable at a random time that is +/- 2 hours centered on the value of this property.",
+                                        "format": "int32",
+                                        "maximum": 23,
+                                        "minimum": 0,
+                                        "title": "get_corporations_corporation_id_structures_reinforce_hour",
+                                        "type": "integer"
+                                    },
+                                    "reinforce_weekday": {
+                                        "description": "The day of the week when the structure exits its final reinforcement period and becomes vulnerable to attack against its hull. Monday is 0 and Sunday is 6.",
+                                        "format": "int32",
+                                        "maximum": 6,
+                                        "minimum": 0,
+                                        "title": "get_corporations_corporation_id_structures_reinforce_weekday",
+                                        "type": "integer"
+                                    },
+                                    "services": {
+                                        "description": "Contains a list of service upgrades, and their state",
+                                        "items": {
+                                            "description": "service object",
+                                            "properties": {
+                                                "name": {
+                                                    "description": "name string",
+                                                    "title": "get_corporations_corporation_id_structures_name",
+                                                    "type": "string"
+                                                },
+                                                "state": {
+                                                    "description": "state string",
+                                                    "enum": [
+                                                        "online",
+                                                        "offline",
+                                                        "cleanup"
+                                                    ],
+                                                    "title": "get_corporations_corporation_id_structures_state",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "name",
+                                                "state"
+                                            ],
+                                            "title": "get_corporations_corporation_id_structures_service",
+                                            "type": "object"
+                                        },
+                                        "maxItems": 10,
+                                        "title": "get_corporations_corporation_id_structures_services",
+                                        "type": "array"
+                                    },
+                                    "state": {
+                                        "description": "state string",
+                                        "enum": [
+                                            "anchor_vulnerable",
+                                            "anchoring",
+                                            "armor_reinforce",
+                                            "armor_vulnerable",
+                                            "fitting_invulnerable",
+                                            "hull_reinforce",
+                                            "hull_vulnerable",
+                                            "online_deprecated",
+                                            "onlining_vulnerable",
+                                            "shield_vulnerable",
+                                            "unanchored",
+                                            "unknown"
+                                        ],
+                                        "title": "get_corporations_corporation_id_structures_state",
+                                        "type": "string"
+                                    },
+                                    "state_timer_end": {
+                                        "description": "Date at which the structure will move to it's next state",
+                                        "format": "date-time",
+                                        "title": "get_corporations_corporation_id_structures_state_timer_end",
+                                        "type": "string"
+                                    },
+                                    "state_timer_start": {
+                                        "description": "Date at which the structure entered it's current state",
+                                        "format": "date-time",
+                                        "title": "get_corporations_corporation_id_structures_state_timer_start",
+                                        "type": "string"
+                                    },
+                                    "structure_id": {
+                                        "description": "The Item ID of the structure",
+                                        "format": "int64",
+                                        "title": "get_corporations_corporation_id_structures_structure_id",
+                                        "type": "integer"
+                                    },
+                                    "system_id": {
+                                        "description": "The solar system the structure is in",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_structures_system_id",
+                                        "type": "integer"
+                                    },
+                                    "type_id": {
+                                        "description": "The type id of the structure",
+                                        "format": "int32",
+                                        "title": "get_corporations_corporation_id_structures_type_id",
+                                        "type": "integer"
+                                    },
+                                    "unanchors_at": {
+                                        "description": "Date at which the structure will unanchor",
+                                        "format": "date-time",
+                                        "title": "get_corporations_corporation_id_structures_unanchors_at",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "structure_id",
+                                    "type_id",
+                                    "corporation_id",
+                                    "system_id",
+                                    "profile_id",
+                                    "reinforce_weekday",
+                                    "reinforce_hour",
+                                    "state"
+                                ],
+                                "title": "get_corporations_corporation_id_structures_200_ok",
+                                "type": "object"
+                            },
+                            "maxItems": 1000,
+                            "title": "get_corporations_corporation_id_structures_ok",
+                            "type": "array"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "examples": {
+                            "application/json": {
+                                "error": "Forbidden message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/forbidden"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "examples": {
+                            "application/json": {
+                                "error": "Internal server error message"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "evesso": [
+                            "esi-corporations.read_structures.v1"
+                        ]
+                    }
+                ],
+                "summary": "Get corporation structures",
+                "tags": [
+                    "Corporation"
+                ],
+                "x-alternate-versions": [
+                    "dev",
+                    "v2"
+                ],
+                "x-cached-seconds": 3600,
+                "x-required-roles": [
+                    "StationManager"
+                ]
+            }
+        },
         "/v2/corporations/{corporation_id}/wallets/{division}/journal/": {
             "get": {
-                "description": "Retrieve corporation wallet journal\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Junior_Accountant",
+                "description": "Retrieve corporation wallet journal\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\nRequires one of the following EVE corporation role(s): Accountant, Junior_Accountant\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/corporations/{corporation_id}/wallets/{division}/journal/)",
                 "operationId": "get_corporations_corporation_id_wallets_division_journal",
                 "parameters": [
                     {
@@ -31227,7 +31743,6 @@
                     "Wallet"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "v2"
                 ],
                 "x-cached-seconds": 3600,
@@ -33121,7 +33636,7 @@
                         "name": "response",
                         "required": true,
                         "schema": {
-                            "description": "response schema",
+                            "description": "response object",
                             "properties": {
                                 "response": {
                                     "description": "response string",
@@ -33137,7 +33652,8 @@
                             "required": [
                                 "response"
                             ],
-                            "title": "put_characters_character_id_calendar_event_id_response"
+                            "title": "put_characters_character_id_calendar_event_id_response",
+                            "type": "object"
                         }
                     },
                     {
@@ -34298,7 +34814,7 @@
         },
         "/v3/characters/{character_id}/wallet/journal/": {
             "get": {
-                "description": "Retrieve character wallet journal\n\n---\n\nThis route is cached for up to 3600 seconds",
+                "description": "Retrieve character wallet journal\n\n---\n\nThis route is cached for up to 3600 seconds\n\n---\n[This route has an available update](https://esi.tech.ccp.is/diff/latest/dev/#GET-/characters/{character_id}/wallet/journal/)",
                 "operationId": "get_characters_character_id_wallet_journal",
                 "parameters": [
                     {
@@ -34684,7 +35200,6 @@
                     "Wallet"
                 ],
                 "x-alternate-versions": [
-                    "dev",
                     "v3"
                 ],
                 "x-cached-seconds": 3600
@@ -35982,7 +36497,6 @@
                 "esi-corporations.read_structures.v1": "EVE SSO scope esi-corporations.read_structures.v1",
                 "esi-corporations.read_titles.v1": "EVE SSO scope esi-corporations.read_titles.v1",
                 "esi-corporations.track_members.v1": "EVE SSO scope esi-corporations.track_members.v1",
-                "esi-corporations.write_structures.v1": "EVE SSO scope esi-corporations.write_structures.v1",
                 "esi-fittings.read_fittings.v1": "EVE SSO scope esi-fittings.read_fittings.v1",
                 "esi-fittings.write_fittings.v1": "EVE SSO scope esi-fittings.write_fittings.v1",
                 "esi-fleets.read_fleet.v1": "EVE SSO scope esi-fleets.read_fleet.v1",
