@@ -4,7 +4,7 @@ function archive {
   pushd .
   cd $1
   LASTDATE=$(date -d "`grep "Last-Modified:" headers.txt | sed 's/^Last-Modified: //g'`" +%s)
-  curl -D headers.txt -f "https://esi.tech.ccp.is/$1/swagger.json" | python3.5 -m json.tool --sort-keys > swagger.json
+  curl -D headers.txt -f "https://esi.evetech.net/$1/swagger.json" | python3.5 -m json.tool --sort-keys > swagger.json
   NEWDATE=$(date -d "`grep "Last-Modified:" headers.txt | sed 's/^Last-Modified: //g'`" +%s)
   HEADERCOUNT=$(wc -l headers.txt | cut -d' ' -f1)
 
