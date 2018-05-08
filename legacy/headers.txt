@@ -1,21 +1,19 @@
-HTTP/1.1 200 OK
+HTTP/1.1 302 Found
+Date: Tue, 08 May 2018 13:36:58 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 85
+Connection: keep-alive
 Access-Control-Allow-Credentials: true
-Access-Control-Allow-Headers: Content-Type,Authorization,X-User-Agent
-Access-Control-Allow-Methods: OPTIONS,GET,OPTIONS
+Access-Control-Allow-Headers: Content-Type,Authorization,If-None-Match,X-User-Agent
+Access-Control-Allow-Methods: OPTIONS,GET,HEAD,OPTIONS
 Access-Control-Allow-Origin: *
-Access-Control-Expose-Headers: Content-Type,Warning,X-Pages,X-ESI-Error-Limit-Remain,X-ESI-Error-Limit-Reset
+Access-Control-Expose-Headers: Content-Type,Warning,ETag,X-Pages,X-ESI-Error-Limit-Remain,X-ESI-Error-Limit-Reset
 Access-Control-Max-Age: 600
-Cache-Control: public
-Content-Length: 725036
-Content-Type: application/json
-Date: Thu, 15 Mar 2018 18:46:47 GMT
-Etag: W/"6356fe4ec55a16c7b633852d0714b0565e92f24bf4062f8a00486eb1"
-Expires: Thu, 15 Mar 2018 18:47:46 GMT
-Last-Modified: Thu, 15 Mar 2018 18:46:46 GMT
+Allow: GET,HEAD,OPTIONS
+Location: https://esi.evetech.net/legacy/swagger.json
 Strict-Transport-Security: max-age=31536000
 Vary: Accept-Encoding
 X-Esi-Error-Limit-Remain: 100
-X-Esi-Error-Limit-Reset: 14
-Via: 1.1 google
-Alt-Svc: clear
+X-Esi-Error-Limit-Reset: 2
+X-Esi-Request-Id: bd0da7f3-7a30-48b2-807e-03070b136f06
 
